@@ -11,6 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
+  "private": true,
   "devDependencies": {
     "lerna": "^3.20.2"
   }
