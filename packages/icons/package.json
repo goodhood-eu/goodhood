@@ -1,12 +1,16 @@
 {
   "name": "@goodhood/icons",
-  "description": "",
+  "description": "SVG icons to use in GoodHood projects",
   "author": "goodhood.eu <max@nebenan.de>",
   "license": "SEE LICENSE IN LICENSE FILE",
-  "readmeFilename": "README.md",
   "homepage": "https://goodhood.eu/",
-  "repository": "goodhood-eu/goodhood",
-  "bugs": "https://github.com/goodhood-eu/goodhood/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goodhood-eu/goodhood.git"
+  },
+  "bugs": {
+    "url": "https://github.com/goodhood-eu/goodhood/issues"
+  },
   "version": "1.0.0-beta.0",
   "main": "index.js",
   "scripts": {
@@ -38,5 +42,6 @@
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0"
-  }
+  },
+  "dependencies": {}
 }
