@@ -1,0 +1,8 @@
+preview/
+!svg/
+.babelrc
+.browserslistrc
+.eslintrc
+.gitignore
+.npmignore
+webpack.config.js

@@ -1,0 +1,14 @@
+{
+  "name": "root",
+  "description": "An umbrella repository to hold all \"semi open source\" packages used by GoodHood exclusively.",
+  "author": "goodhood.eu <max@nebenan.de>",
+  "license": "SEE LICENSE IN LICENSE FILE",
+  "readmeFilename": "README.md",
+  "homepage": "https://goodhood.eu/",
+  "repository": "goodhood-eu/goodhood",
+  "bugs": "https://github.com/goodhood-eu/goodhood/issues",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.20.2"
+  }
+}
