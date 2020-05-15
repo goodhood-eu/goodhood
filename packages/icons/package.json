@@ -15,6 +15,7 @@
   "main": "index.js",
   "scripts": {
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
+    "lint": "eslint -f codeframe \"./**/*.{js,jsx}\"",
     "start": "webpack-dev-server"
   },
   "devDependencies": {
