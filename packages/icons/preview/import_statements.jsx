@@ -1,7 +1,7 @@
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
 
-const getIconName = (fileName) => fileName.substr(0, fileName.lastIndexOf('.'));
+const getIconName = (fileName) => fileName.replace(/\.svg$/, '');
 
 export const importStatementForReactComponent = (size, fileName) => {
   const name = getIconName(fileName);
