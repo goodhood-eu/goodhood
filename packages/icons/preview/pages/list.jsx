@@ -58,7 +58,7 @@ const StyledDl = styled.dl`
 
 const StyledCode = styled.pre`
   user-select: all;
-`
+`;
 
 
 export default ({ size }) => (
@@ -68,15 +68,15 @@ export default ({ size }) => (
     <StyledH3>At a glance:</StyledH3>
     <StyledList>
       {icons[size].map(({ default: url }, index) => {
-          const name = iconsList[size][index];
+        const name = iconsList[size][index];
 
-          return (
-            <StyledInlineListItem key={url}>
-                <a href={`#${name}`}>
-                    <img src={url} alt={url}/>
-                </a>
-            </StyledInlineListItem>
-          );
+        return (
+          <StyledInlineListItem key={url}>
+            <a href={`#${name}`}>
+              <img src={url} alt={url} />
+            </a>
+          </StyledInlineListItem>
+        );
       })}
     </StyledList>
 
