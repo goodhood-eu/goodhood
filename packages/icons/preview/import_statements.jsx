@@ -13,11 +13,11 @@ const getAlias = (iconName, suffix, startUpper) => {
 export const importStatementForReactComponent = (size, fileName) => {
   const name = getIconName(fileName);
   const alias = getAlias(name, 'Icon', true);
-  return `import { ReactComponent as ${alias} } from "@goodhood/icons/svg/${size}/${fileName}"`;
+  return `import { ReactComponent as ${alias} } from '@goodhood/icons/svg/${size}/${fileName}';`;
 };
 
 export const importStatementForImg = (size, fileName) => {
   const name = getIconName(fileName);
   const alias = getAlias(name, 'Icon', false);
-  return `import ${alias} from "@goodhood/icons/svg/${size}/${name}"`;
+  return `import ${alias} from '@goodhood/icons/svg/${size}/${name}';`;
 };
