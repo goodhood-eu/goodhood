@@ -15,6 +15,7 @@
   "main": "index.js",
   "scripts": {
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
+    "lint": "eslint -f codeframe \"./**/*.{js,jsx}\"",
     "start": "webpack-dev-server"
   },
   "devDependencies": {
@@ -41,7 +42,8 @@
     "val-loader": "^2.1.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "lodash": "^4.17.15"
   },
   "dependencies": {}
 }
