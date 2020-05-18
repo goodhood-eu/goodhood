@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Layout from '../components/layout';
 import icons from '../icons';
 import iconsList from '../icon_list';
+import { importStatementForImg, importStatementForReactComponent } from '../import_statements';
 
 const StyledH3 = styled.h3`
   margin-top: 30px;
@@ -15,11 +16,18 @@ const StyledList = styled.ul`
 
 const StyledInlineListItem = styled.li`
   margin-left: 5px;
+  padding: 10px;
   display: inline;
 `;
 
 const StyledListItem = styled.li`
   margin-top: 15px;
+  
+  &:target {
+    border-left: 5px solid #93a70a;
+    padding-left: 15px;
+    transition: all 0.5s ease-in;
+  }
 `;
 
 const StyledH4 = styled.h4`
@@ -48,17 +56,28 @@ const StyledDl = styled.dl`
   }
 `;
 
+const StyledCode = styled.pre`
+  user-select: all;
+`;
+
+
 export default ({ size }) => (
   <Layout>
     <h2>Icons in {size}:</h2>
 
     <StyledH3>At a glance:</StyledH3>
     <StyledList>
-      {icons[size].map(({ default: url }) => (
-        <StyledInlineListItem key={url}>
-          <img src={url} alt={url} />
-        </StyledInlineListItem>
-      ))}
+      {icons[size].map(({ default: url }, index) => {
+        const name = iconsList[size][index];
+
+        return (
+          <StyledInlineListItem key={url}>
+            <a href={`#${name}`}>
+              <img src={url} alt={url} />
+            </a>
+          </StyledInlineListItem>
+        );
+      })}
     </StyledList>
 
     <StyledH3>Detailed:</StyledH3>
@@ -66,7 +85,7 @@ export default ({ size }) => (
       {icons[size].map(({ default: url, ReactComponent: Icon }, index) => {
         const name = iconsList[size][index];
         return (
-          <StyledListItem key={url}>
+          <StyledListItem key={url} id={name}>
             <StyledH4>{size}/{name}</StyledH4>
             <StyledDl>
               <dt><pre>&lt;img /&gt;:</pre></dt>
@@ -74,6 +93,8 @@ export default ({ size }) => (
 
               <dt><pre>&lt;ReactComponent /&gt;:</pre></dt>
               <dd><Icon /></dd>
+              <StyledCode>{importStatementForReactComponent(size, name)}</StyledCode>
+              <StyledCode>{importStatementForImg(size, name)}</StyledCode>
             </StyledDl>
           </StyledListItem>
         );
