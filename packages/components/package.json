@@ -1,0 +1,61 @@
+{
+  "name": "@goodhood/components",
+  "description": "A collection of React Nebenan UI Components",
+  "author": "goodhood.eu <max@nebenan.de>",
+  "license": "SEE LICENSE IN LICENSE FILE",
+  "homepage": "https://goodhood.eu/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goodhood-eu/goodhood.git"
+  },
+  "bugs": {
+    "url": "https://github.com/goodhood-eu/goodhood/issues"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "reinstall": "rm -rf node_modules package-lock.json && npm install",
+    "lint": "eslint -f codeframe \"./**/*.{js,jsx}\"",
+    "build": "rollup --config rollup.config.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/plugin-proposal-json-strings": "^7.10.1",
+    "@babel/plugin-transform-runtime": "^7.10.1",
+    "@babel/plugin-transform-strict-mode": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "@babel/runtime": "^7.10.2",
+    "@rollup/plugin-babel": "^5.0.3",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^8.0.1",
+    "babel-plugin-transform-node-env-inline": "^0.4.3",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "clsx": "^1.1.1",
+    "date-fns": "^2.14.0",
+    "lodash": "^4.17.15",
+    "nebenan-helpers": "^4.2.0",
+    "nebenan-ui-kit": "^4.12.0",
+    "node-sass-glob-importer": "^5.3.2",
+    "prop-types": "^15.7.2",
+    "qs": "^6.9.4",
+    "react": "^16.13.1",
+    "rollup": "^2.15.0",
+    "rollup-plugin-peer-deps-external": "^2.2.2",
+    "rollup-plugin-postcss": "^3.1.2",
+    "sass": "^1.26.8",
+    "sass-functions": "^1.4.0"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "nebenan-helpers": "^3.6.0 || ^4.2.0",
+    "lodash": "^4.17.15",
+    "react": "^16.13.1",
+    "date-fns": "^2.14.0",
+    "qs": "^6.9.4",
+    "prop-types": "^15.7.2",
+    "clsx": "^1.1.1",
+    "nebenan-ui-kit": "^3.0.0 || ^4.11.0",
+    "@babel/runtime": "^7.10.2"
+  }
+}

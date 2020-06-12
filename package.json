@@ -17,6 +17,7 @@
   },
   "scripts": {
     "lint": "lerna run lint",
-    "postinstall": "lerna bootstrap"
+    "postinstall": "lerna bootstrap",
+    "build": "rollup --config"
   }
 }
