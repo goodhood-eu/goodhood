@@ -1,11 +1,12 @@
 import json from '@rollup/plugin-json';
-import babel from "@rollup/plugin-babel";
-import peerDepsExternal from "rollup-plugin-peer-deps-external";
+import babel from '@rollup/plugin-babel';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
-import resolve from "@rollup/plugin-node-resolve";
-import sassFunctions from "sass-functions";
-import sassGlobImporter from "node-sass-glob-importer";
+import resolve from '@rollup/plugin-node-resolve';
+import sassFunctions from 'sass-functions';
+import sassGlobImporter from 'node-sass-glob-importer';
 import sass from 'sass';
+// eslint-disable-next-line import/extensions
 import pkg from './package.json';
 
 export default {
@@ -22,13 +23,13 @@ export default {
       modules: true,
       use: [['sass', {
         includePaths: [
-          `${__dirname}/node_modules`
+          `${__dirname}/node_modules`,
         ],
         functions: sassFunctions({ sass }),
         importer: sassGlobImporter(),
         outputStyle: 'expanded',
         sourceComments: true,
-      }]]
+      }]],
     }),
     babel({
       babelHelpers: 'runtime',
@@ -36,5 +37,5 @@ export default {
     }),
     resolve({ browser: true, extensions: ['.js', '.jsx', '.json'] }),
     json(),
-  ]
-}
+  ],
+};
