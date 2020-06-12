@@ -6,11 +6,12 @@ import resolve from "@rollup/plugin-node-resolve";
 import sassFunctions from "sass-functions";
 import sassGlobImporter from "node-sass-glob-importer";
 import sass from 'sass';
+import pkg from './package.json';
 
 export default {
   input: 'src/index.js',
   output: {
-    file: 'lib/index.js',
+    file: pkg.module,
     format: 'esm',
     sourcemap: true,
   },

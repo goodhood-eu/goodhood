@@ -11,13 +11,13 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.0.1-beta.0",
+  "module": "lib/index.js",
   "scripts": {
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
     "lint": "eslint -f codeframe \"./**/*.{js,jsx}\"",
     "build": "rollup --config rollup.config.js",
-    "start": "start-storybook"
+    "start": "start-storybook -p 3000"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
