@@ -11,11 +11,19 @@ import pkg from './package.json';
 
 export default {
   input: 'src/index.js',
-  output: {
-    file: pkg.module,
-    format: 'esm',
-    sourcemap: true,
-  },
+  output: [
+    {
+      file: `${pkg.module}.mjs`,
+      format: 'es',
+      sourcemap: true,
+    },
+    // {
+    //   file: `${pkg.module}.js`,
+    //   format: 'cjs',
+    //   sourcemap: true,
+    // },
+
+  ],
   plugins: [
     peerDepsExternal(),
     postcss({
