@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Dots from './index';
 
-export default { title: 'Dots' };
+export default { title: 'Dots', component: Dots };
 
-export const withoutSelection = () => (
+export const Empty = () => (
   <Dots count={10} />
 );
 
