@@ -5,8 +5,8 @@ import postcss from 'rollup-plugin-postcss';
 import resolve from '@rollup/plugin-node-resolve';
 import sassFunctions from 'sass-functions';
 import sassGlobImporter from 'node-sass-glob-importer';
-import del from 'rollup-plugin-delete'
-import path from "path";
+import del from 'rollup-plugin-delete';
+import path from 'path';
 import sass from 'sass';
 // eslint-disable-next-line import/extensions
 import pkg from './package.json';
@@ -22,7 +22,7 @@ export default {
   ],
   plugins: [
     del({
-      targets: path.join(pkg.module, '../*')
+      targets: path.join(pkg.module, '../*'),
     }),
     peerDepsExternal(),
     postcss({
