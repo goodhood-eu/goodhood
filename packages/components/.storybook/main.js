@@ -30,6 +30,7 @@ const getStyleLoaders = ({ modules }) => (
 
 module.exports = {
   stories: ['../src/**/*.stories.jsx'],
+  addons: [],
   webpackFinal: (config) => {
     config.module.rules.push({
       test: /\.scss$/,
