@@ -18,7 +18,7 @@ const usePageTitle = () => {
   return title;
 };
 
-export default { title: 'MicroHelmet', component: MicroHelmet, subcomponents: { MicroHelmetProvider} };
+export default { title: 'MicroHelmet', component: MicroHelmet, subcomponents: { MicroHelmetProvider } };
 
 export const Default = () => {
   const [title, setTitle] = useState(null);
