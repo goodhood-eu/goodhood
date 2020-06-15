@@ -7,7 +7,7 @@ export const Default = () => (
   <Logo />
 );
 
-export const LocaleSpecific = () => (
+export const FrenchLocale = () => (
   <Logo localeName="fr_fr" />
 );
 
