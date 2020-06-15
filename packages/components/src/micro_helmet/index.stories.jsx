@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import MicroHelmet from './index';
-import Provider from "./provider";
+import Provider from './provider';
 
 const usePageTitle = () => {
   const [title, setTitle] = useState(document.title);
@@ -12,11 +12,11 @@ const usePageTitle = () => {
 
     return () => {
       observer.disconnect();
-    }
+    };
   }, []);
 
   return title;
-}
+};
 
 export default { title: 'MicroHelmet', component: MicroHelmet };
 
@@ -51,4 +51,4 @@ export const Default = () => {
       </div>
     </Provider>
   );
-}
+};

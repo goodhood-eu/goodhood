@@ -19,4 +19,4 @@ export const WithChildren = () => (
   <Logo>
     ist cool
   </Logo>
-)
+);

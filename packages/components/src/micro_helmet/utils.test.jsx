@@ -1,5 +1,5 @@
-import { parseProps } from './utils';
 import { assert } from 'chai';
+import { parseProps } from './utils';
 
 
 describe('ui/micro_helmet/utils', () => {
