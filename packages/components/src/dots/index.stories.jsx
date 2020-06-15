@@ -11,11 +11,6 @@ export const Default = () => {
   );
 };
 
-/**
- * Test
- * @returns {*}
- * @constructor
- */
 export const Empty = () => (
   <Dots count={3} />
 );
