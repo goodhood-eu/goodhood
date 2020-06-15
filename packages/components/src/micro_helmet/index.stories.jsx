@@ -1,13 +1,29 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import MicroHelmet from './index';
 import Provider from "./provider";
 
-export default { title: 'MicroHelmet', component: MicroHelmet };
+const usePageTitle = () => {
+  const [title, setTitle] = useState(document.title);
 
-const helmetContext = {};
+  useEffect(() => {
+    const mutated = (mutations) => { setTitle(mutations[0].target.innerText); };
+    const observer = new MutationObserver(mutated);
+    observer.observe(document.querySelector('title'), { childList: true, characterData: true });
+
+    return () => {
+      observer.disconnect();
+    }
+  }, []);
+
+  return title;
+}
+
+export default { title: 'MicroHelmet', component: MicroHelmet };
 
 export const Default = () => {
   const [title, setTitle] = useState(null);
+  const currentPageTitle = usePageTitle();
+  const helmetContext = useMemo(() => {}, []);
 
   const handleInputChange = (event) => {
     setTitle(event.target.value);
@@ -22,6 +38,7 @@ export const Default = () => {
     <Provider context={helmetContext}>
       <p>Open canvas in new tab to see window title changes.</p>
 
+      <pre>Page title: {currentPageTitle}</pre>
       <p>
         Try to change window title:
         <input className="ui-input" value={title} onChange={handleInputChange} />
