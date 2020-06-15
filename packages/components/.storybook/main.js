@@ -20,7 +20,7 @@ const getStyleLoaders = ({ modules }) => (
           includePaths: [
             `${__dirname}/node_modules`
           ],
-          functions: require('sass-functions')({ sass }),
+          functions: sassFunctions({ sass }),
           importer: sassGlobImporter(),
         }
       }
