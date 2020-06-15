@@ -11,8 +11,9 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "0.0.1-beta.4",
-  "module": "lib/index.js",
+  "version": "0.0.1-beta.5",
+  "module": "lib/index.esm.js",
+  "main": "lib/index.js",
   "sideEffects": false,
   "scripts": {
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
