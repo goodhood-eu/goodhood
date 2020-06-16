@@ -1,6 +1,5 @@
 const sassFunctions = require('sass-functions');
 const sass = require('sass');
-const sassGlobImporter = require('node-sass-glob-importer');
 
 const getStyleLoaders = ({ modules }) => (
   [
@@ -23,7 +22,6 @@ const getStyleLoaders = ({ modules }) => (
             `${__dirname}/node_modules`
           ],
           functions: sassFunctions({ sass }),
-          importer: sassGlobImporter(),
         }
       }
     }

@@ -4,7 +4,6 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
 import resolve from '@rollup/plugin-node-resolve';
 import sassFunctions from 'sass-functions';
-import sassGlobImporter from 'node-sass-glob-importer';
 import del from 'rollup-plugin-delete';
 import path from 'path';
 import sass from 'sass';
@@ -38,8 +37,6 @@ export default {
           `${__dirname}/node_modules`,
         ],
         functions: sassFunctions({ sass }),
-        importer: sassGlobImporter(),
-        outputStyle: 'expanded',
         sourceComments: true,
       }]],
     }),
