@@ -2,6 +2,7 @@ import json from '@rollup/plugin-json';
 import babel from '@rollup/plugin-babel';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
+import postcssPresetEnv from 'postcss-preset-env';
 import resolve from '@rollup/plugin-node-resolve';
 import sassFunctions from 'sass-functions';
 import del from 'rollup-plugin-delete';
@@ -54,6 +55,9 @@ export default {
         functions: sassFunctions({ sass }),
         sourceComments: true,
       }]],
+      plugins: [
+        postcssPresetEnv(),
+      ],
     }),
     babel({
       babelHelpers: 'runtime',
