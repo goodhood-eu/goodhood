@@ -26,7 +26,7 @@ export default {
   ],
   plugins: [
     del({
-      targets: path.join(pkg.module, '../*'),
+      targets: path.join(__dirname, 'lib/*'),
     }),
     peerDepsExternal(),
     postcss({
