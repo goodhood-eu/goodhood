@@ -15,7 +15,17 @@
 
 ## Add a new component
 
-- Create `src/*/index.jsx` and "export-from" in `src/index.jsx`
+- Create `src/*/index.jsx`
+    - Default exports will be re-exported with the components name
+    - Named exports will be re-exported as they are (watch out for collisions)
+        ```js
+        // src/micro_helmet/index.jsx
+        export const MicroHelmetProvider = 123;
+        export default 666;
+      
+        // usage
+        import { MicroHelmet, MicroHelmetProvider } from '@goodhood/components';
+      ```
 - Create `src/*/index.stories.jsx`
     - Storybook will take it up automatically
 

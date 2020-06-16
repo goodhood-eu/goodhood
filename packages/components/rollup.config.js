@@ -7,10 +7,16 @@ import sassFunctions from 'sass-functions';
 import del from 'rollup-plugin-delete';
 import path from 'path';
 import sass from 'sass';
+import globImport from 'rollup-plugin-glob-import';
+import camelCase from 'lodash/camelCase';
+import upperFirst from 'lodash/upperFirst';
+import acornJsx from 'acorn-jsx';
 import pkg from './package.json';
 
 export default {
   input: 'src/index.jsx',
+  acorn: { jsx: true },
+  acornInjectPlugins: [acornJsx()],
   output: [
     {
       file: pkg.module,
@@ -44,6 +50,19 @@ export default {
       exclude: 'node_modules/**',
     }),
     resolve({ browser: true, extensions: ['.js', '.jsx', '.json'] }),
+    globImport({
+      format: 'mixed',
+      rename: (name, id) => {
+        if (name) return name;
+        if (/index\.js(x?)$/.test(id)) {
+          const dirname = path.basename(path.dirname(id));
+          return upperFirst(camelCase(dirname));
+        }
+
+        // not supported
+        return null;
+      },
+    }),
     json(),
   ],
 };

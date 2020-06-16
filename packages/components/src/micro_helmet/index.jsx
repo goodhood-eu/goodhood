@@ -31,5 +31,5 @@ MicroHelmet.propTypes = {
   canonical: PropTypes.string,
 };
 
-export { default as Provider } from './provider';
+export { default as MicroHelmetProvider } from './provider';
 export default MicroHelmet;
