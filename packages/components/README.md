@@ -10,7 +10,7 @@
 ## Usage
 
 - (Requires `nebenan-ui-kit`: `import "nebenan-ui-kit/styles"`)
-- Import styles globally: `import "@goodhood/components/lib/styles.css"`
+- Import styles globally: `import "@goodhood/components/styles.css"`
 - eg. `import { Logo } from "@goodhood/components"`
 
 ## Add a new component

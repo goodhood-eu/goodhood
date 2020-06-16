@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "0.0.1-beta.5",
+  "version": "0.0.1-beta.7",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -59,6 +59,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "rollup": "^2.15.0",
+    "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-glob-import": "^0.4.5",
     "rollup-plugin-peer-deps-external": "^2.2.2",

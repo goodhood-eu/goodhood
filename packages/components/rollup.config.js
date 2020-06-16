@@ -9,9 +9,16 @@ import path from 'path';
 import sass from 'sass';
 import globImport from 'rollup-plugin-glob-import';
 import camelCase from 'lodash/camelCase';
+import copy from 'rollup-plugin-copy';
 import upperFirst from 'lodash/upperFirst';
 import acornJsx from 'acorn-jsx';
 import pkg from './package.json';
+
+const toFileExtension = (filepath, ext) => {
+  const { dir, name } = path.parse(filepath);
+
+  return path.join(dir, `${name}.${ext}`);
+};
 
 export default {
   input: 'src/index.jsx',
@@ -31,7 +38,10 @@ export default {
   ],
   plugins: [
     del({
-      targets: path.join(__dirname, 'lib/*'),
+      targets: [
+        path.join(__dirname, 'lib/*'),
+        path.join(__dirname, 'styles.css'),
+      ],
     }),
     peerDepsExternal(),
     postcss({
@@ -64,5 +74,15 @@ export default {
       },
     }),
     json(),
+    copy({
+      hook: 'writeBundle',
+      targets: [
+        {
+          src: path.join(__dirname, toFileExtension(pkg.main, 'css')),
+          dest: __dirname,
+          rename: 'styles.css',
+        },
+      ],
+    }),
   ],
 };
