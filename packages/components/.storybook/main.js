@@ -8,7 +8,9 @@ const getStyleLoaders = ({ modules }) => (
     {
       loader: 'css-loader',
       options: {
-        modules: modules,
+        modules: modules && {
+          localIdentName: '[path][name]--[local]__[hash:base64:5]',
+        },
       }
     },
     {
