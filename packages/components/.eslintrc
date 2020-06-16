@@ -8,5 +8,10 @@
     "rules": {
       "no-unused-expressions": "off"
     }
-  }]
+  }],
+  "rules": {
+    "import/extensions": ["error", "never", {
+      "json": "always"
+    }]
+  }
 }

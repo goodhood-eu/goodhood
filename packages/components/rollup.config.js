@@ -7,7 +7,6 @@ import sassFunctions from 'sass-functions';
 import del from 'rollup-plugin-delete';
 import path from 'path';
 import sass from 'sass';
-// eslint-disable-next-line import/extensions
 import pkg from './package.json';
 
 export default {
