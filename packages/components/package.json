@@ -22,16 +22,13 @@
     "lint": "npx eslint -f codeframe \"./**/*.{js,jsx}\"",
     "build": "npx rollup --config rollup.config.js",
     "start": "npx start-storybook -p 3000 --ci",
-    "test": "NODE_ENV=test TZ='GMT' mocha \"./{,!(node_modules)/**}/*.test.{js,jsx}\"",
+    "test": "NODE_ENV=test TZ='GMT' npx mocha \"./{,!(node_modules)/**}/*.test.{js,jsx}\"",
     "test:tofile": "NODE_ENV=test TZ='GMT' mocha --no-colors -R spec \"./{,!(node_modules)/**}/*.test.{js,jsx}\" 2>&1 | tee test-report.log"
   },
   "devDependencies": {
-    "@babel/register": "^7.10.1",
-    "@babel/runtime": "^7.10.2",
     "chai": "^4.2.0",
     "clsx": "^1.1.1",
     "date-fns": "^2.14.0",
-    "mocha": "^8.0.1",
     "nebenan-helpers": "^4.2.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
