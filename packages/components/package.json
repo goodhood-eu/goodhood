@@ -36,13 +36,13 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "nebenan-helpers": "^3.6.0 || ^4.2.0",
+    "nebenan-helpers": "^4.2.0",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
     "date-fns": "^2.14.0",
     "prop-types": "^15.7.2",
     "clsx": "^1.1.1",
-    "nebenan-ui-kit": "^3.0.0 || ^4.11.0",
+    "nebenan-ui-kit": "^4.11.0",
     "@babel/runtime": "^7.10.2"
   }
 }
