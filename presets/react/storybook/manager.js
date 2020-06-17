@@ -5,6 +5,6 @@ const getTheme = (name) => create({
   brandTitle: name,
 });
 
-export const setup = ({ pkg, addons }) => {
+export default ({ pkg, addons }) => {
   addons.setConfig({ theme: getTheme(pkg.name) });
 };
