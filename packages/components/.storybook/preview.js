@@ -1,11 +1,4 @@
-import { addParameters } from '@storybook/client-api';
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import 'nebenan-ui-kit/styles.scss';
-import './preview.scss';
+import * as clientApi from "@storybook/client-api";
+import { setup } from '../../../presets/react/storybook/preview';
 
-
-addParameters({
-  viewport: {
-    viewports: INITIAL_VIEWPORTS,
-  }
-})
+setup({ clientApi });

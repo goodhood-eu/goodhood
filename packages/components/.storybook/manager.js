@@ -1,4 +1,5 @@
 import { addons } from '@storybook/addons';
-import theme from "./theme";
+import { setup } from '../../../presets/react/storybook/manager';
+import pkg from "../package.json";
 
-addons.setConfig({ theme });
+setup({ pkg, addons });
