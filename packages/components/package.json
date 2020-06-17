@@ -19,10 +19,10 @@
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
     "prepublishOnly": "npm run check && npm run build",
     "check": "npm run lint && npm run test",
-    "lint": "npx eslint -f codeframe \"./**/*.{js,jsx}\"",
-    "build": "npx rollup --config rollup.config.js",
-    "start": "npx start-storybook -p 3000 --ci",
-    "test": "NODE_ENV=test TZ='GMT' npx mocha \"./{,!(node_modules)/**}/*.test.{js,jsx}\"",
+    "lint": "eslint -f codeframe \"./**/*.{js,jsx}\"",
+    "build": "rollup --config rollup.config.js",
+    "start": "start-storybook -p 3000 --ci",
+    "test": "NODE_ENV=test TZ='GMT' mocha \"./{,!(node_modules)/**}/*.test.{js,jsx}\"",
     "test:tofile": "NODE_ENV=test TZ='GMT' mocha --no-colors -R spec \"./{,!(node_modules)/**}/*.test.{js,jsx}\" 2>&1 | tee test-report.log"
   },
   "devDependencies": {
