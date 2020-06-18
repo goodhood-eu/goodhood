@@ -1,0 +1,39 @@
+{
+  "name": "@goodhood/components",
+  "description": "A collection of React Nebenan UI Components",
+  "author": "goodhood.eu <max@nebenan.de>",
+  "license": "SEE LICENSE IN LICENSE FILE",
+  "homepage": "https://goodhood.eu/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goodhood-eu/goodhood.git"
+  },
+  "bugs": {
+    "url": "https://github.com/goodhood-eu/goodhood/issues"
+  },
+  "version": "0.0.1-beta.8",
+  "module": "lib/index.esm.js",
+  "main": "lib/index.js",
+  "sideEffects": false,
+  "scripts": {
+    "reinstall": "rm -rf node_modules package-lock.json && npm install",
+    "prepublishOnly": "npm run check && npm run build",
+    "check": "npm run lint && npm run test",
+    "lint": "eslint -f codeframe \"./**/*.{js,jsx}\"",
+    "build": "rollup --config rollup.config.js",
+    "start": "start-storybook -p 3000 --ci",
+    "test": "NODE_ENV=test TZ='GMT' mocha \"./{,!(node_modules)/**}/*.test.{js,jsx}\"",
+    "test:tofile": "NODE_ENV=test TZ='GMT' mocha --no-colors -R spec \"./{,!(node_modules)/**}/*.test.{js,jsx}\" 2>&1 | tee test-report.log"
+  },
+  "devDependencies": {},
+  "dependencies": {},
+  "peerDependencies": {
+    "nebenan-helpers": "^4.2.0",
+    "lodash": "^4.17.15",
+    "react": "^16.13.1",
+    "prop-types": "^15.7.2",
+    "clsx": "^1.1.1",
+    "nebenan-ui-kit": "^4.11.0",
+    "@babel/runtime": "^7.10.2"
+  }
+}
