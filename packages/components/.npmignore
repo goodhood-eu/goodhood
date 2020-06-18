@@ -7,3 +7,5 @@ src/
 .npmignore
 rollup.config.js
 .mocharc.js
+test-report.log
+
