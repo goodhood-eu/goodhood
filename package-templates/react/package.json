@@ -1,0 +1,33 @@
+{
+  "name": "@goodhood/your-package",
+  "description": "FUN FUN FUN",
+  "author": "goodhood.eu <max@nebenan.de>",
+  "license": "SEE LICENSE IN LICENSE FILE",
+  "homepage": "https://goodhood.eu/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goodhood-eu/goodhood.git"
+  },
+  "bugs": {
+    "url": "https://github.com/goodhood-eu/goodhood/issues"
+  },
+  "version": "0.0.1",
+  "module": "lib/index.esm.js",
+  "main": "lib/index.js",
+  "sideEffects": false,
+  "scripts": {
+    "reinstall": "rm -rf node_modules package-lock.json && npm install",
+    "prepublishOnly": "npm run check && npm run build",
+    "check": "npm run lint && npm run test",
+    "lint": "eslint -f codeframe \"./**/*.{js,jsx}\"",
+    "build": "rollup --config rollup.config.js",
+    "start": "start-storybook -p 3000 --ci",
+    "test": "NODE_ENV=test TZ='GMT' mocha \"./{,!(node_modules)/**}/*.test.{js,jsx}\"",
+    "test:tofile": "NODE_ENV=test TZ='GMT' mocha --no-colors -R spec \"./{,!(node_modules)/**}/*.test.{js,jsx}\" 2>&1 | tee test-report.log"
+  },
+  "devDependencies": {},
+  "dependencies": {},
+  "peerDependencies": {
+    "@babel/runtime": "^7.10.2"
+  }
+}
