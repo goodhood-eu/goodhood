@@ -1,1 +1,1 @@
-module.exports = require("../../presets/react/mocha.config.js");
+module.exports = require("../../presets/mocha.config.js");
