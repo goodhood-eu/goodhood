@@ -22,10 +22,20 @@
     "lint": "eslint -f codeframe \"./**/*.{js,jsx}\"",
     "build": "rollup --config rollup.config.js",
     "start": "start-storybook -p 3000 --ci",
+    "start:ssr-preview": "node storybook-ssr-preview/server.js",
     "test": "NODE_ENV=test TZ='GMT' mocha \"./{,!(node_modules)/**}/*.test.{js,jsx}\"",
     "test:tofile": "NODE_ENV=test TZ='GMT' mocha --no-colors -R spec \"./{,!(node_modules)/**}/*.test.{js,jsx}\" 2>&1 | tee test-report.log"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eval": "^0.1.4",
+    "express": "^4.17.1",
+    "is-object": "^1.0.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-virtual-modules": "^0.2.2"
+  },
   "dependencies": {},
   "peerDependencies": {
     "nebenan-helpers": "^4.2.0",
