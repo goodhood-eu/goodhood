@@ -1,61 +1,7 @@
 import path from 'path';
-import VirtualModulePlugin from 'webpack-virtual-modules';
 import sass from 'sass';
 import sassFunctions from 'sass-functions';
-
-// import globBase from 'glob-base';
-// import { makeRe } from 'micromatch';
-//
-// // https://github.com/storybookjs/storybook/blob/v5.3.19/lib/core/src/server/preview/to-require-context.js
-// const isObject = (val) => val != null && typeof val === 'object' && Array.isArray(val) === false;
-// export const toRequireContext = (input) => {
-//   switch (true) {
-//     case typeof input === 'string': {
-//       const { base, glob } = globBase(input);
-//       const regex = makeRe(glob)
-//         .toString()
-//         // webpack prepends the relative path with './'
-//         .replace(/^\/\^/, '/^\\.\\/')
-//         .replace(/\?:\^/g, '?:');
-//
-//       return { path: base, recursive: glob.startsWith('**'), match: regex };
-//     }
-//     case isObject(input): {
-//       return input;
-//     }
-//
-//     default: {
-//       throw new Error('the provided input cannot be transformed into a require.context');
-//     }
-//   }
-// };
-//
-// // https://github.com/storybookjs/storybook/blob/v5.3.19/lib/core/src/server/preview/to-require-context.js
-// export const toRequireContextString = (input) => {
-//   const { path: p, recursive: r, match: m } = toRequireContext(input);
-//   return `require.context('${p}', ${r}, ${m})`;
-// };
-
-const stories = [
-  // require('../src/dots/index.stories'),
-];
-// const virtualModulePlugin = stories && stories.length && new VirtualModulePlugin({
-//   [path.resolve(path.join(__dirname, 'generated-entry.js'))]: `
-//               import { configure } from '@storybook/react';
-//               module._StorybookPreserveDecorators = true;
-//               configure([${stories.map(toRequireContextString).join(',')}
-//               ], module);
-//             `,
-// });
-
-const virtualModulePlugin = stories && stories.length && new VirtualModulePlugin({
-  [path.resolve(path.join(__dirname, 'generated-entry.js'))]: `
-              import { configure } from '@storybook/react';
-              module._StorybookPreserveDecorators = true;
-              configure([${stories.join(',')}
-              ], module);
-            `,
-});
+import MiniCssExtractPlugin, * as miniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const ROOT_PKG_PATH = path.resolve(path.join(__dirname, '../../'));
 const rootPath = path.resolve(path.join(__dirname), '../');
@@ -63,23 +9,26 @@ const rootPath = path.resolve(path.join(__dirname), '../');
 const fileLoaderRules = [{
   test: /\.(jpe?g|png|gif|woff2?|ttf)$/,
   use: 'file-loader',
-}]
+}];
 
-const getStyleLoaders = ({ modules }) => (
+const getStyleLoaders = ({ modules, load }) => (
   [
-    'style-loader',
+    miniCssExtractPlugin.loader,
     {
       loader: 'css-loader',
       options: {
         modules: modules && {
-          localIdentName: '[path][name]--[local]__[hash:base64:5]',
+          localIdentName: '[path][name]--[local]',
         },
+        // onlyLocals: !load,
+        sourceMap: true,
       },
     },
     {
       loader: 'sass-loader',
       options: {
         implementation: sass,
+        sourceMap: true,
 
         sassOptions: {
           includePaths: [
@@ -98,6 +47,9 @@ const serverConfig = {
   entry: {
     prerender: path.join(__dirname, 'src/middleware.jsx'),
   },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   module: {
     rules: [
       {
@@ -110,17 +62,16 @@ const serverConfig = {
           test: /\.scss$/,
           sideEffects: false,
           exclude: /\.module\.scss$/,
-          use: getStyleLoaders({ modules: false, extract: false }),
+          use: getStyleLoaders({ modules: false, load: false }),
         },
         {
           test: /\.module\.scss$/,
           sideEffects: false,
-          use: getStyleLoaders({ modules: true, extract: false }),
+          use: getStyleLoaders({ modules: true, load: false }),
         },
-      ])
+      ]),
     ],
   },
-  plugins: [virtualModulePlugin].filter(Boolean),
   output: {
     filename: '[name].bundle.js',
     publicPath: '/',
@@ -130,16 +81,22 @@ const serverConfig = {
   optimization: {
     splitChunks: false,
   },
+  plugins: [
+    // no idea why this is needed here
+    new MiniCssExtractPlugin({
+      filename: 'out.css',
+    }),
+  ].filter(Boolean),
 };
 
 const clientConfig = {
   mode: 'development',
   entry: {
     client: [
-      '/Users/peter/Documents/Business/nebenan.de/goodhood/node_modules/@storybook/core/dist/server/common/polyfills.js',
-      '/Users/peter/Documents/Business/nebenan.de/goodhood/node_modules/@storybook/core/dist/server/preview/globals.js',
-      '/Users/peter/Documents/Business/nebenan.de/goodhood/node_modules/@storybook/addon-docs/dist/frameworks/common/config.js',
-      '/Users/peter/Documents/Business/nebenan.de/goodhood/node_modules/@storybook/addon-docs/dist/frameworks/react/config.js',
+      require.resolve('@storybook/core/dist/server/common/polyfills.js'),
+      require.resolve('@storybook/core/dist/server/preview/globals.js'),
+      require.resolve('@storybook/addon-docs/dist/frameworks/common/config.js'),
+      require.resolve('@storybook/addon-docs/dist/frameworks/react/config.js'),
       path.join(__dirname, 'src/index.jsx'),
     ],
   },
@@ -170,7 +127,9 @@ const clientConfig = {
     ],
   },
   plugins: [
-    virtualModulePlugin,
+    new MiniCssExtractPlugin({
+      filename: 'out.css',
+    }),
   ].filter(Boolean),
   output: {
     filename: '[name].bundle.js',

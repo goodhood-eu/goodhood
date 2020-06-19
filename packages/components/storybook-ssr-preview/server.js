@@ -65,7 +65,8 @@ app.use((req, res) => {
 
   console.log(clientAssets);
 
-  const outputFile = assetsByChunkName.prerender;
+  const outputFile = normalizeAssets(assetsByChunkName.prerender)
+    .find((asset) => /\.js$/.test(asset));
   const source = compilation.assets[outputFile];
 
   let app;
@@ -75,10 +76,13 @@ app.use((req, res) => {
 
     }, true);
   } catch (e) {
-    throw new Error('Error evaluating app script', e);
+    console.warn(e);
+    throw new Error('Error evaluating app script');
   }
 
-  const rendered = app.default();
+  const rendered = app.default({
+    query: req.query,
+  });
 
   // then use `assetsByChunkName` for server-sider rendering
   // For example, if you have only one main chunk:
