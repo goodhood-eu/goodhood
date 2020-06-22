@@ -8,10 +8,12 @@ import { getStories } from './utils';
 // /Users/peter/Documents/Sauce/storybook/app/react/src/client/preview/render.tsx
 const render = ({
   storyFn: StoryFn,
+  ...args
 }) => {
-  // TODO: implement doc rendering (maybe use @storybook/react)?
+  console.warn(args);
   hydrate(<StoryFn />, document.getElementById('root'));
 };
+// TODO: reload page on story change
 
 const api = start(render);
 const configure = (...args) => api.configure(...args, 'react');

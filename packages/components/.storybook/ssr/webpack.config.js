@@ -124,6 +124,11 @@ const clientConfig = {
         },
       ]),
       ...fileLoaderRules,
+      {
+        test: /\.stories\.jsx?$/,
+        loader: require.resolve('@storybook/source-loader'),
+        enforce: 'pre',
+      },
     ],
   },
   plugins: [

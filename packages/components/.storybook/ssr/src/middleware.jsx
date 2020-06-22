@@ -26,8 +26,10 @@ const renderStory = ({
 };
 
 export default ({ query }) => {
-  const storyId = query.id;
+  const { id: storyId, viewMode } = query;
   const storyStore = api.clientApi.store();
+
+  if (viewMode !== 'story') return '';
 
   const story = storyStore.fromId(storyId);
 

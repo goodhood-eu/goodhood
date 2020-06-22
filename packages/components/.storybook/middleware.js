@@ -14,7 +14,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const isObject = require('is-object');
 const _eval = require('eval')
 const config = require('./ssr/webpack.config');
-const compiler = webpack(config);
+const compiler = webpack(config); // TODO: load webpackFinal config?
 
 // This function makes server rendering of asset references consistent
 // with different webpack chunk/entry configurations
@@ -83,10 +83,16 @@ module.exports = (router) => {
   </head>
   <body>
     <div id="root">${rendered}</div>
+    <div id="docs-root"></div>
     ${normalizeAssets(clientAssets)
       .filter((path) => path.endsWith('.js'))
       .map((path) => `<script src="${path}"></script>`)
       .join('\n')}
+    
+    <div class="sb-errordisplay sb-wrapper">
+      <pre id="error-message" class="sb-heading"></pre>
+      <pre class="sb-errordisplay_code"><code id="error-stack"></code></pre>
+    </div>
   </body>
 </html>
   `);
