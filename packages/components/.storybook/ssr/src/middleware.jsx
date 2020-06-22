@@ -33,5 +33,5 @@ export default ({ query }) => {
 
   const story = storyStore.fromId(storyId);
 
-  return renderStory(story);
+  return story ? renderStory(story) : '';
 };
