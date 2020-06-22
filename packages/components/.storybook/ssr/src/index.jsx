@@ -1,11 +1,8 @@
 import React from 'react';
-import qs from 'qs';
 import { SET_CURRENT_STORY } from '@storybook/core-events';
 import addons from '@storybook/addons';
 import { hydrate } from 'react-dom';
 import { start } from '@storybook/core/client';
-import 'nebenan-ui-kit/styles.scss';
-import '../../../../../presets/react/storybook/preview.scss';
 import { getStories, getUrlForStory } from './utils';
 
 let locationChangeInProgress = false;
@@ -23,7 +20,12 @@ const forceServerSideRender = (story) => {
 }
 
 const api = start(render);
-api.configure(() => getStories(), module, 'react');
+
+// TODO: could lead to errors (maybe use a differnt file? preview-ssr.js?)
+//  if `configure` is called again in preview.js weird stuff could happen
+require('../../preview');
+
+api.configure(getStories, module, 'react');
 
 const channel = addons.getChannel();
 channel.on(SET_CURRENT_STORY, forceServerSideRender);
