@@ -51,9 +51,9 @@ module.exports = (router) => {
 
     const clientWebpackStats = res.locals.webpackStats.stats[1];
     const clientAssetsByChunkName = clientWebpackStats.toJson().assetsByChunkName;
-    const clientAssets = clientAssetsByChunkName.client;
+    const clientAssets = clientAssetsByChunkName.main;
 
-    const outputFile = normalizeAssets(assetsByChunkName.prerender)
+    const outputFile = normalizeAssets(assetsByChunkName.main)
       .find((asset) => /\.js$/.test(asset));
     const source = compilation.assets[outputFile];
 

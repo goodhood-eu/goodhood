@@ -12,7 +12,7 @@ const fileLoaderRules = [{
   use: 'file-loader',
 }];
 
-const getStyleLoaders = ({ modules, load }) => (
+const getStyleLoaders = ({ modules }) => (
   [
     miniCssExtractPlugin.loader,
     {
@@ -21,7 +21,6 @@ const getStyleLoaders = ({ modules, load }) => (
         modules: modules && {
           localIdentName: '[path][name]--[local]',
         },
-        // onlyLocals: !load,
         sourceMap: true,
       },
     },
@@ -40,15 +39,13 @@ const getStyleLoaders = ({ modules, load }) => (
         },
       },
     },
-  ].filter(Boolean)
+  ]
 );
 
 const serverConfig = {
   name: 'server',
   mode: 'development',
-  entry: {
-    prerender: path.join(__dirname, 'src/middleware.jsx'),
-  },
+  entry: path.join(__dirname, 'src/middleware.jsx'),
   resolve: {
     extensions: ['.js', '.jsx'],
   },
@@ -59,19 +56,17 @@ const serverConfig = {
         exclude: /node_modules/,
         use: 'babel-loader',
       },
-      ...([
-        {
-          test: /\.scss$/,
-          sideEffects: false,
-          exclude: /\.module\.scss$/,
-          use: getStyleLoaders({ modules: false, load: false }),
-        },
-        {
-          test: /\.module\.scss$/,
-          sideEffects: false,
-          use: getStyleLoaders({ modules: true, load: false }),
-        },
-      ]),
+      {
+        test: /\.scss$/,
+        sideEffects: false,
+        exclude: /\.module\.scss$/,
+        use: getStyleLoaders({ modules: false, load: false }),
+      },
+      {
+        test: /\.module\.scss$/,
+        sideEffects: false,
+        use: getStyleLoaders({ modules: true, load: false }),
+      },
     ],
   },
   output: {
@@ -80,30 +75,21 @@ const serverConfig = {
     libraryTarget: 'commonjs',
   },
   target: 'node',
-  optimization: {
-    splitChunks: false,
-  },
-  plugins: [
-    // no idea why this is needed here
-    new MiniCssExtractPlugin({
-      filename: 'out.css',
-    }),
-  ].filter(Boolean),
+  optimization: { splitChunks: false },
+  plugins: [ new MiniCssExtractPlugin() ],
 };
 
 const clientConfig = {
   name: 'client',
   mode: 'development',
-  entry: {
-    client: [
-      'webpack-hot-middleware/client?path=/__ssr_preview_hmr&name=client',
-      require.resolve('@storybook/core/dist/server/common/polyfills.js'),
-      require.resolve('@storybook/core/dist/server/preview/globals.js'),
-      require.resolve('@storybook/addon-docs/dist/frameworks/common/config.js'),
-      require.resolve('@storybook/addon-docs/dist/frameworks/react/config.js'),
-      path.join(__dirname, 'src/index.jsx'),
-    ],
-  },
+  entry: [
+    'webpack-hot-middleware/client?path=/__ssr_preview_hmr&name=client',
+    require.resolve('@storybook/core/dist/server/common/polyfills.js'),
+    require.resolve('@storybook/core/dist/server/preview/globals.js'),
+    require.resolve('@storybook/addon-docs/dist/frameworks/common/config.js'),
+    require.resolve('@storybook/addon-docs/dist/frameworks/react/config.js'),
+    path.join(__dirname, 'src/index.jsx'),
+  ],
   devtool: 'inline-source-map',
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -115,19 +101,17 @@ const clientConfig = {
         exclude: /node_modules/,
         use: 'babel-loader',
       },
-      ...([
-        {
-          test: /\.scss$/,
-          sideEffects: false,
-          exclude: /\.module\.scss$/,
-          use: getStyleLoaders({ modules: false, extract: true }),
-        },
-        {
-          test: /\.module\.scss$/,
-          sideEffects: false,
-          use: getStyleLoaders({ modules: true, extract: true }),
-        },
-      ]),
+      {
+        test: /\.scss$/,
+        sideEffects: false,
+        exclude: /\.module\.scss$/,
+        use: getStyleLoaders({ modules: false, extract: true }),
+      },
+      {
+        test: /\.module\.scss$/,
+        sideEffects: false,
+        use: getStyleLoaders({ modules: true, extract: true }),
+      },
       ...fileLoaderRules,
       {
         test: /\.stories\.jsx?$/,
@@ -138,17 +122,13 @@ const clientConfig = {
   },
   plugins: [
     new HotModuleReplacementPlugin(),
-    new MiniCssExtractPlugin({
-      filename: 'out.css',
-    }),
-  ].filter(Boolean),
+    new MiniCssExtractPlugin(),
+  ],
   output: {
     filename: '[name].bundle.js',
     publicPath: '/',
   },
-  optimization: {
-    splitChunks: false,
-  },
+  optimization: { splitChunks: false },
 };
 
 module.exports = [serverConfig, clientConfig];
