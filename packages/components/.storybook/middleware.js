@@ -12,6 +12,7 @@ require('@babel/register')({
 
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const isObject = require('is-object');
 const _eval = require('eval')
 const template = require('./ssr/template');
@@ -34,8 +35,11 @@ module.exports = (router) => {
   // Tell express to use the webpack-dev-middleware and use the webpack.config.js
   // configuration file as a base.
   router.use(webpackDevMiddleware(compiler, {
-    // publicPath: config.output.publicPath,
     serverSideRender: true,
+  }));
+
+  router.use(webpackHotMiddleware(compiler, {
+    path: '/__ssr_preview_hmr',
   }));
 
   router.get('/ssr-iframe', (req, res) => {

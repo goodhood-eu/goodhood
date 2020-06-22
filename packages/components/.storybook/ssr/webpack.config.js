@@ -2,6 +2,7 @@ import path from 'path';
 import sass from 'sass';
 import sassFunctions from 'sass-functions';
 import MiniCssExtractPlugin, * as miniCssExtractPlugin from 'mini-css-extract-plugin';
+import { HotModuleReplacementPlugin } from 'webpack';
 
 const ROOT_PKG_PATH = path.resolve(path.join(__dirname, '../../../'));
 const rootPath = path.resolve(path.join(__dirname), '../../');
@@ -43,6 +44,7 @@ const getStyleLoaders = ({ modules, load }) => (
 );
 
 const serverConfig = {
+  name: 'server',
   mode: 'development',
   entry: {
     prerender: path.join(__dirname, 'src/middleware.jsx'),
@@ -90,9 +92,11 @@ const serverConfig = {
 };
 
 const clientConfig = {
+  name: 'client',
   mode: 'development',
   entry: {
     client: [
+      'webpack-hot-middleware/client?path=/__ssr_preview_hmr&name=client',
       require.resolve('@storybook/core/dist/server/common/polyfills.js'),
       require.resolve('@storybook/core/dist/server/preview/globals.js'),
       require.resolve('@storybook/addon-docs/dist/frameworks/common/config.js'),
@@ -100,6 +104,7 @@ const clientConfig = {
       path.join(__dirname, 'src/index.jsx'),
     ],
   },
+  devtool: 'inline-source-map',
   resolve: {
     extensions: ['.js', '.jsx'],
   },
@@ -132,6 +137,7 @@ const clientConfig = {
     ],
   },
   plugins: [
+    new HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       filename: 'out.css',
     }),
