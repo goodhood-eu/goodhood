@@ -13,7 +13,7 @@ const render = async() => null;
 const api = start(render);
 const configure = (...args) => api.configure(...args, 'react');
 
-configure(() => getStories(), module);
+configure(getStories, module);
 
 const renderStory = ({
   storyFn: StoryFn,
@@ -26,7 +26,8 @@ const renderStory = ({
 };
 
 export default ({ query }) => {
-  const { id: storyId, viewMode } = query;
+  const { id: storyId } = query;
+  const viewMode = query.viewMode || 'story';
   const storyStore = api.clientApi.store();
 
   if (viewMode !== 'story') return '';

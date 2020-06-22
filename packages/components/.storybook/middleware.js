@@ -1,3 +1,4 @@
+
 require('@babel/register')({
   ignore: [/node_modules/],
   presets: [
@@ -13,6 +14,7 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const isObject = require('is-object');
 const _eval = require('eval')
+const template = require('./ssr/template');
 const config = require('./ssr/webpack.config');
 const compiler = webpack(config); // TODO: load webpackFinal config?
 
@@ -40,14 +42,12 @@ module.exports = (router) => {
     const webpackStats = res.locals.webpackStats.stats[0];
     const assetsByChunkName = webpackStats.toJson().assetsByChunkName;
     const fs = res.locals.fs;
-    const outputPath = webpackStats.toJson().outputPath;
+    const publicPath = config[1].output.publicPath; // TODO: correct setting?
     const { compilation } = webpackStats;
 
     const clientWebpackStats = res.locals.webpackStats.stats[1];
     const clientAssetsByChunkName = clientWebpackStats.toJson().assetsByChunkName;
     const clientAssets = clientAssetsByChunkName.client;
-
-    console.log(clientAssets);
 
     const outputFile = normalizeAssets(assetsByChunkName.prerender)
       .find((asset) => /\.js$/.test(asset));
@@ -56,45 +56,25 @@ module.exports = (router) => {
     let app;
 
     try {
-      app = _eval(source.source(), outputFile, {
-
-      }, true);
+      app = _eval(source.source(), outputFile, {}, true);
     } catch (e) {
       console.warn(e);
       throw new Error('Error evaluating app script');
     }
 
-    const rendered = app.default({
+    const rootContent = app.default({
       query: req.query,
     });
 
-    // then use `assetsByChunkName` for server-sider rendering
-    // For example, if you have only one main chunk:
-    res.send(`
-<html>
-  <head>
-    <title>My App</title>
-    <style>
-    ${normalizeAssets(clientAssets)
-      .filter((path) => path.endsWith('.css'))
-      .map((path) => fs.readFileSync(`${outputPath}/${path}`))
-      .join('\n')}
-    </style>
-  </head>
-  <body>
-    <div id="root">${rendered}</div>
-    <div id="docs-root"></div>
-    ${normalizeAssets(clientAssets)
-      .filter((path) => path.endsWith('.js'))
-      .map((path) => `<script src="${path}"></script>`)
-      .join('\n')}
-    
-    <div class="sb-errordisplay sb-wrapper">
-      <pre id="error-message" class="sb-heading"></pre>
-      <pre class="sb-errordisplay_code"><code id="error-stack"></code></pre>
-    </div>
-  </body>
-</html>
-  `);
+    const normalizedClientAssets = normalizeAssets(clientAssets)
+      .map((path) => [publicPath, path].join(''));
+    // TODO: need absolute path?
+    const stylesheets = normalizedClientAssets
+      .filter((path) => path.endsWith('.css'));
+    // TODO: need absolute path?
+    const scripts = normalizedClientAssets
+      .filter((path) => path.endsWith('.js'));
+
+    res.send(template.default({ stylesheets, scripts, rootContent }));
   })
 }
