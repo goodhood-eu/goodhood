@@ -4,7 +4,7 @@ require('@babel/register')({
   presets: [
     ['@babel/preset-env', {
       useBuiltIns: 'usage',
-      // corejs: '3',
+      corejs: '3',
       modules: 'auto',
     }],
   ],
@@ -19,8 +19,9 @@ const template = require('./ssr/template');
 const config = require('./ssr/webpack.config');
 const compiler = webpack(config); // TODO: load webpackFinal config?
 
-// This function makes server rendering of asset references consistent
-// with different webpack chunk/entry configurations
+const SERVER_COMPILE_INDEX = 0;
+const CLIENT_COMPILE_INDEX = 1;
+
 const normalizeAssets = (assets) => {
   if (isObject(assets)) {
     return Object.values(assets);
@@ -29,11 +30,33 @@ const normalizeAssets = (assets) => {
   return Array.isArray(assets) ? assets : [assets];
 };
 
+const getAssetsFromStats = (stats) => {
+  const assetsByChunkName = stats.toJson().assetsByChunkName;
+  return normalizeAssets(assetsByChunkName.main);
+}
+
+const getAssetSourceFromStats = (stats, asset) => {
+  return stats.compilation.assets[asset];
+}
+
+const filterForFiletype = (array, ext) => {
+  return array.filter((path) => path.endsWith(ext));
+}
+
+const renderTemplate = (webpackConfig, webpackStats, rootContent) => {
+  const publicPath = webpackConfig.output.publicPath; // TODO: correct setting?
+
+  const clientAssets = getAssetsFromStats(webpackStats);
+  const publicClientAssets = clientAssets.map((path) => `${publicPath}${path}`);
+  const stylesheets = filterForFiletype(publicClientAssets, '.css');
+  const scripts = filterForFiletype(publicClientAssets, '.js');
+
+  return template.default({ stylesheets, scripts, rootContent });
+}
+
 module.exports = (router) => {
   if (process.env['SSR'] !== 'true') return;
 
-  // Tell express to use the webpack-dev-middleware and use the webpack.config.js
-  // configuration file as a base.
   router.use(webpackDevMiddleware(compiler, {
     serverSideRender: true,
   }));
@@ -43,19 +66,14 @@ module.exports = (router) => {
   }));
 
   router.get('/ssr-iframe', (req, res) => {
-    const webpackStats = res.locals.webpackStats.stats[0];
-    const assetsByChunkName = webpackStats.toJson().assetsByChunkName;
-    const fs = res.locals.fs;
-    const publicPath = config[1].output.publicPath; // TODO: correct setting?
-    const { compilation } = webpackStats;
+    const clientWebpackConfig = config[CLIENT_COMPILE_INDEX];
+    const clientWebpackStats = res.locals.webpackStats.stats[CLIENT_COMPILE_INDEX];
+    const serverWebpackStats = res.locals.webpackStats.stats[SERVER_COMPILE_INDEX];
 
-    const clientWebpackStats = res.locals.webpackStats.stats[1];
-    const clientAssetsByChunkName = clientWebpackStats.toJson().assetsByChunkName;
-    const clientAssets = clientAssetsByChunkName.main;
-
-    const outputFile = normalizeAssets(assetsByChunkName.main)
+    const outputFile = getAssetsFromStats(serverWebpackStats)
       .find((asset) => /\.js$/.test(asset));
-    const source = compilation.assets[outputFile];
+
+    const source = getAssetSourceFromStats(serverWebpackStats, outputFile)
 
     let app;
 
@@ -70,15 +88,6 @@ module.exports = (router) => {
       query: req.query,
     });
 
-    const normalizedClientAssets = normalizeAssets(clientAssets)
-      .map((path) => [publicPath, path].join(''));
-    // TODO: need absolute path?
-    const stylesheets = normalizedClientAssets
-      .filter((path) => path.endsWith('.css'));
-    // TODO: need absolute path?
-    const scripts = normalizedClientAssets
-      .filter((path) => path.endsWith('.js'));
-
-    res.send(template.default({ stylesheets, scripts, rootContent }));
+    res.send(renderTemplate(clientWebpackConfig, clientWebpackStats, rootContent))
   })
 }
