@@ -2,7 +2,7 @@ import React from 'react';
 import { hydrate } from 'react-dom';
 import { start } from '@storybook/core/client';
 import 'nebenan-ui-kit/styles.scss';
-import '../../../../presets/react/storybook/preview.scss';
+import '../../../../../presets/react/storybook/preview.scss';
 
 // /Users/peter/Documents/Sauce/storybook/app/react/src/client/preview/render.tsx
 const render = ({
@@ -13,7 +13,7 @@ const render = ({
 };
 
 const getStories = () => {
-  const stories = require.context('../../src', true, /\.stories\.jsx$/);
+  const stories = require.context('../../../src', true, /\.stories\.jsx$/);
   return stories.keys().map(stories);
 };
 

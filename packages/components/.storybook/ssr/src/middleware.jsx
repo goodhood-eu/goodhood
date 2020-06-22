@@ -13,7 +13,7 @@ const api = start(render);
 const configure = (...args) => api.configure(...args, 'react');
 
 const getStories = () => {
-  const stories = require.context('../../src', true, /\.stories\.jsx$/);
+  const stories = require.context('../../../src', true, /\.stories\.jsx$/);
 
   return stories.keys().map(stories);
 };

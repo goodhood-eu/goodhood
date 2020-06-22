@@ -3,8 +3,8 @@ import sass from 'sass';
 import sassFunctions from 'sass-functions';
 import MiniCssExtractPlugin, * as miniCssExtractPlugin from 'mini-css-extract-plugin';
 
-const ROOT_PKG_PATH = path.resolve(path.join(__dirname, '../../'));
-const rootPath = path.resolve(path.join(__dirname), '../');
+const ROOT_PKG_PATH = path.resolve(path.join(__dirname, '../../../'));
+const rootPath = path.resolve(path.join(__dirname), '../../');
 
 const fileLoaderRules = [{
   test: /\.(jpe?g|png|gif|woff2?|ttf)$/,
