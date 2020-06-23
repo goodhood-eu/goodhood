@@ -17,13 +17,13 @@ const render = ({ storyFn: StoryFn }) => {
 const forceServerSideRender = (story) => {
   locationChangeInProgress = true;
   window.location.assign(getUrlForStory(story));
-}
+};
 
 const api = start(render);
 
 // TODO: could lead to errors (maybe use a differnt file? preview-ssr.js?)
 //  if `configure` is called again in preview.js weird stuff could happen
-require('../../preview');
+require(`${ROOT_PATH}/.storybook/preview`);
 
 api.configure(getStories, module, 'react');
 
