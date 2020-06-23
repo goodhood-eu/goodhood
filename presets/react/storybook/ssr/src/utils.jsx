@@ -5,7 +5,6 @@ export const getStories = () => {
   return stories.keys().map(stories);
 };
 
-// /Users/peter/Documents/Sauce/storybook/lib/core/src/client/preview/url.js
 export const getUrlForStory = ({ storyId, viewMode }) => {
   const { path, selectedKind, selectedStory, ...rest } = qs.parse(document.location.search, {
     ignoreQueryPrefix: true,
