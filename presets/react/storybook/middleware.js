@@ -1,10 +1,10 @@
 const { Router } = require('express');
 
-module.exports = ({ rootPath }) => {
+module.exports = ({ pkgPath }) => {
   const router = Router();
 
   if (process.env.SSR === 'true') {
-    router.use(require('./ssr/middleware')({ rootPath }));
+    router.use(require('./ssr/middleware')({ pkgPath }));
   }
 
   return router;

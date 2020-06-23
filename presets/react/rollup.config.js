@@ -22,7 +22,7 @@ const toFileExtension = (filepath, ext) => {
   return path.join(dir, `${name}.${ext}`);
 };
 
-export default (pkg, rootPath) => ({
+export default (pkg, pkgPath) => ({
   input: 'src/index.jsx',
   acorn: { jsx: true },
   acornInjectPlugins: [acornJsx()],
@@ -41,8 +41,8 @@ export default (pkg, rootPath) => ({
   plugins: [
     del({
       targets: [
-        path.join(rootPath, 'lib/*'),
-        path.join(rootPath, 'styles.css'),
+        path.join(pkgPath, 'lib/*'),
+        path.join(pkgPath, 'styles.css'),
       ],
     }),
     peerDepsExternal(),
@@ -51,7 +51,7 @@ export default (pkg, rootPath) => ({
       modules: true,
       use: [['sass', {
         includePaths: [
-          path.join(rootPath, 'node_modules/'),
+          path.join(pkgPath, 'node_modules/'),
           path.join(ROOT_PKG_PATH, 'node_modules/'),
         ],
         functions: sassFunctions({ sass }),
@@ -64,7 +64,7 @@ export default (pkg, rootPath) => ({
     babel({
       babelHelpers: 'runtime',
       exclude: [
-        path.join(rootPath, 'node_modules/'),
+        path.join(pkgPath, 'node_modules/'),
         path.join(ROOT_PKG_PATH, 'node_modules/'),
       ],
     }),
@@ -87,8 +87,8 @@ export default (pkg, rootPath) => ({
       hook: 'writeBundle',
       targets: [
         {
-          src: path.join(rootPath, toFileExtension(pkg.main, 'css')),
-          dest: rootPath,
+          src: path.join(pkgPath, toFileExtension(pkg.main, 'css')),
+          dest: pkgPath,
           rename: 'styles.css',
         },
       ],

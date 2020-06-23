@@ -11,7 +11,7 @@ const fileLoaderRules = [{
   use: 'file-loader',
 }];
 
-const getStyleLoaders = ({ rootPath, modules }) => (
+const getStyleLoaders = ({ pkgPath, modules }) => (
   [
     miniCssExtractPlugin.loader,
     {
@@ -31,7 +31,7 @@ const getStyleLoaders = ({ rootPath, modules }) => (
 
         sassOptions: {
           includePaths: [
-            path.join(rootPath, 'node_modules/'),
+            path.join(pkgPath, 'node_modules/'),
             path.join(ROOT_PKG_PATH, 'node_modules/'),
           ],
           functions: sassFunctions({ sass }),
@@ -69,9 +69,9 @@ const babelLoader = {
   },
 };
 
-const getConfig = ({ rootPath }) => {
+const getConfig = ({ pkgPath }) => {
   const definePlugin = new DefinePlugin({
-    ROOT_PATH: JSON.stringify(rootPath),
+    PKG_PATH: JSON.stringify(pkgPath),
   });
 
   const clientConfig = {
@@ -96,12 +96,12 @@ const getConfig = ({ rootPath }) => {
           test: /\.scss$/,
           sideEffects: false,
           exclude: /\.module\.scss$/,
-          use: getStyleLoaders({ rootPath, modules: false, extract: true }),
+          use: getStyleLoaders({ pkgPath, modules: false, extract: true }),
         },
         {
           test: /\.module\.scss$/,
           sideEffects: false,
-          use: getStyleLoaders({ rootPath, modules: true, extract: true }),
+          use: getStyleLoaders({ pkgPath, modules: true, extract: true }),
         },
         ...fileLoaderRules,
         {
@@ -141,12 +141,12 @@ const getConfig = ({ rootPath }) => {
           test: /\.scss$/,
           sideEffects: false,
           exclude: /\.module\.scss$/,
-          use: getStyleLoaders({ rootPath, modules: false, load: false }),
+          use: getStyleLoaders({ pkgPath, modules: false, load: false }),
         },
         {
           test: /\.module\.scss$/,
           sideEffects: false,
-          use: getStyleLoaders({ rootPath, modules: true, load: false }),
+          use: getStyleLoaders({ pkgPath, modules: true, load: false }),
         },
       ],
     },

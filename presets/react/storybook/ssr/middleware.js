@@ -49,10 +49,10 @@ const renderTemplate = (webpackConfig, webpackStats, rootContent) => {
   return template.default({ stylesheets, scripts, rootContent });
 };
 
-const getSSRMiddleware = ({ rootPath }) => {
+const getSSRMiddleware = ({ pkgPath }) => {
   const router = Router();
 
-  const config = getConfig({ rootPath });
+  const config = getConfig({ pkgPath });
   const compiler = webpack(config); // TODO: load webpackFinal config?
 
   router.use(webpackDevMiddleware(compiler, {

@@ -1,7 +1,7 @@
 import qs from 'qs';
 
 export const getStories = () => {
-  const stories = require.context(`${ROOT_PATH}/src`, true, /\.stories\.jsx$/);
+  const stories = require.context(`${PKG_PATH}/src`, true, /\.stories\.jsx$/);
   return stories.keys().map(stories);
 };
 

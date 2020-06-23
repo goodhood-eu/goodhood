@@ -25,7 +25,7 @@ const api = start(render);
 
 // TODO: could lead to errors (maybe use a differnt file? preview-ssr.js?)
 //  if `configure` is called again in preview.js weird stuff could happen
-require(`${ROOT_PATH}/.storybook/preview`);
+require(`${PKG_PATH}/.storybook/preview`);
 
 api.configure(getStories, module, 'react');
 
