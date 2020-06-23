@@ -26,15 +26,15 @@ const getAssetsFromStats = (stats) => {
 
 const getAssetSourceFromStats = (stats, asset) => stats.compilation.assets[asset];
 
-const filterForFiletype = (array, ext) => array.filter((path) => path.endsWith(ext));
+const filterForFileType = (array, ext) => array.filter((path) => path.endsWith(ext));
 
 const renderTemplate = (webpackConfig, webpackStats, rootContent) => {
   const publicPath = webpackConfig.output.publicPath; // TODO: correct setting?
 
   const clientAssets = getAssetsFromStats(webpackStats);
   const publicClientAssets = clientAssets.map((path) => `${publicPath}${path}`);
-  const stylesheets = filterForFiletype(publicClientAssets, '.css');
-  const scripts = filterForFiletype(publicClientAssets, '.js');
+  const stylesheets = filterForFileType(publicClientAssets, '.css');
+  const scripts = filterForFileType(publicClientAssets, '.js');
 
   return template({ stylesheets, scripts, rootContent });
 };
