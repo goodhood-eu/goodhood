@@ -122,7 +122,7 @@ const getConfig = ({ rootPath }) => {
   const serverConfig = {
     name: 'server',
     mode: 'development',
-    entry: path.join(__dirname, 'src/middleware.jsx'),
+    entry: path.join(__dirname, 'src/prerender.jsx'),
     resolve: {
       extensions: ['.js', '.jsx'],
     },
