@@ -76,17 +76,19 @@ const output = {
   publicPath: '/',
 };
 
-const getStyleRules = (pkgPath) => [{
-  test: /\.scss$/,
-  sideEffects: false,
-  exclude: /\.module\.scss$/,
-  use: getStyleLoaders({ pkgPath, modules: false }),
-},
-{
-  test: /\.module\.scss$/,
-  sideEffects: false,
-  use: getStyleLoaders({ pkgPath, modules: true }),
-}];
+const getStyleRules = (pkgPath) => [
+  {
+    test: /\.scss$/,
+    sideEffects: false,
+    exclude: /\.module\.scss$/,
+    use: getStyleLoaders({ pkgPath, modules: false }),
+  },
+  {
+    test: /\.module\.scss$/,
+    sideEffects: false,
+    use: getStyleLoaders({ pkgPath, modules: true }),
+  },
+];
 
 const getPlugins = (pkgPath) => ([
   new DefinePlugin({
