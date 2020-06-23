@@ -7,19 +7,19 @@ const normalizeAssets = (assets) => {
   return Array.isArray(assets) ? assets : [assets];
 };
 
-const getAssetsFromStats = (stats) => {
+const getAssets = (stats) => {
   const assetsByChunkName = stats.toJson().assetsByChunkName;
   return normalizeAssets(assetsByChunkName.main);
 };
 
-const getAssetSourceFromStats = (stats, asset) => stats.compilation.assets[asset];
+const getCompiledAsset = (stats, asset) => stats.compilation.assets[asset];
 
 const filterForFileType = (array, ext) => array.filter((path) => path.endsWith(ext));
 
 const renderTemplate = (webpackConfig, webpackStats, rootContent) => {
   const publicPath = webpackConfig.output.publicPath;
 
-  const clientAssets = getAssetsFromStats(webpackStats);
+  const clientAssets = getAssets(webpackStats);
   const publicClientAssets = clientAssets.map((path) => `${publicPath}${path}`);
   const stylesheets = filterForFileType(publicClientAssets, '.css');
   const scripts = filterForFileType(publicClientAssets, '.js');
@@ -28,15 +28,14 @@ const renderTemplate = (webpackConfig, webpackStats, rootContent) => {
 };
 
 const getPrerenderedContent = (webpackStats, params) => {
-  const assets = getAssetsFromStats(webpackStats);
-  const outputFile = filterForFileType(assets, '.js')[0];
-
-  const source = getAssetSourceFromStats(webpackStats, outputFile);
+  const assets = getAssets(webpackStats);
+  const asset = filterForFileType(assets, '.js')[0];
+  const compiled = getCompiledAsset(webpackStats, asset);
 
   let app;
 
   try {
-    app = _eval(source.source(), outputFile, {}, true);
+    app = _eval(compiled.source(), asset, {}, true);
   } catch (e) {
     console.warn(e);
     throw new Error('Error evaluating app script');
