@@ -61,6 +61,7 @@ const getSSRMiddleware = ({ pkgPath }) => {
 
   router.use(webpackDevMiddleware(compiler, {
     serverSideRender: true,
+    logLevel: 'error',
   }));
 
   router.use(webpackHotMiddleware(compiler, {

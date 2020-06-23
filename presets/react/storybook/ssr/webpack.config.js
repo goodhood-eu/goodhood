@@ -119,7 +119,7 @@ const getConfig = ({ pkgPath, webpackHotMiddlewarePath }) => [
     name: CONFIG_NAME_CLIENT,
     mode: 'development',
     entry: [
-      `webpack-hot-middleware/client?path=${webpackHotMiddlewarePath}&name=${CONFIG_NAME_CLIENT}`,
+      `webpack-hot-middleware/client?path=${webpackHotMiddlewarePath}&name=${CONFIG_NAME_CLIENT}&noInfo=true`,
       require.resolve('@storybook/core/dist/server/common/polyfills.js'),
       require.resolve('@storybook/core/dist/server/preview/globals.js'),
       require.resolve('@storybook/addon-docs/dist/frameworks/common/config.js'),
