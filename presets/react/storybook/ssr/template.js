@@ -1,7 +1,7 @@
 const renderLink = (path) => `<link rel="stylesheet" href="${path}" />`;
 const renderScript = (path) => `<script src="${path}"></script>`;
 
-export default ({ stylesheets, scripts, rootContent }) => `
+module.exports = ({ stylesheets, scripts, rootContent }) => `
 <html>
   <head>
     <title>Storybook</title>

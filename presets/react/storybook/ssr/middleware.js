@@ -1,14 +1,3 @@
-require('@babel/register')({
-  ignore: [/node_modules/],
-  presets: [
-    ['@babel/preset-env', {
-      useBuiltIns: 'usage',
-      corejs: '3',
-      modules: 'auto',
-    }],
-  ],
-});
-
 const webpack = require('webpack');
 const { Router } = require('express');
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -47,7 +36,7 @@ const renderTemplate = (webpackConfig, webpackStats, rootContent) => {
   const stylesheets = filterForFiletype(publicClientAssets, '.css');
   const scripts = filterForFiletype(publicClientAssets, '.js');
 
-  return template.default({ stylesheets, scripts, rootContent });
+  return template({ stylesheets, scripts, rootContent });
 };
 
 const getSSRMiddleware = ({ pkgPath }) => {

@@ -1,9 +1,9 @@
-import path from 'path';
-import sass from 'sass';
-import sassFunctions from 'sass-functions';
-import MiniCssExtractPlugin, * as miniCssExtractPlugin from 'mini-css-extract-plugin';
-import { DefinePlugin, HotModuleReplacementPlugin } from 'webpack';
-import babelConfig from '../../babel.config';
+const path = require('path');
+const sass = require('sass');
+const sassFunctions = require('sass-functions');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { DefinePlugin, HotModuleReplacementPlugin } = require('webpack');
+const babelConfig = require('../../babel.config');
 
 const CONFIG_NAME_CLIENT = 'client';
 const CONFIG_NAME_SERVER = 'server';
@@ -16,7 +16,7 @@ const fileLoaderRules = [{
 
 const getStyleLoaders = ({ pkgPath, modules }) => (
   [
-    miniCssExtractPlugin.loader,
+    MiniCssExtractPlugin.loader,
     {
       loader: 'css-loader',
       options: {
