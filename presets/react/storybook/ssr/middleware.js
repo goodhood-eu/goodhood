@@ -18,7 +18,7 @@ const getSSRMiddleware = ({ pkgPath }) => {
     pkgPath,
     webpackHotMiddlewarePath: WEBPACK_HOT_MIDDLEWARE_PATH,
   });
-  const compiler = webpack(config); // TODO: load webpackFinal config?
+  const compiler = webpack(config);
 
   router.use(webpackDevMiddleware(compiler, {
     serverSideRender: true,
