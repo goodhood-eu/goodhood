@@ -43,7 +43,7 @@ const getStyleLoaders = ({ pkgPath, modules }) => (
 );
 
 
-const babelLoader = {
+const scriptRule = {
   test: /\.jsx$/,
   exclude: /node_modules/,
   use: {
@@ -63,16 +63,42 @@ const babelLoader = {
   },
 };
 
+const CONFIG_NAME_CLIENT = 'client';
+const CONFIG_NAME_SERVER = 'server';
+
+const resolve = {
+  extensions: ['.js', '.jsx'],
+};
+
+const output = {
+  filename: '[name].bundle.js',
+  publicPath: '/',
+};
+
+const getStyleRules = (pkgPath) => [{
+  test: /\.scss$/,
+  sideEffects: false,
+  exclude: /\.module\.scss$/,
+  use: getStyleLoaders({ pkgPath, modules: false }),
+},
+{
+  test: /\.module\.scss$/,
+  sideEffects: false,
+  use: getStyleLoaders({ pkgPath, modules: true }),
+}];
+
 const getConfig = ({ pkgPath }) => {
   const definePlugin = new DefinePlugin({
     PKG_PATH: JSON.stringify(pkgPath),
   });
 
+  const styleRules = getStyleRules(pkgPath);
+
   const clientConfig = {
-    name: 'client',
+    name: CONFIG_NAME_CLIENT,
     mode: 'development',
     entry: [
-      'webpack-hot-middleware/client?path=/__ssr_preview_hmr&name=client',
+      `webpack-hot-middleware/client?path=/__ssr_preview_hmr&name=${CONFIG_NAME_CLIENT}`,
       require.resolve('@storybook/core/dist/server/common/polyfills.js'),
       require.resolve('@storybook/core/dist/server/preview/globals.js'),
       require.resolve('@storybook/addon-docs/dist/frameworks/common/config.js'),
@@ -80,23 +106,11 @@ const getConfig = ({ pkgPath }) => {
       path.join(__dirname, 'src/index.jsx'),
     ],
     devtool: 'inline-source-map',
-    resolve: {
-      extensions: ['.js', '.jsx'],
-    },
+    resolve,
     module: {
       rules: [
-        babelLoader,
-        {
-          test: /\.scss$/,
-          sideEffects: false,
-          exclude: /\.module\.scss$/,
-          use: getStyleLoaders({ pkgPath, modules: false, extract: true }),
-        },
-        {
-          test: /\.module\.scss$/,
-          sideEffects: false,
-          use: getStyleLoaders({ pkgPath, modules: true, extract: true }),
-        },
+        scriptRule,
+        ...styleRules,
         ...fileLoaderRules,
         {
           test: /\.stories\.jsx?$/,
@@ -114,39 +128,23 @@ const getConfig = ({ pkgPath }) => {
       new HotModuleReplacementPlugin(),
       new MiniCssExtractPlugin(),
     ],
-    output: {
-      filename: '[name].bundle.js',
-      publicPath: '/',
-    },
+    output,
     optimization: { splitChunks: false },
   };
 
   const serverConfig = {
-    name: 'server',
+    name: CONFIG_NAME_SERVER,
     mode: 'development',
     entry: path.join(__dirname, 'src/prerender.jsx'),
-    resolve: {
-      extensions: ['.js', '.jsx'],
-    },
+    resolve,
     module: {
       rules: [
-        babelLoader,
-        {
-          test: /\.scss$/,
-          sideEffects: false,
-          exclude: /\.module\.scss$/,
-          use: getStyleLoaders({ pkgPath, modules: false, load: false }),
-        },
-        {
-          test: /\.module\.scss$/,
-          sideEffects: false,
-          use: getStyleLoaders({ pkgPath, modules: true, load: false }),
-        },
+        scriptRule,
+        ...styleRules,
       ],
     },
     output: {
-      filename: '[name].bundle.js',
-      publicPath: '/',
+      ...output,
       libraryTarget: 'commonjs',
     },
     target: 'node',
