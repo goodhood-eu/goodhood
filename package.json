@@ -34,6 +34,7 @@
     "@storybook/theming": "^5.3.19",
     "acorn-jsx": "^5.2.0",
     "babel-loader": "^8.1.0",
+    "babel-plugin-react-docgen": "^4.1.0",
     "babel-plugin-transform-node-env-inline": "^0.4.3",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "chai": "^4.2.0",

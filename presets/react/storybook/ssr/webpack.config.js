@@ -60,6 +60,10 @@ const babelLoader = {
         '@babel/plugin-transform-runtime',
         '@babel/plugin-transform-strict-mode',
         '@babel/plugin-proposal-json-strings',
+        // TODO:  can we get this from storybook?
+        ['babel-plugin-react-docgen', {
+          DOC_GEN_COLLECTION_NAME: 'STORYBOOK_REACT_CLASSES',
+        }],
       ],
     },
   },
@@ -103,6 +107,10 @@ const getConfig = ({ rootPath }) => {
         {
           test: /\.stories\.jsx?$/,
           loader: require.resolve('@storybook/source-loader'),
+          exclude: /node_modules/,
+          options: {
+            inspectLocalDependencies: true,
+          },
           enforce: 'pre',
         },
       ],
