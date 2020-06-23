@@ -58,7 +58,7 @@ const scriptRule = {
       plugins: [
         ...babelConfig.plugins,
 
-        // needed by @storybook/addon-docs (TODO can we get this from storybook?)
+        // needed by @storybook/addon-docs
         ['babel-plugin-react-docgen', {
           DOC_GEN_COLLECTION_NAME: 'STORYBOOK_REACT_CLASSES',
         }],
@@ -136,6 +136,7 @@ const getConfig = ({ pkgPath, webpackHotMiddlewarePath }) => [
         ...getStyleRules(pkgPath),
         ...fileLoaderRules,
         {
+          // needed by @storybook/addon-storysource
           test: /\.stories\.jsx?$/,
           loader: require.resolve('@storybook/source-loader'),
           exclude: /node_modules/,
