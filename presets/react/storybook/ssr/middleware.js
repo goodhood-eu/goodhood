@@ -29,7 +29,7 @@ const getAssetSourceFromStats = (stats, asset) => stats.compilation.assets[asset
 const filterForFileType = (array, ext) => array.filter((path) => path.endsWith(ext));
 
 const renderTemplate = (webpackConfig, webpackStats, rootContent) => {
-  const publicPath = webpackConfig.output.publicPath; // TODO: correct setting?
+  const publicPath = webpackConfig.output.publicPath;
 
   const clientAssets = getAssetsFromStats(webpackStats);
   const publicClientAssets = clientAssets.map((path) => `${publicPath}${path}`);
