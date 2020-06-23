@@ -2,7 +2,7 @@ import path from 'path';
 import sass from 'sass';
 import sassFunctions from 'sass-functions';
 import MiniCssExtractPlugin, * as miniCssExtractPlugin from 'mini-css-extract-plugin';
-import { HotModuleReplacementPlugin, DefinePlugin } from 'webpack';
+import { DefinePlugin, HotModuleReplacementPlugin } from 'webpack';
 import babelConfig from '../../babel.config';
 
 const ROOT_PKG_PATH = path.resolve(path.join(__dirname, '../../../../'));
@@ -87,14 +87,36 @@ const getStyleRules = (pkgPath) => [{
   use: getStyleLoaders({ pkgPath, modules: true }),
 }];
 
-const getConfig = ({ pkgPath }) => {
-  const definePlugin = new DefinePlugin({
+const getPlugins = (pkgPath) => ([
+  new DefinePlugin({
     PKG_PATH: JSON.stringify(pkgPath),
-  });
+  }),
+  new MiniCssExtractPlugin(),
+]);
 
-  const styleRules = getStyleRules(pkgPath);
+const optimization = { splitChunks: false };
 
-  const clientConfig = {
+const getConfig = ({ pkgPath }) => [
+  {
+    name: CONFIG_NAME_SERVER,
+    mode: 'development',
+    entry: path.join(__dirname, 'src/prerender.jsx'),
+    resolve,
+    module: {
+      rules: [
+        scriptRule,
+        ...getStyleRules(pkgPath),
+      ],
+    },
+    output: {
+      ...output,
+      libraryTarget: 'commonjs',
+    },
+    target: 'node',
+    optimization,
+    plugins: getPlugins(pkgPath),
+  },
+  {
     name: CONFIG_NAME_CLIENT,
     mode: 'development',
     entry: [
@@ -110,7 +132,7 @@ const getConfig = ({ pkgPath }) => {
     module: {
       rules: [
         scriptRule,
-        ...styleRules,
+        ...getStyleRules(pkgPath),
         ...fileLoaderRules,
         {
           test: /\.stories\.jsx?$/,
@@ -124,38 +146,12 @@ const getConfig = ({ pkgPath }) => {
       ],
     },
     plugins: [
-      definePlugin,
+      ...getPlugins(pkgPath),
       new HotModuleReplacementPlugin(),
-      new MiniCssExtractPlugin(),
     ],
     output,
-    optimization: { splitChunks: false },
-  };
-
-  const serverConfig = {
-    name: CONFIG_NAME_SERVER,
-    mode: 'development',
-    entry: path.join(__dirname, 'src/prerender.jsx'),
-    resolve,
-    module: {
-      rules: [
-        scriptRule,
-        ...styleRules,
-      ],
-    },
-    output: {
-      ...output,
-      libraryTarget: 'commonjs',
-    },
-    target: 'node',
-    optimization: { splitChunks: false },
-    plugins: [
-      definePlugin,
-      new MiniCssExtractPlugin(),
-    ],
-  };
-
-  return [serverConfig, clientConfig];
-};
+    optimization,
+  },
+];
 
 module.exports = getConfig;
