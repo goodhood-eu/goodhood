@@ -15,6 +15,8 @@ const render = ({ storyFn: StoryFn }) => {
 };
 
 const forceServerSideRender = (story) => {
+  if (story.viewMode !== 'story') return;
+
   locationChangeInProgress = true;
   window.location.assign(getUrlForStory(story));
 };
