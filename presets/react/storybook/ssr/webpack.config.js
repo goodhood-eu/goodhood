@@ -7,6 +7,8 @@ const babelConfig = require('../../babel.config');
 
 const CONFIG_NAME_CLIENT = 'client';
 const CONFIG_NAME_SERVER = 'server';
+const COMPILE_INDEX_SERVER = 0;
+const COMPILE_INDEX_CLIENT = 1;
 const ROOT_PKG_PATH = path.resolve(path.join(__dirname, '../../../../'));
 
 const fileLoaderRules = [{
@@ -153,4 +155,8 @@ const getConfig = ({ pkgPath, webpackHotMiddlewarePath }) => [
   },
 ];
 
-module.exports = getConfig;
+module.exports = {
+  getConfig,
+  COMPILE_INDEX_SERVER,
+  COMPILE_INDEX_CLIENT,
+};
