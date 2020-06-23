@@ -1,7 +1,6 @@
 const path = require('path');
 const sass = require('sass');
 const sassFunctions = require('sass-functions');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { DefinePlugin, HotModuleReplacementPlugin } = require('webpack');
 const babelConfig = require('../../babel.config');
 
@@ -16,9 +15,9 @@ const fileLoaderRules = [{
   use: 'file-loader',
 }];
 
-const getStyleLoaders = ({ pkgPath, modules }) => (
+const getStyleLoaders = ({ pkgPath, modules, inject }) => (
   [
-    MiniCssExtractPlugin.loader,
+    inject && 'style-loader',
     {
       loader: 'css-loader',
       options: {
@@ -26,6 +25,7 @@ const getStyleLoaders = ({ pkgPath, modules }) => (
           localIdentName: '[path][name]--[local]',
         },
         sourceMap: true,
+        onlyLocals: !inject,
       },
     },
     {
@@ -43,7 +43,7 @@ const getStyleLoaders = ({ pkgPath, modules }) => (
         },
       },
     },
-  ]
+  ].filter(Boolean)
 );
 
 
@@ -72,21 +72,19 @@ const resolve = {
 };
 
 const output = {
-  filename: '[name].bundle.js',
+  filename: '[name].[hash].bundle.js',
   publicPath: '/',
 };
 
-const getStyleRules = (pkgPath) => [
+const getStyleRules = (pkgPath, inject) => [
   {
     test: /\.scss$/,
-    sideEffects: false,
     exclude: /\.module\.scss$/,
-    use: getStyleLoaders({ pkgPath, modules: false }),
+    use: getStyleLoaders({ pkgPath, inject, modules: false }),
   },
   {
     test: /\.module\.scss$/,
-    sideEffects: false,
-    use: getStyleLoaders({ pkgPath, modules: true }),
+    use: getStyleLoaders({ pkgPath, inject, modules: true }),
   },
 ];
 
@@ -94,7 +92,6 @@ const getPlugins = (pkgPath) => ([
   new DefinePlugin({
     PKG_PATH: JSON.stringify(pkgPath),
   }),
-  new MiniCssExtractPlugin(),
 ]);
 
 const optimization = { splitChunks: false };
@@ -108,7 +105,7 @@ const getConfig = ({ pkgPath, webpackHotMiddlewarePath }) => [
     module: {
       rules: [
         scriptRule,
-        ...getStyleRules(pkgPath),
+        ...getStyleRules(pkgPath, false),
       ],
     },
     output: {
@@ -135,7 +132,7 @@ const getConfig = ({ pkgPath, webpackHotMiddlewarePath }) => [
     module: {
       rules: [
         scriptRule,
-        ...getStyleRules(pkgPath),
+        ...getStyleRules(pkgPath, true),
         ...fileLoaderRules,
         {
           // needed by @storybook/addon-storysource
