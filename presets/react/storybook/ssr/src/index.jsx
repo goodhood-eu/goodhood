@@ -7,7 +7,7 @@ import { getStories, getUrlForStory } from './utils';
 
 let locationChangeInProgress = false;
 
-// /Users/peter/Documents/Sauce/storybook/app/react/src/client/preview/render.tsx
+// check storybook/app/react/src/client/preview/render.tsx if broken
 const render = ({ storyFn: StoryFn }) => {
   if (locationChangeInProgress) return;
 
@@ -23,9 +23,7 @@ const forceServerSideRender = (story) => {
 
 const api = start(render);
 
-// TODO: could lead to errors (maybe use a differnt file? preview-ssr.js?)
-//  if `configure` is called again in preview.js weird stuff could happen
-require(`${PKG_PATH}/.storybook/preview`);
+require(`${PKG_PATH}/.storybook/preview-ssr`);
 
 api.configure(getStories, module, 'react');
 
