@@ -1,11 +1,11 @@
 const renderLink = (path) => `<link rel="stylesheet" href="${path}" />`;
-const renderScript = (path) => `<script src="${path}"></script>`;
+const renderScript = (path) => `<script type="module" src="${path}"></script>`;
 
 module.exports = ({ stylesheets, scripts, rootContent }) => `
 <html>
   <head>
     <title>Storybook</title>
-    ${stylesheets.map(renderLink)}
+    ${stylesheets.map(renderLink).join('')}
     <script>
     try {
       if (window.top !== window) {
@@ -16,6 +16,13 @@ module.exports = ({ stylesheets, scripts, rootContent }) => `
       console.warn('unable to connect to top frame for connecting dev tools');
     }
     </script>
+    <style>
+    :not(.sb-show-main) > .sb-main,
+    :not(.sb-show-nopreview) > .sb-nopreview,
+    :not(.sb-show-errordisplay) > .sb-errordisplay {
+     display: none;
+    } 
+    </style>
   </head>
   <body>
     <div id="root">${rootContent}</div>
@@ -24,7 +31,7 @@ module.exports = ({ stylesheets, scripts, rootContent }) => `
       <pre id="error-message" class="sb-heading"></pre>
       <pre class="sb-errordisplay_code"><code id="error-stack"></code></pre>
     </div>
-    ${scripts.map(renderScript)}
+    ${scripts.map(renderScript).join('')}
   </body>
 </html>
 `;
