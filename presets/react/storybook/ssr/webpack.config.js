@@ -3,6 +3,7 @@ import sass from 'sass';
 import sassFunctions from 'sass-functions';
 import MiniCssExtractPlugin, * as miniCssExtractPlugin from 'mini-css-extract-plugin';
 import { HotModuleReplacementPlugin, DefinePlugin } from 'webpack';
+import babelConfig from '../../babel.config';
 
 const ROOT_PKG_PATH = path.resolve(path.join(__dirname, '../../../../'));
 
@@ -49,18 +50,11 @@ const babelLoader = {
     loader: 'babel-loader',
 
     options: {
-      // TODO: unify with babel.config.js
-      presets: [
-        ['@babel/preset-env', { modules: false }],
-        '@babel/preset-react',
-      ],
+      ...babelConfig,
       plugins: [
-        'transform-node-env-inline',
-        'transform-react-remove-prop-types',
-        '@babel/plugin-transform-runtime',
-        '@babel/plugin-transform-strict-mode',
-        '@babel/plugin-proposal-json-strings',
-        // TODO:  can we get this from storybook?
+        ...babelConfig.plugins,
+
+        // needed by @storybook/addon-docs (TODO can we get this from storybook?)
         ['babel-plugin-react-docgen', {
           DOC_GEN_COLLECTION_NAME: 'STORYBOOK_REACT_CLASSES',
         }],
