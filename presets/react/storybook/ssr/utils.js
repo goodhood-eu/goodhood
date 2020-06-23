@@ -19,10 +19,10 @@ const filterForFileType = (array, ext) => array.filter((path) => path.endsWith(e
 const renderTemplate = (webpackConfig, webpackStats, rootContent) => {
   const publicPath = webpackConfig.output.publicPath;
 
-  const clientAssets = getAssets(webpackStats);
-  const publicClientAssets = clientAssets.map((path) => `${publicPath}${path}`);
-  const stylesheets = filterForFileType(publicClientAssets, '.css');
-  const scripts = filterForFileType(publicClientAssets, '.js');
+  const assets = getAssets(webpackStats);
+  const publicAssets = assets.map((path) => `${publicPath}${path}`);
+  const stylesheets = filterForFileType(publicAssets, '.css');
+  const scripts = filterForFileType(publicAssets, '.js');
 
   return template({ stylesheets, scripts, rootContent });
 };
