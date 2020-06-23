@@ -5,6 +5,8 @@ import MiniCssExtractPlugin, * as miniCssExtractPlugin from 'mini-css-extract-pl
 import { DefinePlugin, HotModuleReplacementPlugin } from 'webpack';
 import babelConfig from '../../babel.config';
 
+const CONFIG_NAME_CLIENT = 'client';
+const CONFIG_NAME_SERVER = 'server';
 const ROOT_PKG_PATH = path.resolve(path.join(__dirname, '../../../../'));
 
 const fileLoaderRules = [{
@@ -63,9 +65,6 @@ const scriptRule = {
   },
 };
 
-const CONFIG_NAME_CLIENT = 'client';
-const CONFIG_NAME_SERVER = 'server';
-
 const resolve = {
   extensions: ['.js', '.jsx'],
 };
@@ -96,7 +95,7 @@ const getPlugins = (pkgPath) => ([
 
 const optimization = { splitChunks: false };
 
-const getConfig = ({ pkgPath }) => [
+const getConfig = ({ pkgPath, webpackHotMiddlewarePath }) => [
   {
     name: CONFIG_NAME_SERVER,
     mode: 'development',
@@ -120,7 +119,7 @@ const getConfig = ({ pkgPath }) => [
     name: CONFIG_NAME_CLIENT,
     mode: 'development',
     entry: [
-      `webpack-hot-middleware/client?path=/__ssr_preview_hmr&name=${CONFIG_NAME_CLIENT}`,
+      `webpack-hot-middleware/client?path=${webpackHotMiddlewarePath}&name=${CONFIG_NAME_CLIENT}`,
       require.resolve('@storybook/core/dist/server/common/polyfills.js'),
       require.resolve('@storybook/core/dist/server/preview/globals.js'),
       require.resolve('@storybook/addon-docs/dist/frameworks/common/config.js'),

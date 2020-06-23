@@ -18,6 +18,7 @@ const _eval = require('eval');
 const template = require('./template');
 const getConfig = require('./webpack.config');
 
+const WEBPACK_HOT_MIDDLEWARE_PATH = '/__ssr_preview_hmr';
 const SERVER_COMPILE_INDEX = 0;
 const CLIENT_COMPILE_INDEX = 1;
 
@@ -52,7 +53,10 @@ const renderTemplate = (webpackConfig, webpackStats, rootContent) => {
 const getSSRMiddleware = ({ pkgPath }) => {
   const router = Router();
 
-  const config = getConfig({ pkgPath });
+  const config = getConfig({
+    pkgPath,
+    webpackHotMiddlewarePath: WEBPACK_HOT_MIDDLEWARE_PATH,
+  });
   const compiler = webpack(config); // TODO: load webpackFinal config?
 
   router.use(webpackDevMiddleware(compiler, {
@@ -60,7 +64,7 @@ const getSSRMiddleware = ({ pkgPath }) => {
   }));
 
   router.use(webpackHotMiddleware(compiler, {
-    path: '/__ssr_preview_hmr',
+    path: WEBPACK_HOT_MIDDLEWARE_PATH,
   }));
 
   router.get('/ssr-iframe', (req, res) => {
