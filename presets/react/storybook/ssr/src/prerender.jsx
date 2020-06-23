@@ -6,24 +6,10 @@ import { getStories } from './utils';
 
 addons.setChannel(mockChannel());
 
-// /Users/peter/Documents/Sauce/storybook/app/react/src/client/preview/render.tsx
-const render = async() => null;
-// not used if not in browser
+const api = start();
+api.configure(getStories, module, 'react');
 
-const api = start(render);
-const configure = (...args) => api.configure(...args, 'react');
-
-configure(getStories, module);
-
-const renderStory = ({
-  storyFn: StoryFn,
-}) => {
-  const Component = (
-    <StoryFn />
-  );
-
-  return renderToString(Component);
-};
+const render = ({ storyFn: StoryFn }) => renderToString(<StoryFn />);
 
 export default ({ query }) => {
   const { id: storyId } = query;
@@ -34,5 +20,5 @@ export default ({ query }) => {
 
   const story = storyStore.fromId(storyId);
 
-  return story ? renderStory(story) : '';
+  return story ? render(story) : '';
 };
