@@ -1,11 +1,8 @@
 const _eval = require('eval');
-const isObject = require('is-object');
 const template = require('./template');
 
 const normalizeAssets = (assets) => {
-  if (isObject(assets)) {
-    return Object.values(assets);
-  }
+  if (typeof assets === 'object') return Object.values(assets);
 
   return Array.isArray(assets) ? assets : [assets];
 };
