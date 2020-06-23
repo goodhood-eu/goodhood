@@ -20,12 +20,11 @@ module.exports = ({ stylesheets, scripts, rootContent }) => `
   <body>
     <div id="root">${rootContent}</div>
     <div id="docs-root"></div>
-    ${scripts.map(renderScript)}
-    
     <div class="sb-errordisplay sb-wrapper">
       <pre id="error-message" class="sb-heading"></pre>
       <pre class="sb-errordisplay_code"><code id="error-stack"></code></pre>
     </div>
+    ${scripts.map(renderScript)}
   </body>
 </html>
-`
+`;
