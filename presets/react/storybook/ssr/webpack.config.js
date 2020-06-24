@@ -96,7 +96,7 @@ const getPlugins = (pkgPath) => ([
 
 const optimization = { splitChunks: false };
 
-const getConfig = ({ pkgPath, webpackHotMiddlewarePath }) => [
+const getConfig = async ({ pkgPath, webpackHotMiddlewarePath }) => [
   {
     name: CONFIG_NAME_SERVER,
     mode: 'development',
