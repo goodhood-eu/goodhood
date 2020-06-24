@@ -1,3 +1,3 @@
 {
-  "extends": "nebenan"
+  "extends": "../../presets/react/.eslintrc.json"
 }
