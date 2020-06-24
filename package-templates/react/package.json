@@ -28,6 +28,8 @@
   "devDependencies": {},
   "dependencies": {},
   "peerDependencies": {
-    "@babel/runtime": "^7.10.2"
+    "@babel/runtime": "^7.10.2",
+    "react": "^16.13.1",
+    "prop-types": "^15.7.2"
   }
 }
