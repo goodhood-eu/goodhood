@@ -56,6 +56,8 @@ const getFileName = (svgPath) => (
   )
 );
 
+fs.rmdirSync(LIB_DIR, { recursive: true });
+
 const svgo = new SVGO(svgoConfig);
 const tree = getTree(SVGS_DIR);
 const files = getFiles(tree);
