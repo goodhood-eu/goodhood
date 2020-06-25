@@ -1,159 +1,149 @@
+const { DefinePlugin } = require('webpack');
 const path = require('path');
-const sass = require('sass');
-const sassFunctions = require('sass-functions');
-const { DefinePlugin, HotModuleReplacementPlugin } = require('webpack');
-const babelConfig = require('../../babel.config');
+// TODO: wtf
+require('@babel/register')({
+  ignore: [/node_modules/],
+  presets: [
+    ['@babel/preset-env', {
+      useBuiltIns: 'usage',
+      corejs: '3',
+      modules: 'auto',
+    }],
+  ],
+});
 
 const CONFIG_NAME_CLIENT = 'client';
 const CONFIG_NAME_SERVER = 'server';
 const COMPILE_INDEX_SERVER = 0;
 const COMPILE_INDEX_CLIENT = 1;
-const ROOT_PKG_PATH = path.resolve(path.join(__dirname, '../../../../'));
 
-const fileLoaderRules = [{
-  test: /\.(jpe?g|png|gif|woff2?|ttf)$/,
-  use: 'file-loader',
-}];
+const getCoreConfig = require('@storybook/core/dist/server/config');
+const reactOptions = require('@storybook/react/dist/server/options');
 
-const getStyleLoaders = ({ pkgPath, modules, inject }) => (
-  [
-    inject && 'style-loader',
-    {
-      loader: 'css-loader',
-      options: {
-        modules: modules && {
-          localIdentName: '[path][name]--[local]',
-        },
-        sourceMap: true,
-        onlyLocals: !inject,
-      },
-    },
-    {
-      loader: 'sass-loader',
-      options: {
-        implementation: sass,
-        sourceMap: true,
+const cache = {};
 
-        sassOptions: {
-          includePaths: [
-            path.join(pkgPath, 'node_modules/'),
-            path.join(ROOT_PKG_PATH, 'node_modules/'),
-          ],
-          functions: sassFunctions({ sass }),
-        },
-      },
-    },
-  ].filter(Boolean)
-);
-
-
-const scriptRule = {
-  test: /\.jsx$/,
-  exclude: /node_modules/,
-  use: {
-    loader: 'babel-loader',
-
-    options: {
-      ...babelConfig,
-      plugins: [
-        ...babelConfig.plugins,
-
-        // needed by @storybook/addon-docs
-        ['babel-plugin-react-docgen', {
-          DOC_GEN_COLLECTION_NAME: 'STORYBOOK_REACT_CLASSES',
-        }],
-      ],
-    },
-  },
-};
-
-const resolve = {
-  extensions: ['.js', '.jsx'],
-};
-
-const output = {
-  filename: '[name].[hash].bundle.js',
-  publicPath: '/',
-};
-
-const getStyleRules = (pkgPath, inject) => [
-  {
-    test: /\.scss$/,
-    exclude: /\.module\.scss$/,
-    use: getStyleLoaders({ pkgPath, inject, modules: false }),
-  },
-  {
-    test: /\.module\.scss$/,
-    use: getStyleLoaders({ pkgPath, inject, modules: true }),
-  },
-];
-
-const getPlugins = (pkgPath) => ([
+const getPlugins = (plugins, pkgPath) => ([
+  ...plugins.filter((plugin) => (
+    !['HtmlWebpackPlugin', 'VirtualModulePlugin'].includes(plugin.constructor.name)
+  )),
   new DefinePlugin({
     PKG_PATH: JSON.stringify(pkgPath),
   }),
 ]);
 
-const optimization = { splitChunks: false };
+const wrapArray = (regex) => {
+  return Array.isArray(regex) ? regex : [regex];
+};
 
-const getConfig = async ({ pkgPath, webpackHotMiddlewarePath }) => [
-  {
-    name: CONFIG_NAME_SERVER,
-    mode: 'development',
-    entry: path.join(__dirname, 'src/prerender.jsx'),
-    resolve,
-    module: {
-      rules: [
-        scriptRule,
-        ...getStyleRules(pkgPath, false),
-      ],
-    },
-    output: {
-      ...output,
-      libraryTarget: 'commonjs',
-    },
-    target: 'node',
-    optimization,
-    plugins: getPlugins(pkgPath),
-  },
-  {
-    name: CONFIG_NAME_CLIENT,
-    mode: 'development',
-    entry: [
-      `webpack-hot-middleware/client?path=${webpackHotMiddlewarePath}&name=${CONFIG_NAME_CLIENT}&noInfo=true`,
-      require.resolve('@storybook/core/dist/server/common/polyfills.js'),
-      require.resolve('@storybook/core/dist/server/preview/globals.js'),
-      require.resolve('@storybook/addon-docs/dist/frameworks/common/config.js'),
-      require.resolve('@storybook/addon-docs/dist/frameworks/react/config.js'),
-      path.join(__dirname, 'src/index.jsx'),
-    ],
-    devtool: 'inline-source-map',
-    resolve,
-    module: {
-      rules: [
-        scriptRule,
-        ...getStyleRules(pkgPath, true),
-        ...fileLoaderRules,
-        {
-          // needed by @storybook/addon-storysource
-          test: /\.stories\.jsx?$/,
-          loader: require.resolve('@storybook/source-loader'),
-          exclude: /node_modules/,
-          options: {
-            inspectLocalDependencies: true,
-          },
-          enforce: 'pre',
+const patchRules = (rules, shouldMatchAnyFile, shouldHaveLoader, mapMatch) => rules.map((rule) => {
+  const { test: regex, use } = rule;
+  if (!regex) return rule;
+
+  const regexArr = wrapArray(regex);
+
+  if (!shouldMatchAnyFile.some((file) => regexArr.every((r) => r.test(file)))) {
+    return rule;
+  }
+
+  const usedLoaders = wrapArray(use)
+    .map((loader) => {
+      if (typeof loader === 'string') return loader;
+      return loader.loader;
+    });
+
+  if (!usedLoaders.includes(shouldHaveLoader)) return rule;
+
+  return mapMatch(rule);
+});
+
+const getRulesWithoutStyleLoaders = (rules) => {
+  const TEST_FILES = [
+    'test.css',
+    'test.module.scss',
+    'test.scss',
+  ];
+
+  return patchRules(rules, TEST_FILES, 'style-loader', (rule) => {
+    const [, cssLoader, ...otherLoaders] = rule.use;
+
+    const newUse = [
+      {
+        ...cssLoader,
+        options: {
+          ...cssLoader.options,
+          onlyLocals: true,
         },
-      ],
-    },
-    plugins: [
-      ...getPlugins(pkgPath),
-      new HotModuleReplacementPlugin(),
+      },
+      ...otherLoaders,
+    ];
+
+    return { ...rule, use: newUse };
+  });
+};
+
+const getRulesForLocalSrc = (rules) => {
+  const TEST_FILES = ['test.jsx'];
+
+  return patchRules(rules, TEST_FILES, 'babel-loader', (rule) => ({
+    ...rule,
+    include: [
+      ...rule.include,
+      path.join(__dirname, 'src/'),
     ],
-    output,
-    optimization,
-  },
-];
+  }));
+};
+
+
+const getConfig = async({ pkgPath, webpackHotMiddlewarePath }) => {
+  const baseConfig = await getCoreConfig.default({
+    configType: 'DEVELOPMENT',
+    outputDir: path.dirname(require.resolve('@storybook/core/dist/server/public/favicon.ico')),
+    cache,
+    corePresets: [require.resolve('@storybook/core/dist/server/preview/preview-preset.js')],
+    overridePresets: [require.resolve('@storybook/core/dist/server/preview/custom-webpack-preset.js')],
+    configDir: path.join(pkgPath, '.storybook'),
+    ...reactOptions.default,
+  });
+
+  return [
+    {
+      ...baseConfig,
+      name: CONFIG_NAME_SERVER,
+      mode: 'development',
+      entry: path.join(__dirname, 'src/prerender.jsx'),
+      output: {
+        ...baseConfig.output,
+        libraryTarget: 'commonjs',
+      },
+      target: 'node',
+      module: {
+        ...baseConfig.module,
+        rules: getRulesForLocalSrc(getRulesWithoutStyleLoaders(baseConfig.module.rules)),
+      },
+      plugins: getPlugins({}, pkgPath),
+      optimization: {},
+    },
+    {
+      ...baseConfig,
+      name: CONFIG_NAME_CLIENT,
+      mode: 'development',
+      devtool: 'inline-source-map',
+      entry: [
+        ...baseConfig.entry.filter((entry) => /@storybook/.test(entry)), // TODO: whitelist vs blacklist?
+        `webpack-hot-middleware/client?path=${webpackHotMiddlewarePath}&name=${CONFIG_NAME_CLIENT}&noInfo=true`,
+        path.join(__dirname, 'src/index.jsx'),
+      ],
+
+      module: {
+        ...baseConfig.module,
+        rules: getRulesForLocalSrc(baseConfig.module.rules),
+      },
+      plugins: getPlugins(baseConfig.plugins),
+      optimization: {},
+
+    },
+  ];
+};
 
 module.exports = {
   getConfig,

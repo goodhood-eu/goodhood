@@ -2,13 +2,12 @@ const webpack = require('webpack');
 const { Router } = require('express');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-const getWebpackBaseConfig = require('./new_webpack.config');
 const { getPrerenderedContent, renderTemplate } = require('./utils');
 const {
   getConfig,
   COMPILE_INDEX_SERVER,
   COMPILE_INDEX_CLIENT,
-} = require('./new_webpack.config');
+} = require('./webpack.config');
 
 const WEBPACK_HOT_MIDDLEWARE_PATH = '/__ssr_preview_hmr';
 
@@ -19,8 +18,6 @@ const getSSRMiddleware = ({ pkgPath }) => {
     pkgPath,
     webpackHotMiddlewarePath: WEBPACK_HOT_MIDDLEWARE_PATH,
   }).then((config) => {
-    // console.log('new config');
-    // console.dir(config, { depth: 3 });
     const compiler = webpack(config);
 
     router.use(webpackDevMiddleware(compiler, {
