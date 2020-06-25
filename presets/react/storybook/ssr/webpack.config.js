@@ -1,69 +1,30 @@
 const { DefinePlugin } = require('webpack');
 const path = require('path');
-// TODO: wtf
-require('@babel/register')({
-  ignore: [/node_modules/],
-  presets: [
-    ['@babel/preset-env', {
-      useBuiltIns: 'usage',
-      corejs: '3',
-      modules: 'auto',
-    }],
-  ],
-});
+const getCoreConfig = require('@storybook/core/dist/server/config');
+const reactOptions = require('@storybook/react/dist/server/options');
+const { patchWebpackRules } = require('./utils');
 
 const CONFIG_NAME_CLIENT = 'client';
 const CONFIG_NAME_SERVER = 'server';
 const COMPILE_INDEX_SERVER = 0;
 const COMPILE_INDEX_CLIENT = 1;
 
-const getCoreConfig = require('@storybook/core/dist/server/config');
-const reactOptions = require('@storybook/react/dist/server/options');
-
 const cache = {};
 
 const getPlugins = (plugins, pkgPath) => ([
-  ...plugins.filter((plugin) => (
-    !['HtmlWebpackPlugin', 'VirtualModulePlugin'].includes(plugin.constructor.name)
-  )),
   new DefinePlugin({
     PKG_PATH: JSON.stringify(pkgPath),
   }),
+  ...plugins.filter((plugin) => (
+    !['HtmlWebpackPlugin', 'VirtualModulePlugin'].includes(plugin.constructor.name)
+  )),
 ]);
 
-const wrapArray = (regex) => {
-  return Array.isArray(regex) ? regex : [regex];
-};
-
-const patchRules = (rules, shouldMatchAnyFile, shouldHaveLoader, mapMatch) => rules.map((rule) => {
-  const { test: regex, use } = rule;
-  if (!regex) return rule;
-
-  const regexArr = wrapArray(regex);
-
-  if (!shouldMatchAnyFile.some((file) => regexArr.every((r) => r.test(file)))) {
-    return rule;
-  }
-
-  const usedLoaders = wrapArray(use)
-    .map((loader) => {
-      if (typeof loader === 'string') return loader;
-      return loader.loader;
-    });
-
-  if (!usedLoaders.includes(shouldHaveLoader)) return rule;
-
-  return mapMatch(rule);
-});
-
-const getRulesWithoutStyleLoaders = (rules) => {
-  const TEST_FILES = [
-    'test.css',
-    'test.module.scss',
-    'test.scss',
-  ];
-
-  return patchRules(rules, TEST_FILES, 'style-loader', (rule) => {
+const getRulesWithoutStyleLoaders = (rules) => patchWebpackRules(
+  rules,
+  ['test.css', 'test.module.scss', 'test.scss'],
+  'style-loader',
+  (rule) => {
     const [, cssLoader, ...otherLoaders] = rule.use;
 
     const newUse = [
@@ -79,19 +40,18 @@ const getRulesWithoutStyleLoaders = (rules) => {
 
     return { ...rule, use: newUse };
   });
-};
 
-const getRulesForLocalSrc = (rules) => {
-  const TEST_FILES = ['test.jsx'];
-
-  return patchRules(rules, TEST_FILES, 'babel-loader', (rule) => ({
+const getRulesForLocalSrc = (rules) => patchWebpackRules(
+  rules,
+  ['test.jsx'],
+  'babel-loader',
+  (rule) => ({
     ...rule,
     include: [
       ...rule.include,
       path.join(__dirname, 'src/'),
     ],
   }));
-};
 
 
 const getConfig = async({ pkgPath, webpackHotMiddlewarePath }) => {
@@ -120,7 +80,7 @@ const getConfig = async({ pkgPath, webpackHotMiddlewarePath }) => {
         ...baseConfig.module,
         rules: getRulesForLocalSrc(getRulesWithoutStyleLoaders(baseConfig.module.rules)),
       },
-      plugins: getPlugins({}, pkgPath),
+      plugins: getPlugins([], pkgPath),
       optimization: {},
     },
     {
@@ -138,9 +98,8 @@ const getConfig = async({ pkgPath, webpackHotMiddlewarePath }) => {
         ...baseConfig.module,
         rules: getRulesForLocalSrc(baseConfig.module.rules),
       },
-      plugins: getPlugins(baseConfig.plugins),
+      plugins: getPlugins(baseConfig.plugins, pkgPath),
       optimization: {},
-
     },
   ];
 };

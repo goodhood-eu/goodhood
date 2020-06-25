@@ -1,10 +1,14 @@
 const _eval = require('eval');
 const template = require('./template');
 
+const wrapArray = (regex) => {
+  return Array.isArray(regex) ? regex : [regex];
+};
+
 const normalizeAssets = (assets) => {
   if (typeof assets === 'object') return Object.values(assets);
 
-  return Array.isArray(assets) ? assets : [assets];
+  return wrapArray(assets);
 };
 
 const getAssets = (stats) => {
@@ -44,8 +48,29 @@ const getPrerenderedContent = (webpackStats, params) => {
   return app.default(params);
 };
 
+const patchWebpackRules = (rules, shouldMatchAnyFile, shouldHaveLoader, mapMatch) => rules.map((rule) => {
+  const { test: regex, use } = rule;
+  if (!regex) return rule;
+
+  const regexArr = wrapArray(regex);
+
+  if (!shouldMatchAnyFile.some((file) => regexArr.every((r) => r.test(file)))) {
+    return rule;
+  }
+
+  const usedLoaders = wrapArray(use)
+    .map((loader) => {
+      if (typeof loader === 'string') return loader;
+      return loader.loader;
+    });
+
+  if (!usedLoaders.includes(shouldHaveLoader)) return rule;
+
+  return mapMatch(rule);
+});
 
 module.exports = {
   renderTemplate,
   getPrerenderedContent,
+  patchWebpackRules,
 };
