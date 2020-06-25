@@ -20,6 +20,9 @@
     "start": "webpack-dev-server",
     "build": "node scripts/build.js"
   },
+  "files": [
+    "/lib"
+  ],
   "devDependencies": {
     "@svgr/core": "^5.4.0",
     "@svgr/webpack": "^5.4.0",
