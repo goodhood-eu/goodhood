@@ -12,14 +12,13 @@
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
   "version": "1.0.0-beta.0",
-  "module": "lib/index.esm.js",
-  "main": "lib/index.js",
-  "sideEffects": false,
   "scripts": {
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
+    "check": "npm run lint",
+    "prepublishOnly": "npm run check && npm run build",
     "lint": "eslint -f codeframe \"./**/*.{js,jsx}\"",
     "start": "webpack-dev-server",
-    "build": "rollup --config rollup.config.js"
+    "build": "node scripts/build.js"
   },
   "devDependencies": {
     "@svgr/core": "^5.4.0",
@@ -28,6 +27,7 @@
     "babel-loader": "^8.1.0",
     "babel-plugin-styled-components": "^1.10.7",
     "babel-plugin-transform-node-env-inline": "^0.4.3",
+    "chalk": "^4.1.0",
     "eslint": "^6.6.0",
     "eslint-config-nebenan": "^1.0.2",
     "file-loader": "^6.0.0",
@@ -46,8 +46,5 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {},
-  "peerDependencies": {
-    "@babel/runtime": "^7.10.2",
-    "react": "^16.13.1"
-  }
+  "peerDependencies": {}
 }

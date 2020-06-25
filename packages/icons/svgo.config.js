@@ -1,7 +1,9 @@
 module.exports = {
   plugins: [
     { removeViewBox: false },
-    { removeDimensions: true },
+    { removeXMLNS: true },
+    { removeRasterImages: true },
+
     { convertColors: { currentColor: true } },
   ],
   js2svg: {

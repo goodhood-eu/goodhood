@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SVGS_DIR = path.resolve(__dirname, '../svg');
+const SVGS_DIR = path.resolve(__dirname, '../src');
 
 const getTree = (source) => {
   const sizes = fs.readdirSync(source).filter((size) => {

@@ -1,12 +1,14 @@
 const upperFirst = require('lodash/upperFirst');
 const camelCase = require('lodash/camelCase');
+const snakeCase = require('lodash/snakeCase');
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk');
 const SVGO = require('svgo');
 const svgr = require('@svgr/core');
 const svgoConfig = require('../svgo.config.js');
 
-const SVGS_DIR = path.resolve(__dirname, '../svg');
+const SVGS_DIR = path.resolve(__dirname, '../src');
 const LIB_DIR = path.resolve(__dirname, '../lib');
 
 const getTree = (source) => {
@@ -48,14 +50,25 @@ const getIconName = (svgPath) => (
   )
 );
 
+const getFileName = (svgPath) => (
+  snakeCase(
+    path.basename(svgPath).replace(/\.svg$/, ''),
+  )
+);
+
 const svgo = new SVGO(svgoConfig);
 const tree = getTree(SVGS_DIR);
 const files = getFiles(tree);
 
 files.forEach(async(file) => {
   const svgPath = path.join(SVGS_DIR, file);
-  const libSvgPath = path.join(LIB_DIR, file);
-  const libReactPath = path.join(LIB_DIR, file).replace(/\.svg$/, '.jsx');
+  const newFileName = getFileName(svgPath);
+
+  const lib = path.dirname(path.join(LIB_DIR, file));
+  const libSvgPath = path.join(lib, `${newFileName}.svg`);
+  const libReactPath = path.join(lib, `${newFileName}.jsx`);
+
+  console.log(`${svgPath}\n--> ${chalk.magenta(libSvgPath)}\n--> ${chalk.red(libReactPath)}\n`);
 
   const data = fs.readFileSync(svgPath, 'utf-8');
 
@@ -74,3 +87,5 @@ files.forEach(async(file) => {
     fs.promises.writeFile(libReactPath, reactComponentCode),
   ]);
 });
+
+console.log(`Converted ${files.length} icons`);
