@@ -19,21 +19,8 @@ const COMPILE_INDEX_CLIENT = 1;
 
 const getCoreConfig = require('@storybook/core/dist/server/config');
 const reactOptions = require('@storybook/react/dist/server/options');
-const babelConfig = require('../../babel.config');
 
 const cache = {};
-
-const scriptRule = {
-  test: /\.jsx$/,
-  include: path.join(__dirname, 'src/'),
-  use: {
-    loader: 'babel-loader',
-    options: {
-      // TODO: get rid of this
-      ...babelConfig,
-    },
-  },
-};
 
 const getPlugins = (pkgPath) => ([
   new DefinePlugin({
@@ -83,6 +70,32 @@ const getRulesWithoutStyleLoaders = (rules) => {
   });
 };
 
+const injectLocalSrcIntoRules = (rules) => {
+  const TEST_FILES = ['test.jsx'];
+
+  return rules.map((rule) => {
+    const { test: regex, use } = rule;
+    if (!regex) return rule;
+
+    const regexArr = wrapArray(regex);
+    if (!TEST_FILES.some((file) => regexArr.every((r) => r.test(file)))) {
+      return rule;
+    }
+
+    const [babelLoader] = use;
+
+    if (babelLoader !== 'babel-loader' && babelLoader.loader !== 'babel-loader') return rule;
+
+    return {
+      ...rule,
+      include: [
+        ...rule.include,
+        path.join(__dirname, 'src/'),
+      ],
+    };
+  });
+};
+
 
 const getConfig = async({ pkgPath, webpackHotMiddlewarePath }) => {
   const baseConfig = await getCoreConfig.default({
@@ -92,15 +105,10 @@ const getConfig = async({ pkgPath, webpackHotMiddlewarePath }) => {
     corePresets: [require.resolve('@storybook/core/dist/server/preview/preview-preset.js')],
     overridePresets: [require.resolve('@storybook/core/dist/server/preview/custom-webpack-preset.js')],
     configDir: path.join(pkgPath, '.storybook'),
-    addons: [
-      '@storybook/addon-viewport/register',
-      '@storybook/addon-storysource',
-      '@storybook/addon-docs',
-    ],
     ...reactOptions.default,
   });
 
-  // console.dir(baseConfig.module.rules[0], { depth: 9 });
+  console.dir(baseConfig.module.rules, { depth: 9 });
 
   return [
     {
@@ -115,10 +123,7 @@ const getConfig = async({ pkgPath, webpackHotMiddlewarePath }) => {
       target: 'node',
       module: {
         ...baseConfig.module,
-        rules: [
-          ...getRulesWithoutStyleLoaders(baseConfig.module.rules),
-          scriptRule,
-        ],
+        rules: injectLocalSrcIntoRules(getRulesWithoutStyleLoaders(baseConfig.module.rules)),
       },
       plugins: [
         ...getPlugins(pkgPath),
@@ -139,10 +144,7 @@ const getConfig = async({ pkgPath, webpackHotMiddlewarePath }) => {
 
       module: {
         ...baseConfig.module,
-        rules: [
-          ...baseConfig.module.rules,
-          scriptRule,
-        ],
+        rules: injectLocalSrcIntoRules(baseConfig.module.rules),
       },
       plugins: [
         ...baseConfig.plugins.filter((plugin) => (
