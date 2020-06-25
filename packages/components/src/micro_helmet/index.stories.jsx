@@ -3,7 +3,7 @@ import MicroHelmet from './index';
 import MicroHelmetProvider from './provider';
 
 const usePageTitle = () => {
-  const [title, setTitle] = useState(document.title);
+  const [title, setTitle] = useState(typeof document !== 'undefined' && document.title);
 
   useEffect(() => {
     const mutated = (mutations) => { setTitle(mutations[0].target.innerText); };
