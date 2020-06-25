@@ -1,6 +1,9 @@
+const upperFirst = require('lodash/upperFirst');
+const camelCase = require('lodash/camelCase');
 const fs = require('fs');
 const path = require('path');
 const SVGO = require('svgo');
+const svgr = require('@svgr/core');
 const svgoConfig = require('../.svgo.json');
 
 const SVGS_DIR = path.resolve(__dirname, '../svg');
@@ -37,18 +40,37 @@ const getFiles = (tree) => (
     ), [])
 );
 
+const getIconName = (svgPath) => (
+  upperFirst(
+    camelCase(
+      path.basename(svgPath).replace(/\.svg$/, ''),
+    ),
+  )
+);
+
 const svgo = new SVGO(svgoConfig);
 const tree = getTree(SVGS_DIR);
 const files = getFiles(tree);
 
-files.forEach(async (file) => {
+files.forEach(async(file) => {
   const svgPath = path.join(SVGS_DIR, file);
-  const libPath = path.join(LIB_DIR, file);
-  console.log('file', { svgPath, libPath });
+  const libSvgPath = path.join(LIB_DIR, file);
+  const libReactPath = path.join(LIB_DIR, file).replace(/\.svg$/, '.jsx');
 
   const data = fs.readFileSync(svgPath, 'utf-8');
-  const { data: optimizedData } = await svgo.optimize(data, { path: svgPath });
 
-  fs.mkdirSync(path.dirname(libPath), { recursive: true });
-  fs.writeFileSync(libPath, optimizedData);
+  const [
+    { data: optimizedData },
+    reactComponentCode,
+  ] = await Promise.all([
+    svgo.optimize(data, { path: svgPath }),
+    svgr.default(data, { }, { componentName: getIconName(svgPath) }),
+  ]);
+
+  fs.mkdirSync(path.dirname(libSvgPath), { recursive: true });
+
+  await Promise.all([
+    fs.promises.writeFile(libSvgPath, optimizedData),
+    fs.promises.writeFile(libReactPath, reactComponentCode),
+  ]);
 });
