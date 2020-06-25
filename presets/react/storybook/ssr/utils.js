@@ -1,9 +1,7 @@
 const _eval = require('eval');
 const template = require('./template');
 
-const wrapArray = (regex) => {
-  return Array.isArray(regex) ? regex : [regex];
-};
+const wrapArray = (regex) => (Array.isArray(regex) ? regex : [regex]);
 
 const normalizeAssets = (assets) => {
   if (typeof assets === 'object') return Object.values(assets);
@@ -48,26 +46,29 @@ const getPrerenderedContent = (webpackStats, params) => {
   return app.default(params);
 };
 
-const patchWebpackRules = (rules, shouldMatchAnyFile, shouldHaveLoader, mapMatch) => rules.map((rule) => {
-  const { test: regex, use } = rule;
-  if (!regex) return rule;
+const patchWebpackRules = (rules, shouldMatchAnyFile, shouldHaveLoader, mapMatch) => (
+  rules.map((rule) => {
+    const { test, use } = rule;
+    if (!test) return rule;
 
-  const regexArr = wrapArray(regex);
+    const regexArr = wrapArray(test);
 
-  if (!shouldMatchAnyFile.some((file) => regexArr.every((r) => r.test(file)))) {
-    return rule;
-  }
+    const regexMatches = shouldMatchAnyFile.some(
+      (file) => regexArr.every((regex) => regex.test(file)),
+    );
+    if (!regexMatches) return rule;
 
-  const usedLoaders = wrapArray(use)
-    .map((loader) => {
-      if (typeof loader === 'string') return loader;
-      return loader.loader;
-    });
+    const usedLoaders = wrapArray(use)
+      .map((loader) => {
+        if (typeof loader === 'string') return loader;
+        return loader.loader;
+      });
 
-  if (!usedLoaders.includes(shouldHaveLoader)) return rule;
+    if (!usedLoaders.includes(shouldHaveLoader)) return rule;
 
-  return mapMatch(rule);
-});
+    return mapMatch(rule);
+  })
+);
 
 module.exports = {
   renderTemplate,
