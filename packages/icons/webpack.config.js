@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const svgoConfig = require('./svgo.config');
 
 const PREVIEW = `${__dirname}/preview`;
 
@@ -33,10 +34,20 @@ module.exports = {
         sideEffects: false,
         use: ['babel-loader'],
       },
-
       {
         test: /\.svg$/,
-        use: ['@svgr/webpack', 'file-loader'],
+        use: [ '@svgr/webpack', 'file-loader'],
+        resourceQuery: /react/,
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          'file-loader',
+          {
+            loader: 'svgo-loader',
+            options: svgoConfig,
+          },
+        ],
       },
     ],
   },
