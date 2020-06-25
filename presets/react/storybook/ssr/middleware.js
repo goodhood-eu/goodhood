@@ -19,6 +19,8 @@ const getSSRMiddleware = ({ pkgPath }) => {
     pkgPath,
     webpackHotMiddlewarePath: WEBPACK_HOT_MIDDLEWARE_PATH,
   }).then((config) => {
+    // console.log('new config');
+    // console.dir(config, { depth: 3 });
     const compiler = webpack(config);
 
     router.use(webpackDevMiddleware(compiler, {
