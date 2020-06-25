@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const SVGO = require('svgo');
 const svgr = require('@svgr/core');
-const svgoConfig = require('../.svgo.json');
+const svgoConfig = require('../svgo.config.js');
 
 const SVGS_DIR = path.resolve(__dirname, '../svg');
 const LIB_DIR = path.resolve(__dirname, '../lib');
@@ -64,7 +64,7 @@ files.forEach(async(file) => {
     reactComponentCode,
   ] = await Promise.all([
     svgo.optimize(data, { path: svgPath }),
-    svgr.default(data, { }, { componentName: getIconName(svgPath) }),
+    svgr.default(data, {}, { componentName: getIconName(svgPath), filePath: svgPath }),
   ]);
 
   fs.mkdirSync(path.dirname(libSvgPath), { recursive: true });
