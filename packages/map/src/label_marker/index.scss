@@ -1,0 +1,13 @@
+.c-label_marker-container {
+  @include block-center;
+  padding: 0 5px;
+
+  font-size: $font-size-s;
+  text-transform: uppercase;
+  color: $color-gray-09;
+
+  background: $color-green-02;
+  box-shadow: $shadow-bottom-default;
+  border: 1px solid $color-gray-09;
+  border-radius: $border-radius-s;
+}

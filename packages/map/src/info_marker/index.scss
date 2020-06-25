@@ -1,0 +1,38 @@
+.c-info_marker {
+  .icon-i {
+    @include block-center;
+    width: 32px;
+    height: 32px;
+
+    font-size: 17px;
+    text-align: center;
+    color: $color-gray-09;
+
+    background: $color-green-02;
+    box-shadow: $shadow-bottom-default;
+    border: 2px solid $color-gray-09;
+    border-radius: 50%;
+
+    &::before {
+      vertical-align: middle;
+    }
+
+    @media ($media-m) {
+      width: 55px;
+      height: 55px;
+      font-size: 28px;
+    }
+  }
+
+  &.is-small .icon-i {
+    width: 21px;
+    height: 21px;
+    font-size: 10px;
+
+    @media ($media-m) {
+      width: 48px;
+      height: 48px;
+      font-size: 24px;
+    }
+  }
+}
