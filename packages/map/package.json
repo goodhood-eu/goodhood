@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "mapbox-gl": "^1.11.0",
-    "react-mapbox-gl": "^4.8.6",
+    "react-mapbox-gl": "^4.8.6"
   },
   "peerDependencies": {
     "clsx": "^1.0.4",
