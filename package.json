@@ -46,6 +46,7 @@
     "eval": "^0.1.4",
     "express": "^4.17.1",
     "lerna": "^3.20.2",
+    "link-parent-bin": "^1.0.2",
     "lodash": "^4.17.15",
     "mocha": "^8.0.1",
     "nebenan-helpers": "^4.2.0",
@@ -73,6 +74,6 @@
   },
   "scripts": {
     "lint": "lerna run lint",
-    "postinstall": "lerna bootstrap"
+    "postinstall": "lerna bootstrap && link-parent-bin"
   }
 }
