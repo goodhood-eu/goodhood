@@ -1,5 +1,6 @@
 import React from 'react';
 import { withKnobs, boolean, select } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import data from '../sample_data';
 
 import { POLYGON_SOLID } from '../polygon/constants';
@@ -22,6 +23,7 @@ export const Default = () => {
     <Map
       credentials={data.maptiler}
       {...{ bounds, locked, lockedMobile, animate, noAttribution }}
+      onLoad={action('Map loaded')}
     />
   );
 };

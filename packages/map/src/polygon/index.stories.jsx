@@ -1,5 +1,6 @@
 import React from 'react';
 import { withKnobs, select } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import data from '../sample_data';
 
 import {
@@ -32,6 +33,7 @@ export const Default = () => {
       <Polygon
         area={data.polygons[0]}
         type={type}
+        onClick={action('Polygon clicked')}
       />
     </Map>
   );
