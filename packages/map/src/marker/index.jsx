@@ -14,6 +14,7 @@ const Marker = ({
   popupDefaultState,
   popupContent,
   popupOffset,
+  ...rest
 }) => {
   const nodeRef = useRef();
   const map = useContext(MapContext);
@@ -40,7 +41,7 @@ const Marker = ({
     };
   }, [map, children, popupContent, popupOffset]);
 
-  return <div ref={nodeRef}>{children}</div>;
+  return <div {...rest} ref={nodeRef}>{children}</div>;
 };
 
 Marker.propTypes = {

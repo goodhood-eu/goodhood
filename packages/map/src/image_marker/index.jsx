@@ -12,7 +12,7 @@ const ImageMarker = ({
 }) => (
   <Marker {...rest}>
     <span className={styles.container} style={{ backgroundImage: `url(${image})` }} />
-    {caption && <span className={`${styles.container.caption} ui-card`}>{caption}</span>}
+    {caption && <span className={`${styles.caption} ui-card`}>{caption}</span>}
     {children}
   </Marker>
 );
