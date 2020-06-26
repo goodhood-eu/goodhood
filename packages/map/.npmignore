@@ -8,4 +8,4 @@ src/
 rollup.config.js
 .mocharc.js
 test-report.log
-
+sample_data

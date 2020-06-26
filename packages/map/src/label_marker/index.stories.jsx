@@ -1,6 +1,6 @@
 import React from 'react';
 import { withKnobs, text } from '@storybook/addon-knobs';
-import data from '../sample_data';
+import data from '../../sample_data';
 
 import LabelMarker from './index';
 import Map from '../map';

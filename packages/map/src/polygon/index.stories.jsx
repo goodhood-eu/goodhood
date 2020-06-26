@@ -1,7 +1,7 @@
 import React from 'react';
 import { withKnobs, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import data from '../sample_data';
+import data from '../../sample_data';
 
 import {
   POLYGON_ACTIVE,

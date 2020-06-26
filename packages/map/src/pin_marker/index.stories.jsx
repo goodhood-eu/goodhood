@@ -1,6 +1,6 @@
 import React from 'react';
 import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
-import data from '../sample_data';
+import data from '../../sample_data';
 
 import {
   PIN_MARKER_GREEN,

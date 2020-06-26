@@ -1,6 +1,6 @@
 import React from 'react';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
-import data from '../sample_data';
+import data from '../../sample_data';
 
 import InfoMarker from './index';
 import Map from '../map';
