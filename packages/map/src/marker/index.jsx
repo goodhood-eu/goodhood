@@ -4,6 +4,7 @@ import { MapContext } from 'react-mapbox-gl';
 import { Marker as MapboxMarker } from 'mapbox-gl';
 import { useChildrenBounds } from '../map/hooks';
 import { createPopup } from './utils';
+import './index.module.scss';
 
 
 const Marker = ({

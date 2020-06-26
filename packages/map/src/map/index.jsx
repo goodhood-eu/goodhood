@@ -7,6 +7,7 @@ import { useMapboxComponent, useDefaultCenterAndZoom, useContextValue, useLocked
 import { getStyle, getBoundingBox, mergeChildrenBounds } from './utils';
 
 import { Provider } from './context';
+import styles from './index.module.scss';
 
 
 const Map = (props) => {
@@ -52,7 +53,7 @@ const Map = (props) => {
   return (
     <MapboxComponent
       {...rest}
-      className={clsx('c-map', passedClassName)}
+      className={clsx(styles.root, passedClassName)}
       zoom={zoom}
       center={center}
       fitBounds={getBoundingBox(fitBounds)}

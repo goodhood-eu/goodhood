@@ -1,5 +1,7 @@
-.c-info_marker {
-  .icon-i {
+@import "nebenan-ui-kit";
+
+.root {
+  :global(.icon-i) {
     @include block-center;
     width: 32px;
     height: 32px;
@@ -23,16 +25,16 @@
       font-size: 28px;
     }
   }
+}
 
-  &.is-small .icon-i {
-    width: 21px;
-    height: 21px;
-    font-size: 10px;
+&.isSmall :global(.icon-i) {
+  width: 21px;
+  height: 21px;
+  font-size: 10px;
 
-    @media ($media-m) {
-      width: 48px;
-      height: 48px;
-      font-size: 24px;
-    }
+  @media ($media-m) {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
   }
 }

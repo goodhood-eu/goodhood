@@ -1,4 +1,6 @@
-.c-image_marker-container {
+@import "nebenan-ui-kit";
+
+.container {
   @include block-round(35px);
   @include block-center;
   @include background-fill;
@@ -10,7 +12,7 @@
   box-shadow: $shadow-bottom-default;
 }
 
-.c-image_marker-caption {
+.caption {
   padding: 5px;
   position: absolute;
   top: 10px;

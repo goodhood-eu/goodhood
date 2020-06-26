@@ -1,4 +1,6 @@
-.c-label_marker-container {
+@import "nebenan-ui-kit";
+
+.container {
   @include block-center;
   padding: 0 5px;
 

@@ -1,4 +1,6 @@
-.c-circle_marker-container {
+@import "nebenan-ui-kit";
+
+.container {
   @include block-center;
 
   width: 160px;
@@ -18,7 +20,7 @@
   }
 }
 
-.c-circle_marker-text {
+.text {
   @include block-center;
 
   font-size: 20px;

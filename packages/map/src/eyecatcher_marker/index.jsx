@@ -1,23 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import Marker from '../marker';
+import styles from './index.module.scss';
 
 
 const EyecatcherMarker = ({
   children,
-  className,
   ...rest
 }) => (
-  <Marker {...rest} className={clsx('c-eyecatcher_marker', className)}>
-    <div className="c-eyecatcher_marker-container">
+  <Marker {...rest}>
+    <div className={styles.container}>
       {children}
     </div>`
   </Marker>
 );
 
 EyecatcherMarker.propTypes = {
-  className: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 

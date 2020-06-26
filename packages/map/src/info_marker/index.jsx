@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Marker from '../marker';
+import styles from './index.module.scss';
 
 
 const InfoMarker = ({
@@ -10,7 +11,7 @@ const InfoMarker = ({
   small,
   ...rest
 }) => (
-  <Marker {...rest} className={clsx('c-info_marker', className, { 'is-small': small })}>
+  <Marker {...rest} className={clsx(styles.root, className, { [styles.isSmall]: small })}>
     <i className="icon-i" />
     {children}
   </Marker>

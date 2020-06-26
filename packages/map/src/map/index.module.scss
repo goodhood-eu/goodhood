@@ -1,4 +1,6 @@
-.c-map {
+@import "nebenan-ui-kit";
+
+.root {
   @include block-responsive(75%);
 
   // overrides default mapbox font
