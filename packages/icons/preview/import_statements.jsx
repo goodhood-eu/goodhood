@@ -1,23 +1,15 @@
 import { getComponentName, getIconName, getLibFileName, getLibSvgFileName } from '../utils/naming';
 
-const getTargetFileName = snakeCase;
-const stripSVGExtension = (fileName) => fileName.replace(/\.svg$/, '');
-
-export const importAliasForReactComponent = (filename) => (
-  getAlias(stripSVGExtension(filename), 'Icon', true)
-);
+export const importAliasForReactComponent = (fileName) => `${getComponentName(fileName)}Icon`;
 
 export const importStatementForReactComponent = (size, fileName) => {
-  const name = stripSVGExtension(fileName);
-  const alias = getAlias(name, 'Icon', true);
-  const targetFileName = getTargetFileName(name);
+  const alias = importAliasForReactComponent(fileName);
 
-  return `import ${alias} from '@goodhood/icons/lib/${size}/${targetFileName}';`;
+  return `import ${alias} from '@goodhood/icons/lib/${size}/${(getLibFileName(fileName))}';`;
 };
 
 export const importStatementForImg = (size, fileName) => {
-  const name = stripSVGExtension(fileName);
-  const alias = getAlias(name, 'Icon', false);
+  const alias = `${getIconName(fileName)}Icon`;
 
-  return `import ${alias} from '@goodhood/icons/lib/${size}/${getTargetFileName(name)}.svg';`;
+  return `import ${alias} from '@goodhood/icons/lib/${size}/${getLibSvgFileName(fileName)}';`;
 };
