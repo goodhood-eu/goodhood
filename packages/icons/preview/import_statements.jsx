@@ -1,14 +1,4 @@
-import upperFirst from 'lodash/upperFirst';
-import camelCase from 'lodash/camelCase';
-import snakeCase from 'lodash/snakeCase';
-
-const getAlias = (iconName, suffix, startUpper) => {
-  let icon = camelCase(iconName);
-
-  if (startUpper) icon = upperFirst(icon);
-
-  return `${icon}${suffix}`;
-};
+import { getComponentName, getIconName, getLibFileName, getLibSvgFileName } from '../utils/naming';
 
 const getTargetFileName = snakeCase;
 const stripSVGExtension = (fileName) => fileName.replace(/\.svg$/, '');
