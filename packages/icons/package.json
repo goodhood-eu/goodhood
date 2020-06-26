@@ -39,5 +39,7 @@
     "val-loader": "^2.1.1"
   },
   "dependencies": {},
-  "peerDependencies": {}
+  "peerDependencies": {
+    "react": "^16.13.1"
+  }
 }
