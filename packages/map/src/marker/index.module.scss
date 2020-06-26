@@ -1,0 +1,9 @@
+:global(.mapboxgl-popup) {
+  :global(.mapboxgl-popup-close-button) {
+    padding: 0 5px;
+  }
+
+  :global(.mapboxgl-popup-content) {
+    padding-right: 25px;
+  }
+}

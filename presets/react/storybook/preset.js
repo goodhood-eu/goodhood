@@ -42,6 +42,7 @@ module.exports = {
     '@storybook/addon-viewport/register',
     '@storybook/addon-storysource',
     '@storybook/addon-docs',
+    '@storybook/addon-knobs/register',
   ],
   webpackFinal: async(config, { pkgPath }) => {
     const babelLoader = config.module.rules[0];
