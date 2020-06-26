@@ -13,19 +13,20 @@ npm start
 
 #### React Component
 ```jsx
-import AddressBook from "@goodhood/icons/lib/28x28/AddressBook"
+import AddressBook from "@goodhood/icons/lib/28x28/address_book"
 
-<AdressBook />
+<AddressBook />
 ```
 
 #### Raw SVG
 ```jsx
-import addressBook from "@goodhood/icons/lib/28x28/AddressBook.svg"
+import addressBook from "@goodhood/icons/lib/28x28/address_book.svg"
 
 <img src={addressBook} alt="" />
 ```
 
 ### How to update:
 1. Add an icon to the `src/*/` folder.
-2. Check that there are no duplicates and the name makes sense (follow other names as a guide).
-3. Publish new version.
+1. Check that there are no duplicates and the name makes sense (follow other names as a guide).
+1. Check preview.
+1. Publish new version.
