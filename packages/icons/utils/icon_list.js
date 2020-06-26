@@ -26,7 +26,6 @@ const getTree = () => {
   return tree;
 };
 
-// TODO: can I get rid of source?
 const getFiles = (tree, source = null) => (
   Object.keys(tree)
     .reduce((acc, size) => (
