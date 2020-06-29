@@ -15,6 +15,7 @@ npm i prop-types // v15.x.x
 npm i clsx // v2.x.x
 npm i nebenan-ui-kit // v4.x.x
 npm i @babel/runtime // v7.x.x
+npm i @goodhood/icons // v1.x.x
 ```
 
 You will need a CSS loader to use this library as it injects css.
@@ -147,15 +148,15 @@ const App = () => (
 ## Add a new component
 
 - Create `src/*/index.jsx`
-    - Default exports will be re-exported with the map name
-    - Named exports will be re-exported as they are (watch out for collisions)
-        ```js
-        // src/map/index.jsx
-        export const MapType = 123;
-        export Map 666;
+  - Default exports will be re-exported with the map name
+  - Named exports will be re-exported as they are (watch out for collisions)
+    ```js
+      // src/map/index.jsx
+      export const MapType = 123;
+      export Map 666;
 
-        // usage
-        import { Map, MapType } from '@goodhood/map';
-      ```
+      // usage
+      import { Map, MapType } from '@goodhood/map';
+    ```
 - Create `src/*/index.stories.jsx`
-    - Storybook will take it up automatically
+  - Storybook will take it up automatically

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import InfoIcon from '@goodhood/icons/lib/20x20/info_1';
+
 import Marker from '../marker';
 import styles from './index.module.scss';
 
@@ -11,8 +13,10 @@ const InfoMarker = ({
   small,
   ...rest
 }) => (
-  <Marker {...rest} className={clsx(styles.root, className, { [styles.isSmall]: small })}>
-    <i className="icon-i" />
+  <Marker {...rest} className={clsx(className, { [styles.isSmall]: small })}>
+    <div className={styles.container}>
+      <InfoIcon className={styles.icon} />
+    </div>
     {children}
   </Marker>
 );
