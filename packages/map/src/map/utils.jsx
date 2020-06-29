@@ -1,7 +1,7 @@
 import { LngLatBounds } from 'mapbox-gl';
 
 
-const isFilledArray = (arr) => Array.isArray(arr) && arr.length;
+export const isFilledArray = (arr) => Array.isArray(arr) && arr.length > 0;
 
 export const getStyle = (credentials) => (
   `https://api.maptiler.com/maps/${credentials.map_id}/style.json?key=${credentials.key}`
@@ -19,5 +19,5 @@ export const getBoundingBox = (bounds) => {
 
 export const mergeChildrenBounds = (bounds) => {
   if (!isFilledArray(bounds)) return undefined;
-  return bounds.reduce((acc, value) => acc.concat(value), []);
+  return bounds.flat(1);
 };

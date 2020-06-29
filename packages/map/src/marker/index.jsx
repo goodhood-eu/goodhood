@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { MapContext } from 'react-mapbox-gl';
-import { Marker as MapboxMarker } from 'mapbox-gl';
+import { Marker as MapboxMarker, Popup } from 'mapbox-gl';
 import { useChildrenBounds } from '../map/hooks';
-import { createPopup } from './utils';
 import './index.module.scss';
 
 
@@ -17,6 +16,7 @@ const Marker = ({
   ...rest
 }) => {
   const nodeRef = useRef();
+  const popupRef = useRef();
   const map = useContext(MapContext);
   useChildrenBounds([position]);
 
@@ -27,8 +27,8 @@ const Marker = ({
 
     let popup;
     if (popupContent) {
-      popup = createPopup(global, popupContent, { offset: popupOffset });
-      marker.setPopup(popup.layer);
+      popup = new Popup({ offset: popupOffset }).setDOMContent(popupRef.current);
+      marker.setPopup(popup);
     }
 
     if (popupDefaultState) {
@@ -37,11 +37,16 @@ const Marker = ({
 
     return () => {
       marker.remove();
-      if (popup) popup.destroy();
+      if (popup) popup.remove();
     };
   }, [map, children, popupContent, popupOffset]);
 
-  return <div {...rest} ref={nodeRef}>{children}</div>;
+  return (
+    <>
+      <div ref={popupRef}>{popupContent}</div>
+      <div {...rest} ref={nodeRef}>{children}</div>
+    </>
+  );
 };
 
 Marker.propTypes = {
