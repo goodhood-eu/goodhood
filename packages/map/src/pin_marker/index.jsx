@@ -35,7 +35,7 @@ const PinMarker = ({
   ...rest
 }) => (
   <Marker {...rest}>
-    <img src={images[type]} alt="" />
+    <img src={images[type]} alt={type} />
     {children}
   </Marker>
 );

@@ -11,7 +11,7 @@ const EyecatcherMarker = ({
   <Marker {...rest}>
     <div className={styles.container}>
       {children}
-    </div>`
+    </div>
   </Marker>
 );
 
