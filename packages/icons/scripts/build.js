@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const rimraf = require('rimraf');
 const chalk = require('chalk');
 const SVGO = require('svgo');
 const svgr = require('@svgr/core');
@@ -9,8 +8,6 @@ const { getFiles, getTree, SVGS_DIR } = require('../utils/icon_list');
 const { getComponentName, getLibSvgFileName, getLibJsFileName } = require('../utils/naming');
 
 const LIB_DIR = path.resolve(__dirname, '../lib');
-
-if (fs.existsSync(LIB_DIR)) rimraf.sync(LIB_DIR, { glob: false });
 
 const svgo = new SVGO(svgoConfig);
 const tree = getTree();
