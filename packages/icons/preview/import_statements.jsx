@@ -1,23 +1,15 @@
-import upperFirst from 'lodash/upperFirst';
-import camelCase from 'lodash/camelCase';
+import { getComponentName, getIconName, getLibFileName, getLibSvgFileName } from '../utils/naming';
 
-const getIconName = (fileName) => fileName.replace(/\.svg$/, '');
-const getAlias = (iconName, suffix, startUpper) => {
-  let icon = camelCase(iconName);
-
-  if (startUpper) icon = upperFirst(icon);
-
-  return `${icon}${suffix}`;
-};
+export const importAliasForReactComponent = (fileName) => `${getComponentName(fileName)}Icon`;
 
 export const importStatementForReactComponent = (size, fileName) => {
-  const name = getIconName(fileName);
-  const alias = getAlias(name, 'Icon', true);
-  return `import { ReactComponent as ${alias} } from '@goodhood/icons/svg/${size}/${fileName}';`;
+  const alias = importAliasForReactComponent(fileName);
+
+  return `import ${alias} from '@goodhood/icons/lib/${size}/${(getLibFileName(fileName))}';`;
 };
 
 export const importStatementForImg = (size, fileName) => {
-  const name = getIconName(fileName);
-  const alias = getAlias(name, 'Icon', false);
-  return `import ${alias} from '@goodhood/icons/svg/${size}/${name}';`;
+  const alias = `${getIconName(fileName)}Icon`;
+
+  return `import ${alias} from '@goodhood/icons/lib/${size}/${getLibSvgFileName(fileName)}';`;
 };
