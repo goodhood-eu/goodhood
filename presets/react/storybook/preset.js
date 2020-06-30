@@ -4,7 +4,7 @@ const sass = require('sass');
 
 const ROOT_PKG_PATH = path.join(__dirname, '../../../');
 
-const getStyleLoaders = ({ rootPath, modules }) => (
+const getStyleLoaders = ({ pkgPath, modules }) => (
   [
     'style-loader',
     {
@@ -22,7 +22,7 @@ const getStyleLoaders = ({ rootPath, modules }) => (
 
         sassOptions: {
           includePaths: [
-            path.join(rootPath, 'node_modules/'),
+            path.join(pkgPath, 'node_modules/'),
             path.join(ROOT_PKG_PATH, 'node_modules/'),
           ],
           functions: sassFunctions({ sass }),
@@ -34,16 +34,16 @@ const getStyleLoaders = ({ rootPath, modules }) => (
 
 
 module.exports = {
-  stories: (config, { rootPath }) => [
+  stories: (config, { pkgPath }) => [
     ...config,
-    path.join(rootPath, 'src/**/*.stories.jsx'),
+    path.join(pkgPath, 'src/**/*.stories.jsx'),
   ],
   addons: [
     '@storybook/addon-viewport/register',
     '@storybook/addon-storysource',
     '@storybook/addon-docs',
   ],
-  webpackFinal: async(config, { rootPath }) => {
+  webpackFinal: async(config, { pkgPath }) => {
     const babelLoader = config.module.rules[0];
     babelLoader.exclude.push(
       path.join(ROOT_PKG_PATH, 'node_modules'),
@@ -53,12 +53,12 @@ module.exports = {
       test: /\.scss$/,
       sideEffects: false,
       exclude: /\.module\.scss$/,
-      use: getStyleLoaders({ rootPath, modules: false }),
+      use: getStyleLoaders({ pkgPath, modules: false }),
     });
     config.module.rules.push({
       test: /\.module\.scss$/,
       sideEffects: false,
-      use: getStyleLoaders({ rootPath, modules: true }),
+      use: getStyleLoaders({ pkgPath, modules: true }),
     });
     return config;
   },
