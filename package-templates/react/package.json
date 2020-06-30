@@ -15,6 +15,9 @@
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
+  "files": [
+    "/lib"
+  ],
   "scripts": {
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
     "prepublishOnly": "npm run check && npm run build",
