@@ -16,7 +16,7 @@ const svgo = new SVGO(svgoConfig);
 const tree = getTree();
 const files = getFiles(tree);
 
-files.forEach(async(relativeIconPath) => {
+Promise.all(files.map(async(relativeIconPath) => {
   const fileName = path.basename(relativeIconPath);
   const svgPath = path.join(SVGS_DIR, relativeIconPath);
   const lib = path.dirname(path.join(LIB_DIR, relativeIconPath));
@@ -41,6 +41,6 @@ files.forEach(async(relativeIconPath) => {
     fs.promises.writeFile(libSvgPath, optimizedData),
     fs.promises.writeFile(libReactPath, reactComponentCode),
   ]);
+})).then(() => {
+  console.log(`Converted ${files.length} icons`);
 });
-
-console.log(`Converted ${files.length} icons`);
