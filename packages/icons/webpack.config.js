@@ -39,7 +39,8 @@ module.exports = {
         use: [
           // About the order of loaders:
           // svgr/webpack only adds the `ReactComponent` export if there already
-          // a `default` export.
+          // a `default` export. Other than that, svgr/webpack ignores all previous
+          // loaders results.
           '@svgr/webpack',
 
           'file-loader',
