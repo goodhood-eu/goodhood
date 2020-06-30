@@ -40,7 +40,7 @@ module.exports = {
           // About the order of loaders:
           // svgr/webpack only adds the `ReactComponent` export if there already
           // a `default` export. Other than that, svgr/webpack ignores all previous
-          // loaders results.
+          // loaders results and uses the initial raw resource.
           '@svgr/webpack',
 
           'file-loader',
