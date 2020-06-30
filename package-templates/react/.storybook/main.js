@@ -5,7 +5,7 @@ module.exports = {
     {
      name:  path.resolve('../../presets/react/storybook/preset'),
       options: {
-        rootPath: path.join(__dirname, '../'),
+        pkgPath: path.join(__dirname, '../'),
       }
     },
   ],
