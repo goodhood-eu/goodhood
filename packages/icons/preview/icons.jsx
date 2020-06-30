@@ -1,11 +1,6 @@
 const tree = require('./icon_list');
 
-const getAssets = (size, name) => {
-  const { ReactComponent } = require(`../src/${size}/${name}?react`);
-  const { default: url } = require(`../src/${size}/${name}`);
-
-  return { default: url, ReactComponent };
-};
+const getAssets = (size, name) => require(`../src/${size}/${name}`);
 
 const files = Object.keys(tree).reduce((acc, size) => ({
   ...acc,

@@ -36,12 +36,12 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        use: ['@svgr/webpack', 'file-loader'],
-        resourceQuery: /react/,
-      },
-      {
-        test: /\.svg$/,
         use: [
+          // About the order of loaders:
+          // svgr/webpack only adds the `ReactComponent` export if there already
+          // a `default` export.
+          '@svgr/webpack',
+
           'file-loader',
           {
             loader: 'svgo-loader',
