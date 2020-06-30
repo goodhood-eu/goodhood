@@ -27,20 +27,15 @@ Promise.all(files.map(async(relativeIconPath) => {
 
   const data = fs.readFileSync(svgPath, 'utf-8');
 
-  const [
-    { data: optimizedData },
-    reactComponentCode,
-  ] = await Promise.all([
-    svgo.optimize(data, { path: svgPath }),
-    svgr.default(data, {}, { componentName: getComponentName(fileName), filePath: svgPath }),
-  ]);
+  const { data: optimizedData } = await svgo.optimize(data, { path: svgPath });
+  const reactComponentCode = await svgr.default(data, {}, {
+    componentName: getComponentName(fileName),
+    filePath: svgPath,
+  });
 
   fs.mkdirSync(path.dirname(libSvgPath), { recursive: true });
-
-  await Promise.all([
-    fs.promises.writeFile(libSvgPath, optimizedData),
-    fs.promises.writeFile(libReactPath, reactComponentCode),
-  ]);
+  fs.writeFileSync(libSvgPath, optimizedData);
+  fs.writeFileSync(libReactPath, reactComponentCode);
 })).then(() => {
   console.log(`Converted ${files.length} icons`);
 });
