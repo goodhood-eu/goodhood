@@ -24,7 +24,6 @@
     "/lib"
   ],
   "devDependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.10.4",
     "@svgr/core": "^5.4.0",
     "@svgr/webpack": "^5.4.0",
     "babel-plugin-styled-components": "^1.10.7",

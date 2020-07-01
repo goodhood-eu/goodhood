@@ -34,7 +34,7 @@ Promise.all(files.map(async(relativeIconPath) => {
 
   const reactComponentCommonjsCode = babel.transform(reactComponentCode, {
     ...babelConfig,
-    plugins: ['@babel/plugin-transform-modules-commonjs', ...babelConfig.plugins],
+    presets: ['@babel/preset-env'],
   }).code;
 
   fs.mkdirSync(path.dirname(libSvgPath), { recursive: true });
