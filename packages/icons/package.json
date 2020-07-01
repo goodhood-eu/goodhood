@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "1.1.1",
+  "version": "1.1.2",
   "scripts": {
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
     "check": "npm run lint",
@@ -24,6 +24,7 @@
     "/lib"
   ],
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.10.4",
     "@svgr/core": "^5.4.0",
     "@svgr/webpack": "^5.4.0",
     "babel-plugin-styled-components": "^1.10.7",

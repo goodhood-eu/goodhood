@@ -1,3 +1,4 @@
+const babel = require('@babel/core');
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
@@ -30,9 +31,13 @@ Promise.all(files.map(async(relativeIconPath) => {
     filePath: svgPath,
   });
 
+  const reactComponentCommonjsCode = babel.transform(reactComponentCode, {
+    plugins: ['@babel/plugin-transform-modules-commonjs'],
+  }).code;
+
   fs.mkdirSync(path.dirname(libSvgPath), { recursive: true });
   fs.writeFileSync(libSvgPath, optimizedData);
-  fs.writeFileSync(libReactPath, reactComponentCode);
+  fs.writeFileSync(libReactPath, reactComponentCommonjsCode);
 })).then(() => {
   console.log(`Converted ${files.length} icons`);
 });
