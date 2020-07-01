@@ -4,6 +4,7 @@ const path = require('path');
 const chalk = require('chalk');
 const SVGO = require('svgo');
 const svgr = require('@svgr/core');
+const babelConfig = require('../../../presets/react/babel.config');
 const svgoConfig = require('../svgo.config.js');
 const { getFiles, getTree, SVGS_DIR } = require('../utils/icon_list');
 const { getComponentName, getLibSvgFileName, getLibJsFileName } = require('../utils/naming');
@@ -32,7 +33,8 @@ Promise.all(files.map(async(relativeIconPath) => {
   });
 
   const reactComponentCommonjsCode = babel.transform(reactComponentCode, {
-    plugins: ['@babel/plugin-transform-modules-commonjs'],
+    ...babelConfig,
+    plugins: ['@babel/plugin-transform-modules-commonjs', ...babelConfig.plugins],
   }).code;
 
   fs.mkdirSync(path.dirname(libSvgPath), { recursive: true });
