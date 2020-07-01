@@ -1,8 +1,10 @@
+const babel = require('@babel/core');
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
 const SVGO = require('svgo');
 const svgr = require('@svgr/core');
+const babelConfig = require('../../../presets/react/babel.config');
 const svgoConfig = require('../svgo.config.js');
 const { getFiles, getTree, SVGS_DIR } = require('../utils/icon_list');
 const { getComponentName, getLibSvgFileName, getLibJsFileName } = require('../utils/naming');
@@ -30,9 +32,14 @@ Promise.all(files.map(async(relativeIconPath) => {
     filePath: svgPath,
   });
 
+  const reactComponentCommonjsCode = babel.transform(reactComponentCode, {
+    ...babelConfig,
+    presets: ['@babel/preset-env'],
+  }).code;
+
   fs.mkdirSync(path.dirname(libSvgPath), { recursive: true });
   fs.writeFileSync(libSvgPath, optimizedData);
-  fs.writeFileSync(libReactPath, reactComponentCode);
+  fs.writeFileSync(libReactPath, reactComponentCommonjsCode);
 })).then(() => {
   console.log(`Converted ${files.length} icons`);
 });
