@@ -7,7 +7,7 @@ import { POLYGON_SOLID } from '../polygon/constants';
 
 import Map from './index';
 import Polygon from '../polygon';
-import { MAP_CREDENTIALS } from '../story_utils';
+import config from '../../../../config';
 
 export default { title: 'Map', component: Map, decorators: [withKnobs] };
 
@@ -22,7 +22,7 @@ export const Default = () => {
   return (
     <Map
       {...{ bounds, locked, lockedMobile, animate, noAttribution }}
-      credentials={MAP_CREDENTIALS}
+      credentials={config.map_credentials}
       onLoad={action('Map loaded')}
     />
   );
@@ -30,14 +30,14 @@ export const Default = () => {
 
 export const ViewAndZoom = () => (
   <Map
-    credentials={MAP_CREDENTIALS}
+    credentials={config.map_credentials}
     defaultView={data.markers[1]}
     defaultZoom={15}
   />
 );
 
 export const AutoFit = () => (
-  <Map credentials={MAP_CREDENTIALS}>
+  <Map credentials={config.map_credentials}>
     <Polygon area={data.polygons[0]} type={POLYGON_SOLID} />
     <Polygon area={data.polygons[1]} type={POLYGON_SOLID} />
   </Map>

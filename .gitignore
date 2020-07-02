@@ -2,4 +2,4 @@
 node_modules
 .idea
 lerna-debug.log
-.env
+config.js

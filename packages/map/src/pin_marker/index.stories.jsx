@@ -14,7 +14,7 @@ import {
 
 import PinMarker from './index';
 import Map from '../map';
-import { MAP_CREDENTIALS } from '../story_utils';
+import config from '../../../../config';
 
 
 const types = [
@@ -35,7 +35,7 @@ export const Default = () => {
   const popupDefaultState = boolean('Popup default state', false);
 
   return (
-    <Map credentials={MAP_CREDENTIALS} defaultZoom={10}>
+    <Map credentials={config.map_credentials} defaultZoom={10}>
       <PinMarker
         position={data.markers[0]}
         {...{ type, popupContent, popupDefaultState }}

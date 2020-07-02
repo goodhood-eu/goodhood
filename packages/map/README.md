@@ -141,7 +141,7 @@ const App = () => (
 
 ## Preview
 
-- Set maptiler credentials in root package `.env` file (see `.env.example`)
+- Set maptiler credentials in root package `config.js` file (see `config.js.example`)
 - `npm run start`
 - Visit http://localhost:3000
 

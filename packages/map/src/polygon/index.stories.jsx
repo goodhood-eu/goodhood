@@ -7,7 +7,7 @@ import { POLYGON_ACTIVE, POLYGON_DEFAULT, POLYGON_HIGHLIGHTED, POLYGON_SOLID, PO
 
 import Polygon from './index';
 import Map from '../map';
-import { MAP_CREDENTIALS } from '../story_utils';
+import config from '../../../../config';
 
 
 const types = [
@@ -24,7 +24,7 @@ export const Default = () => {
   const type = select('Type', types, types[0]);
 
   return (
-    <Map credentials={MAP_CREDENTIALS}>
+    <Map credentials={config.map_credentials}>
       <Polygon
         area={data.polygons[0]}
         type={type}

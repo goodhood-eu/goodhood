@@ -4,13 +4,13 @@ import data from '../../sample_data';
 
 import CircleMarker from './index';
 import Map from '../map';
-import { MAP_CREDENTIALS } from '../story_utils';
+import config from '../../../../config';
 
 
 export default { title: 'CircleMarker', component: CircleMarker, decorators: [withKnobs] };
 
 export const Default = () => (
-  <Map credentials={MAP_CREDENTIALS} defaultZoom={10}>
+  <Map credentials={config.map_credentials} defaultZoom={10}>
     <CircleMarker position={data.markers[0]}>{text('Content', 'fire in the hole!')}</CircleMarker>
   </Map>
 );
