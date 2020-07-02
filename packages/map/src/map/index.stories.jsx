@@ -1,13 +1,13 @@
 import React from 'react';
 import { boolean, select, withKnobs } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import config from '../../../../config';
 import data from '../../sample_data';
 
 import { POLYGON_SOLID } from '../polygon/constants';
 
 import Map from './index';
 import Polygon from '../polygon';
-import config from '../../../../config';
 
 export default { title: 'Map', component: Map, decorators: [withKnobs] };
 

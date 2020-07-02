@@ -1,10 +1,10 @@
 import React from 'react';
 import { text, withKnobs } from '@storybook/addon-knobs';
+import config from '../../../../config';
 import data from '../../sample_data';
 
 import CircleMarker from './index';
 import Map from '../map';
-import config from '../../../../config';
 
 
 export default { title: 'CircleMarker', component: CircleMarker, decorators: [withKnobs] };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
+import config from '../../../../config';
 import data from '../../sample_data';
 
 import {
@@ -14,7 +15,6 @@ import {
 
 import PinMarker from './index';
 import Map from '../map';
-import config from '../../../../config';
 
 
 const types = [

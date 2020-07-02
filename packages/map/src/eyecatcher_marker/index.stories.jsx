@@ -1,10 +1,10 @@
 import React from 'react';
 import { text, withKnobs } from '@storybook/addon-knobs';
+import config from '../../../../config';
 import data from '../../sample_data';
 
 import EyeCatcherMarker from './index';
 import Map from '../map';
-import config from '../../../../config';
 
 
 export default { title: 'EyeCatcherMarker', component: EyeCatcherMarker, decorators: [withKnobs] };

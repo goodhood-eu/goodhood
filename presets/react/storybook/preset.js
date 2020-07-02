@@ -52,6 +52,11 @@ module.exports = {
     );
 
     config.module.rules.push({
+      test: path.join(__dirname, '../../../config'),
+      use: ['val-loader'],
+    });
+
+    config.module.rules.push({
       test: /\.scss$/,
       sideEffects: false,
       exclude: /\.module\.scss$/,

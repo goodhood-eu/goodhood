@@ -1,12 +1,12 @@
 import React from 'react';
 import { select, withKnobs } from '@storybook/addon-knobs';
+import config from '../../../../config';
 import data from '../../sample_data';
 
 import { CIRCLE_ACTIVE, CIRCLE_DEFAULT } from './constants';
 
 import Circle from './index';
 import Map from '../map';
-import config from '../../../../config';
 
 
 const types = [
