@@ -141,7 +141,7 @@ const App = () => (
 
 ## Preview
 
-- Create `local.jsx` file in `sample_data root folder`. It should contain maptiler field with credentials to maptilerAPI
+- Set maptiler credentials in root package `.env` file (see `.env.example`)
 - `npm run start`
 - Visit http://localhost:3000
 

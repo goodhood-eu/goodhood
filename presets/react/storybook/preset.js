@@ -1,5 +1,6 @@
 const path = require('path');
 const sassFunctions = require('sass-functions');
+const Dotenv = require('dotenv-webpack');
 const sass = require('sass');
 
 const ROOT_PKG_PATH = path.join(__dirname, '../../../');
@@ -62,6 +63,11 @@ module.exports = {
       sideEffects: false,
       use: getStyleLoaders({ pkgPath, modules: true }),
     });
+
+    config.plugins.push(new Dotenv({
+      path: path.join(ROOT_PKG_PATH, '.env'),
+    }));
+
     return config;
   },
 };

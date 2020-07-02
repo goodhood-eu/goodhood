@@ -1,19 +1,20 @@
 import React from 'react';
-import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
+import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
 import data from '../../sample_data';
 
 import {
-  PIN_MARKER_GREEN,
   PIN_MARKER_BASE,
-  PIN_MARKER_ORANGE,
-  PIN_MARKER_YELLOW,
-  PIN_MARKER_RED,
-  PIN_MARKER_GRAY,
   PIN_MARKER_BLUE,
+  PIN_MARKER_GRAY,
+  PIN_MARKER_GREEN,
+  PIN_MARKER_ORANGE,
+  PIN_MARKER_RED,
+  PIN_MARKER_YELLOW,
 } from './constants';
 
 import PinMarker from './index';
 import Map from '../map';
+import { MAP_CREDENTIALS } from '../story_utils';
 
 
 const types = [
@@ -34,7 +35,7 @@ export const Default = () => {
   const popupDefaultState = boolean('Popup default state', false);
 
   return (
-    <Map credentials={data.maptiler} defaultZoom={10}>
+    <Map credentials={MAP_CREDENTIALS} defaultZoom={10}>
       <PinMarker
         position={data.markers[0]}
         {...{ type, popupContent, popupDefaultState }}

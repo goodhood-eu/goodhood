@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs, boolean, select } from '@storybook/addon-knobs';
+import { boolean, select, withKnobs } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import data from '../../sample_data';
 
@@ -7,7 +7,7 @@ import { POLYGON_SOLID } from '../polygon/constants';
 
 import Map from './index';
 import Polygon from '../polygon';
-
+import { MAP_CREDENTIALS } from '../story_utils';
 
 export default { title: 'Map', component: Map, decorators: [withKnobs] };
 
@@ -21,8 +21,8 @@ export const Default = () => {
 
   return (
     <Map
-      credentials={data.maptiler}
       {...{ bounds, locked, lockedMobile, animate, noAttribution }}
+      credentials={MAP_CREDENTIALS}
       onLoad={action('Map loaded')}
     />
   );
@@ -30,14 +30,14 @@ export const Default = () => {
 
 export const ViewAndZoom = () => (
   <Map
-    credentials={data.maptiler}
+    credentials={MAP_CREDENTIALS}
     defaultView={data.markers[1]}
     defaultZoom={15}
   />
 );
 
 export const AutoFit = () => (
-  <Map credentials={data.maptiler}>
+  <Map credentials={MAP_CREDENTIALS}>
     <Polygon area={data.polygons[0]} type={POLYGON_SOLID} />
     <Polygon area={data.polygons[1]} type={POLYGON_SOLID} />
   </Map>

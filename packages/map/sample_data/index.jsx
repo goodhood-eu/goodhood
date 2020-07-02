@@ -1,6 +1,3 @@
-import local from './local';
-
-
 export default {
   polygons: [
     [
@@ -39,11 +36,4 @@ export default {
     [14.39040, 52.2155550],
     [14.38040, 52.2255550],
   ],
-
-  maptiler: {
-    key: '',
-    map_id: '',
-  },
-
-  ...local,
 };

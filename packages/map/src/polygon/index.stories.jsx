@@ -1,18 +1,13 @@
 import React from 'react';
-import { withKnobs, select } from '@storybook/addon-knobs';
+import { select, withKnobs } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import data from '../../sample_data';
 
-import {
-  POLYGON_ACTIVE,
-  POLYGON_HIGHLIGHTED,
-  POLYGON_SOLID,
-  POLYGON_THIN,
-  POLYGON_DEFAULT,
-} from './constants';
+import { POLYGON_ACTIVE, POLYGON_DEFAULT, POLYGON_HIGHLIGHTED, POLYGON_SOLID, POLYGON_THIN } from './constants';
 
 import Polygon from './index';
 import Map from '../map';
+import { MAP_CREDENTIALS } from '../story_utils';
 
 
 const types = [
@@ -29,7 +24,7 @@ export const Default = () => {
   const type = select('Type', types, types[0]);
 
   return (
-    <Map credentials={data.maptiler}>
+    <Map credentials={MAP_CREDENTIALS}>
       <Polygon
         area={data.polygons[0]}
         type={type}
