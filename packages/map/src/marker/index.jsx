@@ -33,8 +33,8 @@ const Marker = ({
     }
 
     return () => {
-      marker.remove();
       if (popup) popup.remove();
+      marker.remove();
     };
   }, [map, children, popupContent, popupOffset]);
 
