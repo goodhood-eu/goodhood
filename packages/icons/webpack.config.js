@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const svgoConfig = require('./svgo.config');
 
 const PREVIEW = `${__dirname}/preview`;
 
@@ -33,10 +34,21 @@ module.exports = {
         sideEffects: false,
         use: ['babel-loader'],
       },
-
       {
         test: /\.svg$/,
-        use: ['@svgr/webpack', 'file-loader'],
+        use: [
+          // About the order of loaders:
+          // svgr/webpack only adds the `ReactComponent` export if there already
+          // a `default` export. Other than that, svgr/webpack ignores all previous
+          // loaders results and uses the initial raw resource.
+          '@svgr/webpack',
+
+          'file-loader',
+          {
+            loader: 'svgo-loader',
+            options: svgoConfig,
+          },
+        ],
       },
     ],
   },

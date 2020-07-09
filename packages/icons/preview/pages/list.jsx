@@ -3,7 +3,11 @@ import styled from 'styled-components';
 import Layout from '../components/layout';
 import icons from '../icons';
 import iconsList from '../icon_list';
-import { importStatementForImg, importStatementForReactComponent } from '../import_statements';
+import {
+  importAliasForReactComponent,
+  importStatementForImg,
+  importStatementForReactComponent,
+} from '../import_statements';
 
 const StyledH3 = styled.h3`
   margin-top: 30px;
@@ -86,12 +90,12 @@ export default ({ size }) => (
         const name = iconsList[size][index];
         return (
           <StyledListItem key={url} id={name}>
-            <StyledH4>{size}/{name}</StyledH4>
+            <StyledH4>src/{size}/{name}</StyledH4>
             <StyledDl>
               <dt><pre>&lt;img /&gt;:</pre></dt>
               <dd><img src={url} alt={url} /></dd>
 
-              <dt><pre>&lt;ReactComponent /&gt;:</pre></dt>
+              <dt><pre>&lt;{importAliasForReactComponent(name)} /&gt;:</pre></dt>
               <dd><Icon /></dd>
               <StyledCode>{importStatementForReactComponent(size, name)}</StyledCode>
               <StyledCode>{importStatementForImg(size, name)}</StyledCode>
