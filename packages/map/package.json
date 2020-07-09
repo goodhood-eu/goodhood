@@ -27,8 +27,7 @@
     "test:tofile": "NODE_ENV=test TZ='GMT' mocha --no-colors -R spec \"./{,!(node_modules)/**}/*.test.{js,jsx}\" 2>&1 | tee test-report.log"
   },
   "devDependencies": {
-    "@goodhood/icons": "^1.0.0-beta.2",
-    "uni-config": "^2.1.1"
+    "@goodhood/icons": "^1.2.0"
   },
   "dependencies": {
     "mapbox-gl": "^1.11.0",

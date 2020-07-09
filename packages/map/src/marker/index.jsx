@@ -29,10 +29,7 @@ const Marker = ({
     if (popupContent) {
       popup = new Popup({ offset: popupOffset }).setDOMContent(popupRef.current);
       marker.setPopup(popup);
-    }
-
-    if (popupDefaultState) {
-      marker.togglePopup();
+      if (popupDefaultState) marker.togglePopup();
     }
 
     return () => {
@@ -43,7 +40,7 @@ const Marker = ({
 
   return (
     <>
-      <div ref={popupRef}>{popupContent}</div>
+      {popupContent && <div ref={popupRef}>{popupContent}</div>}
       <div {...rest} ref={nodeRef}>{children}</div>
     </>
   );

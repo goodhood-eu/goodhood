@@ -21,6 +21,10 @@ const InfoMarker = ({
   </Marker>
 );
 
+InfoMarker.defaultProps = {
+  small: false,
+};
+
 InfoMarker.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
