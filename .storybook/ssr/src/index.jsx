@@ -23,7 +23,7 @@ const forceServerSideRender = (story) => {
 
 const api = start(render);
 
-require(`${PKG_PATH}/.storybook/preview-ssr`);
+require(`root-pkg/.storybook/preview-ssr`);
 
 api.configure(getStories, module, 'react');
 
