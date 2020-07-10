@@ -38,6 +38,20 @@ const getResolveAlias = () => ({
   'current-pkg': PKG_PATH,
 });
 
+const injectSVGRLoaderRule = (rules) => {
+  const fileLoaderRule = rules.find(({ test }) => {
+    const regexArr = Array.isArray(test) ? test : [test];
+    return regexArr.some((regex) => regex.test('.svg'));
+  });
+
+  fileLoaderRule.exclude = PKG_PATH;
+
+  rules.push({
+    test: /\.svg$/,
+    use: ['@svgr/webpack'],
+    include: PKG_PATH,
+  });
+}
 
 module.exports = {
   stories: (config) => [
@@ -68,6 +82,8 @@ module.exports = {
       ...config.resolve.alias,
       ...getResolveAlias(),
     };
+
+    injectSVGRLoaderRule(config.module.rules);
 
     config.module.rules.push({
       test: /\.scss$/,

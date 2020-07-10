@@ -13,6 +13,8 @@ import camelCase from 'lodash/camelCase';
 import copy from 'rollup-plugin-copy';
 import upperFirst from 'lodash/upperFirst';
 import acornJsx from 'acorn-jsx';
+import requireContext from 'rollup-plugin-require-context';
+import svgr from '@svgr/rollup';
 
 const ROOT_PKG_PATH = path.join(__dirname, '../../');
 
@@ -45,6 +47,11 @@ export default (pkg, pkgPath) => ({
         path.join(pkgPath, 'styles.css'),
       ],
     }),
+    requireContext({
+      include: ['**/*.js', '**/*.jsx'],
+      // TODO: requireContext takes no additional acorn options -> fails to parse jsx
+    }),
+    svgr(),
     peerDepsExternal(),
     postcss({
       extract: true,
