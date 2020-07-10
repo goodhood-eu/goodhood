@@ -74,6 +74,7 @@
   },
   "scripts": {
     "lint": "lerna run lint",
+    "test": "lerna run test",
     "postinstall": "lerna bootstrap && link-parent-bin"
   }
 }

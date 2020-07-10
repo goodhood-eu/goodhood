@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  extends: "../../presets/react/.eslintrc.json",
+  extends: "../../.eslintrc.json",
   rules: {
     "import/no-extraneous-dependencies": ["error", {
       "packageDir": [
