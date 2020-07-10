@@ -1,0 +1,3 @@
+{
+  "extends": "../../presets/react/babel.config.js"
+}

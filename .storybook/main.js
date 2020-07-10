@@ -48,6 +48,8 @@ module.exports = {
     '@storybook/addon-viewport/register',
     '@storybook/addon-storysource',
     '@storybook/addon-docs',
+    '@storybook/addon-knobs/register',
+    '@storybook/addon-actions/register',
   ],
   managerWebpack: (config, options) => {
     config.resolve.alias = {
@@ -68,6 +70,11 @@ module.exports = {
       ...config.resolve.alias,
       ...getResolveAlias(),
     };
+
+    config.module.rules.push({
+      test: path.join(__dirname, '../../../config'),
+      use: ['val-loader'],
+    });
 
     config.module.rules.push({
       test: /\.scss$/,
