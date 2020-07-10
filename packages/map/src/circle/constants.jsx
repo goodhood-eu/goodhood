@@ -1,0 +1,2 @@
+export const CIRCLE_ACTIVE = 'CIRCLE_ACTIVE';
+export const CIRCLE_DEFAULT = 'CIRCLE_DEFAULT';

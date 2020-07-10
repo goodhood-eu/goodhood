@@ -1,0 +1,49 @@
+{
+  "name": "@goodhood/map",
+  "description": "React map components",
+  "author": "goodhood.eu <max@nebenan.de>",
+  "license": "SEE LICENSE IN LICENSE FILE",
+  "homepage": "https://goodhood.eu/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goodhood-eu/goodhood.git"
+  },
+  "bugs": {
+    "url": "https://github.com/goodhood-eu/goodhood/issues"
+  },
+  "version": "0.0.1-beta.8",
+  "module": "lib/index.esm.js",
+  "main": "lib/index.js",
+  "sideEffects": false,
+  "scripts": {
+    "reinstall": "rm -rf node_modules package-lock.json && npm install",
+    "prepublishOnly": "npm run check && npm run build",
+    "check": "npm run lint && npm run test",
+    "lint": "eslint -f codeframe \"./**/*.{js,jsx}\"",
+    "build": "rollup --config rollup.config.js",
+    "start": "start-storybook -p 3000 --ci",
+    "start:ssr-preview": "SSR=true start-storybook -p 3000 --ci --preview-url=/ssr-iframe",
+    "test": "NODE_ENV=test TZ='GMT' mocha \"./{,!(node_modules)/**}/*.test.{js,jsx}\"",
+    "test:tofile": "NODE_ENV=test TZ='GMT' mocha --no-colors -R spec \"./{,!(node_modules)/**}/*.test.{js,jsx}\" 2>&1 | tee test-report.log"
+  },
+  "devDependencies": {
+    "@goodhood/icons": "^1.2.0"
+  },
+  "dependencies": {
+    "mapbox-gl": "^1.11.0",
+    "react-mapbox-gl": "^4.8.6"
+  },
+  "peerDependencies": {
+    "clsx": "^1.0.4",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "nebenan-ui-kit": "^4.0.0",
+    "@babel/runtime": "^7.10.2",
+    "@goodhood/icons": "^1.x.x"
+  },
+  "files": [
+    "lib",
+    "src",
+    "LICENSE"
+  ]
+}

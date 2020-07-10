@@ -42,12 +42,19 @@ module.exports = {
     '@storybook/addon-viewport/register',
     '@storybook/addon-storysource',
     '@storybook/addon-docs',
+    '@storybook/addon-knobs/register',
+    '@storybook/addon-actions/register',
   ],
   webpackFinal: async(config, { pkgPath }) => {
     const babelLoader = config.module.rules[0];
     babelLoader.exclude.push(
       path.join(ROOT_PKG_PATH, 'node_modules'),
     );
+
+    config.module.rules.push({
+      test: path.join(__dirname, '../../../config'),
+      use: ['val-loader'],
+    });
 
     config.module.rules.push({
       test: /\.scss$/,
@@ -60,6 +67,7 @@ module.exports = {
       sideEffects: false,
       use: getStyleLoaders({ pkgPath, modules: true }),
     });
+
     return config;
   },
 };

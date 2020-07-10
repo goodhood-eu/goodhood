@@ -1,0 +1,54 @@
+@import "nebenan-ui-kit";
+
+.container {
+  @include block-center;
+  width: 32px;
+  height: 32px;
+
+  background: $color-green-02;
+  box-shadow: $shadow-bottom-default;
+  border: 2px solid $color-gray-09;
+  border-radius: 50%;
+
+  @media ($media-m) {
+    width: 55px;
+    height: 55px;
+  }
+}
+
+.icon {
+  @include block-center;
+
+  width: 17px;
+  height: 17px;
+  color: $color-gray-09;
+
+  @media ($media-m) {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.isSmall {
+  .container {
+    width: 21px;
+    height: 21px;
+  }
+
+  .icon {
+    width: 10px;
+    height: 10px;
+  }
+
+  @media ($media-m) {
+    .container {
+      width: 48px;
+      height: 48px;
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
