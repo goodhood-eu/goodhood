@@ -1,5 +1,7 @@
+const path = require('path');
+
 module.exports = {
-  require: '@babel/register',
+  require: path.join(__dirname, '.mocha/babel-require.js'),
   globals: 'document',
   'check-leaks': true,
   recursive: true,

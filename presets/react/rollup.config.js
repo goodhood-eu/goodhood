@@ -63,6 +63,7 @@ export default (pkg, pkgPath) => ({
     }),
     babel({
       babelHelpers: 'runtime',
+      rootMode: 'upward',
       exclude: [
         path.join(pkgPath, 'node_modules/'),
         path.join(ROOT_PKG_PATH, 'node_modules/'),
