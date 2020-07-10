@@ -5,7 +5,7 @@ const sass = require('sass');
 const ROOT_PKG_PATH = path.join(__dirname, '../');
 const PKG_PATH = process.cwd();
 
-const getStyleLoaders = ({ pkgPath, modules }) => (
+const getStyleLoaders = ({ modules }) => (
   [
     'style-loader',
     {
@@ -23,7 +23,7 @@ const getStyleLoaders = ({ pkgPath, modules }) => (
 
         sassOptions: {
           includePaths: [
-            path.join(pkgPath, 'node_modules/'),
+            path.join(PKG_PATH, 'node_modules/'),
             path.join(ROOT_PKG_PATH, 'node_modules/'),
           ],
           functions: sassFunctions({ sass }),
@@ -73,12 +73,12 @@ module.exports = {
       test: /\.scss$/,
       sideEffects: false,
       exclude: /\.module\.scss$/,
-      use: getStyleLoaders({ pkgPath: PKG_PATH, modules: false }),
+      use: getStyleLoaders({ modules: false }),
     });
     config.module.rules.push({
       test: /\.module\.scss$/,
       sideEffects: false,
-      use: getStyleLoaders({ pkgPath: PKG_PATH, modules: true }),
+      use: getStyleLoaders({ modules: true }),
     });
 
     return config;
