@@ -1,5 +1,6 @@
 {
   "extends": "nebenan",
+  "root": true,
   "overrides": [{
     "files": ["**/*.test.js", "**/*.test.jsx"],
     "env": {
