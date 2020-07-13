@@ -49,7 +49,9 @@ const getPrerenderedContent = (webpackStats, params) => {
 const matchWebpackTest = (file, test) => (
   test instanceof RegExp
     ? test.test(file)
-    : test === file
+    // matching against string test statements may be complex
+    // not needed right now
+    : false
 );
 
 const patchWebpackRules = (rules, shouldMatchAnyFile, shouldHaveLoader, mapMatch) => (
