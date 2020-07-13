@@ -1,7 +1,7 @@
 import { getSearch, getQuery } from 'nebenan-helpers/lib/routes/';
 
 export const getStories = () => {
-  const stories = require.context('current-pkg/src', true, /\.stories\.jsx$/);
+  const stories = require.context('@/src', true, /\.stories\.jsx$/);
   return stories.keys().map(stories);
 };
 

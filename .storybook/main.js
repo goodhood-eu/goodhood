@@ -34,8 +34,8 @@ const getStyleLoaders = ({ modules }) => (
 );
 
 const getResolveAlias = () => ({
-  'root-pkg': ROOT_PKG_PATH,
-  'current-pkg': PKG_PATH,
+  '@root': ROOT_PKG_PATH,
+  '@': PKG_PATH,
 });
 
 
