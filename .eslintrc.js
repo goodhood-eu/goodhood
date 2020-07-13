@@ -1,3 +1,6 @@
+const PKG_PATH = process.cwd();
+const ROOT_PKG_PATH = __dirname;
+
 module.exports = {
   "extends": "nebenan",
   "root": true,
@@ -10,18 +13,18 @@ module.exports = {
       "rules": {
         "no-unused-expressions": "off"
       }
-    },
-    {
-      "files": ["**/*.stories.jsx"],
-      "settings": {
-        "import/resolver": {
-          alias: {
-            map: [["@root", __dirname]],
-          },
-        }
-      }
     }
   ],
+  "settings": {
+    "import/resolver": {
+      alias: {
+        map: [
+          ["@root", ROOT_PKG_PATH],
+          ["@", PKG_PATH],
+        ],
+      },
+    }
+  },
   "rules": {
     "import/extensions": ["error", "never", {
       "json": "always"

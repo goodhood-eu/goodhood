@@ -1,3 +1,6 @@
+const PKG_PATH = process.cwd();
+const ROOT_PKG_PATH = __dirname;
+
 module.exports = {
   presets: [
     ['@babel/preset-env', { modules: false }],
@@ -9,6 +12,12 @@ module.exports = {
     '@babel/plugin-transform-runtime',
     '@babel/plugin-transform-strict-mode',
     '@babel/plugin-proposal-json-strings',
+    ['module-resolver', {
+      alias: {
+        '@': PKG_PATH,
+        '@root': ROOT_PKG_PATH,
+      },
+    }],
   ],
   env: {
     test: {
