@@ -1,4 +1,3 @@
-const { DefinePlugin } = require('webpack');
 const path = require('path');
 const getCoreConfig = require('@storybook/core/dist/server/config');
 const reactOptions = require('@storybook/react/dist/server/options');
@@ -11,10 +10,9 @@ const COMPILE_INDEX_CLIENT = 1;
 
 const cache = {};
 
-const getPlugins = (plugins, pkgPath) => ([
-  new DefinePlugin({
-    PKG_PATH: JSON.stringify(pkgPath),
-  }),
+const ROOT_PKG_PATH = path.join(__dirname, '../../');
+
+const getPlugins = (plugins) => ([
   ...plugins.filter((plugin) => (
     !['HtmlWebpackPlugin', 'VirtualModulePlugin'].includes(plugin.constructor.name)
   )),
@@ -54,14 +52,14 @@ const getRulesForLocalSrc = (rules) => patchWebpackRules(
   }));
 
 
-const getConfig = async({ pkgPath, webpackHotMiddlewarePath }) => {
+const getConfig = async({ webpackHotMiddlewarePath }) => {
   const baseConfig = await getCoreConfig.default({
     configType: 'DEVELOPMENT',
     outputDir: path.dirname(require.resolve('@storybook/core/dist/server/public/favicon.ico')),
     cache,
     corePresets: [require.resolve('@storybook/core/dist/server/preview/preview-preset.js')],
     overridePresets: [require.resolve('@storybook/core/dist/server/preview/custom-webpack-preset.js')],
-    configDir: path.join(pkgPath, '.storybook'),
+    configDir: path.join(ROOT_PKG_PATH, '.storybook'),
     ...reactOptions.default,
   });
 
@@ -80,7 +78,7 @@ const getConfig = async({ pkgPath, webpackHotMiddlewarePath }) => {
         ...baseConfig.module,
         rules: getRulesForLocalSrc(getRulesWithoutStyleLoaders(baseConfig.module.rules)),
       },
-      plugins: getPlugins([], pkgPath),
+      plugins: getPlugins([]),
       optimization: {},
     },
     {
@@ -98,7 +96,7 @@ const getConfig = async({ pkgPath, webpackHotMiddlewarePath }) => {
         ...baseConfig.module,
         rules: getRulesForLocalSrc(baseConfig.module.rules),
       },
-      plugins: getPlugins(baseConfig.plugins, pkgPath),
+      plugins: getPlugins(baseConfig.plugins),
       optimization: {},
     },
   ];

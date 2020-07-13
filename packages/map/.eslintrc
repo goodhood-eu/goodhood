@@ -1,5 +1,4 @@
 {
-  "extends": "../../presets/react/.eslintrc.json",
   "rules": {
     "import/no-extraneous-dependencies": ["error",
       {"packageDir": ["./", "../../"]}

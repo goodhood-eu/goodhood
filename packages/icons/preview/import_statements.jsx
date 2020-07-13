@@ -1,6 +1,6 @@
 import { getComponentName, getIconName, getLibFileName, getLibSvgFileName } from '../utils/naming';
 
-export const importAliasForReactComponent = (fileName) => `${getComponentName(fileName)}Icon`;
+export const importAliasForReactComponent = (fileName) => getComponentName(fileName);
 
 export const importStatementForReactComponent = (size, fileName) => {
   const alias = importAliasForReactComponent(fileName);

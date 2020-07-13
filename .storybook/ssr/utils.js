@@ -46,6 +46,14 @@ const getPrerenderedContent = (webpackStats, params) => {
   return app.default(params);
 };
 
+const matchWebpackTest = (file, test) => (
+  test instanceof RegExp
+    ? test.test(file)
+    // matching against string test statements may be complex
+    // not needed right now
+    : false
+);
+
 const patchWebpackRules = (rules, shouldMatchAnyFile, shouldHaveLoader, mapMatch) => (
   rules.map((rule) => {
     const { test, use } = rule;
@@ -54,7 +62,7 @@ const patchWebpackRules = (rules, shouldMatchAnyFile, shouldHaveLoader, mapMatch
     const regexArr = wrapArray(test);
 
     const regexMatches = shouldMatchAnyFile.some(
-      (file) => regexArr.every((regex) => regex.test(file)),
+      (file) => regexArr.every(matchWebpackTest.bind(undefined, file)),
     );
     if (!regexMatches) return rule;
 

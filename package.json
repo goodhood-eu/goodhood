@@ -21,6 +21,7 @@
     "@babel/preset-react": "^7.10.1",
     "@babel/register": "^7.10.1",
     "@babel/runtime": "^7.10.2",
+    "@rollup/plugin-alias": "^3.1.1",
     "@rollup/plugin-babel": "^5.0.3",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^8.0.1",
@@ -30,12 +31,14 @@
     "@storybook/addon-storysource": "^5.3.19",
     "@storybook/addon-viewport": "^5.3.19",
     "@storybook/addons": "^5.3.19",
+    "@storybook/client-api": "^5.3.19",
     "@storybook/core": "^5.3.19",
     "@storybook/core-events": "^5.3.19",
     "@storybook/react": "^5.3.19",
     "@storybook/theming": "^5.3.19",
     "acorn-jsx": "^5.2.0",
     "babel-loader": "^8.1.0",
+    "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-react-docgen": "^4.1.0",
     "babel-plugin-transform-node-env-inline": "^0.4.3",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
@@ -77,6 +80,7 @@
   },
   "scripts": {
     "lint": "lerna run lint",
+    "test": "lerna run test",
     "postinstall": "lerna bootstrap && link-parent-bin"
   }
 }

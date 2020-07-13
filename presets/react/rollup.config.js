@@ -13,6 +13,7 @@ import camelCase from 'lodash/camelCase';
 import copy from 'rollup-plugin-copy';
 import upperFirst from 'lodash/upperFirst';
 import acornJsx from 'acorn-jsx';
+import alias from '@rollup/plugin-alias';
 
 const ROOT_PKG_PATH = path.join(__dirname, '../../');
 
@@ -45,6 +46,12 @@ export default (pkg, pkgPath) => ({
         path.join(pkgPath, 'styles.css'),
       ],
     }),
+    alias({
+      entries: [
+        { find: '@', replacement: pkgPath },
+        { find: '@root', replacement: ROOT_PKG_PATH },
+      ],
+    }),
     peerDepsExternal(),
     postcss({
       extract: true,
@@ -63,6 +70,7 @@ export default (pkg, pkgPath) => ({
     }),
     babel({
       babelHelpers: 'runtime',
+      rootMode: 'upward',
       exclude: [
         path.join(pkgPath, 'node_modules/'),
         path.join(ROOT_PKG_PATH, 'node_modules/'),

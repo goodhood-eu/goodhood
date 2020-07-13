@@ -1,6 +1,6 @@
 import React from 'react';
 import { select, withKnobs } from '@storybook/addon-knobs';
-import config from '../../../../config';
+import config from '@root/config';
 import data from '../../sample_data';
 
 import { CIRCLE_ACTIVE, CIRCLE_DEFAULT } from './constants';

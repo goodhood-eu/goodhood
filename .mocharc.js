@@ -1,5 +1,8 @@
+require('@babel/register')({
+  rootMode: 'upward',
+});
+
 module.exports = {
-  require: '@babel/register',
   globals: 'document',
   'check-leaks': true,
   recursive: true,

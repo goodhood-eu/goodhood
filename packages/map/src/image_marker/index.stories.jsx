@@ -1,6 +1,6 @@
 import React from 'react';
 import { text, withKnobs } from '@storybook/addon-knobs';
-import config from '../../../../config';
+import config from '@root/config';
 import data from '../../sample_data';
 
 import ImageMarker from './index';
