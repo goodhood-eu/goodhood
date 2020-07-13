@@ -1,7 +1,7 @@
 import React from 'react';
 import { boolean, select, withKnobs } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import config from '../../../../config';
+import config from '@root/config';
 import data from '../../sample_data';
 
 import { POLYGON_SOLID } from '../polygon/constants';
