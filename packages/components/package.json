@@ -21,8 +21,8 @@
     "check": "npm run lint && npm run test",
     "lint": "eslint -f codeframe \"./**/*.{js,jsx}\"",
     "build": "rollup --config rollup.config.js",
-    "start": "start-storybook -p 3000 --ci --config-dir ../../.storybook",
-    "start:ssr-preview": "SSR=true start-storybook -p 3000 --ci --preview-url=/ssr-iframe --config-dir ../../.storybook",
+    "start": "../../scripts/start-storybook",
+    "start:ssr-preview": "../../scripts/start-storybook --ssr-preview",
     "test": "NODE_ENV=test TZ='GMT' mocha \"./{,!(node_modules)/**}/*.test.{js,jsx}\"",
     "test:tofile": "NODE_ENV=test TZ='GMT' mocha --no-colors -R spec \"./{,!(node_modules)/**}/*.test.{js,jsx}\" 2>&1 | tee test-report.log"
   },
