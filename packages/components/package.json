@@ -19,12 +19,15 @@
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
     "prepublishOnly": "npm run check && npm run build",
     "check": "npm run lint && npm run test",
-    "lint": "eslint -f codeframe \"./**/*.{js,jsx}\"",
+    "check:tofile": "npm run lint:tofile; npm run test:tofile",
+    "eslint": "eslint -f codeframe \"./**/*.{js,jsx}\"",
+    "lint": "npm run eslint",
+    "lint:tofile": "npm run eslint -- --format junit -o ../../reports/components-eslint.xml",
     "build": "rollup --config rollup.config.js",
     "start": "../../scripts/start-storybook",
     "start:ssr-preview": "../../scripts/start-storybook --ssr-preview",
     "test": "NODE_ENV=test TZ='GMT' mocha \"./{,!(node_modules)/**}/*.test.{js,jsx}\"",
-    "test:tofile": "NODE_ENV=test TZ='GMT' mocha --no-colors -R spec \"./{,!(node_modules)/**}/*.test.{js,jsx}\" 2>&1 | tee test-report.log"
+    "test:tofile": "NODE_ENV=test TZ='GMT' mocha --no-colors -R xunit --reporter-options output=../../reports/components-mocha.xml \"./{,!(node_modules)/**}/*.test.{js,jsx}\""
   },
   "devDependencies": {},
   "dependencies": {},

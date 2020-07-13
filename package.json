@@ -81,6 +81,7 @@
   "scripts": {
     "lint": "lerna run lint",
     "test": "lerna run test",
+    "check:tofile": "lerna run check:tofile",
     "postinstall": "lerna bootstrap && link-parent-bin"
   }
 }
