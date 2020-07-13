@@ -10,7 +10,7 @@ const COMPILE_INDEX_CLIENT = 1;
 
 const cache = {};
 
-const ROOT_PKG_PATH = path.join(__dirname, "../../");
+const ROOT_PKG_PATH = path.join(__dirname, '../../');
 
 const getPlugins = (plugins) => ([
   ...plugins.filter((plugin) => (

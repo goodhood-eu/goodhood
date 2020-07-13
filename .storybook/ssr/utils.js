@@ -50,7 +50,7 @@ const matchWebpackTest = (file, test) => (
   test instanceof RegExp
     ? test.test(file)
     : test === file
-)
+);
 
 const patchWebpackRules = (rules, shouldMatchAnyFile, shouldHaveLoader, mapMatch) => (
   rules.map((rule) => {

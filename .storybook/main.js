@@ -51,7 +51,7 @@ module.exports = {
     '@storybook/addon-knobs/register',
     '@storybook/addon-actions/register',
   ],
-  managerWebpack: (config, options) => {
+  managerWebpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
       ...getResolveAlias(),
