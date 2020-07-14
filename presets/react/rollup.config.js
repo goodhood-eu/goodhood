@@ -14,6 +14,7 @@ import copy from 'rollup-plugin-copy';
 import upperFirst from 'lodash/upperFirst';
 import acornJsx from 'acorn-jsx';
 import alias from '@rollup/plugin-alias';
+import commonjs from '@rollup/plugin-commonjs';
 
 const ROOT_PKG_PATH = path.join(__dirname, '../../');
 
@@ -40,6 +41,7 @@ export default (pkg, pkgPath) => ({
     },
   ],
   plugins: [
+    commonjs(),
     del({
       targets: [
         path.join(pkgPath, 'lib/*'),
