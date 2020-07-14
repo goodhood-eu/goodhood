@@ -17,14 +17,10 @@
   "sideEffects": false,
   "scripts": {
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
-    "prepublishOnly": "npm run check && npm run build",
-    "check": "npm run lint && npm run test",
-    "lint": "eslint -f codeframe \"./**/*.{js,jsx}\"",
+    "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
     "build": "rollup --config rollup.config.js",
     "start": "../../scripts/start-storybook",
-    "start:ssr-preview": "../../scripts/start-storybook --ssr-preview",
-    "test": "NODE_ENV=test TZ='GMT' mocha \"./{,!(node_modules)/**}/*.test.{js,jsx}\"",
-    "test:tofile": "NODE_ENV=test TZ='GMT' mocha --no-colors -R spec \"./{,!(node_modules)/**}/*.test.{js,jsx}\" 2>&1 | tee test-report.log"
+    "start:ssr-preview": "../../scripts/start-storybook --ssr-preview"
   },
   "devDependencies": {},
   "dependencies": {},
