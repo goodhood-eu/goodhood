@@ -83,20 +83,15 @@
     "webpack-hot-middleware": "^2.25.0"
   },
   "scripts": {
-
     "check": "npm run lint && npm run test",
     "check:tofile": "npm run lint:tofile; npm run test:tofile",
-
     "postinstall": "lerna bootstrap && link-parent-bin",
-
     "lint": "npm run eslint && npm run stylelint",
     "lint:tofile": "npm run eslint:tofile; npm run stylelint:tofile",
-
     "eslint": "eslint -f codeframe \"./**/*.{js,jsx}\" ",
     "eslint:tofile": "npm run eslint -- --format junit -o reports/eslint.xml",
     "stylelint": "stylelint \"./**/*.scss\" ",
     "stylelint:tofile": "npm run stylelint -- --custom-formatter 'node_modules/stylelint-junit-formatter' -o reports/stylelint.xml",
-
     "test": "NODE_ENV=test TZ='GMT' mocha --exlude \"./node_modules/**\" --exclude \"**/node_modules/**\" \"**/*.test.{js,jsx}\"",
     "test:tofile": "NODE_ENV=test TZ='GMT' mocha --no-colors -R xunit --reporter-options output=reports/mocha.xml  --exlude \"./node_modules/**\" --exclude \"**/node_modules/**\" \"**/*.test.{js,jsx}\""
   }
