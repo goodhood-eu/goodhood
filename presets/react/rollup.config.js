@@ -74,6 +74,9 @@ export default (pkg, pkgPath) => ({
       babelHelpers: 'runtime',
       rootMode: 'upward',
       exclude: [
+        // plugin takes paths relative to process.cwd()
+        // (absolute paths don't work)
+        path.relative(process.cwd(), path.join(ROOT_PKG_PATH, 'node_modules/**')),
         '**/node_modules/**/*',
       ],
     }),
