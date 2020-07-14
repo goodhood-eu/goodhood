@@ -1,0 +1,27 @@
+version: 2
+jobs:
+  build:
+    branches:
+      ignore:
+        - master # only test new branches
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+
+      - restore_cache: # special step to restore the dependency cache
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run: npm ci
+      - save_cache: # special step to save the dependency cache
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+
+      - run:
+          name: test
+          command: npm run check:tofile
+
+      - store_test_results:
+          path: reports
+      - store_artifacts:
+          path: reports
