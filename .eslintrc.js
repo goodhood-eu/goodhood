@@ -1,5 +1,33 @@
-const PKG_PATH = process.cwd();
+const glob = require('glob');
+const path = require('path');
+const lernaConfig = require('./lerna.json');
+
 const ROOT_PKG_PATH = __dirname;
+
+const getPackages = () => (
+  lernaConfig.packages
+    .map((packageGlob) => glob.sync(packageGlob))
+    .flat()
+);
+
+const getOverridesForPackage = (pkg) => ({
+  files: [`${pkg}/**/*`],
+  rules: {
+    "import/no-extraneous-dependencies": ["error",
+      {"packageDir": [ROOT_PKG_PATH, path.resolve(pkg)]}
+    ]
+  },
+  settings: {
+    "import/resolver": {
+      alias: {
+        map: [
+          ["@root", ROOT_PKG_PATH],
+          ["@", path.resolve(pkg)],
+        ],
+      },
+    }
+  },
+});
 
 module.exports = {
   "extends": "nebenan",
@@ -13,18 +41,9 @@ module.exports = {
       "rules": {
         "no-unused-expressions": "off"
       }
-    }
+    },
+    ...getPackages().map(getOverridesForPackage)
   ],
-  "settings": {
-    "import/resolver": {
-      alias: {
-        map: [
-          ["@root", ROOT_PKG_PATH],
-          ["@", PKG_PATH],
-        ],
-      },
-    }
-  },
   "rules": {
     "import/extensions": ["error", "never", {
       "json": "always"

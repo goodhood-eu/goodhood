@@ -14,12 +14,7 @@
   "version": "1.3.0",
   "scripts": {
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
-    "check": "npm run lint",
-    "prepublishOnly": "npm run check && npm run build",
-    "check:tofile": "npm run lint:tofile",
-    "eslint": "eslint -f codeframe \"./**/*.{js,jsx}\"",
-    "lint": "npm run eslint",
-    "lint:tofile": "npm run eslint -- --format junit -o ../../reports/icons-eslint.xml",
+    "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
     "start": "webpack-dev-server",
     "build": "rm -rf ./lib && node scripts/build.js"
   },

@@ -20,20 +20,10 @@
   ],
   "scripts": {
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
-    "prepublishOnly": "npm run check && npm run build",
-    "check": "npm run lint && npm run test",
-    "check:tofile": "npm run lint:tofile; npm run test:tofile",
-    "eslint": "eslint -f codeframe \"./**/*.{js,jsx}\"",
-    "eslint:tofile": "npm run eslint -- --format junit -o ../../reports/react-template-eslint.xml",
-    "stylelint": "stylelint \"./**/*.scss\" ",
-    "stylelint:tofile": "npm run stylelint -- --custom-formatter '../../node_modules/stylelint-junit-formatter' -o ../../reports/react-template-stylelint.xml",
-    "lint": "npm run eslint && npm run stylelint",
-    "lint:tofile": "npm run eslint:tofile; npm run stylelint:tofile",
+    "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
     "build": "rollup --config rollup.config.js",
     "start": "../../scripts/start-storybook",
-    "start:ssr-preview": "../../scripts/start-storybook --ssr-preview",
-    "test": "NODE_ENV=test TZ='GMT' mocha \"./{,!(node_modules)/**}/*.test.{js,jsx}\"",
-    "test:tofile": "NODE_ENV=test TZ='GMT' mocha --no-colors -R xunit --reporter-options output=../../reports/react-template-mocha.xml \"./{,!(node_modules)/**}/*.test.{js,jsx}\""
+    "start:ssr-preview": "../../scripts/start-storybook --ssr-preview"
   },
   "devDependencies": {},
   "dependencies": {},
