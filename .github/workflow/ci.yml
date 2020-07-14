@@ -1,5 +1,5 @@
 name: Check
-on: pull_request
+on: push
 jobs:
   check:
     name: Check
