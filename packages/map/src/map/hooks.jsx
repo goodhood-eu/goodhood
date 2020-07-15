@@ -28,6 +28,7 @@ export const useMapboxComponent = (isLocked, noAttribution) => {
       dragRotate: false,
       pitchWithRotate: false,
       apiUrl: null,
+      injectCSS: false,
       attributionControl: !noAttribution,
     });
 
