@@ -1,5 +1,26 @@
-const PKG_PATH = process.cwd();
+const glob = require('glob');
+const path = require('path');
+const lernaConfig = require('./lerna.json');
+
 const ROOT_PKG_PATH = __dirname;
+
+const getPackages = () => (
+  lernaConfig.packages
+    .map((packageGlob) => glob.sync(packageGlob))
+    .flat()
+);
+
+const getOverridesForPackage = (pkg) => ({
+  test: `${pkg}/**/*`,
+  plugins: [
+    ['module-resolver', {
+      alias: {
+        '@': path.resolve(pkg),
+        '@root': ROOT_PKG_PATH,
+      },
+    }],
+  ],
+});
 
 module.exports = {
   presets: [
@@ -12,13 +33,8 @@ module.exports = {
     '@babel/plugin-transform-runtime',
     '@babel/plugin-transform-strict-mode',
     '@babel/plugin-proposal-json-strings',
-    ['module-resolver', {
-      alias: {
-        '@': PKG_PATH,
-        '@root': ROOT_PKG_PATH,
-      },
-    }],
   ],
+  overrides: getPackages().map(getOverridesForPackage),
   env: {
     test: {
       presets: [

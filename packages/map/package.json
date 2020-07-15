@@ -22,9 +22,7 @@
     "start": "../../scripts/start-storybook",
     "start:ssr-preview": "../../scripts/start-storybook --ssr-preview"
   },
-  "devDependencies": {
-    "@goodhood/icons": "^1.2.0"
-  },
+  "devDependencies": {},
   "dependencies": {
     "mapbox-gl": "^1.11.0",
     "react-mapbox-gl": "^4.8.6"
