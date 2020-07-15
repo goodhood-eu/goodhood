@@ -57,7 +57,9 @@ export default (pkg, pkgPath) => ({
     peerDepsExternal(),
     postcss({
       extract: true,
-      modules: true,
+      modules: {
+        globalModulePaths: [/mapbox-gl/],
+      },
       use: [['sass', {
         includePaths: [
           path.join(pkgPath, 'node_modules/'),
