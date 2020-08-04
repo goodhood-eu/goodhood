@@ -32,7 +32,12 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         sideEffects: false,
-        use: ['babel-loader'],
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            rootMode: 'upward',
+          },
+        }],
       },
       {
         test: /\.svg$/,
