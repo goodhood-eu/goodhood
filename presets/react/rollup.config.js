@@ -58,7 +58,7 @@ export default (pkg, pkgPath) => ({
     postcss({
       extract: true,
       modules: {
-        globalModulePaths: [/mapbox-gl/],
+        globalModulePaths: [/node_modules/],
       },
       use: [['sass', {
         includePaths: [
