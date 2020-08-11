@@ -13,6 +13,7 @@
   },
   "private": true,
   "devDependencies": {
+    "@goodhood/icons": "^1.2.0",
     "@babel/core": "^7.10.2",
     "@babel/plugin-proposal-json-strings": "^7.10.1",
     "@babel/plugin-transform-runtime": "^7.10.1",
@@ -52,7 +53,7 @@
     "eval": "^0.1.4",
     "express": "^4.17.1",
     "glob": "^7.1.6",
-    "lerna": "^3.20.2",
+    "lerna": "^3.22.1",
     "link-parent-bin": "^1.0.2",
     "lodash": "^4.17.15",
     "mocha": "^8.0.1",
@@ -75,7 +76,6 @@
     "style-loader": "^1.2.1",
     "stylelint": "^13.6.1",
     "stylelint-config-nebenan": "^1.6.1",
-    "stylelint-junit-formatter": "^0.2.2",
     "val-loader": "^2.1.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
@@ -85,15 +85,10 @@
   },
   "scripts": {
     "check": "npm run lint && npm run test",
-    "check:tofile": "npm run lint:tofile; npm run test:tofile",
     "postinstall": "lerna bootstrap && link-parent-bin",
     "lint": "npm run eslint && npm run stylelint",
-    "lint:tofile": "npm run eslint:tofile; npm run stylelint:tofile",
     "eslint": "eslint -f codeframe \"./**/*.{js,jsx}\" ",
-    "eslint:tofile": "npm run eslint -- --format junit -o reports/eslint.xml",
     "stylelint": "stylelint \"./**/*.scss\" ",
-    "stylelint:tofile": "npm run stylelint -- --custom-formatter 'node_modules/stylelint-junit-formatter' -o reports/stylelint.xml",
-    "test": "NODE_ENV=test TZ='GMT' mocha --exlude \"./node_modules/**\" --exclude \"**/node_modules/**\" \"**/*.test.{js,jsx}\"",
-    "test:tofile": "NODE_ENV=test TZ='GMT' mocha --no-colors -R xunit --reporter-options output=reports/mocha.xml  --exlude \"./node_modules/**\" --exclude \"**/node_modules/**\" \"**/*.test.{js,jsx}\""
+    "test": "NODE_ENV=test TZ='GMT' mocha --exlude \"./node_modules/**\" --exclude \"**/node_modules/**\" \"**/*.test.{js,jsx}\""
   }
 }
