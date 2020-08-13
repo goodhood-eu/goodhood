@@ -17,7 +17,7 @@
   "sideEffects": false,
   "scripts": {
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
     "build": "rollup --config rollup.config.js",
     "start": "../../scripts/start-storybook",
     "start:ssr-preview": "../../scripts/start-storybook --ssr-preview"
