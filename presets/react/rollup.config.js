@@ -58,7 +58,7 @@ export default (pkg, pkgPath) => ({
     postcss({
       extract: true,
       modules: {
-        globalModulePaths: [/mapbox-gl/],
+        globalModulePaths: [/node_modules/],
       },
       use: [['sass', {
         includePaths: [
@@ -76,10 +76,7 @@ export default (pkg, pkgPath) => ({
       babelHelpers: 'runtime',
       rootMode: 'upward',
       exclude: [
-        // plugin takes paths relative to process.cwd()
-        // (absolute paths don't work)
-        path.relative(process.cwd(), path.join(ROOT_PKG_PATH, 'node_modules/**')),
-        '**/node_modules/**/*',
+        /node_modules/,
       ],
     }),
     resolve({ browser: true, extensions: ['.js', '.jsx', '.json'] }),
