@@ -9,3 +9,8 @@ export { default as ImageMarker } from './image_marker';
 export { default as InfoMarker } from './info_marker';
 export { default as LabelMarker } from './label_marker';
 export { default as PinMarker } from './pin_marker';
+
+export * from './polygon/constants';
+export * from './circle/constants';
+export * from './pin_marker/constants';
+export * from './constants';

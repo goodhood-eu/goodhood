@@ -1,3 +1,4 @@
+import 'mapbox-gl/dist/mapbox-gl.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavigationControl } from 'mapbox-gl';

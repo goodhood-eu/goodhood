@@ -24,10 +24,11 @@ const types = [
   PIN_MARKER_BLUE,
 ];
 
-const images = types.reduce((acc, type) => {
-  acc[type] = require(`./images/pin-${type}.svg`);
-  return acc;
-}, {});
+// TODO: move to lib on build step
+// const images = types.reduce((acc, type) => {
+//   acc[type] = require(`./images/pin-${type}.svg`);
+//   return acc;
+// }, {});
 
 const PinMarker = ({
   children,
@@ -35,7 +36,7 @@ const PinMarker = ({
   ...rest
 }) => (
   <Marker {...rest}>
-    <img src={images[type]} alt={type} />
+    <img src={type} alt={type} />
     {children}
   </Marker>
 );

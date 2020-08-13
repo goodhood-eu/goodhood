@@ -14,6 +14,7 @@ import copy from 'rollup-plugin-copy';
 import upperFirst from 'lodash/upperFirst';
 import acornJsx from 'acorn-jsx';
 import alias from '@rollup/plugin-alias';
+import commonjs from '@rollup/plugin-commonjs';
 
 const ROOT_PKG_PATH = path.join(__dirname, '../../');
 
@@ -40,6 +41,7 @@ export default (pkg, pkgPath) => ({
     },
   ],
   plugins: [
+    commonjs(),
     del({
       targets: [
         path.join(pkgPath, 'lib/*'),
@@ -55,7 +57,9 @@ export default (pkg, pkgPath) => ({
     peerDepsExternal(),
     postcss({
       extract: true,
-      modules: true,
+      modules: {
+        globalModulePaths: [/node_modules/],
+      },
       use: [['sass', {
         includePaths: [
           path.join(pkgPath, 'node_modules/'),
@@ -72,8 +76,7 @@ export default (pkg, pkgPath) => ({
       babelHelpers: 'runtime',
       rootMode: 'upward',
       exclude: [
-        path.join(pkgPath, 'node_modules/'),
-        path.join(ROOT_PKG_PATH, 'node_modules/'),
+        /node_modules/,
       ],
     }),
     resolve({ browser: true, extensions: ['.js', '.jsx', '.json'] }),

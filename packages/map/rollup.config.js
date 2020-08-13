@@ -1,4 +1,10 @@
 import pkg from './package.json';
 import getConfig from '../../presets/react/rollup.config';
 
-export default getConfig(pkg, __dirname);
+const config = getConfig(pkg, __dirname);
+export default {
+  ...config,
+
+  // needed for mapbox-gl to work
+  context: 'this',
+};
