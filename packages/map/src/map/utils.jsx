@@ -21,3 +21,36 @@ export const mergeChildrenBounds = (bounds) => {
   if (!isFilledArray(bounds)) return undefined;
   return bounds.flat(1);
 };
+
+export const getMapOptions = ({
+  credentials,
+  noAttribution,
+  locked,
+  lockedMobile,
+  defaultView,
+  defaultZoom,
+  bounds,
+  fitPadding,
+  isMobile,
+  node,
+}) => {
+  const interactive = isMobile ? !lockedMobile : !locked;
+
+  const options = {
+    container: node,
+    style: getStyle(credentials),
+    attributionControl: !noAttribution,
+    interactive,
+
+    scrollZoom: false,
+    dragRotate: false,
+    pitchWithRotate: false,
+  };
+
+  if (defaultView) options.center = defaultView;
+  if (defaultZoom) options.zoom = defaultZoom;
+  if (bounds) options.bounds = getBoundingBox(bounds);
+  if (fitPadding) options.fitBoundsOptions = { padding: fitPadding };
+
+  return options;
+};

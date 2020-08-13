@@ -24,8 +24,7 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "mapbox-gl": "^1.11.0",
-    "react-mapbox-gl": "^4.8.6"
+    "mapbox-gl": "^1.11.0"
   },
   "peerDependencies": {
     "clsx": "^1.0.4",

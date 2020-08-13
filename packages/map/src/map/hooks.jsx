@@ -1,65 +1,42 @@
-import { useEffect, useState, useRef, useContext } from 'react';
-import ReactMapboxGl from 'react-mapbox-gl';
+import { useEffect, useRef, useState } from 'react';
+import { Map, NavigationControl } from 'mapbox-gl';
+
+import { getMapOptions, getBoundingBox } from './utils';
 import { getMedia, media } from '../utils';
-import MapContext from './context';
 
 
-export const useLocked = (locked, lockedMobile) => {
-  const [isLocked, setLocked] = useState(locked);
-
-  useEffect(() => {
-    const isMobile = !getMedia(global, media.mediaM);
-    setLocked(isMobile ? lockedMobile : locked);
-  }, [locked, lockedMobile]);
-
-  return isLocked;
-};
-
-export const useMapboxComponent = (isLocked, noAttribution) => {
-  const [, setState] = useState();
-  const ref = useRef(null);
+export const useMapInstance = (nodeRef, options) => {
+  const mapRef = useRef(null);
+  const [, setReady] = useState(false);
+  const { noAttribution, locked, lockedMobile, onLoad } = options;
 
   useEffect(() => {
-    ref.current = ReactMapboxGl({
-      interactive: !isLocked,
-      keyboard: false,
-      doubleClickZoom: false,
-      scrollZoom: false,
-      dragRotate: false,
-      pitchWithRotate: false,
-      apiUrl: null,
-      injectCSS: false,
-      attributionControl: !noAttribution,
+    if (mapRef.current) mapRef.current.remove();
+
+    const mapOptions = getMapOptions({
+      ...options,
+      node: nodeRef.current,
+      isMobile: !getMedia(global, media.mediaM),
     });
 
-    // Force re-render
-    setState({});
-  }, [isLocked, noAttribution]);
+    mapRef.current = new Map(mapOptions);
+    if (onLoad) mapRef.current.once('load', onLoad);
+    if (mapOptions.interactive) mapRef.current.addControl(new NavigationControl());
 
-  return ref.current;
+    setReady(true);
+  }, [noAttribution, locked, lockedMobile]);
+
+  return mapRef.current;
 };
 
-export const useDefaultCenterAndZoom = (defaultZoom, defaultView) => {
-  const zoomRef = useRef(defaultZoom ? [defaultZoom] : undefined);
-  const centerRef = useRef(defaultView || undefined);
+export const useMapUpdate = (map, { bounds, animate, fitPadding }) => {
+  const boundsSignature = JSON.stringify(bounds);
 
-  return [centerRef.current, zoomRef.current];
-};
-
-export const useContextValue = () => {
-  const [bounds, setBounds] = useState([]);
-
-  const contextValue = useRef({
-    addBounds: (value) => {
-      setBounds((arr) => [...arr, value]);
-      return () => setBounds((arr) => arr.filter((item) => item !== value));
-    },
-  }).current;
-
-  return [bounds, contextValue];
+  useEffect(() => {
+    if (map) map.fitBounds(getBoundingBox(bounds), { animate, padding: fitPadding });
+  }, [boundsSignature]);
 };
 
 export const useChildrenBounds = (area) => {
-  const map = useContext(MapContext);
-  useEffect(() => map && map.addBounds(area), [map]);
+
 };

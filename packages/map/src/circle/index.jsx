@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Layer, Source } from 'react-mapbox-gl';
+// import { Layer, Source } from 'react-mapbox-gl';
 
 import { useChildrenBounds } from '../map/hooks';
 import { getPaint, getGeoJSON } from './utils';
@@ -18,8 +18,8 @@ const Circle = ({
 
   return (
     <>
-      <Source geoJsonSource={getGeoJSON(center)} id={sourceId} />
-      <Layer type="circle" sourceId={sourceId} paint={getPaint(type, radius)} />
+      {/* <Source geoJsonSource={getGeoJSON(center)} id={sourceId} />
+      <Layer type="circle" sourceId={sourceId} paint={getPaint(type, radius)} /> */}
     </>
   );
 };
