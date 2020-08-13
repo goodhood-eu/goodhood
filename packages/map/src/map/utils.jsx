@@ -49,7 +49,7 @@ export const getMapOptions = ({
 
   if (defaultView) options.center = defaultView;
   if (defaultZoom) options.zoom = defaultZoom;
-  if (bounds) options.bounds = getBoundingBox(bounds);
+  if (isFilledArray(bounds)) options.bounds = getBoundingBox(bounds);
   if (fitPadding) options.fitBoundsOptions = { padding: fitPadding };
 
   return options;

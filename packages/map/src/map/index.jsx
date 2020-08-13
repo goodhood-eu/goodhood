@@ -2,7 +2,8 @@ import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import { useMapInstance, useMapUpdate } from './hooks';
+import { useMapInstance, useMapUpdate, useContextValue } from './hooks';
+import { Provider } from './context';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import styles from './index.module.scss';
@@ -40,14 +41,20 @@ const Map = ({
     onLoad,
   });
 
+  const [childrenBounds, context] = useContextValue(map);
+
   useMapUpdate(map, {
+    childrenBounds,
     bounds,
     fitPadding,
     animate,
+    defaultView,
   });
 
   return (
-    <div {...rest} ref={nodeRef} className={clsx(styles.root, className)} />
+    <div {...rest} ref={nodeRef} className={clsx(styles.root, className)}>
+      <Provider value={context}>{children}</Provider>
+    </div>
   );
 };
 

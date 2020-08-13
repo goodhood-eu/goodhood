@@ -1,18 +1,23 @@
-import { useEffect, useRef, useState } from 'react';
+import {
+  useEffect,
+  useRef,
+  useState,
+  useContext,
+  useMemo,
+} from 'react';
 import { Map, NavigationControl } from 'mapbox-gl';
 
 import { getMapOptions, getBoundingBox } from './utils';
 import { getMedia, media } from '../utils';
+import MapContext from './context';
 
 
 export const useMapInstance = (nodeRef, options) => {
   const mapRef = useRef(null);
-  const [, setReady] = useState(false);
+  const [, setState] = useState(false);
   const { noAttribution, locked, lockedMobile, onLoad } = options;
 
   useEffect(() => {
-    if (mapRef.current) mapRef.current.remove();
-
     const mapOptions = getMapOptions({
       ...options,
       node: nodeRef.current,
@@ -23,20 +28,44 @@ export const useMapInstance = (nodeRef, options) => {
     if (onLoad) mapRef.current.once('load', onLoad);
     if (mapOptions.interactive) mapRef.current.addControl(new NavigationControl());
 
-    setReady(true);
+    // Force re-render
+    setState({});
+
+    return () => {
+      if (mapRef.current) mapRef.current.remove();
+      mapRef.current = null;
+    };
   }, [noAttribution, locked, lockedMobile]);
 
   return mapRef.current;
 };
 
-export const useMapUpdate = (map, { bounds, animate, fitPadding }) => {
-  const boundsSignature = JSON.stringify(bounds);
+export const useMapUpdate = (map, { bounds, childrenBounds, animate, fitPadding, defaultView }) => {
+  const boundsToFit = bounds || childrenBounds;
+  const boundsSignature = JSON.stringify(boundsToFit);
 
   useEffect(() => {
-    if (map) map.fitBounds(getBoundingBox(bounds), { animate, padding: fitPadding });
+    if (map && !defaultView) {
+      map.fitBounds(getBoundingBox(boundsToFit), { animate, padding: fitPadding });
+    }
   }, [boundsSignature]);
 };
 
-export const useChildrenBounds = (area) => {
+export const useContextValue = (map) => {
+  const [bounds, setBounds] = useState([]);
 
+  const contextValue = useMemo(() => ({
+    map,
+    addBounds: (value) => {
+      setBounds((arr) => [...arr, value]);
+      return () => setBounds((arr) => arr.filter((item) => item !== value));
+    },
+  }), [map]);
+
+  return [bounds, contextValue];
+};
+
+export const useChildrenBounds = (area) => {
+  const mapContext = useContext(MapContext);
+  useEffect(() => mapContext && mapContext.addBounds(area), [mapContext]);
 };
