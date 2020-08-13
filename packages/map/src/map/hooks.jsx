@@ -7,15 +7,23 @@ import {
 } from 'react';
 import { Map, NavigationControl } from 'mapbox-gl';
 
-import { getMapOptions, getBoundingBox } from './utils';
+import { getMapOptions, getBoundingBox, mergeChildrenBounds } from './utils';
 import { getMedia, media } from '../utils';
 import MapContext from './context';
 
+
+export const useMapContext = () => useContext(MapContext);
 
 export const useMapInstance = (nodeRef, options) => {
   const mapRef = useRef(null);
   const [, setState] = useState(false);
   const { noAttribution, locked, lockedMobile, onLoad } = options;
+
+  const setMap = (map) => {
+    mapRef.current = map;
+    // Force re-render
+    setState({});
+  };
 
   useEffect(() => {
     const mapOptions = getMapOptions({
@@ -24,16 +32,19 @@ export const useMapInstance = (nodeRef, options) => {
       isMobile: !getMedia(global, media.mediaM),
     });
 
-    mapRef.current = new Map(mapOptions);
-    if (onLoad) mapRef.current.once('load', onLoad);
-    if (mapOptions.interactive) mapRef.current.addControl(new NavigationControl());
+    const map = new Map(mapOptions);
 
-    // Force re-render
-    setState({});
+    const handleLoad = () => {
+      if (onLoad) onLoad();
+      setMap(map);
+    };
+
+    map.once('load', handleLoad);
+    if (mapOptions.interactive) map.addControl(new NavigationControl());
 
     return () => {
-      if (mapRef.current) mapRef.current.remove();
-      mapRef.current = null;
+      if (map) map.remove();
+      setMap(null);
     };
   }, [noAttribution, locked, lockedMobile]);
 
@@ -41,14 +52,14 @@ export const useMapInstance = (nodeRef, options) => {
 };
 
 export const useMapUpdate = (map, { bounds, childrenBounds, animate, fitPadding, defaultView }) => {
-  const boundsToFit = bounds || childrenBounds;
+  const boundsToFit = bounds || mergeChildrenBounds(childrenBounds);
   const boundsSignature = JSON.stringify(boundsToFit);
 
   useEffect(() => {
     if (map && !defaultView) {
       map.fitBounds(getBoundingBox(boundsToFit), { animate, padding: fitPadding });
     }
-  }, [boundsSignature]);
+  }, [boundsSignature, map]);
 };
 
 export const useContextValue = (map) => {
@@ -63,6 +74,6 @@ export const useContextValue = (map) => {
 };
 
 export const useChildrenBounds = (area) => {
-  const mapContext = useContext(MapContext);
+  const mapContext = useMapContext();
   useEffect(() => mapContext && mapContext.addBounds(area), [mapContext]);
 };
