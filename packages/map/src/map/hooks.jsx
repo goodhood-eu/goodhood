@@ -53,16 +53,13 @@ export const useMapUpdate = (map, { bounds, childrenBounds, animate, fitPadding,
 
 export const useContextValue = (map) => {
   const [bounds, setBounds] = useState([]);
+  const addBounds = (value) => {
+    setBounds((arr) => [...arr, value]);
+    return () => setBounds((arr) => arr.filter((item) => item !== value));
+  };
 
-  const contextValue = useMemo(() => ({
-    map,
-    addBounds: (value) => {
-      setBounds((arr) => [...arr, value]);
-      return () => setBounds((arr) => arr.filter((item) => item !== value));
-    },
-  }), [map]);
-
-  return [bounds, contextValue];
+  const context = useMemo(() => ({ map, addBounds }), [map]);
+  return [bounds, context];
 };
 
 export const useChildrenBounds = (area) => {
