@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-// import { MapContext } from 'react-mapbox-gl';
 import { Marker as MapboxMarker, Popup } from 'mapbox-gl';
-import { useChildrenBounds } from '../map/hooks';
+import { useChildrenBounds, useMapContext } from '../map/hooks';
 import './index.module.scss';
 
 
@@ -17,8 +16,7 @@ const Marker = ({
 }) => {
   const nodeRef = useRef();
   const popupRef = useRef();
-  let map;
-  // const map = useContext(MapContext);
+  const { map } = useMapContext();
   useChildrenBounds([position]);
 
   useEffect(() => {

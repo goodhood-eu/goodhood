@@ -1,10 +1,4 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-  useContext,
-  useMemo,
-} from 'react';
+import { useEffect, useState, useContext, useMemo } from 'react';
 import { Map, NavigationControl } from 'mapbox-gl';
 
 import { getMapOptions, getBoundingBox, mergeChildrenBounds } from './utils';
@@ -15,15 +9,8 @@ import MapContext from './context';
 export const useMapContext = () => useContext(MapContext);
 
 export const useMapInstance = (nodeRef, options) => {
-  const mapRef = useRef(null);
-  const [, setState] = useState(false);
+  const [mapInstance, setMap] = useState(false);
   const { noAttribution, locked, lockedMobile, onLoad } = options;
-
-  const setMap = (map) => {
-    mapRef.current = map;
-    // Force re-render
-    setState({});
-  };
 
   useEffect(() => {
     const mapOptions = getMapOptions({
@@ -36,6 +23,7 @@ export const useMapInstance = (nodeRef, options) => {
 
     const handleLoad = () => {
       if (onLoad) onLoad();
+      // Need to wait for style load before rendering layers
       setMap(map);
     };
 
@@ -43,12 +31,12 @@ export const useMapInstance = (nodeRef, options) => {
     if (mapOptions.interactive) map.addControl(new NavigationControl());
 
     return () => {
-      if (map) map.remove();
       setMap(null);
+      if (map) map.remove();
     };
   }, [noAttribution, locked, lockedMobile]);
 
-  return mapRef.current;
+  return mapInstance;
 };
 
 export const useMapUpdate = (map, { bounds, childrenBounds, animate, fitPadding, defaultView }) => {
@@ -56,8 +44,10 @@ export const useMapUpdate = (map, { bounds, childrenBounds, animate, fitPadding,
   const boundsSignature = JSON.stringify(boundsToFit);
 
   useEffect(() => {
-    if (map && !defaultView) {
-      map.fitBounds(getBoundingBox(boundsToFit), { animate, padding: fitPadding });
+    const boundingBox = getBoundingBox(boundsToFit);
+
+    if (map && boundingBox && !defaultView) {
+      map.fitBounds(boundingBox, { animate, padding: fitPadding });
     }
   }, [boundsSignature, map]);
 };

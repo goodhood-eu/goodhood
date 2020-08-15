@@ -17,6 +17,9 @@ const Layer = ({
   useEffect(() => {
     if (!map) return;
 
+    let isDestroyed = false;
+    map.on('remove', () => { isDestroyed = true; });
+
     map.addLayer({
       type,
       paint,
@@ -24,18 +27,16 @@ const Layer = ({
       id: layerId,
     });
 
-    if (onClick) {
-      map.on('click', layerId, onClick);
-    }
+    if (onClick) map.on('click', layerId, onClick);
 
     return () => {
-      if (map) {
+      if (map && !isDestroyed) {
         map.removeLayer(layerId);
         map.removeSource(layerId);
         map.off('click', layerId, onClick);
       }
     };
-  }, [map, paint]);
+  }, [map, paint, onClick]);
 
   return null;
 };

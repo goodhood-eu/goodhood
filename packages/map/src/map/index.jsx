@@ -53,7 +53,7 @@ const Map = ({
 
   return (
     <div {...rest} ref={nodeRef} className={clsx(styles.root, className)}>
-      <Provider value={context}>{children}</Provider>
+      <Provider value={context}>{map && children}</Provider>
     </div>
   );
 };
