@@ -22,7 +22,9 @@
     "start": "../../scripts/start-storybook",
     "start:ssr-preview": "../../scripts/start-storybook --ssr-preview"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@rollup/plugin-url": "^5.0.1"
+  },
   "dependencies": {
     "mapbox-gl": "^1.11.0",
     "react-mapbox-gl": "^4.8.6"
