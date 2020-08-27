@@ -24,6 +24,10 @@
     box-shadow: none;
     background-color: transparent;
     color: $color-gray-09;
+
+    &:hover {
+      background-color: transparent;
+    }
   }
 }
 
