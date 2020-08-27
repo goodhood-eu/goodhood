@@ -22,6 +22,7 @@ const CookiesForm = ({
 }) => {
   const handleValidSubmit = ({ tracking }) => {
     onSubmit({
+      dismissed: true,
       tracking,
       marketing: tracking,
       timestamp: Date.now(),
