@@ -18,7 +18,10 @@ npm i @babel/runtime // v7.x.x
 npm i @goodhood/icons // v1.x.x
 ```
 
-You will need a CSS loader to use this library as it injects css.
+Include css
+```js
+import '@goodhood/map/styles.css'
+```
 
 ## Include:
 
