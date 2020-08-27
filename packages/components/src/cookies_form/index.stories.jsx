@@ -10,7 +10,7 @@ export const Default = () => {
     tracking: boolean('Default tracking'),
   };
 
-  const lang = {
+  const translations = {
     label_enable_all: text('Button enable all', 'Enable all'),
     label_save: text('Button save', 'Save'),
     label_mandatory_cookies: text('Mandatory cookies', 'Mandatory cookies'),
@@ -24,7 +24,7 @@ export const Default = () => {
       key={JSON.stringify(defaultModel)}
       compactView={boolean('Compact view', false)}
       defaultModel={defaultModel}
-      lang={lang}
+      translations={translations}
       onSubmit={(model) => console.info('Submit:', model)}
     />
   );

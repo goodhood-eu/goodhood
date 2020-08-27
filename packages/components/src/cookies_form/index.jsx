@@ -16,7 +16,7 @@ const CookiesForm = ({
   className,
   compactView,
   defaultModel,
-  lang,
+  translations,
   onSubmit,
   ...rest
 }) => {
@@ -39,7 +39,7 @@ const CookiesForm = ({
         className="ui-button ui-button-primary"
         onClick={() => handleValidSubmit({ tracking: true })}
       >
-        {lang.label_enable_all}
+        {translations.label_enable_all}
       </span>
     );
   }
@@ -49,26 +49,26 @@ const CookiesForm = ({
       {...rest}
       className={clsx(className, { [styles.isCompact]: compactView })}
       alternativeAction={alternativeAction}
-      buttonText={lang.label_save}
+      buttonText={translations.label_save}
       buttonClass={clsx('ui-button ui-button-primary', styles.submit)}
       onValidSubmit={handleValidSubmit}
     >
       <FormGroup>
         <Checkbox
           disabled defaultChecked
-          label={lang.label_mandatory_cookies}
+          label={translations.label_mandatory_cookies}
         />
       </FormGroup>
-      {!compactView && <CookiesDetails text={lang.description_mandatory_cookies} />}
+      {!compactView && <CookiesDetails text={translations.description_mandatory_cookies} />}
 
       <FormGroup>
         <Checkbox
           name="tracking"
           defaultChecked={defaultModel.tracking}
-          label={lang.label_tracking_cookies}
+          label={translations.label_tracking_cookies}
         />
       </FormGroup>
-      {!compactView && <CookiesDetails text={lang.description_tracking_cookies} />}
+      {!compactView && <CookiesDetails text={translations.description_tracking_cookies} />}
     </Form>
   );
 };
@@ -76,14 +76,14 @@ const CookiesForm = ({
 CookiesForm.defaultProps = {
   compactView: false,
   defaultModel: {},
-  lang: {},
+  translations: {},
 };
 
 CookiesForm.propTypes = {
   className: PropTypes.string,
   compactView: PropTypes.bool.isRequired,
   defaultModel: PropTypes.object.isRequired,
-  lang: PropTypes.object.isRequired,
+  translations: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 
