@@ -44,15 +44,13 @@ const CookiesForm = ({
     );
   }
 
-  const buttonClass = compactView ? `${styles.compactSubmit} ui-button` : null;
-
   return (
     <Form
       {...rest}
       className={clsx(className, { [styles.isCompact]: compactView })}
       alternativeAction={alternativeAction}
       buttonText={lang.label_save}
-      buttonClass={buttonClass}
+      buttonClass={clsx('ui-button ui-button-primary', styles.submit)}
       onValidSubmit={handleValidSubmit}
     >
       <FormGroup>
