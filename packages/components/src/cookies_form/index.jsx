@@ -27,10 +27,6 @@ const CookiesForm = ({
       marketing: tracking,
       timestamp: Date.now(),
     });
-
-    if (!tracking && defaultModel.tracking) {
-      global.location.reload();
-    }
   };
 
   let alternativeAction;
