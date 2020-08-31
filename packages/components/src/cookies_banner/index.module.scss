@@ -1,0 +1,72 @@
+@import 'nebenan-ui-kit';
+
+.root {
+  width: 100%;
+  padding: 15px 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  background-color: $color-dark-alpha;
+  font-size: 12px;
+  color: $color-gray-07;
+  text-align: right;
+
+  a {
+    color: $color-gray-09;
+  }
+}
+
+.wrapper {
+  @include block-size($layout-width, $layout-spacing);
+}
+
+.text {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+
+  :global(.c-form_group) {
+    margin-right: 10px;
+  }
+
+  :global(.c-form-footer) {
+    width: 100%;
+  }
+
+  :global(.c-checkbox) :global(.ui-label-primary) {
+    color: $color-gray-09;
+  }
+}
+
+.formSubmit {
+  box-shadow: none;
+  color: $color-gray-09;
+}
+
+@media ($media-m) {
+  .root {
+    text-align: left;
+  }
+
+  .text {
+    margin-right: 10px;
+    display: inline-block;
+  }
+
+  .form {
+    :global(.c-form-footer) {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .formSubmit {
+    width: auto;
+    display: inline-block;
+  }
+}

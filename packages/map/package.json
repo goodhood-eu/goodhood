@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.6",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -22,7 +22,9 @@
     "start": "../../scripts/start-storybook",
     "start:ssr-preview": "../../scripts/start-storybook --ssr-preview"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@rollup/plugin-url": "^5.0.1"
+  },
   "dependencies": {
     "mapbox-gl": "^1.11.0"
   },
@@ -38,6 +40,7 @@
   "files": [
     "lib",
     "src",
+    "styles.css",
     "LICENSE"
   ]
 }
