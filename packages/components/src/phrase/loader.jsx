@@ -13,6 +13,8 @@ const PhraseLoader = ({ id, language, session }) => {
   const isEnabled = shouldLoad(session);
 
   useEffect(() => {
+    if (!isEnabled) return;
+
     window.PHRASEAPP_CONFIG = getPhraseEditorConfig(id, language);
     setReady(true);
   }, [id, language, isEnabled]);
