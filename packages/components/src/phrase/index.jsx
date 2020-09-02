@@ -1,3 +1,3 @@
 export { default as PhraseControls } from './controls';
-export { default } from './loader';
+export { default as PhraseLoader } from './loader';
 export { createDebug } from './utils';

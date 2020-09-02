@@ -11,14 +11,14 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "1.0.1-beta.0",
+  "version": "1.0.1-beta.1",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
   "scripts": {
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
     "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
-    "build": "rollup --config rollup.config.js",
+    "build": "npx rollup --config rollup.config.js",
     "start": "../../scripts/start-storybook",
     "start:ssr-preview": "../../scripts/start-storybook --ssr-preview"
   },
