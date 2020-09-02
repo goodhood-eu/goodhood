@@ -6,7 +6,7 @@ const TEN_YEARS = HOUR * 24 * 365 * 10;
 
 const REGEX_FORMAT_DATE = /format_(?:date|time)/;
 const REGEX_DATE_FORMAT = /(?:date|time)_format/;
-const REGEX_FORCE_DISABLE = /disable_phrase_editor$/;
+const REGEX_FORCE_DISABLE = /phrase_disable$/;
 
 export const shouldSkipKey = (key) => (
   REGEX_FORCE_DISABLE.test(key) || REGEX_FORMAT_DATE.test(key) || REGEX_DATE_FORMAT.test(key)
@@ -22,7 +22,8 @@ export const getSessionUpdate = (expiring) => ({
   [PHRASE_EDITOR_SESSION]: Date.now() + (expiring ? HOUR : TEN_YEARS),
 });
 
-export const shouldLoad = (ttl) => {
+export const shouldLoad = (session) => {
+  const ttl = session && session[PHRASE_EDITOR_SESSION];
   if (!Number.isInteger(ttl)) return false;
   return ttl - Date.now() > 0;
 };
@@ -31,9 +32,4 @@ export const editorT = (t, key, ...args) => (
   shouldSkipKey(key) ? t(key, ...args) : `{{__phrase_${key}__}}`
 );
 
-export const createDebug = (session) => {
-  const ttl = session && session[PHRASE_EDITOR_SESSION];
-  if (!shouldLoad(ttl)) return;
-
-  return editorT;
-};
+export const createDebug = (session) => (shouldLoad(session) ? editorT : undefined);

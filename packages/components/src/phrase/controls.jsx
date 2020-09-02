@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { useSetSession } from 'nebenan-redux-tools/lib/session';
+import PropTypes from 'prop-types';
 import Checkbox from 'nebenan-form/lib/checkbox';
 
 import { getSessionUpdate } from './utils';
 
 import styles from './controls.module.scss';
 
-const PhraseControls = () => {
+const PhraseControls = ({ setSession }) => {
   const [isExpiring, handleCheckbox] = useState(true);
-  const setSession = useSetSession();
 
   const handleSave = () => {
     setSession(getSessionUpdate(isExpiring));
@@ -34,5 +33,8 @@ const PhraseControls = () => {
   );
 };
 
+PhraseControls.propTypes = {
+  setSession: PropTypes.func.isRequired,
+};
 
 export default PhraseControls;

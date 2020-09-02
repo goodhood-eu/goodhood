@@ -13,7 +13,7 @@ import {
 
 describe('phrase/utils', () => {
   it('shouldSkipKey', () => {
-    assert.isTrue(shouldSkipKey('woooo.please_disable_phrase_editor'), 'force skip');
+    assert.isTrue(shouldSkipKey('woooo.key_phrase_disable'), 'force skip');
     assert.isTrue(shouldSkipKey('whatever.date_format'), 'date format');
     assert.isTrue(shouldSkipKey('whatever.time_format'), 'time format');
     assert.isTrue(shouldSkipKey('whatever.format_date'), 'format date');
@@ -36,14 +36,15 @@ describe('phrase/utils', () => {
     assert.isFalse(shouldLoad('kek'), 'string');
     assert.isFalse(shouldLoad([]), 'array');
     assert.isFalse(shouldLoad({}), 'object');
-    assert.isFalse(shouldLoad(123), 'number too low');
-    assert.isTrue(shouldLoad(Date.now() + 99999999999999999), 'active');
+    assert.isFalse(shouldLoad(123), 'number');
+    assert.isFalse(shouldLoad({ [PHRASE_EDITOR_SESSION]: 123 }), 'number too low');
+    assert.isTrue(shouldLoad({ [PHRASE_EDITOR_SESSION]: Date.now() + 99999999999999999 }), 'active');
   });
 
   it('editorT', () => {
     const t = (key) => key.charAt(0);
 
-    assert.equal(editorT(t, 'woooo.please_disable_phrase_editor'), 'w', 'calls default t');
+    assert.equal(editorT(t, 'woooo.key_phrase_disable'), 'w', 'calls default t');
     assert.include(editorT(t, 'whatever'), 'whatever', 'outputs key as required');
   });
 
