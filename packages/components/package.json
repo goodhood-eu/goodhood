@@ -11,14 +11,14 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "1.0.0",
+  "version": "1.1.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
   "scripts": {
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
     "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
-    "build": "rollup --config rollup.config.js",
+    "build": "npx rollup --config rollup.config.js",
     "start": "../../scripts/start-storybook",
     "start:ssr-preview": "../../scripts/start-storybook --ssr-preview"
   },
@@ -26,6 +26,7 @@
     "@babel/runtime": "^7.11.2",
     "clsx": "^1.1.1",
     "date-fns": "^2.15.0",
+    "emoji-assets": "^6.0.0",
     "emojitsu": "^4.0.0",
     "lodash": "^4.17.20",
     "nebenan-components": "^9.3.1",
@@ -38,6 +39,7 @@
     "qs": "^6.9.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-load-script": "^0.0.6",
     "react-redux": "^7.2.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
@@ -53,6 +55,7 @@
     "nebenan-helpers": "^4.2.0",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
+    "react-load-script": "^0.0.6",
     "prop-types": "^15.7.2",
     "clsx": "^1.1.1",
     "nebenan-ui-kit": "^4.11.0",
