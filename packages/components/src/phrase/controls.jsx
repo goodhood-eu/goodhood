@@ -26,7 +26,7 @@ const PhraseControls = ({ setSession }) => {
         </span>
       </div>
       <aside className={styles.hint}>
-        Prepare your Phrase.com account credentials in advance. Once editor is enabled,
+        Prepare your Phrase.com account credentials in advance. Once the editor is enabled,
         you won&apos;t be able to use the website until you log into the editor or it resets.
       </aside>
     </article>
