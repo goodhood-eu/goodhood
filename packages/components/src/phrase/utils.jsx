@@ -1,4 +1,4 @@
-export const PHRASE_EDITOR_URL = `//phraseapp.com/assets/in-context-editor/2.0/app.js?${Date.now()}`;
+export const PHRASE_EDITOR_URL = `//app.phrase.com/assets/in-context-editor/2.0/app.js?${Date.now()}`;
 export const PHRASE_EDITOR_SESSION = 'phraseEditor';
 
 const HOUR = 1000 * 60 * 60;
