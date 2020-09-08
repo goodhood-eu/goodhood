@@ -1,24 +1,22 @@
-export const getCirclePoints = (center, radiusInMeters) => {
-  // TODO: refactor magic values
-  const POINTS = 64;
+const POINTS = 64;
+const METERS_PER_KILOMETER = 1000;
+const KILOMETERS_PER_LAT_DEGREE = 110.574;
 
+export const getCirclePoints = (center, radiusInMeters) => {
   const [lon, lat] = center;
 
-  const radiusInKm = radiusInMeters / 1000;
+  const radiusInKm = radiusInMeters / METERS_PER_KILOMETER;
 
   const distanceX = radiusInKm / (
     111.320 * Math.cos(lat * Math.PI / 180)
   );
-  const distanceY = radiusInKm / 110.574;
+  const distanceY = radiusInKm / KILOMETERS_PER_LAT_DEGREE;
 
   return [...Array(POINTS)].map((_, point) => {
-    const theta = (point / POINTS) * (2 * Math.PI);
-    const x = distanceX * Math.cos(theta);
-    const y = distanceY * Math.sin(theta);
+    const degree = (point / POINTS) * (2 * Math.PI);
+    const x = distanceX * Math.cos(degree);
+    const y = distanceY * Math.sin(degree);
 
-    return [
-      lon + x,
-      lat + y,
-    ];
+    return [lon + x, lat + y];
   });
 };
