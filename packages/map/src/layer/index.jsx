@@ -1,9 +1,7 @@
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-
-import { useMapContext } from '../map/hooks';
 import { useID } from '../hooks';
-
+import { applyPaint, resetPaint } from './utils';
+import { useMapEffect } from './hooks';
 
 const Layer = ({
   type,
@@ -11,15 +9,9 @@ const Layer = ({
   geoJsonSource,
   onClick,
 }) => {
-  const { map } = useMapContext();
   const layerId = useID();
 
-  useEffect(() => {
-    if (!map) return;
-
-    let isDestroyed = false;
-    map.on('remove', () => { isDestroyed = true; });
-
+  useMapEffect((map) => {
     map.addLayer({
       type,
       paint,
@@ -27,16 +19,36 @@ const Layer = ({
       id: layerId,
     });
 
-    if (onClick) map.on('click', layerId, onClick);
+    return () => {
+      map.removeLayer(layerId);
+      map.removeSource(layerId);
+    };
+  }, []);
+
+  useMapEffect((map) => {
+    if (!geoJsonSource) return;
+
+    const source = map.getSource(layerId);
+    source.setData(geoJsonSource.data);
+  }, [geoJsonSource]);
+
+  useMapEffect((map) => {
+    if (!onClick) return;
+
+    map.on('click', layerId, onClick);
 
     return () => {
-      if (map && !isDestroyed) {
-        map.removeLayer(layerId);
-        map.removeSource(layerId);
-        map.off('click', layerId, onClick);
-      }
+      map.off('click', layerId, onClick);
     };
-  }, [map, paint, onClick]);
+  }, [onClick]);
+
+  useMapEffect((map) => {
+    applyPaint(map, layerId, paint);
+
+    return () => {
+      resetPaint(map, layerId, paint);
+    };
+  }, [paint]);
 
   return null;
 };
