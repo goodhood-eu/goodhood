@@ -15,9 +15,9 @@ export const useMapRef = () => {
   return ref;
 };
 
-export const useMapEffect = (fn, deps = []) => {
+export const useMapEffect = (fn, deps) => {
   const mapRef = useMapRef();
-  const effectDeps = deps.length ? [...deps, mapRef] : [];
+  const effectDeps = deps === undefined ? [] : [...deps, mapRef];
 
   useEffect(() => {
     if (!mapRef.current) return;
