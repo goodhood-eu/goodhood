@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { getFillPaint, getLinePaint, getTypeProp, getGeoJSON } from './utils';
 import { useChildrenBounds } from '../map/hooks';
@@ -13,7 +13,7 @@ const Polygon = (props) => {
   } = props;
 
   useChildrenBounds(area);
-  const source = getGeoJSON(area);
+  const source = useMemo(() => getGeoJSON(area), [area]);
 
   return (
     <>
