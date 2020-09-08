@@ -1,9 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import React, { forwardRef, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Marker as MapboxMarker, Popup } from 'mapbox-gl';
 import { useChildrenBounds, useMapContext } from '../map/hooks';
 import './index.module.scss';
 
+// Ensures React updates to not conflict with mapbox dom changes
+const PassableContainer = forwardRef(({ children, ...rest }, ref) => (
+  <div>
+    <div {...rest} ref={ref}>{children}</div>
+  </div>
+));
 
 const Marker = ({
   children,
@@ -39,8 +45,10 @@ const Marker = ({
 
   return (
     <>
-      {popupContent && <div ref={popupRef}>{popupContent}</div>}
-      <div {...rest} ref={nodeRef}>{children}</div>
+      {popupContent && (
+        <PassableContainer ref={popupRef}>{popupContent}</PassableContainer>
+      )}
+      <PassableContainer {...rest} ref={nodeRef}>{children}</PassableContainer>
     </>
   );
 };
