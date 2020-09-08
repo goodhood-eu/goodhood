@@ -9,7 +9,7 @@ import {
 
   OPACITY_S,
   OPACITY_M,
-  OPACITY_N,
+  OPACITY_N, COLOR_BASE,
 } from '../constants';
 
 import {
@@ -17,7 +17,7 @@ import {
   POLYGON_HIGHLIGHTED,
   POLYGON_SOLID,
   POLYGON_THIN,
-  POLYGON_DEFAULT,
+  POLYGON_DEFAULT, CIRCLE_DEFAULT, CIRCLE_ACTIVE,
 } from './constants';
 
 
@@ -47,6 +47,15 @@ const FILL_STYLES = {
     'fill-color': COLOR_DARK70,
     'fill-opacity': OPACITY_N,
   },
+  [CIRCLE_DEFAULT]: {
+    'fill-color': COLOR_BASE,
+    'fill-opacity': OPACITY_S,
+  },
+  [CIRCLE_ACTIVE]: {
+    'fill-color': COLOR_ACTION,
+    'fill-opacity': OPACITY_S,
+  },
+
 };
 
 const LINE_STYLES = {
@@ -61,6 +70,14 @@ const LINE_STYLES = {
     ...linePaint,
     'line-dasharray': [2, 4],
   },
+  [CIRCLE_ACTIVE]: {
+    'line-width': WEIGHT_L,
+    'line-color': COLOR_ACTION,
+  },
+  [CIRCLE_DEFAULT]: {
+    'line-width': WEIGHT_L,
+    'line-color': COLOR_BASE,
+  },
 };
 
 export const getFillPaint = (type) => FILL_STYLES[type];
@@ -72,6 +89,8 @@ export const getTypeProp = () => PropTypes.oneOf([
   POLYGON_SOLID,
   POLYGON_THIN,
   POLYGON_DEFAULT,
+  CIRCLE_DEFAULT,
+  CIRCLE_ACTIVE,
 ]);
 
 export const getGeoJSON = (area) => ({
