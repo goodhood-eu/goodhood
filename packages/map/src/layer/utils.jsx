@@ -9,3 +9,7 @@ export const resetPaint = (map, layerId, paint) => {
     map.setPaintProperty(layerId, key, null);
   });
 };
+
+export const setCursor = (map, cursor) => {
+  map.getCanvas().style.cursor = cursor;
+};

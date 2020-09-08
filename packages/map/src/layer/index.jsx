@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { useID } from '../hooks';
-import { applyPaint, resetPaint } from './utils';
-import { useMapEffect } from './hooks';
+import { useLayerClick, useLayer, useLayerPaint, useLayerSource } from './hooks';
 
 const Layer = ({
   type,
@@ -11,44 +10,10 @@ const Layer = ({
 }) => {
   const layerId = useID();
 
-  useMapEffect((map) => {
-    map.addLayer({
-      type,
-      paint,
-      source: geoJsonSource,
-      id: layerId,
-    });
-
-    return () => {
-      map.removeLayer(layerId);
-      map.removeSource(layerId);
-    };
-  }, []);
-
-  useMapEffect((map) => {
-    if (!geoJsonSource) return;
-
-    const source = map.getSource(layerId);
-    source.setData(geoJsonSource.data);
-  }, [geoJsonSource]);
-
-  useMapEffect((map) => {
-    if (!onClick) return;
-
-    map.on('click', layerId, onClick);
-
-    return () => {
-      map.off('click', layerId, onClick);
-    };
-  }, [onClick]);
-
-  useMapEffect((map) => {
-    applyPaint(map, layerId, paint);
-
-    return () => {
-      resetPaint(map, layerId, paint);
-    };
-  }, [paint]);
+  useLayer(layerId, { type, paint, geoJsonSource });
+  useLayerSource(layerId, geoJsonSource);
+  useLayerClick(layerId, onClick);
+  useLayerPaint(layerId, paint);
 
   return null;
 };
