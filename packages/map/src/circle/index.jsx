@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
+
+import Layer from '../layer';
+import { useChildrenBounds } from '../map/hooks';
+import { getPaint, getGeoJSON } from './utils';
 import { CIRCLE_ACTIVE, CIRCLE_DEFAULT } from './constants';
-import Polygon from '../polygon';
-import { getCirclePoints } from './utils';
+
 
 const Circle = ({
+  type,
   center,
   radius,
-  ...rest
-}) => <Polygon {...rest} area={getCirclePoints(center, radius)} />;
+}) => {
+  useChildrenBounds([center]);
+
+  return (
+    <Layer geoJsonSource={getGeoJSON(center)} type="circle" paint={getPaint(type, center, radius)} />
+  );
+};
 
 Circle.propTypes = {
   type: PropTypes.oneOf([
