@@ -3,7 +3,3 @@ export const POLYGON_HIGHLIGHTED = 'POLYGON_HIGHLIGHTED';
 export const POLYGON_SOLID = 'POLYGON_SOLID';
 export const POLYGON_THIN = 'POLYGON_THIN';
 export const POLYGON_DEFAULT = 'POLYGON_DEFAULT';
-
-// TODO: rename consts
-export const CIRCLE_DEFAULT = 'CIRCLE_DEFAULT';
-export const CIRCLE_ACTIVE = 'CIRCLE_ACTIVE';
