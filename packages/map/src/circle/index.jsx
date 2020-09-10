@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Layer from '../layer';
 import { useChildrenBounds } from '../map/hooks';
-import { getPaint, getGeoJSON } from './utils';
+import { getGeoJSON, getPaint } from './utils';
 import { CIRCLE_ACTIVE, CIRCLE_DEFAULT } from './constants';
 
 
@@ -14,8 +14,11 @@ const Circle = ({
 }) => {
   useChildrenBounds([center]);
 
+  const source = useMemo(() => getGeoJSON(center), [center]);
+  const paint = useMemo(() => getPaint(type, center, radius), [type, center, radius]);
+
   return (
-    <Layer geoJsonSource={getGeoJSON(center)} type="circle" paint={getPaint(type, center, radius)} />
+    <Layer geoJsonSource={source} type="circle" paint={paint} />
   );
 };
 
