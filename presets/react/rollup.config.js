@@ -12,6 +12,7 @@ import globImport from 'rollup-plugin-glob-import';
 import camelCase from 'lodash/camelCase';
 import copy from 'rollup-plugin-copy';
 import upperFirst from 'lodash/upperFirst';
+import kebapCase from 'lodash/kebabCase';
 import acornJsx from 'acorn-jsx';
 import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
@@ -59,6 +60,7 @@ export default (pkg, pkgPath) => ({
       extract: true,
       modules: {
         globalModulePaths: [/node_modules/],
+        generateScopedName: `${kebapCase(pkg.name)}__[hash:base64:5]`,
       },
       use: [['sass', {
         includePaths: [
