@@ -1,7 +1,5 @@
-import { useMemo } from 'react';
 import { COLOR_ACTION, COLOR_BASE, WEIGHT_L, OPACITY_S } from '../constants';
 import { CIRCLE_ACTIVE, CIRCLE_DEFAULT } from './constants';
-
 
 const STYLES = {
   [CIRCLE_ACTIVE]: {
