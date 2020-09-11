@@ -61,7 +61,7 @@ export const LayerCount = () => {
 
 export const PolygonSourceChange = () => {
   const [angle, setAngle] = useState('0');
-  const circlePoints = number('Circle points', 64, {
+  const circlePoints = number('Circle points', 20, {
     range: true, min: 4, max: 100, step: 1,
   });
   const rate = number('Rotation time (in ms)', 5000, {
