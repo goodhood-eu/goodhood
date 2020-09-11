@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { number, withKnobs } from '@storybook/addon-knobs';
 import config from '@root/config';
+import transformRotate from '@turf/transform-rotate';
+import circle from '@turf/circle';
 import Map from '../map';
 import Polygon from '../polygon';
 import { CIRCLE_ACTIVE, POLYGON_ACTIVE } from '..';
 import Circle from '../circle';
+import data from '../../sample_data';
 
 export default { title: 'Performance', decorators: [withKnobs] };
 
@@ -52,6 +55,47 @@ export const LayerCount = () => {
       {circles.map((center) => (
         <Circle radius={50} type={CIRCLE_ACTIVE} center={center} />
       ))}
+    </Map>
+  );
+};
+
+export const PolygonSourceChange = () => {
+  const [angle, setAngle] = useState('0');
+  const circlePoints = number('Circle points', 64, {
+    range: true, min: 4, max: 100, step: 1,
+  });
+  const rate = number('Rotation time (in ms)', 5000, {
+    range: true, min: 50, max: 6000, step: 10,
+  });
+  const precision = number('Angle precision', 1, {
+    range: true, min: 0, max: 9, step: 1,
+  });
+
+  const basePoly = useMemo(
+    () => circle(data.markers[0], 0.5, { steps: circlePoints }),
+    [circlePoints],
+  );
+
+  const rotatedPoly = useMemo(
+    () => transformRotate(basePoly, parseFloat(angle)),
+    [angle],
+  );
+
+  useEffect(() => {
+    const request = requestAnimationFrame((time) => {
+      const newAngle = ((time % rate) * 360) / rate;
+      setAngle(newAngle.toFixed(precision));
+    });
+
+    return () => cancelAnimationFrame(request);
+  });
+
+  return (
+    <Map credentials={config.map_credentials}>
+      <Polygon
+        area={rotatedPoly.geometry.coordinates[0]}
+        type={POLYGON_ACTIVE}
+      />
     </Map>
   );
 };

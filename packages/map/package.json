@@ -23,7 +23,9 @@
     "start:ssr-preview": "../../scripts/start-storybook --ssr-preview"
   },
   "devDependencies": {
-    "@rollup/plugin-url": "^5.0.1"
+    "@rollup/plugin-url": "^5.0.1",
+    "@turf/circle": "^6.0.1",
+    "@turf/transform-rotate": "^5.1.5"
   },
   "dependencies": {
     "mapbox-gl": "^1.11.0"
