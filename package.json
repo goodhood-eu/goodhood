@@ -85,10 +85,10 @@
   },
   "scripts": {
     "check": "npm run lint && npm run test",
-    "postinstall": "lerna bootstrap && link-parent-bin",
+    "postinstall": "lerna bootstrap && link-parent-bin && link-parent-bin -c package-templates",
     "lint": "npm run eslint && npm run stylelint",
     "eslint": "eslint -f codeframe \"./**/*.{js,jsx}\" ",
     "stylelint": "stylelint \"./**/*.scss\" ",
-    "test": "NODE_ENV=test TZ='GMT' mocha --exlude \"./node_modules/**\" --exclude \"**/node_modules/**\" \"**/*.test.{js,jsx}\""
+    "test": "scripts/run-tests"
   }
 }

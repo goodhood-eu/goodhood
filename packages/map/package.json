@@ -20,7 +20,8 @@
     "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
     "build": "rollup --config rollup.config.js",
     "start": "../../scripts/start-storybook",
-    "start:ssr-preview": "../../scripts/start-storybook --ssr-preview"
+    "start:ssr-preview": "../../scripts/start-storybook --ssr-preview",
+    "test": "../../scripts/run-tests"
   },
   "devDependencies": {
     "@rollup/plugin-url": "^5.0.1"

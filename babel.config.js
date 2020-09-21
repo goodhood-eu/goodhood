@@ -6,7 +6,7 @@ const ROOT_PKG_PATH = __dirname;
 
 const getPackages = () => (
   lernaConfig.packages
-    .map((packageGlob) => glob.sync(packageGlob))
+    .map((packageGlob) => glob.sync(packageGlob, { cwd: __dirname }))
     .flat()
 );
 
@@ -15,7 +15,7 @@ const getOverridesForPackage = (pkg) => ({
   plugins: [
     ['module-resolver', {
       alias: {
-        '@': path.resolve(pkg),
+        '@': path.resolve(path.join(__dirname, pkg)),
         '@root': ROOT_PKG_PATH,
       },
     }],
