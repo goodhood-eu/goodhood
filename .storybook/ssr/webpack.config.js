@@ -30,7 +30,10 @@ const getRulesWithoutStyleLoaders = (rules) => patchWebpackRules(
         ...cssLoader,
         options: {
           ...cssLoader.options,
-          onlyLocals: true,
+          modules: {
+            ...cssLoader.options.modules,
+            exportOnlyLocals: true,
+          },
         },
       },
       ...otherLoaders,
