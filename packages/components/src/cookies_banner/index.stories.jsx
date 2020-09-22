@@ -1,15 +1,15 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 import { text, withKnobs } from '@storybook/addon-knobs';
 
+import { MemoryRouter } from 'react-router';
 import CookiesBanner from './index';
 
 export default { title: 'CookiesBanner', component: CookiesBanner, decorators: [withKnobs] };
 
 export const Default = () => (
-  <BrowserRouter>
+  <MemoryRouter>
     <CookiesBanner
       content={text('content', 'Lorem lorem')}
     />
-  </BrowserRouter>
+  </MemoryRouter>
 );
