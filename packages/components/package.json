@@ -26,14 +26,14 @@
   "devDependencies": {
     "@babel/runtime": "^7.11.2",
     "clsx": "^1.1.1",
-    "date-fns": "^2.15.0",
+    "date-fns": "^2.16.1",
     "emoji-assets": "^6.0.0",
     "emojitsu": "^4.0.0",
     "lodash": "^4.17.20",
-    "nebenan-components": "^9.3.1",
+    "nebenan-components": "^9.3.2",
     "nebenan-form": "^8.5.2",
     "nebenan-helpers": "^4.2.0",
-    "nebenan-react-hocs": "^5.7.0",
+    "nebenan-react-hocs": "^5.8.0",
     "nebenan-ui-kit": "^4.12.0",
     "node-sass-glob-importer": "^5.3.2",
     "prop-types": "^15.7.2",
@@ -50,15 +50,15 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "nebenan-components": "^9.3.1",
+    "nebenan-components": "^9.3.2",
     "nebenan-form": "^8.5.2",
     "nebenan-helpers": "^4.2.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.20",
     "react": "^16.13.1",
     "react-load-script": "^0.0.6",
     "prop-types": "^15.7.2",
     "clsx": "^1.1.1",
-    "nebenan-ui-kit": "^4.11.0",
-    "@babel/runtime": "^7.10.2"
+    "nebenan-ui-kit": "^4.12.0",
+    "@babel/runtime": "^7.11.2"
   }
 }
