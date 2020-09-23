@@ -90,7 +90,7 @@ const getConfig = async({ webpackHotMiddlewarePath }) => {
       mode: 'development',
       devtool: 'inline-source-map',
       entry: [
-        ...baseConfig.entry.filter((entry) => /@storybook/.test(entry)), // TODO: whitelist vs blacklist?
+        ...baseConfig.entry.filter((entry) => /@storybook/.test(entry) && !/generated/.test(entry)), // TODO: whitelist vs blacklist?
         `webpack-hot-middleware/client?path=${webpackHotMiddlewarePath}&name=${CONFIG_NAME_CLIENT}&noInfo=true`,
         path.join(__dirname, 'src/index.jsx'),
       ],

@@ -7,7 +7,9 @@ import { getStories } from './utils';
 addons.setChannel(mockChannel());
 
 const api = start();
-api.configure(getStories, module, 'react');
+
+// TODO: replace, will be removed in 7.xx
+api.configure('react', getStories, module);
 
 const render = ({ storyFn: StoryFn }) => renderToString(<StoryFn />);
 
