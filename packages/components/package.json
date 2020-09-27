@@ -52,6 +52,7 @@
     "nebenan-components": "^9.3.1",
     "nebenan-form": "^8.5.2",
     "nebenan-helpers": "^4.2.0",
+    "nebenan-react-hocs": "^5.9.0",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
     "react-load-script": "^0.0.6",

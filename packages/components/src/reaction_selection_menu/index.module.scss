@@ -1,0 +1,86 @@
+@import "nebenan-ui-kit";
+
+$icon-size: 40px;
+
+.root {
+  touch-action: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.listWrapper {
+  width: 100%;
+  height: $icon-size;
+
+  position: absolute !important;
+  bottom: 100%;
+  left: 0;
+
+  box-shadow: $shadow-bottom-raised;
+  background-color: $color-white-alpha;
+  border-radius: 20px;
+
+  @media ($media-m) {
+    width: 50%;
+  }
+}
+
+.list {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: baseline;
+
+  position: absolute;
+  bottom: 0;
+}
+
+.reaction {
+  display: flex;
+  justify-content: center;
+
+  position: relative;
+  transition: $transition;
+  transform-origin: bottom center;
+}
+
+.reactionLabel {
+  padding: 0 5px;
+
+  display: none;
+  position: absolute;
+  bottom: 100%;
+
+  background-color: rgb(128 128 128 / 50%);
+  color: #fff;
+  border-radius: 10px;
+
+  font-size: 10px;
+  line-height: 14px;
+  white-space: nowrap;
+}
+
+.emoji {
+  width: $icon-size;
+  height: $icon-size;
+}
+
+@mixin hover {
+  transform: scale(2);
+
+  .reactionLabel {
+    display: block;
+  }
+}
+
+.hover {
+  @include hover;
+}
+
+@media (hover: hover) {
+  .reaction:hover {
+    @include hover;
+    cursor: pointer;
+  }
+}
