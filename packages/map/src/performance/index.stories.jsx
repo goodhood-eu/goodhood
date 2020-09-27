@@ -48,12 +48,13 @@ export const LayerCount = () => {
     <Map credentials={config.map_credentials}>
       {polygons.map((area) => (
         <Polygon
+          key={area.toString()}
           area={area}
           type={POLYGON_ACTIVE}
         />
       ))}
       {circles.map((center) => (
-        <Circle radius={50} type={CIRCLE_ACTIVE} center={center} />
+        <Circle key={center.toString()} radius={50} type={CIRCLE_ACTIVE} center={center} />
       ))}
     </Map>
   );

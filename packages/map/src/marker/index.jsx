@@ -1,15 +1,10 @@
-import React, { forwardRef, useEffect, useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import { Marker as MapboxMarker, Popup } from 'mapbox-gl';
-import { useChildrenBounds, useMapContext } from '../map/hooks';
+import { useChildrenBounds, useMapEffect } from '../map/hooks';
 import './index.module.scss';
 
-// Ensures React updates to not conflict with mapbox dom changes
-const PassableContainer = forwardRef(({ children, ...rest }, ref) => (
-  <div>
-    <div {...rest} ref={ref}>{children}</div>
-  </div>
-));
 
 const Marker = ({
   children,
@@ -18,39 +13,47 @@ const Marker = ({
   popupDefaultState,
   popupContent,
   popupOffset,
-  ...rest
 }) => {
   const nodeRef = useRef();
   const popupRef = useRef();
-  const { map } = useMapContext();
+  const [, forceRender] = useState();
+
   useChildrenBounds([position]);
 
-  useEffect(() => {
-    if (!map) return;
-
+  useMapEffect((map) => {
+    nodeRef.current = document.createElement('div');
     const marker = new MapboxMarker(nodeRef.current).setLngLat(position).addTo(map);
 
     let popup;
     if (popupContent) {
+      popupRef.current = document.createElement('div');
       popup = new Popup({ offset: popupOffset }).setDOMContent(popupRef.current);
       marker.setPopup(popup);
       if (popupDefaultState) marker.togglePopup();
     }
 
+    forceRender({});
+
     return () => {
       if (popup) popup.remove();
       marker.remove();
+      nodeRef.current = null;
+      popupRef.current = null;
+      forceRender({});
     };
-  }, [map, children, popupContent, popupOffset]);
+  }, [children, popupContent, popupOffset]);
 
-  return (
-    <>
-      {popupContent && (
-        <PassableContainer ref={popupRef}>{popupContent}</PassableContainer>
-      )}
-      <PassableContainer {...rest} ref={nodeRef}>{children}</PassableContainer>
-    </>
-  );
+  let popupNode;
+  if (popupRef.current) {
+    popupNode = createPortal(popupContent, popupRef.current);
+  }
+
+  let markerNode;
+  if (nodeRef.current) {
+    markerNode = createPortal(children, nodeRef.current);
+  }
+
+  return <>{popupNode}{markerNode}</>;
 };
 
 Marker.propTypes = {

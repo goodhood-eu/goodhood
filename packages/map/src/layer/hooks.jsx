@@ -1,37 +1,10 @@
-import { useEffect, useRef } from 'react';
-import { useMapContext } from '../map/hooks';
-import { applyPaint, resetPaint, setCursor } from './utils';
+import { useRef } from 'react';
+import { useMapEffect } from '../map/hooks';
+import { applyPaint, setCursor, hasLayer } from './utils';
+import { getID } from '../utils';
 
-export const useMapRef = () => {
-  const { map } = useMapContext();
-  const ref = useRef(null);
 
-  useEffect(() => {
-    ref.current = map;
-    map.on('remove', () => { ref.current = null; });
-
-    return () => { ref.current = null; };
-  }, [map]);
-
-  return ref;
-};
-
-export const useMapEffect = (fn, deps) => {
-  const mapRef = useMapRef();
-  const effectDeps = deps === undefined ? [] : [...deps, mapRef];
-
-  useEffect(() => {
-    if (!mapRef.current) return;
-
-    const teardown = fn(mapRef.current);
-
-    return () => {
-      if (!mapRef.current) return;
-
-      if (teardown) teardown();
-    };
-  }, effectDeps);
-};
+export const useID = () => useRef(getID()).current;
 
 export const useLayer = (layerId, { type, paint, geoJsonSource }) => {
   useMapEffect((map) => {
@@ -44,6 +17,7 @@ export const useLayer = (layerId, { type, paint, geoJsonSource }) => {
 
     return () => {
       map.removeLayer(layerId);
+      // Need to remove source here because it can only be removed after layer
       map.removeSource(layerId);
     };
   }, []);
@@ -79,10 +53,7 @@ export const useLayerClick = (layerId, onClick) => {
 
 export const useLayerPaint = (layerId, paint) => {
   useMapEffect((map) => {
+    if (!hasLayer(map, layerId)) return;
     applyPaint(map, layerId, paint);
-
-    return () => {
-      resetPaint(map, layerId, paint);
-    };
   }, [paint]);
 };

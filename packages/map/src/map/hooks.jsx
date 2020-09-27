@@ -8,6 +8,28 @@ import MapContext from './context';
 
 export const useMapContext = () => useContext(MapContext);
 
+export const useMapEffect = (fn, deps) => {
+  const { map } = useMapContext();
+  if (deps) deps.push(map);
+
+  useEffect(() => {
+    if (!map) return;
+
+    const destroy = fn(map);
+
+    let isRemoved = false;
+    const removeHandler = () => { isRemoved = true; };
+    map.on('remove', removeHandler);
+
+    return () => {
+      if (!isRemoved) {
+        map.off('remove', removeHandler);
+        if (destroy) destroy();
+      }
+    };
+  }, deps);
+};
+
 export const useMapInstance = (nodeRef, options) => {
   const [mapInstance, setMap] = useState(false);
   const { noAttribution, locked, lockedMobile, onLoad } = options;
@@ -32,14 +54,21 @@ export const useMapInstance = (nodeRef, options) => {
 
     return () => {
       setMap(null);
-      if (map) map.remove();
+      map.remove();
     };
   }, [noAttribution, locked, lockedMobile]);
 
   return mapInstance;
 };
 
-export const useMapUpdate = (map, { bounds, childrenBounds, animate, fitPadding, defaultView }) => {
+export const useMapUpdate = (map, {
+  bounds,
+  childrenBounds,
+  animate,
+  fitPadding,
+  defaultView,
+  defaultZoom,
+}) => {
   const boundsToFit = bounds || mergeChildrenBounds(childrenBounds);
   const boundsSignature = JSON.stringify(boundsToFit);
 
@@ -47,7 +76,10 @@ export const useMapUpdate = (map, { bounds, childrenBounds, animate, fitPadding,
     const boundingBox = getBoundingBox(boundsToFit);
 
     if (map && boundingBox && !defaultView) {
-      map.fitBounds(boundingBox, { animate, padding: fitPadding });
+      const options = { animate, padding: fitPadding };
+      if (defaultZoom) options.maxZoom = defaultZoom;
+
+      map.fitBounds(boundingBox, options);
     }
   }, [boundsSignature, map]);
 };

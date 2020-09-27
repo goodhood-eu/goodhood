@@ -23,7 +23,7 @@ export const Default = () => {
   });
 
   return (
-    <Map credentials={config.map_credentials} defaultZoom={5}>
+    <Map credentials={config.map_credentials} defaultZoom={16}>
       <Circle
         center={data.markers[0]}
         radius={radius}

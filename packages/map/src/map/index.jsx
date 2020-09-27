@@ -49,6 +49,7 @@ const Map = ({
     fitPadding,
     animate,
     defaultView,
+    defaultZoom,
   });
 
   return (
