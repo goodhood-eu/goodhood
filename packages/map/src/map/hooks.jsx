@@ -56,7 +56,7 @@ export const useMapInstance = (nodeRef, options) => {
       setMap(null);
       map.remove();
     };
-  }, [noAttribution, locked, lockedMobile]);
+  }, [noAttribution, locked, lockedMobile, onLoad]);
 
   return mapInstance;
 };
