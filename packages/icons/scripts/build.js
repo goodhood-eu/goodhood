@@ -34,6 +34,10 @@ Promise.all(files.map(async(relativeIconPath) => {
   const reactComponentCommonjsCode = babel.transform(reactComponentCode, {
     rootMode: 'upward',
     presets: ['@babel/preset-env'],
+
+    // Workaround: Babel needs a filename to check overrides
+    // https://github.com/danger/danger-js/issues/664
+    filename: svgPath,
   }).code;
 
   fs.mkdirSync(path.dirname(libSvgPath), { recursive: true });

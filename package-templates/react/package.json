@@ -23,12 +23,13 @@
     "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
     "build": "rollup --config rollup.config.js",
     "start": "../../scripts/start-storybook",
-    "start:ssr-preview": "../../scripts/start-storybook --ssr-preview"
+    "start:ssr-preview": "../../scripts/start-storybook --ssr-preview",
+    "test": "../../scripts/run-tests"
   },
   "devDependencies": {},
   "dependencies": {},
   "peerDependencies": {
-    "@babel/runtime": "^7.10.2",
+    "@babel/runtime": "^7.11.2",
     "react": "^16.13.1",
     "prop-types": "^15.7.2"
   }
