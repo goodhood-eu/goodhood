@@ -6,6 +6,7 @@ import loveIcon from './images/love.svg';
 import thankYouIcon from './images/thankyou.svg';
 import { REACTION_BRAVO, REACTION_GOOD_IDEA, REACTION_LOVE, REACTION_THANK_YOU } from '../constants';
 
+// TODO: move final icons to @goodhood/icons
 const ICONS = {
   [REACTION_THANK_YOU]: thankYouIcon,
   [REACTION_GOOD_IDEA]: goodIdeaIcon,
