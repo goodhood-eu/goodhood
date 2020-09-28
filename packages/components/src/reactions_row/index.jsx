@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import ReactionIcon from '../reaction_icon';
 import styles from './index.module.scss';
-import { getReactionsCount, getSortedReactionKeys } from './utils';
 import { REACTIONS } from '../constants';
+import { useReactionData } from './hooks';
 
 const ReactionsRow = ({
   withCounter = true,
@@ -13,8 +13,7 @@ const ReactionsRow = ({
   className: passedClassName,
   ...cleanProps
 }) => {
-  const reactionsList = useMemo(() => getSortedReactionKeys(reactions), [reactions]);
-  const count = useMemo(() => getReactionsCount(reactions), [reactions]);
+  const { list: reactionsList, count } = useReactionData(reactions);
 
   if (withCounter && count === 0) return null;
 

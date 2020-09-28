@@ -21,17 +21,17 @@ export const useLongTouch = ({ onStart, onEnd, onMove }) => {
   const active = useRef(false);
   const isMounted = useMounted();
 
-  const handleTimer = useCallback((event) => {
+  const handleTimer = useCallback(() => {
     if (!isMounted.current) return;
 
     active.current = true;
-    onStart(event);
-  }, [onStart, active, isMounted]);
+    onStart();
+  }, [onStart]);
 
   const handleStart = useCallback((event) => {
     preventTextSelection(event);
-    timer.current = setTimeout(handleTimer.bind(undefined, event), LONG_TOUCH_DURATION);
-  }, [onStart, handleTimer, timer]);
+    timer.current = setTimeout(handleTimer, LONG_TOUCH_DURATION);
+  }, [handleTimer]);
 
   const handleMove = useCallback((event) => {
     if (!active.current) return;
@@ -39,18 +39,16 @@ export const useLongTouch = ({ onStart, onEnd, onMove }) => {
     onMove(event);
   }, [onMove]);
 
-  const handleEnd = useCallback((event) => {
+  const handleEnd = useCallback(() => {
     if (timer.current) clearTimeout(timer.current);
-    if (!active.current) return;
+    if (active.current) onEnd();
     active.current = false;
-
-    onEnd(event);
-  }, [onEnd, active]);
+  }, [onEnd]);
 
   const handleCancel = useCallback(() => {
     if (timer.current) clearTimeout(timer.current);
     active.current = false;
-  });
+  }, []);
 
   return {
     active: {
@@ -70,36 +68,36 @@ export const useLongHover = ({ onStart, onEnd }) => {
   const active = useRef(false);
   const isMounted = useMounted();
 
-  const handleEnterTimer = useCallback((event) => {
+  const handleEnterTimer = useCallback(() => {
     if (!isMounted.current) return;
 
     active.current = true;
-    onStart(event);
-  }, [onStart, active, isMounted]);
+    onStart();
+  }, [onStart]);
 
-  const handleEnter = useCallback((event) => {
+  const handleEnter = useCallback(() => {
     if (active.current) {
       if (leaveTimer.current) clearTimeout(leaveTimer.current);
       return;
     }
 
-    enterTimer.current = setTimeout(handleEnterTimer.bind(undefined, event), HOVER_ENTER_TIMEOUT);
-  }, [onStart, handleEnterTimer, enterTimer, active]);
+    enterTimer.current = setTimeout(handleEnterTimer, HOVER_ENTER_TIMEOUT);
+  }, [onStart, handleEnterTimer]);
 
-  const handleLeaveTimer = useCallback((event) => {
+  const handleLeaveTimer = useCallback(() => {
     if (!isMounted.current) return;
 
     active.current = false;
 
-    onEnd(event);
-  }, [isMounted, active, onEnd]);
+    onEnd();
+  }, [onEnd]);
 
-  const handleLeave = useCallback((event) => {
+  const handleLeave = useCallback(() => {
     if (enterTimer.current) clearTimeout(enterTimer.current);
     if (!active.current) return;
 
-    leaveTimer.current = setTimeout(handleLeaveTimer.bind(undefined, event), HOVER_LEAVE_TIMEOUT);
-  }, [onEnd, enterTimer, active]);
+    leaveTimer.current = setTimeout(handleLeaveTimer, HOVER_LEAVE_TIMEOUT);
+  }, [onEnd]);
 
   // onMouseLeave doesn't get called if DOM changes (eg. component stops rendering part of dom,
   // mouse isn't inside element anymore but the browser won't call onMouseLeave)

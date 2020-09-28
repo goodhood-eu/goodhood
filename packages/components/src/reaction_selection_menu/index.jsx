@@ -2,10 +2,11 @@ import React, { useCallback, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { invoke } from 'nebenan-helpers/lib/utils';
+import { eventCoordinates } from 'nebenan-helpers/lib/dom';
 import styles from './index.module.scss';
 import ReactionIcon from '../reaction_icon';
 import { useActiveEventListener, useLongHover, useLongTouch } from './hooks';
-import { getItemIndexForPositionFromElements } from './utils';
+import { getHoverIndex } from './utils';
 import { REACTIONS } from '../constants';
 
 const ReactionSelectionMenu = ({ className, label, strings, onSelect }) => {
@@ -25,12 +26,12 @@ const ReactionSelectionMenu = ({ className, label, strings, onSelect }) => {
       if (hoverReaction) invoke(onSelect, hoverReaction);
     }, [hoverReaction, onSelect]),
     onMove: useCallback((event) => {
-      const { clientX, clientY } = event.touches[0];
+      const { clientX, clientY } = eventCoordinates(event, 'clientX', 'clientY');
       const items = itemRefs.current;
 
       if (!items.filter(Boolean).length) return;
 
-      const selectedIndex = getItemIndexForPositionFromElements(items, { x: clientX, y: clientY });
+      const selectedIndex = getHoverIndex(items, { x: clientX, y: clientY });
       setHoverReaction(REACTIONS[selectedIndex]);
     }, [itemRefs]),
   });

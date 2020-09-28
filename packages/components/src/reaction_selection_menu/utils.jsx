@@ -18,7 +18,7 @@ export const getItemIndexForPosition = (positions, { top, height }, { x, y }) =>
   return touchedIndex;
 };
 
-export const getItemIndexForPositionFromElements = (items, pointingTo) => (
+export const getHoverIndex = (items, pointingTo) => (
   getItemIndexForPosition(
     items.map((item) => position(item).left),
     screenPosition(items[0]),
