@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "1.2.0-beta.0",
+  "version": "1.2.0-beta.1",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -27,8 +27,6 @@
     "@babel/runtime": "^7.11.2",
     "clsx": "^1.1.1",
     "date-fns": "^2.16.1",
-    "emoji-assets": "^6.0.0",
-    "emojitsu": "^4.0.0",
     "lodash": "^4.17.20",
     "nebenan-components": "^9.3.2",
     "nebenan-form": "^8.5.2",
