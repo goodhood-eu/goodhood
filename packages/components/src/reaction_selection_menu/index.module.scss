@@ -8,32 +8,23 @@ $icon-size: 40px;
   -webkit-touch-callout: none;
 }
 
-.listWrapper {
-  width: 100%;
-  height: $icon-size;
-
-  position: absolute !important;
-  bottom: 100%;
-  left: 0;
-
-  box-shadow: $shadow-bottom-raised;
-  background-color: $color-white-alpha;
-  border-radius: 20px;
-
-  @media ($media-m) {
-    width: 50%;
-  }
-}
-
 .list {
-  width: 100%;
+  height: $icon-size;
+  padding: 8px;
 
   display: flex;
   justify-content: space-evenly;
   align-items: baseline;
 
   position: absolute;
-  bottom: 0;
+  bottom: 100%;
+  left: 0;
+
+  box-shadow: $shadow-bottom-raised;
+  background-color: $color-white-alpha;
+
+  border-radius: 28px;
+  box-sizing: content-box;
 }
 
 .reaction {
@@ -43,9 +34,14 @@ $icon-size: 40px;
   position: relative;
   transition: $transition;
   transform-origin: bottom center;
+
+  & + & {
+    margin-left: 12px;
+  }
 }
 
 .reactionLabel {
+  margin-bottom: 5px;
   padding: 0 5px;
 
   display: none;
@@ -56,8 +52,8 @@ $icon-size: 40px;
   color: #fff;
   border-radius: 10px;
 
-  font-size: 10px;
-  line-height: 14px;
+  font-size: 13px;
+  line-height: 18px;
   white-space: nowrap;
 }
 
@@ -67,7 +63,7 @@ $icon-size: 40px;
 }
 
 @mixin hover {
-  transform: scale(2);
+  transform: scale(1.5);
 
   .reactionLabel {
     display: block;

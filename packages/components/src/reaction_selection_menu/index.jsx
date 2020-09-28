@@ -78,9 +78,7 @@ const ReactionSelectionMenu = ({ className, label, strings, onSelect }) => {
     >
       <header>{label}</header>
       {isActive && (
-        <article className={styles.listWrapper}>
-          <ul className={styles.list}>{REACTIONS.map(renderReaction)}</ul>
-        </article>
+        <ul className={styles.list}>{REACTIONS.map(renderReaction)}</ul>
       )}
     </aside>
   );
