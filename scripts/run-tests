@@ -1,0 +1,7 @@
+#!/bin/sh
+# expects cwd to be subpackage root
+
+NODE_ENV=test TZ='GMT' mocha \
+  --exclude "./node_modules/**" \
+  --exclude "**/node_modules/**" \
+   "**/*.test.{js,jsx}"
