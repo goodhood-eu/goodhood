@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { invoke } from 'nebenan-helpers/lib/utils';
 import { eventCoordinates } from 'nebenan-helpers/lib/dom';
+import { useEventListener } from 'nebenan-react-hocs/lib/use_event_listener';
 import styles from './index.module.scss';
-import { useActiveEventListener, useLongHover, useLongTouch } from './hooks';
+import { useLongHover, useLongTouch } from './hooks';
 import { getHoverIndex } from './utils';
 import { REACTION_SIZE_M, REACTIONS } from '../constants';
 import ReactionIconBubble from '../reaction_icon_bubble';
@@ -36,7 +37,7 @@ const ReactionSelectionMenu = ({ className, label, strings, onSelect }) => {
     }, [itemRefs]),
   });
 
-  useActiveEventListener(rootRef, 'touchstart', activeTouchEvents.onTouchStart);
+  useEventListener(rootRef, 'touchstart', activeTouchEvents.onTouchStart, { passive: false });
 
   const {
     reset: resetHover,

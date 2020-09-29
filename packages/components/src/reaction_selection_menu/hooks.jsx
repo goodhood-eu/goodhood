@@ -1,18 +1,6 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import useMounted from 'nebenan-react-hocs/lib/use_mounted';
 import { HOVER_ENTER_TIMEOUT, HOVER_LEAVE_TIMEOUT, LONG_TOUCH_DURATION } from './constants';
-
-export const useActiveEventListener = (ref, type, listener) => {
-  useEffect(() => {
-    if (!ref.current) return;
-
-    ref.current.addEventListener(type, listener, { passive: false });
-
-    return () => {
-      ref.current.removeEventListener(type, listener);
-    };
-  }, [ref, type, listener]);
-};
 
 const preventTextSelection = (event) => event.preventDefault();
 
