@@ -3,8 +3,8 @@ import { LngLatBounds } from 'mapbox-gl';
 
 export const isFilledArray = (arr) => Array.isArray(arr) && arr.length > 0;
 
-export const getStyle = (credentials) => (
-  credentials ? `https://api.maptiler.com/maps/${credentials.map_id}/style.json?key=${credentials.key}` : ''
+export const getStyle = (credentials = {}) => (
+  `https://api.maptiler.com/maps/${credentials.map_id}/style.json?key=${credentials.key}`
 );
 
 export const getBoundingBox = (bounds) => {

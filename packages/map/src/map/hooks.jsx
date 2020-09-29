@@ -8,9 +8,9 @@ import MapContext from './context';
 
 export const useMapContext = () => useContext(MapContext);
 
-export const useMapEffect = (fn, deps) => {
+export const useMapEffect = (fn, deps = []) => {
   const { map } = useMapContext();
-  if (deps) deps.push(map);
+  deps.push(map);
 
   useEffect(() => {
     if (!map) return;
@@ -22,6 +22,8 @@ export const useMapEffect = (fn, deps) => {
     map.on('remove', removeHandler);
 
     return () => {
+      // removing layers, handlers throws error if map was removed
+      // this checks that map is not removed
       if (!isRemoved) {
         map.off('remove', removeHandler);
         if (destroy) destroy();
@@ -56,7 +58,7 @@ export const useMapInstance = (nodeRef, options) => {
       setMap(null);
       map.remove();
     };
-  }, [noAttribution, locked, lockedMobile, onLoad]);
+  }, [noAttribution, locked, lockedMobile]);
 
   return mapInstance;
 };
@@ -69,8 +71,7 @@ export const useMapUpdate = (map, {
   defaultView,
   defaultZoom,
 }) => {
-  const boundsToFit = bounds || mergeChildrenBounds(childrenBounds);
-  const boundsSignature = JSON.stringify(boundsToFit);
+  const boundsToFit = bounds || childrenBounds;
 
   useEffect(() => {
     const boundingBox = getBoundingBox(boundsToFit);
@@ -81,7 +82,7 @@ export const useMapUpdate = (map, {
 
       map.fitBounds(boundingBox, options);
     }
-  }, [boundsSignature, map]);
+  }, [boundsToFit, map, animate]);
 };
 
 export const useContextValue = (map) => {
@@ -92,7 +93,9 @@ export const useContextValue = (map) => {
   };
 
   const context = useMemo(() => ({ map, addBounds }), [map]);
-  return [bounds, context];
+  const mergedBounds = useMemo(() => mergeChildrenBounds(bounds), [bounds]);
+
+  return [mergedBounds, context];
 };
 
 export const useChildrenBounds = (area) => {
