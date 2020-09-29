@@ -1,4 +1,5 @@
 import url from '@rollup/plugin-url';
+import svgr from '@svgr/rollup';
 import pkg from './package.json';
 import getConfig from '../../presets/react/rollup.config';
 
@@ -9,5 +10,6 @@ export default {
   plugins: [
     ...config.plugins,
     url(),
+    svgr({ svgo: false }),
   ],
 };

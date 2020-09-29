@@ -88,6 +88,19 @@ module.exports = {
       use: getStyleLoaders({ modules: true }),
     });
 
+    config.module.rules.unshift({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            svgo: false,
+          }
+        },
+        'url-loader'
+      ]
+    })
+
     return config;
   },
 };

@@ -38,6 +38,8 @@
     "@storybook/core-events": "^5.3.21",
     "@storybook/react": "^5.3.21",
     "@storybook/theming": "^5.3.21",
+    "@svgr/rollup": "^5.4.0",
+    "@svgr/webpack": "^5.4.0",
     "acorn-jsx": "^5.3.1",
     "babel-loader": "^8.1.0",
     "babel-plugin-module-resolver": "^4.0.0",

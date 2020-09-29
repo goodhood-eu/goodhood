@@ -3,16 +3,17 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { REACTION_BRAVO, REACTION_GOOD_IDEA, REACTION_LOVE, REACTION_SIZE_M, REACTION_THANK_YOU } from '../constants';
 import styles from './index.module.scss';
-import { Bravo, GoodIdea, Love, Thankyou } from './images';
+import { ReactComponent as Bravo } from './images/bravo.svg';
+import { ReactComponent as Thankyou } from './images/thankyou.svg';
+import { ReactComponent as GoodIdea } from './images/good_idea.svg';
+import { ReactComponent as Love } from './images/love.svg';
 
-// TODO: move final icons to @goodhood/icons
 const ICONS = {
   [REACTION_THANK_YOU]: Thankyou,
   [REACTION_GOOD_IDEA]: GoodIdea,
   [REACTION_BRAVO]: Bravo,
   [REACTION_LOVE]: Love,
 };
-
 
 const ReactionIcon = ({
   className: passedClassName,
