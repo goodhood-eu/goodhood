@@ -1,7 +1,5 @@
 @import "nebenan-ui-kit";
 
-$icon-size: 40px;
-
 .root {
   touch-action: none;
   user-select: none;
@@ -39,7 +37,7 @@ $icon-size: 40px;
 }
 
 .reactionLabel {
-  margin-bottom: 5px;
+  margin-bottom: 2px;
   padding: 2px 8px;
 
   display: none;
@@ -53,11 +51,6 @@ $icon-size: 40px;
   font-size: 14px;
   font-weight: $font-weight-l;
   white-space: nowrap;
-}
-
-.emoji {
-  width: $icon-size;
-  height: $icon-size;
 }
 
 @mixin hover {
