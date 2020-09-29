@@ -1,11 +1,8 @@
 @import "nebenan-ui-kit";
-@import "../reaction_icon/colors";
 
 .root {
   display: inline-flex;
-
   border-radius: 100%;
-
   background-color: $color-base-04;
 }
 
@@ -18,19 +15,19 @@
 
   &.isColorized {
     &.is-thankyou {
-      background-color: $color-thankyou;
+      background-color: $reaction-thankyou-color;
     }
 
     &.is-bravo {
-      background-color: $color-bravo;
+      background-color: $reaction-bravo-color;
     }
 
     &.is-love {
-      background-color: $color-love;
+      background-color: $reaction-love-color;
     }
 
     &.is-good_idea {
-      background-color: $color-good_idea;
+      background-color: $reaction-good_idea-color;
     }
   }
 }

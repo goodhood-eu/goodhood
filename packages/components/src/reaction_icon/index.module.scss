@@ -1,27 +1,27 @@
-@import "./colors";
+@import "nebenan-ui-kit";
 
 .isColorized {
   &.is-thankyou {
     > path {
-      fill: $color-thankyou;
+      fill: $reaction-thankyou-color;
     }
   }
 
   &.is-bravo {
     > path {
-      fill: $color-bravo;
+      fill: $reaction-bravo-color;
     }
   }
 
   &.is-love {
     > path {
-      fill: $color-love;
+      fill: $reaction-love-color;
     }
   }
 
   &.is-good_idea {
     > path {
-      fill: $color-good_idea;
+      fill: $reaction-good_idea-color;
     }
   }
 }
