@@ -9,8 +9,7 @@ $icon-size: 40px;
 }
 
 .list {
-  height: $icon-size;
-  padding: 8px;
+  padding: 5px;
 
   display: flex;
   justify-content: space-evenly;
@@ -21,10 +20,9 @@ $icon-size: 40px;
   left: 0;
 
   box-shadow: $shadow-bottom-raised;
-  background-color: $color-white-alpha;
+  background-color: #fff;
 
   border-radius: 28px;
-  box-sizing: content-box;
 }
 
 .reaction {
@@ -36,24 +34,24 @@ $icon-size: 40px;
   transform-origin: bottom center;
 
   & + & {
-    margin-left: 12px;
+    margin-left: 20px;
   }
 }
 
 .reactionLabel {
   margin-bottom: 5px;
-  padding: 0 5px;
+  padding: 2px 8px;
 
   display: none;
   position: absolute;
   bottom: 100%;
 
-  background-color: rgb(128, 128, 128);
+  background-color: rgba(97, 116, 110, .8);
   color: #fff;
-  border-radius: 10px;
+  border-radius: 11.5px;
 
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 14px;
+  font-weight: $font-weight-l;
   white-space: nowrap;
 }
 
@@ -67,6 +65,7 @@ $icon-size: 40px;
 
   .reactionLabel {
     display: block;
+    transform: scale(.7);
   }
 }
 

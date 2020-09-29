@@ -21,9 +21,14 @@ const ReactionsRow = ({
     <ReactionIcon reaction={reaction} key={reaction} className={styles.icon} />
   );
 
+  let countNode;
+  if (withCounter) {
+    countNode = <span className={styles.count}>{count}</span>;
+  }
+
   return (
-    <span {...cleanProps} className={clsx(passedClassName, { 'ui-link': onClick })} onClick={onClick}>
-      {reactionsList.map(renderReaction)} {withCounter && count}
+    <span {...cleanProps} className={clsx(passedClassName, styles.root, { 'ui-link': onClick })} onClick={onClick}>
+      {reactionsList.map(renderReaction)} {countNode}
     </span>
   );
 };

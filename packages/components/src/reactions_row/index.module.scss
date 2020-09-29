@@ -1,7 +1,24 @@
+@import "~nebenan-ui-kit";
+
+.root {
+  display: inline-flex;
+  align-items: center;
+
+  font-weight: $font-weight-l;
+}
+
 .icon {
-  margin-left: -10px;
+  // TODO: solve size differently
+  width: auto;
+  height: 20px;
+
+  margin-left: -4px;
 
   &:first-child {
     margin-left: 0;
   }
+}
+
+.count {
+  margin-left: 5px;
 }
