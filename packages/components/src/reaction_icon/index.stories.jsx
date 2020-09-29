@@ -7,8 +7,8 @@ export default { title: 'ReactionIcon', component: ReactionIcon, decorators: [wi
 
 export const Default = () => {
   const reaction = select('reaction', REACTIONS, REACTIONS[0]);
-  const colorized = boolean('with color', false);
+  const colorize = boolean('with color', false);
   const size = number('size', REACTION_SIZE_M);
 
-  return <ReactionIcon reaction={reaction} colorized={colorized} size={size} />;
+  return <ReactionIcon reaction={reaction} colorize={colorize} size={size} />;
 };

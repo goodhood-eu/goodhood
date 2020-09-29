@@ -14,16 +14,16 @@ const ReactionIconBubble = ({
   className: passedClassName,
   reaction,
   size,
-  colorized,
+  colorize,
   filled = false,
 }) => {
   const className = clsx(passedClassName, styles.root, styles[`is-${reaction}`], {
     [styles.isFilled]: filled,
-    [styles.isColorized]: colorized,
+    [styles.isColorized]: colorize,
   });
 
   // TODO: find a better system for colors
-  const isIconColorized = filled ? false : colorized;
+  const isIconColorized = filled ? false : colorize;
 
   return (
     <span className={className} style={{ padding: getPaddingForSize(size) }}>
@@ -31,7 +31,7 @@ const ReactionIconBubble = ({
         reaction={reaction}
         className={styles.icon}
         size={size}
-        colorized={isIconColorized}
+        colorize={isIconColorized}
       />
     </span>
   );

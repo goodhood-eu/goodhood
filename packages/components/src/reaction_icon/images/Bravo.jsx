@@ -1,4 +1,5 @@
-import * as React from "react";
+/* eslint-disable */
+import * as React from 'react';
 
 function SvgBravo(props) {
   return (
