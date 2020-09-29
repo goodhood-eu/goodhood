@@ -64,8 +64,6 @@ describe('map/utils', () => {
     });
 
     it('should set style if credentials are passed', () => {
-      assert.equal(getMapOptions({}).style, '', 'no credentials');
-
       const { style } = getMapOptions({ credentials: { map_id: 'abcf123', key: 'TOKEN_KEY' } });
       assert.include(style, 'abcf123', 'id is set');
       assert.include(style, 'TOKEN_KEY', 'key is set');
