@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 import styles from './index.module.scss';
 import ReactionIcon from '../reaction_icon';
 import { REACTION_SIZE_M, REACTION_SIZE_S } from '../constants';
@@ -22,19 +23,24 @@ const ReactionIconBubble = ({
     [styles.isColorized]: colorize,
   });
 
-  // TODO: find a better system for colors
-  const isIconColorized = filled ? false : colorize;
-
   return (
     <span className={className} style={{ padding: getPaddingForSize(size) }}>
       <ReactionIcon
         reaction={reaction}
         className={styles.icon}
         size={size}
-        colorize={isIconColorized}
+        colorize={filled ? false : colorize}
       />
     </span>
   );
+};
+
+ReactionIconBubble.propTypes = {
+  className: PropTypes.string,
+  reaction: PropTypes.string.isRequired,
+  size: PropTypes.number,
+  colorize: PropTypes.bool,
+  filled: PropTypes.bool,
 };
 
 export default ReactionIconBubble;
