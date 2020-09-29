@@ -4,10 +4,10 @@ import clsx from 'clsx';
 import { invoke } from 'nebenan-helpers/lib/utils';
 import { eventCoordinates } from 'nebenan-helpers/lib/dom';
 import styles from './index.module.scss';
-import ReactionIcon from '../reaction_icon';
 import { useActiveEventListener, useLongHover, useLongTouch } from './hooks';
 import { getHoverIndex } from './utils';
-import { REACTIONS } from '../constants';
+import { REACTION_SIZE_M, REACTIONS } from '../constants';
+import ReactionIconBubble from '../reaction_icon_bubble';
 
 const ReactionSelectionMenu = ({ className, label, strings, onSelect }) => {
   const rootRef = useRef(null);
@@ -66,7 +66,12 @@ const ReactionSelectionMenu = ({ className, label, strings, onSelect }) => {
       <span className={styles.reactionLabel}>
         {strings[reaction]}
       </span>
-      <ReactionIcon className={styles.emoji} reaction={reaction} />
+      <ReactionIconBubble
+        colorized
+        size={REACTION_SIZE_M}
+        className={styles.emoji}
+        reaction={reaction}
+      />
     </li>
   );
 

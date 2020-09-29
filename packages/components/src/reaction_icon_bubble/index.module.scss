@@ -1,0 +1,36 @@
+@import "nebenan-ui-kit";
+@import "../reaction_icon/colors";
+
+.root {
+  display: inline-flex;
+
+  border-radius: 100%;
+
+  background-color: $color-base-04;
+}
+
+.isFilled {
+  background-color: $color-gray-01;
+
+  .icon > path {
+    fill: #fff;
+  }
+
+  &.isColorized {
+    &.is-thankyou {
+      background-color: $color-thankyou;
+    }
+
+    &.is-bravo {
+      background-color: $color-bravo;
+    }
+
+    &.is-love {
+      background-color: $color-love;
+    }
+
+    &.is-good_idea {
+      background-color: $color-good_idea;
+    }
+  }
+}

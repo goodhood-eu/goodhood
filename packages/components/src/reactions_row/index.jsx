@@ -1,10 +1,10 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import ReactionIcon from '../reaction_icon';
 import styles from './index.module.scss';
-import { REACTIONS } from '../constants';
+import { REACTION_SIZE_S, REACTIONS } from '../constants';
 import { useReactionData } from './hooks';
+import ReactionIconBubble from '../reaction_icon_bubble';
 
 const ReactionsRow = ({
   withCounter = true,
@@ -18,7 +18,14 @@ const ReactionsRow = ({
   if (withCounter && count === 0) return null;
 
   const renderReaction = (reaction) => (
-    <ReactionIcon reaction={reaction} key={reaction} className={styles.icon} />
+    <ReactionIconBubble
+      size={REACTION_SIZE_S}
+      colorized
+      filled
+      reaction={reaction}
+      key={reaction}
+      className={styles.icon}
+    />
   );
 
   let countNode;

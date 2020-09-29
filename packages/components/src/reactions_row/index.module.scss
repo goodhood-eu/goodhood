@@ -1,4 +1,4 @@
-@import "~nebenan-ui-kit";
+@import "nebenan-ui-kit";
 
 .root {
   display: inline-flex;
@@ -8,10 +8,6 @@
 }
 
 .icon {
-  // TODO: solve size differently
-  width: auto;
-  height: 20px;
-
   margin-left: -4px;
 
   &:first-child {

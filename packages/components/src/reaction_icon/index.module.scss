@@ -1,0 +1,27 @@
+@import "./colors";
+
+.isColorized {
+  &.is-thankyou {
+    > path {
+      fill: $color-thankyou;
+    }
+  }
+
+  &.is-bravo {
+    > path {
+      fill: $color-bravo;
+    }
+  }
+
+  &.is-love {
+    > path {
+      fill: $color-love;
+    }
+  }
+
+  &.is-good_idea {
+    > path {
+      fill: $color-good_idea;
+    }
+  }
+}
