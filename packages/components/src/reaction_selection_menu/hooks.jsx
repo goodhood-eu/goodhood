@@ -9,17 +9,17 @@ export const useLongTouch = ({ onStart, onEnd, onMove }) => {
   const active = useRef(false);
   const isMounted = useMounted();
 
-  const handleTimer = useCallback(() => {
-    if (!isMounted.current) return;
-
-    active.current = true;
-    onStart();
-  }, [onStart]);
-
   const handleStart = useCallback((event) => {
+    const handleTimer = () => {
+      if (!isMounted.current) return;
+
+      active.current = true;
+      onStart();
+    };
+
     preventTextSelection(event);
     timer.current = setTimeout(handleTimer, LONG_TOUCH_DURATION);
-  }, [handleTimer]);
+  }, [onStart]);
 
   const handleMove = useCallback((event) => {
     if (!active.current) return;
@@ -56,35 +56,35 @@ export const useLongHover = ({ onStart, onEnd }) => {
   const active = useRef(false);
   const isMounted = useMounted();
 
-  const handleEnterTimer = useCallback(() => {
-    if (!isMounted.current) return;
-
-    active.current = true;
-    onStart();
-  }, [onStart]);
-
   const handleEnter = useCallback(() => {
+    const handleTimer = () => {
+      if (!isMounted.current) return;
+
+      active.current = true;
+      onStart();
+    };
+
     if (active.current) {
       if (leaveTimer.current) clearTimeout(leaveTimer.current);
       return;
     }
 
-    enterTimer.current = setTimeout(handleEnterTimer, HOVER_ENTER_TIMEOUT);
-  }, [onStart, handleEnterTimer]);
+    enterTimer.current = setTimeout(handleTimer, HOVER_ENTER_TIMEOUT);
+  }, [onStart]);
 
-  const handleLeaveTimer = useCallback(() => {
-    if (!isMounted.current) return;
-
-    active.current = false;
-
-    onEnd();
-  }, [onEnd]);
 
   const handleLeave = useCallback(() => {
+    const handleTimer = () => {
+      if (!isMounted.current) return;
+
+      active.current = false;
+      onEnd();
+    };
+
     if (enterTimer.current) clearTimeout(enterTimer.current);
     if (!active.current) return;
 
-    leaveTimer.current = setTimeout(handleLeaveTimer, HOVER_LEAVE_TIMEOUT);
+    leaveTimer.current = setTimeout(handleTimer, HOVER_LEAVE_TIMEOUT);
   }, [onEnd]);
 
   // onMouseLeave doesn't get called if DOM changes (eg. component stops rendering part of dom,
