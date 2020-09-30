@@ -3,7 +3,7 @@ import { addParameters } from '@storybook/client-api';
 import 'nebenan-ui-kit/styles.scss';
 import './preview.scss';
 
-const requireAll = (requireContext)  => requireContext.keys().map(requireContext);
+const requireAll = (requireContext) => requireContext.keys().map(requireContext);
 
 addParameters({
   viewport: {

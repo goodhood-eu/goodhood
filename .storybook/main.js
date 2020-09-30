@@ -95,11 +95,11 @@ module.exports = {
           loader: '@svgr/webpack',
           options: {
             svgo: false,
-          }
+          },
         },
-        'url-loader'
-      ]
-    })
+        'url-loader',
+      ],
+    });
 
     return config;
   },
