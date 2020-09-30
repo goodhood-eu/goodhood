@@ -2,8 +2,6 @@ import { useCallback, useRef } from 'react';
 import useMounted from 'nebenan-react-hocs/lib/use_mounted';
 import { HOVER_ENTER_TIMEOUT, HOVER_LEAVE_TIMEOUT, LONG_TOUCH_DURATION } from './constants';
 
-const preventTextSelection = (event) => event.preventDefault();
-
 export const useLongTouch = ({ onStart, onEnd, onMove }) => {
   const timer = useRef(null);
   const active = useRef(false);
@@ -17,7 +15,9 @@ export const useLongTouch = ({ onStart, onEnd, onMove }) => {
       onStart();
     };
 
-    preventTextSelection(event);
+    // prevent text selection
+    event.preventDefault();
+
     timer.current = setTimeout(handleTimer, LONG_TOUCH_DURATION);
   }, [onStart]);
 
