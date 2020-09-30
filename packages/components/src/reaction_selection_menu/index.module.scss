@@ -44,9 +44,9 @@
   position: absolute;
   bottom: 100%;
 
-  background-color: rgba(97, 116, 110, .8);
+  background-color: rgba($color-base-00, .8);
   color: #fff;
-  border-radius: 11.5px;
+  border-radius: 11px;
 
   font-size: 14px;
   font-weight: $font-weight-l;
