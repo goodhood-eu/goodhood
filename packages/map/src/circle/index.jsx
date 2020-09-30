@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Layer, Source } from 'react-mapbox-gl';
 
+import Layer from '../layer';
 import { useChildrenBounds } from '../map/hooks';
-import { getPaint, getGeoJSON } from './utils';
-import { useID } from '../hooks';
+import { getGeoJSON, getPaint } from './utils';
 import { CIRCLE_ACTIVE, CIRCLE_DEFAULT } from './constants';
 
 
@@ -13,14 +12,13 @@ const Circle = ({
   center,
   radius,
 }) => {
-  const sourceId = useID();
   useChildrenBounds([center]);
 
+  const source = useMemo(() => getGeoJSON(center), [center]);
+  const paint = useMemo(() => getPaint(type, center, radius), [type, center, radius]);
+
   return (
-    <>
-      <Source geoJsonSource={getGeoJSON(center)} id={sourceId} />
-      <Layer type="circle" sourceId={sourceId} paint={getPaint(type, radius)} />
-    </>
+    <Layer geoJsonSource={source} type="circle" paint={paint} />
   );
 };
 

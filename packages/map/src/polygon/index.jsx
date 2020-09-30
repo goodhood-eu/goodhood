@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Layer, Source } from 'react-mapbox-gl';
 import { getFillPaint, getLinePaint, getTypeProp, getGeoJSON } from './utils';
 import { useChildrenBounds } from '../map/hooks';
-import { useID } from '../hooks';
+import Layer from '../layer';
 
 
 const Polygon = (props) => {
@@ -14,15 +13,12 @@ const Polygon = (props) => {
   } = props;
 
   useChildrenBounds(area);
-
-  const sourceId = useID();
-  const layerId = useID();
+  const source = useMemo(() => getGeoJSON(area), [area]);
 
   return (
     <>
-      <Source geoJsonSource={getGeoJSON(area)} id={sourceId} />
-      <Layer id={layerId} type="fill" sourceId={sourceId} paint={getFillPaint(type)} onClick={onClick} />
-      <Layer type="line" sourceId={sourceId} paint={getLinePaint(type)} />
+      <Layer geoJsonSource={source} type="fill" paint={getFillPaint(type)} onClick={onClick} />
+      <Layer geoJsonSource={source} type="line" paint={getLinePaint(type)} />
     </>
   );
 };
