@@ -1,8 +1,10 @@
 @import "nebenan-ui-kit";
 
-.isColored {
+.root {
   fill: currentColor;
+}
 
+.isColored {
   &.type-thankyou {
     fill: $reaction-thankyou-color;
   }
