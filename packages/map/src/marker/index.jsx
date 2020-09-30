@@ -45,11 +45,13 @@ const Marker = ({
 
   let popupNode;
   if (popupRef.current) {
+    // Using portal since mapbox moves DOM nodes to body
     popupNode = createPortal(popupContent, popupRef.current);
   }
 
   let markerNode;
   if (nodeRef.current) {
+    // Using portal since mapbox moves DOM nodes to body
     markerNode = createPortal(children, nodeRef.current);
   }
 

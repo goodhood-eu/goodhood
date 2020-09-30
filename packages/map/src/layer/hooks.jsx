@@ -20,7 +20,7 @@ export const useLayer = (layerId, { type, paint, geoJsonSource }) => {
       // Need to remove source here because it can only be removed after layer
       map.removeSource(layerId);
     };
-  }, []);
+  }, [layerId]);
 };
 
 export const useLayerSource = (layerId, geoJsonSource) => {
@@ -28,8 +28,8 @@ export const useLayerSource = (layerId, geoJsonSource) => {
     if (!geoJsonSource) return;
 
     const source = map.getSource(layerId);
-    source.setData(geoJsonSource.data);
-  }, [geoJsonSource]);
+    if (source) source.setData(geoJsonSource.data);
+  }, [geoJsonSource, layerId]);
 };
 
 export const useLayerClick = (layerId, onClick) => {
