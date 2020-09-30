@@ -21,10 +21,10 @@ const ReactionSelectionMenu = ({ className, label, strings, onSelect }) => {
       setIsActive(true);
     }, []),
     onEnd: useCallback(() => {
+      if (hoverReaction) invoke(onSelect, hoverReaction);
+
       setHoverReaction(null);
       setIsActive(false);
-
-      if (hoverReaction) invoke(onSelect, hoverReaction);
     }, [hoverReaction, onSelect]),
     onMove: useCallback((event) => {
       const { clientX, clientY } = eventCoordinates(event, 'clientX', 'clientY');
