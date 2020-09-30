@@ -15,12 +15,12 @@ const ReactionIconBubble = ({
   className: passedClassName,
   reaction,
   size,
-  colorize,
+  colored,
   filled = false,
 }) => {
   const className = clsx(passedClassName, styles.root, styles[`is-${reaction}`], {
     [styles.isFilled]: filled,
-    [styles.isColorized]: colorize,
+    [styles.isColored]: colored,
   });
 
   return (
@@ -29,7 +29,7 @@ const ReactionIconBubble = ({
         reaction={reaction}
         className={styles.icon}
         size={size}
-        colorize={filled ? false : colorize}
+        colored={filled ? false : colored}
       />
     </span>
   );
@@ -39,7 +39,7 @@ ReactionIconBubble.propTypes = {
   className: PropTypes.string,
   reaction: PropTypes.string.isRequired,
   size: PropTypes.number,
-  colorize: PropTypes.bool,
+  colored: PropTypes.bool,
   filled: PropTypes.bool,
 };
 

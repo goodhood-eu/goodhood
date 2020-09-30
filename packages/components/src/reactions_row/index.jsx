@@ -20,7 +20,7 @@ const ReactionsRow = ({
   const renderReaction = (reaction) => (
     <ReactionIconBubble
       size={REACTION_SIZE_S}
-      colorize
+      colored
       filled
       reaction={reaction}
       key={reaction}

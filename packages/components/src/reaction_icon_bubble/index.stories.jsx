@@ -9,14 +9,14 @@ export const Default = () => {
   const reaction = select('reaction', REACTIONS, REACTIONS[0]);
   const size = number('size', REACTION_SIZE_M);
   const isFilled = boolean('filled', false);
-  const colorize = boolean('with color', false);
+  const colored = boolean('with color', false);
 
   return (
     <ReactionIconBubble
       reaction={reaction}
       size={size}
       filled={isFilled}
-      colorize={colorize}
+      colored={colored}
     />
   );
 };

@@ -19,12 +19,12 @@ const ReactionIcon = ({
   className: passedClassName,
   reaction,
   size = REACTION_SIZE_M,
-  colorize = false,
+  colored = false,
   ...cleanProps
 }) => {
   const Icon = ICONS[reaction];
   const className = clsx(styles.root, passedClassName, styles[`is-${reaction}`], {
-    [styles.isColorized]: colorize,
+    [styles.isColored]: colored,
   });
 
   return (
@@ -40,7 +40,7 @@ ReactionIcon.propTypes = {
   className: PropTypes.string,
   reaction: PropTypes.oneOf(Object.keys(ICONS)),
   size: PropTypes.number,
-  colorize: PropTypes.bool,
+  colored: PropTypes.bool,
 };
 
 export default ReactionIcon;

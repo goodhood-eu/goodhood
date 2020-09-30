@@ -68,7 +68,7 @@ const ReactionSelectionMenu = ({ className, label, strings, onSelect }) => {
         {strings[reaction]}
       </span>
       <ReactionIconBubble
-        colorize
+        colored
         size={REACTION_SIZE_M}
         className={styles.emoji}
         reaction={reaction}
