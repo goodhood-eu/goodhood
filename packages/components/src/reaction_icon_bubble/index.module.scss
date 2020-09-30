@@ -9,24 +9,24 @@
 .isFilled {
   background-color: $color-gray-01;
 
-  .icon > path {
+  .icon {
     fill: #fff;
   }
 
   &.isColored {
-    &.is-thankyou {
+    &.type-thankyou {
       background-color: $reaction-thankyou-color;
     }
 
-    &.is-bravo {
+    &.type-bravo {
       background-color: $reaction-bravo-color;
     }
 
-    &.is-love {
+    &.type-love {
       background-color: $reaction-love-color;
     }
 
-    &.is-good_idea {
+    &.type-good_idea {
       background-color: $reaction-good_idea-color;
     }
   }

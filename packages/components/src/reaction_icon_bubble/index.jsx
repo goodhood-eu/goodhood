@@ -18,7 +18,7 @@ const ReactionIconBubble = ({
   colored,
   filled = false,
 }) => {
-  const className = clsx(passedClassName, styles.root, styles[`is-${reaction}`], {
+  const className = clsx(passedClassName, styles.root, styles[`type-${reaction}`], {
     [styles.isFilled]: filled,
     [styles.isColored]: colored,
   });

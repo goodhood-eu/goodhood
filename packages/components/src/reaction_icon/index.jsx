@@ -23,7 +23,7 @@ const ReactionIcon = ({
   ...cleanProps
 }) => {
   const Icon = ICONS[reaction];
-  const className = clsx(styles.root, passedClassName, styles[`is-${reaction}`], {
+  const className = clsx(styles.root, passedClassName, styles[`type-${reaction}`], {
     [styles.isColored]: colored,
   });
 
