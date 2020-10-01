@@ -48,12 +48,12 @@ export const useLayerClick = (layerId, onClick) => {
       map.off('mousemove', layerId, setPointerCursor);
       map.off('mouseleave', layerId, resetCursor);
     };
-  }, [onClick]);
+  }, [layerId, onClick]);
 };
 
 export const useLayerPaint = (layerId, paint) => {
   useMapEffect((map) => {
     if (!hasLayer(map, layerId)) return;
     applyPaint(map, layerId, paint);
-  }, [paint]);
+  }, [layerId, paint]);
 };
