@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { POLYGON_DEFAULT } from './constants';
 import { getFillPaint, getLinePaint, getTypeProp, getGeoJSON } from './utils';
 import { useChildrenBounds } from '../map/hooks';
 import Layer from '../layer';
@@ -21,6 +22,10 @@ const Polygon = (props) => {
       <Layer geoJsonSource={source} type="line" paint={getLinePaint(type)} />
     </>
   );
+};
+
+Polygon.defaultProps = {
+  type: POLYGON_DEFAULT,
 };
 
 Polygon.propTypes = {

@@ -22,6 +22,10 @@ const Circle = ({
   );
 };
 
+Circle.defaultProps = {
+  type: CIRCLE_DEFAULT,
+};
+
 Circle.propTypes = {
   type: PropTypes.oneOf([
     CIRCLE_ACTIVE,
