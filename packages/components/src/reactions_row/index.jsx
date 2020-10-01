@@ -15,7 +15,7 @@ const ReactionsRow = ({
   ...cleanProps
 }) => {
   const { list: sortedReactionTypes, count } = useReactionData(reactions);
-  const reactionTypes = sortedReactionTypes.slice(limit * -1);
+  const reactionTypes = sortedReactionTypes.slice(-limit);
 
   if (withCounter && count === 0) return null;
 
