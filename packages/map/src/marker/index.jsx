@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import { Marker as MapboxMarker, Popup } from 'mapbox-gl';
+
+import { setCursor } from '../utils';
 import { useChildrenBounds, useMapEffect } from '../map/hooks';
 import './index.module.scss';
 
@@ -13,6 +15,8 @@ const Marker = ({
   popupDefaultState,
   popupContent,
   popupOffset,
+
+  onClick,
 }) => {
   const nodeRef = useRef();
   const popupRef = useRef();
@@ -23,6 +27,15 @@ const Marker = ({
   useMapEffect((map) => {
     nodeRef.current = document.createElement('div');
     const marker = new MapboxMarker(nodeRef.current).setLngLat(position).addTo(map);
+
+    const setPointerCursor = () => setCursor(map, 'pointer');
+    const resetCursor = () => setCursor(map, null);
+
+    if (onClick) {
+      marker.on('click', onClick);
+      marker.on('mousemove', setPointerCursor);
+      marker.on('mouseleave', resetCursor);
+    }
 
     let popup;
     if (popupContent) {
@@ -36,12 +49,18 @@ const Marker = ({
 
     return () => {
       if (popup) popup.remove();
+      if (onClick) {
+        marker.off('click', onClick);
+        marker.off('mousemove', setPointerCursor);
+        marker.off('mouseleave', resetCursor);
+      }
+
       marker.remove();
       nodeRef.current = null;
       popupRef.current = null;
       forceRender({});
     };
-  }, [children, popupContent, popupOffset]);
+  }, [children, popupContent, popupOffset, onClick]);
 
   let popupNode;
   if (popupRef.current) {
@@ -65,6 +84,8 @@ Marker.propTypes = {
   popupContent: PropTypes.node,
   popupDefaultState: PropTypes.bool,
   popupOffset: PropTypes.arrayOf(PropTypes.number),
+
+  onClick: PropTypes.func,
 };
 
 export default Marker;

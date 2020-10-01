@@ -1,5 +1,6 @@
 import React from 'react';
 import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import config from '@root/config';
 import data from '../../sample_data';
 
@@ -40,6 +41,7 @@ export const Default = () => {
         position={data.markers[0]}
         {...{ type, popupContent, popupDefaultState }}
         popupOffset={[-5, -30]}
+        onClick={action('Marker clicked')}
       />
     </Map>
   );

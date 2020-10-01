@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useMapEffect } from '../map/hooks';
-import { applyPaint, setCursor, hasLayer } from './utils';
-import { getID } from '../utils';
+import { applyPaint, hasLayer } from './utils';
+import { getID, setCursor } from '../utils';
 
 
 export const useID = () => useRef(getID()).current;
