@@ -18,6 +18,7 @@ export const Default = () => {
       reactions={reactions}
       onClick={action('clicked')}
       withCounter={boolean('withCounter', true)}
+      limit={number('limit', REACTIONS.length)}
     />
   );
 };

@@ -8,12 +8,14 @@ import ReactionIconBubble from '../reaction_icon_bubble';
 
 const ReactionsRow = ({
   withCounter = true,
+  limit = REACTIONS.length,
   reactions,
   onClick,
   className: passedClassName,
   ...cleanProps
 }) => {
-  const { list: reactionsList, count } = useReactionData(reactions);
+  const { list: sortedReactionTypes, count } = useReactionData(reactions);
+  const reactionTypes = sortedReactionTypes.slice(limit * -1);
 
   if (withCounter && count === 0) return null;
 
@@ -35,7 +37,7 @@ const ReactionsRow = ({
 
   return (
     <span {...cleanProps} className={clsx(passedClassName, styles.root, { 'ui-link': onClick })} onClick={onClick}>
-      {reactionsList.map(renderReaction)} {countNode}
+      {reactionTypes.map(renderReaction)} {countNode}
     </span>
   );
 };
@@ -48,6 +50,7 @@ ReactionsRow.propTypes = {
   onClick: PropTypes.func,
   className: PropTypes.string,
   withCounter: PropTypes.bool,
+  limit: PropTypes.number,
 };
 
 export default ReactionsRow;
