@@ -1,13 +1,15 @@
 import React, { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { Marker as MapboxMarker, Popup } from 'mapbox-gl';
 
 import { useChildrenBounds, useMapEffect } from '../map/hooks';
-import './index.module.scss';
+import styles from './index.module.scss';
 
 
 const Marker = ({
+  className,
   children,
   position,
 
@@ -62,8 +64,14 @@ const Marker = ({
 
   let markerNode;
   if (nodeRef.current) {
+    const markerContent = (
+      <div className={clsx(className, { [styles.isInteractive]: onClick })}>
+        {children}
+      </div>
+    );
+
     // Using portal since mapbox moves DOM nodes to body
-    markerNode = createPortal(children, nodeRef.current);
+    markerNode = createPortal(markerContent, nodeRef.current);
   }
 
   return <>{popupNode}{markerNode}</>;
@@ -71,6 +79,7 @@ const Marker = ({
 
 Marker.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   position: PropTypes.arrayOf(PropTypes.number),
 
   popupContent: PropTypes.node,
