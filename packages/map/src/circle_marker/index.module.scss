@@ -1,11 +1,10 @@
 @import "nebenan-ui-kit";
 
 .container {
-  @include block-center;
-
   width: 160px;
   height: 160px;
   padding: 15px;
+  display: block;
 
   text-align: center;
   color: $color-gray-09;

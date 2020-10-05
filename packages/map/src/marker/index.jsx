@@ -3,7 +3,6 @@ import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import { Marker as MapboxMarker, Popup } from 'mapbox-gl';
 
-import { setCursor } from '../utils';
 import { useChildrenBounds, useMapEffect } from '../map/hooks';
 import './index.module.scss';
 
@@ -28,13 +27,8 @@ const Marker = ({
     nodeRef.current = document.createElement('div');
     const marker = new MapboxMarker(nodeRef.current).setLngLat(position).addTo(map);
 
-    const setPointerCursor = () => setCursor(map, 'pointer');
-    const resetCursor = () => setCursor(map, null);
-
     if (onClick) {
-      marker.on('click', onClick);
-      marker.on('mousemove', setPointerCursor);
-      marker.on('mouseleave', resetCursor);
+      nodeRef.current.addEventListener('click', onClick);
     }
 
     let popup;
@@ -50,9 +44,7 @@ const Marker = ({
     return () => {
       if (popup) popup.remove();
       if (onClick) {
-        marker.off('click', onClick);
-        marker.off('mousemove', setPointerCursor);
-        marker.off('mouseleave', resetCursor);
+        nodeRef.current.removeEventListener('click', onClick);
       }
 
       marker.remove();
