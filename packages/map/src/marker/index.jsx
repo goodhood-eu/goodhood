@@ -1,18 +1,23 @@
 import React, { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { Marker as MapboxMarker, Popup } from 'mapbox-gl';
+
 import { useChildrenBounds, useMapEffect } from '../map/hooks';
-import './index.module.scss';
+import styles from './index.module.scss';
 
 
 const Marker = ({
+  className,
   children,
   position,
 
   popupDefaultState,
   popupContent,
   popupOffset,
+
+  onClick,
 }) => {
   const nodeRef = useRef();
   const popupRef = useRef();
@@ -23,6 +28,10 @@ const Marker = ({
   useMapEffect((map) => {
     nodeRef.current = document.createElement('div');
     const marker = new MapboxMarker(nodeRef.current).setLngLat(position).addTo(map);
+
+    if (onClick) {
+      nodeRef.current.addEventListener('click', onClick);
+    }
 
     let popup;
     if (popupContent) {
@@ -36,12 +45,16 @@ const Marker = ({
 
     return () => {
       if (popup) popup.remove();
+      if (onClick) {
+        nodeRef.current.removeEventListener('click', onClick);
+      }
+
       marker.remove();
       nodeRef.current = null;
       popupRef.current = null;
       forceRender({});
     };
-  }, [children, popupContent, popupOffset]);
+  }, [children, popupContent, popupOffset, onClick]);
 
   let popupNode;
   if (popupRef.current) {
@@ -51,8 +64,14 @@ const Marker = ({
 
   let markerNode;
   if (nodeRef.current) {
+    const markerContent = (
+      <div className={clsx(className, { [styles.isInteractive]: onClick })}>
+        {children}
+      </div>
+    );
+
     // Using portal since mapbox moves DOM nodes to body
-    markerNode = createPortal(children, nodeRef.current);
+    markerNode = createPortal(markerContent, nodeRef.current);
   }
 
   return <>{popupNode}{markerNode}</>;
@@ -60,11 +79,14 @@ const Marker = ({
 
 Marker.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   position: PropTypes.arrayOf(PropTypes.number),
 
   popupContent: PropTypes.node,
   popupDefaultState: PropTypes.bool,
   popupOffset: PropTypes.arrayOf(PropTypes.number),
+
+  onClick: PropTypes.func,
 };
 
 export default Marker;
