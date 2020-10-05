@@ -14,7 +14,7 @@ const ROOT_PKG_PATH = path.join(__dirname, '../../');
 
 const getPlugins = (plugins) => ([
   ...plugins.filter((plugin) => (
-    !['HtmlWebpackPlugin', 'VirtualModulePlugin'].includes(plugin.constructor.name)
+    !['HtmlWebpackPlugin'].includes(plugin.constructor.name)
   )),
 ]);
 
@@ -71,7 +71,7 @@ const getConfig = async({ webpackHotMiddlewarePath }) => {
       ...baseConfig,
       name: CONFIG_NAME_SERVER,
       mode: 'development',
-      entry: path.join(__dirname, 'src/prerender.jsx'),
+      entry: path.join(__dirname, 'src/server/index.jsx'),
       output: {
         ...baseConfig.output,
         libraryTarget: 'commonjs',
@@ -90,9 +90,10 @@ const getConfig = async({ webpackHotMiddlewarePath }) => {
       mode: 'development',
       devtool: 'inline-source-map',
       entry: [
-        ...baseConfig.entry.filter((entry) => /@storybook/.test(entry) && !/generated/.test(entry)), // TODO: whitelist vs blacklist?
+        path.join(__dirname, 'src/client/framework.jsx'),
+        ...baseConfig.entry.filter((entry) => /@storybook/.test(entry)),
+        path.join(__dirname, 'src/client/init-stories.jsx'),
         `webpack-hot-middleware/client?path=${webpackHotMiddlewarePath}&name=${CONFIG_NAME_CLIENT}&noInfo=true`,
-        path.join(__dirname, 'src/index.jsx'),
       ],
 
       module: {

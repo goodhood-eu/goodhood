@@ -3,7 +3,7 @@ import { STORY_CHANGED } from '@storybook/core-events';
 import addons from '@storybook/addons';
 import { hydrate } from 'react-dom';
 import { start } from '@storybook/core/client';
-import { getStories, getUrlForStory } from './utils';
+import { getStories, getUrlForStory } from '../utils';
 
 let locationChangeInProgress = false;
 
@@ -30,6 +30,9 @@ const forceServerSideRender = (storyId) => {
 const channel = addons.getChannel();
 channel.on(STORY_CHANGED, forceServerSideRender);
 
-// TODO: replace, will be removed in 7.xx
-api.configure('react', getStories, module);
+export const initStories = () => {
+  // TODO: replace, will be removed in 7.xx
+  api.configure('react', getStories, module);
+}
+
 
