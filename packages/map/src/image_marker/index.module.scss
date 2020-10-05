@@ -2,7 +2,6 @@
 
 .container {
   @include block-round(35px);
-  @include block-center;
   @include background-fill;
 
   z-index: 1;
@@ -15,7 +14,7 @@
 .caption {
   padding: 5px;
   position: absolute;
-  top: 10px;
+  top: 30px;
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;

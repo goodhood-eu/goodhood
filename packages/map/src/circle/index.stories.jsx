@@ -1,5 +1,5 @@
 import React from 'react';
-import { select, withKnobs } from '@storybook/addon-knobs';
+import { number, select, withKnobs } from '@storybook/addon-knobs';
 import config from '@root/config';
 import data from '../../sample_data';
 
@@ -18,12 +18,15 @@ export default { title: 'Circle', component: Circle, decorators: [withKnobs] };
 
 export const Default = () => {
   const type = select('Type', types, types[0]);
+  const radius = number('Radius (in meters)', 100, {
+    range: true, min: 100, max: 5000, step: 10,
+  });
 
   return (
-    <Map credentials={config.map_credentials} defaultZoom={10}>
+    <Map credentials={config.map_credentials} defaultZoom={16}>
       <Circle
         center={data.markers[0]}
-        radius={100}
+        radius={radius}
         type={type}
       />
     </Map>

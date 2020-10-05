@@ -1,65 +1,104 @@
-import { useEffect, useState, useRef, useContext } from 'react';
-import ReactMapboxGl from 'react-mapbox-gl';
+import { useEffect, useState, useContext, useMemo } from 'react';
+import { Map, NavigationControl } from 'mapbox-gl';
+
+import { getMapOptions, getBoundingBox, mergeChildrenBounds } from './utils';
 import { getMedia, media } from '../utils';
 import MapContext from './context';
 
 
-export const useLocked = (locked, lockedMobile) => {
-  const [isLocked, setLocked] = useState(locked);
+export const useMapContext = () => useContext(MapContext);
+
+export const useMapEffect = (fn, deps = []) => {
+  const { map } = useMapContext();
+  deps.push(map);
 
   useEffect(() => {
-    const isMobile = !getMedia(global, media.mediaM);
-    setLocked(isMobile ? lockedMobile : locked);
-  }, [locked, lockedMobile]);
+    if (!map) return;
 
-  return isLocked;
+    const destroy = fn(map);
+
+    let isRemoved = false;
+    const removeHandler = () => { isRemoved = true; };
+    map.on('remove', removeHandler);
+
+    return () => {
+      // removing layers, handlers throws error if map was removed
+      // this checks that map is not removed
+      if (!isRemoved) {
+        map.off('remove', removeHandler);
+        if (destroy) destroy();
+      }
+    };
+  }, deps);
 };
 
-export const useMapboxComponent = (isLocked, noAttribution) => {
-  const [, setState] = useState();
-  const ref = useRef(null);
+export const useMapInstance = (nodeRef, options) => {
+  const [mapInstance, setMap] = useState(false);
+  const { noAttribution, locked, lockedMobile, onLoad } = options;
 
   useEffect(() => {
-    ref.current = ReactMapboxGl({
-      interactive: !isLocked,
-      keyboard: false,
-      doubleClickZoom: false,
-      scrollZoom: false,
-      dragRotate: false,
-      pitchWithRotate: false,
-      apiUrl: null,
-      injectCSS: false,
-      attributionControl: !noAttribution,
+    const mapOptions = getMapOptions({
+      ...options,
+      node: nodeRef.current,
+      isMobile: !getMedia(global, media.mediaM),
     });
 
-    // Force re-render
-    setState({});
-  }, [isLocked, noAttribution]);
+    const map = new Map(mapOptions);
 
-  return ref.current;
+    const handleLoad = () => {
+      if (onLoad) onLoad();
+      // Need to wait for style load before rendering layers
+      setMap(map);
+    };
+
+    map.once('load', handleLoad);
+    if (mapOptions.interactive) map.addControl(new NavigationControl());
+
+    return () => {
+      setMap(null);
+      map.remove();
+    };
+  }, [noAttribution, locked, lockedMobile]);
+
+  return mapInstance;
 };
 
-export const useDefaultCenterAndZoom = (defaultZoom, defaultView) => {
-  const zoomRef = useRef(defaultZoom ? [defaultZoom] : undefined);
-  const centerRef = useRef(defaultView || undefined);
+export const useMapUpdate = (map, {
+  bounds,
+  childrenBounds,
+  animate,
+  fitPadding,
+  defaultView,
+  defaultZoom,
+}) => {
+  const boundsToFit = bounds || childrenBounds;
 
-  return [centerRef.current, zoomRef.current];
+  useEffect(() => {
+    const boundingBox = getBoundingBox(boundsToFit);
+
+    if (map && boundingBox && !defaultView) {
+      const options = { animate, padding: fitPadding };
+      if (defaultZoom) options.maxZoom = defaultZoom;
+
+      map.fitBounds(boundingBox, options);
+    }
+  }, [boundsToFit, map, animate]);
 };
 
-export const useContextValue = () => {
+export const useContextValue = (map) => {
   const [bounds, setBounds] = useState([]);
+  const addBounds = (value) => {
+    setBounds((arr) => [...arr, value]);
+    return () => setBounds((arr) => arr.filter((item) => item !== value));
+  };
 
-  const contextValue = useRef({
-    addBounds: (value) => {
-      setBounds((arr) => [...arr, value]);
-      return () => setBounds((arr) => arr.filter((item) => item !== value));
-    },
-  }).current;
+  const context = useMemo(() => ({ map, addBounds }), [map]);
+  const mergedBounds = useMemo(() => mergeChildrenBounds(bounds), [bounds]);
 
-  return [bounds, contextValue];
+  return [mergedBounds, context];
 };
 
 export const useChildrenBounds = (area) => {
-  const map = useContext(MapContext);
-  useEffect(() => map && map.addBounds(area), [map]);
+  const mapContext = useMapContext();
+  useEffect(() => mapContext && mapContext.addBounds(area), [mapContext]);
 };

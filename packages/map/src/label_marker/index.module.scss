@@ -1,8 +1,8 @@
 @import "nebenan-ui-kit";
 
 .container {
-  @include block-center;
   padding: 0 5px;
+  display: block;
 
   font-size: $font-size-s;
   text-transform: uppercase;
