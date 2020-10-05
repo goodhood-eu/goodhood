@@ -91,8 +91,7 @@ const getConfig = async({ webpackHotMiddlewarePath }) => {
       devtool: 'inline-source-map',
       entry: [
         path.join(__dirname, 'src/client/framework.jsx'),
-        ...baseConfig.entry.filter((entry) => /@storybook/.test(entry)),
-        path.join(__dirname, 'src/client/init-stories.jsx'),
+        ...baseConfig.entry.filter((entry) => !/webpack-hot-middleware/.test(entry)),
         `webpack-hot-middleware/client?path=${webpackHotMiddlewarePath}&name=${CONFIG_NAME_CLIENT}&noInfo=true`,
       ],
 

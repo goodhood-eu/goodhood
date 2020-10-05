@@ -3,7 +3,7 @@ import { STORY_CHANGED } from '@storybook/core-events';
 import addons from '@storybook/addons';
 import { hydrate } from 'react-dom';
 import { start } from '@storybook/core/client';
-import { getStories, getUrlForStory } from '../utils';
+import { getUrlForStory } from '../utils';
 
 let locationChangeInProgress = false;
 
@@ -17,7 +17,7 @@ const render = ({ storyFn: StoryFn }) => {
 const api = start(render);
 require('@root/.storybook/preview-ssr');
 
-const forceServerSideRender = (storyId) => {
+const forceServerSideRender = () => {
   const story = api.clientApi.store().getSelection();
 
   if (story.viewMode !== 'story') return;
@@ -29,10 +29,4 @@ const forceServerSideRender = (storyId) => {
 
 const channel = addons.getChannel();
 channel.on(STORY_CHANGED, forceServerSideRender);
-
-export const initStories = () => {
-  // TODO: replace, will be removed in 7.xx
-  api.configure('react', getStories, module);
-}
-
 
