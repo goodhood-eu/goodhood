@@ -8,9 +8,9 @@ addons.setChannel(mockChannel());
 
 const api = start();
 
-// TODO: will be removed in 7.xx
-//  Check story initialization virtual module code to see how
-//  storybook loads stories.
+// DEPRECATED: will be removed in 7.xx
+//  Still used in storybook internals. Check story initialization virtual module
+//  code to see how storybook loads stories.
 api.configure('react', getStories, module, false);
 
 const render = ({ storyFn: StoryFn }) => renderToString(<StoryFn />);
