@@ -22,7 +22,9 @@ export default ({ query }) => {
 
   if (viewMode !== 'story') return '';
 
-  const story = storyStore.fromId(storyId);
+  const story = storyId === '*'
+    ? storyStore.sortedStories()[0]
+    : storyStore.fromId(storyId);
 
   return story ? render(story) : '';
 };
