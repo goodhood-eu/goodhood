@@ -46,7 +46,7 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "chai": "^4.2.0",
     "clsx": "^1.1.1",
-    "css-loader": "^4.3.0",
+    "css-loader": "^3.6.0",
     "date-fns": "^2.16.1",
     "eslint": "^6.6.0",
     "eslint-config-nebenan": "^2.0.0",
