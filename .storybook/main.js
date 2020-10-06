@@ -65,10 +65,7 @@ module.exports = {
     const babelLoader = config.module.rules[0];
     babelLoader.exclude = [
       ...wrapArray(babelLoader.exclude),
-      // TODO: may not be needed anymore
-      //  /node_modules/
-      path.join(ROOT_PKG_PATH, 'node_modules'),
-      path.join(PKG_PATH, 'node_modules'),
+      /node_modules/
     ];
 
     config.resolve.alias = {
