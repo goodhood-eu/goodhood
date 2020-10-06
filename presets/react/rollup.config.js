@@ -1,3 +1,4 @@
+import fs from 'fs';
 import json from '@rollup/plugin-json';
 import babel from '@rollup/plugin-babel';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
@@ -10,7 +11,6 @@ import path from 'path';
 import sass from 'sass';
 import globImport from 'rollup-plugin-glob-import';
 import camelCase from 'lodash/camelCase';
-import copy from 'rollup-plugin-copy';
 import upperFirst from 'lodash/upperFirst';
 import kebapCase from 'lodash/kebabCase';
 import acornJsx from 'acorn-jsx';
@@ -19,11 +19,13 @@ import commonjs from '@rollup/plugin-commonjs';
 
 const ROOT_PKG_PATH = path.join(__dirname, '../../');
 
-const toFileExtension = (filepath, ext) => {
-  const { dir, name } = path.parse(filepath);
+const move = (source, target) => ({
+  writeBundle() {
+    if (fs.existsSync(target)) return;
 
-  return path.join(dir, `${name}.${ext}`);
-};
+    fs.renameSync(source, target);
+  },
+});
 
 export default (pkg, pkgPath) => ({
   input: 'src/index.jsx',
@@ -57,7 +59,7 @@ export default (pkg, pkgPath) => ({
     }),
     peerDepsExternal(),
     postcss({
-      extract: true,
+      extract: 'styles.css',
       modules: {
         globalModulePaths: [/node_modules/],
         generateScopedName: `${kebapCase(pkg.name)}__[hash:base64:5]`,
@@ -96,15 +98,6 @@ export default (pkg, pkgPath) => ({
       },
     }),
     json(),
-    copy({
-      hook: 'writeBundle',
-      targets: [
-        {
-          src: path.join(pkgPath, toFileExtension(pkg.main, 'css')),
-          dest: pkgPath,
-          rename: 'styles.css',
-        },
-      ],
-    }),
+    move(path.join(pkgPath, 'lib/styles.css'), path.join(pkgPath, 'styles.css')),
   ],
 });
