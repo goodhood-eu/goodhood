@@ -1,9 +1,9 @@
 import React from 'react';
-import { SET_CURRENT_STORY } from '@storybook/core-events';
+import { STORY_CHANGED } from '@storybook/core-events';
 import addons from '@storybook/addons';
 import { hydrate } from 'react-dom';
 import { start } from '@storybook/core/client';
-import { getStories, getUrlForStory } from './utils';
+import { getUrlForStory } from '../utils';
 
 let locationChangeInProgress = false;
 
@@ -14,18 +14,19 @@ const render = ({ storyFn: StoryFn }) => {
   hydrate(<StoryFn />, document.getElementById('root'));
 };
 
-const forceServerSideRender = (story) => {
+const api = start(render);
+require('@root/.storybook/preview-ssr');
+
+const forceServerSideRender = () => {
+  const story = api.clientApi.store().getSelection();
+
   if (story.viewMode !== 'story') return;
 
   locationChangeInProgress = true;
-  window.location.assign(getUrlForStory(story));
-};
-
-const api = start(render);
-
-require('@root/.storybook/preview-ssr');
-
-api.configure(getStories, module, 'react');
+  const urlForStory = getUrlForStory(story);
+  window.location.assign(urlForStory);
+}
 
 const channel = addons.getChannel();
-channel.on(SET_CURRENT_STORY, forceServerSideRender);
+channel.on(STORY_CHANGED, forceServerSideRender);
+
