@@ -33,6 +33,7 @@ const CookiesForm = ({
   if (compactView) {
     alternativeAction = (
       <span
+        data-track="cookie_form-button_primary"
         className="ui-button ui-button-primary"
         onClick={() => handleValidSubmit({ tracking: true })}
       >
