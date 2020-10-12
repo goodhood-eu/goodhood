@@ -7,8 +7,18 @@ import { useEventListener } from 'nebenan-react-hocs/lib/use_event_listener';
 import styles from './index.module.scss';
 import { useLongHover, useLongTouch } from './hooks';
 import { getHoverIndex } from './utils';
-import { REACTION_SIZE_M, REACTIONS } from '../constants';
-import ReactionIconBubble from '../reaction_icon_bubble';
+import { REACTION_BRAVO, REACTION_GOOD_IDEA, REACTION_LOVE, REACTION_THANK_YOU, REACTIONS } from '../constants';
+import { ReactComponent as Bravo } from './images/bravo.svg';
+import { ReactComponent as Thankyou } from './images/thankyou.svg';
+import { ReactComponent as GoodIdea } from './images/good_idea.svg';
+import { ReactComponent as Love } from './images/love.svg';
+
+const ICONS = {
+  [REACTION_THANK_YOU]: Thankyou,
+  [REACTION_GOOD_IDEA]: GoodIdea,
+  [REACTION_BRAVO]: Bravo,
+  [REACTION_LOVE]: Love,
+};
 
 const ReactionSelectionMenu = ({ className, label, strings, onSelect }) => {
   const rootRef = useRef(null);
@@ -57,24 +67,28 @@ const ReactionSelectionMenu = ({ className, label, strings, onSelect }) => {
     invoke(onSelect, reaction);
   };
 
-  const renderReaction = (reaction, index) => (
-    <li
-      key={reaction}
-      className={clsx(styles.reaction, { [styles.hover]: hoverReaction === reaction })}
-      ref={(el) => { itemRefs.current[index] = el; }}
-      onClick={handleSelect.bind(undefined, reaction)}
-    >
-      <span className={styles.reactionLabel}>
-        {strings[reaction]}
-      </span>
-      <ReactionIconBubble
-        colored
-        size={REACTION_SIZE_M}
-        className={styles.emoji}
-        reaction={reaction}
-      />
-    </li>
-  );
+  const renderReaction = (reaction, index) => {
+    const Icon = ICONS[reaction];
+
+    return (
+      <li
+        key={reaction}
+        className={clsx(styles.reaction, { [styles.hover]: hoverReaction === reaction })}
+        ref={(el) => {
+          itemRefs.current[index] = el;
+        }}
+        onClick={handleSelect.bind(undefined, reaction)}
+      >
+        <span className={styles.reactionLabel}>
+          {strings[reaction]}
+        </span>
+        <Icon
+          className={styles.emoji}
+          reaction={reaction}
+        />
+      </li>
+    );
+  };
 
   return (
     <aside

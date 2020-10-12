@@ -1,14 +1,12 @@
 import React from 'react';
-import { boolean, number, select, withKnobs } from '@storybook/addon-knobs';
+import { select, withKnobs } from '@storybook/addon-knobs';
 import ReactionIcon from './index';
-import { REACTION_SIZE_M, REACTIONS } from '../constants';
+import { REACTIONS } from '../constants';
 
 export default { title: 'ReactionIcon', component: ReactionIcon, decorators: [withKnobs] };
 
 export const Default = () => {
   const reaction = select('reaction', REACTIONS, REACTIONS[0]);
-  const colored = boolean('with color', false);
-  const size = number('size', REACTION_SIZE_M);
 
-  return <ReactionIcon reaction={reaction} colored={colored} size={size} />;
+  return <ReactionIcon reaction={reaction} />;
 };

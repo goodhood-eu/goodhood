@@ -1,46 +1,28 @@
 import React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import styles from './index.module.scss';
-import ReactionIcon from '../reaction_icon';
-import { REACTION_SIZE_M, REACTION_SIZE_S } from '../constants';
+import { REACTION_BRAVO, REACTION_GOOD_IDEA, REACTION_LOVE, REACTION_THANK_YOU } from '../constants';
+import { ReactComponent as Bravo } from './images/bravo.svg';
+import { ReactComponent as Thankyou } from './images/thankyou.svg';
+import { ReactComponent as GoodIdea } from './images/good_idea.svg';
+import { ReactComponent as Love } from './images/love.svg';
 
-const getPaddingForSize = (size) => {
-  if (size <= REACTION_SIZE_S) return 4;
-  if (size <= REACTION_SIZE_M) return 8;
-  return 9;
+const ICONS = {
+  [REACTION_THANK_YOU]: Thankyou,
+  [REACTION_GOOD_IDEA]: GoodIdea,
+  [REACTION_BRAVO]: Bravo,
+  [REACTION_LOVE]: Love,
 };
 
 const ReactionIconBubble = ({
-  className: passedClassName,
   reaction,
-  size,
-  colored,
-  filled = false,
+  ...cleanProps
 }) => {
-  const className = clsx(passedClassName, styles.root, styles[`type-${reaction}`], {
-    [styles.isFilled]: filled,
-    [styles.isColored]: colored,
-  });
-
-  return (
-    <span className={className} style={{ padding: getPaddingForSize(size) }}>
-      <ReactionIcon
-        reaction={reaction}
-        className={styles.icon}
-        size={size}
-        colored={filled ? false : colored}
-      />
-    </span>
-  );
+  const Icon = ICONS[reaction];
+  return <Icon {...cleanProps} />;
 };
 
 ReactionIconBubble.propTypes = {
-  className: PropTypes.string,
   reaction: PropTypes.string.isRequired,
-  size: PropTypes.number,
-  colored: PropTypes.bool,
-  filled: PropTypes.bool,
 };
 
 export default ReactionIconBubble;
