@@ -1,58 +1,92 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
-import { MapContext } from 'react-mapbox-gl';
+import clsx from 'clsx';
 import { Marker as MapboxMarker, Popup } from 'mapbox-gl';
-import { useChildrenBounds } from '../map/hooks';
-import './index.module.scss';
+
+import { useChildrenBounds, useMapEffect } from '../map/hooks';
+import styles from './index.module.scss';
 
 
 const Marker = ({
+  className,
   children,
   position,
 
   popupDefaultState,
   popupContent,
   popupOffset,
-  ...rest
+
+  onClick,
 }) => {
   const nodeRef = useRef();
   const popupRef = useRef();
-  const map = useContext(MapContext);
+  const [, forceRender] = useState();
+
   useChildrenBounds([position]);
 
-  useEffect(() => {
-    if (!map) return;
-
+  useMapEffect((map) => {
+    nodeRef.current = document.createElement('div');
     const marker = new MapboxMarker(nodeRef.current).setLngLat(position).addTo(map);
+
+    if (onClick) {
+      nodeRef.current.addEventListener('click', onClick);
+    }
 
     let popup;
     if (popupContent) {
+      popupRef.current = document.createElement('div');
       popup = new Popup({ offset: popupOffset }).setDOMContent(popupRef.current);
       marker.setPopup(popup);
       if (popupDefaultState) marker.togglePopup();
     }
 
+    forceRender({});
+
     return () => {
       if (popup) popup.remove();
-      marker.remove();
-    };
-  }, [map, children, popupContent, popupOffset]);
+      if (onClick) {
+        nodeRef.current.removeEventListener('click', onClick);
+      }
 
-  return (
-    <>
-      {popupContent && <div ref={popupRef}>{popupContent}</div>}
-      <div {...rest} ref={nodeRef}>{children}</div>
-    </>
-  );
+      marker.remove();
+      nodeRef.current = null;
+      popupRef.current = null;
+      forceRender({});
+    };
+  }, [children, popupContent, popupOffset, onClick]);
+
+  let popupNode;
+  if (popupRef.current) {
+    // Using portal since mapbox moves DOM nodes to body
+    popupNode = createPortal(popupContent, popupRef.current);
+  }
+
+  let markerNode;
+  if (nodeRef.current) {
+    const markerContent = (
+      <div className={clsx(className, { [styles.isInteractive]: onClick })}>
+        {children}
+      </div>
+    );
+
+    // Using portal since mapbox moves DOM nodes to body
+    markerNode = createPortal(markerContent, nodeRef.current);
+  }
+
+  return <>{popupNode}{markerNode}</>;
 };
 
 Marker.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   position: PropTypes.arrayOf(PropTypes.number),
 
   popupContent: PropTypes.node,
   popupDefaultState: PropTypes.bool,
   popupOffset: PropTypes.arrayOf(PropTypes.number),
+
+  onClick: PropTypes.func,
 };
 
 export default Marker;
