@@ -25,8 +25,7 @@ const forceServerSideRender = () => {
   locationChangeInProgress = true;
   const urlForStory = getUrlForStory(story);
   window.location.assign(urlForStory);
-}
+};
 
 const channel = addons.getChannel();
 channel.on(STORY_CHANGED, forceServerSideRender);
-

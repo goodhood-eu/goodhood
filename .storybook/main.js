@@ -65,7 +65,7 @@ module.exports = {
     const babelLoader = config.module.rules[0];
     babelLoader.exclude = [
       ...wrapArray(babelLoader.exclude),
-      /node_modules/
+      /node_modules/,
     ];
 
     config.resolve.alias = {

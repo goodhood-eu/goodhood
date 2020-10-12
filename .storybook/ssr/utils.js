@@ -57,7 +57,7 @@ const matchWebpackTest = (file, test) => (
 const containsLoader = (loaders, searchLoader) => (
   loaders.includes(searchLoader)
   || loaders.includes(require.resolve(searchLoader))
-)
+);
 
 const patchWebpackRules = (rules, shouldMatchAnyFile, shouldHaveLoader, mapMatch) => (
   rules.map((rule) => {
