@@ -10,6 +10,6 @@ export default {
   plugins: [
     ...config.plugins,
     url(),
-    svgr({ svgo: false }),
+    svgr({ svgo: true }),
   ],
 };

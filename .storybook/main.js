@@ -96,7 +96,7 @@ module.exports = {
         {
           loader: '@svgr/webpack',
           options: {
-            svgo: false,
+            svgo: true,
           },
         },
         'url-loader',
