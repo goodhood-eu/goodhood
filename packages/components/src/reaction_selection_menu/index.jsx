@@ -5,8 +5,7 @@ import { invoke } from 'nebenan-helpers/lib/utils';
 import { eventCoordinates } from 'nebenan-helpers/lib/dom';
 import { useEventListener } from 'nebenan-react-hocs/lib/use_event_listener';
 import styles from './index.module.scss';
-import { useLongHover, useLongTouch } from './hooks';
-import { getHoverIndex } from './utils';
+import { useHoverIndexCalculator, useLongHover, useLongTouch } from './hooks';
 import { REACTION_BRAVO, REACTION_GOOD_IDEA, REACTION_LOVE, REACTION_THANK_YOU, REACTIONS } from '../constants';
 import { ReactComponent as Bravo } from './images/bravo.svg';
 import { ReactComponent as Thankyou } from './images/thankyou.svg';
@@ -25,6 +24,7 @@ const ReactionSelectionMenu = ({ className, label, strings, onSelect }) => {
   const [isActive, setIsActive] = useState(false);
   const [hoverReaction, setHoverReaction] = useState(null);
   const itemRefs = useRef([]);
+  const getHoverIndex = useHoverIndexCalculator(itemRefs);
 
   const { active: activeTouchEvents, passive: touchEvents } = useLongTouch({
     onStart: useCallback(() => {

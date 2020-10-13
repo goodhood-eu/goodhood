@@ -1,5 +1,3 @@
-import { position, screenPosition } from 'nebenan-helpers/lib/dom';
-
 const VERTICAL_THRESHOLD = 30;
 export const getItemIndexForPosition = (positions, { top, height }, { x, y }) => {
   const isAboveElement = y < top - VERTICAL_THRESHOLD;
@@ -17,11 +15,3 @@ export const getItemIndexForPosition = (positions, { top, height }, { x, y }) =>
 
   return touchedIndex;
 };
-
-export const getHoverIndex = (items, pointingTo) => (
-  getItemIndexForPosition(
-    items.map((item) => position(item).left),
-    screenPosition(items[0]),
-    pointingTo,
-  )
-);
