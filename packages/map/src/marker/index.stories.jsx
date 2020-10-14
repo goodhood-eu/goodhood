@@ -27,6 +27,7 @@ export const JSXPopup = () => {
   return (
     <Map credentials={config.map_credentials} defaultZoom={10}>
       <Marker
+        className="markerClass"
         position={data.markers[0]}
         popupContent={<Popup />}
         popupDefaultState={visible}

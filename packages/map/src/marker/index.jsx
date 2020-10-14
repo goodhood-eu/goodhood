@@ -27,6 +27,8 @@ const Marker = ({
 
   useMapEffect((map) => {
     nodeRef.current = document.createElement('div');
+    nodeRef.current.className = clsx(className, { [styles.isInteractive]: onClick });
+
     const marker = new MapboxMarker(nodeRef.current).setLngLat(position).addTo(map);
 
     if (onClick) {
@@ -54,7 +56,7 @@ const Marker = ({
       popupRef.current = null;
       forceRender({});
     };
-  }, [children, popupContent, popupOffset, onClick]);
+  }, [children, popupContent, popupOffset, className, onClick]);
 
   let popupNode;
   if (popupRef.current) {
@@ -64,14 +66,8 @@ const Marker = ({
 
   let markerNode;
   if (nodeRef.current) {
-    const markerContent = (
-      <div className={clsx(className, { [styles.isInteractive]: onClick })}>
-        {children}
-      </div>
-    );
-
     // Using portal since mapbox moves DOM nodes to body
-    markerNode = createPortal(markerContent, nodeRef.current);
+    markerNode = createPortal(children, nodeRef.current);
   }
 
   return <>{popupNode}{markerNode}</>;
