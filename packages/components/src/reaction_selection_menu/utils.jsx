@@ -15,3 +15,10 @@ export const getItemIndexForPosition = (positions, { top, height }, { x, y }) =>
 
   return touchedIndex;
 };
+
+export const cancelTimer = (ref) => {
+  if (!ref.current) return;
+
+  clearTimeout(ref.current);
+  ref.current = null;
+};
