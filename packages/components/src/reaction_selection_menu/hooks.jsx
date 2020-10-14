@@ -2,7 +2,7 @@ import { useCallback, useRef } from 'react';
 import useMounted from 'nebenan-react-hocs/lib/use_mounted';
 import { position, screenPosition } from 'nebenan-helpers/lib/dom';
 import { HOVER_ENTER_TIMEOUT, HOVER_LEAVE_TIMEOUT, LONG_TOUCH_DURATION } from './constants';
-import { getItemIndexForPosition } from './utils';
+import { buildClickEvent, getItemIndexForPosition } from './utils';
 
 export const useLongTouch = ({ onStart, onEnd, onMove }) => {
   const touchStart = useRef(null);
@@ -43,7 +43,9 @@ export const useLongTouch = ({ onStart, onEnd, onMove }) => {
 
   const handleEnd = useCallback(() => {
     const wasShortTap = touchStart.current && !active.current;
-    if (wasShortTap) touchStart.current.targetElement.click();
+    if (wasShortTap) {
+      touchStart.current.targetElement.dispatchEvent(buildClickEvent());
+    }
 
     cancelTimer(touchStart);
     if (active.current) onEnd();
