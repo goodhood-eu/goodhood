@@ -1,4 +1,4 @@
-import { useCallback, useRef, useMemo } from 'react';
+import { useCallback, useRef } from 'react';
 import useMounted from 'nebenan-react-hocs/lib/use_mounted';
 import { position, screenPosition } from 'nebenan-helpers/lib/dom';
 import { HOVER_ENTER_TIMEOUT, HOVER_LEAVE_TIMEOUT, LONG_TOUCH_DURATION } from './constants';
@@ -116,12 +116,11 @@ export const useHoverIndexCalculator = (itemRefs) => {
 
     if (!items.length) return null;
 
-    items
-      .filter((item) => !positionCache.has(item))
-      .forEach((item) => positionCache.set(item, position(item).left));
-
     const positionOnScreen = screenPosition(items[0]);
-    const positions = items.map((item) => positionCache.get(item));
+    const positions = items.map((item) => {
+      if (!positionCache.has(item)) positionCache.set(item, position(item).left);
+      return positionCache.get(item);
+    });
 
     return getItemIndexForPosition(positions, positionOnScreen, pointingTo);
   }, []);
