@@ -22,7 +22,7 @@ const ReactionIconBubble = ({
 };
 
 ReactionIconBubble.propTypes = {
-  reaction: PropTypes.string.isRequired,
+  reaction: PropTypes.oneOf(Object.keys(ICONS)),
 };
 
 export default ReactionIconBubble;
