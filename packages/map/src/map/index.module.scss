@@ -6,7 +6,8 @@
   // overrides default mapbox font
   font-family: $font-family;
 
-  :global(.mapboxgl-ctrl-top-right) {
+  :global(.mapboxgl-ctrl-top-right),
+  :global(.mapboxgl-ctrl-bottom-right) {
     // overrides mapbox z-index
     z-index: 1;
   }
