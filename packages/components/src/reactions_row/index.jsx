@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import styles from './index.module.scss';
-import { REACTION_SIZE_S, REACTIONS } from '../constants';
+import { REACTIONS } from '../constants';
 import { useReactionData } from './hooks';
 import ReactionIconBubble from '../reaction_icon_bubble';
 
@@ -21,9 +21,6 @@ const ReactionsRow = ({
 
   const renderReaction = (reaction) => (
     <ReactionIconBubble
-      size={REACTION_SIZE_S}
-      colored
-      filled
       reaction={reaction}
       key={reaction}
       className={styles.icon}
