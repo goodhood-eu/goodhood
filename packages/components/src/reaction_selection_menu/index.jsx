@@ -42,7 +42,7 @@ const ReactionSelectionMenu = ({ className, label, strings, onSelect }) => {
 
       if (!items.filter(Boolean).length) return;
 
-      const selectedIndex = getHoverIndex(items, { x: clientX, y: clientY });
+      const selectedIndex = getHoverIndex({ x: clientX, y: clientY });
       setHoverReaction(REACTIONS[selectedIndex]);
     }, [itemRefs]),
   });

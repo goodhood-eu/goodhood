@@ -107,14 +107,22 @@ export const useLongHover = ({ onStart, onEnd }) => {
   return { events, reset: handleReset };
 };
 
-export const useHoverIndexCalculator = (itemRefs) => (
-  useMemo(() => {
+export const useHoverIndexCalculator = (itemRefs) => {
+  const positionCacheRef = useRef(new WeakMap());
+
+  return useCallback((pointingTo) => {
     const items = itemRefs.current;
+    const positionCache = positionCacheRef.current;
+
     if (!items.length) return null;
 
-    const positions = items.map((item) => position(item).left);
-    const positionOnScreen = screenPosition(items[0]);
+    items
+      .filter((item) => !positionCache.has(item))
+      .forEach((item) => positionCache.set(item, position(item).left));
 
-    return getItemIndexForPosition.bind(undefined, positions, positionOnScreen);
-  }, [itemRefs])
-);
+    const positionOnScreen = screenPosition(items[0]);
+    const positions = items.map((item) => positionCache.get(item));
+
+    return getItemIndexForPosition(positions, positionOnScreen, pointingTo);
+  }, []);
+};
