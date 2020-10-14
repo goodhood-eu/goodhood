@@ -14,12 +14,23 @@ const STRINGS = {
   [REACTION_LOVE]: 'Love',
 };
 
-export const Default = () => (
-  <div className={styles.container}>
-    <ReactionSelectionMenu
-      strings={STRINGS}
-      label={<div className="ui-button ui-button-narrow ui-button-small">hover / tap here</div>}
-      onSelect={action('Reaction selected')}
-    />
-  </div>
-);
+export const Default = () => {
+  const label = (
+    <div
+      onClick={action('label click')}
+      className="ui-button ui-button-narrow ui-button-small"
+    >
+      hover / tap here
+    </div>
+  );
+
+  return (
+    <div className={styles.container}>
+      <ReactionSelectionMenu
+        strings={STRINGS}
+        label={label}
+        onSelect={action('Reaction selected')}
+      />
+    </div>
+  );
+};

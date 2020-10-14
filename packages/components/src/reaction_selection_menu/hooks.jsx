@@ -5,9 +5,16 @@ import { HOVER_ENTER_TIMEOUT, HOVER_LEAVE_TIMEOUT, LONG_TOUCH_DURATION } from '.
 import { getItemIndexForPosition } from './utils';
 
 export const useLongTouch = ({ onStart, onEnd, onMove }) => {
-  const timer = useRef(null);
+  const touchStart = useRef(null);
   const active = useRef(false);
   const isMounted = useMounted();
+
+  const cancelTimer = () => {
+    if (!touchStart.current) return;
+
+    clearTimeout(touchStart.current.timeout);
+    touchStart.current = null;
+  };
 
   const handleStart = useCallback((event) => {
     const handleTimer = () => {
@@ -17,10 +24,15 @@ export const useLongTouch = ({ onStart, onEnd, onMove }) => {
       onStart();
     };
 
-    // prevent text selection
+    // 1. prevent text selection
+    // 2. Side-effect: Causes mouse events on children (especially label) to not fire.
+    //    That is why we need to handle short taps ourself.
     event.preventDefault();
 
-    timer.current = setTimeout(handleTimer, LONG_TOUCH_DURATION);
+    touchStart.current = {
+      timeout: setTimeout(handleTimer, LONG_TOUCH_DURATION),
+      targetElement: event.target,
+    };
   }, [onStart]);
 
   const handleMove = useCallback((event) => {
@@ -30,13 +42,16 @@ export const useLongTouch = ({ onStart, onEnd, onMove }) => {
   }, [onMove]);
 
   const handleEnd = useCallback(() => {
-    if (timer.current) clearTimeout(timer.current);
+    const wasShortTap = touchStart.current && !active.current;
+    if (wasShortTap) touchStart.current.targetElement.click();
+
+    cancelTimer(touchStart);
     if (active.current) onEnd();
     active.current = false;
   }, [onEnd]);
 
   const handleCancel = useCallback(() => {
-    if (timer.current) clearTimeout(timer.current);
+    cancelTimer(touchStart);
     active.current = false;
   }, []);
 
