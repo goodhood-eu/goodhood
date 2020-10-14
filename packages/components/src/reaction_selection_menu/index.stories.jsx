@@ -16,9 +16,7 @@ const STRINGS = {
 
 export const Default = () => {
   const label = (
-    <div
-      className="ui-button ui-button-narrow ui-button-small"
-    >
+    <div className="ui-button ui-button-narrow ui-button-small">
       hover / tap here
     </div>
   );
