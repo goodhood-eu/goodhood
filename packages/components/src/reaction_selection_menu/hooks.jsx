@@ -1,10 +1,11 @@
 import { useCallback, useRef } from 'react';
 import useMounted from 'nebenan-react-hocs/lib/use_mounted';
 import { position, screenPosition } from 'nebenan-helpers/lib/dom';
+import { invoke } from 'nebenan-helpers/lib/utils';
 import { HOVER_ENTER_TIMEOUT, HOVER_LEAVE_TIMEOUT, LONG_TOUCH_DURATION } from './constants';
-import { buildClickEvent, getItemIndexForPosition } from './utils';
+import { getItemIndexForPosition } from './utils';
 
-export const useLongTouch = ({ onStart, onEnd, onMove }) => {
+export const useLongTouch = ({ onShortTap, onStart, onEnd, onMove }) => {
   const touchStart = useRef(null);
   const active = useRef(false);
   const isMounted = useMounted();
@@ -12,7 +13,7 @@ export const useLongTouch = ({ onStart, onEnd, onMove }) => {
   const cancelTimer = () => {
     if (!touchStart.current) return;
 
-    clearTimeout(touchStart.current.timeout);
+    clearTimeout(touchStart.current);
     touchStart.current = null;
   };
 
@@ -29,10 +30,7 @@ export const useLongTouch = ({ onStart, onEnd, onMove }) => {
     //    That is why we need to handle short taps ourself.
     event.preventDefault();
 
-    touchStart.current = {
-      timeout: setTimeout(handleTimer, LONG_TOUCH_DURATION),
-      targetElement: event.target,
-    };
+    touchStart.current = setTimeout(handleTimer, LONG_TOUCH_DURATION);
   }, [onStart]);
 
   const handleMove = useCallback((event) => {
@@ -43,9 +41,7 @@ export const useLongTouch = ({ onStart, onEnd, onMove }) => {
 
   const handleEnd = useCallback(() => {
     const wasShortTap = touchStart.current && !active.current;
-    if (wasShortTap) {
-      touchStart.current.targetElement.dispatchEvent(buildClickEvent());
-    }
+    if (wasShortTap) invoke(onShortTap);
 
     cancelTimer(touchStart);
     if (active.current) onEnd();

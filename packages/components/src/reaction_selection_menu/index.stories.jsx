@@ -17,7 +17,6 @@ const STRINGS = {
 export const Default = () => {
   const label = (
     <div
-      onClick={action('label click')}
       className="ui-button ui-button-narrow ui-button-small"
     >
       hover / tap here
@@ -29,6 +28,7 @@ export const Default = () => {
       <ReactionSelectionMenu
         strings={STRINGS}
         label={label}
+        onClick={action('Label click')}
         onSelect={action('Reaction selected')}
       />
     </div>

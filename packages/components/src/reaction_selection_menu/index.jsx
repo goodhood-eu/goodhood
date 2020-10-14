@@ -19,7 +19,7 @@ const ICONS = {
   [REACTION_LOVE]: Love,
 };
 
-const ReactionSelectionMenu = ({ className, label, strings, onSelect }) => {
+const ReactionSelectionMenu = ({ className, label, strings, onSelect, onClick }) => {
   const rootRef = useRef(null);
   const [isActive, setIsActive] = useState(false);
   const [hoverReaction, setHoverReaction] = useState(null);
@@ -27,6 +27,7 @@ const ReactionSelectionMenu = ({ className, label, strings, onSelect }) => {
   const getHoverIndex = useHoverIndexCalculator(itemRefs);
 
   const { active: activeTouchEvents, passive: touchEvents } = useLongTouch({
+    onShortTap: onClick,
     onStart: useCallback(() => {
       setIsActive(true);
     }, []),
@@ -97,7 +98,7 @@ const ReactionSelectionMenu = ({ className, label, strings, onSelect }) => {
       {...touchEvents}
       {...mouseEvents}
     >
-      <header>{label}</header>
+      <header onClick={onClick}>{label}</header>
       {isActive && (
         <ul className={styles.list}>{REACTIONS.map(renderReaction)}</ul>
       )}
@@ -108,6 +109,7 @@ const ReactionSelectionMenu = ({ className, label, strings, onSelect }) => {
 ReactionSelectionMenu.propTypes = {
   className: PropTypes.string,
   label: PropTypes.node.isRequired,
+  onClick: PropTypes.func,
   onSelect: PropTypes.func,
   strings: PropTypes.object.isRequired,
 };

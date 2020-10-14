@@ -15,11 +15,3 @@ export const getItemIndexForPosition = (positions, { top, height }, { x, y }) =>
 
   return touchedIndex;
 };
-
-export const buildClickEvent = () => (
-  new MouseEvent('click', {
-    bubbles: true,
-    cancelable: true,
-    view: window,
-  })
-);
