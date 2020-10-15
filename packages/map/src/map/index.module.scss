@@ -11,4 +11,8 @@
     // overrides mapbox z-index
     z-index: 1;
   }
+
+  :global(.mapboxgl-canvas):focus {
+    outline: none;
+  }
 }
