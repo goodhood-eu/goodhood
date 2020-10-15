@@ -65,7 +65,7 @@ module.exports = {
     const babelLoader = config.module.rules[0];
     babelLoader.exclude = [
       ...wrapArray(babelLoader.exclude),
-      /node_modules/
+      /node_modules/,
     ];
 
     config.resolve.alias = {
@@ -88,6 +88,19 @@ module.exports = {
       test: /\.module\.scss$/,
       sideEffects: false,
       use: getStyleLoaders({ modules: true }),
+    });
+
+    config.module.rules.unshift({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            svgo: true,
+          },
+        },
+        'url-loader',
+      ],
     });
 
     return config;

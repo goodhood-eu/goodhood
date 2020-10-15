@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>02 Icons/Reactions/Good Idea/20x20</title>
+    <g id="02-Icons/Reactions/Good-Idea/20x20" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g stroke="#FFFFFF">
+            <circle id="Oval" fill="#ED9D2D" fill-rule="nonzero" cx="10" cy="10" r="10.5"></circle>
+            <path d="M11.29,14.3077 C11.2968014,13.7876123 11.3832027,13.2716326 11.5462,12.7777 C12.9209263,12.0960498 13.790823,10.6944442 13.7915,9.16 C13.8064327,8.13660789 13.4141166,7.14921835 12.7008948,6.41514134 C11.987673,5.68106434 11.0119975,5.26046101 9.9886,5.2459 C8.96438025,5.25935804 7.98752641,5.6794439 7.2732406,6.41361214 C6.5589548,7.14778038 6.16584004,8.13579675 6.1805,9.16 C6.16867762,10.6747924 7.03070164,12.0608209 8.3946,12.72 C8.58126829,13.228645 8.67837183,13.7657934 8.6816,14.3076" id="Path" stroke-width="0.25" fill="#FFFFFF" fill-rule="nonzero"></path>
+            <line x1="10" y1="2" x2="10" y2="2.7752" id="Path" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="6.3925" y1="2.9653" x2="6.775" y2="3.6395" id="Path" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="3.7312" y1="5.585" x2="4.3966" y2="5.9827" id="Path" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="13.6075" y1="2.9653" x2="13.225" y2="3.6395" id="Path" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="16.2688" y1="5.585" x2="15.6034" y2="5.9827" id="Path" stroke-linecap="round" stroke-linejoin="round"></line>
+            <path d="M11.521,15.863 C11.8440271,16.2577359 11.8429801,16.8257576 11.5185,17.2193 L11.0777,17.2246 C10.9143313,17.6889403 10.475691,17.9996105 9.98345,17.9996105 C9.49120897,17.9996105 9.05256866,17.6889403 8.8892,17.2246 L8.4535,17.2193 C8.12672394,16.8258927 8.12781804,16.2551516 8.4561,15.863 C8.2393024,15.6691168 8.1153817,15.3920469 8.1153817,15.1012 C8.1153817,14.8103531 8.2393024,14.5332832 8.4561,14.3394 L11.521,14.3394 C11.529,14.3281 12.36,14.9015 11.521,15.863 Z" id="Path" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+    </g>
+</svg>

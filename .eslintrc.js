@@ -10,8 +10,7 @@ const getPackages = () => (
     .flat()
 );
 
-const getOverridesForPackage = (pkg) => ({
-  files: [`${pkg}/**/*`],
+const getPackageOptions = (pkg) => ({
   rules: {
     "import/no-extraneous-dependencies": ["error",
       {"packageDir": [ROOT_PKG_PATH, path.resolve(pkg)]}
@@ -27,6 +26,11 @@ const getOverridesForPackage = (pkg) => ({
       },
     }
   },
+})
+
+const getOverridesForPackage = (pkg) => ({
+  files: [`${pkg}/**/*`],
+  ...getPackageOptions(pkg),
 });
 
 module.exports = {
@@ -42,7 +46,13 @@ module.exports = {
         "no-unused-expressions": "off"
       }
     },
-    ...getPackages().map(getOverridesForPackage)
+    {
+      files: [".storybook/**/*"],
+
+      // Use react package template as baseline for @-imports in storybook
+      ...getPackageOptions("package-templates/react"),
+    },
+    ...getPackages().map(getOverridesForPackage),
   ],
   "rules": {
     "import/extensions": ["error", "never", {

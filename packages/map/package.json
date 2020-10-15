@@ -24,7 +24,6 @@
     "test": "../../scripts/run-tests"
   },
   "devDependencies": {
-    "@rollup/plugin-url": "^5.0.1",
     "@turf/circle": "^6.0.1",
     "@turf/transform-rotate": "^5.1.5"
   },

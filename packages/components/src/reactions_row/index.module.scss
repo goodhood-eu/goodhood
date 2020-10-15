@@ -1,0 +1,20 @@
+@import "nebenan-ui-kit";
+
+.root {
+  display: inline-flex;
+  align-items: center;
+
+  font-weight: $font-weight-l;
+}
+
+.icon {
+  margin-left: -4px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+.count {
+  margin-left: 5px;
+}
