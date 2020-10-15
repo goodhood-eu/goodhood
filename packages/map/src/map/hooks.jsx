@@ -52,7 +52,7 @@ export const useMapInstance = (nodeRef, options) => {
     };
 
     map.once('load', handleLoad);
-    if (mapOptions.interactive) map.addControl(new NavigationControl());
+    if (mapOptions.interactive) map.addControl(new NavigationControl({ showCompass: false }));
 
     return () => {
       setMap(null);
