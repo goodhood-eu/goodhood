@@ -47,7 +47,9 @@
     "smartcontent": "^3.8.1",
     "string-validate": "^3.3.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@popperjs/core": "^2.5.3"
+  },
   "peerDependencies": {
     "nebenan-components": "^9.3.2",
     "nebenan-form": "^8.5.2",
