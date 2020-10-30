@@ -3,12 +3,13 @@ import useMounted from 'nebenan-react-hocs/lib/use_mounted';
 import { position, screenPosition } from 'nebenan-helpers/lib/dom';
 import { invoke } from 'nebenan-helpers/lib/utils';
 import { HOVER_ENTER_TIMEOUT, HOVER_LEAVE_TIMEOUT, LONG_TOUCH_DURATION } from './constants';
-import { cancelTimer, getItemIndexForPosition } from './utils';
+import { cancelTimer, getItemIndexForPosition, touchCoordinates, isInsideTapBounds } from './utils';
 
 export const useLongTouch = ({ onShortTap, onStart, onEnd, onMove }) => {
   const timer = useRef(null);
   const active = useRef(false);
   const isMounted = useMounted();
+  const startCoordinates = useRef(null);
 
   const handleStart = useCallback((event) => {
     const handleTimer = () => {
@@ -24,12 +25,15 @@ export const useLongTouch = ({ onShortTap, onStart, onEnd, onMove }) => {
     event.preventDefault();
 
     timer.current = setTimeout(handleTimer, LONG_TOUCH_DURATION);
+    startCoordinates.current = touchCoordinates(event);
   }, [onStart]);
 
   const handleMove = useCallback((event) => {
-    if (!active.current) return;
-
-    onMove(event);
+    if (active.current) {
+      onMove(event);
+    } else if (!isInsideTapBounds(startCoordinates.current, touchCoordinates(event))) {
+      cancelTimer(timer);
+    }
   }, [onMove]);
 
   const handleEnd = useCallback(() => {
