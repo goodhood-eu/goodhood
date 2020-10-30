@@ -1,10 +1,36 @@
 import { assert } from 'chai';
-import { getItemIndexForPosition } from './utils';
+import { getItemIndexForPosition, isInsideTapBounds } from './utils';
 
 const POSITIONS = [0, 20, 40, 60];
 const BAR_POSITION = { top: 50, height: 30 };
 
 describe('ui/reaction_selection_menu/utils', () => {
+  describe('isInsideTapBounds', () => {
+    it('true if horizontally and vertically inside bounds', () => {
+      assert.isTrue(isInsideTapBounds(
+        { clientX: 0, clientY: 0 },
+        { clientX: 20, clientY: 20 },
+        21,
+      ));
+    });
+
+    it('false if horizontally outside bounds', () => {
+      assert.isFalse(isInsideTapBounds(
+        { clientX: 0, clientY: 0 },
+        { clientX: 20, clientY: 22 },
+        21,
+      ));
+    });
+
+    it('false if vertically outside bounds', () => {
+      assert.isFalse(isInsideTapBounds(
+        { clientX: 0, clientY: 0 },
+        { clientX: 22, clientY: 20 },
+        21,
+      ));
+    });
+  });
+
   describe('getItemIndexForPosition', () => {
     it('null if above items', () => {
       assert.isNull(

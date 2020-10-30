@@ -1,3 +1,6 @@
+import { eventCoordinates } from 'nebenan-helpers/lib/dom';
+import { TAP_THRESHOLD } from './constants';
+
 const VERTICAL_THRESHOLD = 30;
 export const getItemIndexForPosition = (positions, { top, height }, { x, y }) => {
   const isAboveElement = y < top - VERTICAL_THRESHOLD;
@@ -22,3 +25,14 @@ export const cancelTimer = (ref) => {
   clearTimeout(ref.current);
   ref.current = null;
 };
+
+export const isInsideTapBounds = (start, end, threshold = TAP_THRESHOLD) => {
+  const diffX = Math.abs(start.clientX - end.clientX);
+  const diffY = Math.abs(start.clientY - end.clientY);
+
+  return diffX <= threshold && diffY <= threshold;
+};
+
+export const touchCoordinates = (event) => (
+  eventCoordinates(event, 'clientX', 'clientY')
+);
