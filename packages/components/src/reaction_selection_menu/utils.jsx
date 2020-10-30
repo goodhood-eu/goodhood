@@ -26,11 +26,11 @@ export const cancelTimer = (ref) => {
   ref.current = null;
 };
 
-export const isInsideTapBounds = (start, end) => {
+export const isInsideTapBounds = (start, end, threshold = TAP_THRESHOLD) => {
   const diffX = Math.abs(start.clientX - end.clientX);
   const diffY = Math.abs(start.clientY - end.clientY);
 
-  return diffX <= TAP_THRESHOLD && diffY <= TAP_THRESHOLD;
+  return diffX <= threshold && diffY <= threshold;
 };
 
 export const touchCoordinates = (event) => (
