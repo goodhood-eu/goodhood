@@ -48,7 +48,8 @@
     "string-validate": "^3.3.0"
   },
   "dependencies": {
-    "@popperjs/core": "^2.5.3"
+    "@popperjs/core": "^2.5.3",
+    "react-popper": "^2.2.3"
   },
   "peerDependencies": {
     "nebenan-components": "^9.3.2",

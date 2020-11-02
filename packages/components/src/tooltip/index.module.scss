@@ -26,47 +26,46 @@ $tooltip-arrow-size: 10px;
     white-space: pre;
   }
 
-  @media ($media-m) {
-    &.isActive .text {
-      display: block;
-    }
+  &.isActive .text {
+    display: block;
   }
 }
 
-.arrow {
+.arrow,
+.arrow:before {
+  position: absolute;
   width: $tooltip-arrow-size;
   height: $tooltip-arrow-size;
   z-index: -1;
+}
 
-  &::after {
-    width: $tooltip-arrow-size;
-    height: $tooltip-arrow-size;
-
-    content: '';
-    position: absolute;
-
-    border-radius: $border-radius-s;
-
-    background: $color-gray-00;
-    //background: red;
-    transform: rotate(45deg);
-  }
+.arrow:before {
+  content: '';
+  border-radius: $border-radius-s;
+  background: $color-gray-00;
+  transform: rotate(45deg);
 }
 
 // Application of css classes that are not being applied by popper.js
 .text[data-popper-placement^='top'] > .arrow {
   bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .text[data-popper-placement^='bottom'] > .arrow {
   top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .text[data-popper-placement^='left'] > .arrow {
   right: -4px;
-  top:50%;
+  top: 50%;
   transform: translateY(-50%);
 }
 .text[data-popper-placement^='right'] > .arrow {
   left: -4px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .element {
