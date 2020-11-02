@@ -14,7 +14,7 @@ import styles from './index.stories.module.scss';
 
 const TOOLTIP_PLACEHOLDER = 'Design is like a joke. If it needs explaining, it\'s probably bad.';
 
-export default { title: 'FATooltip', component: FATooltip, decorators: [withKnobs] };
+export default { title: 'Feature Alert', component: FATooltip, decorators: [withKnobs] };
 
 const options = {
   top: POSITION_TOP,

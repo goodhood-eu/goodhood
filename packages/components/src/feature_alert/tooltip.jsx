@@ -72,7 +72,7 @@ const FeatureAlertTooltip = (props) => {
 
   useEscHandler(handleClose);
   useOutsideClick(ref, handleClose);
-  usePopperInit(defaultOpen, wasActive, refTooltip, handleOpen);
+  usePopperInit(defaultOpen, wasActive, handleOpen);
 
   useEffect(() => {
     let tid;
@@ -91,18 +91,16 @@ const FeatureAlertTooltip = (props) => {
 
   return (
     <article {...cleanProps} className={className} ref={ref} onClick={handleClose}>
-      {isOpen && (
-        <aside
-          className={styles.container} ref={setRefTooltip}
-          style={popperStyles.popper} {...attributes.popper}
-        >
-          <i className={styles.arrow} ref={setRefArrow} style={popperStyles.arrow} />
-          <div className={styles.content}>
-            {content}
-            {closeIcon && <i className={`${styles.cross} icon-cross`} />}
-          </div>
-        </aside>
-      )}
+      <aside
+        className={styles.container} ref={setRefTooltip}
+        style={popperStyles.popper} {...attributes.popper}
+      >
+        <i className={styles.arrow} ref={setRefArrow} style={popperStyles.arrow} />
+        <div className={styles.content}>
+          {content}
+          {closeIcon && <i className={`${styles.cross} icon-cross`} />}
+        </div>
+      </aside>
       <div {...triggerProps} ref={setRefElement}>{children}</div>
     </article>
   );
