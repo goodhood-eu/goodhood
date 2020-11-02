@@ -90,7 +90,6 @@
     "lint": "npm run eslint && npm run stylelint",
     "eslint": "eslint -f codeframe \"./**/*.{js,jsx}\" ",
     "stylelint": "stylelint \"./**/*.scss\" ",
-    "test": "scripts/run-tests",
-    "start": "cd packages/components && npm run start"
+    "test": "scripts/run-tests"
   }
 }
