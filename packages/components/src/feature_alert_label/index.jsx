@@ -6,15 +6,16 @@ import {
   POSITION_BOTTOM,
   POSITION_LEFT,
   POSITION_RIGHT,
-} from './constants';
+} from '../feature_alert';
+import styles from './index.module.scss';
 
 
 const FeatureAlertLabel = ({ position, label, children, ...props }) => {
-  const className = clsx(`c-feature_alert_label is-position-${position}`, props.className);
+  const className = clsx(styles.label, styles[`is-position-${position}`], props.className);
   return (
     <aside {...props} className={className}>
       {children}
-      <span className="c-feature_alert_label-badge ui-badge ui-badge-rect">{label}</span>
+      <span className={`${styles.badge} ui-badge ui-badge-rect`}>{label}</span>
     </aside>
   );
 };

@@ -16,7 +16,7 @@ import {
   TRIGGER_CLICK,
   TRIGGER_DELAYED,
 } from './constants';
-import styles from './tooltip.module.scss';
+import styles from './index.module.scss';
 
 const DELAY_TIMEOUT = 1000 * 3;
 
