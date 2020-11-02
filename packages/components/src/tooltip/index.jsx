@@ -5,14 +5,20 @@ import { usePopper } from 'react-popper';
 
 import { arrayToHash } from 'nebenan-helpers/lib/data';
 import { getPopperOptions } from './utils';
+import {
+  POSITION_TOP,
+  POSITION_BOTTOM,
+  POSITION_LEFT,
+  POSITION_RIGHT,
+} from '../feature_alert';
 import styles from './index.module.scss';
 
-const KNOWN_TYPES = arrayToHash(['left', 'right', 'top', 'bottom']);
+const KNOWN_TYPES = arrayToHash([POSITION_LEFT, POSITION_RIGHT, POSITION_TOP, POSITION_BOTTOM]);
 
 const Tooltip = (props) => {
   const [isOpen, setOpen] = useState(false);
   const { type, text, children, ...cleanProps } = props;
-  const selectedType = KNOWN_TYPES[type] ? type : 'top';
+  const selectedType = KNOWN_TYPES[type] ? type : POSITION_TOP;
   const className = clsx(styles.tooltip, props.className, {
     [styles.isActive]: isOpen,
   });
@@ -32,7 +38,7 @@ const Tooltip = (props) => {
   const [arrowElement, setArrowElement] = useState(null);
 
   const popperOptions = useMemo(
-    () => getPopperOptions({ current: arrowElement }, selectedType),
+    () => getPopperOptions(arrowElement, selectedType),
     [arrowElement, selectedType],
   );
 

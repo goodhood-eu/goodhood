@@ -1,0 +1,99 @@
+@import 'nebenan-ui-kit';
+
+$feature-alert-arrow-size: 16px;
+
+@keyframes feature-alert-appear {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.container {
+  width: 300px;
+  display: none;
+  position: absolute;
+  cursor: pointer;
+  z-index: 1;
+
+  &:hover {
+    .cross {
+      opacity: .5;
+    }
+  }
+}
+
+// Application of css classes that are not being applied by popper.js
+.container:global([data-popper-placement^='top']) > .arrow {
+  bottom: -4px;
+}
+.container:global([data-popper-placement^='bottom']) > .arrow {
+  top: -4px;
+}
+.container:global([data-popper-placement^='left']) > .arrow {
+  right: -4px;
+}
+.container:global([data-popper-placement^='right']) > .arrow {
+  left: -4px;
+}
+
+.arrow {
+  width: $feature-alert-arrow-size;
+  height: $feature-alert-arrow-size;
+
+  display: block;
+  z-index: -1;
+
+  &::after {
+    width: $feature-alert-arrow-size;
+    height: $feature-alert-arrow-size;
+
+    content: '';
+    position: absolute;
+
+    border-radius: $border-radius-m;
+
+    background: $color-blue-01;
+    box-shadow: $shadow-bottom-default;
+    transform: rotate(45deg);
+  }
+}
+
+.content {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+
+  color: $color-gray-09;
+  background: $color-blue-01;
+
+  border-radius: $border-radius-m;
+  box-shadow: $shadow-bottom-default;
+}
+
+.cross {
+  margin-left: 10px;
+  padding: 4px;
+  display: block;
+
+  font-size: 8px;
+  line-height: 1;
+  text-align: center;
+
+  color: $color-blue-01;
+  background: $color-gray-09;
+  border-radius: 50%;
+}
+
+.tooltip {
+  display: inline-block;
+  position: relative;
+
+  &.isActive .container {
+    animation: 300ms ease-in feature-alert-appear;
+    display: block;
+  }
+}
