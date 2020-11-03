@@ -1,5 +1,6 @@
 import React from 'react';
-import { text, select, withKnobs } from '@storybook/addon-knobs';
+import { text, select, boolean, withKnobs } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import {
   Tooltip,
   TRIGGER_HOVER,
@@ -23,38 +24,27 @@ const POSITIONING_OPTIONS = {
   right: POSITION_RIGHT,
 };
 
+const TRIGGER_OPTIONS = {
+  hover: TRIGGER_HOVER,
+  click: TRIGGER_CLICK,
+  delayed: TRIGGER_DELAYED,
+};
+
 export const Default = () => (
   <div className={styles.container}>
     <Tooltip
-      content={text('Tooltip text', TOOLTIP_PLACEHOLDER)} position={select('Position', POSITIONING_OPTIONS, POSITION_TOP)}
-      trigger={TRIGGER_HOVER} closeIcon
+      content={text('Tooltip text', TOOLTIP_PLACEHOLDER)}
+      position={select('Position', POSITIONING_OPTIONS, POSITION_TOP)}
+      fallbackPosition={select('Fallback position', POSITIONING_OPTIONS, POSITION_TOP)}
+      trigger={select('Trigger', TRIGGER_OPTIONS, TRIGGER_HOVER)}
+      closeIcon={boolean('Has close icon', true)}
+      defaultOpen={boolean('Is default open', false)}
+      onOpen={action('opened')}
+      onClose={action('closed')}
+
+      key={boolean('Reload tooltip', false)}
     >
       {`Tooltip position: ${select('Position', POSITIONING_OPTIONS, POSITION_TOP)}`}
     </Tooltip>
-  </div>
-);
-
-export const AppearanceExamples = () => (
-  <div className={styles.container}>
-    <div className={styles.element}>
-      <Tooltip content={text('Tooltip text', TOOLTIP_PLACEHOLDER)} defaultOpen closeIcon>
-        defaultOpen
-      </Tooltip>
-    </div>
-    <div className={styles.element}>
-      <Tooltip content={text('Tooltip text', TOOLTIP_PLACEHOLDER)} trigger={TRIGGER_HOVER}>
-        {TRIGGER_HOVER}
-      </Tooltip>
-    </div>
-    <div className={styles.element}>
-      <Tooltip content={text('Tooltip text', TOOLTIP_PLACEHOLDER)} trigger={TRIGGER_CLICK}>
-        {TRIGGER_CLICK}
-      </Tooltip>
-    </div>
-    <div className={styles.element}>
-      <Tooltip content={text('Tooltip text', TOOLTIP_PLACEHOLDER)} trigger={TRIGGER_DELAYED}>
-        {TRIGGER_DELAYED}
-      </Tooltip>
-    </div>
   </div>
 );

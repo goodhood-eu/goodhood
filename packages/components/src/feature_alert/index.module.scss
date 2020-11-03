@@ -19,12 +19,6 @@ $feature-alert-arrow-size: 16px;
   z-index: 1;
 
   animation: 300ms ease-in feature-alert-appear;
-
-  &:hover {
-    .cross {
-      opacity: .5;
-    }
-  }
 }
 
 // Application of css classes that are not being applied by popper.js
@@ -65,7 +59,7 @@ $feature-alert-arrow-size: 16px;
 }
 
 .content {
-  padding: 10px 25px 10px 10px;
+  padding: 10px 30px 10px 10px;
   display: flex;
   align-items: center;
 
@@ -77,9 +71,14 @@ $feature-alert-arrow-size: 16px;
 }
 
 .cross {
+  padding: 5px;
   display: inline-flex;
   position: absolute;
-  right: 8px;
+  right: 5px;
+
+  &:hover {
+    opacity: .5;
+  }
 }
 
 .tooltip {

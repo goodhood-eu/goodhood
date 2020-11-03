@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { usePopper } from 'react-popper';
@@ -6,8 +6,14 @@ import { invoke } from 'nebenan-helpers/lib/utils';
 import CrossIcon from '@goodhood/icons/lib/16x16/cross_filled';
 
 
-import { useEscHandler, useOutsideClick, useDelayedOpen, useCloseElemClick } from './hooks';
-import { getTriggerProps, getPopperOptions } from './utils';
+import {
+  useEscHandler,
+  useOutsideClick,
+  useDelayedOpen,
+  useCloseElemClick,
+  usePopperOptions,
+} from './hooks';
+import { getTriggerProps } from './utils';
 import {
   POSITION_TOP,
   POSITION_BOTTOM,
@@ -42,10 +48,7 @@ const FeatureAlertTooltip = (props) => {
   const [tooltipElement, setTooltipElement] = useState(null);
   const [arrowElement, setArrowElement] = useState(null);
 
-  const popperOptions = useMemo(
-    () => getPopperOptions(arrowElement, position),
-    [arrowElement, position],
-  );
+  const popperOptions = usePopperOptions(arrowElement, position, fallbackPosition);
 
   const { styles: popperStyles, attributes, forceUpdate } = usePopper(
     refElement,

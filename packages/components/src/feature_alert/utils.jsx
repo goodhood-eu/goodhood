@@ -16,7 +16,7 @@ export const getTriggerProps = (trigger, handler) => {
   return {};
 };
 
-export const getPopperOptions = (ref, position) => ({
+export const getPopperOptions = (ref, position, fallbackPosition) => ({
   placement: position,
   modifiers: [
     {
@@ -29,7 +29,9 @@ export const getPopperOptions = (ref, position) => ({
       name: 'flip',
       options: {
         padding: TOOLTIP_FLIP_SCREEN_OFFSET,
-        fallbackPlacements: [POSITION_TOP, POSITION_LEFT, POSITION_BOTTOM, POSITION_RIGHT],
+        fallbackPlacements: fallbackPosition
+          ? [fallbackPosition]
+          : [POSITION_TOP, POSITION_LEFT, POSITION_BOTTOM, POSITION_RIGHT],
       },
     },
   ],
