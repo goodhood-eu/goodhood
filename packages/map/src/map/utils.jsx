@@ -43,6 +43,10 @@ export const getMapOptions = ({
 
     scrollZoom: false,
     dragRotate: false,
+    dragPan: {
+      // Disable intertia on drag
+      maxSpeed: 0,
+    },
     pitchWithRotate: false,
   };
 
