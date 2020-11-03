@@ -16,6 +16,8 @@ import kebapCase from 'lodash/kebabCase';
 import acornJsx from 'acorn-jsx';
 import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
+import url from '@rollup/plugin-url';
+import svgr from '@svgr/rollup';
 
 const ROOT_PKG_PATH = path.join(__dirname, '../../');
 
@@ -98,6 +100,8 @@ export default (pkg, pkgPath) => ({
       },
     }),
     json(),
+    url(),
+    svgr(),
     move(path.join(pkgPath, 'lib/styles.css'), path.join(pkgPath, 'styles.css')),
   ],
 });
