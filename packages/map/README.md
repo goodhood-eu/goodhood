@@ -41,10 +41,10 @@ const App = () => (
     {/* Credentials for maptiler */}
     credentials={{ key: 'Maptiler API secret key', map_id: 'Map style id' }}
 
-    {/* Max level of zoom. Can be used when there is only one marker on map */}
+    {/* Max level of zoom. Can be used when there is only one marker on the map */}
     maxZoom={15}
 
-    {/* Bounds of the map. If the prop is provided, it overrides bounding box of map layers. */}
+    {/* Bounds of the map. If the prop is passed, it overrides the bounding box of map layers. */}
     bounds={[]}
 
     {/* Lock map on desktop */}
@@ -62,7 +62,7 @@ const App = () => (
     {/* Fired when map styles are loaded. Takes map as an argument */}
     onLoad={(map) => { alert('Loaded') }}
   >
-    {/* Map layers. if bounds prop is not specified map will try to get bounds from layers */}
+    {/* Map layers. if bounds prop is not specified, the map will try to get bounds from layers */}
   </Map>
 );
 ```
