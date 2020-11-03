@@ -47,11 +47,18 @@ const FeatureAlertTooltip = (props) => {
     [arrowElement, position],
   );
 
-  const { styles: popperStyles, attributes } = usePopper(
+  const { styles: popperStyles, attributes, forceUpdate } = usePopper(
     refElement,
     tooltipElement,
     popperOptions,
   );
+
+  // Workaround: Fix tooltip positioning when custom sizes are applied in css
+  // Positioning only breaks if container is rendered in the same cycle as
+  // `usePopper` was called for the first time.
+  useEffect(() => {
+    invoke(forceUpdate);
+  }, [forceUpdate]);
 
   // need to be able to only open once
   const wasActive = useRef(false);
