@@ -99,7 +99,6 @@ module.exports = {
             svgo: true,
           },
         },
-        'url-loader',
       ],
     });
 
