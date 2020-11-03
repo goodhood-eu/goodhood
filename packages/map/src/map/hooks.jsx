@@ -1,7 +1,7 @@
-import { useEffect, useState, useContext, useMemo } from 'react';
+import { useEffect, useState, useContext, useMemo, useCallback } from 'react';
 import { Map, NavigationControl } from 'mapbox-gl';
 
-import { getMapOptions, getBoundingBox, mergeChildrenBounds } from './utils';
+import { getMapOptions, getBoundingBox, mergeLayersBounds, isFilledArray } from './utils';
 import { getMedia, media } from '../utils';
 import MapContext from './context';
 
@@ -34,7 +34,8 @@ export const useMapEffect = (fn, deps = []) => {
 
 export const useMapInstance = (nodeRef, options) => {
   const [mapInstance, setMap] = useState(false);
-  const { noAttribution, locked, lockedMobile, onLoad } = options;
+  const { bounds, noAttribution, locked, lockedMobile, onLoad } = options;
+  const hasBounds = isFilledArray(bounds);
 
   useEffect(() => {
     const mapOptions = getMapOptions({
@@ -42,6 +43,10 @@ export const useMapInstance = (nodeRef, options) => {
       node: nodeRef.current,
       isMobile: !getMedia(global, media.mediaM),
     });
+
+    if (!hasBounds) {
+      return;
+    }
 
     const map = new Map(mapOptions);
 
@@ -58,47 +63,47 @@ export const useMapInstance = (nodeRef, options) => {
       setMap(null);
       map.remove();
     };
-  }, [noAttribution, locked, lockedMobile]);
+  }, [noAttribution, locked, lockedMobile, hasBounds]);
 
   return mapInstance;
 };
 
 export const useMapUpdate = (map, {
   bounds,
-  childrenBounds,
   animate,
   fitPadding,
-  defaultView,
-  defaultZoom,
+  maxZoom,
 }) => {
-  const boundsToFit = bounds || childrenBounds;
-
   useEffect(() => {
-    const boundingBox = getBoundingBox(boundsToFit);
+    const boundingBox = getBoundingBox(bounds);
 
-    if (map && boundingBox && !defaultView) {
+    if (map && boundingBox) {
       const options = { animate, padding: fitPadding };
-      if (defaultZoom) options.maxZoom = defaultZoom;
+      if (maxZoom) options.maxZoom = maxZoom;
 
       map.fitBounds(boundingBox, options);
     }
-  }, [boundsToFit, map, animate]);
+  }, [bounds, map, animate]);
 };
 
-export const useContextValue = (map) => {
-  const [bounds, setBounds] = useState([]);
-  const addBounds = (value) => {
+export const useLayersBounds = () => {
+  const [layersBounds, setBounds] = useState([]);
+
+  const addLayerBounds = useCallback((value) => {
     setBounds((arr) => [...arr, value]);
     return () => setBounds((arr) => arr.filter((item) => item !== value));
-  };
+  }, []);
 
-  const context = useMemo(() => ({ map, addBounds }), [map]);
-  const mergedBounds = useMemo(() => mergeChildrenBounds(bounds), [bounds]);
+  const mergedBounds = useMemo(() => mergeLayersBounds(layersBounds), [layersBounds]);
 
-  return [mergedBounds, context];
+  return [mergedBounds, addLayerBounds];
 };
 
-export const useChildrenBounds = (area) => {
+export const useContextValue = (map, addLayerBounds) => (
+  useMemo(() => ({ map, addLayerBounds }), [map, addLayerBounds])
+);
+
+export const useAddLayerBoundsToMap = (area) => {
   const mapContext = useMapContext();
-  useEffect(() => mapContext && mapContext.addBounds(area), [mapContext]);
+  useEffect(() => mapContext && mapContext.addLayerBounds(area), [mapContext]);
 };

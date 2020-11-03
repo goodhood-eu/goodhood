@@ -17,7 +17,7 @@ export const getBoundingBox = (bounds) => {
   return lngLat.toArray();
 };
 
-export const mergeChildrenBounds = (bounds) => {
+export const mergeLayersBounds = (bounds) => {
   if (!isFilledArray(bounds)) return undefined;
   return bounds.flat(1);
 };
@@ -27,8 +27,7 @@ export const getMapOptions = ({
   noAttribution,
   locked,
   lockedMobile,
-  defaultView,
-  defaultZoom,
+  maxZoom,
   bounds,
   fitPadding,
   isMobile,
@@ -47,8 +46,7 @@ export const getMapOptions = ({
     pitchWithRotate: false,
   };
 
-  if (defaultView) options.center = defaultView;
-  if (defaultZoom) options.zoom = defaultZoom;
+  if (maxZoom) options.maxZoom = maxZoom;
   if (isFilledArray(bounds)) options.bounds = getBoundingBox(bounds);
   if (fitPadding) options.fitBoundsOptions = { padding: fitPadding };
 

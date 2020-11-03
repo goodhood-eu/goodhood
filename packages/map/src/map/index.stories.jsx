@@ -28,14 +28,6 @@ export const Default = () => {
   );
 };
 
-export const ViewAndZoom = () => (
-  <Map
-    credentials={config.map_credentials}
-    defaultView={data.markers[1]}
-    defaultZoom={15}
-  />
-);
-
 export const AutoFit = () => (
   <Map credentials={config.map_credentials}>
     <Polygon area={data.polygons[0]} type={POLYGON_SOLID} />

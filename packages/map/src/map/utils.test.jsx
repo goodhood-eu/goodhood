@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { mergeChildrenBounds, isFilledArray, getMapOptions } from './utils';
+import { mergeLayersBounds, isFilledArray, getMapOptions } from './utils';
 
 
 describe('map/utils', () => {
@@ -21,9 +21,9 @@ describe('map/utils', () => {
     });
   });
 
-  describe('mergeChildrenBounds', () => {
+  describe('mergeLayersBounds', () => {
     it('should return undefined if empty array was passed', () => {
-      assert.isUndefined(mergeChildrenBounds([]));
+      assert.isUndefined(mergeLayersBounds([]));
     });
 
     it('should flatten array on one level', () => {
@@ -32,7 +32,7 @@ describe('map/utils', () => {
         [[5, 6], [7, 8]],
       ];
 
-      assert.deepEqual(mergeChildrenBounds(data), [[1, 2], [3, 4], [5, 6], [7, 8]]);
+      assert.deepEqual(mergeLayersBounds(data), [[1, 2], [3, 4], [5, 6], [7, 8]]);
     });
   });
 
@@ -71,15 +71,13 @@ describe('map/utils', () => {
 
     it('should set optinal options', () => {
       const result = getMapOptions({
-        defaultView: [0, 0],
-        defaultZoom: 10,
+        maxZoom: 10,
         bounds: [[0, 0]],
         fitPadding: 5,
       });
 
       assert.deepNestedInclude(result, {
-        center: [0, 0],
-        zoom: 10,
+        maxZoom: 10,
         bounds: [[0, 0], [0, 0]],
         fitBoundsOptions: { padding: 5 },
       });
