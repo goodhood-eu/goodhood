@@ -13,9 +13,9 @@ import {
 } from './index';
 import styles from './index.stories.module.scss';
 
-const TOOLTIP_PLACEHOLDER = 'Design is like a joke. If it needs explaining, it\'s probably bad.';
-
 export default { title: 'Feature Alert', component: Tooltip, decorators: [withKnobs] };
+
+const TOOLTIP_PLACEHOLDER = 'Design is like a joke. If it needs explaining, it\'s probably bad.';
 
 const POSITIONING_OPTIONS = {
   top: POSITION_TOP,
