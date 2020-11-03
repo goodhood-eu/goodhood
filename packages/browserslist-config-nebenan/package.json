@@ -1,0 +1,31 @@
+{
+  "name": "browserslist-config-nebenan",
+  "version": "1.0.0-beta.0",
+  "description": "Nebenan Browserslist Shared Config",
+  "keywords": [
+    "browserslist",
+    "browserslist-config",
+    "nebenan"
+  ],
+  "author": "goodhood.eu <max@nebenan.de>",
+  "homepage": "https://goodhood.eu",
+  "license": "SEE LICENSE IN LICENSE FILE",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goodhood-eu/goodhood.git"
+  },
+  "scripts": {
+    "supported-browsers": "node scripts/supported.js"
+  },
+  "bugs": {
+    "url": "https://github.com/goodhood-eu/goodhood/issues"
+  },
+  "devDependencies": {
+    "browserslist": "^4.14.6"
+  }
+}
