@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { usePopper } from 'react-popper';
 import { invoke } from 'nebenan-helpers/lib/utils';
+import CrossIcon from '@goodhood/icons/lib/16x16/cross_filled';
 
 
-import { useEscHandler, useOutsideClick, useDelayedOpen } from './hooks';
+import { useEscHandler, useOutsideClick, useDelayedOpen, useCloseElemClick } from './hooks';
 import { getTriggerProps, getPopperOptions } from './utils';
 import {
   POSITION_TOP,
@@ -35,6 +36,7 @@ const FeatureAlertTooltip = (props) => {
 
   const [isOpen, setOpen] = useState(defaultOpen);
   const rootRef = useRef(null);
+  const closeIconRef = useRef(null);
 
   const [refElement, setRefElement] = useState(null);
   const [tooltipElement, setTooltipElement] = useState(null);
@@ -76,7 +78,8 @@ const FeatureAlertTooltip = (props) => {
   }, [isOpen]);
 
   useEscHandler(handleClose);
-  useOutsideClick(rootRef, handleClose);
+  useOutsideClick(rootRef, handleClose, closeIcon);
+  useCloseElemClick(closeIconRef, handleClose);
   useDelayedOpen(trigger, wasActiveOnce, handleOpen);
 
   const className = clsx(styles.tooltip, props.className);
@@ -93,7 +96,7 @@ const FeatureAlertTooltip = (props) => {
           <i className={styles.arrow} ref={setArrowElement} style={popperStyles.arrow} />
           <div className={styles.content}>
             {content}
-            {closeIcon && <i className={`${styles.cross} icon-cross`} onClick={handleClose} />}
+            {closeIcon && <span ref={closeIconRef} className={styles.cross}><CrossIcon /></span>}
           </div>
         </aside>
       )}

@@ -52,6 +52,7 @@
     "react-popper": "^2.2.3"
   },
   "peerDependencies": {
+    "@goodhood/icons": "^1.x.x",
     "nebenan-components": "^9.3.2",
     "nebenan-form": "^8.5.2",
     "nebenan-helpers": "^4.2.0",
