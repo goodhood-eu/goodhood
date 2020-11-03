@@ -13,7 +13,7 @@ export const useOutsideClick = (ref, callback) => useEffect(() => {
   document.addEventListener('click', handler);
 
   return () => document.removeEventListener('click', handler);
-}, [ref, callback]);
+}, [callback]);
 
 export const useDelayedOpen = (trigger, wasActiveOnce, callback) => useEffect(() => {
   const tid = (trigger === TRIGGER_DELAYED && !wasActiveOnce.current)
