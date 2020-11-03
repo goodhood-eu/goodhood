@@ -16,7 +16,7 @@ const TOOLTIP_PLACEHOLDER = 'Design is like a joke. If it needs explaining, it\'
 
 export default { title: 'Feature Alert', component: Tooltip, decorators: [withKnobs] };
 
-const options = {
+const POSITIONING_OPTIONS = {
   top: POSITION_TOP,
   bottom: POSITION_BOTTOM,
   left: POSITION_LEFT,
@@ -26,10 +26,10 @@ const options = {
 export const Default = () => (
   <div className={styles.container}>
     <Tooltip
-      content={text('Tooltip text', TOOLTIP_PLACEHOLDER)} position={select('Position', options, POSITION_TOP)}
+      content={text('Tooltip text', TOOLTIP_PLACEHOLDER)} position={select('Position', POSITIONING_OPTIONS, POSITION_TOP)}
       trigger={TRIGGER_HOVER} closeIcon
     >
-      {`Tooltip position: ${select('Position', options, POSITION_TOP)}`}
+      {`Tooltip position: ${select('Position', POSITIONING_OPTIONS, POSITION_TOP)}`}
     </Tooltip>
   </div>
 );

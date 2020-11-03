@@ -13,7 +13,7 @@ const TOOLTIP_PLACEHOLDER = 'Design is like a joke.';
 
 export default { title: 'Tooltip', component: Tooltip, decorators: [withKnobs] };
 
-const options = {
+const POSITIONING_OPTIONS = {
   top: POSITION_TOP,
   bottom: POSITION_BOTTOM,
   left: POSITION_LEFT,
@@ -24,10 +24,10 @@ const options = {
 export const Default = () => (
   <div className={styles.container}>
     <Tooltip
-      type={select('Tooltip position', options, POSITION_TOP)}
+      type={select('Tooltip position', POSITIONING_OPTIONS, POSITION_TOP)}
       text={text('Tooltip text', TOOLTIP_PLACEHOLDER)}
     >
-      {`Tooltip position: ${select('Tooltip position', options, POSITION_TOP)}`}
+      {`Tooltip position: ${select('Tooltip position', POSITIONING_OPTIONS, POSITION_TOP)}`}
     </Tooltip>
   </div>
 );

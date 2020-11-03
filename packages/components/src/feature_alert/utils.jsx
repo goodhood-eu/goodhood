@@ -5,10 +5,10 @@ import {
   POSITION_RIGHT,
   TRIGGER_HOVER,
   TRIGGER_CLICK,
+  TOOLTIP_OFFSET,
+  TOOLTIP_FLIP_SCREEN_OFFSET,
 } from './constants';
 
-const TOOLTIP_OFFSET = 10;
-const TOOLTIP_FLIP_SCREEN_OFFSET = 10;
 
 export const getTriggerProps = (trigger, handler) => {
   if (trigger === TRIGGER_HOVER) return { onMouseEnter: handler };

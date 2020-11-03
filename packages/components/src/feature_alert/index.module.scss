@@ -30,36 +30,37 @@ $feature-alert-arrow-size: 16px;
 .container:global([data-popper-placement^='top']) > .arrow {
   bottom: -4px;
 }
+
 .container:global([data-popper-placement^='bottom']) > .arrow {
   top: -4px;
 }
+
 .container:global([data-popper-placement^='left']) > .arrow {
   right: -4px;
 }
+
 .container:global([data-popper-placement^='right']) > .arrow {
   left: -4px;
 }
 
-.arrow {
+.arrow,
+.arrow::before {
   width: $feature-alert-arrow-size;
   height: $feature-alert-arrow-size;
 
   display: block;
   z-index: -1;
+}
 
-  &::after {
-    width: $feature-alert-arrow-size;
-    height: $feature-alert-arrow-size;
+.arrow::before {
+  content: '';
+  position: absolute;
 
-    content: '';
-    position: absolute;
+  border-radius: $border-radius-m;
 
-    border-radius: $border-radius-m;
-
-    background: $color-blue-01;
-    box-shadow: $shadow-bottom-default;
-    transform: rotate(45deg);
-  }
+  background: $color-blue-01;
+  box-shadow: $shadow-bottom-default;
+  transform: rotate(45deg);
 }
 
 .content {

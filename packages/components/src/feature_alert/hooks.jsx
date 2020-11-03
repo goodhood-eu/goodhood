@@ -13,8 +13,3 @@ export const useOutsideClick = (ref, callback) => useEffect(() => {
 
   return () => document.removeEventListener('click', handler);
 }, [ref, callback]);
-
-// To apply popper styles properly for defaultOpen tooltip
-export const usePopperInit = (defaultOpen, wasActive, callback) => useEffect(() => {
-  if (defaultOpen && !wasActive.current) callback();
-}, [defaultOpen, wasActive, callback]);

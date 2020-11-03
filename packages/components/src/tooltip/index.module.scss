@@ -32,14 +32,14 @@ $tooltip-arrow-size: 10px;
 }
 
 .arrow,
-.arrow:before {
-  position: absolute;
+.arrow::before {
   width: $tooltip-arrow-size;
   height: $tooltip-arrow-size;
+  position: absolute;
   z-index: -1;
 }
 
-.arrow:before {
+.arrow::before {
   content: '';
   border-radius: $border-radius-s;
   background: $color-gray-00;
@@ -52,23 +52,26 @@ $tooltip-arrow-size: 10px;
   left: 50%;
   transform: translateX(-50%);
 }
+
 .text[data-popper-placement^='bottom'] > .arrow {
   top: -4px;
   left: 50%;
   transform: translateX(-50%);
 }
+
 .text[data-popper-placement^='left'] > .arrow {
-  right: -4px;
   top: 50%;
+  right: -4px;
   transform: translateY(-50%);
 }
+
 .text[data-popper-placement^='right'] > .arrow {
-  left: -4px;
   top: 50%;
+  left: -4px;
   transform: translateY(-50%);
 }
 
 .element {
-  display: block;
   width: max-content;
+  display: block;
 }

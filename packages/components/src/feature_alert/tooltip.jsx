@@ -5,7 +5,7 @@ import { usePopper } from 'react-popper';
 import { invoke } from 'nebenan-helpers/lib/utils';
 
 
-import { useEscHandler, useOutsideClick, usePopperInit } from './hooks';
+import { useEscHandler, useOutsideClick } from './hooks';
 import { getTriggerProps, getPopperOptions } from './utils';
 import {
   POSITION_TOP,
@@ -35,21 +35,21 @@ const FeatureAlertTooltip = (props) => {
     ...cleanProps
   } = props;
 
-  const [isOpen, setOpen] = useState(false);
-  const ref = useRef(null);
+  const [isOpen, setOpen] = useState(defaultOpen);
+  const wrapper = useRef(null);
 
   const [refElement, setRefElement] = useState(null);
-  const [refTooltip, setRefTooltip] = useState(null);
-  const [refArrow, setRefArrow] = useState(null);
+  const [tooltipElement, setTooltipElement] = useState(null);
+  const [arrowElement, setArrowElement] = useState(null);
 
   const popperOptions = useMemo(
-    () => getPopperOptions(refArrow, position),
-    [refArrow, position],
+    () => getPopperOptions(arrowElement, position),
+    [arrowElement, position],
   );
 
   const { styles: popperStyles, attributes } = usePopper(
     refElement,
-    refTooltip,
+    tooltipElement,
     popperOptions,
   );
 
@@ -62,17 +62,16 @@ const FeatureAlertTooltip = (props) => {
     wasActive.current = true;
     setOpen(true);
     invoke(onOpen);
-  }, [isOpen, onOpen]);
+  }, []);
 
   const handleClose = useCallback(() => {
     if (!isOpen) return;
     setOpen(false);
     invoke(onClose);
-  }, [isOpen, onClose]);
+  }, []);
 
   useEscHandler(handleClose);
-  useOutsideClick(ref, handleClose);
-  usePopperInit(defaultOpen, wasActive, handleOpen);
+  useOutsideClick(wrapper, handleClose);
 
   useEffect(() => {
     let tid;
@@ -90,13 +89,13 @@ const FeatureAlertTooltip = (props) => {
   const triggerProps = !isOpen && getTriggerProps(trigger, handleOpen);
 
   return (
-    <article {...cleanProps} className={className} ref={ref} onClick={handleClose}>
+    <article {...cleanProps} className={className} ref={wrapper} onClick={handleClose}>
       { isOpen && (
         <aside
-          className={styles.container} ref={setRefTooltip}
+          className={styles.container} ref={setTooltipElement}
           style={popperStyles.popper} {...attributes.popper}
         >
-          <i className={styles.arrow} ref={setRefArrow} style={popperStyles.arrow} />
+          <i className={styles.arrow} ref={setArrowElement} style={popperStyles.arrow} />
           <div className={styles.content}>
             {content}
             {closeIcon && <i className={`${styles.cross} icon-cross`} />}
