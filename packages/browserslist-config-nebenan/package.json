@@ -20,7 +20,9 @@
     "url": "git+https://github.com/goodhood-eu/goodhood.git"
   },
   "scripts": {
-    "supported-browsers": "node scripts/supported.js"
+    "supported-browsers": "node scripts/supported.js",
+    "validate": "node scripts/validate.js",
+    "prepublishOnly": "npm run validate"
   },
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
