@@ -10,7 +10,6 @@ import {
   useEscHandler,
   useOutsideClick,
   useDelayedOpen,
-  useCloseElemClick,
   usePopperOptions,
 } from './hooks';
 import { getTriggerProps } from './utils';
@@ -42,7 +41,6 @@ const FeatureAlertTooltip = (props) => {
 
   const [isOpen, setOpen] = useState(defaultOpen);
   const rootRef = useRef(null);
-  const closeIconRef = useRef(null);
 
   const [refElement, setRefElement] = useState(null);
   const [tooltipElement, setTooltipElement] = useState(null);
@@ -63,7 +61,6 @@ const FeatureAlertTooltip = (props) => {
     invoke(forceUpdate);
   }, [forceUpdate]);
 
-  // need to be able to only open once
   const wasActiveOnce = useRef(false);
 
   const handleOpen = useCallback((event) => {
@@ -82,7 +79,6 @@ const FeatureAlertTooltip = (props) => {
 
   useEscHandler(handleClose);
   useOutsideClick(rootRef, handleClose, closeIcon);
-  useCloseElemClick(closeIconRef, handleClose);
   useDelayedOpen(trigger, wasActiveOnce, handleOpen);
 
   const className = clsx(styles.tooltip, props.className);
@@ -99,7 +95,7 @@ const FeatureAlertTooltip = (props) => {
           <i className={styles.arrow} ref={setArrowElement} style={popperStyles.arrow} />
           <div className={styles.content}>
             {content}
-            {closeIcon && <span ref={closeIconRef} className={styles.cross}><CrossIcon /></span>}
+            {closeIcon && <span onClick={handleClose} className={styles.cross}><CrossIcon /></span>}
           </div>
         </aside>
       )}

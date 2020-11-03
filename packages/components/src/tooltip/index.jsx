@@ -9,8 +9,8 @@ import styles from './index.module.scss';
 
 const Tooltip = (props) => {
   const [isOpen, setOpen] = useState(false);
-  const { type, text, children, ...cleanProps } = props;
-  const className = clsx(styles.tooltip, props.className);
+  const { type, text, children, className, ...cleanProps } = props;
+  const tooltipClassName = clsx(styles.tooltip, className);
 
   const handleOpen = useCallback((event) => {
     event.stopPropagation();
@@ -32,7 +32,7 @@ const Tooltip = (props) => {
 
   return (
     <span
-      {...cleanProps} className={className}
+      {...cleanProps} className={tooltipClassName}
       onMouseEnter={handleOpen} onMouseLeave={handleClose}
     >
       {isOpen && (
