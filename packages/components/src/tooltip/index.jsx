@@ -1,27 +1,16 @@
-import React, { useMemo, useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { usePopper } from 'react-popper';
 
-import { arrayToHash } from 'nebenan-helpers/lib/data';
-import { getPopperOptions } from './utils';
-import {
-  POSITION_TOP,
-  POSITION_BOTTOM,
-  POSITION_LEFT,
-  POSITION_RIGHT,
-} from '../feature_alert';
+import { usePopperOptions } from './hooks';
+import { POSITION_TOP } from '../feature_alert';
 import styles from './index.module.scss';
-
-const KNOWN_TYPES = arrayToHash([POSITION_LEFT, POSITION_RIGHT, POSITION_TOP, POSITION_BOTTOM]);
 
 const Tooltip = (props) => {
   const [isOpen, setOpen] = useState(false);
   const { type, text, children, ...cleanProps } = props;
-  const selectedType = KNOWN_TYPES[type] ? type : POSITION_TOP;
-  const className = clsx(styles.tooltip, props.className, {
-    [styles.isActive]: isOpen,
-  });
+  const className = clsx(styles.tooltip, props.className);
 
   const handleOpen = useCallback((event) => {
     event.stopPropagation();
@@ -37,10 +26,7 @@ const Tooltip = (props) => {
   const [tooltipElement, setTooltipElement] = useState(null);
   const [arrowElement, setArrowElement] = useState(null);
 
-  const popperOptions = useMemo(
-    () => getPopperOptions(arrowElement, selectedType),
-    [arrowElement, selectedType],
-  );
+  const popperOptions = usePopperOptions(arrowElement, type);
 
   const { styles: popperStyles, attributes } = usePopper(refElement, tooltipElement, popperOptions);
 
@@ -63,6 +49,10 @@ const Tooltip = (props) => {
       </span>
     </span>
   );
+};
+
+Tooltip.defaultProps = {
+  type: POSITION_TOP,
 };
 
 Tooltip.propTypes = {

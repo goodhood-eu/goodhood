@@ -35,6 +35,6 @@
 .badge {
   color: $color-gray-09;
   background: linear-gradient(110deg, #33a6b4, $color-blue-01);
-  font-size: 12px;
-  font-weight: 600;
+  font-size: $font-size-s;
+  font-weight: $font-weight-l;
 }

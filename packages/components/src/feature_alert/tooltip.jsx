@@ -5,7 +5,7 @@ import { usePopper } from 'react-popper';
 import { invoke } from 'nebenan-helpers/lib/utils';
 
 
-import { useEscHandler, useOutsideClick } from './hooks';
+import { useEscHandler, useOutsideClick, useDelayedOpen } from './hooks';
 import { getTriggerProps, getPopperOptions } from './utils';
 import {
   POSITION_TOP,
@@ -17,8 +17,6 @@ import {
   TRIGGER_DELAYED,
 } from './constants';
 import styles from './index.module.scss';
-
-const DELAY_TIMEOUT = 1000 * 3;
 
 
 const FeatureAlertTooltip = (props) => {
@@ -36,7 +34,7 @@ const FeatureAlertTooltip = (props) => {
   } = props;
 
   const [isOpen, setOpen] = useState(defaultOpen);
-  const wrapper = useRef(null);
+  const rootRef = useRef(null);
 
   const [refElement, setRefElement] = useState(null);
   const [tooltipElement, setTooltipElement] = useState(null);
@@ -61,43 +59,33 @@ const FeatureAlertTooltip = (props) => {
   }, [forceUpdate]);
 
   // need to be able to only open once
-  const wasActive = useRef(false);
+  const wasActiveOnce = useRef(false);
 
   const handleOpen = useCallback((event) => {
     if (event) event.stopPropagation();
-    if (isOpen || wasActive.current) return;
-    wasActive.current = true;
+    if (isOpen || wasActiveOnce.current) return;
+    wasActiveOnce.current = true;
     setOpen(true);
     invoke(onOpen);
-  }, []);
+  }, [isOpen]);
 
   const handleClose = useCallback(() => {
     if (!isOpen) return;
     setOpen(false);
     invoke(onClose);
-  }, []);
+  }, [isOpen]);
 
   useEscHandler(handleClose);
-  useOutsideClick(wrapper, handleClose);
+  useOutsideClick(rootRef, handleClose);
+  useDelayedOpen(trigger, wasActiveOnce, handleOpen);
 
-  useEffect(() => {
-    let tid;
-    if (trigger === TRIGGER_DELAYED && !wasActive.current) {
-      tid = setTimeout(handleOpen, DELAY_TIMEOUT);
-    }
+  const className = clsx(styles.tooltip, props.className);
 
-    return () => clearTimeout(tid);
-  }, [trigger, handleOpen]);
-
-  const className = clsx(styles.tooltip, props.className, {
-    [styles.isActive]: isOpen,
-  });
-
-  const triggerProps = !isOpen && getTriggerProps(trigger, handleOpen);
+  const triggerProps = getTriggerProps(trigger, handleOpen);
 
   return (
-    <article {...cleanProps} className={className} ref={wrapper} onClick={handleClose}>
-      { isOpen && (
+    <article {...cleanProps} className={className} ref={rootRef} onClick={handleClose}>
+      {isOpen && (
         <aside
           className={styles.container} ref={setTooltipElement}
           style={popperStyles.popper} {...attributes.popper}
@@ -105,10 +93,10 @@ const FeatureAlertTooltip = (props) => {
           <i className={styles.arrow} ref={setArrowElement} style={popperStyles.arrow} />
           <div className={styles.content}>
             {content}
-            {closeIcon && <i className={`${styles.cross} icon-cross`} />}
+            {closeIcon && <i className={`${styles.cross} icon-cross`} onClick={handleClose} />}
           </div>
         </aside>
-      ) }
+      )}
       <div {...triggerProps} ref={setRefElement}>{children}</div>
     </article>
   );

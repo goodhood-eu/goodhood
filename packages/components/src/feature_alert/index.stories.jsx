@@ -37,11 +37,6 @@ export const Default = () => (
 export const AppearanceExamples = () => (
   <div className={styles.container}>
     <div className={styles.element}>
-      <Tooltip content={text('Tooltip text', TOOLTIP_PLACEHOLDER)}>
-        NO TRIGGER
-      </Tooltip>
-    </div>
-    <div className={styles.element}>
       <Tooltip content={text('Tooltip text', TOOLTIP_PLACEHOLDER)} defaultOpen closeIcon>
         defaultOpen
       </Tooltip>

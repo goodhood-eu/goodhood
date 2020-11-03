@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import keymanager from 'nebenan-helpers/lib/keymanager';
 import { invoke } from 'nebenan-helpers/lib/utils';
+import { TRIGGER_DELAYED, DELAY_TIMEOUT } from './constants';
 
 export const useEscHandler = (callback) => useEffect(() => keymanager('esc', callback), [callback]);
 
@@ -13,3 +14,10 @@ export const useOutsideClick = (ref, callback) => useEffect(() => {
 
   return () => document.removeEventListener('click', handler);
 }, [ref, callback]);
+
+export const useDelayedOpen = (trigger, wasActiveOnce, callback) => useEffect(() => {
+  const tid = (trigger === TRIGGER_DELAYED && !wasActiveOnce.current)
+    && setTimeout(callback, DELAY_TIMEOUT);
+
+  return () => clearTimeout(tid);
+}, [trigger, callback]);

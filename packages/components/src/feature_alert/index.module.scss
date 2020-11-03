@@ -14,10 +14,11 @@ $feature-alert-arrow-size: 16px;
 
 .container {
   width: 300px;
-  display: none;
   position: absolute;
   cursor: pointer;
   z-index: 1;
+
+  animation: 300ms ease-in feature-alert-appear;
 
   &:hover {
     .cross {
@@ -92,9 +93,4 @@ $feature-alert-arrow-size: 16px;
 .tooltip {
   display: inline-block;
   position: relative;
-
-  &.isActive .container {
-    animation: 300ms ease-in feature-alert-appear;
-    display: block;
-  }
 }

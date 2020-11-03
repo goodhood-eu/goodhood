@@ -12,7 +12,7 @@ const TOOLTIP_PLACEHOLDER = 'Design is like a joke.';
 
 export default { title: 'Feature Alert Label', component: Label, decorators: [withKnobs] };
 
-const options = {
+const POSTIIONING_OPTIONS = {
   top: POSITION_TOP,
   bottom: POSITION_BOTTOM,
   left: POSITION_LEFT,
@@ -21,7 +21,7 @@ const options = {
 
 export const Default = () => (
   <div>
-    <Label label={text('Label text', 'label')} position={select('Label position', options, POSITION_TOP)}>
+    <Label label={text('Label text', 'label')} position={select('Label position', POSTIIONING_OPTIONS, POSITION_TOP)}>
       {TOOLTIP_PLACEHOLDER}
     </Label>
   </div>

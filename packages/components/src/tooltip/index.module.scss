@@ -1,5 +1,4 @@
 @import 'nebenan-ui-kit';
-$tooltip-arrow-size: 5px;
 
 $tooltip-arrow-size: 10px;
 
@@ -10,7 +9,6 @@ $tooltip-arrow-size: 10px;
   > .text {
     padding: 5px 10px;
 
-    display: none;
     position: absolute;
     z-index: 1;
 
@@ -18,16 +16,12 @@ $tooltip-arrow-size: 10px;
     border-radius: $border-radius-m;
     box-shadow: $shadow-bottom-default;
 
-    font-size: 12px;
+    font-size: $font-size-s;
     line-height: 16px;
     font-style: normal;
     color: $color-gray-09;
     word-wrap: break-word;
     white-space: pre;
-  }
-
-  &.isActive .text {
-    display: block;
   }
 }
 
