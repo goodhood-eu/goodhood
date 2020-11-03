@@ -12,7 +12,7 @@ const Index = ({ numberA = 0, numberB = 0, onClick }) => (
     <strong onClick={onClick}>click me</strong>
 
     <h2>SVGR</h2>
-    <DownloadIcon />
+    <DownloadIcon className={styles.svgIcon} />
     <h2>url</h2>
     <img src={downloadIcon} alt="" />
   </>
