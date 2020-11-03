@@ -84,7 +84,7 @@ const FeatureAlertTooltip = (props) => {
   const triggerProps = getTriggerProps(trigger, handleOpen);
 
   return (
-    <article {...cleanProps} className={className} ref={rootRef} onClick={handleClose}>
+    <article {...cleanProps} className={className} ref={rootRef}>
       {isOpen && (
         <aside
           className={styles.container} ref={setTooltipElement}
