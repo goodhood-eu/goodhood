@@ -91,16 +91,18 @@ const FeatureAlertTooltip = (props) => {
 
   return (
     <article {...cleanProps} className={className} ref={ref} onClick={handleClose}>
-      <aside
-        className={styles.container} ref={setRefTooltip}
-        style={popperStyles.popper} {...attributes.popper}
-      >
-        <i className={styles.arrow} ref={setRefArrow} style={popperStyles.arrow} />
-        <div className={styles.content}>
-          {content}
-          {closeIcon && <i className={`${styles.cross} icon-cross`} />}
-        </div>
-      </aside>
+      { isOpen && (
+        <aside
+          className={styles.container} ref={setRefTooltip}
+          style={popperStyles.popper} {...attributes.popper}
+        >
+          <i className={styles.arrow} ref={setRefArrow} style={popperStyles.arrow} />
+          <div className={styles.content}>
+            {content}
+            {closeIcon && <i className={`${styles.cross} icon-cross`} />}
+          </div>
+        </aside>
+      ) }
       <div {...triggerProps} ref={setRefElement}>{children}</div>
     </article>
   );
