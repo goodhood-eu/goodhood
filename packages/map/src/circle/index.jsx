@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import Layer from '../layer';
-import { useAddLayerBoundsToMap } from '../map/hooks';
+import { useAddLayerBounds } from '../map/hooks';
 import { getGeoJSON, getPaint } from './utils';
 import { CIRCLE_ACTIVE, CIRCLE_DEFAULT } from './constants';
 
@@ -12,7 +12,7 @@ const Circle = ({
   center,
   radius,
 }) => {
-  useAddLayerBoundsToMap([center]);
+  useAddLayerBounds([center]);
 
   const source = useMemo(() => getGeoJSON(center), [center]);
   const paint = useMemo(() => getPaint(type, center, radius), [type, center, radius]);

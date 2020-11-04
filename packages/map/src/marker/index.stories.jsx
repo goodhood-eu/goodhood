@@ -25,7 +25,7 @@ export const JSXPopup = () => {
   const visible = boolean('visible', true);
 
   return (
-    <Map credentials={config.map_credentials} maxZoom={10}>
+    <Map credentials={config.map_credentials}>
       <Marker
         className="markerClass"
         position={data.markers[0]}

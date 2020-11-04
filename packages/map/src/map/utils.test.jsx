@@ -1,5 +1,11 @@
 import { assert } from 'chai';
-import { mergeLayersBounds, isFilledArray, getMapOptions } from './utils';
+import {
+  mergeLayersBounds,
+  isFilledArray,
+  isOnePoint,
+  getMapOptions,
+  getFitBoundsOptions,
+} from './utils';
 
 
 describe('map/utils', () => {
@@ -18,6 +24,21 @@ describe('map/utils', () => {
       assert.isFalse(isFilledArray(null), 'null');
       assert.isFalse(isFilledArray('string'), 'string');
       assert.isFalse(isFilledArray({}), 'object');
+    });
+  });
+
+  describe('isOnePoint', () => {
+    it('should return false if empty value is passed', () => {
+      assert.isFalse(isOnePoint(), 'empty');
+      assert.isFalse(isOnePoint([]), 'empty array');
+    });
+
+    it('should return true if bouding box is only one point', () => {
+      assert.isTrue(isOnePoint([[0, 0], [0, 0]]));
+    });
+
+    it('should return false if bouding box covers some area', () => {
+      assert.isFalse(isOnePoint([[0, 0], [1, 1]]));
     });
   });
 
@@ -71,16 +92,53 @@ describe('map/utils', () => {
 
     it('should set optinal options', () => {
       const result = getMapOptions({
-        maxZoom: 10,
-        bounds: [[0, 0]],
+        bounds: [[0, 0], [1, 1]],
         fitPadding: 5,
       });
 
       assert.deepNestedInclude(result, {
-        maxZoom: 10,
-        bounds: [[0, 0], [0, 0]],
+        bounds: [[0, 0], [1, 1]],
         fitBoundsOptions: { padding: 5 },
       });
+    });
+
+    it('should set maxZoom level if bounds is only one point', () => {
+      const resultA = getMapOptions({
+        bounds: [[0, 0], [0, 0]],
+      });
+
+      const resultB = getMapOptions({
+        bounds: [[0, 0], [1, 1]],
+      });
+
+      assert.equal(resultA.maxZoom, 14, 'bounds is signle point');
+      assert.isUndefined(resultB.maxZooom, 'if bounds covers some area do not set zoom level');
+    });
+  });
+
+  describe('getFitBoundsOptions', () => {
+    it('should return bounds', () => {
+      assert.deepEqual(getFitBoundsOptions({ bounds: [[0, 0], [1, 1]] })[0], [[0, 0], [1, 1]]);
+    });
+
+    it('should set passed options', () => {
+      assert.deepEqual(getFitBoundsOptions({ animate: true, fitPadding: 3 })[1], {
+        animate: true,
+        padding: 3,
+      });
+    });
+
+    it('should set maxZoom if boundsing box is single point', () => {
+      const resultA = getFitBoundsOptions({
+        bounds: [[0, 0], [0, 0]],
+      })[1];
+
+      const resultB = getFitBoundsOptions({
+        bounds: [[0, 0], [1, 1]],
+      })[1];
+
+      assert.equal(resultA.maxZoom, 14, 'bounds is signle point');
+      assert.isUndefined(resultB.maxZooom, 'if bounds covers some area do not set zoom level');
     });
   });
 });

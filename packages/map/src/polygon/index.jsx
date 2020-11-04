@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { POLYGON_DEFAULT } from './constants';
 import { getFillPaint, getLinePaint, getTypeProp, getGeoJSON } from './utils';
-import { useAddLayerBoundsToMap } from '../map/hooks';
+import { useAddLayerBounds } from '../map/hooks';
 import Layer from '../layer';
 
 
@@ -13,7 +13,7 @@ const Polygon = (props) => {
     onClick,
   } = props;
 
-  useAddLayerBoundsToMap(area);
+  useAddLayerBounds(area);
   const source = useMemo(() => getGeoJSON(area), [area]);
 
   return (

@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext, useMemo, useCallback } from 'react';
 import { Map, NavigationControl } from 'mapbox-gl';
 
-import { getMapOptions, getBoundingBox, mergeLayersBounds, isFilledArray } from './utils';
+import { getMapOptions, mergeLayersBounds, isFilledArray, getFitBoundsOptions } from './utils';
 import { getMedia, media } from '../utils';
 import MapContext from './context';
 
@@ -38,15 +38,13 @@ export const useMapInstance = (nodeRef, options) => {
   const hasBounds = isFilledArray(bounds);
 
   useEffect(() => {
+    if (!hasBounds) return;
+
     const mapOptions = getMapOptions({
       ...options,
       node: nodeRef.current,
       isMobile: !getMedia(global, media.mediaM),
     });
-
-    if (!hasBounds) {
-      return;
-    }
 
     const map = new Map(mapOptions);
 
@@ -72,15 +70,11 @@ export const useMapUpdate = (map, {
   bounds,
   animate,
   fitPadding,
-  maxZoom,
 }) => {
   useEffect(() => {
-    const boundingBox = getBoundingBox(bounds);
+    const [boundingBox, options] = getFitBoundsOptions({ bounds, fitPadding, animate });
 
     if (map && boundingBox) {
-      const options = { animate, padding: fitPadding };
-      if (maxZoom) options.maxZoom = maxZoom;
-
       map.fitBounds(boundingBox, options);
     }
   }, [bounds, map, animate]);
@@ -103,7 +97,7 @@ export const useContextValue = (map, addLayerBounds) => (
   useMemo(() => ({ map, addLayerBounds }), [map, addLayerBounds])
 );
 
-export const useAddLayerBoundsToMap = (area) => {
+export const useAddLayerBounds = (area) => {
   const mapContext = useMapContext();
   useEffect(() => mapContext && mapContext.addLayerBounds(area), [mapContext]);
 };

@@ -21,7 +21,6 @@ const Map = ({
   noAttribution,
 
   bounds,
-  maxZoom,
   fitPadding,
 
   onLoad,
@@ -36,7 +35,6 @@ const Map = ({
     noAttribution,
     locked,
     lockedMobile,
-    maxZoom,
     bounds: boundsToFit,
     fitPadding,
     onLoad,
@@ -48,7 +46,6 @@ const Map = ({
     animate,
     bounds: boundsToFit,
     fitPadding,
-    maxZoom,
   });
 
   return (
@@ -78,7 +75,6 @@ Map.propTypes = {
   noAttribution: PropTypes.bool.isRequired,
 
   bounds: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
-  maxZoom: PropTypes.number,
   fitPadding: PropTypes.number.isRequired,
 
   onLoad: PropTypes.func,

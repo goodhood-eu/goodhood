@@ -41,9 +41,6 @@ const App = () => (
     {/* Credentials for maptiler */}
     credentials={{ key: 'Maptiler API secret key', map_id: 'Map style id' }}
 
-    {/* Max level of zoom. Can be used when there is only one marker on the map */}
-    maxZoom={15}
-
     {/* Bounds of the map. If the prop is passed, it overrides the bounding box of map layers. */}
     bounds={[]}
 

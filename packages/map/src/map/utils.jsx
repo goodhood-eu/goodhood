@@ -1,5 +1,6 @@
 import { LngLatBounds } from 'mapbox-gl';
 
+export const MAX_ZOOM = 14;
 
 export const isFilledArray = (arr) => Array.isArray(arr) && arr.length > 0;
 
@@ -22,12 +23,18 @@ export const mergeLayersBounds = (bounds) => {
   return bounds.flat(1);
 };
 
+export const isOnePoint = (boundingBox) => {
+  if (!isFilledArray(boundingBox)) return false;
+
+  const [leftTop, rightBottom] = boundingBox;
+  return leftTop[0] === rightBottom[0] && leftTop[1] === rightBottom[1];
+};
+
 export const getMapOptions = ({
   credentials,
   noAttribution,
   locked,
   lockedMobile,
-  maxZoom,
   bounds,
   fitPadding,
   isMobile,
@@ -41,6 +48,8 @@ export const getMapOptions = ({
     attributionControl: !noAttribution,
     interactive,
 
+    bounds: getBoundingBox(bounds),
+
     scrollZoom: false,
     dragRotate: false,
     dragPan: {
@@ -48,11 +57,23 @@ export const getMapOptions = ({
       maxSpeed: 0,
     },
     pitchWithRotate: false,
+    fitBoundsOptions: { padding: fitPadding },
   };
 
-  if (maxZoom) options.maxZoom = maxZoom;
-  if (isFilledArray(bounds)) options.bounds = getBoundingBox(bounds);
-  if (fitPadding) options.fitBoundsOptions = { padding: fitPadding };
+  if (isOnePoint(options.bounds)) {
+    options.maxZoom = MAX_ZOOM;
+  }
 
   return options;
+};
+
+export const getFitBoundsOptions = ({ animate, fitPadding, bounds }) => {
+  const boundingBox = getBoundingBox(bounds);
+  const options = { animate, padding: fitPadding };
+
+  if (isOnePoint(boundingBox)) {
+    options.maxZoom = MAX_ZOOM;
+  }
+
+  return [boundingBox, options];
 };
