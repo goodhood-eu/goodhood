@@ -105,7 +105,6 @@ describe('map/utils', () => {
     it('should set maxZoom level if bounds is only one point', () => {
       const resultA = getMapOptions({
         bounds: [[0, 0], [0, 0]],
-        singlePointZoom: 14,
       });
 
       const resultB = getMapOptions({
@@ -132,7 +131,6 @@ describe('map/utils', () => {
     it('should set maxZoom if bounding box is a single point', () => {
       const resultA = getFitBoundsOptions({
         bounds: [[0, 0], [0, 0]],
-        singlePointZoom: 14,
       })[1];
 
       const resultB = getFitBoundsOptions({

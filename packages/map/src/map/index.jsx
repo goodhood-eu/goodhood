@@ -22,7 +22,7 @@ const Map = ({
 
   bounds,
   fitPadding,
-  singlePointZoom,
+  maxZoom,
 
   onLoad,
   ...rest
@@ -38,7 +38,7 @@ const Map = ({
     lockedMobile,
     bounds: boundsToFit,
     fitPadding,
-    singlePointZoom,
+    maxZoom,
     onLoad,
   });
 
@@ -48,7 +48,7 @@ const Map = ({
     animate,
     bounds: boundsToFit,
     fitPadding,
-    singlePointZoom,
+    maxZoom,
   });
 
   return (
@@ -64,7 +64,6 @@ Map.defaultProps = {
   lockedMobile: true,
   noAttribution: false,
   fitPadding: 20,
-  singlePointZoom: 14,
 };
 
 Map.propTypes = {
@@ -79,8 +78,8 @@ Map.propTypes = {
   noAttribution: PropTypes.bool.isRequired,
 
   bounds: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
-  singlePointZoom: PropTypes.number.isRequired,
   fitPadding: PropTypes.number.isRequired,
+  maxZoom: PropTypes.number,
 
   onLoad: PropTypes.func,
 };

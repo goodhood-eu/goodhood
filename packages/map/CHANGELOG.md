@@ -1,7 +1,7 @@
 ## v2.0.0 Breaking changes
 - Removed `Map: defaultView` prop
 - Removed `Map: defaultZoom` prop
-- Added optional `Map: singlePointZoom` prop
+- Added optional `Map: maxZoom` prop
 
 ## v1.0.0 Migration from nebenan-map
 - Marker props changed:
