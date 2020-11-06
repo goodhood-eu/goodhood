@@ -62,6 +62,10 @@ export const getMapOptions = ({
     fitBoundsOptions: { padding: fitPadding },
   };
 
+  if (maxZoom) {
+    options.maxZoom = maxZoom;
+  }
+
   if (isSinglePoint(options.bounds) && !maxZoom) {
     options.maxZoom = DEFAULT_ZOOM_LEVEL;
   }
@@ -77,6 +81,10 @@ export const getFitBoundsOptions = ({
 }) => {
   const boundingBox = getBoundingBox(bounds);
   const options = { animate, padding: fitPadding };
+
+  if (maxZoom) {
+    options.maxZoom = maxZoom;
+  }
 
   if (isSinglePoint(boundingBox) && !maxZoom) {
     options.maxZoom = DEFAULT_ZOOM_LEVEL;
