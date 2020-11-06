@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import {
   mergeLayersBounds,
   isFilledArray,
-  isOnePoint,
+  isSinglePoint,
   getMapOptions,
   getFitBoundsOptions,
 } from './utils';
@@ -27,18 +27,18 @@ describe('map/utils', () => {
     });
   });
 
-  describe('isOnePoint', () => {
+  describe('isSinglePoint', () => {
     it('should return false if empty value is passed', () => {
-      assert.isFalse(isOnePoint(), 'empty');
-      assert.isFalse(isOnePoint([]), 'empty array');
+      assert.isFalse(isSinglePoint(), 'empty');
+      assert.isFalse(isSinglePoint([]), 'empty array');
     });
 
     it('should return true if bouding box is only one point', () => {
-      assert.isTrue(isOnePoint([[0, 0], [0, 0]]));
+      assert.isTrue(isSinglePoint([[0, 0], [0, 0]]));
     });
 
     it('should return false if bouding box covers some area', () => {
-      assert.isFalse(isOnePoint([[0, 0], [1, 1]]));
+      assert.isFalse(isSinglePoint([[0, 0], [1, 1]]));
     });
   });
 
@@ -90,7 +90,7 @@ describe('map/utils', () => {
       assert.include(style, 'TOKEN_KEY', 'key is set');
     });
 
-    it('should set optinal options', () => {
+    it('should set optional options', () => {
       const result = getMapOptions({
         bounds: [[0, 0], [1, 1]],
         fitPadding: 5,
@@ -105,13 +105,14 @@ describe('map/utils', () => {
     it('should set maxZoom level if bounds is only one point', () => {
       const resultA = getMapOptions({
         bounds: [[0, 0], [0, 0]],
+        singlePointZoom: 14,
       });
 
       const resultB = getMapOptions({
         bounds: [[0, 0], [1, 1]],
       });
 
-      assert.equal(resultA.maxZoom, 14, 'bounds is signle point');
+      assert.equal(resultA.maxZoom, 14, 'bounds is single point');
       assert.isUndefined(resultB.maxZooom, 'if bounds covers some area do not set zoom level');
     });
   });
@@ -128,16 +129,17 @@ describe('map/utils', () => {
       });
     });
 
-    it('should set maxZoom if boundsing box is single point', () => {
+    it('should set maxZoom if bounding box is a single point', () => {
       const resultA = getFitBoundsOptions({
         bounds: [[0, 0], [0, 0]],
+        singlePointZoom: 14,
       })[1];
 
       const resultB = getFitBoundsOptions({
         bounds: [[0, 0], [1, 1]],
       })[1];
 
-      assert.equal(resultA.maxZoom, 14, 'bounds is signle point');
+      assert.equal(resultA.maxZoom, 14, 'bounds is single point');
       assert.isUndefined(resultB.maxZooom, 'if bounds covers some area do not set zoom level');
     });
   });

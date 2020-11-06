@@ -1,7 +1,5 @@
 import { LngLatBounds } from 'mapbox-gl';
 
-export const MAX_ZOOM = 14;
-
 export const isFilledArray = (arr) => Array.isArray(arr) && arr.length > 0;
 
 export const getStyle = (credentials = {}) => (
@@ -23,7 +21,7 @@ export const mergeLayersBounds = (bounds) => {
   return bounds.flat(1);
 };
 
-export const isOnePoint = (boundingBox) => {
+export const isSinglePoint = (boundingBox) => {
   if (!isFilledArray(boundingBox)) return false;
 
   const [leftTop, rightBottom] = boundingBox;
@@ -37,6 +35,7 @@ export const getMapOptions = ({
   lockedMobile,
   bounds,
   fitPadding,
+  singlePointZoom,
   isMobile,
   node,
 }) => {
@@ -60,19 +59,24 @@ export const getMapOptions = ({
     fitBoundsOptions: { padding: fitPadding },
   };
 
-  if (isOnePoint(options.bounds)) {
-    options.maxZoom = MAX_ZOOM;
+  if (isSinglePoint(options.bounds)) {
+    options.maxZoom = singlePointZoom;
   }
 
   return options;
 };
 
-export const getFitBoundsOptions = ({ animate, fitPadding, bounds }) => {
+export const getFitBoundsOptions = ({
+  animate,
+  fitPadding,
+  bounds,
+  singlePointZoom,
+}) => {
   const boundingBox = getBoundingBox(bounds);
   const options = { animate, padding: fitPadding };
 
-  if (isOnePoint(boundingBox)) {
-    options.maxZoom = MAX_ZOOM;
+  if (isSinglePoint(boundingBox)) {
+    options.maxZoom = singlePointZoom;
   }
 
   return [boundingBox, options];

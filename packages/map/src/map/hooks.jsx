@@ -70,9 +70,15 @@ export const useMapUpdate = (map, {
   bounds,
   animate,
   fitPadding,
+  singlePointZoom,
 }) => {
   useEffect(() => {
-    const [boundingBox, options] = getFitBoundsOptions({ bounds, fitPadding, animate });
+    const [boundingBox, options] = getFitBoundsOptions({
+      bounds,
+      fitPadding,
+      animate,
+      singlePointZoom,
+    });
 
     if (map && boundingBox) {
       map.fitBounds(boundingBox, options);

@@ -41,6 +41,9 @@ const App = () => (
     {/* Credentials for maptiler */}
     credentials={{ key: 'Maptiler API secret key', map_id: 'Map style id' }}
 
+    {/* Zoom level when there is only one point on the map */}
+    singlePointZoom={10}
+
     {/* Bounds of the map. If the prop is passed, it overrides the bounding box of map layers. */}
     bounds={[]}
 
