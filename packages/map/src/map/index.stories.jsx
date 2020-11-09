@@ -1,5 +1,5 @@
 import React from 'react';
-import { boolean, select, withKnobs } from '@storybook/addon-knobs';
+import { boolean, select, number, withKnobs } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import config from '@root/config';
 import data from '../../sample_data';
@@ -18,10 +18,12 @@ export const Default = () => {
   const noAttribution = boolean('Hide attribution', false);
   const boundsIndex = select('Bounds index', [0, 1], 0);
   const bounds = data.polygons[boundsIndex];
+  const minZoom = number('Min zoom', undefined);
+  const maxZoom = number('Max zoom', undefined);
 
   return (
     <Map
-      {...{ bounds, locked, lockedMobile, animate, noAttribution }}
+      {...{ bounds, locked, lockedMobile, animate, minZoom, maxZoom, noAttribution }}
       credentials={config.map_credentials}
       onLoad={action('Map loaded')}
     />

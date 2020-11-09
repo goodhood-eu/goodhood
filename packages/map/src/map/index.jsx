@@ -23,6 +23,7 @@ const Map = ({
   bounds,
   fitPadding,
   maxZoom,
+  minZoom,
 
   onLoad,
   ...rest
@@ -39,6 +40,7 @@ const Map = ({
     bounds: boundsToFit,
     fitPadding,
     maxZoom,
+    minZoom,
     onLoad,
   });
 
@@ -80,6 +82,7 @@ Map.propTypes = {
   bounds: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
   fitPadding: PropTypes.number.isRequired,
   maxZoom: PropTypes.number,
+  minZoom: PropTypes.number,
 
   onLoad: PropTypes.func,
 };

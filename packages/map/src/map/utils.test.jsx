@@ -94,9 +94,13 @@ describe('map/utils', () => {
       const result = getMapOptions({
         bounds: [[0, 0], [1, 1]],
         fitPadding: 5,
+        maxZoom: 20,
+        minZoom: 5,
       });
 
       assert.deepNestedInclude(result, {
+        maxZoom: 20,
+        minZoom: 5,
         bounds: [[0, 0], [1, 1]],
         fitBoundsOptions: { padding: 5 },
       });
@@ -137,8 +141,14 @@ describe('map/utils', () => {
         bounds: [[0, 0], [1, 1]],
       })[1];
 
+      const resultC = getFitBoundsOptions({
+        bounds: [[0, 0], [0, 0]],
+        maxZoom: 20,
+      })[1];
+
       assert.equal(resultA.maxZoom, 14, 'bounds is single point');
-      assert.isUndefined(resultB.maxZooom, 'if bounds covers some area do not set zoom level');
+      assert.isUndefined(resultB.maxZoom, 'if bounds covers some area do not set zoom level');
+      assert.equal(resultC.maxZoom, 20, 'set maxZoom if it was passed');
     });
   });
 });
