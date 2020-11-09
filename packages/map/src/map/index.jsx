@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import { useMapInstance, useMapUpdate, useContextValue } from './hooks';
+import { useMapInstance, useMapUpdate, useContextValue, useLayersBounds } from './hooks';
 import { Provider } from './context';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -21,40 +21,41 @@ const Map = ({
   noAttribution,
 
   bounds,
-  defaultView,
-  defaultZoom,
   fitPadding,
+  maxZoom,
+  minZoom,
 
   onLoad,
   ...rest
 }) => {
   const nodeRef = useRef();
+  const [layersBounds, addLayerBounds] = useLayersBounds();
+  const boundsToFit = bounds || layersBounds;
+
   const map = useMapInstance(nodeRef, {
     credentials,
     noAttribution,
     locked,
     lockedMobile,
-    defaultView,
-    defaultZoom,
-    bounds,
+    bounds: boundsToFit,
     fitPadding,
+    maxZoom,
+    minZoom,
     onLoad,
   });
 
-  const [childrenBounds, context] = useContextValue(map);
+  const context = useContextValue(map, addLayerBounds);
 
   useMapUpdate(map, {
-    childrenBounds,
-    bounds,
-    fitPadding,
     animate,
-    defaultView,
-    defaultZoom,
+    bounds: boundsToFit,
+    fitPadding,
+    maxZoom,
   });
 
   return (
     <div {...rest} ref={nodeRef} className={clsx(styles.root, className)}>
-      <Provider value={context}>{map && children}</Provider>
+      <Provider value={context}>{children}</Provider>
     </div>
   );
 };
@@ -79,9 +80,9 @@ Map.propTypes = {
   noAttribution: PropTypes.bool.isRequired,
 
   bounds: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
-  defaultView: PropTypes.arrayOf(PropTypes.number),
-  defaultZoom: PropTypes.number,
   fitPadding: PropTypes.number.isRequired,
+  maxZoom: PropTypes.number,
+  minZoom: PropTypes.number,
 
   onLoad: PropTypes.func,
 };

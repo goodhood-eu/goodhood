@@ -10,7 +10,7 @@ import Map from '../map';
 export default { title: 'EyeCatcherMarker', component: EyeCatcherMarker, decorators: [withKnobs] };
 
 export const Default = () => (
-  <Map credentials={config.map_credentials} defaultZoom={10}>
+  <Map credentials={config.map_credentials}>
     <EyeCatcherMarker position={data.markers[0]}>{text('Content', 'fire in the hole!')}</EyeCatcherMarker>
   </Map>
 );
