@@ -45,7 +45,7 @@ const App = () => (
     maxZoom={10}
 
     {/* Min zoom level */}
-    maxZoom={5}
+    minZoom={5}
 
     {/* Bounds of the map. If the prop is passed, it overrides the bounding box of map layers. */}
     bounds={[]}
