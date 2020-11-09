@@ -3,22 +3,27 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './index.module.scss';
 
+import LogoText from '../logo_text';
+
+import { ReactComponent as GHLogo } from './images/logo.svg';
+import { ReactComponent as GHChristmasLogo } from './images/logo-christmas.svg';
 
 const Logo = (props) => {
-  const { compact, to, localeName, children, ...cleanProps } = props;
+  const { compact, christmas, to, localeName, children, ...cleanProps } = props;
   const className = clsx(styles.root, props.className);
+  const LogoImage = christmas ? GHChristmasLogo : GHLogo;
 
   let text;
   if (!compact) {
     text = (
       <span className={styles.wrap}>
-        <i className={`icon-logo_type_${localeName}`} />
+        <LogoText className={styles.text} localeName={localeName} />
         {children && <em>{children}</em>}
       </span>
     );
   }
 
-  const content = <><i className="icon-logo" />{text}</>;
+  const content = <><LogoImage className={styles.image} />{text}</>;
 
   if (to) return <a {...cleanProps} className={className} href={to}>{content}</a>;
 
@@ -27,12 +32,13 @@ const Logo = (props) => {
 
 Logo.defaultProps = {
   compact: false,
-  localeName: 'de_de',
+  christmas: false,
 };
 
 Logo.propTypes = {
   className: PropTypes.string,
   compact: PropTypes.bool.isRequired,
+  christmas: PropTypes.bool.isRequired,
   to: PropTypes.node,
   localeName: PropTypes.node.isRequired,
   children: PropTypes.node,
