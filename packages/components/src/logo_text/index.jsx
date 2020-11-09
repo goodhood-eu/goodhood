@@ -2,12 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import styles from './index.module.scss';
-
-import { ReactComponent as TextDE } from './images/logo_type_de_de.svg';
-import { ReactComponent as TextFR } from './images/logo_type_fr_fr.svg';
-import { ReactComponent as TextES } from './images/logo_type_es_es.svg';
-import { ReactComponent as TextIT } from './images/logo_type_it_it.svg';
+import { ReactComponent as TextDE } from './images/text_de_de.svg';
+import { ReactComponent as TextFR } from './images/text_fr_fr.svg';
+import { ReactComponent as TextES } from './images/text_es_es.svg';
+import { ReactComponent as TextIT } from './images/text_it_it.svg';
 
 import {
   LOCALE_DE_DE,
@@ -23,17 +21,15 @@ const logoMap = {
   [LOCALE_IT_IT]: TextIT,
 };
 
-const LogoText = ({ className, localeName, ...rest }) => {
-  const rootClassName = clsx(styles.root, className);
+const LogoText = ({ localeName, ...rest }) => {
   const Component = logoMap[localeName];
-  return <Component className={rootClassName} {...rest} />;
+  return <Component {...rest} />;
 };
 
 LogoText.defaultProps = {
   localeName: LOCALE_DE_DE,
 };
 LogoText.propTypes = {
-  className: PropTypes.string,
   localeName: PropTypes.string.isRequired,
 };
 
