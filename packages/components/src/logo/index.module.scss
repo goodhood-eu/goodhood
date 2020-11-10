@@ -1,10 +1,13 @@
 @import "nebenan-ui-kit";
 
+$logo-size: 30px;
+
 .root {
-  height: 30px;
-  display: inline-block;
+  height: $logo-size;
+  display: inline-flex;
+
   vertical-align: middle;
-  overflow: hidden;
+  align-items: center;
 
   text-align: left;
   user-select: none;
@@ -12,45 +15,35 @@
   @at-root a#{&} {
     color: inherit;
   }
+}
 
-  > i {
-    @include icon-size(30px);
+.image {
+  width: $logo-size;
+  height: $logo-size;
+}
+
+.text {
+  width: 74px;
+  height: 11px;
+}
+
+.wrap {
+  margin-left: 10px;
+  display: none;
+  line-height: 1;
+
+  @media ($media-m) {
     display: block;
-    float: left;
   }
 
-  .wrap {
-    margin-left: 7px;
-    padding-top: 7px;
-    display: none;
-    float: left;
+  > em {
+    margin-top: 1px;
+    display: block;
 
-    @media ($media-m) {
-      display: block;
-    }
+    font-style: normal;
+    font-size: 8px;
 
-    > i {
-      width: 80px;
-      height: 14px;
-      display: block;
-
-      &::before {
-        font-size: 80px;
-        line-height: 14px;
-      }
-    }
-
-    > em {
-      margin-top: 1px;
-      margin-left: 2.5px;
-
-      display: block;
-
-      font-style: normal;
-      font-size: 8px;
-      line-height: 8px;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
+    text-transform: uppercase;
+    white-space: nowrap;
   }
 }
