@@ -5,13 +5,13 @@ import styles from './index.module.scss';
 
 import LogoText from '../logo_text';
 
-import { ReactComponent as GHLogo } from './images/logo.svg';
-import { ReactComponent as GHChristmasLogo } from './images/logo-christmas.svg';
+import { ReactComponent as CompanyLogo } from './images/logo.svg';
+import { ReactComponent as CompanyChristmasLogo } from './images/logo-christmas.svg';
 
 const Logo = (props) => {
   const { compact, christmas, to, localeName, children, ...cleanProps } = props;
   const className = clsx(styles.root, props.className);
-  const LogoImage = christmas ? GHChristmasLogo : GHLogo;
+  const LogoImage = christmas ? CompanyChristmasLogo : CompanyLogo;
 
   let text;
   if (!compact) {
