@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 
 import { ReactComponent as TextDE } from './images/text_de_de.svg';
 import { ReactComponent as TextFR } from './images/text_fr_fr.svg';
@@ -14,7 +13,7 @@ import {
   LOCALE_IT_IT,
 } from './constants';
 
-const logoMap = {
+const localeMap = {
   [LOCALE_DE_DE]: TextDE,
   [LOCALE_FR_FR]: TextFR,
   [LOCALE_ES_ES]: TextES,
@@ -22,7 +21,7 @@ const logoMap = {
 };
 
 const LogoText = ({ localeName, ...rest }) => {
-  const Component = logoMap[localeName];
+  const Component = localeMap[localeName];
   return <Component {...rest} />;
 };
 
