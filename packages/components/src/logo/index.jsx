@@ -26,7 +26,6 @@ const Logo = (props) => {
   const content = <><LogoImage className={styles.image} />{text}</>;
 
   if (to) return <a {...cleanProps} className={className} href={to}>{content}</a>;
-
   return <span {...cleanProps} className={className}>{content}</span>;
 };
 
