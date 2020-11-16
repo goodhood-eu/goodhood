@@ -1,0 +1,39 @@
+{
+  "name": "@goodhood/chargebee",
+  "description": "Chargebee components",
+  "author": "goodhood.eu <max@nebenan.de>",
+  "license": "SEE LICENSE IN LICENSE FILE",
+  "homepage": "https://goodhood.eu/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goodhood-eu/goodhood.git"
+  },
+  "bugs": {
+    "url": "https://github.com/goodhood-eu/goodhood/issues"
+  },
+  "version": "1.0.0",
+  "module": "lib/index.esm.js",
+  "main": "lib/index.js",
+  "sideEffects": false,
+  "files": [
+    "/lib"
+  ],
+  "scripts": {
+    "reinstall": "rm -rf node_modules package-lock.json && npm install",
+    "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
+    "build": "rollup --config rollup.config.js",
+    "start": "../../scripts/start-storybook",
+    "start:ssr-preview": "../../scripts/start-storybook --ssr-preview",
+    "test": "../../scripts/run-tests"
+  },
+  "devDependencies": {
+    "react-load-script": "0.0.6"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "@babel/runtime": "^7.11.2",
+    "react": "^16.13.1",
+    "react-load-script": "^0.0.6",
+    "prop-types": "^15.7.2"
+  }
+}
