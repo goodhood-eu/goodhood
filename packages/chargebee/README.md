@@ -69,12 +69,6 @@ import { Checkout } from '@goodhood/chargebee';
 const App = () => (
   // Inherits Action component props
   <Checkout
-    {/* Your site name */}
-    site="site-name"
-
-    {/* Section in the customer portal */}
-    section={SECTION_INVOICES}
-
     {/* Should return a promise, that will resolve a hosted page object */}
     onHostedPageGet={() => Promise.resolve({ id: '', url: '' })}
 
