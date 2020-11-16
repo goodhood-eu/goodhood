@@ -88,6 +88,7 @@ const App = () => (
 
 ## Preview
 
+- Set chargebee site in root package `config/local.js` file (see `config/default.js`)
 - `npm run start`
 - Visit http://localhost:3000
 

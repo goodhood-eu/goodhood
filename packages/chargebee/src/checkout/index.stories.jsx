@@ -1,4 +1,5 @@
 import React from 'react';
+import config from '@root/config';
 import { action } from '@storybook/addon-actions';
 import Checkout from './index';
 
@@ -17,7 +18,7 @@ const dummyData = {
 
 export const Default = () => (
   <Checkout
-    site="site-name"
+    site={config.chargebee.site}
     onHostedPageGet={() => Promise.resolve(dummyData)}
     onSuccess={action('Success')}
     onError={action('Error')}

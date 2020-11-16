@@ -1,4 +1,5 @@
 import React from 'react';
+import config from '@root/config';
 import { action } from '@storybook/addon-actions';
 import PortalLink from './index';
 import { SECTION_INVOICES } from '../constants';
@@ -19,7 +20,7 @@ const dummyData = {
 
 export const Default = () => (
   <PortalLink
-    site="site-name"
+    site={config.chargebee.site}
     section={SECTION_INVOICES}
     onSessionGet={() => Promise.resolve(dummyData)}
     onClose={action('Close')}
