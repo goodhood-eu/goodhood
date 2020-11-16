@@ -1,6 +1,6 @@
 # `@goodhood/chargebee`
 
-> React chargebee components
+> React chargebee components (Chargebee SDK https://www.chargebee.com/checkout-portal-docs/api.html)
 
 ## Install
 
@@ -16,14 +16,17 @@ npm i prop-types // v15.x.x
 npm i @babel/runtime // v7.x.x
 ```
 
-## Include:
+## Usage:
 
 ```js
-import { Action, PortalLink, Checkout } from '@goodhood/chargebee';
-import PortalLik from '@goodhood/chargebee/lib/portal_link';
-import Action from '@goodhood/chargebee/lib/action';
-import Checkout from '@goodhood/chargebee/lib/checkout';
-import { SECTION_INVOICES, SECTION_EDIT_SUBSCRIPTION, SECTION_BILLING_ADDRESS } from '@goodhood/chargebee/lib/constants';
+import {
+  Action,
+  PortalLink,
+  Checkout,
+  SECTION_INVOICES,
+  SECTION_EDIT_SUBSCRIPTION,
+  SECTION_BILLING_ADDRESS,
+} from '@goodhood/chargebee';
 ```
 
 # API
