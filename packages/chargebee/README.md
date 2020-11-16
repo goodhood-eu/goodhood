@@ -98,11 +98,11 @@ const App = () => (
   - Named exports will be re-exported as they are (watch out for collisions)
     ```js
       // src/chargebee/index.jsx
-      export const MapType = 123;
-      export Map 666;
+      export const PortalLink = () => {};
+      export const Action = () => {};
 
       // usage
-      import { Map, MapType } from '@goodhood/chargebee';
+      import { PortalLink, Action } from '@goodhood/chargebee';
     ```
 - Create `src/*/index.stories.jsx`
   - Storybook will take it up automatically
