@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Action from '../action';
 
 
-const ChargebeeCheckout = ({
+const Checkout = ({
   onHostedPageGet,
   onClose,
   onSuccess,
@@ -27,11 +27,11 @@ const ChargebeeCheckout = ({
   return <Action {...rest} onCall={handleCheckout} />;
 };
 
-ChargebeeCheckout.propTypes = {
+Checkout.propTypes = {
   onHostedPageGet: PropTypes.func.isRequired,
   onClose: PropTypes.func,
   onSuccess: PropTypes.func,
   onError: PropTypes.func,
 };
 
-export default ChargebeeCheckout;
+export default Checkout;
