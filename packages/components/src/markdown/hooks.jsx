@@ -28,5 +28,5 @@ export const useClickHandler = (onClick) => {
     }
 
     invoke(onClick, event);
-  }, [onClick]);
+  }, [onClick, history]);
 };
