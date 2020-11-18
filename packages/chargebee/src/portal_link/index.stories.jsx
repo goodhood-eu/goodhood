@@ -6,7 +6,8 @@ import { SECTION_INVOICES } from '../constants';
 
 export default { title: 'PortalLink', component: PortalLink };
 
-// Reference: https://www.chargebee.com/checkout-portal-docs/api.html#chargebee-instance-object
+// Server payload example (doesn't actually work)
+// Reference: https://www.chargebee.com/checkout-portal-docs/api.html#example-4
 const dummyData = {
   id: 'portal_XpbGElGQgEHspHB',
   token: 'cuqdrWacuITd2cabvf97KJD73SpNcd7BICB',
@@ -20,6 +21,7 @@ const dummyData = {
 
 export const Default = () => (
   <PortalLink
+    className="ui-button ui-button-primary"
     site={config.chargebee.site}
     section={SECTION_INVOICES}
     onSessionGet={() => Promise.resolve(dummyData)}

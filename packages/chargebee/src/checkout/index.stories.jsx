@@ -5,7 +5,8 @@ import Checkout from './index';
 
 export default { title: 'Checkout', component: Checkout };
 
-// Reference: https://www.chargebee.com/checkout-portal-docs/api.html#chargebee-instance-object
+// Server payload example (doesn't actually work)
+// Reference: https://www.chargebee.com/checkout-portal-docs/api.html#example-2
 const dummyData = {
   id: '8ajOxcuyG692GDy9yjnZ2hNM1ATugOFQl',
   type: 'checkout_new',
@@ -18,6 +19,7 @@ const dummyData = {
 
 export const Default = () => (
   <Checkout
+    className="ui-button ui-button-primary"
     site={config.chargebee.site}
     onHostedPageGet={() => Promise.resolve(dummyData)}
     onSuccess={action('Success')}

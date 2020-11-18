@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Action from '../action';
+import { invoke } from '../utils';
 
 
 const Checkout = ({
@@ -18,8 +19,8 @@ const Checkout = ({
       success: () => { isSuccess = true; },
       error: onError,
       close: () => {
-        if (onClose) onClose();
-        if (isSuccess && onSuccess) onSuccess();
+        invoke(onClose);
+        if (isSuccess) invoke(onSuccess);
       },
     });
   };

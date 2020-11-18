@@ -1,5 +1,0 @@
-plugins:
-  - removeViewBox: false
-  - removeRasterImage: true
-  - convertColors:
-      currentColor: true

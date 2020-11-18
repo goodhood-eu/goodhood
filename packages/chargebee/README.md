@@ -41,7 +41,7 @@ const App = () => (
     site="site-name"
 
     {/* Will be called on element click. Receives chargebee instance as an argument */}
-    onCall={(chargebeeInstance, ChargebeeGlobalObject) => {}}
+    onCall={(chargebeeInstance, ChargebeeAPI) => {}}
   />
 );
 ```

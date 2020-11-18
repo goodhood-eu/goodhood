@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Script from 'react-load-script';
 import { useOnUnmount } from './hooks';
+import { invoke } from '../utils';
 
 const Action = ({
   site,
@@ -31,8 +32,8 @@ const Action = ({
   let node;
   if (isReady) {
     const handleClick = (event) => {
-      if (onClick) onClick(event);
-      if (onCall) onCall(instanceRef.current, global.Chargebee);
+      invoke(onClick, event);
+      invoke(onCall, instanceRef.current, global.Chargebee);
     };
 
     node = <span {...rest} onClick={handleClick} />;
