@@ -11,10 +11,10 @@ const PortalLink = ({
   ...rest
 }) => {
   const handleOpenLink = (instance, Chargebee) => {
-    const forwardOptions = {};
+    let forwardOptions;
 
     if (section) {
-      forwardOptions.sectionType = Chargebee.getPortalSections()[section];
+      forwardOptions = { sectionType: Chargebee.getPortalSections()[section] };
     }
 
     instance.setPortalSession(() => onSessionGet());
