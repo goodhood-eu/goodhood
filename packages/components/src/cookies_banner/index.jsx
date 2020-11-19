@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import Markdown from 'nebenan-components/lib/markdown';
+import Markdown from '../markdown';
 import styles from './index.module.scss';
 
 
