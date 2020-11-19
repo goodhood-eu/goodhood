@@ -4,4 +4,8 @@ module.exports = {
     key: '',
     map_id: '',
   },
+
+  chargebee: {
+    site: 'site-test',
+  },
 };
