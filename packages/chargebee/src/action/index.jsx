@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Script from 'react-load-script';
 import { useOnUnmount } from './hooks';

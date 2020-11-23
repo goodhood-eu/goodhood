@@ -1,4 +1,3 @@
-import React from 'react';
 import config from '@root/config';
 import { action } from '@storybook/addon-actions';
 import Action from './index';

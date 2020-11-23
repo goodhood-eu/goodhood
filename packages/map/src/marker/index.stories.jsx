@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import config from '@root/config';
 import { boolean, withKnobs } from '@storybook/addon-knobs';
 import Map from '../map';

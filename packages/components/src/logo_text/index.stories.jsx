@@ -1,4 +1,3 @@
-import React from 'react';
 import LogoText from './index';
 
 import {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import config from '@root/config';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { boolean, withKnobs } from '@storybook/addon-knobs';
 import config from '@root/config';
 import data from '../../sample_data';

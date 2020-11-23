@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { number, withKnobs } from '@storybook/addon-knobs';
 import config from '@root/config';
 import transformRotate from '@turf/transform-rotate';
