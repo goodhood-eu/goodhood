@@ -1,0 +1,112 @@
+@import "nebenan-ui-kit";
+
+.root {
+  display: block;
+
+  &.isInline {
+    display: inline;
+
+    .content p {
+      display: inline;
+    }
+  }
+}
+
+.content {
+  $content-offset: .66em 0 $offset-space;
+
+  a {
+    text-decoration: underline;
+  }
+
+  input {
+    display: none;
+  }
+
+  h1 {
+    font-size: 20px;
+    line-height: 32px;
+  }
+
+  > p {
+    margin: $content-offset;
+    white-space: pre-line;
+    word-wrap: break-word;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  strong {
+    font-weight: $font-weight-l;
+  }
+
+  img {
+    max-width: 100%;
+    margin: 1em 0;
+  }
+
+  > ul,
+  > ol ul {
+    margin: $content-offset;
+    padding-left: 2em;
+    list-style-type: disc;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  > ol ul {
+    list-style-type: circle;
+  }
+
+  ol {
+    margin: $content-offset;
+    padding-left: 2em;
+    list-style-type: decimal;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  pre {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  code {
+    padding: 0 $offset-space;
+    display: inline-block;
+    background: $color-gray-05;
+  }
+
+  blockquote {
+    padding-left: 1.5em;
+    font-style: italic;
+  }
+
+  hr {
+    height: 1px;
+    background: $color-gray-05;
+    border: none;
+  }
+}

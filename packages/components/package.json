@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "2.0.1",
+  "version": "2.1.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -42,12 +42,16 @@
     "react-load-script": "^0.0.6",
     "react-redux": "^7.2.1",
     "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "sass-functions": "^1.4.0",
-    "smartcontent": "^3.8.1",
-    "string-validate": "^3.3.0"
+    "string-validate": "^3.3.0",
+    "smartcontent": "^3.8.1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "escape-html": "^1.0.3",
+    "marked": "^1.2.3"
+  },
   "peerDependencies": {
     "nebenan-components": "^9.3.2",
     "nebenan-form": "^8.5.2",
