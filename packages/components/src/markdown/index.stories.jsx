@@ -1,4 +1,3 @@
-import React from 'react';
 import { text, withKnobs } from '@storybook/addon-knobs';
 import { MemoryRouter } from 'react-router';
 import Markdown from './index';

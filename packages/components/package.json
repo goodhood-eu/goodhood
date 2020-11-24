@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "2.1.1",
+  "version": "2.2.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -24,42 +24,43 @@
     "test": "../../scripts/run-tests"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.11.2",
+    "@babel/runtime": "^7.12.5",
     "clsx": "^1.1.1",
     "date-fns": "^2.16.1",
     "lodash": "^4.17.20",
-    "nebenan-form": "^8.5.2",
-    "nebenan-helpers": "^4.2.0",
-    "nebenan-react-hocs": "^5.10.0",
-    "nebenan-ui-kit": "^4.13.0",
+    "nebenan-form": "^8.8.0",
+    "nebenan-helpers": "^4.5.0",
+    "nebenan-react-hocs": "^7.0.0",
+    "nebenan-ui-kit": "^4.15.0",
     "node-sass-glob-importer": "^5.3.2",
     "prop-types": "^15.7.2",
     "qs": "^6.9.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-load-script": "^0.0.6",
-    "react-redux": "^7.2.1",
+    "react-redux": "^7.2.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "sass-functions": "^1.4.0",
-    "string-validate": "^3.3.0",
-    "smartcontent": "^3.8.1"
+    "smartcontent": "^3.10.0",
+    "string-validate": "^3.5.0"
   },
   "dependencies": {
     "escape-html": "^1.0.3",
-    "marked": "^1.2.3"
+    "marked": "^1.2.5"
   },
   "peerDependencies": {
-    "nebenan-form": "^8.5.2",
-    "nebenan-helpers": "^4.2.0",
+    "nebenan-form": "^8.8.0",
+    "nebenan-helpers": "^4.5.0",
     "lodash": "^4.17.20",
-    "nebenan-react-hocs": "^5.9.0",
-    "react": "^16.13.1",
+    "nebenan-react-hocs": "^7.0.0",
+    "react": "^16.14.0 || ^17.0.1",
     "react-load-script": "^0.0.6",
+    "react-router": "^5.2.0",
     "prop-types": "^15.7.2",
     "clsx": "^1.1.1",
-    "nebenan-ui-kit": "^4.13.0",
-    "@babel/runtime": "^7.11.2"
+    "nebenan-ui-kit": "^4.15.0",
+    "@babel/runtime": "^7.12.5"
   }
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import { number, select, withKnobs } from '@storybook/addon-knobs';
 import config from '@root/config';
 import data from '../../sample_data';

@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ReactComponent as TextDE } from './images/text_de_de.svg';

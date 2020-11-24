@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { POLYGON_DEFAULT } from './constants';
 import { getFillPaint, getLinePaint, getTypeProp, getGeoJSON } from './utils';

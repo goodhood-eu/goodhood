@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './index.module.scss';
@@ -39,7 +38,7 @@ Logo.propTypes = {
   compact: PropTypes.bool.isRequired,
   christmas: PropTypes.bool.isRequired,
   to: PropTypes.node,
-  localeName: PropTypes.node.isRequired,
+  localeName: PropTypes.node,
   children: PropTypes.node,
 };
 

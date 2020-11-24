@@ -1,4 +1,3 @@
-import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { start } from '@storybook/core/client';
 import addons, { mockChannel } from '@storybook/addons';

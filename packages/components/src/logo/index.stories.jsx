@@ -1,6 +1,5 @@
-import React from 'react';
 import Logo from './index';
-import { LOCALE_FR_FR } from '../logo_text/constants';
+import * as locales from '../logo_text/constants';
 
 export default { title: 'Logo', component: Logo };
 
@@ -8,8 +7,12 @@ export const Default = () => (
   <Logo />
 );
 
-export const FrenchLocale = () => (
-  <Logo localeName={LOCALE_FR_FR} />
+export const Locales = () => (
+  <ul>
+    {Object.keys(locales).map((key) => (
+      <li key={key}><Logo localeName={locales[key]} /></li>
+    ))}
+  </ul>
 );
 
 export const Compact = () => (

@@ -1,4 +1,3 @@
-import React from 'react';
 import PhraseControls from './controls';
 
 export default { title: 'PhraseControls', component: PhraseControls };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Dots from './index';
 
 export default { title: 'Dots', component: Dots };
