@@ -23,8 +23,8 @@ $logo-size: 30px;
 }
 
 .text {
+  max-height: 14px;
   width: 74px;
-  height: 11px;
 }
 
 .wrap {
@@ -37,7 +37,6 @@ $logo-size: 30px;
   }
 
   > em {
-    margin-top: 1px;
     display: block;
 
     font-style: normal;
