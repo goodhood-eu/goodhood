@@ -7,7 +7,6 @@ export default { title: 'ReactionIconBubble', component: ReactionIconBubble, dec
 
 export const Default = () => {
   const reaction = select('reaction', REACTIONS, REACTIONS[0]);
-  const size = select('size', [20, 24], 20);
 
-  return <ReactionIconBubble reaction={reaction} size={size} />;
+  return <ReactionIconBubble reaction={reaction} />;
 };
