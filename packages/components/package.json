@@ -19,7 +19,8 @@
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
     "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
     "build": "npx rollup --config rollup.config.js",
-    "start": "../../scripts/start-storybook --ssr-preview",
+    "start": "../../scripts/start-storybook" ,
+    "start:ssr-preview": "../../scripts/start-storybook --ssr-preview",
     "test": "../../scripts/run-tests"
   },
   "devDependencies": {
@@ -56,6 +57,7 @@
     "nebenan-react-hocs": "^7.0.0",
     "react": "^16.14.0 || ^17.0.1",
     "react-load-script": "^0.0.6",
+    "react-router": "^5.2.0",
     "prop-types": "^15.7.2",
     "clsx": "^1.1.1",
     "nebenan-ui-kit": "^4.15.0",
