@@ -1,4 +1,3 @@
-import React from 'react';
 import { STORY_CHANGED } from '@storybook/core-events';
 import addons from '@storybook/addons';
 import { hydrate } from 'react-dom';

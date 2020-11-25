@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Marker as MapboxMarker, Popup } from 'mapbox-gl';
 
-import { useChildrenBounds, useMapEffect } from '../map/hooks';
+import { useAddLayerBounds, useMapEffect } from '../map/hooks';
 import styles from './index.module.scss';
 
 
@@ -23,7 +23,7 @@ const Marker = ({
   const popupRef = useRef();
   const [, forceRender] = useState();
 
-  useChildrenBounds([position]);
+  useAddLayerBounds([position]);
 
   useMapEffect((map) => {
     nodeRef.current = document.createElement('div');

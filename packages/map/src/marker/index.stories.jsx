@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import config from '@root/config';
 import { boolean, withKnobs } from '@storybook/addon-knobs';
 import Map from '../map';
@@ -25,7 +25,7 @@ export const JSXPopup = () => {
   const visible = boolean('visible', true);
 
   return (
-    <Map credentials={config.map_credentials} defaultZoom={10}>
+    <Map credentials={config.map_credentials}>
       <Marker
         className="markerClass"
         position={data.markers[0]}

@@ -1,6 +1,8 @@
 import { LngLatBounds } from 'mapbox-gl';
 
 
+const DEFAULT_ZOOM_LEVEL = 14;
+
 export const isFilledArray = (arr) => Array.isArray(arr) && arr.length > 0;
 
 export const getStyle = (credentials = {}) => (
@@ -17,9 +19,16 @@ export const getBoundingBox = (bounds) => {
   return lngLat.toArray();
 };
 
-export const mergeChildrenBounds = (bounds) => {
+export const mergeLayersBounds = (bounds) => {
   if (!isFilledArray(bounds)) return undefined;
   return bounds.flat(1);
+};
+
+export const isSinglePoint = (boundingBox) => {
+  if (!isFilledArray(boundingBox)) return false;
+
+  const [leftTop, rightBottom] = boundingBox;
+  return leftTop[0] === rightBottom[0] && leftTop[1] === rightBottom[1];
 };
 
 export const getMapOptions = ({
@@ -27,10 +36,10 @@ export const getMapOptions = ({
   noAttribution,
   locked,
   lockedMobile,
-  defaultView,
-  defaultZoom,
   bounds,
   fitPadding,
+  maxZoom,
+  minZoom,
   isMobile,
   node,
 }) => {
@@ -42,15 +51,42 @@ export const getMapOptions = ({
     attributionControl: !noAttribution,
     interactive,
 
+    bounds: getBoundingBox(bounds),
+
     scrollZoom: false,
     dragRotate: false,
+    dragPan: {
+      // Disable intertia on drag
+      maxSpeed: 0,
+    },
     pitchWithRotate: false,
+    fitBoundsOptions: { padding: fitPadding },
   };
 
-  if (defaultView) options.center = defaultView;
-  if (defaultZoom) options.zoom = defaultZoom;
-  if (isFilledArray(bounds)) options.bounds = getBoundingBox(bounds);
-  if (fitPadding) options.fitBoundsOptions = { padding: fitPadding };
+  if (maxZoom) options.maxZoom = maxZoom;
+  if (minZoom) options.minZoom = minZoom;
+
+  if (isSinglePoint(options.bounds) && !maxZoom) {
+    options.maxZoom = DEFAULT_ZOOM_LEVEL;
+  }
 
   return options;
+};
+
+export const getFitBoundsOptions = ({
+  animate,
+  fitPadding,
+  bounds,
+  maxZoom,
+}) => {
+  const boundingBox = getBoundingBox(bounds);
+  const options = { animate, padding: fitPadding };
+
+  if (maxZoom) options.maxZoom = maxZoom;
+
+  if (isSinglePoint(boundingBox) && !maxZoom) {
+    options.maxZoom = DEFAULT_ZOOM_LEVEL;
+  }
+
+  return [boundingBox, options];
 };

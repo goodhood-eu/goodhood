@@ -41,13 +41,13 @@ const App = () => (
     {/* Credentials for maptiler */}
     credentials={{ key: 'Maptiler API secret key', map_id: 'Map style id' }}
 
-    {/* The initial center of the map */}
-    defaultView={[]}
+    {/* Max zoom level */}
+    maxZoom={10}
 
-    {/* The initial zoom of the map */}
-    defaultZoom={15}
+    {/* Min zoom level */}
+    minZoom={5}
 
-    {/* Bounds of the map. If bounds are specified, it overrides defaultView and defaultZoom props. */}
+    {/* Bounds of the map. If the prop is passed, it overrides the bounding box of map layers. */}
     bounds={[]}
 
     {/* Lock map on desktop */}
@@ -56,7 +56,7 @@ const App = () => (
     {/* Lock map on mobile */}
     lockedMobile={true}
 
-    {/* Animate chnage of map view */}
+    {/* Animate transition of map view */}
     animate={true}
 
     {/* Hide attribution */}
@@ -65,7 +65,7 @@ const App = () => (
     {/* Fired when map styles are loaded. Takes map as an argument */}
     onLoad={(map) => { alert('Loaded') }}
   >
-    {/* Map layers. if bounds prop is not specified map will try to get bounds from children layers */}
+    {/* Map layers. if bounds prop is not specified, the map will try to get bounds from layers */}
   </Map>
 );
 ```

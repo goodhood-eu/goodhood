@@ -12,21 +12,21 @@ const getPackages = () => (
 
 const getPackageOptions = (pkg) => ({
   rules: {
-    "import/no-extraneous-dependencies": ["error",
-      {"packageDir": [ROOT_PKG_PATH, path.resolve(pkg)]}
-    ]
+    'import/no-extraneous-dependencies': ['error',
+      { packageDir: [ROOT_PKG_PATH, path.resolve(pkg)] },
+    ],
   },
   settings: {
-    "import/resolver": {
+    'import/resolver': {
       alias: {
         map: [
-          ["@root", ROOT_PKG_PATH],
-          ["@", path.resolve(pkg)],
+          ['@root', ROOT_PKG_PATH],
+          ['@', path.resolve(pkg)],
         ],
       },
-    }
+    },
   },
-})
+});
 
 const getOverridesForPackage = (pkg) => ({
   files: [`${pkg}/**/*`],
@@ -34,30 +34,29 @@ const getOverridesForPackage = (pkg) => ({
 });
 
 module.exports = {
-  "extends": "nebenan",
-  "root": true,
-  "overrides": [
+  extends: 'nebenan',
+  root: true,
+  overrides: [
     {
-      "files": ["**/*.test.js", "**/*.test.jsx"],
-      "env": {
-        "mocha": true
+      files: ['**/*.test.js', '**/*.test.jsx'],
+      env: {
+        mocha: true,
       },
-      "rules": {
-        "no-unused-expressions": "off"
-      }
+      rules: {
+        'no-unused-expressions': 'off',
+      },
     },
     {
-      files: [".storybook/**/*"],
+      files: ['.storybook/**/*'],
 
       // Use react package template as baseline for @-imports in storybook
-      ...getPackageOptions("package-templates/react"),
+      ...getPackageOptions('package-templates/react'),
     },
     ...getPackages().map(getOverridesForPackage),
   ],
-  "rules": {
-    "import/extensions": ["error", "never", {
-      "json": "always"
-    }]
-  }
-}
-
+  rules: {
+    'import/extensions': ['error', 'never', {
+      json: 'always',
+    }],
+  },
+};
