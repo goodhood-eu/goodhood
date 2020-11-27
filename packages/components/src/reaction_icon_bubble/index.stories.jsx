@@ -1,4 +1,3 @@
-import React from 'react';
 import { select, withKnobs } from '@storybook/addon-knobs';
 import ReactionIconBubble from './index';
 import { REACTIONS } from '../constants';

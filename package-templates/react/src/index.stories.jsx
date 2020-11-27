@@ -1,4 +1,3 @@
-import React from 'react';
 import config from '@root/config';
 import { number, withKnobs } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';

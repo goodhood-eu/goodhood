@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import MicroHelmet from './index';
 import MicroHelmetProvider from './provider';
 
@@ -21,7 +21,7 @@ const usePageTitle = () => {
 export default { title: 'MicroHelmet', component: MicroHelmet, subcomponents: { MicroHelmetProvider } };
 
 export const Default = () => {
-  const [title, setTitle] = useState(null);
+  const [title, setTitle] = useState('');
   const currentPageTitle = usePageTitle();
   const helmetContext = useMemo(() => {}, []);
 

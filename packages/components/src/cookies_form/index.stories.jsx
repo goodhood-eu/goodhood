@@ -1,4 +1,3 @@
-import React from 'react';
 import { text, boolean, withKnobs } from '@storybook/addon-knobs';
 
 import CookiesForm from './index';

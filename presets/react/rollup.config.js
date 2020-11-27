@@ -23,7 +23,7 @@ const ROOT_PKG_PATH = path.join(__dirname, '../../');
 
 const move = (source, target) => ({
   writeBundle() {
-    if (fs.existsSync(target)) return;
+    if (!fs.existsSync(source) || fs.existsSync(target)) return;
 
     fs.renameSync(source, target);
   },

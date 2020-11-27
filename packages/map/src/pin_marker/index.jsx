@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import pinBase01 from './images/pin-base-01.svg';
 import pinBlue01 from './images/pin-blue-01.svg';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { number, select, withKnobs } from '@storybook/addon-knobs';
 import config from '@root/config';
 import data from '../../sample_data';
@@ -23,7 +22,7 @@ export const Default = () => {
   });
 
   return (
-    <Map credentials={config.map_credentials} defaultZoom={16}>
+    <Map credentials={config.map_credentials}>
       <Circle
         center={data.markers[0]}
         radius={radius}

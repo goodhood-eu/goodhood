@@ -25,7 +25,7 @@ const getOverridesForPackage = (pkg) => ({
 module.exports = {
   presets: [
     ['@babel/preset-env', { modules: false }],
-    '@babel/preset-react',
+    ['@babel/preset-react', { runtime: 'automatic' }],
   ],
   plugins: [
     'transform-node-env-inline',

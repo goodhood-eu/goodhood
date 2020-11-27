@@ -1,4 +1,3 @@
-import React from 'react';
 import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import config from '@root/config';
@@ -36,7 +35,7 @@ export const Default = () => {
   const popupDefaultState = boolean('Popup default state', false);
 
   return (
-    <Map credentials={config.map_credentials} defaultZoom={10}>
+    <Map credentials={config.map_credentials}>
       <PinMarker
         position={data.markers[0]}
         {...{ type, popupContent, popupDefaultState }}
