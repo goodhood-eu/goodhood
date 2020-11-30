@@ -36,7 +36,7 @@ const Tooltip = ({ type, text, children, className }) => {
       <span ref={content} className={className}>{children}</span>
       <span ref={tooltip} className={styles.tooltip}>
         {text}
-        <span ref={arrow} className={styles.arrow} />
+        <i ref={arrow} className={styles.arrow} />
       </span>
     </div>
   );
