@@ -1,65 +1,52 @@
-import React, { useCallback, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { usePopper } from 'react-popper';
-
-import { usePopperOptions } from './hooks';
-import { POSITION_TOP } from '../feature_alert';
+import { createPopper } from '@popperjs/core';
+import { getPopperOptions } from './utils';
 import styles from './index.module.scss';
 
-const Tooltip = (props) => {
-  const [isOpen, setOpen] = useState(false);
-  const { type, text, children, className, ...cleanProps } = props;
-  const tooltipClassName = clsx(styles.tooltip, className);
+const Tooltip = ({ type, text, children, className }) => {
+  const content = useRef(null);
+  const tooltip = useRef(null);
+  const instance = useRef(null);
+  const arrow = useRef(null);
 
-  const handleOpen = useCallback((event) => {
-    event.stopPropagation();
-    setOpen(true);
-  }, []);
+  const openPopper = () => {
+    tooltip.current.setAttribute('data-show', '');
+    instance.current = createPopper(
+      content.current,
+      tooltip.current,
+      getPopperOptions(arrow.current, type),
+    );
+  };
 
-  const handleClose = useCallback((event) => {
-    event.stopPropagation();
-    setOpen(false);
-  }, []);
+  const destroyPopper = () => {
+    tooltip.current.removeAttribute('data-show');
+    if (instance.current) instance.current.destroy();
+  };
 
-  const [refElement, setRefElement] = useState(null);
-  const [tooltipElement, setTooltipElement] = useState(null);
-  const [arrowElement, setArrowElement] = useState(null);
-
-  const popperOptions = usePopperOptions(arrowElement, type);
-
-  const { styles: popperStyles, attributes } = usePopper(refElement, tooltipElement, popperOptions);
+  useEffect(() => {
+    openPopper();
+    return () => {
+      destroyPopper();
+    };
+  }, [children]);
 
   return (
-    <span
-      {...cleanProps} className={tooltipClassName}
-      onMouseEnter={handleOpen} onMouseLeave={handleClose}
-    >
-      {isOpen && (
-        <em
-          className={styles.text} ref={setTooltipElement}
-          style={popperStyles.popper} {...attributes.popper}
-        >
-          {text}
-          <span className={styles.arrow} ref={setArrowElement} />
-        </em>
-      )}
-      <span className={styles.element} ref={setRefElement}>
-        {children}
+    <div className={styles.wrap}>
+      <span ref={content} className={className}>{children}</span>
+      <span ref={tooltip} className={styles.tooltip}>
+        {text}
+        <span ref={arrow} className={styles.arrow} />
       </span>
-    </span>
+    </div>
   );
 };
 
-Tooltip.defaultProps = {
-  type: POSITION_TOP,
-};
-
 Tooltip.propTypes = {
-  className: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
   children: PropTypes.node,
-  text: PropTypes.node,
-  type: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default Tooltip;

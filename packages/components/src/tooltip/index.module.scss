@@ -2,27 +2,29 @@
 
 $tooltip-arrow-size: 10px;
 
+.wrap:hover .tooltip {
+  visibility: visible;
+}
+
 .tooltip {
   position: relative;
   cursor: default;
+  visibility: hidden;
 
-  > .text {
-    padding: 5px 10px;
+  padding: 5px 10px;
 
-    position: absolute;
-    z-index: 1;
+  z-index: 1;
 
-    background: $color-gray-00;
-    border-radius: $border-radius-m;
-    box-shadow: $shadow-bottom-default;
+  background: $color-gray-00;
+  border-radius: $border-radius-m;
+  box-shadow: $shadow-bottom-default;
 
-    font-size: $font-size-s;
-    line-height: 16px;
-    font-style: normal;
-    color: $color-gray-09;
-    word-wrap: break-word;
-    white-space: pre;
-  }
+  font-size: $font-size-s;
+  line-height: 16px;
+  font-style: normal;
+  color: $color-gray-09;
+  word-wrap: break-word;
+  white-space: pre;
 }
 
 .arrow,
@@ -41,25 +43,25 @@ $tooltip-arrow-size: 10px;
 }
 
 // Application of css classes that are not being applied by popper.js
-.text[data-popper-placement^='top'] > .arrow {
+.tooltip[data-popper-placement^='top'] > .arrow {
   bottom: -4px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.text[data-popper-placement^='bottom'] > .arrow {
+.tooltip[data-popper-placement^='bottom'] > .arrow {
   top: -4px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.text[data-popper-placement^='left'] > .arrow {
+.tooltip[data-popper-placement^='left'] > .arrow {
   top: 50%;
   right: -4px;
   transform: translateY(-50%);
 }
 
-.text[data-popper-placement^='right'] > .arrow {
+.tooltip[data-popper-placement^='right'] > .arrow {
   top: 50%;
   left: -4px;
   transform: translateY(-50%);

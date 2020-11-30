@@ -47,8 +47,10 @@
     "string-validate": "^3.5.0"
   },
   "dependencies": {
+    "@popperjs/core": "^2.5.4",
     "escape-html": "^1.0.3",
-    "marked": "^1.2.5"
+    "marked": "^1.2.5",
+    "react-popper": "^2.2.4"
   },
   "peerDependencies": {
     "nebenan-form": "^8.8.0",
