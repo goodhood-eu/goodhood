@@ -69,10 +69,10 @@ const FeatureAlertTooltip = (props) => {
   const triggerProps = getTriggerProps(trigger, handleOpen);
 
   const bubble = (
-    <div className={styles.content}>
+    <aside className={styles.content}>
       {content}
       {closeIcon && <span onClick={handleClose} className={styles.cross}><CrossIcon /></span>}
-    </div>
+    </aside>
   );
 
   return (
