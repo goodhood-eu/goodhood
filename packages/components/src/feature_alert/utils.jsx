@@ -1,7 +1,7 @@
 import {
   TRIGGER_HOVER,
   TRIGGER_CLICK,
-} from './constants';
+} from '../base_tooltip/constants';
 
 
 export const getTriggerProps = (trigger, handler) => {

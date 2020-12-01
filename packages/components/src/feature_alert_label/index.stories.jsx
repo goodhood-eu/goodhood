@@ -6,7 +6,7 @@ import {
   POSITION_BOTTOM,
   POSITION_LEFT,
   POSITION_RIGHT,
-} from '../tooltip/constants';
+} from '../base_tooltip/constants';
 
 const TOOLTIP_PLACEHOLDER = 'Design is like a joke.';
 

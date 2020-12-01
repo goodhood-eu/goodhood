@@ -6,7 +6,7 @@ import {
   POSITION_BOTTOM,
   POSITION_LEFT,
   POSITION_RIGHT,
-} from '../tooltip/constants';
+} from '../base_tooltip/constants';
 import styles from './index.module.scss';
 
 

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import keymanager from 'nebenan-helpers/lib/keymanager';
 import { invoke } from 'nebenan-helpers/lib/utils';
-import { TRIGGER_DELAYED, DELAY_TIMEOUT } from './constants';
+import { TRIGGER_DELAYED, DELAY_TIMEOUT } from '../base_tooltip/constants';
 
 export const useEscHandler = (callback) => useEffect(() => keymanager('esc', callback), [callback]);
 
