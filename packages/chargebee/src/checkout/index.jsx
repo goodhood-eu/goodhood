@@ -4,7 +4,6 @@ import { invoke } from '../utils';
 
 
 const Checkout = ({
-  onCheck,
   onHostedPageGet,
   onClose,
   onSuccess,
@@ -12,10 +11,6 @@ const Checkout = ({
   ...rest
 }) => {
   const handleCheckout = (instance) => {
-    if (onCheck && !onCheck()) {
-      return;
-    }
-
     let isSuccess = false;
 
     instance.openCheckout({
@@ -33,7 +28,6 @@ const Checkout = ({
 };
 
 Checkout.propTypes = {
-  onCheck: PropTypes.func,
   onHostedPageGet: PropTypes.func.isRequired,
   onClose: PropTypes.func,
   onSuccess: PropTypes.func,
