@@ -1,5 +1,5 @@
 import React from 'react';
-import { text, select, boolean, withKnobs } from '@storybook/addon-knobs';
+import { text, select, boolean, button, withKnobs } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Tooltip from './index';
 import {
@@ -30,6 +30,10 @@ const TRIGGER_OPTIONS = {
   delayed: TRIGGER_DELAYED,
 };
 
+let key = true;
+const btnCallback = () => { key = !key; };
+button('Remount tooltip', btnCallback);
+
 export const Default = () => (
   <div className={styles.container}>
     <Tooltip
@@ -41,7 +45,7 @@ export const Default = () => (
       onOpen={action('opened')}
       onClose={action('closed')}
 
-      key={boolean('Reload tooltip', false)}
+      key={key}
     >
       {`Tooltip position: ${select('Position', POSITIONING_OPTIONS, POSITION_TOP)}`}
     </Tooltip>

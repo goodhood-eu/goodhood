@@ -20,7 +20,7 @@ export const useOutsideClick = (ref, callback, disabled) => useEffect(() => {
 export const useDelayedOpen = (trigger, wasActiveOnce, callback) => useEffect(() => {
   if (trigger !== TRIGGER_DELAYED || wasActiveOnce.current) return;
 
-  const tid = setTimeout(callback, DELAY_TIMEOUT);
+  const timer = setTimeout(callback, DELAY_TIMEOUT);
 
-  return () => clearTimeout(tid);
+  return () => { clearTimeout(timer); };
 }, [trigger, callback]);

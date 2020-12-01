@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { createPopper } from '@popperjs/core';
 import { getPopperOptions } from './utils';
@@ -19,17 +19,17 @@ const BaseTooltip = (props) => {
   const instance = useRef(null);
   const arrow = useRef(null);
 
-  const mountPopper = () => {
+  const mountPopper = useCallback(() => {
     instance.current = createPopper(
       content.current,
       tooltip.current,
       getPopperOptions(arrow.current, position),
     );
-  };
+  }, [instance, content, tooltip, arrow, position]);
 
-  const destroyPopper = () => {
+  const destroyPopper = useCallback(() => {
     if (instance.current) instance.current.destroy();
-  };
+  }, [instance]);
 
   useEffect(() => {
     mountPopper();

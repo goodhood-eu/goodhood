@@ -49,13 +49,13 @@ const FeatureAlertTooltip = (props) => {
     wasActiveOnce.current = true;
     setOpen(true);
     invoke(onOpen);
-  }, [isOpen]);
+  }, [isOpen, onOpen]);
 
   const handleClose = useCallback(() => {
     if (!isOpen) return;
     setOpen(false);
     invoke(onClose);
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   useEscHandler(handleClose);
   useOutsideClick(rootRef, handleClose, closeIcon);

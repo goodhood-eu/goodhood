@@ -40,7 +40,6 @@ $tooltip-arrow-size: 10px;
   transform: rotate(45deg);
 }
 
-// Application of css classes that are not being applied by popper.js
 .tooltip[data-popper-placement^='top'] > .arrow {
   bottom: -4px;
   left: 50%;

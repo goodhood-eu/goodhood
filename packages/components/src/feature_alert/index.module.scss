@@ -26,7 +26,6 @@ $feature-alert-arrow-size: 16px;
   }
 }
 
-// Application of css classes that are not being applied by popper.js
 .tooltip:global([data-popper-placement^='top']) > .arrow {
   bottom: -4px;
 }
