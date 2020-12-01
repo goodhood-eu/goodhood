@@ -7,13 +7,11 @@ $tooltip-arrow-size: 10px;
 }
 
 .tooltip {
+  padding: 5px 10px;
   position: relative;
   cursor: default;
-  visibility: hidden;
-
-  padding: 5px 10px;
-
   z-index: 1;
+  visibility: hidden;
 
   background: $color-gray-00;
   border-radius: $border-radius-m;
