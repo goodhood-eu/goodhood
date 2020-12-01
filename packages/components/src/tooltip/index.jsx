@@ -4,18 +4,29 @@ import { createPopper } from '@popperjs/core';
 import { getPopperOptions } from './utils';
 import styles from './index.module.scss';
 
-const Tooltip = ({ type, text, children, className }) => {
+const Tooltip = (props) => {
+  const {
+    type,
+    bubble,
+    children,
+    tooltipClassName,
+    arrowClassName,
+    triggerProps,
+    className,
+    fallbackPosition,
+  } = props;
+
   const content = useRef(null);
   const tooltip = useRef(null);
   const instance = useRef(null);
   const arrow = useRef(null);
 
-  const openPopper = () => {
+  const mountPopper = () => {
     tooltip.current.setAttribute('data-show', '');
     instance.current = createPopper(
       content.current,
       tooltip.current,
-      getPopperOptions(arrow.current, type),
+      getPopperOptions(arrow.current, type, fallbackPosition),
     );
   };
 
@@ -25,18 +36,20 @@ const Tooltip = ({ type, text, children, className }) => {
   };
 
   useEffect(() => {
-    openPopper();
+    mountPopper();
     return () => {
       destroyPopper();
     };
   }, [children]);
 
+  const tooltipProps = triggerProps || { className: styles.wrap };
+
   return (
-    <div className={styles.wrap}>
+    <div {...tooltipProps}>
       <span ref={content} className={className}>{children}</span>
-      <span ref={tooltip} className={styles.tooltip}>
-        {text}
-        <i ref={arrow} className={styles.arrow} />
+      <span ref={tooltip} className={tooltipClassName || styles.tooltip}>
+        {bubble}
+        <i ref={arrow} className={arrowClassName || styles.arrow} />
       </span>
     </div>
   );
@@ -44,9 +57,19 @@ const Tooltip = ({ type, text, children, className }) => {
 
 Tooltip.propTypes = {
   type: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  bubble: PropTypes.oneOfType([
+    PropTypes.object.isRequired,
+    PropTypes.string.isRequired,
+  ]),
+  fallbackPosition: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.string,
+  ]),
   children: PropTypes.node,
   className: PropTypes.string,
+  tooltipClassName: PropTypes.string,
+  arrowClassName: PropTypes.string,
+  triggerProps: PropTypes.object,
 };
 
 export default Tooltip;

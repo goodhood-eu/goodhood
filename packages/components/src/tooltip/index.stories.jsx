@@ -7,7 +7,7 @@ import {
   POSITION_BOTTOM,
   POSITION_LEFT,
   POSITION_RIGHT,
-} from '../feature_alert';
+} from './constants';
 
 const TOOLTIP_PLACEHOLDER = 'Design is like a joke.';
 
@@ -25,7 +25,7 @@ export const Default = () => (
   <div className={styles.container}>
     <Tooltip
       type={select('Tooltip position', POSITIONING_OPTIONS, POSITION_TOP)}
-      text={text('Tooltip text', TOOLTIP_PLACEHOLDER)}
+      bubble={text('Tooltip text', TOOLTIP_PLACEHOLDER)}
     >
       {`Tooltip position: ${select('Tooltip position', POSITIONING_OPTIONS, POSITION_TOP)}`}
     </Tooltip>

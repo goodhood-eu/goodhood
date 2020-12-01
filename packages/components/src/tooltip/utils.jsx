@@ -5,10 +5,15 @@ import {
   POSITION_RIGHT,
   TOOLTIP_OFFSET,
   TOOLTIP_FLIP_SCREEN_OFFSET,
-} from '../feature_alert';
+} from './constants';
 
+const getFallbackPosition = (fallbackPosition) => {
+  if (!fallbackPosition) return [POSITION_TOP, POSITION_LEFT, POSITION_BOTTOM, POSITION_RIGHT];
 
-export const getPopperOptions = (ref, position) => ({
+  return Array.isArray(fallbackPosition) ? fallbackPosition : [fallbackPosition];
+};
+
+export const getPopperOptions = (ref, position, fallbackPosition) => ({
   placement: position,
   modifiers: [
     {
@@ -21,7 +26,7 @@ export const getPopperOptions = (ref, position) => ({
       name: 'flip',
       options: {
         padding: TOOLTIP_FLIP_SCREEN_OFFSET,
-        fallbackPlacements: [POSITION_TOP, POSITION_LEFT, POSITION_BOTTOM, POSITION_RIGHT],
+        fallbackPlacements: getFallbackPosition(fallbackPosition),
       },
     },
   ],

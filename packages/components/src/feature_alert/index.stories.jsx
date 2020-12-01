@@ -6,11 +6,13 @@ import {
   TRIGGER_HOVER,
   TRIGGER_CLICK,
   TRIGGER_DELAYED,
+} from './index';
+import {
   POSITION_TOP,
   POSITION_BOTTOM,
   POSITION_LEFT,
   POSITION_RIGHT,
-} from './index';
+} from '../tooltip/constants';
 import styles from './index.stories.module.scss';
 
 export default { title: 'Feature Alert', component: Tooltip, decorators: [withKnobs] };

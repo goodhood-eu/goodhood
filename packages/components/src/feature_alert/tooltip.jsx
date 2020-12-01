@@ -1,22 +1,23 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { createPopper } from '@popperjs/core';
 import { invoke } from 'nebenan-helpers/lib/utils';
 import CrossIcon from '@goodhood/icons/lib/16x16/cross_filled';
-
+import Tooltip from '../tooltip';
 
 import {
   useEscHandler,
   useOutsideClick,
   useDelayedOpen,
 } from './hooks';
-import { getTriggerProps, getPopperOptions } from './utils';
+import { getTriggerProps } from './utils';
 import {
   POSITION_TOP,
   POSITION_BOTTOM,
   POSITION_LEFT,
   POSITION_RIGHT,
+} from '../tooltip/constants';
+import {
   TRIGGER_HOVER,
   TRIGGER_CLICK,
   TRIGGER_DELAYED,
@@ -42,32 +43,6 @@ const FeatureAlertTooltip = (props) => {
   const [isOpen, setOpen] = useState(defaultOpen);
   const rootRef = useRef(null);
 
-  const contentRef = useRef(null);
-  const tooltip = useRef(null);
-  const instance = useRef(null);
-  const arrow = useRef(null);
-
-  const openPopper = () => {
-    tooltip.current.setAttribute('data-show', '');
-    instance.current = createPopper(
-      contentRef.current,
-      tooltip.current,
-      getPopperOptions(arrow.current, position),
-    );
-  };
-
-  const destroyPopper = () => {
-    tooltip.current.removeAttribute('data-show');
-    if (instance.current) instance.current.destroy();
-  };
-
-  useEffect(() => {
-    openPopper();
-    return () => {
-      destroyPopper();
-    };
-  }, [children]);
-
   const wasActiveOnce = useRef(false);
 
   const handleOpen = useCallback((event) => {
@@ -88,21 +63,29 @@ const FeatureAlertTooltip = (props) => {
   useOutsideClick(rootRef, handleClose, closeIcon);
   useDelayedOpen(trigger, wasActiveOnce, handleOpen);
 
-  const rootClassName = clsx(styles.container, className);
+  const rootClassName = clsx(styles.root, className);
   const tooltipClassName = clsx(styles.tooltip, { [styles.isActive]: isOpen });
 
   const triggerProps = getTriggerProps(trigger, handleOpen);
 
+  const bubble = (
+    <div className={styles.content}>
+      {content}
+      {closeIcon && <span onClick={handleClose} className={styles.cross}><CrossIcon /></span>}
+    </div>
+  );
+
   return (
     <article {...cleanProps} className={rootClassName} ref={rootRef}>
-      <aside className={tooltipClassName} ref={tooltip}>
-        <div className={styles.content}>
-          {content}
-          {closeIcon && <span onClick={handleClose} className={styles.cross}><CrossIcon /></span>}
-        </div>
-        <i className={styles.arrow} ref={arrow} />
-      </aside>
-      <div {...triggerProps} ref={contentRef}>{children}</div>
+      <Tooltip
+        bubble={bubble} type={position}
+        fallbackPosition={fallbackPosition}
+        tooltipClassName={tooltipClassName}
+        arrowClassName={styles.arrow}
+        triggerProps={triggerProps}
+      >
+        <div {...triggerProps}>{children}</div>
+      </Tooltip>
     </article>
   );
 };
