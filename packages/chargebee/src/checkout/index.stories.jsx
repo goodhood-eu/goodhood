@@ -16,24 +16,15 @@ const dummyData = {
   expires_at: 1515498421,
 };
 
-export const Default = () => {
-  const checkAction = action('Check');
-  const handleCheck = () => {
-    checkAction();
-    return true;
-  };
-
-  return (
-    <Checkout
-      className="ui-button ui-button-primary"
-      site={config.chargebee.site}
-      onHostedPageGet={() => Promise.resolve(dummyData)}
-      onSuccess={action('Success')}
-      onError={action('Error')}
-      onClose={action('Close')}
-      onCheck={handleCheck}
-    >
-      Checkout
-    </Checkout>
-  );
-};
+export const Default = () => (
+  <Checkout
+    className="ui-button ui-button-primary"
+    site={config.chargebee.site}
+    onHostedPageGet={() => Promise.resolve(dummyData)}
+    onSuccess={action('Success')}
+    onError={action('Error')}
+    onClose={action('Close')}
+  >
+    Checkout
+  </Checkout>
+);

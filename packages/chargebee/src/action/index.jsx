@@ -6,6 +6,7 @@ import { invoke } from '../utils';
 
 const Action = ({
   site,
+  disabled,
   onClick,
   onCall,
   ...rest
@@ -33,7 +34,7 @@ const Action = ({
   if (isReady) {
     const handleClick = (event) => {
       invoke(onClick, event);
-      invoke(onCall, instanceRef.current, global.Chargebee);
+      if (!disabled) invoke(onCall, instanceRef.current, global.Chargebee);
     };
 
     node = <span {...rest} onClick={handleClick} />;
@@ -47,8 +48,13 @@ const Action = ({
   );
 };
 
+Action.defaultProps = {
+  disabled: false,
+};
+
 Action.propTypes = {
   site: PropTypes.string.isRequired,
+  disabled: PropTypes.bool.isRequired,
   onClick: PropTypes.func,
   onCall: PropTypes.func,
 };
