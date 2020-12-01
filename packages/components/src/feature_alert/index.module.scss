@@ -12,29 +12,34 @@ $feature-alert-arrow-size: 16px;
   }
 }
 
-.container {
+.tooltip {
   width: 300px;
   position: absolute;
   cursor: pointer;
   z-index: 1;
 
   animation: 300ms ease-in feature-alert-appear;
+  visibility: hidden;
+
+  &.isActive {
+    visibility: visible;
+  }
 }
 
 // Application of css classes that are not being applied by popper.js
-.container:global([data-popper-placement^='top']) > .arrow {
+.tooltip:global([data-popper-placement^='top']) > .arrow {
   bottom: -4px;
 }
 
-.container:global([data-popper-placement^='bottom']) > .arrow {
+.tooltip:global([data-popper-placement^='bottom']) > .arrow {
   top: -4px;
 }
 
-.container:global([data-popper-placement^='left']) > .arrow {
+.tooltip:global([data-popper-placement^='left']) > .arrow {
   right: -4px;
 }
 
-.container:global([data-popper-placement^='right']) > .arrow {
+.tooltip:global([data-popper-placement^='right']) > .arrow {
   left: -4px;
 }
 
@@ -81,7 +86,7 @@ $feature-alert-arrow-size: 16px;
   }
 }
 
-.tooltip {
+.container {
   display: inline-block;
   position: relative;
 }

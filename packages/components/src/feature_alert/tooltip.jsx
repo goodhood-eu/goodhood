@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { usePopper } from 'react-popper';
+import { createPopper } from '@popperjs/core';
 import { invoke } from 'nebenan-helpers/lib/utils';
 import CrossIcon from '@goodhood/icons/lib/16x16/cross_filled';
 
@@ -10,9 +10,8 @@ import {
   useEscHandler,
   useOutsideClick,
   useDelayedOpen,
-  usePopperOptions,
 } from './hooks';
-import { getTriggerProps } from './utils';
+import { getTriggerProps, getPopperOptions } from './utils';
 import {
   POSITION_TOP,
   POSITION_BOTTOM,
@@ -36,30 +35,38 @@ const FeatureAlertTooltip = (props) => {
     defaultOpen,
     onOpen,
     onClose,
+    className,
     ...cleanProps
   } = props;
 
   const [isOpen, setOpen] = useState(defaultOpen);
   const rootRef = useRef(null);
 
-  const [refElement, setRefElement] = useState(null);
-  const [tooltipElement, setTooltipElement] = useState(null);
-  const [arrowElement, setArrowElement] = useState(null);
+  const contentRef = useRef(null);
+  const tooltip = useRef(null);
+  const instance = useRef(null);
+  const arrow = useRef(null);
 
-  const popperOptions = usePopperOptions(arrowElement, position, fallbackPosition);
+  const openPopper = () => {
+    tooltip.current.setAttribute('data-show', '');
+    instance.current = createPopper(
+      contentRef.current,
+      tooltip.current,
+      getPopperOptions(arrow.current, position),
+    );
+  };
 
-  const { styles: popperStyles, attributes, forceUpdate } = usePopper(
-    refElement,
-    tooltipElement,
-    popperOptions,
-  );
+  const destroyPopper = () => {
+    tooltip.current.removeAttribute('data-show');
+    if (instance.current) instance.current.destroy();
+  };
 
-  // Workaround: Fix tooltip positioning when custom sizes are applied in css
-  // Positioning only breaks if container is rendered in the same cycle as
-  // `usePopper` was called for the first time.
   useEffect(() => {
-    invoke(forceUpdate);
-  }, [forceUpdate]);
+    openPopper();
+    return () => {
+      destroyPopper();
+    };
+  }, [children]);
 
   const wasActiveOnce = useRef(false);
 
@@ -81,25 +88,21 @@ const FeatureAlertTooltip = (props) => {
   useOutsideClick(rootRef, handleClose, closeIcon);
   useDelayedOpen(trigger, wasActiveOnce, handleOpen);
 
-  const className = clsx(styles.tooltip, props.className);
+  const rootClassName = clsx(styles.container, className);
+  const tooltipClassName = clsx(styles.tooltip, { [styles.isActive]: isOpen });
 
   const triggerProps = getTriggerProps(trigger, handleOpen);
 
   return (
-    <article {...cleanProps} className={className} ref={rootRef}>
-      {isOpen && (
-        <aside
-          className={styles.container} ref={setTooltipElement}
-          style={popperStyles.popper} {...attributes.popper}
-        >
-          <i className={styles.arrow} ref={setArrowElement} style={popperStyles.arrow} />
-          <div className={styles.content}>
-            {content}
-            {closeIcon && <span onClick={handleClose} className={styles.cross}><CrossIcon /></span>}
-          </div>
-        </aside>
-      )}
-      <div {...triggerProps} ref={setRefElement}>{children}</div>
+    <article {...cleanProps} className={rootClassName} ref={rootRef}>
+      <aside className={tooltipClassName} ref={tooltip}>
+        <div className={styles.content}>
+          {content}
+          {closeIcon && <span onClick={handleClose} className={styles.cross}><CrossIcon /></span>}
+        </div>
+        <i className={styles.arrow} ref={arrow} />
+      </aside>
+      <div {...triggerProps} ref={contentRef}>{children}</div>
     </article>
   );
 };
