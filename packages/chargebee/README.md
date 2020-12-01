@@ -75,6 +75,9 @@ const App = () => (
     {/* Should return a promise, that will resolve a hosted page object */}
     onHostedPageGet={() => Promise.resolve({ id: '', url: '' })}
 
+    {/* Should return boolean value. If it returns false checkout popup won't open */}
+    onCheck={() => true || false}
+
     {/* This function will be called once the portal is closed by the end user */}
     onClose={() => {}}
 
