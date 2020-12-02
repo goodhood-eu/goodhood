@@ -4,7 +4,7 @@ import Form from 'nebenan-form/lib/form';
 import { useForm } from './hooks';
 
 const NetworkForm = ({
-  component: Component,
+  Component,
   getErrorLabel,
   onRequest,
   onRequestFailure,
@@ -33,11 +33,11 @@ const NetworkForm = ({
 };
 
 NetworkForm.defaultProps = {
-  component: Form,
+  Component: Form,
 };
 
 NetworkForm.propTypes = {
-  component: PropTypes.elementType.isRequired,
+  Component: PropTypes.elementType.isRequired,
   getErrorLabel: PropTypes.func.isRequired,
   onRequest: PropTypes.func.isRequired,
   onRequestSuccess: PropTypes.func,
