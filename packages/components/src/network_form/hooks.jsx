@@ -8,7 +8,7 @@ export const useForm = (formRef, {
   onSubmitSuccess,
   onSubmitError,
   onSubmit,
-  strings,
+  getErrorLabel,
 }) => {
   const [formError, setFormError] = useState(null);
   const [isLocked, setLocked] = useState(false);
@@ -25,7 +25,7 @@ export const useForm = (formRef, {
   }, [onSubmitSuccess]);
 
   const handleRequestFailure = useCallback((payload) => {
-    const getErrorText = (name) => (name ? strings.errors[name] : null);
+    const getErrorText = (name) => (name ? getErrorLabel(name) : null);
 
     setLocked(false);
 
@@ -34,10 +34,10 @@ export const useForm = (formRef, {
     const applySuccess = applyFieldErrors(formRef.current, fieldErrors);
 
     if (error) setFormError(error);
-    else if (!applySuccess) setFormError(strings.error_server);
+    else if (!applySuccess) setFormError(getErrorLabel('server'));
 
     invoke(onSubmitError, payload);
-  }, [onSubmitError, strings]);
+  }, [onSubmitError, getErrorLabel]);
 
   const handleSubmit = useCallback((model) => {
     setLocked(true);

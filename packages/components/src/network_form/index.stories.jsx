@@ -6,13 +6,11 @@ import NetworkForm from './index';
 
 export default { title: 'NetworkForm', component: NetworkForm, decorators: [withKnobs] };
 
-const STRINGS = {
-  error_server: 'Server sent us bad stuff, yo',
-  errors: {
-    length: 'Not long enough',
-    complexity: 'Too simple to h4cK',
-    words: 'Use at least five words',
-  },
+const ERROR_LABELS = {
+  server: 'Server sent us bad stuff, yo',
+  length: 'Not long enough',
+  complexity: 'Too simple to h4cK',
+  words: 'Use at least five words',
 };
 
 const MANY_ERRORS_RESPONSE = () => Promise.reject({
@@ -35,6 +33,8 @@ const Responses = {
   success: SUCCESS_RESPONSE,
 };
 
+const getErrorLabel = (name) => ERROR_LABELS[name];
+
 export const Default = () => {
   const [key, setKey] = useState('init');
 
@@ -50,7 +50,7 @@ export const Default = () => {
       onRequestSuccess={action('onRequestSuccess')}
       onRequestFailure={action('onRequestFailure')}
       onValidSubmit={action('onValidSubmit')}
-      strings={STRINGS}
+      getErrorLabel={getErrorLabel}
       buttonText="Login"
     >
       <Input label="Username" name="username" />

@@ -5,7 +5,7 @@ import { useForm } from './hooks';
 
 const NetworkForm = ({
   component: Component,
-  strings,
+  getErrorLabel,
   onRequest,
   onRequestFailure,
   onRequestSuccess,
@@ -14,7 +14,7 @@ const NetworkForm = ({
 }) => {
   const ref = useRef(null);
   const { formError, isLocked, handleSubmit } = useForm(ref, {
-    strings,
+    getErrorLabel,
     getRequestPromise: onRequest,
     onSubmitSuccess: onRequestSuccess,
     onSubmitError: onRequestFailure,
@@ -38,10 +38,7 @@ NetworkForm.defaultProps = {
 
 NetworkForm.propTypes = {
   component: PropTypes.elementType.isRequired,
-  strings: PropTypes.shape({
-    error_server: PropTypes.string.isRequired,
-    errors: PropTypes.objectOf(PropTypes.string).isRequired,
-  }).isRequired,
+  getErrorLabel: PropTypes.func.isRequired,
   onRequest: PropTypes.func.isRequired,
   onRequestSuccess: PropTypes.func,
   onRequestFailure: PropTypes.func,
