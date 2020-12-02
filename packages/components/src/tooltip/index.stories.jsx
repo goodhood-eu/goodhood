@@ -21,13 +21,15 @@ const POSITIONING_OPTIONS = {
   default: '',
 };
 
+const position = select('Tooltip position', POSITIONING_OPTIONS, POSITION_TOP);
+
 export const Default = () => (
   <div className={styles.container}>
     <Tooltip
-      position={select('Tooltip position', POSITIONING_OPTIONS, POSITION_TOP)}
+      position={position}
       bubble={text('Tooltip text', TOOLTIP_PLACEHOLDER)}
     >
-      {`Tooltip position: ${select('Tooltip position', POSITIONING_OPTIONS, POSITION_TOP)}`}
+      {`Tooltip position: ${position}`}
     </Tooltip>
   </div>
 );

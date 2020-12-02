@@ -34,11 +34,13 @@ let key = true;
 const btnCallback = () => { key = !key; };
 button('Remount tooltip', btnCallback);
 
+const position = select('Position', POSITIONING_OPTIONS, POSITION_TOP);
+
 export const Default = () => (
   <div className={styles.container}>
     <Tooltip
       content={text('Tooltip text', TOOLTIP_PLACEHOLDER)}
-      position={select('Position', POSITIONING_OPTIONS, POSITION_TOP)}
+      position={position}
       trigger={select('Trigger', TRIGGER_OPTIONS, TRIGGER_HOVER)}
       closeIcon={boolean('Has close icon', true)}
       defaultOpen={boolean('Is default open', false)}
@@ -47,7 +49,7 @@ export const Default = () => (
 
       key={key}
     >
-      {`Tooltip position: ${select('Position', POSITIONING_OPTIONS, POSITION_TOP)}`}
+      {`Tooltip position: ${position}`}
     </Tooltip>
   </div>
 );

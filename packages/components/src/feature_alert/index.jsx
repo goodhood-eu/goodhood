@@ -26,7 +26,6 @@ import styles from './index.module.scss';
 const FeatureAlertTooltip = (props) => {
   const {
     position,
-    fallbackPosition,
     trigger,
     content,
     children,
@@ -41,12 +40,12 @@ const FeatureAlertTooltip = (props) => {
   const [isOpen, setOpen] = useState(defaultOpen);
   const rootRef = useRef(null);
 
-  const wasActiveOnce = useRef(false);
+  const wasOpenOnce = useRef(false);
 
   const handleOpen = useCallback((event) => {
     if (event) event.stopPropagation();
-    if (isOpen || wasActiveOnce.current) return;
-    wasActiveOnce.current = true;
+    if (isOpen || wasOpenOnce.current) return;
+    wasOpenOnce.current = true;
     setOpen(true);
     invoke(onOpen);
   }, [isOpen, onOpen]);
@@ -59,7 +58,7 @@ const FeatureAlertTooltip = (props) => {
 
   useEscHandler(handleClose);
   useOutsideClick(rootRef, handleClose, closeIcon);
-  useDelayedOpen(trigger, wasActiveOnce, handleOpen);
+  useDelayedOpen(trigger, wasOpenOnce, handleOpen);
 
   const rootClassName = clsx(styles.root, className);
   const tooltipClassName = clsx(styles.tooltip, { [styles.isActive]: isOpen });
@@ -79,7 +78,6 @@ const FeatureAlertTooltip = (props) => {
         bubble={bubble} position={position}
         tooltipClassName={tooltipClassName}
         arrowClassName={styles.arrow}
-        triggerProps={triggerProps}
       >
         <div {...triggerProps}>{children}</div>
       </BaseTooltip>
@@ -89,7 +87,6 @@ const FeatureAlertTooltip = (props) => {
 
 FeatureAlertTooltip.defaultProps = {
   position: POSITION_LEFT,
-  fallbackPosition: POSITION_RIGHT,
   closeIcon: false,
   defaultOpen: false,
 };
@@ -97,12 +94,6 @@ FeatureAlertTooltip.defaultProps = {
 FeatureAlertTooltip.propTypes = {
   className: PropTypes.string,
   position: PropTypes.oneOf([
-    POSITION_TOP,
-    POSITION_BOTTOM,
-    POSITION_LEFT,
-    POSITION_RIGHT,
-  ]),
-  fallbackPosition: PropTypes.oneOf([
     POSITION_TOP,
     POSITION_BOTTOM,
     POSITION_LEFT,

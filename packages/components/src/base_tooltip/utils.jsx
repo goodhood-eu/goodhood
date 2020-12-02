@@ -7,11 +7,11 @@ import {
   TOOLTIP_FLIP_SCREEN_OFFSET,
 } from './constants';
 
-export const getPopperOptions = (ref, position) => ({
+export const getPopperOptions = (arrowRef, position) => ({
   placement: position,
   modifiers: [
     {
-      name: 'arrow', options: { element: ref },
+      name: 'arrow', options: { element: arrowRef },
     },
     {
       name: 'offset', options: { offset: [0, TOOLTIP_OFFSET] },
