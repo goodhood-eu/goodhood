@@ -16,27 +16,18 @@ const BaseTooltip = (props) => {
 
   const content = useRef(null);
   const tooltip = useRef(null);
-  const instance = useRef(null);
   const arrow = useRef(null);
 
-  const mountPopper = useCallback(() => {
-    instance.current = createPopper(
+  useEffect(() => {
+    const popper = createPopper(
       content.current,
       tooltip.current,
       getPopperOptions(arrow.current, position),
     );
-  }, [instance, content, tooltip, arrow, position]);
-
-  const destroyPopper = useCallback(() => {
-    if (instance.current) instance.current.destroy();
-  }, [instance]);
-
-  useEffect(() => {
-    mountPopper();
     return () => {
-      destroyPopper();
+      if (popper) popper.destroy();
     };
-  }, [children]);
+  }, [content, tooltip, arrow, position]);
 
   return (
     <div {...cleanProps}>
