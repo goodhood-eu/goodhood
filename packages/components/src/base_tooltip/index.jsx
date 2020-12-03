@@ -27,7 +27,7 @@ const BaseTooltip = (props) => {
     return () => {
       if (popper) popper.destroy();
     };
-  }, [content, tooltip, arrow, position]);
+  }, [position]);
 
   return (
     <div {...cleanProps}>
