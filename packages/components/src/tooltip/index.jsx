@@ -8,11 +8,7 @@ const Tooltip = (props) => {
     position,
     bubble,
     children,
-    tooltipClassName,
-    arrowClassName,
-    triggerProps,
-    className,
-    fallbackPosition,
+    ...cleanProps
   } = props;
 
   return (
@@ -34,10 +30,6 @@ Tooltip.propTypes = {
   bubble: PropTypes.oneOfType([
     PropTypes.object.isRequired,
     PropTypes.string.isRequired,
-  ]),
-  fallbackPosition: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.string,
   ]),
   children: PropTypes.node,
 };
