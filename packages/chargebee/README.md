@@ -40,6 +40,9 @@ const App = () => (
     {/* Your site name */}
     site="site-name"
 
+    {/* If true onCall won't be called on click */}
+    disabled={true || false}
+
     {/* Will be called on element click. Receives chargebee instance as an argument */}
     onCall={(chargebeeInstance, ChargebeeAPI) => {}}
   />

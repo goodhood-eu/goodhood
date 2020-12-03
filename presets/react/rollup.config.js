@@ -2,7 +2,7 @@ import fs from 'fs';
 import json from '@rollup/plugin-json';
 import babel from '@rollup/plugin-babel';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import postcss from 'rollup-plugin-postcss';
+import postcss from 'nebenan-rollup-plugin-postcss';
 import postcssPresetEnv from 'postcss-preset-env';
 import resolve from '@rollup/plugin-node-resolve';
 import sassFunctions from 'sass-functions';
