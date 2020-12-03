@@ -3,8 +3,8 @@
 $tooltip-arrow-size: 10px;
 
 .wrap:hover .tooltip {
-  visibility: visible;
   z-index: 1;
+  visibility: visible;
 }
 
 .tooltip {

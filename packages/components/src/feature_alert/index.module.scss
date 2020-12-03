@@ -22,8 +22,8 @@ $feature-alert-arrow-size: 16px;
   visibility: hidden;
 
   &.isActive {
-    visibility: visible;
     z-index: 1;
+    visibility: visible;
   }
 }
 
