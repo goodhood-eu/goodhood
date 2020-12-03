@@ -16,13 +16,14 @@ $feature-alert-arrow-size: 16px;
   width: 300px;
   position: absolute;
   cursor: pointer;
-  z-index: 1;
+  z-index: -1;
 
   animation: 300ms ease-in feature-alert-appear;
   visibility: hidden;
 
   &.isActive {
     visibility: visible;
+    z-index: 1;
   }
 }
 
