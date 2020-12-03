@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import usePromiseGuard from 'nebenan-react-hocs/lib/use_promise_guard';
 import { invoke, invokeOn } from 'nebenan-helpers/lib/utils';
 import { applyFieldErrors, getErrorsFromPayload } from './utils';
+import { UNKNOWN_ERROR } from './constants';
 
 export const useForm = (formRef, {
   getRequestPromise,
@@ -34,7 +35,7 @@ export const useForm = (formRef, {
     const applySuccess = applyFieldErrors(formRef.current, fieldErrors);
 
     if (error) setFormError(error);
-    else if (!applySuccess) setFormError(getErrorLabel('server'));
+    else if (!applySuccess) setFormError(getErrorLabel(UNKNOWN_ERROR));
 
     invoke(onSubmitError, payload);
   }, [onSubmitError, getErrorLabel]);

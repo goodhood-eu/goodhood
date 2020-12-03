@@ -45,4 +45,5 @@ NetworkForm.propTypes = {
   onValidSubmit: PropTypes.func,
 };
 
+export { UNKNOWN_ERROR as NETWORK_FORM_ERROR_UNKNOWN } from './constants';
 export default NetworkForm;
