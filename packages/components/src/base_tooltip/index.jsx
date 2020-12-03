@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import { createPopper } from '@popperjs/core';
 import { getPopperOptions } from './utils';
@@ -18,7 +18,7 @@ const BaseTooltip = (props) => {
   const tooltip = useRef(null);
   const arrow = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const popper = createPopper(
       content.current,
       tooltip.current,
