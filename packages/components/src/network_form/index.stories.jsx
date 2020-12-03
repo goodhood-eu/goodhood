@@ -3,11 +3,12 @@ import { button, select, withKnobs } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Input from 'nebenan-form/lib/input';
 import NetworkForm from './index';
+import { UNKNOWN_ERROR } from './constants';
 
 export default { title: 'NetworkForm', component: NetworkForm, decorators: [withKnobs] };
 
 const ERROR_LABELS = {
-  server: 'Server sent us bad stuff, yo',
+  [UNKNOWN_ERROR]: 'Server sent us bad stuff, yo',
   length: 'Not long enough',
   complexity: 'Too simple to h4cK',
   words: 'Use at least five words',
