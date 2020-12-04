@@ -24,6 +24,7 @@ export const Default = () => {
     <Map
       {...{ bounds, locked, lockedMobile, animate, minZoom, maxZoom, noAttribution }}
       credentials={config.map_credentials}
+      translations={{ webgl_disabled: 'WebGl is not supported in your browser' }}
       onLoad={action('Map loaded')}
     />
   );

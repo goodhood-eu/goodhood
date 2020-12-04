@@ -13,6 +13,7 @@ const Map = ({
   className,
   children,
 
+  translations,
   credentials,
 
   animate,
@@ -32,7 +33,7 @@ const Map = ({
   const [layersBounds, addLayerBounds] = useLayersBounds();
   const boundsToFit = bounds || layersBounds;
 
-  const map = useMapInstance(nodeRef, {
+  const [map, isWebGLSupported] = useMapInstance(nodeRef, {
     credentials,
     noAttribution,
     locked,
@@ -53,9 +54,18 @@ const Map = ({
     maxZoom,
   });
 
+  const rootClassName = clsx(styles.root, className, { [styles.isDisabled]: !isWebGLSupported });
+
+  let content;
+  if (isWebGLSupported) {
+    content = <Provider value={context}>{children}</Provider>;
+  } else {
+    content = <h2 className={styles.disabledMessage}>{translations.webgl_disabled}</h2>;
+  }
+
   return (
-    <div {...rest} ref={nodeRef} className={clsx(styles.root, className)}>
-      <Provider value={context}>{children}</Provider>
+    <div {...rest} ref={nodeRef} className={rootClassName}>
+      {content}
     </div>
   );
 };
@@ -66,12 +76,14 @@ Map.defaultProps = {
   lockedMobile: true,
   noAttribution: false,
   fitPadding: 20,
+  translations: {},
 };
 
 Map.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
 
+  translations: PropTypes.object.isRequired,
   credentials: PropTypes.object,
 
   animate: PropTypes.bool.isRequired,

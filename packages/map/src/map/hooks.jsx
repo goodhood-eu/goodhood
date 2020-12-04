@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext, useMemo, useCallback } from 'react';
 import { Map, NavigationControl } from 'mapbox-gl';
 
-import { getMapOptions, mergeLayersBounds, isFilledArray, getFitBoundsOptions } from './utils';
+import { getMapOptions, mergeLayersBounds, isFilledArray, getFitBoundsOptions, isWebGLSupported } from './utils';
 import { getMedia, media } from '../utils';
 import MapContext from './context';
 
@@ -34,11 +34,16 @@ export const useMapEffect = (fn, deps = []) => {
 
 export const useMapInstance = (nodeRef, options) => {
   const [mapInstance, setMap] = useState(false);
+  const [webGLSupport, setWebGLSupport] = useState(true);
   const { bounds, noAttribution, locked, lockedMobile, onLoad } = options;
   const hasBounds = isFilledArray(bounds);
 
   useEffect(() => {
     if (!hasBounds) return;
+
+    if (!isWebGLSupported(global.document)) {
+      return setWebGLSupport(false);
+    }
 
     const mapOptions = getMapOptions({
       ...options,
@@ -63,7 +68,7 @@ export const useMapInstance = (nodeRef, options) => {
     };
   }, [noAttribution, locked, lockedMobile, hasBounds]);
 
-  return mapInstance;
+  return [mapInstance, webGLSupport];
 };
 
 export const useMapUpdate = (map, {
