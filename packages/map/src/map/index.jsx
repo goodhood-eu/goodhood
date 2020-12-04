@@ -13,7 +13,7 @@ const Map = ({
   className,
   children,
 
-  translations,
+  webGLError,
   credentials,
 
   animate,
@@ -60,7 +60,7 @@ const Map = ({
   if (isWebGLSupported) {
     content = <Provider value={context}>{children}</Provider>;
   } else {
-    content = <h2 className={styles.disabledMessage}>{translations.webgl_disabled}</h2>;
+    content = <span className={styles.disabledMessage}>{webGLError}</span>;
   }
 
   return (
@@ -76,14 +76,14 @@ Map.defaultProps = {
   lockedMobile: true,
   noAttribution: false,
   fitPadding: 20,
-  translations: {},
+  webGLError: 'It appears your browser isn\'t supporting WebGL, the HTML standard used to view 3D graphics.',
 };
 
 Map.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
 
-  translations: PropTypes.object.isRequired,
+  webGLError: PropTypes.string,
   credentials: PropTypes.object,
 
   animate: PropTypes.bool.isRequired,
