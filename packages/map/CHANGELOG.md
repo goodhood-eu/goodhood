@@ -1,3 +1,6 @@
+## v3.0.0 Breaking changes
+- Added `Map: translations` prop
+
 ## v2.0.0 Breaking changes
 - Removed `Map: defaultView` prop
 - Removed `Map: defaultZoom` prop
