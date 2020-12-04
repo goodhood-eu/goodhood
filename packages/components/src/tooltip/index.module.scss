@@ -1,0 +1,71 @@
+@import 'nebenan-ui-kit';
+
+$tooltip-arrow-size: 10px;
+
+.wrap:hover .tooltip {
+  z-index: 1;
+  visibility: visible;
+}
+
+.tooltip {
+  padding: 5px 10px;
+  position: relative;
+  cursor: default;
+  z-index: -1;
+  visibility: hidden;
+
+  background: $color-gray-00;
+  border-radius: $border-radius-m;
+  box-shadow: $shadow-bottom-default;
+
+  font-size: $font-size-s;
+  line-height: 16px;
+  font-style: normal;
+  color: $color-gray-09;
+  word-wrap: break-word;
+  white-space: pre;
+}
+
+.arrow,
+.arrow::before {
+  width: $tooltip-arrow-size;
+  height: $tooltip-arrow-size;
+  position: absolute;
+  z-index: -1;
+}
+
+.arrow::before {
+  content: '';
+  border-radius: $border-radius-s;
+  background: $color-gray-00;
+  transform: rotate(45deg);
+}
+
+.tooltip[data-popper-placement^='top'] > .arrow {
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip[data-popper-placement^='bottom'] > .arrow {
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip[data-popper-placement^='left'] > .arrow {
+  top: 50%;
+  right: -4px;
+  transform: translateY(-50%);
+}
+
+.tooltip[data-popper-placement^='right'] > .arrow {
+  top: 50%;
+  left: -4px;
+  transform: translateY(-50%);
+}
+
+.element {
+  width: max-content;
+  display: block;
+}

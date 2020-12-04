@@ -1,0 +1,92 @@
+@import 'nebenan-ui-kit';
+
+$feature-alert-arrow-size: 16px;
+
+@keyframes feature-alert-appear {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.tooltip {
+  width: 300px;
+  position: absolute;
+  cursor: pointer;
+  z-index: -1;
+
+  animation: 300ms ease-in feature-alert-appear;
+  visibility: hidden;
+
+  &.isActive {
+    z-index: 1;
+    visibility: visible;
+  }
+}
+
+.tooltip:global([data-popper-placement^='top']) > .arrow {
+  bottom: -4px;
+}
+
+.tooltip:global([data-popper-placement^='bottom']) > .arrow {
+  top: -4px;
+}
+
+.tooltip:global([data-popper-placement^='left']) > .arrow {
+  right: -4px;
+}
+
+.tooltip:global([data-popper-placement^='right']) > .arrow {
+  left: -4px;
+}
+
+.arrow,
+.arrow::before {
+  width: $feature-alert-arrow-size;
+  height: $feature-alert-arrow-size;
+
+  display: block;
+  z-index: -1;
+}
+
+.arrow::before {
+  content: '';
+  position: absolute;
+
+  border-radius: $border-radius-m;
+
+  background: $color-blue-01;
+  box-shadow: $shadow-bottom-default;
+  transform: rotate(45deg);
+}
+
+.content {
+  padding: 10px 30px 10px 10px;
+  display: flex;
+  align-items: center;
+
+  color: $color-gray-09;
+  background: $color-blue-01;
+
+  border-radius: $border-radius-m;
+  box-shadow: $shadow-bottom-default;
+}
+
+.cross {
+  padding: 5px;
+  display: inline-flex;
+  position: absolute;
+  right: 5px;
+
+  &:hover {
+    opacity: .5;
+  }
+}
+
+.root {
+  display: inline-block;
+  position: relative;
+}
