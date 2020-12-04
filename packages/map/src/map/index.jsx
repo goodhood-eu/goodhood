@@ -82,7 +82,7 @@ Map.defaultProps = {
   lockedMobile: true,
   noAttribution: false,
   fitPadding: 20,
-  webGLError: 'It appears your browser isn\'t supporting WebGL, the HTML standard used to view 3D graphics.',
+  webGLError: 'We couldn\'t show you the map because current browser doesn\'t support WebGL.',
 };
 
 Map.propTypes = {
