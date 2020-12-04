@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import { useMapInstance, useMapUpdate, useContextValue, useLayersBounds } from './hooks';
+import { useMapInstance, useMapUpdate, useContextValue, useLayersBounds, useWebGLSupport } from './hooks';
 import { Provider } from './context';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -31,9 +31,11 @@ const Map = ({
 }) => {
   const nodeRef = useRef();
   const [layersBounds, addLayerBounds] = useLayersBounds();
+  const webGLSupported = useWebGLSupport();
   const boundsToFit = bounds || layersBounds;
 
-  const [map, isWebGLSupported] = useMapInstance(nodeRef, {
+  const map = useMapInstance(nodeRef, {
+    webGLSupported,
     credentials,
     noAttribution,
     locked,
@@ -54,13 +56,17 @@ const Map = ({
     maxZoom,
   });
 
-  const rootClassName = clsx(styles.root, className, { [styles.isDisabled]: !isWebGLSupported });
+  const isDisabled = webGLSupported === false;
+
+  const rootClassName = clsx(styles.root, className, {
+    [styles.isDisabled]: isDisabled,
+  });
 
   let content;
-  if (isWebGLSupported) {
-    content = <Provider value={context}>{children}</Provider>;
-  } else {
+  if (isDisabled) {
     content = <span className={styles.disabledMessage}>{webGLError}</span>;
+  } else {
+    content = <Provider value={context}>{children}</Provider>;
   }
 
   return (

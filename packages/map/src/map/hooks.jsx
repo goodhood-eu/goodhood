@@ -32,18 +32,24 @@ export const useMapEffect = (fn, deps = []) => {
   }, deps);
 };
 
+export const useWebGLSupport = () => {
+  // Null value means webGL check was not performed
+  const [value, setValue] = useState(null);
+
+  useEffect(() => {
+    setValue(isWebGLSupported(global));
+  }, []);
+
+  return value;
+};
+
 export const useMapInstance = (nodeRef, options) => {
   const [mapInstance, setMap] = useState(false);
-  const [webGLSupport, setWebGLSupport] = useState(true);
-  const { bounds, noAttribution, locked, lockedMobile, onLoad } = options;
+  const { bounds, noAttribution, locked, lockedMobile, webGLSupported, onLoad } = options;
   const hasBounds = isFilledArray(bounds);
 
   useEffect(() => {
-    if (!hasBounds) return;
-
-    if (!isWebGLSupported(global.document)) {
-      return setWebGLSupport(false);
-    }
+    if (!hasBounds || !webGLSupported) return;
 
     const mapOptions = getMapOptions({
       ...options,
@@ -66,9 +72,9 @@ export const useMapInstance = (nodeRef, options) => {
       setMap(null);
       map.remove();
     };
-  }, [noAttribution, locked, lockedMobile, hasBounds]);
+  }, [noAttribution, locked, lockedMobile, hasBounds, webGLSupported]);
 
-  return [mapInstance, webGLSupport];
+  return mapInstance;
 };
 
 export const useMapUpdate = (map, {
