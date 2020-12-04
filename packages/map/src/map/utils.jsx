@@ -90,3 +90,10 @@ export const getFitBoundsOptions = ({
 
   return [boundingBox, options];
 };
+
+export const isWebGLSupported = (win) => {
+  const canvas = win.document.createElement('canvas');
+  // experimental-webgl for Edge browser
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  return Boolean(gl);
+};

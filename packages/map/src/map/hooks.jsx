@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext, useMemo, useCallback } from 'react';
 import { Map, NavigationControl } from 'mapbox-gl';
 
-import { getMapOptions, mergeLayersBounds, isFilledArray, getFitBoundsOptions } from './utils';
+import { getMapOptions, mergeLayersBounds, isFilledArray, getFitBoundsOptions, isWebGLSupported } from './utils';
 import { getMedia, media } from '../utils';
 import MapContext from './context';
 
@@ -32,13 +32,24 @@ export const useMapEffect = (fn, deps = []) => {
   }, deps);
 };
 
+export const useWebGLSupport = () => {
+  // Null value means webGL check was not performed
+  const [value, setValue] = useState(null);
+
+  useEffect(() => {
+    setValue(isWebGLSupported(global));
+  }, []);
+
+  return value;
+};
+
 export const useMapInstance = (nodeRef, options) => {
   const [mapInstance, setMap] = useState(false);
-  const { bounds, noAttribution, locked, lockedMobile, onLoad } = options;
+  const { bounds, noAttribution, locked, lockedMobile, webGLSupported, onLoad } = options;
   const hasBounds = isFilledArray(bounds);
 
   useEffect(() => {
-    if (!hasBounds) return;
+    if (!hasBounds || !webGLSupported) return;
 
     const mapOptions = getMapOptions({
       ...options,
@@ -61,7 +72,7 @@ export const useMapInstance = (nodeRef, options) => {
       setMap(null);
       map.remove();
     };
-  }, [noAttribution, locked, lockedMobile, hasBounds]);
+  }, [noAttribution, locked, lockedMobile, hasBounds, webGLSupported]);
 
   return mapInstance;
 };

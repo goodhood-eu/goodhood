@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import { useMapInstance, useMapUpdate, useContextValue, useLayersBounds } from './hooks';
+import { useMapInstance, useMapUpdate, useContextValue, useLayersBounds, useWebGLSupport } from './hooks';
 import { Provider } from './context';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -13,6 +13,7 @@ const Map = ({
   className,
   children,
 
+  webGLError,
   credentials,
 
   animate,
@@ -30,9 +31,11 @@ const Map = ({
 }) => {
   const nodeRef = useRef();
   const [layersBounds, addLayerBounds] = useLayersBounds();
+  const webGLSupported = useWebGLSupport();
   const boundsToFit = bounds || layersBounds;
 
   const map = useMapInstance(nodeRef, {
+    webGLSupported,
     credentials,
     noAttribution,
     locked,
@@ -53,9 +56,22 @@ const Map = ({
     maxZoom,
   });
 
+  const isDisabled = webGLSupported === false;
+
+  const rootClassName = clsx(styles.root, className, {
+    [styles.isDisabled]: isDisabled,
+  });
+
+  let content;
+  if (isDisabled) {
+    content = <span className={styles.disabledMessage}>{webGLError}</span>;
+  } else {
+    content = <Provider value={context}>{children}</Provider>;
+  }
+
   return (
-    <div {...rest} ref={nodeRef} className={clsx(styles.root, className)}>
-      <Provider value={context}>{children}</Provider>
+    <div {...rest} ref={nodeRef} className={rootClassName}>
+      {content}
     </div>
   );
 };
@@ -66,12 +82,14 @@ Map.defaultProps = {
   lockedMobile: true,
   noAttribution: false,
   fitPadding: 20,
+  webGLError: 'We couldn\'t show you the map because current browser doesn\'t support WebGL.',
 };
 
 Map.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
 
+  webGLError: PropTypes.string,
   credentials: PropTypes.object,
 
   animate: PropTypes.bool.isRequired,

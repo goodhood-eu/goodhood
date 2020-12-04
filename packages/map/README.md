@@ -62,6 +62,9 @@ const App = () => (
     {/* Hide attribution */}
     noAttribution={true}
 
+    {/* Text to display when WebGL is not supported by browser */}
+    webGLError="WebGL is not supported"
+
     {/* Fired when map styles are loaded. Takes map as an argument */}
     onLoad={(map) => { alert('Loaded') }}
   >
