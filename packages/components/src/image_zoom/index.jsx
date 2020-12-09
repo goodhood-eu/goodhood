@@ -119,12 +119,12 @@ const useOffsetUpdate = ([, setOffset], previewSize, scale) => {
     const getNewLength = (offsetLength, previewLength) => {
       const prevScaledLength = previewLength * prevScale;
       const nextSclaedLength = previewLength * scale;
-      // const offsetOnNatural = offsetLength / prevScale;
+      const offsetOnNatural = offsetLength / prevScale;
       const midpoint = previewLength / 2;
 
-      const inverse = (x) => 1 / x;
+      const inverse = (x) => x * -1;
 
-      return offsetLength + (inverse(midpoint * scale) * (nextSclaedLength - prevScaledLength) / nextSclaedLength);
+      return (offsetOnNatural + (inverse(midpoint * scale) * (nextSclaedLength - prevScaledLength) / nextSclaedLength)) * scale;
       // if (offsetLength > 0) {
       //   return ((offsetLength - (previewLength / 2)) / prevScale) * scale;
       // }
