@@ -11,6 +11,7 @@ export const Default = () => {
   return (
     <ImageZoom
       src={text('src', DEFAULT_IMAGE)}
+      // src={text('src', image)}
       // src={image}
       scale={number('scale', 2, { range: true, min: 1, max: 10, step: .5 })}
     />

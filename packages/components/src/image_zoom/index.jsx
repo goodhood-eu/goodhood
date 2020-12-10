@@ -117,34 +117,28 @@ const useOffsetUpdate = ([, setOffset], previewSize, scale) => {
     );
 
     const getNewLength = (offsetLength, previewLength) => {
-      const prevScaledLength = previewLength * prevScale;
-      const nextSclaedLength = previewLength * scale;
-      const offsetOnNatural = offsetLength / prevScale;
-      const midpoint = previewLength / 2;
-
       const inverse = (x) => x * -1;
 
-      return (offsetOnNatural + (inverse(midpoint * scale) * (nextSclaedLength - prevScaledLength) / nextSclaedLength)) * scale;
-      // if (offsetLength > 0) {
-      //   return ((offsetLength - (previewLength / 2)) / prevScale) * scale;
-      // }
+      const prevScaledLength = previewLength * prevScale;
+      const nextScaledLength = previewLength * scale;
+      const offsetOnNatural = offsetLength / prevScale;
+      const midpoint = previewLength / 2;
+      const relativeMovement = (
+        inverse(midpoint * scale) * (nextScaledLength - prevScaledLength) / nextScaledLength
+      );
+      const newOffsetLength = offsetLength + relativeMovement;
 
-      //
-      //
-      //
-      // // return (offsetLength / prevScale) * scale;
-      // //
-      // const scaleChange = scale - prevScale; // 5 - 2 = 3
-      // const lostLength = previewLength * scaleChange; // 500 * 3 = 1500
-      // const scaledOffset = (offsetLength / prevScale) * scale;
-      // const move = lostLength / 2;
-      // const length = scaledOffset - move;
-      //
-      // // TODO: alles stimmt, nur das offset ist falsch. keine ahnung wie und wo ich das umrechnen muss
-      //
-      // console.log(length, { offsetLength, scaledOffset, scaleChange, lostLength, move, prevScale, scale });
+      console.log(
+        newOffsetLength,
+        [prevScale, scale],
+        'getNewLength',
+        'scaled length', [prevScaledLength, nextScaledLength],
+        'offset length', [offsetLength, offsetOnNatural],
+        'midpoint', midpoint,
+        'natural movement', relativeMovement,
+      );
 
-      // return length;
+      return newOffsetLength;
     };
 
     setOffset(({ top, left }) => {
@@ -209,7 +203,7 @@ const ImageZoom = ({ src, scale, ...rest }) => {
   const handleDragMove = (e) => {
     const origin = dragRef.current;
     if (!origin) return;
-    console.log('handleDragMove', origin);
+    // console.log('handleDragMove', origin);
 
     const { offsetX, offsetY } = e.nativeEvent;
 
