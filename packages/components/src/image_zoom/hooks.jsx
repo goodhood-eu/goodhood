@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import keymanager from 'nebenan-helpers/lib/keymanager';
+import { invoke } from 'nebenan-helpers/lib/utils';
 import { getOffsetForNewScale } from './utils';
 
 export const usePrevious = (value) => {
@@ -31,4 +33,8 @@ export const useOffsetUpdate = (setOffset, previewSize, scale) => {
       left: getOffsetForNewScale(left, prevScale, scale, previewSize.width),
     }));
   }, [scale]);
+};
+
+export const useKeyBindedHandler = (key, handler) => {
+  useEffect(() => keymanager(key, () => { invoke(handler); }), [handler]);
 };

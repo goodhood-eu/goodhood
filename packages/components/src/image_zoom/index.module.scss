@@ -1,9 +1,12 @@
-@import "nebenan-ui-kit";
+@import "~nebenan-ui-kit";
+
+.root {
+  position: relative;
+}
 
 .zoomed {
-  height: 500px;
-  width: 500px;
-
+  width: 100%;
+  height: 100%;
   background-repeat: no-repeat;
   background-color: $color-gray-07;
 }
