@@ -40,6 +40,10 @@ const BaseTooltip = (props) => {
   );
 };
 
+BaseTooltip.defaultProps = {
+  position: 'top',
+};
+
 BaseTooltip.propTypes = {
   position: PropTypes.string.isRequired,
   bubble: PropTypes.node,
