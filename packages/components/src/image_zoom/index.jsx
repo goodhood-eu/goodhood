@@ -56,89 +56,21 @@ const usePrevious = (value) => {
   return ref.current;
 };
 
-const _useOffsetUpdate = ([, setOffset], previewSize, scale) => {
-  const prevScale = usePrevious(scale);
-
-  useEffect(() => {
-    if (scale === null || prevScale === null) return;
-
-    const getMovement = (prevLength, length) => (
-      (length / 2) - (prevLength / 2)
-    );
-
-    const prevScaledSize = {
-      width: previewSize.width * prevScale,
-      height: previewSize.height * prevScale,
-    };
-
-    const scaledPreviewSize = {
-      width: previewSize.width * scale,
-      height: previewSize.height * scale,
-    };
-
-    const toNewScale = (val) => (val / prevScale) * scale;
-
-    setOffset(({ top, left }) => {
-      console.group('setOffset');
-      console.log('top', top, 'prev', prevScaledSize.height, 'scaled', scaledPreviewSize.height, getMovement(prevScaledSize.height, scaledPreviewSize.height));
-      console.log('left', left, 'prev', prevScaledSize.width, 'scaled', scaledPreviewSize.width, getMovement(prevScaledSize.width, scaledPreviewSize.width));
-      const newTop = (top) - getMovement(prevScaledSize.height, scaledPreviewSize.height);
-      const newLeft = (left) - getMovement(prevScaledSize.width, scaledPreviewSize.width);
-      // const newTop = toNewScale(top);
-      // const newLeft = toNewScale(left);
-      console.log('newTop', newTop);
-      console.log('newLeft', newLeft);
-
-      console.groupEnd();
-      return ({
-        top: newTop,
-        left: newLeft,
-      });
-    });
-  }, [scale, previewSize]);
-};
-
 const useOffsetUpdate = ([, setOffset], previewSize, scale) => {
-  const scaledPreviewSize = useMemo(() => ({
-    width: previewSize.width * scale,
-    height: previewSize.height * scale,
-  }), [previewSize, scale]);
-
-  const prevScaledSize = usePrevious(scaledPreviewSize);
-
   const prevScale = usePrevious(scale);
 
   useEffect(() => {
-    // if (scaledPreviewSize === null || prevScaledSize === null) return;
     if (scale === null || prevScale === null) return;
-
-    const getMovement = (prevLength, length) => (
-      (length / 2) - (prevLength / 2)
-    );
 
     const getNewLength = (offsetLength, previewLength) => {
-      const inverse = (x) => x * -1;
-
-      const prevScaledLength = previewLength * prevScale;
-      const nextScaledLength = previewLength * scale;
       const offsetOnNatural = offsetLength / prevScale;
-      const midpoint = previewLength / 2;
-      const relativeMovement = (
-        inverse(midpoint * scale) * (nextScaledLength - prevScaledLength) / nextScaledLength
-      );
-      const newOffsetLength = offsetLength + relativeMovement;
+      const prevPreviewLengthOnNatural = previewLength / prevScale;
+      const previewLengthOnNatural = previewLength / scale;
+      const movementOnNatural = (prevPreviewLengthOnNatural - previewLengthOnNatural) / 2;
 
-      console.log(
-        newOffsetLength,
-        [prevScale, scale],
-        'getNewLength',
-        'scaled length', [prevScaledLength, nextScaledLength],
-        'offset length', [offsetLength, offsetOnNatural],
-        'midpoint', midpoint,
-        'natural movement', relativeMovement,
-      );
+      const newOffsetOnNatural = offsetOnNatural - movementOnNatural;
 
-      return newOffsetLength;
+      return newOffsetOnNatural * scale;
     };
 
     setOffset(({ top, left }) => {
@@ -223,6 +155,7 @@ const ImageZoom = ({ src, scale, ...rest }) => {
       />
       <pre>
         offset: {JSON.stringify(offset)}<br />
+        naturalOffset: {JSON.stringify({ top: offset.top / scale, left: offset.left / scale })}<br />
         scaledSize: {JSON.stringify(scaledSize)}<br />
         naturalSize: {JSON.stringify(getScaledImageSize(image, 1))}
       </pre>
