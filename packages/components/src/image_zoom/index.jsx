@@ -1,9 +1,8 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import clsx from 'clsx';
 import styles from './index.module.scss';
-import { useImage, useKeyBindedHandler, useOffsetUpdate } from './hooks';
-import { getInsideBoundaries, getOffsetForMovement } from './utils';
-import keymanager from 'nebenan-helpers/lib/keymanager';
-import UIOverlay from './ui_overlay';
+import { useImage, useOffsetUpdate, usePreviewSize, useProtectedOffsetSetter } from './hooks';
+import { getOffsetForMovement } from './utils';
 
 const getScaledImageSize = (image, scale) => {
   if (!image) return { width: 0, height: 0 };
@@ -14,53 +13,26 @@ const getScaledImageSize = (image, scale) => {
   };
 };
 
-const ImageZoom = ({ src, scale, ...rest }) => {
-  const [rootStyles, setRootStyles] = useState({ width: 500, height: 500 });
-  const [zoomStyles, setZoomStyles] = useState({});
+const ASPECT_RATIO = 16 / 9;
+
+const ImageZoom = ({
+  src,
+  scale,
+  className: passedClassName,
+  ...rest
+}) => {
+  const rootRef = useRef(null);
   const [offset, setOffset] = useState({ top: 0, left: 0 });
   const image = useImage(src);
   const scaledSize = useMemo(() => getScaledImageSize(image, scale), [image, scale]);
-
-  const previewSize = { width: rootStyles.width, height: rootStyles.height };
-
-  useOffsetUpdate(setOffset, previewSize, scale);
+  const previewSize = usePreviewSize(rootRef, ASPECT_RATIO);
+  const setProtectedOffset = useProtectedOffsetSetter(setOffset, previewSize, scaledSize);
 
   useEffect(() => {
-    if (!image) return;
+    setOffset({ top: 0, left: 0 });
+  }, [image]);
 
-    setZoomStyles({
-      backgroundImage: `url('${src}')`,
-      backgroundSize: `${scaledSize.width}px ${scaledSize.height}px`,
-      backgroundPosition: `${offset.left}px ${offset.top}px`,
-    });
-  }, [image, scaledSize, offset]);
-
-  const setProtectedOffset = useMemo(() => {
-    const topBoundary = getInsideBoundaries.bind(
-      undefined,
-      previewSize.height,
-      scaledSize.height,
-    );
-
-    const leftBoundary = getInsideBoundaries.bind(
-      undefined,
-      previewSize.width,
-      scaledSize.width,
-    );
-
-    return (setterCallbackOrValue) => {
-      setOffset((oldOffset) => {
-        const wantedOffset = typeof setterCallbackOrValue === 'function'
-          ? setterCallbackOrValue(oldOffset)
-          : setterCallbackOrValue;
-
-        return {
-          top: topBoundary(wantedOffset.top),
-          left: leftBoundary(wantedOffset.left),
-        };
-      });
-    };
-  }, [previewSize, scaledSize]);
+  useOffsetUpdate(setOffset, previewSize, scale);
 
   const dragRef = useRef(null);
   const handleDragStart = (e) => {
@@ -83,62 +55,18 @@ const ImageZoom = ({ src, scale, ...rest }) => {
     setProtectedOffset(getOffsetForMovement(origin, scaledSize, previewSize, { offsetX, offsetY }));
   };
 
-  const moveStep = useMemo(() => 20 * scale, [scale]);
 
-
-  const handleMoveUp = useMemo(() => {
-    if (offset.top >= 0) return null;
-
-    return () => {
-      setProtectedOffset(({ top, left }) => ({
-        top: top + moveStep,
-        left,
-      }));
-    };
-  }, [offset, moveStep]);
-
-  const handleMoveDown = useMemo(() => {
-    if (offset.top - previewSize.height <= -scaledSize.height) return null;
-
-    return () => {
-      setProtectedOffset(({ top, left }) => ({
-        top: top - moveStep,
-        left,
-      }));
-    };
-  }, [offset, scaledSize, previewSize, moveStep]);
-
-  const handleMoveLeft = useMemo(() => {
-    if (offset.left >= 0) return null;
-
-    return () => {
-      setProtectedOffset(({ top, left }) => ({
-        left: left + moveStep,
-        top,
-      }));
-    };
-  }, [offset, moveStep]);
-
-  const handleMoveRight = useMemo(() => {
-    if (offset.left - previewSize.width <= -scaledSize.width) return null;
-
-    return () => {
-      setProtectedOffset(({ top, left }) => ({
-        left: left - moveStep,
-        top,
-      }));
-    };
-  }, [offset, previewSize, scaledSize, moveStep]);
-
-  useKeyBindedHandler('left', handleMoveLeft);
-  useKeyBindedHandler('right', handleMoveRight);
-  useKeyBindedHandler('down', handleMoveDown);
-  useKeyBindedHandler('up', handleMoveUp);
+  const zoomStyles = image && {
+    backgroundImage: `url('${src}')`,
+    backgroundSize: `${scaledSize.width}px ${scaledSize.height}px`,
+    backgroundPosition: `${offset.left}px ${offset.top}px`,
+    width: '100%',
+    height: previewSize.height,
+  };
 
   return (
-    <div className={styles.root} style={rootStyles}>
+    <div {...rest} ref={rootRef} className={clsx(styles.root, passedClassName)}>
       <div
-        {...rest}
         className={styles.zoomed}
         style={zoomStyles}
         onMouseDown={handleDragStart}
@@ -146,14 +74,14 @@ const ImageZoom = ({ src, scale, ...rest }) => {
         onMouseLeave={handleDragStop}
         onMouseUp={handleDragStop}
       />
-      <UIOverlay
-        onMoveUp={handleMoveUp}
-        onMoveDown={handleMoveDown}
-        onMoveLeft={handleMoveLeft}
-        onMoveRight={handleMoveRight}
-      />
     </div>
   );
 };
 
 export default ImageZoom;
+
+// DONE keyboard navigation not needed
+// DONE button overlay not needed
+// DONE go with 16:9 by default
+// pinch to zoom
+// double tap not needed, too difficult (do at last)

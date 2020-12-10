@@ -29,3 +29,8 @@ export const getOffsetForMovement = (origin, scaledSize, previewSize, mouse) => 
 
   return { top, left };
 };
+
+export const getElementWidth = (el) => {
+  if (!el) return undefined;
+  return el.getBoundingClientRect().width;
+};

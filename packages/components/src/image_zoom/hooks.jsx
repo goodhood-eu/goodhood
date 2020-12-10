@@ -1,7 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import keymanager from 'nebenan-helpers/lib/keymanager';
-import { invoke } from 'nebenan-helpers/lib/utils';
-import { getOffsetForNewScale } from './utils';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { getElementWidth, getInsideBoundaries, getOffsetForNewScale } from './utils';
 
 export const usePrevious = (value) => {
   const ref = useRef(null);
@@ -35,6 +33,68 @@ export const useOffsetUpdate = (setOffset, previewSize, scale) => {
   }, [scale]);
 };
 
-export const useKeyBindedHandler = (key, handler) => {
-  useEffect(() => keymanager(key, () => { invoke(handler); }), [handler]);
+export const useContainerWidth = (ref) => {
+  const [width, setWidth] = useState(getElementWidth(ref?.current));
+
+  const handleResize = () => {
+    if (!ref.current) return;
+
+    setWidth(getElementWidth(ref.current));
+  };
+
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    handleResize();
+
+    const resizeObserver = new ResizeObserver(() => handleResize);
+    resizeObserver.observe(el);
+
+    return () => { resizeObserver.disconnect(); };
+  }, [ref.current]);
+
+  return width;
+};
+
+export const useProtectedOffsetSetter = (setOffset, previewSize, scaledSize) => useMemo(() => {
+  const topBoundary = getInsideBoundaries.bind(
+    undefined,
+    previewSize.height,
+    scaledSize.height,
+  );
+
+  const leftBoundary = getInsideBoundaries.bind(
+    undefined,
+    previewSize.width,
+    scaledSize.width,
+  );
+
+  return (setterCallbackOrValue) => {
+    setOffset((oldOffset) => {
+      const wantedOffset = typeof setterCallbackOrValue === 'function'
+        ? setterCallbackOrValue(oldOffset)
+        : setterCallbackOrValue;
+
+      return {
+        top: topBoundary(wantedOffset.top),
+        left: leftBoundary(wantedOffset.left),
+      };
+    });
+  };
+}, [previewSize, scaledSize]);
+
+export const usePreviewSize = (rootRef, aspectRatio) => {
+  const rootWidth = useContainerWidth(rootRef);
+
+  return useMemo(() => {
+    if (rootWidth === undefined) {
+      return { width: 0, height: 0 };
+    }
+
+    return {
+      width: rootWidth,
+      height: rootWidth * (aspectRatio ** -1),
+    };
+  }, [rootWidth]);
 };
