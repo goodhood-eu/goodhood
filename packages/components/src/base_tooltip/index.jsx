@@ -30,14 +30,18 @@ const BaseTooltip = (props) => {
   }, [position]);
 
   return (
-    <div {...cleanProps}>
+    <span {...cleanProps}>
       <span ref={content} className={contentClassName}>{children}</span>
       <span ref={tooltip} className={tooltipClassName}>
         {bubble}
         <i ref={arrow} className={arrowClassName} />
       </span>
-    </div>
+    </span>
   );
+};
+
+BaseTooltip.defaultProps = {
+  position: 'top',
 };
 
 BaseTooltip.propTypes = {

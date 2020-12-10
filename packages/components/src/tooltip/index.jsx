@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import BaseTooltip from '../base_tooltip';
 import styles from './index.module.scss';
 
@@ -8,13 +9,14 @@ const Tooltip = (props) => {
     position,
     bubble,
     children,
+    className,
     ...cleanProps
   } = props;
 
   return (
     <BaseTooltip
       {...cleanProps}
-      className={styles.wrap}
+      className={clsx(styles.wrap, className)}
       tooltipClassName={styles.tooltip}
       arrowClassName={styles.arrow}
       bubble={bubble}
@@ -32,6 +34,7 @@ Tooltip.propTypes = {
     PropTypes.string.isRequired,
   ]),
   children: PropTypes.node,
+  className: PropTypes.string,
 };
 
 export default Tooltip;
