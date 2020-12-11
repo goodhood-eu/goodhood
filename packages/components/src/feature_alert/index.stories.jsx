@@ -7,9 +7,9 @@ import {
   TOOLTIP_POSITION_BOTTOM,
   TOOLTIP_POSITION_LEFT,
   TOOLTIP_POSITION_RIGHT,
-  TRIGGER_HOVER,
-  TRIGGER_CLICK,
-  TRIGGER_DELAYED,
+  TOOLTIP_TRIGGER_HOVER,
+  TOOLTIP_TRIGGER_CLICK,
+  TOOLTIP_TRIGGER_DELAYED,
 } from '../base_tooltip';
 import styles from './index.stories.module.scss';
 
@@ -25,9 +25,9 @@ const POSITIONING_OPTIONS = {
 };
 
 const TRIGGER_OPTIONS = {
-  hover: TRIGGER_HOVER,
-  click: TRIGGER_CLICK,
-  delayed: TRIGGER_DELAYED,
+  hover: TOOLTIP_TRIGGER_HOVER,
+  click: TOOLTIP_TRIGGER_CLICK,
+  delayed: TOOLTIP_TRIGGER_DELAYED,
 };
 
 
@@ -42,7 +42,7 @@ export const Default = () => {
       <FeatureAlert
         content={text('Tooltip text', TOOLTIP_PLACEHOLDER)}
         position={position}
-        trigger={select('Trigger', TRIGGER_OPTIONS, TRIGGER_HOVER)}
+        trigger={select('Trigger', TRIGGER_OPTIONS, TOOLTIP_TRIGGER_HOVER)}
         closeIcon={boolean('Has close icon', true)}
         defaultOpen={boolean('Is default open', false)}
         onOpen={action('opened')}

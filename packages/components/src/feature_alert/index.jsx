@@ -15,9 +15,9 @@ import BaseTooltip, {
   TOOLTIP_POSITION_BOTTOM,
   TOOLTIP_POSITION_LEFT,
   TOOLTIP_POSITION_RIGHT,
-  TRIGGER_HOVER,
-  TRIGGER_CLICK,
-  TRIGGER_DELAYED,
+  TOOLTIP_TRIGGER_HOVER,
+  TOOLTIP_TRIGGER_CLICK,
+  TOOLTIP_TRIGGER_DELAYED,
 } from '../base_tooltip';
 import styles from './index.module.scss';
 
@@ -99,9 +99,9 @@ FeatureAlertTooltip.propTypes = {
     TOOLTIP_POSITION_RIGHT,
   ]),
   trigger: PropTypes.oneOf([
-    TRIGGER_HOVER,
-    TRIGGER_CLICK,
-    TRIGGER_DELAYED,
+    TOOLTIP_TRIGGER_HOVER,
+    TOOLTIP_TRIGGER_CLICK,
+    TOOLTIP_TRIGGER_DELAYED,
   ]),
   content: PropTypes.node.isRequired,
   children: PropTypes.node,
