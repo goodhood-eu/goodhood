@@ -3,14 +3,14 @@ import { text, select, boolean, button, withKnobs } from '@storybook/addon-knobs
 import { action } from '@storybook/addon-actions';
 import FeatureAlert from './index';
 import {
-  POSITION_TOP,
-  POSITION_BOTTOM,
-  POSITION_LEFT,
-  POSITION_RIGHT,
+  TOOLTIP_POSITION_TOP,
+  TOOLTIP_POSITION_BOTTOM,
+  TOOLTIP_POSITION_LEFT,
+  TOOLTIP_POSITION_RIGHT,
   TRIGGER_HOVER,
   TRIGGER_CLICK,
   TRIGGER_DELAYED,
-} from '../base_tooltip/constants';
+} from '../base_tooltip';
 import styles from './index.stories.module.scss';
 
 export default { title: 'Feature Alert', component: FeatureAlert, decorators: [withKnobs] };
@@ -18,10 +18,10 @@ export default { title: 'Feature Alert', component: FeatureAlert, decorators: [w
 const TOOLTIP_PLACEHOLDER = 'Design is like a joke. If it needs explaining, it\'s probably bad.';
 
 const POSITIONING_OPTIONS = {
-  top: POSITION_TOP,
-  bottom: POSITION_BOTTOM,
-  left: POSITION_LEFT,
-  right: POSITION_RIGHT,
+  top: TOOLTIP_POSITION_TOP,
+  bottom: TOOLTIP_POSITION_BOTTOM,
+  left: TOOLTIP_POSITION_LEFT,
+  right: TOOLTIP_POSITION_RIGHT,
 };
 
 const TRIGGER_OPTIONS = {
@@ -36,7 +36,7 @@ export const Default = () => {
   const handleRemount = () => { setKey((oldKey) => !oldKey); };
   button('Remount', handleRemount);
 
-  const position = select('Position', POSITIONING_OPTIONS, POSITION_TOP);
+  const position = select('Position', POSITIONING_OPTIONS, TOOLTIP_POSITION_TOP);
   return (
     <div className={styles.container}>
       <FeatureAlert

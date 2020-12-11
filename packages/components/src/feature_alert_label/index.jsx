@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
-  POSITION_TOP,
-  POSITION_BOTTOM,
-  POSITION_LEFT,
-  POSITION_RIGHT,
-} from '../base_tooltip/constants';
+  TOOLTIP_POSITION_TOP,
+  TOOLTIP_POSITION_BOTTOM,
+  TOOLTIP_POSITION_LEFT,
+  TOOLTIP_POSITION_RIGHT,
+} from '../base_tooltip';
 import styles from './index.module.scss';
 
 
@@ -21,16 +21,16 @@ const FeatureAlertLabel = ({ position, label, children, className, ...cleanProps
 };
 
 FeatureAlertLabel.defaultProps = {
-  position: POSITION_RIGHT,
+  position: TOOLTIP_POSITION_RIGHT,
 };
 
 FeatureAlertLabel.propTypes = {
   className: PropTypes.string,
   position: PropTypes.oneOf([
-    POSITION_TOP,
-    POSITION_BOTTOM,
-    POSITION_LEFT,
-    POSITION_RIGHT,
+    TOOLTIP_POSITION_TOP,
+    TOOLTIP_POSITION_BOTTOM,
+    TOOLTIP_POSITION_LEFT,
+    TOOLTIP_POSITION_RIGHT,
   ]),
   label: PropTypes.string.isRequired,
   children: PropTypes.node,

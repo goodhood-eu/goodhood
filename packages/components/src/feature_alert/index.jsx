@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { invoke } from 'nebenan-helpers/lib/utils';
 import CrossIcon from '@goodhood/icons/lib/16x16/cross_filled';
-import BaseTooltip from '../base_tooltip';
 
 import {
   useEscHandler,
@@ -11,15 +10,15 @@ import {
   useDelayedOpen,
 } from './hooks';
 import { getTriggerProps } from './utils';
-import {
-  POSITION_TOP,
-  POSITION_BOTTOM,
-  POSITION_LEFT,
-  POSITION_RIGHT,
+import BaseTooltip, {
+  TOOLTIP_POSITION_TOP,
+  TOOLTIP_POSITION_BOTTOM,
+  TOOLTIP_POSITION_LEFT,
+  TOOLTIP_POSITION_RIGHT,
   TRIGGER_HOVER,
   TRIGGER_CLICK,
   TRIGGER_DELAYED,
-} from '../base_tooltip/constants';
+} from '../base_tooltip';
 import styles from './index.module.scss';
 
 
@@ -86,7 +85,7 @@ const FeatureAlertTooltip = (props) => {
 };
 
 FeatureAlertTooltip.defaultProps = {
-  position: POSITION_LEFT,
+  position: TOOLTIP_POSITION_LEFT,
   closeIcon: false,
   defaultOpen: false,
 };
@@ -94,10 +93,10 @@ FeatureAlertTooltip.defaultProps = {
 FeatureAlertTooltip.propTypes = {
   className: PropTypes.string,
   position: PropTypes.oneOf([
-    POSITION_TOP,
-    POSITION_BOTTOM,
-    POSITION_LEFT,
-    POSITION_RIGHT,
+    TOOLTIP_POSITION_TOP,
+    TOOLTIP_POSITION_BOTTOM,
+    TOOLTIP_POSITION_LEFT,
+    TOOLTIP_POSITION_RIGHT,
   ]),
   trigger: PropTypes.oneOf([
     TRIGGER_HOVER,
