@@ -1,5 +1,10 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { getElementWidth, getInsideBoundaries, getOffsetForNewScale } from './utils';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, useCallback } from 'react';
+import {
+  getElementWidth,
+  getInsideBoundaries,
+  getOffsetForNewScale,
+  getOffsetForNewScaleWithCustomAnchor,
+} from './utils';
 
 export const usePrevious = (value) => {
   const ref = useRef(null);
@@ -19,6 +24,24 @@ export const useImage = (src) => {
 
   return image;
 };
+
+export const useZoomHandler = (setScale, setOffset, previewSize, prevScale) => (
+  useCallback((scale, midpoint) => {
+    setScale(scale);
+    setOffset(({ top, left }) => {
+      console.group('newTop');
+      let newTop = getOffsetForNewScaleWithCustomAnchor(midpoint.y, top, prevScale, scale, previewSize.height);
+      console.groupEnd();
+      console.group('newLeft');
+      let newLeft = getOffsetForNewScaleWithCustomAnchor(midpoint.x, left, prevScale, scale, previewSize.width);
+      console.groupEnd();
+      return ({
+        top: newTop,
+        left: newLeft,
+      });
+    });
+  }, [prevScale, previewSize])
+);
 
 export const useOffsetUpdate = (setOffset, previewSize, scale) => {
   const prevScale = usePrevious(scale);

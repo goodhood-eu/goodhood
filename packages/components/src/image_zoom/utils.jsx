@@ -9,6 +9,22 @@ export const getOffsetForNewScale = (originalOffset, prevScale, scale, previewLe
   return newOffsetOnNatural * scale;
 };
 
+export const getOffsetForNewScaleWithCustomAnchor = (anchor, originalOffset, prevScale, scale, previewLength) => {
+  const offsetOnNatural = originalOffset / prevScale;
+  const prevPreviewLengthOnNatural = previewLength / prevScale;
+  const previewLengthOnNatural = previewLength / scale;
+  const anchorOnNatural = anchor / scale;
+  const centricMovementOnNatural = (prevPreviewLengthOnNatural - previewLengthOnNatural) / 2;
+  const anchorMovementOnNatural = anchorOnNatural - (previewLengthOnNatural / 2);
+
+  const movementOnNatural = centricMovementOnNatural + anchorMovementOnNatural;
+
+  console.table({ centricMovementOnNatural, anchorMovementOnNatural, offsetOnNatural, movementOnNatural, prevPreviewLengthOnNatural, anchorOnNatural, anchor, previewLengthOnNatural });
+  const newOffsetOnNatural = offsetOnNatural - movementOnNatural;
+
+  return newOffsetOnNatural * scale;
+};
+
 export const getInsideBoundaries = (previewVal, scaledVal, val) => {
   if (previewVal > scaledVal) return (previewVal / 2) - (scaledVal / 2);
 
