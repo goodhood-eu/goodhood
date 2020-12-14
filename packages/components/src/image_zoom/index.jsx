@@ -94,9 +94,8 @@ const ImageZoom = ({
     if (e.touches.length === 2) {
       const pointA = getOffsetFromTouch(e.touches[0], viewRef.current);
       const pointB = getOffsetFromTouch(e.touches[1], viewRef.current);
-      const startDistance = getDistanceBetweenPoints(pointA, pointB);
-      console.log('handleTouchStart', { startDistance, pointA, pointB });
-      pinchZoomRef.current = { startDistance };
+      const lastDistance = getDistanceBetweenPoints(pointA, pointB);
+      pinchZoomRef.current = { lastDistance };
     } else {
       const { offsetX, offsetY } = getOffsetFromTouch(e.changedTouches[0], e.target);
       const { top: startTop, left: startLeft } = offset;
@@ -114,13 +113,12 @@ const ImageZoom = ({
       const distance = getDistanceBetweenPoints(pointA, pointB);
       const midpoint = getMidpoint(pointA, pointB);
 
-      const zoomFactor = (distance / pinchZoomRef.current.startDistance);
-      console.log(zoomFactor);
+      const zoomFactor = (distance / pinchZoomRef.current.lastDistance);
 
       const newScale = between(MIN_SCALE, MAX_SCALE, scale * zoomFactor);
 
-      console.log({ pointA, pointB, distance, midpoint });
       handleZoom(newScale, midpoint);
+      pinchZoomRef.current.lastDistance = distance;
     } else {
       const origin = dragRef.current;
       if (!origin) return;
