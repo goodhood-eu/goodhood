@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, useCallback } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
   getElementWidth,
   getInsideBoundaries,
@@ -28,18 +28,14 @@ export const useImage = (src) => {
 export const useZoomHandler = (setScale, setOffset, previewSize, prevScale) => (
   useCallback((scale, midpoint) => {
     setScale(scale);
-    setOffset(({ top, left }) => {
-      console.group('newTop');
-      let newTop = getOffsetForNewScaleWithCustomAnchor(midpoint.y, top, prevScale, scale, previewSize.height);
-      console.groupEnd();
-      console.group('newLeft');
-      let newLeft = getOffsetForNewScaleWithCustomAnchor(midpoint.x, left, prevScale, scale, previewSize.width);
-      console.groupEnd();
-      return ({
-        top: newTop,
-        left: newLeft,
-      });
-    });
+    setOffset(({ top, left }) => ({
+      top: (
+        getOffsetForNewScaleWithCustomAnchor(midpoint.y, top, prevScale, scale, previewSize.height)
+      ),
+      left: (
+        getOffsetForNewScaleWithCustomAnchor(midpoint.x, left, prevScale, scale, previewSize.width)
+      ),
+    }));
   }, [prevScale, previewSize])
 );
 
