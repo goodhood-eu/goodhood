@@ -1,46 +1,22 @@
-import React, { useCallback, useDebugValue, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import clsx from 'clsx';
 import { useEventListener } from 'nebenan-react-hocs/lib/use_event_listener';
 import styles from './index.module.scss';
-import { useImage, useOffsetUpdate, usePreviewSize, useProtectedOffsetSetter, useZoomHandler } from './hooks';
-import { getOffsetForMovement, getOffsetForNewScaleWithCustomAnchor } from './utils';
-
-const getScaledImageSize = (image, scale) => {
-  if (!image) return { width: 0, height: 0 };
-
-  return {
-    width: image.naturalWidth * scale,
-    height: image.naturalHeight * scale,
-  };
-};
+import { useImage, usePreviewSize } from './hooks';
+import {
+  between,
+  getDistanceBetweenPoints,
+  getMidpoint,
+  getOffsetForMovement,
+  getOffsetFromTouch,
+  getScaledImageSize,
+} from './utils';
+import { useStateReducer } from './state';
 
 const MIN_SCALE = 0.4;
 const MAX_SCALE = 4;
-
-const between = (min, max, value) => Math.min(max, Math.max(min, value));
-
 const ASPECT_RATIO = 16 / 9;
 
-const getOffsetFromTouch = (touch, element) => {
-  const rect = element.getBoundingClientRect();
-  const bodyRect = document.body.getBoundingClientRect();
-  const offsetX = touch.pageX - (rect.left - bodyRect.left);
-  const offsetY = touch.pageY - (rect.top - bodyRect.top);
-
-  return { offsetX, offsetY, x: offsetX, y: offsetY };
-};
-
-const getMidpoint = (pointA, pointB) => ({
-  x: (pointA.x + pointB.x) / 2,
-  y: (pointA.y + pointB.y) / 2,
-});
-
-const getDistanceBetweenPoints = (pointA, pointB) => (
-  Math.sqrt(
-    ((pointA.y - pointB.y) ** 2)
-    + ((pointA.x - pointB.x) ** 2),
-  )
-);
 
 const ImageZoom = ({
   src,
@@ -50,16 +26,22 @@ const ImageZoom = ({
 }) => {
   const rootRef = useRef(null);
   const viewRef = useRef(null);
-  const [scale, setScale] = useState(defaultScale);
-  const [offset, setOffset] = useState({ top: 0, left: 0 });
   const image = useImage(src);
-  const scaledSize = useMemo(() => getScaledImageSize(image, scale), [image, scale]);
+  const imageSize = useMemo(() => getScaledImageSize(image, 1), [image]);
   const previewSize = usePreviewSize(rootRef, ASPECT_RATIO);
-  const setProtectedOffset = useProtectedOffsetSetter(setOffset, previewSize, scaledSize);
-  useDebugValue(scale);
+  const [
+    { scale, offset },
+    { reset, safeSetOffset, anchorZoom },
+  ] = useStateReducer({
+    previewSize,
+    defaultScale,
+    imageSize,
+  });
+  const scaledSize = useMemo(() => getScaledImageSize(image, scale), [image, scale]);
+
 
   useEffect(() => {
-    setOffset({ top: 0, left: 0 });
+    reset();
   }, [image]);
 
   // TODO: change this thing to handle centric zooming
@@ -84,7 +66,9 @@ const ImageZoom = ({
 
     const { offsetX, offsetY } = e.nativeEvent;
 
-    setProtectedOffset(getOffsetForMovement(origin, scaledSize, previewSize, { offsetX, offsetY }));
+    safeSetOffset(
+      getOffsetForMovement(origin, { offsetX, offsetY }),
+    );
   };
 
   const pinchZoomRef = useRef(null);
@@ -97,14 +81,12 @@ const ImageZoom = ({
       const lastDistance = getDistanceBetweenPoints(pointA, pointB);
       pinchZoomRef.current = { lastDistance };
     } else {
-      const { offsetX, offsetY } = getOffsetFromTouch(e.changedTouches[0], e.target);
+      const { x: offsetX, y: offsetY } = getOffsetFromTouch(e.changedTouches[0], e.target);
       const { top: startTop, left: startLeft } = offset;
 
       dragRef.current = { offsetX, offsetY, startTop, startLeft };
     }
   }, [offset]);
-
-  const handleZoom = useZoomHandler(setScale, setOffset, previewSize, scale);
 
   const handleTouchMove = (e) => {
     // TODO: I want to be able to move the image after pinch zooming without having to remove my finger
@@ -118,15 +100,18 @@ const ImageZoom = ({
 
       const newScale = between(MIN_SCALE, MAX_SCALE, scale * zoomFactor);
 
-      handleZoom(newScale, midpoint);
+      anchorZoom(newScale, midpoint);
+
       pinchZoomRef.current.lastDistance = distance;
     } else {
       const origin = dragRef.current;
       if (!origin) return;
 
-      const { offsetX, offsetY } = getOffsetFromTouch(e.nativeEvent.changedTouches[0], e.nativeEvent.target);
+      const { x: offsetX, y: offsetY } = getOffsetFromTouch(e.nativeEvent.changedTouches[0], e.nativeEvent.target);
 
-      setProtectedOffset(getOffsetForMovement(origin, scaledSize, previewSize, { offsetX, offsetY }));
+      safeSetOffset(
+        getOffsetForMovement(origin, { offsetX, offsetY }),
+      );
     }
   };
 

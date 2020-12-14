@@ -1,3 +1,35 @@
+export const between = (min, max, value) => Math.min(max, Math.max(min, value));
+
+export const getDistanceBetweenPoints = (pointA, pointB) => (
+  Math.sqrt(
+    ((pointA.y - pointB.y) ** 2)
+    + ((pointA.x - pointB.x) ** 2),
+  )
+);
+
+export const getMidpoint = (pointA, pointB) => ({
+  x: (pointA.x + pointB.x) / 2,
+  y: (pointA.y + pointB.y) / 2,
+});
+
+export const getOffsetFromTouch = (touch, element) => {
+  const rect = element.getBoundingClientRect();
+  const bodyRect = document.body.getBoundingClientRect();
+  const x = touch.pageX - (rect.left - bodyRect.left);
+  const y = touch.pageY - (rect.top - bodyRect.top);
+
+  return { x, y };
+};
+
+export const getScaledImageSize = (image, scale) => {
+  if (!image) return { width: 0, height: 0 };
+
+  return {
+    width: image.naturalWidth * scale,
+    height: image.naturalHeight * scale,
+  };
+};
+
 export const getOffsetForNewScale = (originalOffset, prevScale, scale, previewLength) => {
   const offsetOnNatural = originalOffset / prevScale;
   const prevPreviewLengthOnNatural = previewLength / prevScale;
@@ -42,12 +74,10 @@ export const getInsideBoundaries = (previewVal, scaledVal, val) => {
   const min = previewVal - scaledVal;
   const max = 0;
 
-  return (
-    Math.max(Math.min(val, max), min)
-  );
+  return between(min, max, val);
 };
 
-export const getOffsetForMovement = (origin, scaledSize, previewSize, mouse) => {
+export const getOffsetForMovement = (origin, mouse) => {
   const diffX = mouse.offsetX - origin.offsetX;
   const diffY = mouse.offsetY - origin.offsetY;
 

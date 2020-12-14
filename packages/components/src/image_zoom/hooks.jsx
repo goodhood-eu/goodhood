@@ -1,10 +1,5 @@
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import {
-  getElementWidth,
-  getInsideBoundaries,
-  getOffsetForNewScale,
-  getOffsetForNewScaleWithCustomAnchor,
-} from './utils';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { getElementWidth, getOffsetForNewScale } from './utils';
 
 export const usePrevious = (value) => {
   const ref = useRef(null);
@@ -24,20 +19,6 @@ export const useImage = (src) => {
 
   return image;
 };
-
-export const useZoomHandler = (setScale, setOffset, previewSize, prevScale) => (
-  useCallback((scale, midpoint) => {
-    setScale(scale);
-    setOffset(({ top, left }) => ({
-      top: (
-        getOffsetForNewScaleWithCustomAnchor(midpoint.y, top, prevScale, scale, previewSize.height)
-      ),
-      left: (
-        getOffsetForNewScaleWithCustomAnchor(midpoint.x, left, prevScale, scale, previewSize.width)
-      ),
-    }));
-  }, [prevScale, previewSize])
-);
 
 export const useOffsetUpdate = (setOffset, previewSize, scale) => {
   const prevScale = usePrevious(scale);
@@ -61,6 +42,7 @@ export const useContainerWidth = (ref) => {
     setWidth(getElementWidth(ref.current));
   };
 
+  // TODO: check ssr
   useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -75,33 +57,6 @@ export const useContainerWidth = (ref) => {
 
   return width;
 };
-
-export const useProtectedOffsetSetter = (setOffset, previewSize, scaledSize) => useMemo(() => {
-  const topBoundary = getInsideBoundaries.bind(
-    undefined,
-    previewSize.height,
-    scaledSize.height,
-  );
-
-  const leftBoundary = getInsideBoundaries.bind(
-    undefined,
-    previewSize.width,
-    scaledSize.width,
-  );
-
-  return (setterCallbackOrValue) => {
-    setOffset((oldOffset) => {
-      const wantedOffset = typeof setterCallbackOrValue === 'function'
-        ? setterCallbackOrValue(oldOffset)
-        : setterCallbackOrValue;
-
-      return {
-        top: topBoundary(wantedOffset.top),
-        left: leftBoundary(wantedOffset.left),
-      };
-    });
-  };
-}, [previewSize, scaledSize]);
 
 export const usePreviewSize = (rootRef, aspectRatio) => {
   const rootWidth = useContainerWidth(rootRef);
