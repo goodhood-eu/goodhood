@@ -105,7 +105,7 @@ const ImageZoom = ({
     }
   }, [offset]);
 
-  const handleZoom = useZoomHandler(setScale, setProtectedOffset, previewSize, scale);
+  const handleZoom = useZoomHandler(setScale, setOffset, previewSize, scale);
 
   const handleTouchMove = (e) => {
     if (e.touches.length === 2) {
@@ -114,11 +114,12 @@ const ImageZoom = ({
       const distance = getDistanceBetweenPoints(pointA, pointB);
       const midpoint = getMidpoint(pointA, pointB);
 
-      const zoomFactor = distance / pinchZoomRef.current.startDistance;
+      const zoomFactor = (distance / pinchZoomRef.current.startDistance);
       console.log(zoomFactor);
 
       const newScale = between(MIN_SCALE, MAX_SCALE, scale * zoomFactor);
 
+      console.log({ pointA, pointB, distance, midpoint });
       handleZoom(newScale, midpoint);
     } else {
       const origin = dragRef.current;

@@ -9,19 +9,30 @@ export const getOffsetForNewScale = (originalOffset, prevScale, scale, previewLe
   return newOffsetOnNatural * scale;
 };
 
-export const getOffsetForNewScaleWithCustomAnchor = (anchor, originalOffset, prevScale, scale, previewLength) => {
+export const getOffsetForNewScaleWithCustomAnchor = (
+  anchor,
+  originalOffset,
+  prevScale,
+  scale,
+  previewLength,
+) => {
+  // Basic idea to simplify the algorithm:
+  //  - Calculate all down to the 'natural image' plain and adjust scale later
+  //  - Given anchor needs to be at the same position in the user visible preview
+  //    before and after zoom
   const offsetOnNatural = originalOffset / prevScale;
   const prevPreviewLengthOnNatural = previewLength / prevScale;
   const previewLengthOnNatural = previewLength / scale;
   const anchorOnNatural = anchor / scale;
-  const centricMovementOnNatural = (prevPreviewLengthOnNatural - previewLengthOnNatural) / 2;
-  const anchorMovementOnNatural = anchorOnNatural - (previewLengthOnNatural / 2);
 
-  const movementOnNatural = centricMovementOnNatural + anchorMovementOnNatural;
+  const relativeAnchorPositionOnPreview = anchorOnNatural / prevPreviewLengthOnNatural;
 
-  console.table({ centricMovementOnNatural, anchorMovementOnNatural, offsetOnNatural, movementOnNatural, prevPreviewLengthOnNatural, anchorOnNatural, anchor, previewLengthOnNatural });
+  // movement: positive -> right, negative -> left
+  const movementOnNatural = (
+    anchorOnNatural - (previewLengthOnNatural * relativeAnchorPositionOnPreview)
+  );
+
   const newOffsetOnNatural = offsetOnNatural - movementOnNatural;
-
   return newOffsetOnNatural * scale;
 };
 
