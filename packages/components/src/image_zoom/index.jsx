@@ -107,6 +107,7 @@ const ImageZoom = ({
   const handleZoom = useZoomHandler(setScale, setOffset, previewSize, scale);
 
   const handleTouchMove = (e) => {
+    // TODO: I want to be able to move the image after pinch zooming without having to remove my finger
     if (e.touches.length === 2) {
       const pointA = getOffsetFromTouch(e.touches[0], viewRef.current);
       const pointB = getOffsetFromTouch(e.touches[1], viewRef.current);
@@ -172,5 +173,6 @@ export default ImageZoom;
 // DONE button overlay not needed
 // DONE go with 16:9 by default
 // make it more robust (scale / image changes)
-// pinch to zoom
+// zoom slider
+// DONE pinch to zoom
 // double tap not needed, too difficult (do at last)
