@@ -1,8 +1,8 @@
 import {
-  POSITION_TOP,
-  POSITION_BOTTOM,
-  POSITION_LEFT,
-  POSITION_RIGHT,
+  TOOLTIP_POSITION_TOP,
+  TOOLTIP_POSITION_BOTTOM,
+  TOOLTIP_POSITION_LEFT,
+  TOOLTIP_POSITION_RIGHT,
   TOOLTIP_OFFSET,
   TOOLTIP_FLIP_SCREEN_OFFSET,
 } from './constants';
@@ -20,7 +20,12 @@ export const getPopperOptions = (arrowRef, position) => ({
       name: 'flip',
       options: {
         padding: TOOLTIP_FLIP_SCREEN_OFFSET,
-        fallbackPlacements: [POSITION_TOP, POSITION_LEFT, POSITION_BOTTOM, POSITION_RIGHT],
+        fallbackPlacements: [
+          TOOLTIP_POSITION_TOP,
+          TOOLTIP_POSITION_LEFT,
+          TOOLTIP_POSITION_BOTTOM,
+          TOOLTIP_POSITION_RIGHT,
+        ],
       },
     },
   ],
