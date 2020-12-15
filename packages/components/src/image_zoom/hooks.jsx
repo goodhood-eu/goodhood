@@ -1,11 +1,5 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import {
-  getDistanceBetweenPoints,
-  getElementWidth,
-  getMidpoint,
-  getOffsetForMovement,
-  getOffsetForNewScale,
-} from './utils';
+import { getDistanceBetweenPoints, getElementWidth, getMidpoint, getOffsetForMovement } from './utils';
 
 export const usePrevious = (value) => {
   const ref = useRef(null);
@@ -26,18 +20,7 @@ export const useImage = (src) => {
   return image;
 };
 
-export const useOffsetUpdate = (setOffset, previewSize, scale) => {
-  const prevScale = usePrevious(scale);
-
-  useEffect(() => {
-    if (scale === null || prevScale === null) return;
-
-    setOffset(({ top, left }) => ({
-      top: getOffsetForNewScale(top, prevScale, scale, previewSize.height),
-      left: getOffsetForNewScale(left, prevScale, scale, previewSize.width),
-    }));
-  }, [scale]);
-};
+const useClientLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : () => {};
 
 export const useContainerWidth = (ref) => {
   const [width, setWidth] = useState(getElementWidth(ref?.current));
@@ -48,8 +31,7 @@ export const useContainerWidth = (ref) => {
     setWidth(getElementWidth(ref.current));
   };
 
-  // TODO: check ssr
-  useLayoutEffect(() => {
+  useClientLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
 

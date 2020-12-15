@@ -1,12 +1,10 @@
 import { useCallback, useReducer } from 'react';
 import { between, getInsideBoundaries, getOffsetForNewScaleWithCustomAnchor } from './utils';
+import { MAX_SCALE, MIN_SCALE } from './constants';
 
 const TYPE_RESET = 'reset';
 const TYPE_ANCHOR_ZOOM = 'anchor-zoom';
 const TYPE_SAFE_SET_OFFSET = 'safe-set-offset';
-
-const MIN_SCALE = 0.4;
-const MAX_SCALE = 4;
 
 export const useStateReducer = ({ previewSize, defaultScale, imageSize }) => {
   const getDefaultState = () => ({ scale: defaultScale, offset: { top: 0, left: 0 } });

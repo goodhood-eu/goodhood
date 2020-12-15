@@ -35,17 +35,6 @@ export const getScaledImageSize = (image, scale) => {
   };
 };
 
-export const getOffsetForNewScale = (originalOffset, prevScale, scale, previewLength) => {
-  const offsetOnNatural = originalOffset / prevScale;
-  const prevPreviewLengthOnNatural = previewLength / prevScale;
-  const previewLengthOnNatural = previewLength / scale;
-  const movementOnNatural = (prevPreviewLengthOnNatural - previewLengthOnNatural) / 2;
-
-  const newOffsetOnNatural = offsetOnNatural - movementOnNatural;
-
-  return newOffsetOnNatural * scale;
-};
-
 export const getOffsetForNewScaleWithCustomAnchor = (
   anchor,
   originalOffset,
