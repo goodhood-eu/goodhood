@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { useEventListener } from 'nebenan-react-hocs/lib/use_event_listener';
 import Slider from '../slider';
 import styles from './index.module.scss';
-import { useDrag, useImage, useImageView, usePinchZoom, usePreviewSize } from './hooks';
+import { useDrag, useImage, useImageView, usePinchZoom, usePreviewSize, useStateControlledInput } from './hooks';
 import { getOffsetFromMouse, getOffsetFromTouch, getScaledImageSize } from './utils';
 import { ASPECT_RATIO } from './constants';
 
@@ -15,6 +15,7 @@ const ImageZoom = ({
   ...rest
 }) => {
   const viewContainerRef = useRef(null);
+  const sliderRef = useRef(null);
   const viewRef = useRef(null);
   const image = useImage(src);
   const imageSize = useMemo(() => getScaledImageSize(image, 1), [image]);
@@ -26,6 +27,7 @@ const ImageZoom = ({
   const scaledSize = useMemo(() => getScaledImageSize(image, scale), [image, scale]);
   const drag = useDrag(safeSetOffset);
   const pinchZoom = usePinchZoom(anchorZoom);
+  useStateControlledInput(sliderRef, scale);
 
   const handleMouseDown = (e) => { drag.start(getOffsetFromMouse(e.nativeEvent), offset); };
   const handleMouseLeave = () => { drag.stop(); };
@@ -109,6 +111,7 @@ const ImageZoom = ({
       <div className={styles.controls}>
         {children}
         <Slider
+          ref={sliderRef}
           key={`${defaultScale}-${maxScale}`}
           className={styles.slider}
           min={defaultScale}

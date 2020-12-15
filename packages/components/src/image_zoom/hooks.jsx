@@ -10,6 +10,14 @@ import {
 } from './utils';
 import { CONTAINER_WIDTH_CHANGE_RATE, MAX_SCALE_FACTOR } from './constants';
 
+export const useStateControlledInput = (ref, state) => {
+  useEffect(() => {
+    if (!ref.current) return;
+
+    ref.current.setValue(state, null, { silent: true });
+  }, [state]);
+};
+
 export const usePrevious = (value) => {
   const ref = useRef(null);
   useEffect(() => { ref.current = value; });

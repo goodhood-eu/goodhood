@@ -112,11 +112,11 @@ class Slider extends InputComponent {
     else invoke(done);
   }
 
-  setValue(value, done) {
+  setValue(value, done, options) {
     this.setState((state, props) => ({
       percent: convertValueToPercent(value, props.min, props.max),
     }));
-    super.setValue(value, done);
+    super.setValue(value, done, options);
   }
 
   render() {
