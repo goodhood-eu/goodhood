@@ -44,8 +44,7 @@
     "redux": "^4.0.5",
     "sass-functions": "^1.4.0",
     "smartcontent": "^3.10.0",
-    "string-validate": "^3.5.0",
-    "nebenan-components": "^9.7.0"
+    "string-validate": "^3.5.0"
   },
   "dependencies": {
     "@popperjs/core": "^2.5.4",

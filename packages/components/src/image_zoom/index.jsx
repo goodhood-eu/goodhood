@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
-import Slider from 'nebenan-components/lib/slider';
 import clsx from 'clsx';
 import { useEventListener } from 'nebenan-react-hocs/lib/use_event_listener';
+import Slider from '../slider';
 import styles from './index.module.scss';
 import { useDrag, useImage, usePinchZoom, usePreviewSize } from './hooks';
 import { getOffsetFromMouse, getOffsetFromTouch, getScaledImageSize } from './utils';

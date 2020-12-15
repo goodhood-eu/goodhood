@@ -1,0 +1,48 @@
+@import "~nebenan-ui-kit";
+
+$ui-slider-height: 25px;
+
+.track {
+  height: $ui-slider-height + 20px; // accommodate label that is positioned absolutely
+  margin: 0 20px;
+
+  position: relative;
+
+  cursor: pointer;
+}
+
+.line {
+  @include block-fill(100%, 6px);
+
+  margin-top: 10px;
+
+  background: $color-gray-04;
+  border-radius: $border-radius-s;
+}
+
+.handle {
+  @include block-round($ui-slider-height);
+  @include cursor-draggable;
+
+  margin-left: -($ui-slider-height / 2);
+
+  position: absolute;
+
+  background: $color-green-02;
+  border: 4px solid $color-gray-09;
+  box-shadow: $shadow-bottom-raised;
+}
+
+.label {
+  margin-top: 5px;
+
+  position: absolute;
+  top: 100%;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  font-style: normal;
+  font-size: $font-size-s;
+  white-space: nowrap;
+}
