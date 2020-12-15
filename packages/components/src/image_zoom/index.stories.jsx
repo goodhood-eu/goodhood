@@ -1,7 +1,6 @@
 import React from 'react';
 import { text, withKnobs } from '@storybook/addon-knobs';
 import ImageZoom from './index';
-import 'nebenan-components/style.css';
 
 export default { title: 'ImageZoom', component: ImageZoom, decorators: [withKnobs] };
 

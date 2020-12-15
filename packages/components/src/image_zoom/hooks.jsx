@@ -6,7 +6,7 @@ import {
   getElementWidth,
   getInsideBoundaries,
   getMidpoint,
-  getOffsetForMovement, getOffsetForNewScaleWithCustomAnchor
+  getOffsetForMovement, getOffsetForNewScaleWithCustomAnchor,
 } from './utils';
 import { CONTAINER_WIDTH_CHANGE_RATE, MAX_SCALE_FACTOR } from './constants';
 
