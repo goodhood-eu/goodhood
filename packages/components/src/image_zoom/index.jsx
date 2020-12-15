@@ -6,11 +6,10 @@ import styles from './index.module.scss';
 import { useDrag, useImage, usePinchZoom, usePreviewSize } from './hooks';
 import { getOffsetFromMouse, getOffsetFromTouch, getScaledImageSize } from './utils';
 import { useStateReducer } from './state';
-import { ASPECT_RATIO, MAX_SCALE, MIN_SCALE } from './constants';
+import { ASPECT_RATIO } from './constants';
 
 const ImageZoom = ({
   src,
-  defaultScale = 1,
   className: passedClassName,
   children,
   ...rest
@@ -21,13 +20,9 @@ const ImageZoom = ({
   const imageSize = useMemo(() => getScaledImageSize(image, 1), [image]);
   const previewSize = usePreviewSize(viewContainerRef, ASPECT_RATIO);
   const [
-    { scale, offset },
+    { scale, offset, defaultScale, maxScale },
     { reset, safeSetOffset, anchorZoom },
-  ] = useStateReducer({
-    previewSize,
-    defaultScale,
-    imageSize,
-  });
+  ] = useStateReducer({ previewSize, imageSize });
   const scaledSize = useMemo(() => getScaledImageSize(image, scale), [image, scale]);
 
 
@@ -129,9 +124,10 @@ const ImageZoom = ({
       <div className={styles.controls}>
         {children}
         <Slider
+          key={`${defaultScale}-${maxScale}`}
           className={styles.slider}
-          min={MIN_SCALE}
-          max={MAX_SCALE}
+          min={defaultScale}
+          max={maxScale}
           step={0.1}
           getLabel={() => ''}
           onUpdate={handleZoomSlider}
@@ -150,5 +146,6 @@ export default ImageZoom;
 // make it more robust (scale / image changes) refactor
 // DONE zoom slider
 // DONE pinch to zoom
-// get rid of nebenan-components dep
+// DONE get rid of nebenan-components dep
+// add prop types
 // double tap not needed, too difficult (do at last)

@@ -1,13 +1,39 @@
-import { useCallback, useReducer } from 'react';
+import { useCallback, useEffect, useReducer } from 'react';
 import { between, getInsideBoundaries, getOffsetForNewScaleWithCustomAnchor } from './utils';
-import { MAX_SCALE, MIN_SCALE } from './constants';
+import { MAX_SCALE_FACTOR } from './constants';
+import { usePrevious } from './hooks';
 
 const TYPE_RESET = 'reset';
 const TYPE_ANCHOR_ZOOM = 'anchor-zoom';
 const TYPE_SAFE_SET_OFFSET = 'safe-set-offset';
 
-export const useStateReducer = ({ previewSize, defaultScale, imageSize }) => {
-  const getDefaultState = () => ({ scale: defaultScale, offset: { top: 0, left: 0 } });
+const getDefaultScale = (previewSize, imageSize) => (
+  previewSize.width > imageSize.width
+    ? 1
+    : previewSize.width / imageSize.width
+);
+
+export const useStateReducer = ({ previewSize, imageSize }) => {
+  const getDefaultState = useCallback(() => {
+    let scale = 1;
+    let offset = { top: 0, left: 0 };
+
+    if (previewSize && imageSize) {
+      scale = getDefaultScale(previewSize, imageSize);
+
+      offset = {
+        left: getInsideBoundaries(previewSize.width, imageSize.width * scale, 0),
+        top: getInsideBoundaries(previewSize.height, imageSize.height * scale, 0),
+      };
+    }
+
+    return {
+      scale,
+      offset,
+      defaultScale: scale,
+      maxScale: scale * MAX_SCALE_FACTOR,
+    };
+  }, [previewSize, imageSize]);
 
   const reducer = useCallback((state, action) => {
     switch (action.type) {
@@ -17,7 +43,7 @@ export const useStateReducer = ({ previewSize, defaultScale, imageSize }) => {
       case TYPE_ANCHOR_ZOOM: {
         const { zoomFactor, anchor } = action.payload;
 
-        const scale = between(MIN_SCALE, MAX_SCALE, state.scale * zoomFactor);
+        const scale = between(state.defaultScale, state.maxScale, state.scale * zoomFactor);
 
         const left = getOffsetForNewScaleWithCustomAnchor(
           anchor.x,
@@ -59,7 +85,7 @@ export const useStateReducer = ({ previewSize, defaultScale, imageSize }) => {
       }
       default: return state;
     }
-  }, [previewSize, defaultScale, imageSize]);
+  }, [previewSize, imageSize, getDefaultState]);
 
   const [state, dispatch] = useReducer(reducer, getDefaultState());
 
@@ -76,6 +102,13 @@ export const useStateReducer = ({ previewSize, defaultScale, imageSize }) => {
       payload: { zoomFactor, anchor },
     })),
   };
+
+  const previousImageSize = usePrevious(imageSize);
+  useEffect(() => {
+    if (!imageSize || previewSize || imageSize === previousImageSize) return;
+
+    actions.reset();
+  }, [previewSize, imageSize]);
 
   return [state, actions];
 };
