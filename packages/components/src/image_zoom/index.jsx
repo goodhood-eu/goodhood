@@ -35,7 +35,7 @@ const ImageZoom = ({
     e.preventDefault();
 
     if (e.touches.length >= 1) {
-      drag.start(getOffsetFromTouch(e.touches[0], e.target), offset);
+      drag.start(getOffsetFromTouch(e.touches[0], viewRef.current), offset);
     }
 
     if (e.touches.length === 2) {
