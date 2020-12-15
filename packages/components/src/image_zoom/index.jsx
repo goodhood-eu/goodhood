@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useEventListener } from 'nebenan-react-hocs/lib/use_event_listener';
 import Slider from '../slider';
 import styles from './index.module.scss';
-import { useDrag, useImage, usePinchZoom, usePreviewSize } from './hooks';
+import { useDrag, useImage, useImageView, usePinchZoom, usePreviewSize } from './hooks';
 import { getOffsetFromMouse, getOffsetFromTouch, getScaledImageSize } from './utils';
-import { useStateReducer } from './state';
 import { ASPECT_RATIO } from './constants';
 
 const ImageZoom = ({
@@ -21,29 +21,15 @@ const ImageZoom = ({
   const previewSize = usePreviewSize(viewContainerRef, ASPECT_RATIO);
   const [
     { scale, offset, defaultScale, maxScale },
-    { reset, safeSetOffset, anchorZoom },
-  ] = useStateReducer({ previewSize, imageSize });
+    { safeSetOffset, anchorZoom },
+  ] = useImageView({ previewSize, imageSize });
   const scaledSize = useMemo(() => getScaledImageSize(image, scale), [image, scale]);
-
-
-  useEffect(() => {
-    reset();
-  }, [image]);
-
   const drag = useDrag(safeSetOffset);
   const pinchZoom = usePinchZoom(anchorZoom);
 
-  const handleMouseDown = (e) => {
-    drag.start(getOffsetFromMouse(e.nativeEvent), offset);
-  };
-
-  const handleMouseLeave = () => {
-    drag.stop();
-  };
-
-  const handleMouseMove = (e) => {
-    drag.move(getOffsetFromMouse(e.nativeEvent));
-  };
+  const handleMouseDown = (e) => { drag.start(getOffsetFromMouse(e.nativeEvent), offset); };
+  const handleMouseLeave = () => { drag.stop(); };
+  const handleMouseMove = (e) => { drag.move(getOffsetFromMouse(e.nativeEvent)); };
 
   const handleTouchStart = useCallback((e) => {
     e.preventDefault();
@@ -101,7 +87,6 @@ const ImageZoom = ({
     backgroundImage: `url('${src}')`,
     backgroundSize: `${scaledSize.width}px ${scaledSize.height}px`,
     backgroundPosition: `${offset.left}px ${offset.top}px`,
-    width: '100%',
     height: previewSize.height,
   };
 
@@ -137,15 +122,10 @@ const ImageZoom = ({
   );
 };
 
+ImageZoom.propTypes = {
+  src: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  children: PropTypes.node,
+};
 
 export default ImageZoom;
-
-// DONE keyboard navigation not needed
-// DONE button overlay not needed
-// DONE go with 16:9 by default
-// make it more robust (scale / image changes) refactor
-// DONE zoom slider
-// DONE pinch to zoom
-// DONE get rid of nebenan-components dep
-// add prop types
-// double tap not needed, too difficult (do at last)

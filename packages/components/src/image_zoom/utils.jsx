@@ -85,3 +85,9 @@ export const getElementWidth = (el) => {
   if (!el) return undefined;
   return el.getBoundingClientRect().width;
 };
+
+export const getDefaultScale = (previewSize, imageSize) => (
+  previewSize.width > imageSize.width
+    ? 1
+    : previewSize.width / imageSize.width
+);
