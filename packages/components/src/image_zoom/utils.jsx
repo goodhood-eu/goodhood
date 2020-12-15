@@ -12,11 +12,16 @@ export const getMidpoint = (pointA, pointB) => ({
   y: (pointA.y + pointB.y) / 2,
 });
 
-export const getOffsetFromTouch = (touch, element) => {
+export const getOffsetFromMouse = (event) => {
+  const { offsetX: x, offsetY: y } = event;
+  return { x, y };
+};
+
+export const getOffsetFromTouch = (event, element) => {
   const rect = element.getBoundingClientRect();
   const bodyRect = document.body.getBoundingClientRect();
-  const x = touch.pageX - (rect.left - bodyRect.left);
-  const y = touch.pageY - (rect.top - bodyRect.top);
+  const x = event.pageX - (rect.left - bodyRect.left);
+  const y = event.pageY - (rect.top - bodyRect.top);
 
   return { x, y };
 };

@@ -1,9 +1,12 @@
 import { useCallback, useReducer } from 'react';
-import { getInsideBoundaries, getOffsetForNewScaleWithCustomAnchor } from './utils';
+import { between, getInsideBoundaries, getOffsetForNewScaleWithCustomAnchor } from './utils';
 
 const TYPE_RESET = 'reset';
 const TYPE_ANCHOR_ZOOM = 'anchor-zoom';
 const TYPE_SAFE_SET_OFFSET = 'safe-set-offset';
+
+const MIN_SCALE = 0.4;
+const MAX_SCALE = 4;
 
 export const useStateReducer = ({ previewSize, defaultScale, imageSize }) => {
   const getDefaultState = () => ({ scale: defaultScale, offset: { top: 0, left: 0 } });
@@ -14,7 +17,9 @@ export const useStateReducer = ({ previewSize, defaultScale, imageSize }) => {
         return getDefaultState();
 
       case TYPE_ANCHOR_ZOOM: {
-        const { scale, anchor } = action.payload;
+        const { zoomFactor, anchor } = action.payload;
+
+        const scale = between(MIN_SCALE, MAX_SCALE, state.scale * zoomFactor);
 
         const left = getOffsetForNewScaleWithCustomAnchor(
           anchor.x,
@@ -68,9 +73,9 @@ export const useStateReducer = ({ previewSize, defaultScale, imageSize }) => {
       type: TYPE_SAFE_SET_OFFSET,
       payload: { offset },
     })),
-    anchorZoom: (scale, anchor) => dispatch(({
+    anchorZoom: (zoomFactor, anchor) => dispatch(({
       type: TYPE_ANCHOR_ZOOM,
-      payload: { scale, anchor },
+      payload: { zoomFactor, anchor },
     })),
   };
 

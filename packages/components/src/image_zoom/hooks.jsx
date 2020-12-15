@@ -1,5 +1,11 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { getElementWidth, getOffsetForNewScale } from './utils';
+import {
+  getDistanceBetweenPoints,
+  getElementWidth,
+  getMidpoint,
+  getOffsetForMovement,
+  getOffsetForNewScale,
+} from './utils';
 
 export const usePrevious = (value) => {
   const ref = useRef(null);
@@ -71,4 +77,58 @@ export const usePreviewSize = (rootRef, aspectRatio) => {
       height: rootWidth * (aspectRatio ** -1),
     };
   }, [rootWidth]);
+};
+
+export const usePinchZoom = (onAnchorZoom) => {
+  const pinchZoomRef = useRef(null);
+
+  const start = (pointA, pointB) => {
+    const lastDistance = getDistanceBetweenPoints(pointA, pointB);
+    pinchZoomRef.current = { lastDistance };
+  };
+
+  const move = (pointA, pointB) => {
+    const distance = getDistanceBetweenPoints(pointA, pointB);
+    const midpoint = getMidpoint(pointA, pointB);
+
+    const zoomFactor = distance / pinchZoomRef.current.lastDistance;
+
+    onAnchorZoom(zoomFactor, midpoint);
+
+    pinchZoomRef.current.lastDistance = distance;
+  };
+
+  const stop = () => {
+    pinchZoomRef.current = null;
+  };
+
+  return { start, stop, move };
+};
+
+export const useDrag = (onUpdate) => {
+  const dragRef = useRef(null);
+
+  const start = (position, offset) => {
+    const { x: offsetX, y: offsetY } = position;
+    const { top: startTop, left: startLeft } = offset;
+
+    dragRef.current = { offsetX, offsetY, startTop, startLeft };
+  };
+
+  const move = (position) => {
+    const origin = dragRef.current;
+    if (!origin) return;
+
+    const { x: offsetX, y: offsetY } = position;
+
+    onUpdate(
+      getOffsetForMovement(origin, { offsetX, offsetY }),
+    );
+  };
+
+  const stop = () => {
+    dragRef.current = null;
+  };
+
+  return { start, move, stop };
 };
