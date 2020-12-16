@@ -11,7 +11,7 @@ import {
   useImageView,
   usePinchZoom,
   usePreviewSize,
-  useStateControlledInput
+  useStateControlledInput,
 } from './hooks';
 import { getOffsetFromMouse, getOffsetFromTouch, getScaledImageSize } from './utils';
 import { ASPECT_RATIO } from './constants';
