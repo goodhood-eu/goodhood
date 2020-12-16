@@ -4,7 +4,15 @@ import clsx from 'clsx';
 import { useEventListener } from 'nebenan-react-hocs/lib/use_event_listener';
 import Slider from '../slider';
 import styles from './index.module.scss';
-import { useDrag, useImage, useImageView, usePinchZoom, usePreviewSize, useStateControlledInput } from './hooks';
+import {
+  useDoubleTapZoom,
+  useDrag,
+  useImage,
+  useImageView,
+  usePinchZoom,
+  usePreviewSize,
+  useStateControlledInput
+} from './hooks';
 import { getOffsetFromMouse, getOffsetFromTouch, getScaledImageSize } from './utils';
 import { ASPECT_RATIO } from './constants';
 
@@ -27,6 +35,7 @@ const ImageZoom = ({
   const scaledSize = useMemo(() => getScaledImageSize(image, scale), [image, scale]);
   const drag = useDrag(safeSetOffset);
   const pinchZoom = usePinchZoom(anchorZoom);
+  const doubleTapZoom = useDoubleTapZoom(anchorZoom);
   useStateControlledInput(sliderRef, scale);
 
   const handleMouseDown = (e) => { drag.start(getOffsetFromMouse(e.nativeEvent), offset); };
@@ -35,6 +44,10 @@ const ImageZoom = ({
 
   const handleTouchStart = useCallback((e) => {
     e.preventDefault();
+
+    if (e.touches.length === 1) {
+      doubleTapZoom(getOffsetFromTouch(e.touches[0], viewRef.current));
+    }
 
     if (e.touches.length >= 1) {
       drag.start(getOffsetFromTouch(e.touches[0], viewRef.current), offset);

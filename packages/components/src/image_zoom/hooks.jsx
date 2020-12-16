@@ -6,9 +6,9 @@ import {
   getElementWidth,
   getInsideBoundaries,
   getMidpoint,
-  getOffsetForMovement, getOffsetForNewScaleWithCustomAnchor,
+  getOffsetForMovement, getOffsetForNewScaleWithCustomAnchor, isLengthInThreshold,
 } from './utils';
-import { CONTAINER_WIDTH_CHANGE_RATE, MAX_SCALE_FACTOR } from './constants';
+import { CONTAINER_WIDTH_CHANGE_RATE, DOUBLE_TAP_THRESHOLD, DOUBLE_TAP_TIMEOUT, MAX_SCALE_FACTOR } from './constants';
 
 export const useStateControlledInput = (ref, state) => {
   useEffect(() => {
@@ -74,6 +74,29 @@ export const usePreviewSize = (rootRef, aspectRatio) => {
       height: rootWidth * (aspectRatio ** -1),
     };
   }, [rootWidth]);
+};
+
+export const useDoubleTapZoom = (onAnchorZoom) => {
+  const lastTapRef = useRef(null);
+
+  return (point) => {
+    const lastTapPoint = lastTapRef.current;
+
+    if (!lastTapPoint) {
+      lastTapRef.current = point;
+      setTimeout(() => { lastTapRef.current = null; }, DOUBLE_TAP_TIMEOUT);
+
+      return;
+    }
+
+    if (
+      isLengthInThreshold(lastTapPoint.x, point.x, DOUBLE_TAP_THRESHOLD)
+      && isLengthInThreshold(lastTapPoint.y, point.y, DOUBLE_TAP_THRESHOLD)
+    ) {
+      lastTapPoint.current = null;
+      onAnchorZoom(1.4, point);
+    }
+  };
 };
 
 export const usePinchZoom = (onAnchorZoom) => {

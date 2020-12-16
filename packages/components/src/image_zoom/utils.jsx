@@ -91,3 +91,7 @@ export const getDefaultScale = (previewSize, imageSize) => (
     ? 1
     : previewSize.width / imageSize.width
 );
+
+export const isLengthInThreshold = (lengthA, lengthB, threshold) => (
+  between(lengthA - threshold, lengthA + threshold, lengthB) === lengthB
+);
