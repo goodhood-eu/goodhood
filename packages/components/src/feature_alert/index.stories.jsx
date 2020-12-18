@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { text, select, boolean, button, withKnobs } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import FeatureAlert from './index';
