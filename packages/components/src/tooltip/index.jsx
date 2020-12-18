@@ -18,8 +18,8 @@ const Tooltip = (props) => {
   return (
     <BaseTooltip
       {...cleanProps}
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
+      onMouseEnter={setActive.bind(undefined, true)}
+      onMouseLeave={setActive.bind(undefined, false)}
       active={isActive}
       className={clsx(styles.wrap, className)}
       tooltipClassName={styles.tooltip}
