@@ -36,24 +36,24 @@ const FeatureAlertTooltip = (props) => {
     ...cleanProps
   } = props;
 
-  const [isOpen, setOpen] = useState(defaultOpen);
+  const [isActive, setActive] = useState(defaultOpen);
   const rootRef = useRef(null);
 
   const wasOpenOnce = useRef(false);
 
   const handleOpen = useCallback((event) => {
     if (event) event.stopPropagation();
-    if (isOpen || wasOpenOnce.current) return;
+    if (isActive || wasOpenOnce.current) return;
     wasOpenOnce.current = true;
-    setOpen(true);
+    setActive(true);
     invoke(onOpen);
-  }, [isOpen, onOpen]);
+  }, [isActive, onOpen]);
 
   const handleClose = useCallback(() => {
-    if (!isOpen) return;
-    setOpen(false);
+    if (!isActive) return;
+    setActive(false);
     invoke(onClose);
-  }, [isOpen, onClose]);
+  }, [isActive, onClose]);
 
   useEscHandler(handleClose);
   useOutsideClick(rootRef, handleClose, closeIcon);
@@ -76,7 +76,7 @@ const FeatureAlertTooltip = (props) => {
       <BaseTooltip
         bubble={bubble} position={position}
         tooltipClassName={tooltipClassName}
-        arrowClassName={styles.arrow} active={isOpen}
+        arrowClassName={styles.arrow} active={isActive}
       >
         <div {...triggerProps}>{children}</div>
       </BaseTooltip>
