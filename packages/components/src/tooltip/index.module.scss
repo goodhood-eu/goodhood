@@ -2,18 +2,9 @@
 
 $tooltip-arrow-size: 10px;
 
-//.wrap:hover .tooltip {
-//  z-index: 1;
-//  visibility: visible;
-//}
-
 .tooltip {
   padding: 5px 10px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  visibility: hidden;
+
   cursor: default;
 
   background: $color-gray-00;

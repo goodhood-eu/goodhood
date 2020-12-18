@@ -60,7 +60,7 @@ const FeatureAlertTooltip = (props) => {
   useDelayedOpen(trigger, wasOpenOnce, handleOpen);
 
   const rootClassName = clsx(styles.root, className);
-  const tooltipClassName = clsx(styles.tooltip, { [styles.isActive]: isOpen });
+  const tooltipClassName = clsx(styles.tooltip);
 
   const triggerProps = getTriggerProps(trigger, handleOpen);
 
@@ -76,7 +76,7 @@ const FeatureAlertTooltip = (props) => {
       <BaseTooltip
         bubble={bubble} position={position}
         tooltipClassName={tooltipClassName}
-        arrowClassName={styles.arrow}
+        arrowClassName={styles.arrow} active={isOpen}
       >
         <div {...triggerProps}>{children}</div>
       </BaseTooltip>

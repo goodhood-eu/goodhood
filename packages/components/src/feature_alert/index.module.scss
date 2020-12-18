@@ -16,17 +16,10 @@ $feature-alert-arrow-size: 16px;
   width: 300px;
   position: absolute;
   cursor: pointer;
-  z-index: -1;
 
   animation-duration: 300ms;
   animation-name: feature-alert-appear;
   animation-timing-function: ease-in;
-  visibility: hidden;
-
-  &.isActive {
-    z-index: 1;
-    visibility: visible;
-  }
 }
 
 .tooltip:global([data-popper-placement^='top']) > .arrow {

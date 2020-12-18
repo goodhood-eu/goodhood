@@ -39,8 +39,10 @@ const BaseTooltip = (props) => {
 
   let tooltipNode;
   if (active) {
+    const className = clsx(tooltipClassName, styles.tooltip, { [styles.isActive]: isPopperActive });
+
     tooltipNode = (
-      <span ref={tooltip} className={clsx(tooltipClassName, { [styles.isActive]: isPopperActive })}>
+      <span ref={tooltip} className={className}>
         {bubble}
         <i ref={arrow} className={arrowClassName} />
       </span>

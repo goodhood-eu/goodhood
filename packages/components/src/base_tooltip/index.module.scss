@@ -1,4 +1,14 @@
-.isActive {
-  z-index: 10 !important;
-  visibility: visible !important;
+.tooltip {
+  // Fix to avoid jumping during tooltip recalculation
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: -1;
+  visibility: hidden;
+
+  &.isActive {
+    z-index: 100;
+    visibility: visible;
+  }
 }
