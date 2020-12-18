@@ -1,4 +1,3 @@
-import React from 'react';
 import { text, select, withKnobs } from '@storybook/addon-knobs';
 import Label from './index';
 import {

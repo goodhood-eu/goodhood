@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { invoke } from 'nebenan-helpers/lib/utils';
