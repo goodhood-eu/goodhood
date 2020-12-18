@@ -8,7 +8,7 @@
   visibility: hidden;
 
   &.isActive {
-    z-index: 100;
+    z-index: 8;
     visibility: visible;
   }
 }
