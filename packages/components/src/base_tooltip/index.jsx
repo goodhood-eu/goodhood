@@ -1,7 +1,9 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { createPopper } from '@popperjs/core';
+import clsx from 'clsx';
 import { getPopperOptions } from './utils';
+import styles from './index.module.scss';
 
 const BaseTooltip = (props) => {
   const {
@@ -11,31 +13,44 @@ const BaseTooltip = (props) => {
     tooltipClassName,
     arrowClassName,
     contentClassName,
+    active,
     ...cleanProps
   } = props;
 
+  const [isPopperActive, setPopperActive] = useState(false);
   const content = useRef(null);
   const tooltip = useRef(null);
   const arrow = useRef(null);
 
   useEffect(() => {
+    if (!active) return;
+
     const popper = createPopper(
       content.current,
       tooltip.current,
       getPopperOptions(arrow.current, position),
     );
+    setPopperActive(true);
     return () => {
       if (popper) popper.destroy();
+      setPopperActive(false);
     };
-  }, [position]);
+  }, [position, active]);
+
+  let tooltipNode;
+  if (active) {
+    tooltipNode = (
+      <span ref={tooltip} className={clsx(tooltipClassName, { [styles.isActive]: isPopperActive })}>
+        {bubble}
+        <i ref={arrow} className={arrowClassName} />
+      </span>
+    );
+  }
 
   return (
     <span {...cleanProps}>
       <span ref={content} className={contentClassName}>{children}</span>
-      <span ref={tooltip} className={tooltipClassName}>
-        {bubble}
-        <i ref={arrow} className={arrowClassName} />
-      </span>
+      {tooltipNode}
     </span>
   );
 };
@@ -45,6 +60,7 @@ BaseTooltip.defaultProps = {
 };
 
 BaseTooltip.propTypes = {
+  active: PropTypes.bool,
   position: PropTypes.string.isRequired,
   bubble: PropTypes.node,
   children: PropTypes.node,
