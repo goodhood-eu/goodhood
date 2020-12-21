@@ -14,7 +14,6 @@ import {
   useStateControlledInput,
 } from './hooks';
 import { getOffsetFromMouse, getOffsetFromTouch, getScaledImageSize } from './utils';
-import { ASPECT_RATIO } from './constants';
 
 const ImageZoom = ({
   src,
@@ -27,7 +26,7 @@ const ImageZoom = ({
   const viewRef = useRef(null);
   const image = useImage(src);
   const imageSize = useMemo(() => getScaledImageSize(image, 1), [image]);
-  const previewSize = usePreviewSize(viewContainerRef, ASPECT_RATIO);
+  const previewSize = usePreviewSize(viewContainerRef, imageSize.width / imageSize.height);
   const [
     { scale, offset, defaultScale, maxScale },
     { safeSetOffset, anchorZoom },

@@ -73,7 +73,7 @@ export const usePreviewSize = (rootRef, aspectRatio) => {
       width: rootWidth,
       height: rootWidth * (aspectRatio ** -1),
     };
-  }, [rootWidth]);
+  }, [rootWidth, aspectRatio]);
 };
 
 export const useDoubleTapZoom = (onAnchorZoom) => {
