@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { createPopper } from '@popperjs/core';
 import { getPopperOptions } from './utils';
@@ -18,7 +18,7 @@ const BaseTooltip = (props) => {
   const tooltip = useRef(null);
   const arrow = useRef(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const popper = createPopper(
       content.current,
       tooltip.current,
@@ -30,14 +30,18 @@ const BaseTooltip = (props) => {
   }, [position]);
 
   return (
-    <div {...cleanProps}>
+    <span {...cleanProps}>
       <span ref={content} className={contentClassName}>{children}</span>
       <span ref={tooltip} className={tooltipClassName}>
         {bubble}
         <i ref={arrow} className={arrowClassName} />
       </span>
-    </div>
+    </span>
   );
+};
+
+BaseTooltip.defaultProps = {
+  position: 'top',
 };
 
 BaseTooltip.propTypes = {
@@ -49,4 +53,5 @@ BaseTooltip.propTypes = {
   arrowClassName: PropTypes.string,
 };
 
+export * from './constants';
 export default BaseTooltip;

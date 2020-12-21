@@ -18,7 +18,9 @@ $feature-alert-arrow-size: 16px;
   cursor: pointer;
   z-index: -1;
 
-  animation: 300ms ease-in feature-alert-appear;
+  animation-duration: 300ms;
+  animation-name: feature-alert-appear;
+  animation-timing-function: ease-in;
   visibility: hidden;
 
   &.isActive {
