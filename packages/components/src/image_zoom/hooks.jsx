@@ -1,12 +1,17 @@
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react';
 import useDebouncedCallback from 'nebenan-react-hocs/lib/use_debounced_callback';
 import {
-  between, getDefaultScale,
+  between,
+  getDefaultScale,
   getDistanceBetweenPoints,
   getElementWidth,
   getInsideBoundaries,
+  getLengthStatementParts,
   getMidpoint,
-  getOffsetForMovement, getOffsetForNewScaleWithCustomAnchor, isLengthInThreshold,
+  getOffsetForMovement,
+  getOffsetForNewScaleWithCustomAnchor,
+  isLengthInThreshold,
+  viewportLengthToPixels,
 } from './utils';
 import { CONTAINER_WIDTH_CHANGE_RATE, DOUBLE_TAP_THRESHOLD, DOUBLE_TAP_TIMEOUT, MAX_SCALE_FACTOR } from './constants';
 
@@ -61,19 +66,50 @@ const useContainerWidth = (ref) => {
   return width;
 };
 
-export const usePreviewSize = (rootRef, aspectRatio) => {
+export const useViewportLengthInPixels = (lengthStatement) => {
+  const [pixels, setPixels] = useState(undefined);
+
+  useEffect(() => {
+    const value = getLengthStatementParts(lengthStatement);
+    if (!value) return;
+
+    const { length, unit } = value;
+
+    if (!unit || unit === 'px') {
+      setPixels(length);
+      return;
+    }
+
+    const handleResize = () => {
+      setPixels(viewportLengthToPixels(length, unit));
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [lengthStatement]);
+
+  return pixels;
+};
+
+export const usePreviewSize = (rootRef, aspectRatio, maxHeight) => {
   const rootWidth = useContainerWidth(rootRef);
+  const maxHeightInPixels = useViewportLengthInPixels(maxHeight);
 
   return useMemo(() => {
     if (rootWidth === undefined) {
       return { width: 0, height: 0 };
     }
 
+    const height = rootWidth * (aspectRatio ** -1);
+
     return {
       width: rootWidth,
-      height: rootWidth * (aspectRatio ** -1),
+      height: maxHeightInPixels
+        ? Math.min(maxHeightInPixels, height)
+        : height,
     };
-  }, [rootWidth, aspectRatio]);
+  }, [rootWidth, aspectRatio, maxHeightInPixels]);
 };
 
 export const useDoubleTapZoom = (onAnchorZoom) => {
