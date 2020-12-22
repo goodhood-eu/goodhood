@@ -96,21 +96,4 @@ export const isLengthInThreshold = (lengthA, lengthB, threshold) => (
   between(lengthA - threshold, lengthA + threshold, lengthB) === lengthB
 );
 
-export const getLengthStatementParts = (value) => {
-  if (!value) return null;
-
-  const matches = value.match(/([0-9.]+)(vh|vw|px)/);
-  if (matches === null) return null;
-
-  const [, lengthStr, unit] = matches;
-  const length = parseInt(lengthStr, 10);
-
-  return { length, unit };
-};
-
-export const viewportLengthToPixels = (length, unit) => {
-  if (unit === 'vh') return window.innerHeight * (length / 100);
-  if (unit === 'vw') return window.innerWidth * (length / 100);
-
-  return undefined;
-};
+export const getPixelsFromViewportHeight = (length) => window.innerHeight * (length / 100);

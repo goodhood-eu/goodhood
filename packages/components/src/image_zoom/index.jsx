@@ -19,7 +19,7 @@ const ImageZoom = ({
   src,
   className: passedClassName,
   children,
-  maxHeight,
+  previewMaxViewportHeight,
   ...rest
 }) => {
   const viewContainerRef = useRef(null);
@@ -30,7 +30,7 @@ const ImageZoom = ({
   const previewSize = usePreviewSize(
     viewContainerRef,
     imageSize.width / imageSize.height,
-    maxHeight,
+    previewMaxViewportHeight,
   );
   const [
     { scale, offset, defaultScale, maxScale },
@@ -146,7 +146,7 @@ ImageZoom.propTypes = {
   src: PropTypes.string.isRequired,
   className: PropTypes.string,
   children: PropTypes.node,
-  maxHeight: PropTypes.string,
+  previewMaxViewportHeight: PropTypes.number,
 };
 
 export default ImageZoom;

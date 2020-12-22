@@ -6,12 +6,11 @@ import {
   getDistanceBetweenPoints,
   getElementWidth,
   getInsideBoundaries,
-  getLengthStatementParts,
   getMidpoint,
   getOffsetForMovement,
   getOffsetForNewScaleWithCustomAnchor,
+  getPixelsFromViewportHeight,
   isLengthInThreshold,
-  viewportLengthToPixels,
 } from './utils';
 import { CONTAINER_WIDTH_CHANGE_RATE, DOUBLE_TAP_THRESHOLD, DOUBLE_TAP_TIMEOUT, MAX_SCALE_FACTOR } from './constants';
 
@@ -66,28 +65,16 @@ const useContainerWidth = (ref) => {
   return width;
 };
 
-export const useViewportLengthInPixels = (lengthStatement) => {
+export const useViewportLengthInPixels = (length) => {
   const [pixels, setPixels] = useState(undefined);
 
   useEffect(() => {
-    const value = getLengthStatementParts(lengthStatement);
-    if (!value) return;
-
-    const { length, unit } = value;
-
-    if (!unit || unit === 'px') {
-      setPixels(length);
-      return;
-    }
-
-    const handleResize = () => {
-      setPixels(viewportLengthToPixels(length, unit));
-    };
+    const handleResize = () => { setPixels(getPixelsFromViewportHeight(length)); };
 
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [lengthStatement]);
+  }, [length]);
 
   return pixels;
 };
