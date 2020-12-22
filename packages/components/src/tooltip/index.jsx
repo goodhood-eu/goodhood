@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import BaseTooltip from '../base_tooltip';
@@ -12,9 +13,14 @@ const Tooltip = (props) => {
     ...cleanProps
   } = props;
 
+  const [isActive, setActive] = useState(false);
+
   return (
     <BaseTooltip
       {...cleanProps}
+      onMouseEnter={setActive.bind(undefined, true)}
+      onMouseLeave={setActive.bind(undefined, false)}
+      active={isActive}
       className={clsx(styles.wrap, className)}
       tooltipClassName={styles.tooltip}
       arrowClassName={styles.arrow}
