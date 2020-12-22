@@ -12,16 +12,3 @@
   background-color: $color-gray-07;
   cursor: move;
 }
-
-.controls {
-  margin-top: $offset-m;
-
-  display: flex;
-  justify-content: space-between;
-}
-
-.slider {
-  min-width: 200px;
-  max-width: 400px;
-  width: 50%;
-}
