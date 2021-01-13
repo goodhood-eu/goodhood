@@ -8,8 +8,12 @@ export default { title: 'ImageZoomView', component: ImageZoomView, decorators: [
 const DEFAULT_IMAGE = 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/African_wild_dog_%28Lycaon_pictus_pictus%29.jpg/1024px-African_wild_dog_%28Lycaon_pictus_pictus%29.jpg';
 
 export const Default = () => (
-  <ImageZoomProvider src={text('src', DEFAULT_IMAGE)}>
-    <ImageZoomView maxViewportHeight={number('maxViewportHeight', null)} />
+  <ImageZoomProvider>
+    <ImageZoomView
+      src={text('src', DEFAULT_IMAGE)}
+      alt="pooping dog"
+      maxViewportHeight={number('maxViewportHeight', null)}
+    />
     <ImageZoomSlider />
   </ImageZoomProvider>
 );

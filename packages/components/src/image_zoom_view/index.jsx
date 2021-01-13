@@ -3,22 +3,22 @@ import { useEventListener } from 'nebenan-react-hocs/lib/use_event_listener';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './index.module.scss';
-import { getOffsetFromMouse, getOffsetFromTouch } from './utils';
+import { getOffset } from './utils';
 import { useDoubleTapZoom, useDrag, usePinchZoom, useUpdatedPreviewSize } from './hooks';
 import Context from '../image_zoom_provider/context';
 
-const ImageZoomView = ({ maxViewportHeight, className: passedClassName }) => {
-  const viewRef = useRef(null);
+const ImageZoomView = ({ src, alt, maxViewportHeight, className: passedClassName }) => {
   const rootRef = useRef(null);
   const {
     image,
     offset,
     imageSize,
     previewSize,
-    scaledImageSize: scaledSize,
     onAnchorZoom,
     onOffsetUpdate,
     onPreviewSizeUpdate,
+    onImageUpdate,
+    scale,
   } = useContext(Context);
 
   useUpdatedPreviewSize(
@@ -32,32 +32,34 @@ const ImageZoomView = ({ maxViewportHeight, className: passedClassName }) => {
   const doubleTapZoom = useDoubleTapZoom(onAnchorZoom);
 
   const zoomStyles = image && {
-    backgroundImage: `url('${image.src}')`,
-    backgroundSize: `${scaledSize.width}px ${scaledSize.height}px`,
-    backgroundPosition: `${offset.left}px ${offset.top}px`,
+    transform: `translate3d(${offset.left}px, ${offset.top}px, 0) scale(${scale})`,
+  };
+
+  const rootStyles = image && {
     height: previewSize.height,
   };
 
-
-  const handleMouseDown = (e) => { drag.start(getOffsetFromMouse(e.nativeEvent), offset); };
+  const handleMouseDown = (e) => {
+    drag.start(getOffset(e.nativeEvent, rootRef.current), offset);
+  };
   const handleMouseLeave = () => { drag.stop(); };
-  const handleMouseMove = (e) => { drag.move(getOffsetFromMouse(e.nativeEvent)); };
+  const handleMouseMove = (e) => { drag.move(getOffset(e.nativeEvent, rootRef.current)); };
 
   const handleTouchStart = useCallback((e) => {
     e.preventDefault();
 
     if (e.touches.length === 1) {
-      doubleTapZoom(getOffsetFromTouch(e.touches[0], viewRef.current));
+      doubleTapZoom(getOffset(e.touches[0], rootRef.current));
     }
 
     if (e.touches.length >= 1) {
-      drag.start(getOffsetFromTouch(e.touches[0], viewRef.current), offset);
+      drag.start(getOffset(e.touches[0], rootRef.current), offset);
     }
 
     if (e.touches.length === 2) {
       pinchZoom.start(
-        getOffsetFromTouch(e.touches[0], viewRef.current),
-        getOffsetFromTouch(e.touches[1], viewRef.current),
+        getOffset(e.touches[0], rootRef.current),
+        getOffset(e.touches[1], rootRef.current),
       );
     }
   }, [offset]);
@@ -65,11 +67,11 @@ const ImageZoomView = ({ maxViewportHeight, className: passedClassName }) => {
   const handleTouchMove = (e) => {
     if (e.touches.length === 2) {
       pinchZoom.move(
-        getOffsetFromTouch(e.touches[0], viewRef.current),
-        getOffsetFromTouch(e.touches[1], viewRef.current),
+        getOffset(e.touches[0], rootRef.current),
+        getOffset(e.touches[1], rootRef.current),
       );
     } else {
-      drag.move(getOffsetFromTouch(e.nativeEvent.changedTouches[0], viewRef.current));
+      drag.move(getOffset(e.nativeEvent.changedTouches[0], rootRef.current));
     }
   };
 
@@ -83,26 +85,36 @@ const ImageZoomView = ({ maxViewportHeight, className: passedClassName }) => {
     drag.stop();
 
     if (e.touches.length === 1) {
-      const { x, y } = getOffsetFromTouch(e.touches[0], viewRef.current);
+      const { x, y } = getOffset(e.touches[0], rootRef.current);
       drag.start({ x, y }, offset);
     }
   };
 
-  useEventListener(viewRef, 'touchstart', handleTouchStart, { passive: false });
+  useEventListener(rootRef, 'touchstart', handleTouchStart, { passive: false });
+
+  const handleImageLoad = (e) => {
+    onImageUpdate(e.target);
+  };
 
   return (
-    <div ref={rootRef} className={clsx(styles.container, passedClassName)}>
-      <div
-        ref={viewRef}
+    <div
+      ref={rootRef}
+      className={clsx(styles.container, passedClassName)}
+      style={rootStyles}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      onMouseUp={handleMouseLeave}
+      onTouchMove={handleTouchMove}
+      onTouchCancel={handleTouchCancel}
+      onTouchEnd={handleTouchEnd}
+    >
+      <img
+        src={src}
+        onLoad={handleImageLoad}
         className={styles.zoomed}
         style={zoomStyles}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        onMouseUp={handleMouseLeave}
-        onTouchMove={handleTouchMove}
-        onTouchCancel={handleTouchCancel}
-        onTouchEnd={handleTouchEnd}
+        alt={alt}
       />
     </div>
   );
@@ -111,6 +123,8 @@ const ImageZoomView = ({ maxViewportHeight, className: passedClassName }) => {
 ImageZoomView.propTypes = {
   maxViewportHeight: PropTypes.number,
   className: PropTypes.string,
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
 };
 
 export default ImageZoomView;

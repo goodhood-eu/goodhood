@@ -1,23 +1,6 @@
-import { useMemo, useCallback, useEffect, useReducer, useRef, useState } from 'react';
-import {
-  between,
-  getDefaultScale,
-  getInsideBoundaries,
-  getOffsetForNewScaleWithCustomAnchor,
-} from './utils';
+import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
+import { between, getDefaultScale, getInsideBoundaries, getOffsetForNewScaleWithCustomAnchor, } from './utils';
 import { MAX_SCALE_FACTOR } from './constants';
-
-export const useImage = (src) => {
-  const [image, setImage] = useState(null);
-
-  useEffect(() => {
-    const imageObj = new Image(100, 100); // width and height get ignored
-    imageObj.src = src;
-    imageObj.onload = () => { setImage(imageObj); };
-  }, [src]);
-
-  return image;
-};
 
 const usePrevious = (value) => {
   const ref = useRef(null);
