@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
+import { useMemo, useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import {
   between,
   getDefaultScale,
@@ -107,7 +107,7 @@ export const useImageView = ({ previewSize, imageSize }) => {
 
   const [state, dispatch] = useReducer(reducer, getDefaultState());
 
-  const actions = {
+  const actions = useMemo(() => ({
     reset: () => dispatch(({
       type: TYPE_RESET,
     })),
@@ -119,7 +119,7 @@ export const useImageView = ({ previewSize, imageSize }) => {
       type: TYPE_ANCHOR_ZOOM,
       payload: { zoomFactor, anchor },
     })),
-  };
+  }), [dispatch]);
 
   const previousImageSize = usePrevious(imageSize);
   const previousPreviewSize = usePrevious(previewSize);

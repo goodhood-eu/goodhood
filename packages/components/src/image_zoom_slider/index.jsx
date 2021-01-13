@@ -1,7 +1,9 @@
-import { useContext, useRef } from 'react';
+import { useCallback, useContext, useRef } from 'react';
 import Slider from '../slider';
 import Context from '../image_zoom_provider/context';
 import { useStateControlledInput } from './hooks';
+
+const GET_EMPTY_LABEL = () => '';
 
 const ImageZoomSlider = (props) => {
   const {
@@ -15,13 +17,13 @@ const ImageZoomSlider = (props) => {
 
   useStateControlledInput(ref, scale);
 
-  const handleZoomSlider = (value) => {
+  const handleZoomSlider = useCallback((value) => {
     const anchor = {
       x: previewSize.width / 2,
       y: previewSize.height / 2,
     };
     onAnchorZoom(value / scale, anchor);
-  };
+  }, [previewSize, onAnchorZoom, scale]);
 
   return (
     <Slider
@@ -31,7 +33,7 @@ const ImageZoomSlider = (props) => {
       min={defaultScale}
       max={maxScale}
       step={0.1}
-      getLabel={() => ''}
+      getLabel={GET_EMPTY_LABEL}
       onUpdate={handleZoomSlider}
     />
   );
