@@ -47,21 +47,21 @@ export const useImageView = ({ previewSize, imageSize }) => {
 
         const scale = clamp(state.scale * zoomFactor, state.defaultScale, state.maxScale);
 
-        const left = getOffsetForNewScaleWithCustomAnchor(
-          anchor.x,
-          state.offset.left,
-          state.scale,
+        const left = getOffsetForNewScaleWithCustomAnchor({
+          anchor: anchor.x,
+          originalOffset: state.offset.left,
+          prevScale: state.scale,
           scale,
-          previewSize.width,
-        );
+          previewLength: previewSize.width,
+        });
 
-        const top = getOffsetForNewScaleWithCustomAnchor(
-          anchor.y,
-          state.offset.top,
-          state.scale,
+        const top = getOffsetForNewScaleWithCustomAnchor({
+          anchor: anchor.y,
+          originalOffset: state.offset.top,
+          prevScale: state.scale,
           scale,
-          previewSize.height,
-        );
+          previewLength: previewSize.height,
+        });
 
         const offset = { top, left };
 

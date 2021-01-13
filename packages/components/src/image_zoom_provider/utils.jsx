@@ -24,13 +24,13 @@ export const getInsideBoundaries = (previewVal, scaledVal, val) => {
   return clamp(val, min, max);
 };
 
-export const getOffsetForNewScaleWithCustomAnchor = (
+export const getOffsetForNewScaleWithCustomAnchor = ({
   anchor,
   originalOffset,
   prevScale,
   scale,
   previewLength,
-) => {
+}) => {
   // Basic idea to simplify the algorithm:
   //  - Calculate all down to the 'natural image' plain and adjust scale later
   //  - Given anchor needs to be at the same position in the user visible preview
