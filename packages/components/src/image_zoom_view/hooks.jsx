@@ -19,23 +19,23 @@ export const useStateControlledInput = (ref, state) => {
 
 
 export const useDoubleTapZoom = (onAnchorZoom) => {
-  const lastTapRef = useRef(null);
+  const lastTapRef = useRef({});
 
   return (point) => {
-    const lastTapPoint = lastTapRef.current;
+    const { point: lastPoint, time: lastTime } = lastTapRef.current;
+    const time = new Date().getTime();
 
-    if (!lastTapPoint) {
-      lastTapRef.current = point;
-      setTimeout(() => { lastTapRef.current = null; }, DOUBLE_TAP_TIMEOUT);
+    if (!lastPoint || time - lastTime >= DOUBLE_TAP_TIMEOUT) {
+      lastTapRef.current = { point, time };
 
       return;
     }
 
     if (
-      isLengthInThreshold(lastTapPoint.x, point.x, DOUBLE_TAP_THRESHOLD)
-      && isLengthInThreshold(lastTapPoint.y, point.y, DOUBLE_TAP_THRESHOLD)
+      isLengthInThreshold(lastPoint.x, point.x, DOUBLE_TAP_THRESHOLD)
+      && isLengthInThreshold(lastPoint.y, point.y, DOUBLE_TAP_THRESHOLD)
     ) {
-      lastTapPoint.current = null;
+      lastPoint.current = {};
       onAnchorZoom(1.4, point);
     }
   };
