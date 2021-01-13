@@ -40,10 +40,10 @@ const ImageZoomView = ({ src, alt, maxViewportHeight, className: passedClassName
   };
 
   const handleMouseDown = (e) => {
-    drag.start(getOffset(e.nativeEvent, rootRef.current), offset);
+    drag.start(getOffset(e, rootRef.current), offset);
   };
   const handleMouseLeave = () => { drag.stop(); };
-  const handleMouseMove = (e) => { drag.move(getOffset(e.nativeEvent, rootRef.current)); };
+  const handleMouseMove = (e) => { drag.move(getOffset(e, rootRef.current)); };
 
   const handleTouchStart = useCallback((e) => {
     e.preventDefault();
@@ -71,7 +71,7 @@ const ImageZoomView = ({ src, alt, maxViewportHeight, className: passedClassName
         getOffset(e.touches[1], rootRef.current),
       );
     } else {
-      drag.move(getOffset(e.nativeEvent.changedTouches[0], rootRef.current));
+      drag.move(getOffset(e.changedTouches[0], rootRef.current));
     }
   };
 
