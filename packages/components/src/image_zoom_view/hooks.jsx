@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import useDebouncedCallback from 'nebenan-react-hocs/lib/use_debounced_callback';
 import useThrottledCallback from 'nebenan-react-hocs/lib/use_throttled_callback';
 import {
   getDistanceBetweenPoints,
@@ -101,26 +100,32 @@ export const useDrag = (onUpdate) => {
   return { start, move, stop };
 };
 
+const useWindowResizeEffect = (fn) => {
+  useEffect(() => {
+    fn();
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('resize', fn);
+    return () => window.removeEventListener('resize', fn);
+  }, [fn]);
+};
+
+// Possible issue: To improve performance, `useContainerWidth` only updates width on
+//    window resize not on container resize.
 const useContainerWidth = (ref) => {
   const [width, setWidth] = useState(getElementWidth(ref?.current));
 
-  const handleResize = useDebouncedCallback(() => {
-    if (!ref.current) return;
+  const handleResize = useThrottledCallback(
+    useCallback(() => {
+      if (!ref.current) return;
 
-    setWidth(getElementWidth(ref.current));
-  }, CONTAINER_WIDTH_CHANGE_RATE);
+      setWidth(getElementWidth(ref.current));
+    }, []),
+    CONTAINER_WIDTH_CHANGE_RATE,
+  );
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    handleResize();
-
-    const resizeObserver = new ResizeObserver(() => handleResize());
-    resizeObserver.observe(el);
-
-    return () => { resizeObserver.disconnect(); };
-  }, [ref.current, handleResize]);
+  useWindowResizeEffect(handleResize);
 
   return width;
 };
@@ -135,11 +140,7 @@ const useViewportLengthInPixels = (length) => {
     RESIZE_UPDATE_THRESHOLD,
   );
 
-  useEffect(() => {
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [handleResize]);
+  useWindowResizeEffect(handleResize);
 
   return pixels;
 };
