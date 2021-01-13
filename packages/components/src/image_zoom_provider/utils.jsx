@@ -1,4 +1,4 @@
-export const between = (min, max, value) => Math.min(max, Math.max(min, value));
+import { clamp } from 'lodash';
 
 export const getScaledImageSize = (image, scale) => {
   if (!image) return { width: 0, height: 0 };
@@ -21,7 +21,7 @@ export const getInsideBoundaries = (previewVal, scaledVal, val) => {
   const min = previewVal - scaledVal;
   const max = 0;
 
-  return between(min, max, val);
+  return clamp(val, min, max);
 };
 
 export const getOffsetForNewScaleWithCustomAnchor = (

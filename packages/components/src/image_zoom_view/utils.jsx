@@ -1,4 +1,4 @@
-const between = (min, max, value) => Math.min(max, Math.max(min, value));
+import { clamp } from 'lodash';
 
 export const getDistanceBetweenPoints = (pointA, pointB) => (
   Math.sqrt(
@@ -43,7 +43,7 @@ export const getDefaultScale = (previewSize, imageSize) => (
 );
 
 export const isLengthInThreshold = (lengthA, lengthB, threshold) => (
-  between(lengthA - threshold, lengthA + threshold, lengthB) === lengthB
+  clamp(lengthB, lengthA - threshold, lengthA + threshold) === lengthB
 );
 
 export const getPixelsFromViewportHeight = (length) => window.innerHeight * (length / 100);

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
-import { between, getDefaultScale, getInsideBoundaries, getOffsetForNewScaleWithCustomAnchor, } from './utils';
+import { clamp } from 'lodash';
+import { getDefaultScale, getInsideBoundaries, getOffsetForNewScaleWithCustomAnchor } from './utils';
 import { MAX_SCALE_FACTOR } from './constants';
 
 const usePrevious = (value) => {
@@ -44,7 +45,7 @@ export const useImageView = ({ previewSize, imageSize }) => {
       case TYPE_ANCHOR_ZOOM: {
         const { zoomFactor, anchor } = action.payload;
 
-        const scale = between(state.defaultScale, state.maxScale, state.scale * zoomFactor);
+        const scale = clamp(state.scale * zoomFactor, state.defaultScale, state.maxScale);
 
         const left = getOffsetForNewScaleWithCustomAnchor(
           anchor.x,
