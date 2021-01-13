@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import useDebouncedCallback from 'nebenan-react-hocs/lib/use_debounced_callback';
+import useThrottledCallback from 'nebenan-react-hocs/lib/use_throttled_callback';
 import {
   getDistanceBetweenPoints,
   getElementWidth,
@@ -7,7 +8,12 @@ import {
   getOffsetForMovement, getPixelsFromViewportHeight,
   isLengthInThreshold,
 } from './utils';
-import { CONTAINER_WIDTH_CHANGE_RATE, DOUBLE_TAP_THRESHOLD, DOUBLE_TAP_TIMEOUT } from './constants';
+import {
+  CONTAINER_WIDTH_CHANGE_RATE,
+  DOUBLE_TAP_THRESHOLD,
+  DOUBLE_TAP_TIMEOUT,
+  RESIZE_UPDATE_THRESHOLD,
+} from './constants';
 
 export const useStateControlledInput = (ref, state) => {
   useEffect(() => {
@@ -122,13 +128,18 @@ const useContainerWidth = (ref) => {
 const useViewportLengthInPixels = (length) => {
   const [pixels, setPixels] = useState(undefined);
 
-  useEffect(() => {
-    const handleResize = () => { setPixels(getPixelsFromViewportHeight(length)); };
+  const handleResize = useThrottledCallback(
+    useCallback(() => {
+      setPixels(getPixelsFromViewportHeight(length));
+    }, [length]),
+    RESIZE_UPDATE_THRESHOLD,
+  );
 
+  useEffect(() => {
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [length]);
+  }, [handleResize]);
 
   return pixels;
 };
