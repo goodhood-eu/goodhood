@@ -145,6 +145,12 @@ const useViewportLengthInPixels = (length) => {
   return pixels;
 };
 
+// Reason why maxHeight is manually calculated and not done via CSS:
+//   TLDR: Causes flickering
+//   In any case, we would need to calculate our own height because of the custom aspect ratio.
+//   To respect a max-height css prop set on the preview, we would need to first set a possibly
+//   wrong height, then measure the size of the DOM element and reset our previewSize value
+//   inside state to that value. This process would be visible to the user and cause flickering.
 export const useUpdatedPreviewSize = (onUpdate, rootRef, aspectRatio, maxHeight) => {
   const rootWidth = useContainerWidth(rootRef);
   const maxHeightInPixels = useViewportLengthInPixels(maxHeight);
