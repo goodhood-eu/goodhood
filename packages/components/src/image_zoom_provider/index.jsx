@@ -13,7 +13,7 @@ const ImageZoomProvider = ({ children }) => {
     { safeSetOffset, anchorZoom },
   ] = useImageView({ previewSize, imageSize });
 
-  const value = useMemo(() => ({
+  const value = {
     image,
     scale,
     offset,
@@ -25,17 +25,7 @@ const ImageZoomProvider = ({ children }) => {
     onOffsetUpdate: safeSetOffset,
     onAnchorZoom: anchorZoom,
     onImageUpdate: setImage,
-  }), [
-    image,
-    scale,
-    offset,
-    defaultScale,
-    maxScale,
-    imageSize,
-    previewSize,
-    safeSetOffset,
-    anchorZoom,
-  ]);
+  };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
