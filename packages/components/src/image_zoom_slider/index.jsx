@@ -32,7 +32,7 @@ const ImageZoomSlider = (props) => {
       key={`${defaultScale}-${maxScale}`}
       min={defaultScale}
       max={maxScale}
-      step={0.1}
+      step={0.01}
       getLabel={GET_EMPTY_LABEL}
       onUpdate={handleZoomSlider}
     />
