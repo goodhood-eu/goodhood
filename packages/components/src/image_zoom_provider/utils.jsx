@@ -38,7 +38,7 @@ export const getOffsetForNewScaleWithCustomAnchor = ({
   const offsetOnNatural = originalOffset / prevScale;
   const prevPreviewLengthOnNatural = previewLength / prevScale;
   const previewLengthOnNatural = previewLength / scale;
-  const anchorOnNatural = anchor / scale;
+  const anchorOnNatural = anchor / prevScale;
 
   const relativeAnchorPositionOnPreview = anchorOnNatural / prevPreviewLengthOnNatural;
 
