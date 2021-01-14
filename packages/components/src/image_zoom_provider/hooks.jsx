@@ -14,6 +14,8 @@ const TYPE_RESET = 'reset';
 const TYPE_ANCHOR_ZOOM = 'anchor-zoom';
 const TYPE_SAFE_SET_OFFSET = 'safe-set-offset';
 
+const NULL_MOVEMENT = { x: 0, y: 0 };
+
 export const useImageView = ({ previewSize, imageSize }) => {
   const getDefaultState = useCallback(() => {
     let scale = 1;
@@ -111,7 +113,7 @@ export const useImageView = ({ previewSize, imageSize }) => {
       type: TYPE_SAFE_SET_OFFSET,
       payload: { offset },
     })),
-    anchorZoom: (zoomFactor, anchor, movement) => dispatch(({
+    anchorZoom: (zoomFactor, anchor, movement = NULL_MOVEMENT) => dispatch(({
       type: TYPE_ANCHOR_ZOOM,
       payload: { zoomFactor, anchor, movement },
     })),
