@@ -110,9 +110,6 @@ export const usePinchZoom = (onAnchorZoom) => {
 const useWindowResizeEffect = (fn) => {
   useEffect(() => {
     fn();
-  }, []);
-
-  useEffect(() => {
     window.addEventListener('resize', fn);
     return () => window.removeEventListener('resize', fn);
   }, [fn]);
