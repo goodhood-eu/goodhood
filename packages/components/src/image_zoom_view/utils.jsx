@@ -7,6 +7,11 @@ export const getDistanceBetweenPoints = (pointA, pointB) => (
   )
 );
 
+export const getPointDifference = (pointA, pointB) => ({
+  x: pointA.x - pointB.x,
+  y: pointA.y - pointB.y,
+});
+
 export const getMidpoint = (pointA, pointB) => ({
   x: (pointA.x + pointB.x) / 2,
   y: (pointA.y + pointB.y) / 2,

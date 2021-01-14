@@ -43,25 +43,37 @@ export const useImageView = ({ previewSize, imageSize }) => {
         return getDefaultState();
 
       case TYPE_ANCHOR_ZOOM: {
-        const { zoomFactor, anchor } = action.payload;
+        const { zoomFactor, anchor, movement } = action.payload;
 
         const scale = clamp(state.scale * zoomFactor, state.defaultScale, state.maxScale);
 
-        const left = getOffsetForNewScaleWithCustomAnchor({
+        const unsafeLeft = getOffsetForNewScaleWithCustomAnchor({
           anchor: anchor.x,
-          originalOffset: state.offset.left,
+          originalOffset: state.offset.left + movement.x,
           prevScale: state.scale,
           scale,
           previewLength: previewSize.width,
         });
 
-        const top = getOffsetForNewScaleWithCustomAnchor({
+        const unsafeTop = getOffsetForNewScaleWithCustomAnchor({
           anchor: anchor.y,
-          originalOffset: state.offset.top,
+          originalOffset: state.offset.top + movement.y,
           prevScale: state.scale,
           scale,
           previewLength: previewSize.height,
         });
+
+        const left = getInsideBoundaries(
+          previewSize.width,
+          imageSize.width * scale,
+          unsafeLeft,
+        );
+
+        const top = getInsideBoundaries(
+          previewSize.height,
+          imageSize.height * scale,
+          unsafeTop,
+        );
 
         const offset = { top, left };
 
@@ -99,9 +111,9 @@ export const useImageView = ({ previewSize, imageSize }) => {
       type: TYPE_SAFE_SET_OFFSET,
       payload: { offset },
     })),
-    anchorZoom: (zoomFactor, anchor) => dispatch(({
+    anchorZoom: (zoomFactor, anchor, movement) => dispatch(({
       type: TYPE_ANCHOR_ZOOM,
-      payload: { zoomFactor, anchor },
+      payload: { zoomFactor, anchor, movement },
     })),
   }), [dispatch]);
 

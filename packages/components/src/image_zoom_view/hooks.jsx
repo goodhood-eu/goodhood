@@ -4,7 +4,7 @@ import {
   getDistanceBetweenPoints,
   getElementWidth,
   getMidpoint,
-  getOffsetForMovement, getPixelsFromViewportHeight,
+  getOffsetForMovement, getPixelsFromViewportHeight, getPointDifference,
   isLengthInThreshold,
 } from './utils';
 import {
@@ -46,32 +46,6 @@ export const useDoubleTapZoom = (onAnchorZoom) => {
   };
 };
 
-export const usePinchZoom = (onAnchorZoom) => {
-  const pinchZoomRef = useRef(null);
-
-  const start = (pointA, pointB) => {
-    const lastDistance = getDistanceBetweenPoints(pointA, pointB);
-    pinchZoomRef.current = { lastDistance };
-  };
-
-  const move = (pointA, pointB) => {
-    const distance = getDistanceBetweenPoints(pointA, pointB);
-    const midpoint = getMidpoint(pointA, pointB);
-
-    const zoomFactor = distance / pinchZoomRef.current.lastDistance;
-
-    onAnchorZoom(zoomFactor, midpoint);
-
-    pinchZoomRef.current.lastDistance = distance;
-  };
-
-  const stop = () => {
-    pinchZoomRef.current = null;
-  };
-
-  return { start, stop, move };
-};
-
 export const useDrag = (onUpdate) => {
   const dragRef = useRef(null);
 
@@ -98,6 +72,38 @@ export const useDrag = (onUpdate) => {
   };
 
   return { start, move, stop };
+};
+
+export const usePinchZoom = (onAnchorZoom) => {
+  const pinchZoomRef = useRef(null);
+
+  const start = (pointA, pointB) => {
+    const lastDistance = getDistanceBetweenPoints(pointA, pointB);
+    const lastMidpoint = getMidpoint(pointA, pointB);
+    pinchZoomRef.current = { lastDistance, lastMidpoint };
+  };
+
+  const move = (pointA, pointB) => {
+    const distance = getDistanceBetweenPoints(pointA, pointB);
+    const midpoint = getMidpoint(pointA, pointB);
+
+    const { lastDistance, lastMidpoint } = pinchZoomRef.current;
+    const zoomFactor = distance / lastDistance;
+    const movement = getPointDifference(lastMidpoint, midpoint);
+
+    onAnchorZoom(zoomFactor, midpoint, movement);
+
+    pinchZoomRef.current = {
+      lastDistance: distance,
+      lastMidpoint: midpoint,
+    };
+  };
+
+  const stop = () => {
+    pinchZoomRef.current = null;
+  };
+
+  return { start, stop, move };
 };
 
 const useWindowResizeEffect = (fn) => {
