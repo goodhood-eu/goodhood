@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 
+// DO NOT MERGE: EXTRACTION IN PROGRESS
 export const useStateControlledInput = (ref, state) => {
   useEffect(() => {
     if (!ref.current) return;
