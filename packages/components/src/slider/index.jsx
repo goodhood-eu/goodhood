@@ -94,7 +94,10 @@ class Slider extends InputComponent {
   }
 
   handleSwipe(event) {
-    event.preventDefault();
+    // There are some cases in which browsers send out non-cancelable events even with active
+    // event listeners. For example: Scrolling is in progress and cannot be interrupted
+    if (event.cancelable) event.preventDefault();
+
     const { pageX } = eventCoordinates(event, 'pageX');
     this.setPosition(pageX - this.trackOffset);
   }
