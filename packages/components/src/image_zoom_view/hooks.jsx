@@ -162,7 +162,7 @@ export const useUpdatedPreviewSize = (onUpdate, rootRef, aspectRatio, maxHeight)
   const maxHeightInPixels = useViewportLengthInPixels(maxHeight);
 
   useEffect(() => {
-    if (rootWidth === undefined) {
+    if (!rootWidth || !aspectRatio) {
       onUpdate({ width: 0, height: 0 });
       return;
     }

@@ -35,8 +35,8 @@ const ImageZoomView = ({ src, alt, maxViewportHeight, className: passedClassName
     transform: `translate3d(${offset.left}px, ${offset.top}px, 0) scale(${scale})`,
   };
 
-  const rootStyles = image && {
-    height: previewSize.height,
+  const rootStyles = {
+    height: previewSize && previewSize.height,
   };
 
   const handleMouseDown = (e) => {

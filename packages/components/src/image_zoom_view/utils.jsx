@@ -51,4 +51,8 @@ export const isLengthInThreshold = (lengthA, lengthB, threshold) => (
   clamp(lengthB, lengthA - threshold, lengthA + threshold) === lengthB
 );
 
-export const getPixelsFromViewportHeight = (length) => window.innerHeight * (length / 100);
+export const getPixelsFromViewportHeight = (length) => {
+  if (length === null || length === undefined) return undefined;
+
+  return window.innerHeight * (length / 100);
+};
