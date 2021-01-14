@@ -29,7 +29,7 @@ export const useDoubleTapZoom = (onAnchorZoom) => {
 
   return (point) => {
     const { point: lastPoint, time: lastTime } = lastTapRef.current;
-    const time = new Date().getTime();
+    const time = Date.now();
 
     if (!lastPoint || time - lastTime >= DOUBLE_TAP_TIMEOUT) {
       lastTapRef.current = { point, time };
