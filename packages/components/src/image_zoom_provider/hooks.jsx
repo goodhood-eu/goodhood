@@ -45,9 +45,9 @@ export const useImageView = ({ previewSize, imageSize }) => {
         return getDefaultState();
 
       case TYPE_ANCHOR_ZOOM: {
-        const { zoomFactor, anchor, movement } = action.payload;
+        const { getScale, anchor, movement } = action.payload;
 
-        const scale = clamp(state.scale * zoomFactor, state.defaultScale, state.maxScale);
+        const scale = clamp(getScale(state.scale), state.defaultScale, state.maxScale);
 
         const unsafeLeft = getOffsetForNewScaleWithCustomAnchor({
           anchor: anchor.x,
@@ -113,9 +113,9 @@ export const useImageView = ({ previewSize, imageSize }) => {
       type: TYPE_SAFE_SET_OFFSET,
       payload: { offset },
     })),
-    anchorZoom: (zoomFactor, anchor, movement = NULL_MOVEMENT) => dispatch(({
+    anchorZoom: (getScale, anchor, movement = NULL_MOVEMENT) => dispatch(({
       type: TYPE_ANCHOR_ZOOM,
-      payload: { zoomFactor, anchor, movement },
+      payload: { getScale, anchor, movement },
     })),
   }), [dispatch]);
 

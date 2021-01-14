@@ -10,7 +10,7 @@ import {
 import {
   CONTAINER_WIDTH_CHANGE_RATE,
   DOUBLE_TAP_THRESHOLD,
-  DOUBLE_TAP_TIMEOUT,
+  DOUBLE_TAP_TIMEOUT, DOUBLE_TAP_ZOOM,
   RESIZE_UPDATE_THRESHOLD,
 } from './constants';
 
@@ -41,7 +41,7 @@ export const useDoubleTapZoom = (onAnchorZoom) => {
       && isLengthInThreshold(lastPoint.y, point.y, DOUBLE_TAP_THRESHOLD)
     ) {
       lastPoint.current = {};
-      onAnchorZoom(1.4, point);
+      onAnchorZoom((scale) => scale + DOUBLE_TAP_ZOOM, point);
     }
   };
 };
@@ -91,7 +91,7 @@ export const usePinchZoom = (onAnchorZoom) => {
     const zoomFactor = distance / lastDistance;
     const movement = getPointDifference(lastMidpoint, midpoint);
 
-    onAnchorZoom(zoomFactor, midpoint, movement);
+    onAnchorZoom((scale) => scale * zoomFactor, midpoint, movement);
 
     pinchZoomRef.current = {
       lastDistance: distance,

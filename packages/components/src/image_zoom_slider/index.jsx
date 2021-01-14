@@ -22,8 +22,8 @@ const ImageZoomSlider = (props) => {
       x: previewSize.width / 2,
       y: previewSize.height / 2,
     };
-    onAnchorZoom(value / scale, anchor);
-  }, [previewSize, onAnchorZoom, scale]);
+    onAnchorZoom(() => value, anchor);
+  }, [previewSize, onAnchorZoom]);
 
   return (
     <Slider
