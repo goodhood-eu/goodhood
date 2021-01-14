@@ -85,6 +85,10 @@ const ImageZoomView = ({ src, alt, maxViewportHeight, className: passedClassName
     drag.stop();
 
     if (e.touches.length === 1) {
+      // Important fact: touchend gets called every time a touch is removed, so if we started with two and
+      // removed one, then it gets called.
+      // We need to restart `drag` here because we don't know if the finger left on the display was the finger
+      // which started dragging.
       const { x, y } = getOffset(e.touches[0], rootRef.current);
       drag.start({ x, y }, offset);
     }
