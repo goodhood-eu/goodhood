@@ -18,9 +18,9 @@ export const getMidpoint = (pointA, pointB) => ({
   y: (pointA.y + pointB.y) / 2,
 });
 
-export const getOffset = (event, element) => {
+export const getOffset = (event, element, documentContainer = document.body) => {
   const rect = element.getBoundingClientRect();
-  const bodyRect = document.body.getBoundingClientRect();
+  const bodyRect = documentContainer.getBoundingClientRect();
   const x = event.pageX - (rect.left - bodyRect.left);
   const y = event.pageY - (rect.top - bodyRect.top);
 
