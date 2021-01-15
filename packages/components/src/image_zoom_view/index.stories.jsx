@@ -10,9 +10,9 @@ const DEFAULT_IMAGE = 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba
 export const Default = () => (
   <ImageZoomProvider>
     <ImageZoomView
+      aspectRatio={number('aspect ratio', undefined)}
       src={text('src', DEFAULT_IMAGE)}
       alt="pooping dog"
-      maxViewportHeight={number('maxViewportHeight', null)}
     />
     <ImageZoomSlider />
   </ImageZoomProvider>

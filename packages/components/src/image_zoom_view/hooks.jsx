@@ -4,14 +4,13 @@ import {
   getDistanceBetweenPoints,
   getElementWidth,
   getMidpoint,
-  getOffsetForMovement, getPixelsFromViewportHeight, getPointDifference,
+  getOffsetForMovement, getPointDifference,
   isLengthInThreshold,
 } from './utils';
 import {
   CONTAINER_WIDTH_CHANGE_RATE,
   DOUBLE_TAP_THRESHOLD,
   DOUBLE_TAP_TIMEOUT, DOUBLE_TAP_ZOOM,
-  RESIZE_UPDATE_THRESHOLD,
 } from './constants';
 
 // DO NOT MERGE: EXTRACTION IN PROGRESS
@@ -134,44 +133,17 @@ const useContainerWidth = (ref) => {
   return width;
 };
 
-const useViewportLengthInPixels = (length) => {
-  const [pixels, setPixels] = useState(undefined);
-
-  const handleResize = useThrottledCallback(
-    useCallback(() => {
-      setPixels(getPixelsFromViewportHeight(length));
-    }, [length]),
-    RESIZE_UPDATE_THRESHOLD,
-  );
-
-  useWindowResizeEffect(handleResize);
-
-  return pixels;
-};
-
-// Reason why maxHeight is manually calculated and not done via CSS:
-//   TLDR: Causes flickering
-//   In any case, we would need to calculate our own height because of the custom aspect ratio.
-//   To respect a max-height css prop set on the preview, we would need to first set a possibly
-//   wrong height, then measure the size of the DOM element and reset our previewSize value
-//   inside state to that value. This process would be visible to the user and cause flickering.
-export const useUpdatedPreviewSize = (onUpdate, rootRef, aspectRatio, maxHeight) => {
-  const rootWidth = useContainerWidth(rootRef);
-  const maxHeightInPixels = useViewportLengthInPixels(maxHeight);
+export const useUpdatedPreviewSize = (onUpdate, rootRef, aspectRatio) => {
+  const width = useContainerWidth(rootRef);
 
   useEffect(() => {
-    if (!rootWidth || !aspectRatio) {
+    if (!width || !aspectRatio) {
       onUpdate({ width: 0, height: 0 });
       return;
     }
 
-    const height = rootWidth * (aspectRatio ** -1);
+    const height = width * (aspectRatio ** -1);
 
-    onUpdate({
-      width: rootWidth,
-      height: maxHeightInPixels
-        ? Math.min(maxHeightInPixels, height)
-        : height,
-    });
-  }, [onUpdate, rootWidth, aspectRatio, maxHeightInPixels]);
+    onUpdate({ width, height });
+  }, [onUpdate, width, aspectRatio]);
 };

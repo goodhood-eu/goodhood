@@ -6,13 +6,18 @@ import styles from './index.module.scss';
 import { getOffset } from './utils';
 import { useDoubleTapZoom, useDrag, usePinchZoom, useUpdatedPreviewSize } from './hooks';
 import Context from '../image_zoom_provider/context';
+import { DEFAULT_ASPECT_RATIO } from './constants';
 
-const ImageZoomView = ({ src, alt, maxViewportHeight, className: passedClassName }) => {
+const ImageZoomView = ({
+  src,
+  alt,
+  aspectRatio = DEFAULT_ASPECT_RATIO,
+  className: passedClassName,
+}) => {
   const rootRef = useRef(null);
   const {
     image,
     offset,
-    imageSize,
     previewSize,
     onAnchorZoom,
     onOffsetUpdate,
@@ -23,8 +28,7 @@ const ImageZoomView = ({ src, alt, maxViewportHeight, className: passedClassName
 
   useUpdatedPreviewSize(
     onPreviewSizeUpdate, rootRef,
-    imageSize.width / imageSize.height,
-    maxViewportHeight,
+    aspectRatio,
   );
 
   const drag = useDrag(onOffsetUpdate);
@@ -125,7 +129,7 @@ const ImageZoomView = ({ src, alt, maxViewportHeight, className: passedClassName
 };
 
 ImageZoomView.propTypes = {
-  maxViewportHeight: PropTypes.number,
+  aspectRatio: PropTypes.number,
   className: PropTypes.string,
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,

@@ -10,9 +10,11 @@ export const getScaledImageSize = (image, scale) => {
 };
 
 export const getDefaultScale = (previewSize, imageSize) => (
-  previewSize.width > imageSize.width
-    ? 1
-    : previewSize.width / imageSize.width
+  Math.min(
+    previewSize.height / imageSize.height,
+    previewSize.width / imageSize.width,
+    1,
+  )
 );
 
 export const getInsideBoundaries = (previewVal, scaledVal, val) => {
