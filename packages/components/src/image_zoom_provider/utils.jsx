@@ -1,7 +1,7 @@
 import { clamp } from 'lodash';
 
 export const getScaledImageSize = (image, scale) => {
-  if (!image) return { width: 0, height: 0 };
+  if (!image) return null;
 
   return {
     width: image.naturalWidth * scale,

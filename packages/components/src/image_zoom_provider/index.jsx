@@ -5,16 +5,21 @@ import { getScaledImageSize } from './utils';
 import Context from './context';
 
 const ImageZoomProvider = ({ children }) => {
-  const [image, setImage] = useState(null);
-  const imageSize = useMemo(() => getScaledImageSize(image, 1), [image]);
+  const [imageSize, setImageSize] = useState(null);
   const [previewSize, setPreviewSize] = useState({ width: 0, height: 0 });
   const [
     { scale, offset, defaultScale, maxScale },
     { safeSetOffset, anchorZoom },
   ] = useImageView({ previewSize, imageSize });
 
+  const isLoaded = useMemo(() => Boolean(imageSize), [imageSize]);
+
+  const handleImageUpdate = (imageNode) => {
+    setImageSize(getScaledImageSize(imageNode, 1));
+  };
+
   const value = {
-    image,
+    isLoaded,
     scale,
     offset,
     defaultScale,
@@ -24,7 +29,7 @@ const ImageZoomProvider = ({ children }) => {
     onPreviewSizeUpdate: setPreviewSize,
     onOffsetUpdate: safeSetOffset,
     onAnchorZoom: anchorZoom,
-    onImageUpdate: setImage,
+    onImageUpdate: handleImageUpdate,
   };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;

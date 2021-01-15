@@ -16,7 +16,7 @@ const ImageZoomView = ({
 }) => {
   const rootRef = useRef(null);
   const {
-    image,
+    isLoaded,
     offset,
     previewSize,
     onAnchorZoom,
@@ -35,8 +35,8 @@ const ImageZoomView = ({
   const pinchZoom = usePinchZoom(onAnchorZoom);
   const doubleTapZoom = useDoubleTapZoom(onAnchorZoom);
 
-  const zoomStyles = image && {
-    transform: `translate3d(${offset.left}px, ${offset.top}px, 0) scale(${scale})`,
+  const zoomStyles = {
+    transform: isLoaded && `translate3d(${offset.left}px, ${offset.top}px, 0) scale(${scale})`,
   };
 
   const rootStyles = {
@@ -104,6 +104,10 @@ const ImageZoomView = ({
     onImageUpdate(e.target);
   };
 
+  const handleImageLoadError = () => {
+    onImageUpdate(null);
+  };
+
   return (
     <div
       ref={rootRef}
@@ -120,6 +124,7 @@ const ImageZoomView = ({
       <img
         src={src}
         onLoad={handleImageLoad}
+        onError={handleImageLoadError}
         className={styles.zoomed}
         style={zoomStyles}
         alt={alt}
