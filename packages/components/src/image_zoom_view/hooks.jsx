@@ -4,14 +4,12 @@ import {
   getDistanceBetweenPoints,
   getElementWidth,
   getMidpoint,
-  getOffsetForMovement, getPointDifference,
+  getOffsetForMovement,
+  getPointDifference,
+  getTapZoomScale,
   isLengthInThreshold,
 } from './utils';
-import {
-  CONTAINER_WIDTH_CHANGE_RATE,
-  DOUBLE_TAP_THRESHOLD,
-  DOUBLE_TAP_TIMEOUT, DOUBLE_TAP_ZOOM,
-} from './constants';
+import { CONTAINER_WIDTH_CHANGE_RATE, DOUBLE_TAP_THRESHOLD, DOUBLE_TAP_TIMEOUT, } from './constants';
 
 // DO NOT MERGE: EXTRACTION IN PROGRESS
 export const useStateControlledInput = (ref, state) => {
@@ -41,7 +39,7 @@ export const useDoubleTapZoom = (onAnchorZoom) => {
       && isLengthInThreshold(lastPoint.y, point.y, DOUBLE_TAP_THRESHOLD)
     ) {
       lastPoint.current = {};
-      onAnchorZoom((scale) => scale + DOUBLE_TAP_ZOOM, point);
+      onAnchorZoom(getTapZoomScale, point);
     }
   };
 };
@@ -91,7 +89,7 @@ export const usePinchZoom = (onAnchorZoom) => {
     const zoomFactor = distance / lastDistance;
     const movement = getPointDifference(lastMidpoint, midpoint);
 
-    onAnchorZoom((scale) => scale * zoomFactor, midpoint, movement);
+    onAnchorZoom(({ scale }) => scale * zoomFactor, midpoint, movement);
 
     pinchZoomRef.current = {
       lastDistance: distance,

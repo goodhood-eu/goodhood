@@ -1,4 +1,5 @@
 import { clamp } from 'lodash';
+import { DOUBLE_TAP_ZOOM } from './constants';
 
 export const getDistanceBetweenPoints = (pointA, pointB) => (
   Math.sqrt(
@@ -43,4 +44,8 @@ export const getElementWidth = (el) => {
 
 export const isLengthInThreshold = (lengthA, lengthB, threshold) => (
   clamp(lengthB, lengthA - threshold, lengthA + threshold) === lengthB
+);
+
+export const getTapZoomScale = ({ scale, defaultScale, maxScale }) => (
+  scale + ((maxScale - defaultScale) * DOUBLE_TAP_ZOOM)
 );

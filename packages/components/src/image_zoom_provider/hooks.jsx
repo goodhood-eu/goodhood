@@ -47,7 +47,7 @@ export const useImageView = ({ previewSize, imageSize }) => {
       case TYPE_ANCHOR_ZOOM: {
         const { getScale, anchor, movement } = action.payload;
 
-        const scale = clamp(getScale(state.scale), state.defaultScale, state.maxScale);
+        const scale = clamp(getScale(state), state.defaultScale, state.maxScale);
 
         const unsafeLeft = getOffsetForNewScaleWithCustomAnchor({
           anchor: anchor.x,
