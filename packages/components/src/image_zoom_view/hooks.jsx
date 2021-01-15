@@ -9,7 +9,7 @@ import {
   getTapZoomScale,
   isLengthInThreshold,
 } from './utils';
-import { CONTAINER_WIDTH_CHANGE_RATE, DOUBLE_TAP_THRESHOLD, DOUBLE_TAP_TIMEOUT, } from './constants';
+import { CONTAINER_WIDTH_CHANGE_RATE, DOUBLE_TAP_THRESHOLD, DOUBLE_TAP_TIMEOUT } from './constants';
 
 // DO NOT MERGE: EXTRACTION IN PROGRESS
 export const useStateControlledInput = (ref, state) => {
