@@ -1,7 +1,8 @@
 import { useCallback, useContext, useRef } from 'react';
+import { useStateControlledInput } from 'nebenan-form/lib/base';
 import Slider from '../slider';
 import Context from '../image_zoom_provider/context';
-import { useStateControlledInput } from './hooks';
+
 
 const GET_EMPTY_LABEL = () => '';
 
