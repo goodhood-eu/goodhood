@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "2.6.0-beta.9",
+  "version": "2.6.0-beta.10",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -44,7 +44,8 @@
     "redux": "^4.0.5",
     "sass-functions": "^1.4.0",
     "smartcontent": "^3.10.0",
-    "string-validate": "^3.5.0"
+    "string-validate": "^3.5.0",
+    "@goodhood/icons": "^1.5.0-beta.0"
   },
   "dependencies": {
     "@popperjs/core": "^2.5.4",
@@ -62,6 +63,7 @@
     "prop-types": "^15.7.2",
     "clsx": "^1.1.1",
     "nebenan-ui-kit": "^4.15.0",
-    "@babel/runtime": "^7.12.5"
+    "@babel/runtime": "^7.12.5",
+    "@goodhood/icons": "^1.5.0-beta.0"
   }
 }

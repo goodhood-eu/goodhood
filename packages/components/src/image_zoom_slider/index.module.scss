@@ -1,0 +1,15 @@
+@import "~nebenan-ui-kit";
+
+.root {
+  display: flex;
+  align-items: center;
+}
+
+.slider {
+  height: 30px;
+  flex: 1 0 auto;
+}
+
+.labels {
+  color: $color-gray-02;
+}
