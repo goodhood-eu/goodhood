@@ -1,5 +1,10 @@
 @import "~nebenan-ui-kit";
 
+:global(.mapboxgl-ctrl-attrib.mapboxgl-compact) {
+  // Fix mapbox style
+  min-height: 24px;
+}
+
 .root {
   @include block-responsive(75%);
 

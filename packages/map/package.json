@@ -28,7 +28,7 @@
     "@turf/transform-rotate": "^5.1.5"
   },
   "dependencies": {
-    "mapbox-gl": "^1.13.0"
+    "mapbox-gl": "^2.0.1"
   },
   "peerDependencies": {
     "clsx": "^1.1.1",

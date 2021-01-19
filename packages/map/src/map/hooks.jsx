@@ -1,10 +1,13 @@
 import { useEffect, useState, useContext, useMemo, useCallback } from 'react';
-import { Map, NavigationControl } from 'mapbox-gl';
+import mapboxGl, { Map, NavigationControl } from 'mapbox-gl';
 
 import { getMapOptions, mergeLayersBounds, isFilledArray, getFitBoundsOptions, isWebGLSupported } from './utils';
 import { getMedia, media } from '../utils';
 import MapContext from './context';
 
+
+// Disable mapbox API requests
+mapboxGl.baseApiUrl = null;
 
 export const useMapContext = () => useContext(MapContext);
 
