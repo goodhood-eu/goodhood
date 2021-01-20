@@ -1,3 +1,7 @@
+## v4.0.0 Breaking changes
+- Removed `popupContent`, `popupOffset`, `popupContent` props in <Marker /> component
+- Added <Popup /> component
+
 ## v3.0.0 Breaking changes
 - Added `Map: webGLError` prop
 
