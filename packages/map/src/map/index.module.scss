@@ -17,6 +17,11 @@
     z-index: 1;
   }
 
+  :global(.mapboxgl-canvas-container) {
+    // Click handlers won't work in layers without stretching this element
+    @include block-fill;
+  }
+
   :global(.mapboxgl-canvas):focus {
     outline: none;
   }

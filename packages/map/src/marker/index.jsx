@@ -44,7 +44,7 @@ const Marker = ({
       nodeRef.current = null;
       forceRender({});
     };
-  }, [className, onClick]);
+  }, [className, position, onClick]);
 
   let content;
   if (nodeRef.current) {

@@ -26,7 +26,7 @@ const Content = () => {
 export const Default = () => {
   const isActive = boolean('Active', true);
 
-  const defaultState = boolean('Visible', true);
+  const defaultOpen = boolean('Visible', true);
   const offsetX = number('Offset x', 0);
   const offsetY = number('Offset y', 0);
 
@@ -42,10 +42,10 @@ export const Default = () => {
       >
         Marker Content
         <Popup
-          key={defaultState}
+          key={defaultOpen}
           offsetX={offsetX}
           offsetY={offsetY}
-          defaultState={defaultState}
+          defaultOpen={defaultOpen}
         >
           <Content />
         </Popup>

@@ -9,7 +9,7 @@ import { useMarkerEffect } from '../marker/hooks';
 const Popup = ({
   className,
   children,
-  defaultState,
+  defaultOpen,
   offsetX,
   offsetY,
 }) => {
@@ -22,7 +22,7 @@ const Popup = ({
 
     const popup = new MapboxPopup({ offset: [offsetX, offsetY] }).setDOMContent(node);
     marker.setPopup(popup);
-    if (defaultState) marker.togglePopup();
+    if (defaultOpen) marker.togglePopup();
 
     nodeRef.current = node;
     forceRender({});
@@ -50,7 +50,7 @@ Popup.defaultProps = {
 Popup.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
-  defaultState: PropTypes.bool,
+  defaultOpen: PropTypes.bool,
   offsetX: PropTypes.number,
   offsetY: PropTypes.number,
 };
