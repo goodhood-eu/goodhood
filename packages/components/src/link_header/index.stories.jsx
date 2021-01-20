@@ -39,7 +39,7 @@ export const Empty = () => (
 export const WithLabelNode = () => (
   <LinkHeader
     onClick={action('onClick')}
-    label={<span className="ui-link">Check it out</span> }
+    label={<span className="ui-link">Check it out</span>}
   >
     <h3>Header HeaderHeader HeaderHeader HeaderHeader Header    Header Header </h3>
     Content!
