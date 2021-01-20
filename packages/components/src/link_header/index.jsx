@@ -9,7 +9,7 @@ const LinkHeader = ({
   children,
   to,
   onClick,
-  label,
+  action,
   reversed,
   className: passedClassName,
   ...cleanProps
@@ -27,7 +27,7 @@ const LinkHeader = ({
 
     icon = (
       <div className={styles.navigation}>
-        {label && <span className={styles.label}>{label}</span>}
+        {action && <span className={styles.action}>{action}</span>}
         <Icon className={styles.icon} />
       </div>
     );
@@ -53,7 +53,7 @@ LinkHeader.propTypes = {
   onClick: PropTypes.func,
   reversed: PropTypes.bool,
   children: PropTypes.node,
-  label: PropTypes.node,
+  action: PropTypes.node,
 };
 
 export default LinkHeader;

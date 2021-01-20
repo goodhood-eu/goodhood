@@ -9,7 +9,7 @@ export const WithRouter = () => (
   <MemoryRouter>
     <LinkHeader
       reversed={boolean('reversed', undefined)}
-      label={text('label', undefined)}
+      action={text('action', undefined)}
       to={text('to', '/')}
     >
       <h3>Header</h3>
@@ -21,7 +21,7 @@ export const WithRouter = () => (
 export const WithOnClick = () => (
   <LinkHeader
     reversed={boolean('reversed', undefined)}
-    label={text('label', undefined)}
+    action={text('action', undefined)}
     onClick={action('onClick')}
   >
     <h3>Header</h3>
@@ -36,10 +36,10 @@ export const Empty = () => (
   </LinkHeader>
 );
 
-export const WithLabelNode = () => (
+export const WithActionNode = () => (
   <LinkHeader
     onClick={action('onClick')}
-    label={<span className="ui-link">Check it out</span>}
+    action={<span className="ui-link">Check it out</span>}
   >
     <h3>Header HeaderHeader HeaderHeader HeaderHeader Header    Header Header </h3>
     Content!
