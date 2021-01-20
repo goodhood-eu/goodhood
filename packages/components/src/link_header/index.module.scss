@@ -1,14 +1,13 @@
 @import "~nebenan-ui-kit";
 
 .root {
-  padding-right: 25px;
-  display: block;
-  position: relative;
+  padding: 0 $offset-s;
+  display: flex;
+  align-items: center;
   cursor: pointer;
 
   &.isReversed {
-    padding-right: 0;
-    padding-left: 25px;
+    flex-direction: row-reverse;
   }
 
   &.isClickable {
@@ -20,17 +19,30 @@
   > :global(.ui-h3) {
     display: block;
   }
+}
 
-  .icon {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    color: $color-gray-02;
-  }
+.navigation {
+  padding: 0 0 0 $offset-m;
 
-  &.isReversed .icon {
-    right: auto;
-    left: 0;
+  display: grid;
+  column-gap: $offset-s;
+  grid-template-columns: 1fr auto;
+  flex: 0 0 auto;
+  align-items: center;
+
+  color: $color-gray-02;
+}
+
+.isReversed .navigation {
+  padding: 0 $offset-m 0 0;
+  grid-template-columns: auto 1fr;
+
+  .label {
+    grid-row: 1;
+    grid-column: 2;
   }
+}
+
+.children {
+  flex: 1 1 auto;
 }
