@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "2.5.6",
+  "version": "2.6.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -59,6 +59,7 @@
     "react": "^16.14.0 || ^17.0.1",
     "react-load-script": "^0.0.6",
     "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
     "prop-types": "^15.7.2",
     "clsx": "^1.1.1",
     "nebenan-ui-kit": "^4.15.0",
