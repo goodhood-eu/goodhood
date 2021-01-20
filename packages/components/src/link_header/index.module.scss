@@ -1,0 +1,36 @@
+@import "~nebenan-ui-kit";
+
+.root {
+  padding-right: 25px;
+  display: block;
+  position: relative;
+  cursor: pointer;
+
+  &.isReversed {
+    padding-right: 0;
+    padding-left: 25px;
+  }
+
+  &.isClickable {
+    color: $color-gray-00;
+  }
+
+  > :global(.ui-h1),
+  > :global(.ui-h2),
+  > :global(.ui-h3) {
+    display: block;
+  }
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    color: $color-gray-02;
+  }
+
+  &.isReversed .icon {
+    right: auto;
+    left: 0;
+  }
+}
