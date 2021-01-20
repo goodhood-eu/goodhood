@@ -10,7 +10,8 @@ const Popup = ({
   className,
   children,
   defaultState,
-  offset,
+  offsetX,
+  offsetY,
 }) => {
   const nodeRef = useRef();
   const [, forceRender] = useState();
@@ -19,7 +20,7 @@ const Popup = ({
     const node = document.createElement('div');
     node.className = className;
 
-    const popup = new MapboxPopup({ offset }).setDOMContent(node);
+    const popup = new MapboxPopup({ offset: [offsetX, offsetY] }).setDOMContent(node);
     marker.setPopup(popup);
     if (defaultState) marker.togglePopup();
 
@@ -31,7 +32,7 @@ const Popup = ({
       nodeRef.current = null;
       forceRender({});
     };
-  }, [children, offset, className]);
+  }, [children, offsetX, offsetY, className]);
 
   if (nodeRef.current) {
     // Using portal since mapbox moves DOM nodes to body
@@ -41,11 +42,17 @@ const Popup = ({
   return null;
 };
 
+Popup.defaultProps = {
+  offsetX: 0,
+  offsetY: 0,
+};
+
 Popup.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   defaultState: PropTypes.bool,
-  offset: PropTypes.arrayOf(PropTypes.number),
+  offsetX: PropTypes.number,
+  offsetY: PropTypes.number,
 };
 
 export default Popup;

@@ -43,7 +43,8 @@ export const Default = () => {
         Marker Content
         <Popup
           key={defaultState}
-          offset={[offsetX, offsetY]}
+          offsetX={offsetX}
+          offsetY={offsetY}
           defaultState={defaultState}
         >
           <Content />
