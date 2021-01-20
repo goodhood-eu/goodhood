@@ -1,7 +1,7 @@
 @import "~nebenan-ui-kit";
 
 :global(.mapboxgl-ctrl-attrib.mapboxgl-compact) {
-  // Fix mapbox style
+  // Fix mapbox attributes style in collapsed state
   min-height: 24px;
 }
 
