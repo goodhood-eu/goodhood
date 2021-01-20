@@ -35,9 +35,7 @@ const LinkHeader = ({
 
   const content = (
     <>
-      <div className={styles.children}>
-        {children}
-      </div>
+      <div className={styles.children}>{children}</div>
       {icon}
     </>
   );
