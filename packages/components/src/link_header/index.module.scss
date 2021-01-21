@@ -1,0 +1,48 @@
+@import "~nebenan-ui-kit";
+
+.root {
+  padding: 0 $offset-s;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &.isReversed {
+    flex-direction: row-reverse;
+  }
+
+  &.isClickable {
+    color: $color-gray-00;
+  }
+
+  > :global(.ui-h1),
+  > :global(.ui-h2),
+  > :global(.ui-h3) {
+    display: block;
+  }
+}
+
+.navigation {
+  padding: 0 0 0 $offset-m;
+
+  display: grid;
+  column-gap: $offset-s;
+  grid-template-columns: 1fr auto;
+  flex: 0 0 auto;
+  align-items: center;
+
+  color: $color-gray-02;
+}
+
+.isReversed .navigation {
+  padding: 0 $offset-m 0 0;
+  grid-template-columns: auto 1fr;
+
+  .action {
+    grid-row: 1;
+    grid-column: 2;
+  }
+}
+
+.children {
+  flex: 1 1 auto;
+}
