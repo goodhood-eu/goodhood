@@ -1,0 +1,14 @@
+@import "~nebenan-ui-kit";
+
+.container {
+  width: 100%;
+  overflow: hidden;
+  background-color: $color-gray-07;
+  user-select: none;
+}
+
+.zoomed {
+  cursor: move;
+  transform-origin: 0 0;
+  pointer-events: none;
+}
