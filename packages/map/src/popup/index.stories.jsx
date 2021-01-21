@@ -24,13 +24,13 @@ const Content = () => {
 };
 
 export const Default = () => {
-  const isActive = boolean('Active', true);
+  const isMounted = boolean('Mounted', true);
 
   const defaultOpen = boolean('Visible', true);
   const offsetX = number('Offset x', 0);
   const offsetY = number('Offset y', 0);
 
-  if (!isActive) {
+  if (!isMounted) {
     return null;
   }
 

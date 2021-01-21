@@ -10,7 +10,6 @@ export const useMapContext = () => useContext(MapContext);
 
 export const useMapEffect = (fn, deps = []) => {
   const { map } = useMapContext();
-  deps.push(map);
 
   useEffect(() => {
     if (!map) return;
@@ -29,7 +28,7 @@ export const useMapEffect = (fn, deps = []) => {
         if (destroy) destroy();
       }
     };
-  }, deps);
+  }, [...deps, map]);
 };
 
 export const useWebGLSupport = () => {
