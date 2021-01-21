@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useImageView } from './hooks';
 import { getScaledImageSize } from './utils';
@@ -12,7 +12,7 @@ const ImageZoomProvider = ({ children }) => {
     { safeSetOffset, anchorZoom },
   ] = useImageView({ previewSize, imageSize });
 
-  const isLoaded = useMemo(() => Boolean(imageSize), [imageSize]);
+  const isLoaded = Boolean(imageSize);
 
   const handleImageUpdate = (imageNode) => {
     setImageSize(getScaledImageSize(imageNode, 1));
