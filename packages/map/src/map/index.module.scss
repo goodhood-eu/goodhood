@@ -1,5 +1,10 @@
 @import "~nebenan-ui-kit";
 
+:global(.mapboxgl-ctrl-attrib.mapboxgl-compact) {
+  // Fix mapbox attributes style in collapsed state
+  min-height: 24px;
+}
+
 .root {
   @include block-responsive(75%);
 
@@ -10,6 +15,11 @@
   :global(.mapboxgl-ctrl-bottom-right) {
     // overrides mapbox z-index
     z-index: 1;
+  }
+
+  :global(.mapboxgl-canvas-container) {
+    // Click handlers won't work in layers without stretching this element
+    @include block-fill;
   }
 
   :global(.mapboxgl-canvas):focus {

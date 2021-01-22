@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { select, withKnobs } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import config from '@root/config';
@@ -7,6 +8,8 @@ import { POLYGON_ACTIVE, POLYGON_DEFAULT, POLYGON_HIGHLIGHTED, POLYGON_SOLID, PO
 
 import Polygon from './index';
 import Map from '../map';
+import Marker from '../marker';
+import Popup from '../popup';
 
 
 const types = [
@@ -29,6 +32,35 @@ export const Default = () => {
         type={type}
         onClick={action('Polygon clicked')}
       />
+    </Map>
+  );
+};
+
+export const WithPopup = () => {
+  const [markerPosition, setMarkerPosition] = useState(null);
+
+  const handleClick = (event) => {
+    const { lng, lat } = event.lngLat;
+    setMarkerPosition([lng, lat]);
+  };
+
+  let marker;
+  if (markerPosition) {
+    marker = (
+      <Marker position={markerPosition}>
+        <Popup defaultOpen>Hello world!!!</Popup>
+      </Marker>
+    );
+  }
+
+  return (
+    <Map credentials={config.map_credentials}>
+      <Polygon
+        area={data.polygons[0]}
+        type={POLYGON_ACTIVE}
+        onClick={handleClick}
+      />
+      {marker}
     </Map>
   );
 };
