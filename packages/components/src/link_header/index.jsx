@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import ArrowLeftIcon from '@goodhood/icons/lib/16x16/arrow_left';
 import ArrowRightIcon from '@goodhood/icons/lib/16x16/arrow_right';
 import styles from './index.module.scss';
+import defaultTheme from './default_theme.module.scss';
+
+export { default as LinkHeaderLinkTheme } from './link_theme';
 
 const LinkHeader = ({
   children,
@@ -12,6 +15,7 @@ const LinkHeader = ({
   action,
   reversed,
   className: passedClassName,
+  theme = defaultTheme,
   ...cleanProps
 }) => {
   const isClickable = to || onClick;
@@ -26,9 +30,9 @@ const LinkHeader = ({
     const Icon = reversed ? ArrowLeftIcon : ArrowRightIcon;
 
     icon = (
-      <div className={styles.navigation}>
+      <div className={clsx(styles.navigation, theme.navigation)}>
         {action && <span className={styles.action}>{action}</span>}
-        <Icon className={styles.icon} />
+        <Icon className={clsx(styles.icon, theme.icon)} />
       </div>
     );
   }
@@ -54,6 +58,7 @@ LinkHeader.propTypes = {
   reversed: PropTypes.bool,
   children: PropTypes.node,
   action: PropTypes.node,
+  theme: PropTypes.object,
 };
 
 export default LinkHeader;
