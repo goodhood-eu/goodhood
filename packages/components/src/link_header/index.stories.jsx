@@ -1,7 +1,7 @@
-import { boolean, text, withKnobs } from '@storybook/addon-knobs';
+import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { MemoryRouter } from 'react-router';
-import LinkHeader from './index';
+import LinkHeader, { LinkHeaderLinkTheme } from './index';
 
 export default { title: 'LinkHeader', component: LinkHeader, decorators: [withKnobs] };
 
@@ -11,6 +11,7 @@ export const WithRouter = () => (
       reversed={boolean('reversed', undefined)}
       action={text('action', undefined)}
       to={text('to', '/')}
+      theme={select('theme', { default: undefined, LinkHeaderLinkTheme }, undefined)}
     >
       <h3>Header</h3>
       Content!
@@ -23,6 +24,7 @@ export const WithOnClick = () => (
     reversed={boolean('reversed', undefined)}
     action={text('action', undefined)}
     onClick={action('onClick')}
+    theme={select('theme', { default: undefined, LinkHeaderLinkTheme }, undefined)}
   >
     <h3>Header</h3>
     Content!
@@ -40,6 +42,7 @@ export const WithActionNode = () => (
   <LinkHeader
     onClick={action('onClick')}
     action={<span className="ui-link">Check it out</span>}
+    theme={select('theme', { default: undefined, LinkHeaderLinkTheme }, undefined)}
   >
     <h3>Header HeaderHeader HeaderHeader HeaderHeader Header    Header Header </h3>
     Content!
