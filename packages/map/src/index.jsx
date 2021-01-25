@@ -10,6 +10,8 @@ export { default as InfoMarker } from './info_marker';
 export { default as LabelMarker } from './label_marker';
 export { default as PinMarker } from './pin_marker';
 
+export { default as Popup } from './popup';
+
 export * from './polygon/constants';
 export * from './circle/constants';
 export * from './pin_marker/constants';
