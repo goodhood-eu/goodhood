@@ -143,6 +143,26 @@ const App = () => (
 <PinMarker />
 ```
 
+## Popup
+```jsx
+import { Popup, Marker } from '@goodhood/map';
+
+const App = () => (
+  <Marker>
+    <Popup
+      {/* Offset relative to marker position */}
+      offsetX={0}
+      offsetY={0}
+
+      {/* Open popup by default */}
+      defaultOpen={true}
+    >
+      {/* Popup's content. Can be image or styled element */}
+    </Popup>
+  </Marker>
+);
+```
+
 # Development
 
 ## Preview
