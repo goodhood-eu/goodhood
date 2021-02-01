@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
+import pickBy from 'lodash/pickBy';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Script from 'react-load-script';
 import { getUID } from 'nebenan-helpers/lib/calculations';
 import { invoke } from 'nebenan-helpers/lib/utils';
-import { getOptions } from './utils';
 
 import styles from './index.module.scss';
 
 const AD_SCRIPT_CDN = 'https://cdn.adnuntius.com/adn.js';
+
+const boolFilter = (value) => Boolean(value);
 
 const Advertisement = ({
   className,
@@ -33,14 +35,14 @@ const Advertisement = ({
   useEffect(() => {
     if (!uid || !window.adn || !id) return;
 
-    const props = getOptions({
+    const props = pickBy({
       userId,
       sessionId,
       env,
       auW: width,
       auH: height,
       c: categories,
-    });
+    }, boolFilter);
 
     const requestOptions = {
       ...options,
