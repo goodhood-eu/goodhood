@@ -1,6 +1,8 @@
+import { text, withKnobs } from '@storybook/addon-knobs';
+
 import Advertisement from './index';
 
-export default { title: 'Advertisement', component: Advertisement };
+export default { title: 'Advertisement', component: Advertisement, decorators: [withKnobs] };
 
 // Most props are passed directly to the Ad library
 // See full list of options here:
@@ -12,12 +14,17 @@ export default { title: 'Advertisement', component: Advertisement };
 // A basic example with hardcoded ad values:
 export const Default = () => (
   <Advertisement
-    id="00000000000e25e9"
+    id={text('Ad ID', '00000000000e25e9')}
     categories={['Brandenburg/Müllrose/15299/Bart-Müllrose']}
   />
 );
 
 // An example where an ad doesn't exist:
+export const NoAds = () => (
+  <Advertisement id={text('Ad ID', '00000000000e25ef')} />
+);
+
+// An example where an ad doesn't exist:
 export const IncorrectId = () => (
-  <Advertisement id="BOOLSHEET" />
+  <Advertisement id={text('Ad ID', 'BOOLSHEET')} />
 );
