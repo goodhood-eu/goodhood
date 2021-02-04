@@ -35,7 +35,7 @@ const Advertisement = ({
 }) => {
   const [uid, setUID] = useState(null);
   const ref = useRef(null);
-  const measurements = useRef({ visible: null });
+  const visible = useRef(null);
   const targetClass = `adn-${uid}`;
 
   useEffect(() => {
@@ -66,10 +66,10 @@ const Advertisement = ({
     invoke(onRequest, uid, requestOptions);
 
     const handleUpdate = debounce(() => {
-      const visible = ref.current.offsetHeight > 1;
-      if (measurements.current.visible === visible) return;
-      measurements.current.visible = visible;
-      invoke(onUpdate, visible);
+      const newVisible = ref.current.offsetHeight > 1;
+      if (visible.current === newVisible) return;
+      visible.current = newVisible;
+      invoke(onUpdate, newVisible);
     }, AD_UPDATE_DELAY);
 
     const observer = new ResizeObserver(handleUpdate);
