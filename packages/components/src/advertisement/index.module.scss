@@ -5,4 +5,9 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+
+  > aside {
+    min-width: 1px;
+    height: 1px;
+  }
 }

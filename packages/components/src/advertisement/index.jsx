@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import pickBy from 'lodash/pickBy';
+import debounce from 'lodash/debounce';
 import PropTypes from 'prop-types';
+import ResizeObserver from 'resize-observer-polyfill';
 import cx from 'clsx';
 import Script from 'react-load-script';
 import { getUID } from 'nebenan-helpers/lib/calculations';
@@ -9,6 +11,7 @@ import { invoke } from 'nebenan-helpers/lib/utils';
 import styles from './index.module.scss';
 
 const AD_SCRIPT_CDN = 'https://cdn.adnuntius.com/adn.js';
+const AD_UPDATE_DELAY = 500;
 
 const boolFilter = (value) => Boolean(value);
 
@@ -28,8 +31,11 @@ const Advertisement = ({
 
   onRequest,
   onLoad,
+  onUpdate,
 }) => {
   const [uid, setUID] = useState(null);
+  const ref = useRef(null);
+  const measurements = useRef({ visible: null });
   const targetClass = `adn-${uid}`;
 
   useEffect(() => {
@@ -58,6 +64,21 @@ const Advertisement = ({
 
     window.adn.request(requestOptions);
     invoke(onRequest, uid, requestOptions);
+
+    const handleUpdate = debounce(() => {
+      const visible = ref.current.offsetHeight > 1;
+      if (measurements.current.visible === visible) return;
+      measurements.current.visible = visible;
+      invoke(onUpdate, visible);
+    }, AD_UPDATE_DELAY);
+
+    const observer = new ResizeObserver(handleUpdate);
+    observer.observe(ref.current);
+
+    return () => {
+      handleUpdate.cancel();
+      observer.disconnect();
+    };
   }, [uid]); // Intentionally only loads ad once
 
   const handleLoad = () => {
@@ -71,7 +92,7 @@ const Advertisement = ({
   };
 
   return (
-    <div className={cx(styles.root, className)}>
+    <div className={cx(styles.root, className)} ref={ref}>
       <Script url={AD_SCRIPT_CDN} onLoad={handleLoad} />
       {uid && <aside className={targetClass} />}
     </div>
@@ -100,6 +121,7 @@ Advertisement.propTypes = {
 
   onRequest: PropTypes.func,
   onLoad: PropTypes.func,
+  onUpdate: PropTypes.func,
 };
 
 export default Advertisement;
