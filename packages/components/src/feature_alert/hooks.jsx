@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import keymanager from 'nebenan-helpers/lib/keymanager';
+import eventproxy from 'nebenan-helpers/lib/eventproxy';
 import { invoke } from 'nebenan-helpers/lib/utils';
 import { TOOLTIP_TRIGGER_DELAYED, TOOLTIP_DELAY_TIMEOUT } from '../base_tooltip';
 
@@ -12,9 +13,8 @@ export const useOutsideClick = (ref, callback, disabled) => useEffect(() => {
     if (!ref.current) return;
     if (!ref.current.contains(event.target)) invoke(callback, event);
   };
-  document.addEventListener('click', handler);
 
-  return () => document.removeEventListener('click', handler);
+  return eventproxy('click', handler);
 }, [callback]);
 
 export const useDelayedOpen = (trigger, wasActiveOnce, callback) => useEffect(() => {
