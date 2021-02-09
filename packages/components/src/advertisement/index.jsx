@@ -71,10 +71,10 @@ const Advertisement = ({
   };
 
   return (
-    <div className={cx(styles.root, className)}>
+    <>
       <Script url={AD_SCRIPT_CDN} onLoad={handleLoad} />
-      {uid && <aside className={targetClass} />}
-    </div>
+      {uid && <aside className={cx(targetClass, styles.root, className)} />}
+    </>
   );
 };
 
