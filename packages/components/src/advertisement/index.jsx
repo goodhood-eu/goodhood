@@ -8,12 +8,13 @@ import { invoke } from 'nebenan-helpers/lib/utils';
 
 import styles from './index.module.scss';
 
-const AD_SCRIPT_CDN = 'https://cdn.adnuntius.com/adn.js';
-
 const boolFilter = (value) => Boolean(value);
 
 const Advertisement = ({
   className,
+
+  src,
+  domain,
 
   userId,
   sessionId,
@@ -50,6 +51,7 @@ const Advertisement = ({
 
       targetClass,
       auId: id,
+      dn: domain, // 'nebenan.de'
 
       isolateFrame: true, // improves sandboxing, may cause issues with some ads
       useCookies: false, // redundant, added just in case
@@ -70,9 +72,11 @@ const Advertisement = ({
     invoke(onLoad, newUID, window.adn);
   };
 
+  if (!src) return null; // 'https://adn.nebenan.de/adn.js'
+
   return (
     <>
-      <Script url={AD_SCRIPT_CDN} onLoad={handleLoad} />
+      <Script url={src} onLoad={handleLoad} />
       {uid && <aside className={cx(targetClass, styles.root, className)} />}
     </>
   );
@@ -80,6 +84,9 @@ const Advertisement = ({
 
 Advertisement.propTypes = {
   className: PropTypes.string,
+
+  src: PropTypes.string.isRequired,
+  domain: PropTypes.string.isRequired,
 
   userId: PropTypes.string,
   sessionId: PropTypes.string,
