@@ -72,7 +72,7 @@ const Advertisement = ({
     invoke(onLoad, newUID, window.adn);
   };
 
-  if (!src) return null; // 'https://adn.nebenan.de/adn.js'
+  if (!src) return null; // https://adn.nebenan.de/adn.js
 
   return (
     <>
