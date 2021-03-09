@@ -24,6 +24,7 @@ const Advertisement = ({
   width,
   height,
   categories,
+  keyValues,
 
   options,
 
@@ -52,8 +53,18 @@ const Advertisement = ({
       targetClass,
       auId: id,
       dn: domain, // 'nebenan.de'
+      kv: [
+        {
+          app: ['WEB'],
+        },
+      ].concat(keyValues || []),
 
-      isolateFrame: true, // improves sandboxing, may cause issues with some ads
+      // improves sandboxing, may cause issues with some ads, disabled for now
+      // isolateFrame: true,
+
+      // this should switch container to div, but it's broken atm = disabled
+      // container: 'div',
+
       useCookies: false, // redundant, added just in case
       protocol: 'https',
     };
@@ -102,6 +113,7 @@ Advertisement.propTypes = {
     PropTypes.number,
   ]),
   categories: PropTypes.arrayOf(PropTypes.string),
+  keyValues: PropTypes.array,
 
   options: PropTypes.object,
 
