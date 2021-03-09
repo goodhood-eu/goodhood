@@ -18,15 +18,15 @@ export const getRequestOptions = ({
 
   options,
 }) => {
-  const kVs = [
-    { app: ['WEB'] },
-  ].concat(keyValues).filter(boolFilter);
-
   const props = pickBy({
     userId,
     sessionId,
     env,
   }, boolFilter);
+
+  const kVs = [
+    { app: ['WEB'] },
+  ].concat(keyValues).filter(boolFilter);
 
   const adUnit = pickBy({
     auId: id,
@@ -41,12 +41,14 @@ export const getRequestOptions = ({
     ...props,
 
     adUnits: [adUnit],
-    dn: domain, // 'nebenan.de'
+    // Should be 'nebenan.de'
+    dn: domain,
 
     // improves sandboxing, may cause issues with some ads, disabled for now
     // isolateFrame: true,
 
-    useCookies: false, // redundant, added just in case
+    // redundant, added just in case
+    useCookies: false,
     protocol: 'https',
   };
 

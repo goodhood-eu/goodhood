@@ -16,16 +16,18 @@ const Advertisement = ({ className, src, children, onRequest, onCheck, onLoad, .
   const requestOptions = getRequestOptions(props);
   const renderFn = children || defaultRender;
 
+  // Intentionally only loads ad once
   useEffect(() => {
     if (!uid || !window.adn || !props.id) return;
     const adOptions = { ...requestOptions, targetClass };
     window.adn.request(adOptions);
     invoke(onRequest, uid, adOptions);
-  }, [uid]); // Intentionally only loads ad once
+  }, [uid]);
 
   const handlePreflight = (data) => {
     const hasAds = Boolean(data?.responseJSON?.adUnits[0]?.matchedAdCount);
-    if (!hasAds) return; // There was an error or no matching ads
+    // There was an error or no matching ads
+    if (!hasAds) return;
 
     const newUID = getUID();
     setUID(newUID);
@@ -41,7 +43,8 @@ const Advertisement = ({ className, src, children, onRequest, onCheck, onLoad, .
     invoke(onLoad, window.adn, preflightOptions);
   };
 
-  if (!src) return null; // https://adn.nebenan.de/adn.js
+  // https://adn.nebenan.de/adn.js
+  if (!src) return null;
 
   return (
     <>
