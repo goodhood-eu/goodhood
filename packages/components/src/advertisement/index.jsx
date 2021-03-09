@@ -48,7 +48,7 @@ const Advertisement = ({ className, src, children, onRequest, onCheck, onLoad, .
     <>
       <Script url={src} onLoad={handleLoad} />
       {uid && renderFn(
-        <aside className={cx(targetClass, styles.root, className)} />,
+        <div className={cx(targetClass, styles.root, className)} />,
       )}
     </>
   );
