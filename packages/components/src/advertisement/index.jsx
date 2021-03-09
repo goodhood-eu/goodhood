@@ -10,7 +10,6 @@ import styles from './index.module.scss';
 
 const defaultRender = (children) => children;
 
-
 const Advertisement = ({ className, src, children, onRequest, onCheck, onLoad, ...props }) => {
   const [uid, setUID] = useState(null);
   const targetClass = `adn-${uid}`;
