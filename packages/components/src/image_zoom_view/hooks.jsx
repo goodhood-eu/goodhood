@@ -72,10 +72,13 @@ export const usePinchZoom = (onAnchorZoom) => {
   };
 
   const move = (pointA, pointB) => {
+    const origin = pinchZoomRef.current;
+    if (!origin) return;
+
     const distance = getDistanceBetweenPoints(pointA, pointB);
     const midpoint = getMidpoint(pointA, pointB);
 
-    const { lastDistance, lastMidpoint } = pinchZoomRef.current;
+    const { lastDistance, lastMidpoint } = origin;
     const zoomFactor = distance / lastDistance;
     const movement = getPointDifference(lastMidpoint, midpoint);
 
