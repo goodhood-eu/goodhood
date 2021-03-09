@@ -5,6 +5,7 @@ const proxyProps = [
   'image',
   'robots',
   'canonical',
+  'url',
 ];
 
 export const parseProps = (props) => {

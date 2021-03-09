@@ -10,6 +10,7 @@ describe('ui/micro_helmet/utils', () => {
       image: '/image.jpg',
       robots: 'follow',
       canonical: '/',
+      url: 'nachbarschaftshilfe.nebenan.de',
     };
 
     const extraProps = {
