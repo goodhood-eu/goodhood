@@ -1,86 +1,45 @@
 import { useState, useEffect } from 'react';
-import pickBy from 'lodash/pickBy';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Script from 'react-load-script';
 import { getUID } from 'nebenan-helpers/lib/calculations';
 import { invoke } from 'nebenan-helpers/lib/utils';
 
+import { getRequestOptions } from './utils';
 import styles from './index.module.scss';
 
-const boolFilter = (value) => Boolean(value);
+const defaultRender = (children) => children;
 
-const Advertisement = ({
-  className,
 
-  src,
-  domain,
-
-  userId,
-  sessionId,
-  env,
-
-  id,
-  width,
-  height,
-  categories,
-  keyValues,
-
-  options,
-
-  onRequest,
-  onLoad,
-}) => {
+const Advertisement = ({ className, src, children, onRequest, onCheck, onLoad, ...props }) => {
   const [uid, setUID] = useState(null);
   const targetClass = `adn-${uid}`;
+  const requestOptions = getRequestOptions(props);
+  const renderFn = children || defaultRender;
 
   useEffect(() => {
-    if (!uid || !window.adn || !id) return;
-
-    const props = pickBy({
-      userId,
-      sessionId,
-      env,
-      auW: width,
-      auH: height,
-      c: categories,
-    }, boolFilter);
-
-    const requestOptions = {
-      ...options,
-      ...props,
-
-      targetClass,
-      auId: id,
-      dn: domain, // 'nebenan.de'
-      kv: [
-        {
-          app: ['WEB'],
-        },
-      ].concat(keyValues || []),
-
-      // improves sandboxing, may cause issues with some ads, disabled for now
-      // isolateFrame: true,
-
-      // this should switch container to div, but it's broken atm = disabled
-      // container: 'div',
-
-      useCookies: false, // redundant, added just in case
-      protocol: 'https',
-    };
-
-    window.adn.request(requestOptions);
-    invoke(onRequest, uid, requestOptions);
+    if (!uid || !window.adn || !props.id) return;
+    const adOptions = { ...requestOptions, targetClass };
+    window.adn.request(adOptions);
+    invoke(onRequest, uid, adOptions);
   }, [uid]); // Intentionally only loads ad once
 
-  const handleLoad = () => {
+  const handlePreflight = (data) => {
+    const hasAds = Boolean(data?.responseJSON?.adUnits[0]?.matchedAdCount);
+    if (!hasAds) return; // There was an error or no matching ads
+
     const newUID = getUID();
     setUID(newUID);
 
+    invoke(onCheck, newUID, data);
+  };
+
+  const handleLoad = () => {
     window.adn.useCookies(false);
     window.adn.useLocalStorage(false);
-
-    invoke(onLoad, newUID, window.adn);
+    const preflightOptions = { ...requestOptions, onSuccess: handlePreflight };
+    window.adn.requestData(preflightOptions);
+    invoke(onLoad, window.adn, preflightOptions);
   };
 
   if (!src) return null; // https://adn.nebenan.de/adn.js
@@ -88,7 +47,9 @@ const Advertisement = ({
   return (
     <>
       <Script url={src} onLoad={handleLoad} />
-      {uid && <aside className={cx(targetClass, styles.root, className)} />}
+      {uid && renderFn(
+        <aside className={cx(targetClass, styles.root, className)} />,
+      )}
     </>
   );
 };
@@ -117,7 +78,9 @@ Advertisement.propTypes = {
 
   options: PropTypes.object,
 
+  children: PropTypes.func,
   onRequest: PropTypes.func,
+  onCheck: PropTypes.func,
   onLoad: PropTypes.func,
 };
 
