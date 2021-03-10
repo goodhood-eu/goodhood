@@ -42,7 +42,7 @@ export const getRequestOptions = ({
 
     adUnits: [adUnit],
     // Should be 'nebenan.de'
-    dn: domain,
+    d: domain,
 
     // improves sandboxing, may cause issues with some ads, disabled for now
     // isolateFrame: true,
