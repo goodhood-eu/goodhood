@@ -8,13 +8,10 @@ import { invoke } from 'nebenan-helpers/lib/utils';
 import { getRequestOptions } from './utils';
 import styles from './index.module.scss';
 
-const defaultRender = (children) => children;
-
 const Advertisement = ({ className, src, children, onRequest, onCheck, onLoad, ...props }) => {
   const [uid, setUID] = useState(null);
   const targetClass = `adn-${uid}`;
   const requestOptions = getRequestOptions(props);
-  const renderFn = children || defaultRender;
 
   // Intentionally only loads ad once
   useEffect(() => {
@@ -46,12 +43,16 @@ const Advertisement = ({ className, src, children, onRequest, onCheck, onLoad, .
   // https://adn.nebenan.de/adn.js
   if (!src) return null;
 
+  let content;
+  if (uid) {
+    const container = <div className={cx(targetClass, styles.root, className)} />;
+    content = children ? children(container) : container;
+  }
+
   return (
     <>
       <Script url={src} onLoad={handleLoad} />
-      {uid && renderFn(
-        <div className={cx(targetClass, styles.root, className)} />,
-      )}
+      {content}
     </>
   );
 };
