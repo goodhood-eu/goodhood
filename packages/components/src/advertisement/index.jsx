@@ -8,36 +8,31 @@ import { invoke } from 'nebenan-helpers/lib/utils';
 import { getRequestOptions } from './utils';
 import styles from './index.module.scss';
 
-const Advertisement = ({ className, src, children, onRequest, onCheck, onLoad, ...props }) => {
+const Advertisement = ({ className, src, children, onRequest, onLoad, ...props }) => {
   const [uid, setUID] = useState(null);
   const targetClass = `adn-${uid}`;
-  const requestOptions = getRequestOptions(props);
+  const options = getRequestOptions(props);
 
   // Intentionally only loads ad once
   useEffect(() => {
     if (!uid || !window.adn || !props.id) return;
-    const adOptions = { ...requestOptions, targetClass };
-    window.adn.request(adOptions);
-    invoke(onRequest, uid, adOptions);
+    const requestOptions = { ...options, targetClass };
+    window.adn.request(requestOptions);
+    invoke(onRequest, uid, requestOptions);
   }, [uid]);
 
   const handlePreflight = (data) => {
     const hasAds = Boolean(data?.responseJSON?.adUnits[0]?.matchedAdCount);
     // There was an error or no matching ads
     if (!hasAds) return;
-
-    const newUID = getUID();
-    setUID(newUID);
-
-    invoke(onCheck, newUID, data);
+    setUID(getUID());
   };
 
   const handleLoad = () => {
     window.adn.useCookies(false);
     window.adn.useLocalStorage(false);
-    const preflightOptions = { ...requestOptions, onSuccess: handlePreflight };
-    window.adn.requestData(preflightOptions);
-    invoke(onLoad, window.adn, preflightOptions);
+    window.adn.requestData({ ...options, onSuccess: handlePreflight });
+    invoke(onLoad, window.adn);
   };
 
   // https://adn.nebenan.de/adn.js
@@ -45,8 +40,8 @@ const Advertisement = ({ className, src, children, onRequest, onCheck, onLoad, .
 
   let content;
   if (uid) {
-    const container = <div className={cx(targetClass, styles.root, className)} />;
-    content = children ? children(container) : container;
+    content = <div className={cx(targetClass, styles.root, className)} />;
+    if (children) content = children(content);
   }
 
   return (
@@ -83,7 +78,6 @@ Advertisement.propTypes = {
 
   children: PropTypes.func,
   onRequest: PropTypes.func,
-  onCheck: PropTypes.func,
   onLoad: PropTypes.func,
 };
 
