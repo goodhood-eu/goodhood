@@ -47,6 +47,8 @@ export const useImageView = ({ previewSize, imageSize }) => {
       case TYPE_ANCHOR_ZOOM: {
         const { getScale, anchor, movement } = action.payload;
 
+        if (!imageSize || !previewSize) return state;
+
         const scale = clamp(getScale(state), state.defaultScale, state.maxScale);
 
         const unsafeLeft = getOffsetForNewScaleWithCustomAnchor({
@@ -84,6 +86,8 @@ export const useImageView = ({ previewSize, imageSize }) => {
 
       case TYPE_SAFE_SET_OFFSET: {
         const { offset } = action.payload;
+
+        if (!imageSize || !previewSize) return state;
 
         const left = getInsideBoundaries(
           previewSize.width,
