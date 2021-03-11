@@ -1,17 +1,19 @@
 const stringRegex = /%s/g;
-const proxyProps = [
-  'title',
-  'description',
-  'image',
-  'robots',
-  'canonical',
-];
+const PROXY_PROPS = {
+  title: 'title',
+  description: 'description',
+  image: 'image',
+  robots: 'robots',
+  canonical: 'canonical',
+  url: 'url',
+  ogSiteName: 'og_site_name',
+};
 
 export const parseProps = (props) => {
   const { title, titleTemplate, defaultTitle } = props;
 
-  const result = proxyProps.reduce((acc, prop) => {
-    if (props[prop]) acc[prop] = props[prop];
+  const result = Object.keys(PROXY_PROPS).reduce((acc, prop) => {
+    if (props[prop]) acc[PROXY_PROPS[prop]] = props[prop];
     return acc;
   }, {});
 

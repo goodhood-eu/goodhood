@@ -28,7 +28,9 @@ MicroHelmet.propTypes = {
   description: PropTypes.string,
   image: PropTypes.string,
   robots: PropTypes.string,
+  url: PropTypes.string,
   canonical: PropTypes.string,
+  ogSiteName: PropTypes.string,
 };
 
 export { default as MicroHelmetProvider } from './provider';
