@@ -13,8 +13,9 @@ const Advertisement = ({ className, src, children, onRequest, onLoad, ...props }
   const targetClass = `adn-${uid}`;
   const options = getRequestOptions(props);
 
+  // Known issue:
   // Using the callbacks will flash ad containers briefly when there are no ads to load
-  // This is the desired behavior explicitly asked for by PMs
+  // This is the desired behavior. Don't attempt to fix.
   const handleHideAd = () => setUID(null);
 
   // Intentionally only loads ad once
