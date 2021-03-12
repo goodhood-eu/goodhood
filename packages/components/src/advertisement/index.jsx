@@ -13,26 +13,31 @@ const Advertisement = ({ className, src, children, onRequest, onLoad, ...props }
   const targetClass = `adn-${uid}`;
   const options = getRequestOptions(props);
 
+  // Known issue:
+  // Using the callbacks will flash ad containers briefly when there are no ads to load
+  // This is the desired behavior. Don't attempt to fix.
+  const handleHideAd = () => setUID(null);
+
   // Intentionally only loads ad once
   useEffect(() => {
     if (!uid || !window.adn || !props.id) return;
-    const requestOptions = { ...options, targetClass };
+    const requestOptions = {
+      ...options,
+      targetClass,
+      onNoMatchedAds: handleHideAd,
+      onError: handleHideAd,
+    };
     window.adn.request(requestOptions);
     invoke(onRequest, uid, requestOptions);
   }, [uid]);
 
-  const handlePreflight = (data) => {
-    const hasAds = Boolean(data?.responseJSON?.adUnits[0]?.matchedAdCount);
-    // There was an error or no matching ads
-    if (!hasAds) return;
-    setUID(getUID());
-  };
-
   const handleLoad = () => {
     window.adn.useCookies(false);
     window.adn.useLocalStorage(false);
-    window.adn.requestData({ ...options, onSuccess: handlePreflight });
+
+    // Allows to perform additional setup before loading the Ads
     invoke(onLoad, window.adn);
+    setUID(getUID());
   };
 
   // https://adn.nebenan.de/adn.js
