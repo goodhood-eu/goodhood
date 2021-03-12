@@ -34,8 +34,10 @@ const Advertisement = ({ className, src, children, onRequest, onLoad, ...props }
   const handleLoad = () => {
     window.adn.useCookies(false);
     window.adn.useLocalStorage(false);
-    setUID(getUID());
+
+    // Allows to perform additional setup before loading the Ads
     invoke(onLoad, window.adn);
+    setUID(getUID());
   };
 
   // https://adn.nebenan.de/adn.js
