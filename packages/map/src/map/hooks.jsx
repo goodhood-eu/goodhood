@@ -43,8 +43,17 @@ export const useWebGLSupport = () => {
 };
 
 export const useMapInstance = (nodeRef, options) => {
+  const {
+    bounds,
+    noAttribution,
+    locked,
+    lockedMobile,
+    webGLSupported,
+    onLoad,
+    onBoundsChange,
+  } = options;
+
   const [mapInstance, setMap] = useState(false);
-  const { bounds, noAttribution, locked, lockedMobile, webGLSupported, onLoad, onBoundsChange } = options;
   const hasBounds = isFilledArray(bounds);
 
   useEffect(() => {
