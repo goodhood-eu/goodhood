@@ -27,6 +27,7 @@ const Map = ({
   minZoom,
 
   onLoad,
+  onBoundsChange,
   ...rest
 }) => {
   const nodeRef = useRef();
@@ -45,6 +46,7 @@ const Map = ({
     maxZoom,
     minZoom,
     onLoad,
+    onBoundsChange,
   });
 
   const context = useContextValue(map, addLayerBounds);
@@ -103,6 +105,7 @@ Map.propTypes = {
   minZoom: PropTypes.number,
 
   onLoad: PropTypes.func,
+  onBoundsChange: PropTypes.func,
 };
 
 export default Map;

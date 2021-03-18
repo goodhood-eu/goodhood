@@ -44,7 +44,7 @@ export const useWebGLSupport = () => {
 
 export const useMapInstance = (nodeRef, options) => {
   const [mapInstance, setMap] = useState(false);
-  const { bounds, noAttribution, locked, lockedMobile, webGLSupported, onLoad } = options;
+  const { bounds, noAttribution, locked, lockedMobile, webGLSupported, onLoad, onBoundsChange } = options;
   const hasBounds = isFilledArray(bounds);
 
   useEffect(() => {
@@ -64,14 +64,26 @@ export const useMapInstance = (nodeRef, options) => {
       setMap(map);
     };
 
+    const handleBoundsChange = () => {
+      if (!onBoundsChange) return;
+
+      const [southWest, northEast] = map.getBounds().toArray();
+
+      onBoundsChange({
+        bounds: { southWest, northEast },
+        zoom: map.getZoom(),
+      });
+    };
+
     map.once('load', handleLoad);
+    map.on('moveend', handleBoundsChange);
     if (mapOptions.interactive) map.addControl(new NavigationControl({ showCompass: false }));
 
     return () => {
       setMap(null);
       map.remove();
     };
-  }, [noAttribution, locked, lockedMobile, hasBounds, webGLSupported]);
+  }, [noAttribution, locked, lockedMobile, hasBounds, webGLSupported, onBoundsChange]);
 
   return mapInstance;
 };
