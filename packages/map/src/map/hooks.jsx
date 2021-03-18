@@ -102,6 +102,7 @@ export const useMapUpdate = (map, {
   animate,
   fitPadding,
   maxZoom,
+  defaultCenter,
 }) => {
   useEffect(() => {
     const [boundingBox, options] = getFitBoundsOptions({
@@ -111,7 +112,7 @@ export const useMapUpdate = (map, {
       maxZoom,
     });
 
-    if (map && boundingBox) {
+    if (map && boundingBox && !defaultCenter) {
       map.fitBounds(boundingBox, options);
     }
   }, [bounds, map, animate]);

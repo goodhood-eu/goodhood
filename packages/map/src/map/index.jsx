@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { forwardRef, useRef } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
@@ -9,7 +9,8 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import styles from './index.module.scss';
 
 
-const Map = ({
+// TODO: check if forwardRef is needed before merge
+const Map = forwardRef(({
   className,
   children,
 
@@ -25,6 +26,8 @@ const Map = ({
   fitPadding,
   maxZoom,
   minZoom,
+  defaultZoom,
+  defaultCenter,
 
   onLoad,
   onBoundsChange,
@@ -45,6 +48,8 @@ const Map = ({
     fitPadding,
     maxZoom,
     minZoom,
+    defaultCenter,
+    defaultZoom,
     onLoad,
     onBoundsChange,
   });
@@ -55,6 +60,7 @@ const Map = ({
     animate,
     bounds: boundsToFit,
     fitPadding,
+    defaultCenter,
     maxZoom,
   });
 
@@ -76,7 +82,7 @@ const Map = ({
       {content}
     </div>
   );
-};
+});
 
 Map.defaultProps = {
   animate: false,
@@ -103,6 +109,9 @@ Map.propTypes = {
   fitPadding: PropTypes.number.isRequired,
   maxZoom: PropTypes.number,
   minZoom: PropTypes.number,
+
+  defaultCenter: PropTypes.arrayOf(PropTypes.number),
+  defaultZoom: PropTypes.number,
 
   onLoad: PropTypes.func,
   onBoundsChange: PropTypes.func,
