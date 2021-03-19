@@ -85,6 +85,7 @@ export const useMapInstance = (nodeRef, options) => {
     };
 
     map.once('load', handleLoad);
+    map.once('load', handleBoundsChange);
     map.on('moveend', handleBoundsChange);
     if (mapOptions.interactive) map.addControl(new NavigationControl({ showCompass: false }));
 
