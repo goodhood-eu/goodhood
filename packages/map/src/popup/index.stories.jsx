@@ -29,6 +29,7 @@ export const Default = () => {
   const defaultOpen = boolean('Visible', true);
   const offsetX = number('Offset x', 0);
   const offsetY = number('Offset y', 0);
+  const closeButton = boolean('With Close Button', true);
 
   if (!isMounted) {
     return null;
@@ -46,6 +47,7 @@ export const Default = () => {
           offsetX={offsetX}
           offsetY={offsetY}
           defaultOpen={defaultOpen}
+          closeButton={closeButton}
         >
           <Content />
         </Popup>
