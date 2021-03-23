@@ -57,7 +57,7 @@ export const useMapInstance = (nodeRef, options) => {
   const hasBounds = isFilledArray(bounds);
 
   useEffect(() => {
-    if (!hasBounds || !webGLSupported) return;
+    if (!webGLSupported) return;
 
     const mapOptions = getMapOptions({
       ...options,
