@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Popup as MapboxPopup } from 'mapbox-gl';
 
 import { useMarkerEffect } from '../marker/hooks';
-
+import { useEventCallback } from './hooks';
 
 const Popup = ({
   className,
@@ -20,6 +20,9 @@ const Popup = ({
   const nodeRef = useRef();
   const [, forceRender] = useState();
 
+  const handleOpen = useEventCallback(onOpen);
+  const handleClose = useEventCallback(onClose);
+
   useMarkerEffect((marker) => {
     const node = document.createElement('div');
     node.className = className;
@@ -32,8 +35,8 @@ const Popup = ({
     marker.setPopup(popup);
     if (defaultOpen) marker.togglePopup();
 
-    if (onOpen) popup.on('open', onOpen);
-    if (onClose) popup.on('close', onClose);
+    popup.on('open', handleOpen);
+    popup.on('close', handleClose);
 
     nodeRef.current = node;
     forceRender({});
@@ -43,7 +46,15 @@ const Popup = ({
       nodeRef.current = null;
       forceRender({});
     };
-  }, [children, offsetX, offsetY, className, closeButton, maxWidth, onOpen, onClose]);
+  }, [
+    offsetX,
+    offsetY,
+    className,
+    closeButton,
+    maxWidth,
+    handleClose,
+    handleOpen,
+  ]);
 
   if (nodeRef.current) {
     // Using portal since mapbox moves DOM nodes to body
