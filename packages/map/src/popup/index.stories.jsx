@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import config from '@root/config';
 import { boolean, number, withKnobs } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import Map from '../map';
 import data from '../../sample_data';
 import Marker from '../marker';
@@ -30,6 +31,8 @@ export const Default = () => {
   const offsetX = number('Offset x', 0);
   const offsetY = number('Offset y', 0);
   const closeButton = boolean('With Close Button', true);
+  const onOpen = action('onOpen');
+  const onClose = action('onClose');
 
   if (!isMounted) {
     return null;
@@ -48,6 +51,8 @@ export const Default = () => {
           offsetY={offsetY}
           defaultOpen={defaultOpen}
           closeButton={closeButton}
+          onOpen={onOpen}
+          onClose={onClose}
         >
           <Content />
         </Popup>

@@ -14,6 +14,8 @@ const Popup = ({
   offsetY,
   closeButton,
   maxWidth,
+  onOpen,
+  onClose,
 }) => {
   const nodeRef = useRef();
   const [, forceRender] = useState();
@@ -30,6 +32,9 @@ const Popup = ({
     marker.setPopup(popup);
     if (defaultOpen) marker.togglePopup();
 
+    if (onOpen) popup.on('open', onOpen);
+    if (onClose) popup.on('close', onClose);
+
     nodeRef.current = node;
     forceRender({});
 
@@ -38,7 +43,7 @@ const Popup = ({
       nodeRef.current = null;
       forceRender({});
     };
-  }, [children, offsetX, offsetY, className, closeButton, maxWidth]);
+  }, [children, offsetX, offsetY, className, closeButton, maxWidth, onOpen, onClose]);
 
   if (nodeRef.current) {
     // Using portal since mapbox moves DOM nodes to body
@@ -62,6 +67,9 @@ Popup.propTypes = {
   offsetY: PropTypes.number,
   closeButton: PropTypes.bool,
   maxWidth: PropTypes.string,
+
+  onClose: PropTypes.func,
+  onOpen: PropTypes.func,
 };
 
 export default Popup;
