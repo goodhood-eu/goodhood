@@ -34,6 +34,9 @@ const Advertisement = ({ className, src, children, onRequest, onLoad, ...props }
     window.adn.request(requestOptions);
     invoke(onRequest, uid, requestOptions);
 
+    // Known issue:
+    // This will prevent ads from loading in slow network conditions.
+    // This is the desired behavior. Don't attempt to fix.
     const timeoutId = setTimeout(() => {
       if (!ref.current?.offsetHeight) handleHideAd();
     }, VISIBILITY_CHECK_DELAY);
