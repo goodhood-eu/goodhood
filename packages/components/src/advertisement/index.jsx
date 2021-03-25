@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Script from 'react-load-script';
@@ -8,8 +8,12 @@ import { invoke } from 'nebenan-helpers/lib/utils';
 import { getRequestOptions } from './utils';
 import styles from './index.module.scss';
 
+const VISIBILITY_CHECK_DELAY = 1000 * 2;
+
+
 const Advertisement = ({ className, src, children, onRequest, onLoad, ...props }) => {
   const [uid, setUID] = useState(null);
+  const ref = useRef(null);
   const targetClass = `adn-${uid}`;
   const options = getRequestOptions(props);
 
@@ -29,6 +33,15 @@ const Advertisement = ({ className, src, children, onRequest, onLoad, ...props }
     };
     window.adn.request(requestOptions);
     invoke(onRequest, uid, requestOptions);
+
+    // Known issue:
+    // This will prevent ads from loading in slow network conditions.
+    // This is the desired behavior. Don't attempt to fix.
+    const timeoutId = setTimeout(() => {
+      if (!ref.current?.offsetHeight) handleHideAd();
+    }, VISIBILITY_CHECK_DELAY);
+
+    return () => clearTimeout(timeoutId);
   }, [uid]);
 
   const handleLoad = () => {
@@ -45,7 +58,7 @@ const Advertisement = ({ className, src, children, onRequest, onLoad, ...props }
 
   let content;
   if (uid) {
-    content = <div className={cx(targetClass, styles.root, className)} />;
+    content = <div className={cx(targetClass, styles.root, className)} ref={ref} />;
     if (children) content = children(content);
   }
 
@@ -62,9 +75,6 @@ Advertisement.propTypes = {
 
   src: PropTypes.string.isRequired,
   domain: PropTypes.string.isRequired,
-
-  userId: PropTypes.string,
-  sessionId: PropTypes.string,
   env: PropTypes.string,
 
   id: PropTypes.string.isRequired,
