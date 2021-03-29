@@ -73,8 +73,10 @@ export const useMapInstance = (nodeRef, options) => {
       setMap(map);
     };
 
-    const handleBoundsChange = () => {
+    const handleBoundsChange = (e) => {
       if (!onBoundsChange) return;
+      const isCausedByUser = Boolean(e.originalEvent);
+      if (!isCausedByUser) return;
 
       const [southWest, northEast] = map.getBounds().toArray();
 
@@ -85,7 +87,7 @@ export const useMapInstance = (nodeRef, options) => {
     };
 
     map.once('load', handleLoad);
-    map.once('load', handleBoundsChange);
+    // map.once('load', handleBoundsChange);
     map.on('moveend', handleBoundsChange);
     if (mapOptions.interactive) map.addControl(new NavigationControl({ showCompass: false }));
 
