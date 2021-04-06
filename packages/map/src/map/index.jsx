@@ -1,16 +1,15 @@
-import { forwardRef, useRef } from 'react';
+import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import { useMapInstance, useMapUpdate, useContextValue, useLayersBounds, useWebGLSupport } from './hooks';
+import { useContextValue, useLayersBounds, useMapInstance, useMapUpdate, useWebGLSupport } from './hooks';
 import { Provider } from './context';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import styles from './index.module.scss';
 
 
-// TODO: check if forwardRef is needed before merge
-const Map = forwardRef(({
+const Map = ({
   className,
   children,
 
@@ -82,7 +81,7 @@ const Map = forwardRef(({
       {content}
     </div>
   );
-});
+};
 
 Map.defaultProps = {
   animate: false,
