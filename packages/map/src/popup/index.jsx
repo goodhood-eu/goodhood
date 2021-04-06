@@ -1,10 +1,10 @@
 import { useRef, useState } from 'react';
+import useStableCallback from 'nebenan-react-hocs/lib/use_stable_callback';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import { Popup as MapboxPopup } from 'mapbox-gl';
 
 import { useMarkerEffect } from '../marker/hooks';
-import { useEventCallback } from './hooks';
 
 const Popup = ({
   className,
@@ -20,8 +20,8 @@ const Popup = ({
   const nodeRef = useRef();
   const [, forceRender] = useState();
 
-  const handleOpen = useEventCallback(onOpen);
-  const handleClose = useEventCallback(onClose);
+  const handleOpen = useStableCallback(onOpen);
+  const handleClose = useStableCallback(onClose);
 
   useMarkerEffect((marker) => {
     const node = document.createElement('div');
