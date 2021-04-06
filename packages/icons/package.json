@@ -16,7 +16,8 @@
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
     "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
     "start": "webpack serve",
-    "build": "rm -rf ./lib && node scripts/build.js"
+    "build": "rm -rf ./lib && node scripts/build.js",
+    "updatePackageLock": "npm i --package-lock-only"
   },
   "files": [
     "/lib"

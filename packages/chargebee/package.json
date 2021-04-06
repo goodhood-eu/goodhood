@@ -24,7 +24,8 @@
     "build": "rollup --config rollup.config.js",
     "start": "../../scripts/start-storybook",
     "start:ssr-preview": "../../scripts/start-storybook --ssr-preview",
-    "test": "../../scripts/run-tests"
+    "test": "../../scripts/run-tests",
+    "updatePackageLock": "npm i --package-lock-only"
   },
   "devDependencies": {
     "react-load-script": "0.0.6"
