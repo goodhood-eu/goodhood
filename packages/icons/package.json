@@ -37,7 +37,6 @@
     "svgo-loader": "^2.2.1",
     "val-loader": "^2.1.2"
   },
-  "dependencies": {},
   "peerDependencies": {
     "react": "^16.14.0 || ^17.0.1"
   }

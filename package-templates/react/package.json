@@ -28,10 +28,9 @@
     "updatePackageLock": "npm i --package-lock-only"
   },
   "devDependencies": {},
-  "dependencies": {},
   "peerDependencies": {
     "@babel/runtime": "^7.11.2",
-    "react": "^16.13.1",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1"
   }
 }

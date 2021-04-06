@@ -30,11 +30,10 @@
   "devDependencies": {
     "react-load-script": "0.0.6"
   },
-  "dependencies": {},
   "peerDependencies": {
     "@babel/runtime": "^7.12.5",
+    "prop-types": "^15.7.2",
     "react": "^16.14.0 || ^17.0.1",
-    "react-load-script": "^0.0.6",
-    "prop-types": "^15.7.2"
+    "react-load-script": "^0.0.6"
   }
 }
