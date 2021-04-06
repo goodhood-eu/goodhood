@@ -36,13 +36,3 @@ export const AutoFit = () => (
     <Polygon area={data.polygons[1]} type={POLYGON_SOLID} />
   </Map>
 );
-
-export const EmptyOverwriteCenterAndZoom = () => (
-  <Map
-    credentials={config.map_credentials}
-    defaultCenter={data.pointNearPolygon1}
-    defaultZoom={10.5}
-    locked={false}
-    onBoundsChange={action('Bounds change')}
-  />
-);

@@ -40,8 +40,6 @@ export const getMapOptions = ({
   fitPadding,
   maxZoom,
   minZoom,
-  defaultCenter,
-  defaultZoom,
   isMobile,
   node,
 }) => {
@@ -52,6 +50,8 @@ export const getMapOptions = ({
     style: getStyle(credentials),
     attributionControl: !noAttribution,
     interactive,
+
+    bounds: getBoundingBox(bounds),
 
     scrollZoom: false,
     dragRotate: false,
@@ -65,10 +65,6 @@ export const getMapOptions = ({
 
   if (maxZoom) options.maxZoom = maxZoom;
   if (minZoom) options.minZoom = minZoom;
-
-  if (defaultCenter) options.center = defaultCenter;
-  else options.bounds = getBoundingBox(bounds);
-  if (defaultZoom) options.zoom = defaultZoom;
 
   if (isSinglePoint(options.bounds) && !maxZoom) {
     options.maxZoom = DEFAULT_ZOOM_LEVEL;

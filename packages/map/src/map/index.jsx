@@ -25,8 +25,6 @@ const Map = ({
   fitPadding,
   maxZoom,
   minZoom,
-  defaultZoom,
-  defaultCenter,
 
   onLoad,
   onBoundsChange,
@@ -47,8 +45,6 @@ const Map = ({
     fitPadding,
     maxZoom,
     minZoom,
-    defaultCenter,
-    defaultZoom,
     onLoad,
     onBoundsChange,
   });
@@ -59,7 +55,6 @@ const Map = ({
     animate,
     bounds: boundsToFit,
     fitPadding,
-    defaultCenter,
     maxZoom,
   });
 
@@ -108,9 +103,6 @@ Map.propTypes = {
   fitPadding: PropTypes.number.isRequired,
   maxZoom: PropTypes.number,
   minZoom: PropTypes.number,
-
-  defaultCenter: PropTypes.arrayOf(PropTypes.number),
-  defaultZoom: PropTypes.number,
 
   onLoad: PropTypes.func,
   onBoundsChange: PropTypes.func,

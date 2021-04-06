@@ -87,7 +87,6 @@ export const useMapInstance = (nodeRef, options) => {
     };
 
     map.once('load', handleLoad);
-    // map.once('load', handleBoundsChange);
     map.on('moveend', handleBoundsChange);
     if (mapOptions.interactive) map.addControl(new NavigationControl({ showCompass: false }));
 
@@ -105,7 +104,6 @@ export const useMapUpdate = (map, {
   animate,
   fitPadding,
   maxZoom,
-  defaultCenter,
 }) => {
   useEffect(() => {
     const [boundingBox, options] = getFitBoundsOptions({
@@ -115,7 +113,7 @@ export const useMapUpdate = (map, {
       maxZoom,
     });
 
-    if (map && boundingBox && !defaultCenter) {
+    if (map && boundingBox) {
       map.fitBounds(boundingBox, options);
     }
   }, [bounds, map, animate]);
