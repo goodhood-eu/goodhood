@@ -75,15 +75,11 @@ export const useMapInstance = (nodeRef, options) => {
 
     const handleBoundsChange = (e) => {
       if (!onBoundsChange) return;
+
       const isCausedByUser = Boolean(e.originalEvent);
       if (!isCausedByUser) return;
 
-      const [southWest, northEast] = map.getBounds().toArray();
-
-      onBoundsChange({
-        bounds: { southWest, northEast },
-        zoom: map.getZoom(),
-      });
+      onBoundsChange(map.getBounds().toArray());
     };
 
     map.once('load', handleLoad);
