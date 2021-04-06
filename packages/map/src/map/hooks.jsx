@@ -1,4 +1,5 @@
 import { useEffect, useState, useContext, useMemo, useCallback } from 'react';
+import useStableCallback from 'nebenan-react-hocs/lib/use_stable_callback';
 import { Map, NavigationControl } from 'mapbox-gl';
 
 import { getMapOptions, mergeLayersBounds, isFilledArray, getFitBoundsOptions, isWebGLSupported } from './utils';
@@ -50,11 +51,11 @@ export const useMapInstance = (nodeRef, options) => {
     lockedMobile,
     webGLSupported,
     onLoad,
-    onBoundsChange,
   } = options;
 
   const [mapInstance, setMap] = useState(false);
   const hasBounds = isFilledArray(bounds);
+  const onBoundsChange = useStableCallback(options.onBoundsChange);
 
   useEffect(() => {
     if (!webGLSupported) return;
@@ -74,8 +75,6 @@ export const useMapInstance = (nodeRef, options) => {
     };
 
     const handleBoundsChange = (e) => {
-      if (!onBoundsChange) return;
-
       const isCausedByUser = Boolean(e.originalEvent);
       if (!isCausedByUser) return;
 
