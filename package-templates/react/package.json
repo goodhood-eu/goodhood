@@ -24,13 +24,13 @@
     "build": "rollup --config rollup.config.js",
     "start": "../../scripts/start-storybook",
     "start:ssr-preview": "../../scripts/start-storybook --ssr-preview",
-    "test": "../../scripts/run-tests"
+    "test": "../../scripts/run-tests",
+    "update:lock": "npm i --package-lock-only --no-audit --no-fund"
   },
   "devDependencies": {},
-  "dependencies": {},
   "peerDependencies": {
     "@babel/runtime": "^7.11.2",
-    "react": "^16.13.1",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1"
   }
 }
