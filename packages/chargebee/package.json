@@ -25,7 +25,7 @@
     "start": "../../scripts/start-storybook",
     "start:ssr-preview": "../../scripts/start-storybook --ssr-preview",
     "test": "../../scripts/run-tests",
-    "updatePackageLock": "npm i --package-lock-only"
+    "update:lock": "npm i --package-lock-only --no-audit --no-fund"
   },
   "devDependencies": {
     "react-load-script": "0.0.6"
