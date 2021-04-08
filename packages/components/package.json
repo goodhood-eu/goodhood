@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "3.2.0",
+  "version": "3.3.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -21,10 +21,12 @@
     "build": "npx rollup --config rollup.config.js",
     "start": "../../scripts/start-storybook",
     "start:ssr-preview": "../../scripts/start-storybook --ssr-preview",
-    "test": "../../scripts/run-tests"
+    "test": "../../scripts/run-tests",
+    "update:lock": "npm i --package-lock-only --no-audit --no-fund"
   },
   "devDependencies": {
     "@babel/runtime": "^7.12.5",
+    "@goodhood/icons": "^1.5.0",
     "clsx": "^1.1.1",
     "date-fns": "^2.16.1",
     "lodash": "^4.17.20",
@@ -44,8 +46,7 @@
     "redux": "^4.0.5",
     "sass-functions": "^1.4.0",
     "smartcontent": "^3.10.0",
-    "string-validate": "^3.5.0",
-    "@goodhood/icons": "^1.5.0"
+    "string-validate": "^3.5.0"
   },
   "dependencies": {
     "@popperjs/core": "^2.5.4",
@@ -53,18 +54,18 @@
     "marked": "^1.2.5"
   },
   "peerDependencies": {
+    "@babel/runtime": "^7.12.5",
+    "@goodhood/icons": "^1.5.0",
+    "clsx": "^1.1.1",
+    "lodash": "^4.17.20",
     "nebenan-form": "^8.9.0",
     "nebenan-helpers": "^4.6.0",
-    "lodash": "^4.17.20",
     "nebenan-react-hocs": "^7.1.0",
+    "nebenan-ui-kit": "^4.15.0",
+    "prop-types": "^15.7.2",
     "react": "^16.14.0 || ^17.0.1",
     "react-load-script": "^0.0.6",
     "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0",
-    "prop-types": "^15.7.2",
-    "clsx": "^1.1.1",
-    "nebenan-ui-kit": "^4.15.0",
-    "@babel/runtime": "^7.12.5",
-    "@goodhood/icons": "^1.5.0"
+    "react-router-dom": "^5.2.0"
   }
 }

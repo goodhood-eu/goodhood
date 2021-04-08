@@ -91,7 +91,7 @@
   "scripts": {
     "check": "npm run lint && npm run test",
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
-    "postinstall": "lerna bootstrap && link-parent-bin && link-parent-bin -c package-templates",
+    "postinstall": "lerna bootstrap && link-parent-bin && link-parent-bin -c package-templates && lerna run --parallel update:lock",
     "lint": "npm run eslint && npm run stylelint",
     "eslint": "eslint -f codeframe \"./**/*.{js,jsx}\" ",
     "stylelint": "stylelint \"./**/*.scss\" ",

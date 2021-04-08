@@ -6,9 +6,6 @@ export const getRequestOptions = ({
   id,
 
   domain,
-
-  userId,
-  sessionId,
   env,
 
   width,
@@ -19,8 +16,8 @@ export const getRequestOptions = ({
   options,
 }) => {
   const props = pickBy({
-    userId,
-    sessionId,
+    // Should be 'nebenan.de'
+    d: domain,
     env,
   }, boolFilter);
 
@@ -41,8 +38,6 @@ export const getRequestOptions = ({
     ...props,
 
     adUnits: [adUnit],
-    // Should be 'nebenan.de'
-    d: domain,
 
     // improves sandboxing, may cause issues with some ads, disabled for now
     // isolateFrame: true,
