@@ -1,0 +1,6 @@
+@import "~nebenan-ui-kit";
+
+.root:global(.mapboxgl-popup-content) {
+  box-shadow: $shadow-bottom-default;
+  border-radius: 8px;
+}
