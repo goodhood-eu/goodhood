@@ -3,6 +3,7 @@ import useStableCallback from 'nebenan-react-hocs/lib/use_stable_callback';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import { Popup as MapboxPopup } from 'mapbox-gl';
+import styles from './index.module.scss';
 
 import { useMarkerEffect } from '../marker/hooks';
 
@@ -28,6 +29,7 @@ const Popup = ({
     node.className = className;
 
     const popup = new MapboxPopup({
+      className: styles.root,
       offset: [offsetX, offsetY],
       closeButton,
       maxWidth,
