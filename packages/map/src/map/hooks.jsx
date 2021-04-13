@@ -1,4 +1,5 @@
 import { useEffect, useState, useContext, useMemo, useCallback } from 'react';
+import useStableCallback from 'nebenan-react-hocs/lib/use_stable_callback';
 import { Map, NavigationControl } from 'mapbox-gl';
 
 import { getMapOptions, mergeLayersBounds, isFilledArray, getFitBoundsOptions, isWebGLSupported } from './utils';
@@ -43,12 +44,21 @@ export const useWebGLSupport = () => {
 };
 
 export const useMapInstance = (nodeRef, options) => {
+  const {
+    bounds,
+    noAttribution,
+    locked,
+    lockedMobile,
+    webGLSupported,
+    onLoad,
+  } = options;
+
   const [mapInstance, setMap] = useState(false);
-  const { bounds, noAttribution, locked, lockedMobile, webGLSupported, onLoad } = options;
   const hasBounds = isFilledArray(bounds);
+  const onBoundsChange = useStableCallback(options.onBoundsChange);
 
   useEffect(() => {
-    if (!hasBounds || !webGLSupported) return;
+    if (!webGLSupported) return;
 
     const mapOptions = getMapOptions({
       ...options,
@@ -64,14 +74,22 @@ export const useMapInstance = (nodeRef, options) => {
       setMap(map);
     };
 
+    const handleBoundsChange = (e) => {
+      const isCausedByUser = Boolean(e.originalEvent);
+      if (!isCausedByUser) return;
+
+      onBoundsChange(map.getBounds().toArray());
+    };
+
     map.once('load', handleLoad);
+    map.on('moveend', handleBoundsChange);
     if (mapOptions.interactive) map.addControl(new NavigationControl({ showCompass: false }));
 
     return () => {
       setMap(null);
       map.remove();
     };
-  }, [noAttribution, locked, lockedMobile, hasBounds, webGLSupported]);
+  }, [noAttribution, locked, lockedMobile, hasBounds, webGLSupported, onBoundsChange]);
 
   return mapInstance;
 };

@@ -25,6 +25,7 @@ export const Default = () => {
       {...{ bounds, locked, lockedMobile, animate, minZoom, maxZoom, noAttribution }}
       credentials={config.map_credentials}
       onLoad={action('Map loaded')}
+      onBoundsChange={action('Bounds change')}
     />
   );
 };

@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import { useMapInstance, useMapUpdate, useContextValue, useLayersBounds, useWebGLSupport } from './hooks';
+import { useContextValue, useLayersBounds, useMapInstance, useMapUpdate, useWebGLSupport } from './hooks';
 import { Provider } from './context';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -27,6 +27,7 @@ const Map = ({
   minZoom,
 
   onLoad,
+  onBoundsChange,
   ...rest
 }) => {
   const nodeRef = useRef();
@@ -45,6 +46,7 @@ const Map = ({
     maxZoom,
     minZoom,
     onLoad,
+    onBoundsChange,
   });
 
   const context = useContextValue(map, addLayerBounds);
@@ -103,6 +105,7 @@ Map.propTypes = {
   minZoom: PropTypes.number,
 
   onLoad: PropTypes.func,
+  onBoundsChange: PropTypes.func,
 };
 
 export default Map;
