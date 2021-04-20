@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { Marker as MapboxMarker } from 'mapbox-gl';
+import { Marker as MapboxMarker } from 'maplibre-gl';
 
 import { useAddLayerBounds, useMapEffect } from '../map/hooks';
 import styles from './index.module.scss';

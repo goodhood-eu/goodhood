@@ -1,4 +1,4 @@
-import { LngLatBounds } from 'mapbox-gl';
+import { LngLatBounds } from 'maplibre-gl';
 
 
 const DEFAULT_ZOOM_LEVEL = 14;

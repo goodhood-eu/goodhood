@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { useContextValue, useLayersBounds, useMapInstance, useMapUpdate, useWebGLSupport } from './hooks';
 import { Provider } from './context';
 
-import 'mapbox-gl/dist/mapbox-gl.css';
+import 'maplibre-gl/dist/maplibre-gl.css';
 import styles from './index.module.scss';
 
 

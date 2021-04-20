@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext, useMemo, useCallback } from 'react';
 import useStableCallback from 'nebenan-react-hocs/lib/use_stable_callback';
-import { Map, NavigationControl } from 'mapbox-gl';
+import { Map, NavigationControl } from 'maplibre-gl';
 
 import { getMapOptions, mergeLayersBounds, isFilledArray, getFitBoundsOptions, isWebGLSupported } from './utils';
 import { getMedia, media } from '../utils';
