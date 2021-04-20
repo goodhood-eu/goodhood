@@ -1,3 +1,6 @@
+## v5.0.0 Changes
+- Migrate to maplibre (no breaking changes in API)
+
 ## v4.0.0 Breaking changes
 - Removed `popupContent`, `popupOffset`, `popupContent` props in <Marker /> component
 - Added <Popup /> component

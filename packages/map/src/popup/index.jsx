@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import useStableCallback from 'nebenan-react-hocs/lib/use_stable_callback';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
-import { Popup as MapboxPopup } from 'mapbox-gl';
+import { Popup as MapboxPopup } from 'maplibre-gl';
 import styles from './index.module.scss';
 
 import { useMarkerEffect } from '../marker/hooks';
