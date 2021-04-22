@@ -46,6 +46,9 @@ module.exports = {
     ...config,
     path.join(PKG_PATH, 'src/**/*.stories.jsx'),
   ],
+  features: {
+    postcss: false,
+  },
   addons: [
     '@storybook/addon-viewport/register',
     '@storybook/addon-storysource',
@@ -80,13 +83,11 @@ module.exports = {
 
     config.module.rules.push({
       test: /\.scss$/,
-      sideEffects: false,
       exclude: /\.module\.scss$/,
       use: getStyleLoaders({ modules: false }),
     });
     config.module.rules.push({
       test: /\.module\.scss$/,
-      sideEffects: false,
       use: getStyleLoaders({ modules: true }),
     });
 
