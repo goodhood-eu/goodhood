@@ -9,9 +9,7 @@ import { parseProps } from './utils';
 const Provider = context.Provider;
 
 const BROWSER_UPDATE_LIMIT = 300;
-const isServerEnv = (
-  typeof process !== 'undefined' && process && process.versions && process.versions.node
-);
+
 
 class MicroHelmetProvider extends PureComponent {
   constructor(props) {
@@ -57,7 +55,7 @@ class MicroHelmetProvider extends PureComponent {
   }
 
   updateBrowserTitle() {
-    if (isServerEnv) return;
+    if (typeof window === 'undefined') return;
 
     const { title } = this.getProps();
     if (title && title !== document.title) document.title = title;
