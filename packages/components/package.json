@@ -20,7 +20,6 @@
     "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
     "build": "npx rollup --config rollup.config.js",
     "start": "../../scripts/start-storybook",
-    "start:ssr-preview": "../../scripts/start-storybook --ssr-preview",
     "test": "../../scripts/run-tests",
     "update:lock": "npm i --package-lock-only --no-audit --no-fund"
   },
