@@ -18,6 +18,11 @@ const getStyleLoaders = ({ modules }) => (
         },
       },
     },
+    // Patches internal scss import paths for webpack to pick files up correctly.
+    // Mostly relevant for dependency imports
+    {
+      loader: 'resolve-url-loader',
+    },
     {
       loader: 'sass-loader',
       options: {

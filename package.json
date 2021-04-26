@@ -67,6 +67,7 @@
     "qs": "^6.9.4",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "resolve-url-loader": "^3.1.2",
     "rollup": "^2.33.3",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-glob-import": "^0.4.5",
