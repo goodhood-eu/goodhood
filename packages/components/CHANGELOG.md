@@ -1,3 +1,7 @@
+## v5.0.0 Breaking changes
+
+- Removed `PhraseControls` and `PhraseLoader` components (failed experiment)
+
 ## v4.0.0 Breaking changes
 
 - Changed z-indexes of all components to use nebenan-ui-kit's `$z-*` variables (eg. `$z-modal`)
