@@ -14,7 +14,7 @@
   float: right;
 }
 
-.root.has-action .content {
+.root.hasAction .content {
   > a:only-child,
   > :global(.ui-link):only-child {
     margin-top: 5px;
