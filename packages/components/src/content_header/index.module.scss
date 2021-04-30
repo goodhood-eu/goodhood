@@ -1,0 +1,23 @@
+@import "nebenan-ui-kit";
+
+.description {
+  margin-top: 5px;
+  display: block;
+}
+
+.controls {
+  @include legacy-clearfix;
+  margin: 10px 0;
+}
+
+.action {
+  float: right;
+}
+
+.root.hasAction .content {
+  > a:only-child,
+  > :global(.ui-link):only-child {
+    margin-top: 5px;
+    display: inline-block;
+  }
+}
