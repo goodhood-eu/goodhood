@@ -1,10 +1,9 @@
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
-const { renderTemplate } = require('./utils');
-const { getPrerenderedContent } = require('./utils');
-const { getStatsByName } = require('./utils');
 const path = require('path');
 const express = require('express');
+const { getPrerenderedContent } = require('./utils');
+const { getStatsByName } = require('./utils');
 const { getConfig, CONFIG_NAME_CLIENT, CONFIG_NAME_SERVER } = require('./webpack-config');
 const template = require('../templates');
 const { getClientAssets } = require('./utils');
@@ -39,11 +38,11 @@ const startListening = () => {
 
     res.status(200)
       .render('index', { content, ...getClientAssets(clientWebpackStats) });
-  })
+  });
 
   app.listen(port, host, () => {
     console.log(`Preview is listening at http://${host}:${port}`);
   });
-}
+};
 
 module.exports = startListening;

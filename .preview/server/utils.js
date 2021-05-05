@@ -21,7 +21,7 @@ const getAssets = (stats) => {
   return normalizeAssets(assetsByChunkName.main);
 };
 
-const filterForFileType = (array, ext) => array.filter((path) => path.endsWith(ext));
+const filterForFileType = (array, ext) => array.filter((filePath) => filePath.endsWith(ext));
 
 const getCompiledAsset = (fs, stats, asset) => fs.readFileSync(path.join(stats.outputPath, asset));
 
@@ -47,11 +47,11 @@ const getClientAssets = (webpackStats) => {
   const publicPath = '/'; // TODO: check if ok in the long run
 
   const assets = getAssets(webpackStats);
-  const publicAssets = assets.map((path) => `${publicPath}${path}`);
+  const publicAssets = assets.map((asset) => `${publicPath}${asset}`);
   const stylesheets = filterForFileType(publicAssets, '.css');
   const scripts = filterForFileType(publicAssets, '.js');
 
   return { stylesheets, scripts };
-}
+};
 
-module.exports = { getStatsByName, getPrerenderedContent, renderTemplate, getClientAssets };
+module.exports = { getStatsByName, getPrerenderedContent, getClientAssets };
