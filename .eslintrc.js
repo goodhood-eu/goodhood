@@ -47,7 +47,7 @@ module.exports = {
       },
     },
     {
-      files: ['.storybook/**/*'],
+      files: ['.preview/**/*'],
 
       // Use react package template as baseline for @-imports in storybook
       ...getPackageOptions('package-templates/react'),

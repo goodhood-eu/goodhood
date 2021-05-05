@@ -1,0 +1,10 @@
+<html>
+<head>
+    <title>Preview</title>
+    <% for (const file of stylesheets) { %><link rel="stylesheet" href="<%= file %>" /><% } %>
+</head>
+<body>
+    <main id="main"><%= content %></main>
+    <% for (const file of scripts) { %><script src="<%= file %>" defer></script><% } %>
+</body>
+</html>
