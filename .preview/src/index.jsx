@@ -1,8 +1,11 @@
 import { hydrate } from 'react-dom';
-import App from './app';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './routes';
 
 const Component = (
-  <App />
+  <BrowserRouter>
+    <Routes />
+  </BrowserRouter>
 );
 
 hydrate(Component, document.getElementById('main'));
