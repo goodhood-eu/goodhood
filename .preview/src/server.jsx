@@ -1,5 +1,10 @@
-export default () => {
-  console.log('server is here');
+import { renderToString } from 'react-dom/server';
+import App from './app';
 
-  return '<h1>lol</h1>';
+export default () => {
+  const Component = (
+    <App />
+  );
+
+  return renderToString(Component);
 };

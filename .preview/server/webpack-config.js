@@ -9,6 +9,23 @@ const BASE_CONFIG = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        sideEffects: false,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              rootMode: 'upward',
+            },
+          },
+        ],
+      },
+    ],
+  },
 };
 
 const getConfig = () => ([
