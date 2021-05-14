@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "5.0.0",
+  "version": "5.1.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -32,7 +32,7 @@
     "nebenan-form": "^9.0.0",
     "nebenan-helpers": "^5.0.0",
     "nebenan-react-hocs": "^8.0.0",
-    "nebenan-ui-kit": "^5.0.1",
+    "nebenan-ui-kit": "^5.1.0",
     "node-sass-glob-importer": "^5.3.2",
     "prop-types": "^15.7.2",
     "qs": "^6.9.4",
