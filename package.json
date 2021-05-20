@@ -45,6 +45,7 @@
     "eslint-config-nebenan": "^3.1.0",
     "eval": "^0.1.6",
     "express": "^4.17.1",
+    "file-loader": "^6.2.0",
     "glob": "^7.1.6",
     "lerna": "^3.22.1",
     "link-parent-bin": "^2.0.0",

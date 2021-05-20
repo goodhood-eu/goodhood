@@ -12,6 +12,7 @@ const PKG_PATH = process.cwd();
 
 const CSS_REGEX = /\.s?css$/;
 const CSS_MODULE_REGEX = /\.module\.s?css$/;
+const ASSET_REGEX = /\.(jpe?g|png|gif|woff2?|ttf)$/;
 
 const BASE_CONFIG = {
   mode: 'development',
@@ -36,6 +37,16 @@ const BASE_CONFIG = {
     ],
   },
 };
+
+const getFileLoaders = ({ emitFile }) => ([
+  {
+    loader: 'file-loader',
+    options: {
+      name: 'static/[name].[hash:8].[ext]',
+      emitFile,
+    },
+  },
+]);
 
 
 const getStyleLoaders = ({ modules, emitFile }) => (
@@ -93,6 +104,16 @@ const getConfig = () => ([
           test: CSS_MODULE_REGEX,
           use: getStyleLoaders({ emitFile: false, modules: true }),
         },
+
+        {
+          test: ASSET_REGEX,
+          // Falling back to file-loader because new type 'asset' in Webpack 5 is broken in 3 ways:
+          //  - Always emits a file which is unwanted in server compilation
+          //  - Has a different file generation algorithm that causes asset references mismatch
+          //  - Causes manifest plugin to miscategorize file assets as entrypoint assets
+          type: 'javascript/auto',
+          use: getFileLoaders({ emitFile: false }),
+        },
       ],
     },
   }),
@@ -118,6 +139,16 @@ const getConfig = () => ([
           test: /\.s?css$/,
           enforce: 'post',
           use: [{ loader: MiniCssExtractPlugin.loader }],
+        },
+
+        {
+          test: ASSET_REGEX,
+          // Falling back to file-loader because new type 'asset' in Webpack 5 is broken in 3 ways:
+          //  - Always emits a file which is unwanted in server compilation
+          //  - Has a different file generation algorithm that causes asset references mismatch
+          //  - Causes manifest plugin to miscategorize file assets as entrypoint assets
+          type: 'javascript/auto',
+          use: getFileLoaders({ emitFile: true }),
         },
       ],
     },
