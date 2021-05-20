@@ -1,5 +1,7 @@
+import styles from './index.module.scss';
+
 const Layout = ({ children }) => (
-  <article>
+  <article className={styles.root}>
     <h1>Layout 🏄‍♀️</h1>
     {children}
   </article>
