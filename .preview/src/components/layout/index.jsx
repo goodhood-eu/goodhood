@@ -7,12 +7,7 @@ const Layout = ({ children }) => (
       <h1>@goodhood/insert-package-name preview</h1>
       <Logo />
     </header>
-    <div className={styles.content}>
-      {children}
-    </div>
-    <div className={styles.panel}>
-      <pre>stories!</pre>
-    </div>
+    {children}
   </article>
 );
 

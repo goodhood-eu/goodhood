@@ -1,6 +1,6 @@
 import config from '@root/config';
-import { number, withKnobs } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { number, withKnobs } from '@root/.preview/src/modules/knobs';
+import { action } from '@root/.preview/src/modules/actions';
 import Component from './index';
 
 const getConfigKeys = () => Object.keys(config);

@@ -1,25 +1,17 @@
 @import "nebenan-ui-kit";
 
 .root {
-  display: grid;
   height: 100vh;
+  display: grid;
 
-  grid-template-rows: auto 1fr 200px;
-}
-
-.content {
-  border-top: $border-dark;
-  background-color: #fff;
-}
-
-.panel {
-  border-top: $border-dark;
+  grid-template-rows: auto 1fr;
 }
 
 .header {
   padding: $offset-m;
   display: flex;
   justify-content: space-between;
+  border-bottom: $border-dark;
 
   > h1 {
     margin: 0;

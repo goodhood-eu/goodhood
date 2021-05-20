@@ -1,0 +1,22 @@
+@import "nebenan-ui-kit";
+
+.root {
+  display: grid;
+  grid-template-rows: 1fr 100px;
+}
+
+.story {
+  overflow: auto;
+  background-color: #fff;
+}
+
+.panel {
+  overflow: auto;
+  border-top: $border-dark;
+}
+
+.menu {
+  ul {
+    padding: revert;
+  }
+}

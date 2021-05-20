@@ -15,13 +15,23 @@ const CSS_MODULE_REGEX = /\.module\.s?css$/;
 const ASSET_REGEX = /\.(jpe?g|png|gif|woff2?|ttf)$/;
 const SVG_REGEX = /\.svg$/;
 
+const getResolveAlias = () => ({
+  '@root': ROOT_PKG_PATH,
+  '@': PKG_PATH,
+});
+
 const BASE_CONFIG = {
   mode: 'development',
   resolve: {
     extensions: ['.js', '.jsx'],
+    alias: getResolveAlias(),
   },
   module: {
     rules: [
+      {
+        test: path.join(ROOT_PKG_PATH, 'config/'),
+        use: ['val-loader'],
+      },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
