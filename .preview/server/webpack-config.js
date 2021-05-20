@@ -13,6 +13,7 @@ const PKG_PATH = process.cwd();
 const CSS_REGEX = /\.s?css$/;
 const CSS_MODULE_REGEX = /\.module\.s?css$/;
 const ASSET_REGEX = /\.(jpe?g|png|gif|woff2?|ttf)$/;
+const SVG_REGEX = /\.svg$/;
 
 const BASE_CONFIG = {
   mode: 'development',
@@ -106,6 +107,14 @@ const getConfig = () => ([
         },
 
         {
+          test: SVG_REGEX,
+          type: 'javascript/auto',
+          use: [
+            '@svgr/webpack',
+            ...getFileLoaders({ emitFile: false }),
+          ],
+        },
+        {
           test: ASSET_REGEX,
           // Falling back to file-loader because new type 'asset' in Webpack 5 is broken in 3 ways:
           //  - Always emits a file which is unwanted in server compilation
@@ -141,6 +150,14 @@ const getConfig = () => ([
           use: [{ loader: MiniCssExtractPlugin.loader }],
         },
 
+        {
+          test: SVG_REGEX,
+          type: 'javascript/auto',
+          use: [
+            '@svgr/webpack',
+            ...getFileLoaders({ emitFile: true }),
+          ],
+        },
         {
           test: ASSET_REGEX,
           // Falling back to file-loader because new type 'asset' in Webpack 5 is broken in 3 ways:
