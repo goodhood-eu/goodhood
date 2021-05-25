@@ -1,5 +1,23 @@
 import { useControl, useKnob, useKnobsContext } from '../../modules/knobs/hooks';
-import { NUMBER } from '../../modules/knobs/constants';
+import { NUMBER, TEXT } from '../../modules/knobs/constants';
+
+const TextControl = ({ id }) => {
+  const [value, setValue] = useControl(id);
+  const knob = useKnob(id);
+
+  const handleInput = (e) => {
+    const newValue = e.target.value;
+    setValue(newValue);
+  };
+
+  return (
+    <label>
+      {knob.label}
+      <input value={value} onChange={handleInput} />
+    </label>
+  );
+};
+
 
 const NumberControl = ({ id }) => {
   const [value, setValue] = useControl(id);
@@ -18,8 +36,10 @@ const NumberControl = ({ id }) => {
   );
 };
 
+
 const Controls = {
   [NUMBER]: NumberControl,
+  [TEXT]: TextControl,
 };
 
 const Knobs = ({ className }) => {
@@ -28,6 +48,8 @@ const Knobs = ({ className }) => {
   const renderKnob = (id) => {
     const { type } = context.knobs[id];
     const Control = Controls[type];
+
+    if (!Control) return null;
 
     return (
       <li key={id}>
