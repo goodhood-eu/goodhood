@@ -26,6 +26,9 @@ const BASE_CONFIG = {
     extensions: ['.js', '.jsx'],
     alias: getResolveAlias(),
   },
+  output: {
+    publicPath: '/',
+  },
   module: {
     rules: [
       {
