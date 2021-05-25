@@ -1,5 +1,6 @@
 const path = require('path');
 const sass = require('sass');
+const { DefinePlugin } = require('webpack');
 const { merge } = require('webpack-merge');
 const sassFunctions = require('sass-functions');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -50,6 +51,12 @@ const BASE_CONFIG = {
       },
     ],
   },
+  plugins: [
+    // fix updeep 'process not defined' error
+    new DefinePlugin({
+      'process.env': JSON.stringify({}),
+    }),
+  ],
 };
 
 const getFileLoaders = ({ emitFile }) => ([

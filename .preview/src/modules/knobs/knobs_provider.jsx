@@ -25,9 +25,7 @@ const KnobsProvider = ({ children }) => {
     register: handleRegister,
     unregister: handleUnregister,
     updateValue: handleValueUpdate,
-    values: state.values,
-    knobs: state.knobs,
-    knobIds: state.knobIds,
+    ...state,
   }), [state]);
 
   return (

@@ -1,10 +1,13 @@
 import { useReducer } from 'react';
 import { without } from 'lodash';
+import updeep from 'updeep';
 
 const DEFAULT_STATE = {
-  knobs: {},
-  values: {},
-  knobIds: [],
+  entities: {
+    knobs: {},
+    values: {},
+  },
+  knobs: [],
 };
 
 export const TYPE_REGISTER = 'register';
@@ -16,45 +19,37 @@ const reducer = (state, action) => {
     case TYPE_REGISTER: {
       const { id, defaultValue, ...options } = action.payload;
 
-      return {
-        knobs: {
-          ...state.knobs,
-          [id]: { id, defaultValue, ...options },
+      const knob = { id, defaultValue, ...options };
+
+      return updeep({
+        entities: {
+          knobs: { [id]: knob },
+          values: { [id]: defaultValue },
         },
-        knobIds: [...state.knobIds, id],
-        values: {
-          ...state.values,
-          [id]: defaultValue,
-        },
-      };
+        knobs: (ids) => [...ids, id],
+      }, state);
     }
 
     case TYPE_UNREGISTER: {
       const { id } = action.payload;
 
-      return {
-        knobs: {
-          ...state.knobs,
-          [id]: undefined,
+      return updeep({
+        entities: {
+          knobs: { [id]: updeep.omitted },
+          values: { [id]: updeep.omitted },
         },
-        knobIds: without(state.knobIds, id),
-        values: {
-          ...state.values,
-          [id]: undefined,
-        },
-      };
+        knobs: (ids) => without(ids, id),
+      }, state);
     }
 
     case TYPE_UPDATE_VALUE: {
       const { id, value } = action.payload;
 
-      return {
-        ...state,
-        values: {
-          ...state.values,
-          [id]: value,
+      return updeep({
+        entities: {
+          values: { [id]: value },
         },
-      };
+      }, state);
     }
   }
 };

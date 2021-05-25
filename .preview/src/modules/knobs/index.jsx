@@ -22,4 +22,5 @@ export const button = (label, handler) => (
   useConnectedKnob({ label, defaultValue: null, type: BUTTON, handler })
 );
 
+export { useControl, useKnob, useKnobsContext } from './hooks';
 export { default } from './knobs_provider';

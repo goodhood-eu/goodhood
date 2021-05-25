@@ -9,14 +9,14 @@ export const useControl = (id) => {
     context.updateValue(id, value);
   };
 
-  const value = context.values[id];
+  const value = context.entities.values[id];
   return [value, handleUpdate];
 };
 
 export const useKnob = (id) => {
   const context = useKnobsContext();
 
-  return context.knobs[id];
+  return context.entities.knobs[id];
 };
 
 export const useConnectedKnob = ({ defaultValue, ...rest }) => {
@@ -30,7 +30,7 @@ export const useConnectedKnob = ({ defaultValue, ...rest }) => {
     return () => { context.unregister(newId); };
   }, []);
 
-  if (id) return context.values[id];
+  if (id) return context.entities.values[id];
 
   return defaultValue;
 };
