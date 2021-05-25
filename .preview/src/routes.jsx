@@ -5,6 +5,7 @@ import Error404 from './containers/error404';
 export default () => (
   <Switch>
     <Route path="/" component={Story} exact />
+    <Route path="/stories/:id" component={Story} />
 
     <Route component={Error404} />
   </Switch>
