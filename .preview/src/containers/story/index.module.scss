@@ -11,8 +11,13 @@
 }
 
 .panel {
-  overflow: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   border-top: $border-dark;
+
+  > * {
+    overflow: auto;
+  }
 }
 
 .menu {

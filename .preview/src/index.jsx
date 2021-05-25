@@ -2,10 +2,13 @@ import { hydrate } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './routes';
 import './index.scss';
+import KnobsProvider from './modules/knobs';
 
 const Component = (
   <BrowserRouter>
-    <Routes />
+    <KnobsProvider>
+      <Routes />
+    </KnobsProvider>
   </BrowserRouter>
 );
 
