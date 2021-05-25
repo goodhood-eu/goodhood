@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import clsx from 'clsx';
+import styles from './menu.module.scss';
 import { getExampleUrl } from './utils';
 import storiesStore from './stories_store';
 
@@ -29,7 +31,7 @@ const Menu = ({ className }) => {
   };
 
   return (
-    <ul className={className}>{stories.map(renderStory)}</ul>
+    <ul className={clsx(className, styles.root)}>{stories.map(renderStory)}</ul>
   );
 };
 

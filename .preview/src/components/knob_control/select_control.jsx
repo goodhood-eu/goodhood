@@ -17,7 +17,9 @@ const SelectControl = ({ id }) => {
 
   return (
     <label>
-      {label}
+      <strong className="ui-label">
+        {label}
+      </strong>
       <select value={value} onChange={handleInput} className="ui-input">
         {Object.keys(options).map(renderOption)}
       </select>

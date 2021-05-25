@@ -2,7 +2,7 @@
 
 .root {
   display: grid;
-  grid-template-rows: 1fr 100px;
+  grid-template-rows: 5fr minmax(0, 3fr);
 }
 
 .story {
@@ -12,16 +12,10 @@
 
 .panel {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 3fr;
   border-top: $border-dark;
 
   > * {
     overflow: auto;
-  }
-}
-
-.menu {
-  ul {
-    padding: revert;
   }
 }

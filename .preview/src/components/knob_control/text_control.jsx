@@ -2,7 +2,7 @@ import { useControl, useKnob } from '../../modules/knobs/hooks';
 
 const TextControl = ({ id }) => {
   const [value, setValue] = useControl(id);
-  const knob = useKnob(id);
+  const { label } = useKnob(id);
 
   const handleInput = (e) => {
     const newValue = e.target.value;
@@ -11,8 +11,14 @@ const TextControl = ({ id }) => {
 
   return (
     <label>
-      {knob.label}
-      <input value={value} onChange={handleInput} />
+      <strong className="ui-label">
+        {label}
+      </strong>
+      <input
+        className="ui-input"
+        value={value}
+        onChange={handleInput}
+      />
     </label>
   );
 };

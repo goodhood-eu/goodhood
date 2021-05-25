@@ -1,8 +1,8 @@
-import { useControl, useKnob } from '../../modules/knobs/hooks';
+import { useControl, useKnob } from '../../modules/knobs';
 
 const BooleanControl = ({ id }) => {
   const [value, setValue] = useControl(id);
-  const knob = useKnob(id);
+  const { label } = useKnob(id);
 
   const handleInput = (e) => {
     const newValue = e.target.value;
@@ -11,7 +11,9 @@ const BooleanControl = ({ id }) => {
 
   return (
     <label>
-      {knob.label}
+      <strong className="ui-label">
+        {label}
+      </strong>
       <select value={value} onChange={handleInput} className="ui-input">
         <option value>true</option>
         <option value={false}>false</option>
