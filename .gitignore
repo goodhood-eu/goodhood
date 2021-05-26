@@ -4,3 +4,12 @@ node_modules
 lerna-debug.log
 config/local.js
 reports
+
+# yarn
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
