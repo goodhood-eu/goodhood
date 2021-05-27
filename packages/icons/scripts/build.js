@@ -4,7 +4,7 @@ const path = require('path');
 const chalk = require('chalk');
 const SVGO = require('svgo');
 const svgr = require('@svgr/core');
-const svgoConfig = require('../svgo.config.js');
+const svgoConfig = require('../svgo.config');
 const { getFiles, getTree, SVGS_DIR } = require('../utils/icon_list');
 const { getComponentName, getLibSvgFileName, getLibJsFileName } = require('../utils/naming');
 

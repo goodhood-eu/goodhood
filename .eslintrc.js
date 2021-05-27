@@ -17,6 +17,7 @@ const getPackageOptions = (pkg) => ({
     ],
   },
   settings: {
+    'import/internal-regex': /^@root/,
     'import/resolver': {
       alias: {
         map: [

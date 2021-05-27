@@ -22,7 +22,7 @@
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
     "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
     "build": "rollup --config rollup.config.js",
-    "start": "node ../../.preview/app",
+    "start": "../../scripts/start-storybook",
     "test": "../../scripts/run-tests",
     "update:lock": "npm i --package-lock-only --no-audit --no-fund"
   },
