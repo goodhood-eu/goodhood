@@ -11,5 +11,5 @@ jobs:
       with:
         node-version: '12.x'
     - run: yarn install --frozen-lockfile
-    - run: yarn run --scripts-prepend-node-path check
+    - run: npm run check
 
