@@ -1,4 +1,4 @@
-import { number, text, withKnobs } from '@storybook/addon-knobs';
+import { number, text, withKnobs } from '@root/.preview/src/modules/knobs';
 import ImageZoomView from './index';
 import ImageZoomProvider from '../image_zoom_provider';
 import ImageZoomSlider from '../image_zoom_slider';

@@ -1,4 +1,4 @@
-import { text, select, withKnobs } from '@storybook/addon-knobs';
+import { text, select, withKnobs } from '@root/.preview/src/modules/knobs';
 import Tooltip from './index';
 import styles from './index.stories.module.scss';
 import {

@@ -29,6 +29,8 @@
     "chalk": "^4.1.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
+    "react-dom": "^16.14.0",
+    "react-is": "^16.13.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "styled-components": "^5.2.1",

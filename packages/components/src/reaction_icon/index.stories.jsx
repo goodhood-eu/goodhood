@@ -1,4 +1,4 @@
-import { select, withKnobs } from '@storybook/addon-knobs';
+import { select, withKnobs } from '@root/.preview/src/modules/knobs';
 import ReactionIcon from './index';
 import { REACTIONS } from '../constants';
 

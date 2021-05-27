@@ -12,6 +12,10 @@
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
   "private": true,
+  "workspaces": [
+    "packages/*",
+    "package-templates/*"
+  ],
   "devDependencies": {
     "@babel/core": "^7.12.8",
     "@babel/plugin-proposal-json-strings": "^7.12.1",
@@ -83,7 +87,7 @@
   "scripts": {
     "check": "npm run lint && npm run test",
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
-    "postinstall": "lerna bootstrap && link-parent-bin && link-parent-bin -c package-templates && lerna run --parallel update:lock",
+    "postinstall": "lerna bootstrap && link-parent-bin && link-parent-bin -c package-templates",
     "lint": "npm run eslint && npm run stylelint",
     "eslint": "eslint -f codeframe \"./**/*.{js,jsx}\" ",
     "stylelint": "stylelint \"./**/*.scss\" ",

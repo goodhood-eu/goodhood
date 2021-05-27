@@ -1,4 +1,4 @@
-import { boolean, withKnobs } from '@storybook/addon-knobs';
+import { boolean, withKnobs } from '@root/.preview/src/modules/knobs';
 import config from '@root/config';
 import data from '../../sample_data';
 

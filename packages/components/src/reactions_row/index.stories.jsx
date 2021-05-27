@@ -1,5 +1,5 @@
-import { boolean, number, withKnobs } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { boolean, number, withKnobs } from '@root/.preview/src/modules/knobs';
+import { action } from '@root/.preview/src/modules/actions';
 import { REACTIONS } from '../constants';
 import ReactionsRow from './index';
 

@@ -1,4 +1,4 @@
-import { withKnobs } from '@storybook/addon-knobs';
+import { withKnobs } from '@root/.preview/src/modules/knobs';
 import Slider from './index';
 
 export default { title: 'Slider', component: Slider, decorators: [withKnobs] };

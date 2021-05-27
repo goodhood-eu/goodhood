@@ -1,4 +1,4 @@
-import { text, boolean, withKnobs } from '@storybook/addon-knobs';
+import { text, boolean, withKnobs } from '@root/.preview/src/modules/knobs';
 
 import CookiesForm from './index';
 

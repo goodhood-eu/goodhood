@@ -1,4 +1,4 @@
-import { text, withKnobs } from '@storybook/addon-knobs';
+import { text, withKnobs } from '@root/.preview/src/modules/knobs';
 
 import Advertisement from './index';
 

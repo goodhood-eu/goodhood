@@ -1,5 +1,5 @@
-import { withKnobs } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { withKnobs } from '@root/.preview/src/modules/knobs';
+import { action } from '@root/.preview/src/modules/actions';
 import ReactionSelectionMenu from './index';
 import { REACTION_BRAVO, REACTION_GOOD_IDEA, REACTION_LOVE, REACTION_THANK_YOU } from '../constants';
 import styles from './index.stories.module.scss';

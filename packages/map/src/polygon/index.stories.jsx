@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { select, withKnobs } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { select, withKnobs } from '@root/.preview/src/modules/knobs';
+import { action } from '@root/.preview/src/modules/actions';
 import config from '@root/config';
 import data from '../../sample_data';
 

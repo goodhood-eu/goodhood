@@ -1,4 +1,4 @@
-import { text, select, withKnobs } from '@storybook/addon-knobs';
+import { text, select, withKnobs } from '@root/.preview/src/modules/knobs';
 import Label from './index';
 import {
   TOOLTIP_POSITION_TOP,

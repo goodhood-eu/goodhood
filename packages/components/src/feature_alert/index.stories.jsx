@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { text, select, boolean, button, withKnobs } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { text, select, boolean, button, withKnobs } from '@root/.preview/src/modules/knobs';
+import { action } from '@root/.preview/src/modules/actions';
 import FeatureAlert from './index';
 import {
   TOOLTIP_POSITION_TOP,

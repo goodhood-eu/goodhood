@@ -1,4 +1,4 @@
-import { text, withKnobs } from '@storybook/addon-knobs';
+import { text, withKnobs } from '@root/.preview/src/modules/knobs';
 import { MemoryRouter } from 'react-router';
 import Markdown from './index';
 import longText from './long_text.fixture';

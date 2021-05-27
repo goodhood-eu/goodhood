@@ -6,7 +6,7 @@ const NumberControl = ({ id }) => {
 
   const handleInput = (e) => {
     const newValue = e.target.value;
-    setValue(newValue);
+    setValue(parseInt(newValue, 10));
   };
 
   return (

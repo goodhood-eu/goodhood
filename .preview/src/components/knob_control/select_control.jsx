@@ -1,8 +1,10 @@
 import { useControl, useKnob } from '../../modules/knobs/hooks';
+import { getOptionsObject } from './utils';
 
 const SelectControl = ({ id }) => {
   const [value, setValue] = useControl(id);
-  const { label, options } = useKnob(id);
+  const { label, options: providedOptions } = useKnob(id);
+  const options = getOptionsObject(providedOptions);
 
   const handleInput = (e) => {
     const newValue = e.target.value;
