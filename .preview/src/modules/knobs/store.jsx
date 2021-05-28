@@ -23,7 +23,7 @@ const reducer = (state, action) => {
 
       return updeep({
         entities: {
-          knobs: { [id]: knob },
+          knobs: { [id]: updeep.constant(knob) },
           values: { [id]: defaultValue },
         },
         knobs: (ids) => [...ids, id],

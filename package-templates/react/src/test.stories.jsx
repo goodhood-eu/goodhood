@@ -12,6 +12,10 @@ export const Default = () => {
     OptionB: '666',
     None: null,
   }, '123');
+  const selectArrayValue = select('selectValue with array options', [
+    'Peter ist der Beste',
+    'Peter ist Blöd',
+  ], 'Peter ist Blöd');
   const textValue = text('textValue', 'bli bla blubb');
   const boolValue = boolean('boolValue', false);
   const [doSomething, setDoSomething] = useState(false);
@@ -26,6 +30,8 @@ export const Default = () => {
         <dd>{numberValue}</dd>
         <dt>select</dt>
         <dd>{selectValue}</dd>
+        <dt>select with array</dt>
+        <dd>{selectArrayValue}</dd>
         <dt>text</dt>
         <dd>{textValue}</dd>
         <dt>bool</dt>
