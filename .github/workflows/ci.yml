@@ -11,6 +11,7 @@ jobs:
       with:
         node-version: '14.x'
     - run: npm i -g npm@7 --registry=https://registry.npmjs.org
+    - run: yarn run build
     - run: yarn install --frozen-lockfile
     - run: npm run check
 
