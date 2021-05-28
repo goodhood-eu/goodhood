@@ -87,6 +87,7 @@
   "scripts": {
     "check": "npm run lint && npm run test",
     "reinstall": "rm -rf node_modules package-lock.json && yarn",
+    "ci": "yarn install --frozen-lockfile && lerna exec --parallel --bail=false yarn run build",
     "postinstall": "lerna bootstrap && link-parent-bin && link-parent-bin -c package-templates",
     "lint": "npm run eslint && npm run stylelint",
     "eslint": "eslint -f codeframe \"./**/*.{js,jsx}\" ",
