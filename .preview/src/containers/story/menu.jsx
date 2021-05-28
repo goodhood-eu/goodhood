@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 import styles from './menu.module.scss';
 import { getExampleUrl } from './utils';
@@ -12,9 +12,9 @@ const Menu = ({ className }) => {
 
     return (
       <li key={example.title}>
-        <Link to={getExampleUrl(example)}>
+        <NavLink to={getExampleUrl(example)} activeClassName={styles.activeLink}>
           {example.title}
-        </Link>
+        </NavLink>
       </li>
     );
   };
