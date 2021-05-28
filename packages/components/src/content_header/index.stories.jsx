@@ -1,7 +1,7 @@
-import { text, withKnobs } from '@root/.preview/src/modules/knobs';
+import { text } from '@root/.preview/src/modules/knobs';
 import ContentHeader from './index';
 
-export default { title: 'ContentHeader', component: ContentHeader, decorators: [withKnobs] };
+export default { title: 'ContentHeader', component: ContentHeader };
 
 const headerAction = (
   <span className="ui-button ui-button-small ui-button-primary">Button</span>

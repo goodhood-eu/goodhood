@@ -1,9 +1,9 @@
 import config from '@root/config';
 import { action } from '@root/.preview/src/modules/actions';
-import { boolean, withKnobs } from '@root/.preview/src/modules/knobs';
+import { boolean } from '@root/.preview/src/modules/knobs';
 import Action from './index';
 
-export default { title: 'Action', component: Action, decorators: [withKnobs] };
+export default { title: 'Action', component: Action };
 
 export const Default = () => (
   <Action

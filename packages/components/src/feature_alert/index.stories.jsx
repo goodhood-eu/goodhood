@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { text, select, boolean, button, withKnobs } from '@root/.preview/src/modules/knobs';
+import { text, select, boolean, button } from '@root/.preview/src/modules/knobs';
 import { action } from '@root/.preview/src/modules/actions';
 import FeatureAlert from './index';
 import {
@@ -13,7 +13,7 @@ import {
 } from '../base_tooltip';
 import styles from './index.stories.module.scss';
 
-export default { title: 'Feature Alert', component: FeatureAlert, decorators: [withKnobs] };
+export default { title: 'Feature Alert', component: FeatureAlert };
 
 const TOOLTIP_PLACEHOLDER = 'Design is like a joke. If it needs explaining, it\'s probably bad.';
 

@@ -2,9 +2,6 @@
 import { useConnectedKnob } from './hooks';
 import { BOOLEAN, BUTTON, NUMBER, SELECT, TEXT } from './constants';
 
-// TODO remove all usages
-export const withKnobs = { removeLater: true };
-
 export const number = (label, defaultValue, options) => (
   useConnectedKnob({ label, defaultValue, options, type: NUMBER })
 );

@@ -1,7 +1,6 @@
-import { withKnobs } from '@root/.preview/src/modules/knobs';
 import Slider from './index';
 
-export default { title: 'Slider', component: Slider, decorators: [withKnobs] };
+export default { title: 'Slider', component: Slider };
 
 
 export const Default = () => <Slider label="Default slider" />;

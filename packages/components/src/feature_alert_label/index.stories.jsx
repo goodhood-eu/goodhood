@@ -1,4 +1,4 @@
-import { text, select, withKnobs } from '@root/.preview/src/modules/knobs';
+import { text, select } from '@root/.preview/src/modules/knobs';
 import Label from './index';
 import {
   TOOLTIP_POSITION_TOP,
@@ -9,7 +9,7 @@ import {
 
 const TOOLTIP_PLACEHOLDER = 'Design is like a joke.';
 
-export default { title: 'Feature Alert Label', component: Label, decorators: [withKnobs] };
+export default { title: 'Feature Alert Label', component: Label };
 
 const POSTIIONING_OPTIONS = {
   top: TOOLTIP_POSITION_TOP,

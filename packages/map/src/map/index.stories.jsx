@@ -1,4 +1,4 @@
-import { boolean, select, number, withKnobs } from '@root/.preview/src/modules/knobs';
+import { boolean, select, number } from '@root/.preview/src/modules/knobs';
 import { action } from '@root/.preview/src/modules/actions';
 import config from '@root/config';
 import data from '../../sample_data';
@@ -8,7 +8,7 @@ import { POLYGON_SOLID } from '../polygon/constants';
 import Map from './index';
 import Polygon from '../polygon';
 
-export default { title: 'Map', component: Map, decorators: [withKnobs] };
+export default { title: 'Map', component: Map };
 
 export const Default = () => {
   const locked = boolean('Locked', false);

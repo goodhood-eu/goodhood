@@ -1,4 +1,4 @@
-import { number, select, withKnobs } from '@root/.preview/src/modules/knobs';
+import { number, select } from '@root/.preview/src/modules/knobs';
 import config from '@root/config';
 import data from '../../sample_data';
 
@@ -13,7 +13,7 @@ const types = [
   CIRCLE_DEFAULT,
 ];
 
-export default { title: 'Circle', component: Circle, decorators: [withKnobs] };
+export default { title: 'Circle', component: Circle };
 
 export const Default = () => {
   const type = select('Type', types, types[0]);

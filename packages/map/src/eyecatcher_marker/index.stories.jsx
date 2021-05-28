@@ -1,4 +1,4 @@
-import { text, withKnobs } from '@root/.preview/src/modules/knobs';
+import { text } from '@root/.preview/src/modules/knobs';
 import config from '@root/config';
 import data from '../../sample_data';
 
@@ -6,7 +6,7 @@ import EyeCatcherMarker from './index';
 import Map from '../map';
 
 
-export default { title: 'EyeCatcherMarker', component: EyeCatcherMarker, decorators: [withKnobs] };
+export default { title: 'EyeCatcherMarker', component: EyeCatcherMarker };
 
 export const Default = () => (
   <Map credentials={config.map_credentials}>

@@ -1,11 +1,11 @@
-import { text, withKnobs } from '@root/.preview/src/modules/knobs';
+import { text } from '@root/.preview/src/modules/knobs';
 import config from '@root/config';
 import data from '../../sample_data';
 
 import ImageMarker from './index';
 import Map from '../map';
 
-export default { title: 'ImageMarker', component: ImageMarker, decorators: [withKnobs] };
+export default { title: 'ImageMarker', component: ImageMarker };
 
 export const Default = () => (
   <Map credentials={config.map_credentials}>

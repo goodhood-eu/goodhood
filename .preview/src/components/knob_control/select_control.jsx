@@ -1,5 +1,5 @@
 import { useControl, useKnob } from '../../modules/knobs/hooks';
-import { getOptionsObject } from './utils';
+import { findKey, getOptionsObject } from './utils';
 
 const SelectControl = ({ id }) => {
   const [value, setValue] = useControl(id);
@@ -7,22 +7,24 @@ const SelectControl = ({ id }) => {
   const options = getOptionsObject(providedOptions);
 
   const handleInput = (e) => {
-    const newValue = e.target.value;
-    setValue(newValue);
+    const { value: index } = e.target;
+    setValue(options[index]);
   };
 
   const renderOption = (optionLabel) => (
-    <option key={optionLabel} value={options[optionLabel]}>
+    <option key={optionLabel} value={optionLabel}>
       {optionLabel}
     </option>
   );
+
+  const activeKey = findKey(options, value);
 
   return (
     <label>
       <strong className="ui-label">
         {label}
       </strong>
-      <select value={value} onChange={handleInput} className="ui-input">
+      <select value={activeKey} onChange={handleInput} className="ui-input">
         {Object.keys(options).map(renderOption)}
       </select>
     </label>

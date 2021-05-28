@@ -1,9 +1,9 @@
-import { boolean, number, withKnobs } from '@root/.preview/src/modules/knobs';
+import { boolean, number } from '@root/.preview/src/modules/knobs';
 import { action } from '@root/.preview/src/modules/actions';
 import { REACTIONS } from '../constants';
 import ReactionsRow from './index';
 
-export default { title: 'ReactionsRow', component: ReactionsRow, decorators: [withKnobs] };
+export default { title: 'ReactionsRow', component: ReactionsRow };
 
 
 export const Default = () => {

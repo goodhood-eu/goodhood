@@ -6,3 +6,7 @@ export const getOptionsObject = (options) => {
     [option]: option,
   }), {});
 };
+
+export const findKey = (object, needle) => (
+  Object.keys(object).find((key) => object[key] === needle)
+);

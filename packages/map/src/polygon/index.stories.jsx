@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { select, withKnobs } from '@root/.preview/src/modules/knobs';
+import { select } from '@root/.preview/src/modules/knobs';
 import { action } from '@root/.preview/src/modules/actions';
 import config from '@root/config';
 import data from '../../sample_data';
@@ -20,7 +20,7 @@ const types = [
   POLYGON_DEFAULT,
 ];
 
-export default { title: 'Polygon', component: Polygon, decorators: [withKnobs] };
+export default { title: 'Polygon', component: Polygon };
 
 export const Default = () => {
   const type = select('Type', types, types[0]);
