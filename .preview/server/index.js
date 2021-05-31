@@ -23,6 +23,8 @@ const startListening = () => {
     serverSideRender: true,
   }));
 
+  app.use('/', express.static(path.resolve(__dirname, '../public')));
+
   app.use((req, res) => {
     const { devMiddleware } = res.locals.webpack;
     const { outputFileSystem, stats } = devMiddleware;
