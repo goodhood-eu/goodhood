@@ -10,6 +10,7 @@
   }
 }
 
-.activeLink {
+a.activeLink {
   font-weight: $font-weight-l;
+  color: $color-red-01;
 }
