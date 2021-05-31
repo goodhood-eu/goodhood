@@ -18,7 +18,7 @@ const NumberControl = ({ id }) => {
       </strong>
       <input
         type="number"
-        value={value}
+        value={value || ''}
         onChange={handleInput}
         className="ui-input"
         min={min}
