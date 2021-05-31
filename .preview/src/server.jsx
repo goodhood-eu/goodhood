@@ -2,6 +2,9 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import Routes from './routes';
 import KnobsProvider from './modules/knobs';
+import { loadConfig } from './modules/package';
+
+loadConfig();
 
 export default ({ location }) => {
   const routerContext = {};
