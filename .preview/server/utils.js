@@ -36,8 +36,8 @@ const getPrerenderedContent = (fs, webpackStats, params) => {
   try {
     app = _eval(compiled, asset, {}, true);
   } catch (e) {
-    console.warn(e);
-    throw new Error('Error evaluating app script');
+    console.error('Error evaluating app script');
+    throw e;
   }
 
   return app.default(params);
