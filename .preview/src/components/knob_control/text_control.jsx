@@ -26,7 +26,7 @@ const TextControl = ({ id }) => {
     input = (
       <input
         className="ui-input"
-        value={value}
+        value={value || ''}
         onChange={handleInput}
       />
     );

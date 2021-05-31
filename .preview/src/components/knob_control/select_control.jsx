@@ -8,7 +8,7 @@ const SelectControl = ({ id }) => {
 
   const handleInput = (e) => {
     const { value: index } = e.target;
-    setValue(options[index]);
+    setValue(() => options[index]);
   };
 
   const renderOption = (optionLabel) => (
