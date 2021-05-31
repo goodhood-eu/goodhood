@@ -1,7 +1,7 @@
 import { startCase, kebabCase } from 'lodash';
 
 const getExample = (module, namedExport, idPrefix) => {
-  const id = [idPrefix, namedExport].join('-');
+  const id = [idPrefix, kebabCase(namedExport)].join('--');
 
   return {
     id,
