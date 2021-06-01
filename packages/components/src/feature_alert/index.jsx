@@ -2,7 +2,7 @@ import { useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { invoke } from 'nebenan-helpers/lib/utils';
-import CrossIcon from '@goodhood/icons/lib/16x16/cross_filled';
+import CrossIcon from '@goodhood/icons/lib/tiny/cross_filled';
 
 import {
   useEscHandler,
