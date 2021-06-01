@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "1.7.0",
+  "version": "2.0.0",
   "scripts": {
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
     "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
@@ -29,6 +29,8 @@
     "chalk": "^4.1.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "styled-components": "^5.2.1",
