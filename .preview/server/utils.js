@@ -1,6 +1,8 @@
 const path = require('path');
 const _eval = require('eval');
 
+const HOT_UPDATE_ASSET = /\.hot-update\.js$/;
+
 const getStatsByName = (statsObj) => (
   statsObj.toJson().children.reduce((acc, stats) => ({
     [stats.name]: stats,
@@ -18,7 +20,8 @@ const normalizeAssets = (assets) => {
 
 const getAssets = (stats) => {
   const assetsByChunkName = stats.assetsByChunkName;
-  return normalizeAssets(assetsByChunkName.main);
+  return normalizeAssets(assetsByChunkName.main)
+    .filter((asset) => !HOT_UPDATE_ASSET.test(asset));
 };
 
 const filterForFileType = (array, ext) => array.filter((filePath) => filePath.endsWith(ext));

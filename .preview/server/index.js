@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const path = require('path');
 const express = require('express');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const { getPrerenderedContent } = require('./utils');
 const { getStatsByName } = require('./utils');
 const { getConfig, CONFIG_NAME_CLIENT, CONFIG_NAME_SERVER } = require('./webpack-config');
@@ -19,6 +20,7 @@ const startListening = () => {
   app.set('view engine', 'html');
 
   const compiler = webpack(getConfig());
+  app.use(webpackHotMiddleware(compiler));
   app.use(webpackDevMiddleware(compiler, {
     serverSideRender: true,
   }));

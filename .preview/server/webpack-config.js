@@ -4,6 +4,9 @@ const { DefinePlugin } = require('webpack');
 const { merge } = require('webpack-merge');
 const sassFunctions = require('sass-functions');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { HotModuleReplacementPlugin } = require('webpack');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+
 
 const CONFIG_NAME_CLIENT = 'client';
 const CONFIG_NAME_SERVER = 'server';
@@ -15,6 +18,7 @@ const CSS_REGEX = /\.s?css$/;
 const CSS_MODULE_REGEX = /\.module\.s?css$/;
 const ASSET_REGEX = /\.(jpe?g|png|gif|woff2?|ttf)$/;
 const SVG_REGEX = /\.svg$/;
+const SCRIPT_REGEX = /\.(js|jsx)$/;
 
 const getResolveAlias = () => ({
   '@root': ROOT_PKG_PATH,
@@ -36,19 +40,6 @@ const BASE_CONFIG = {
         test: path.join(ROOT_PKG_PATH, 'config/'),
         use: ['val-loader'],
       },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        sideEffects: false,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              rootMode: 'upward',
-            },
-          },
-        ],
-      },
     ],
   },
   plugins: [
@@ -57,51 +48,60 @@ const BASE_CONFIG = {
       'process.env': JSON.stringify({}),
     }),
   ],
+  optimization: {
+    emitOnErrors: false,
+  },
 };
 
-const getFileLoaders = ({ emitFile }) => ([
+const getScriptLoaders = ({ fastRefresh }) => ([{
+  loader: 'babel-loader',
+  options: {
+    rootMode: 'upward',
+    plugins: [
+      fastRefresh && require.resolve('react-refresh/babel'),
+    ].filter(Boolean),
+  },
+}]);
+
+const getFileLoaders = ({ emitFile }) => ([{
+  loader: 'file-loader',
+  options: {
+    name: 'static/[name].[hash:8].[ext]',
+    emitFile,
+  },
+}]);
+
+
+const getStyleLoaders = ({ modules, emitFile }) => ([
   {
-    loader: 'file-loader',
+    loader: 'css-loader',
     options: {
-      name: 'static/[name].[hash:8].[ext]',
-      emitFile,
+      modules: modules && {
+        exportOnlyLocals: !emitFile,
+        localIdentName: '[path][name]--[local]__[hash:base64:5]',
+      },
+    },
+  },
+  // Patches internal scss import paths for webpack to pick files up correctly.
+  // Mostly relevant for dependency imports
+  {
+    loader: 'resolve-url-loader',
+  },
+  {
+    loader: 'sass-loader',
+    options: {
+      implementation: sass,
+
+      sassOptions: {
+        includePaths: [
+          path.join(PKG_PATH, 'node_modules/'),
+          path.join(ROOT_PKG_PATH, 'node_modules/'),
+        ],
+        functions: sassFunctions({ sass }),
+      },
     },
   },
 ]);
-
-
-const getStyleLoaders = ({ modules, emitFile }) => (
-  [
-    {
-      loader: 'css-loader',
-      options: {
-        modules: modules && {
-          exportOnlyLocals: !emitFile,
-          localIdentName: '[path][name]--[local]__[hash:base64:5]',
-        },
-      },
-    },
-    // Patches internal scss import paths for webpack to pick files up correctly.
-    // Mostly relevant for dependency imports
-    {
-      loader: 'resolve-url-loader',
-    },
-    {
-      loader: 'sass-loader',
-      options: {
-        implementation: sass,
-
-        sassOptions: {
-          includePaths: [
-            path.join(PKG_PATH, 'node_modules/'),
-            path.join(ROOT_PKG_PATH, 'node_modules/'),
-          ],
-          functions: sassFunctions({ sass }),
-        },
-      },
-    },
-  ]
-);
 
 const getConfig = () => ([
   merge(BASE_CONFIG, {
@@ -115,6 +115,12 @@ const getConfig = () => ([
 
     module: {
       rules: [
+        {
+          test: SCRIPT_REGEX,
+          exclude: /node_modules/,
+          sideEffects: false,
+          use: getScriptLoaders({}),
+        },
         {
           test: CSS_REGEX,
           exclude: CSS_MODULE_REGEX,
@@ -149,10 +155,21 @@ const getConfig = () => ([
   merge(BASE_CONFIG, {
     name: CONFIG_NAME_CLIENT,
     devtool: 'inline-cheap-module-source-map',
-    entry: path.join(__dirname, '../src'),
+    entry: [
+      `webpack-hot-middleware/client?name=${CONFIG_NAME_CLIENT}`,
+      path.join(__dirname, '../src'),
+      'react-refresh/runtime',
+    ],
+    target: 'web',
 
     module: {
       rules: [
+        {
+          test: SCRIPT_REGEX,
+          exclude: /node_modules/,
+          sideEffects: false,
+          use: getScriptLoaders({ fastRefresh: true }),
+        },
         {
           test: CSS_REGEX,
           exclude: CSS_MODULE_REGEX,
@@ -193,7 +210,10 @@ const getConfig = () => ([
       new MiniCssExtractPlugin({
         filename: '[name].css',
         chunkFilename: '[name].css',
-      })],
+      }),
+      new HotModuleReplacementPlugin(),
+      new ReactRefreshWebpackPlugin(),
+    ],
   }),
 ]);
 
