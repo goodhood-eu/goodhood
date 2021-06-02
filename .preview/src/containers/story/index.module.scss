@@ -12,11 +12,50 @@
 }
 
 .panel {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  border-top: $border-dark;
+  display: flex;
 
-  > * {
-    overflow: auto;
+  &.isExpanded {
+    .menu {
+      display: block;
+      flex: 1 0;
+    }
+
+    .knobs {
+      display: none;
+    }
+  }
+}
+
+.menu {
+  display: none;
+}
+
+.knobs {
+  flex: 1 0;
+  overflow: auto;
+}
+
+.menuButton {
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media ($media-m) {
+  .menuButton {
+    display: none;
+  }
+
+  .panel.isExpanded,
+  .panel {
+    .knobs {
+      display: block;
+    }
+
+    .menu {
+      max-width: 200px;
+      display: block;
+    }
   }
 }
