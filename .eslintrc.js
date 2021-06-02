@@ -50,7 +50,7 @@ module.exports = {
     {
       files: ['.preview/**/*'],
 
-      // Use react package template as baseline for @-imports in storybook
+      // Use react package template as baseline for @-imports in preview
       ...getPackageOptions('package-templates/react'),
     },
     ...getPackages().map(getOverridesForPackage),

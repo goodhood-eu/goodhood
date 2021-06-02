@@ -1,4 +1,4 @@
-.storybook/
+.preview/
 src/
 .babelrc
 .eslintrc
