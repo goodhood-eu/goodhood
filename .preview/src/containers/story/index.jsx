@@ -5,12 +5,12 @@ import { useState } from 'react';
 import Layout from '../../components/layout';
 import styles from './index.module.scss';
 import { getExampleIdFromParams } from './utils';
-import storiesStore from './stories_store';
+import store from './store';
 import Menu from './menu';
 import Knobs from './knobs';
 
 
-const { entities } = storiesStore;
+const { entities } = store;
 
 const Story = ({ match }) => {
   const [isExpanded, setExpanded] = useState(true);

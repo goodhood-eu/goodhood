@@ -2,9 +2,9 @@ import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 import styles from './menu.module.scss';
 import { getExampleUrl } from './utils';
-import storiesStore from './stories_store';
+import store from './store';
 
-const { entities, stories } = storiesStore;
+const { entities, stories } = store;
 
 const Menu = ({ className }) => {
   const renderExample = (id) => {
