@@ -47,7 +47,7 @@ const getPrerenderedContent = (fs, webpackStats, params) => {
 };
 
 const getClientAssets = (webpackStats) => {
-  const publicPath = '/'; // TODO: check if ok in the long run
+  const { publicPath } = webpackStats;
 
   const assets = getAssets(webpackStats);
   const publicAssets = assets.map((asset) => `${publicPath}${asset}`);
