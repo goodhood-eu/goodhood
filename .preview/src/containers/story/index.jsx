@@ -23,9 +23,7 @@ const Story = ({ match }) => {
     <Layout>
       <article className={styles.root}>
         <div className={styles.story}>
-          {example && (
-            <example.Component />
-          )}
+          {example && <example.Component />}
         </div>
         <div className={clsx(styles.panel, { [styles.isExpanded]: isExpanded })}>
           <span className={clsx(styles.menuButton, 'ui-link')} onClick={handleToggle}>
