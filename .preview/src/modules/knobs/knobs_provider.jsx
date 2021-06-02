@@ -6,30 +6,32 @@ import { TYPE_REGISTER, TYPE_UNREGISTER, TYPE_UPDATE_VALUE, useKnobsState } from
 const KnobsProvider = ({ children }) => {
   const [state, dispatch] = useKnobsState();
 
-  const handleRegister = (options) => {
-    const id = uniqueId();
-    dispatch({ type: TYPE_REGISTER, payload: { id, ...options } });
+  const contextValue = useMemo(() => {
+    const handleRegister = (options) => {
+      const id = uniqueId();
+      dispatch({ type: TYPE_REGISTER, payload: { id, ...options } });
 
-    return id;
-  };
+      return id;
+    };
 
-  const handleUnregister = (id) => {
-    dispatch({ type: TYPE_UNREGISTER, payload: { id } });
-  };
+    const handleUnregister = (id) => {
+      dispatch({ type: TYPE_UNREGISTER, payload: { id } });
+    };
 
-  const handleValueUpdate = (id, value) => {
-    dispatch({ type: TYPE_UPDATE_VALUE, payload: { id, value } });
-  };
+    const handleValueUpdate = (id, value) => {
+      dispatch({ type: TYPE_UPDATE_VALUE, payload: { id, value } });
+    };
 
-  const value = useMemo(() => ({
-    register: handleRegister,
-    unregister: handleUnregister,
-    updateValue: handleValueUpdate,
-    ...state,
-  }), [state]);
+    return ({
+      register: handleRegister,
+      unregister: handleUnregister,
+      updateValue: handleValueUpdate,
+      ...state,
+    });
+  }, [state]);
 
   return (
-    <Context.Provider value={value}>
+    <Context.Provider value={contextValue}>
       {children}
     </Context.Provider>
   );
