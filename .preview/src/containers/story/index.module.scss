@@ -9,6 +9,7 @@
   padding: $offset-m;
   overflow: auto;
   background-color: #fff;
+  position: relative;
 }
 
 .panel {
@@ -28,6 +29,7 @@
 
 .menu {
   display: none;
+  overflow: auto;
 }
 
 .knobs {
