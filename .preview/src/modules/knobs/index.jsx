@@ -9,12 +9,15 @@ export const number = (label, defaultValue, options) => (
 export const select = (label, options, defaultValue) => (
   useConnectedKnob({ label, defaultValue, options, type: SELECT })
 );
+
 export const text = (label, defaultValue) => (
   useConnectedKnob({ label, defaultValue, type: TEXT })
 );
+
 export const boolean = (label, defaultValue) => (
   useConnectedKnob({ label, defaultValue, type: BOOLEAN })
 );
+
 export const button = (label, handler) => (
   useConnectedKnob({ label, defaultValue: null, type: BUTTON, handler })
 );
