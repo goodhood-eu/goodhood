@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import InfoIcon from '@goodhood/icons/lib/20x20/info_1';
+import InfoIcon from '@goodhood/icons/lib/small/info_1';
 
 import Marker from '../marker';
 import styles from './index.module.scss';

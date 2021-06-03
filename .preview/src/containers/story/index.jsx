@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import ArrowRight1 from '@goodhood/icons/lib/20x20/arrow_right_1';
-import ArrowLeft1 from '@goodhood/icons/lib/20x20/arrow_left_1';
+import ArrowRight1 from '@goodhood/icons/lib/small/arrow_right_1';
+import ArrowLeft1 from '@goodhood/icons/lib/small/arrow_left_1';
 import { useState } from 'react';
 import Layout from '../../components/layout';
 import styles from './index.module.scss';

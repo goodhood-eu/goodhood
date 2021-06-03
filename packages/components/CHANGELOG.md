@@ -1,3 +1,7 @@
+## v6.0.0 Breaking changes
+
+- Bump `@goodhood/icons` peer dependency to `^2.0.0`
+
 ## v5.0.0 Breaking changes
 
 - Removed `PhraseControls` and `PhraseLoader` components (failed experiment)

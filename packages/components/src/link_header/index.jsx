@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
-import ArrowLeftIcon from '@goodhood/icons/lib/16x16/arrow_left';
-import ArrowRightIcon from '@goodhood/icons/lib/16x16/arrow_right';
+import ArrowLeftIcon from '@goodhood/icons/lib/tiny/arrow_left';
+import ArrowRightIcon from '@goodhood/icons/lib/tiny/arrow_right';
 import styles from './index.module.scss';
 import defaultTheme from './default_theme.module.scss';
 

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "5.1.0",
+  "version": "6.0.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.12.5",
-    "@goodhood/icons": "^1.5.0",
+    "@goodhood/icons": "^2.0.0",
     "clsx": "^1.1.1",
     "date-fns": "^2.16.1",
     "lodash": "^4.17.20",
@@ -53,7 +53,7 @@
   },
   "peerDependencies": {
     "@babel/runtime": "^7.12.5",
-    "@goodhood/icons": "^1.5.0",
+    "@goodhood/icons": "^2.0.0",
     "clsx": "^1.1.1",
     "lodash": "^4.17.20",
     "nebenan-form": "^8.9.0 || ^9.0.0",

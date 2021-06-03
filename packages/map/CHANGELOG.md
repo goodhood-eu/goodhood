@@ -1,3 +1,6 @@
+## v6.0.0 Changes
+- Bump `@goodhood/icons` peer dependency to `^2.0.0`
+
 ## v5.0.0 Changes
 - Migrate to maplibre (no breaking changes in API)
 

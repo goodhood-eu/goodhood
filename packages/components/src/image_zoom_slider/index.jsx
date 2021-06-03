@@ -1,8 +1,8 @@
 import { useCallback, useContext, useRef } from 'react';
 import { useStateControlledInput } from 'nebenan-form/lib/base';
 import clsx from 'clsx';
-import Plus1OutlineIcon from '@goodhood/icons/lib/20x20/plus_1_outline';
-import MinusIcon from '@goodhood/icons/lib/20x20/minus';
+import Plus1OutlineIcon from '@goodhood/icons/lib/small/plus_1_outline';
+import MinusIcon from '@goodhood/icons/lib/small/minus';
 import styles from './index.module.scss';
 import Slider from '../slider';
 import Context from '../image_zoom_provider/context';
