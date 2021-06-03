@@ -10,12 +10,12 @@ const getStatsByName = (statsObj) => (
   }), {})
 );
 
-const wrapArray = (regex) => (Array.isArray(regex) ? regex : [regex]);
+const getArray = (regex) => (Array.isArray(regex) ? regex : [regex]);
 
 const normalizeAssets = (assets) => {
   if (typeof assets === 'object') return Object.values(assets);
 
-  return wrapArray(assets);
+  return getArray(assets);
 };
 
 const getAssets = (stats) => {
