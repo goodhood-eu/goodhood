@@ -1,13 +1,11 @@
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const path = require('path');
 const express = require('express');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const { getPrerenderedContent } = require('./utils');
-const { getStatsByName } = require('./utils');
+const { getStatsByName, getClientAssets, getPrerenderedContent } = require('./utils');
 const { getConfig, CONFIG_NAME_CLIENT, CONFIG_NAME_SERVER } = require('./webpack-config');
 const template = require('../templates');
-const { getClientAssets } = require('./utils');
 
 const startListening = () => {
   const host = process.env.HOST || 'localhost';
