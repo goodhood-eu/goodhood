@@ -1,5 +1,5 @@
-import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { boolean, select, text } from '@root/.preview/src/modules/knobs';
+import { action } from '@root/.preview/src/modules/actions';
 import config from '@root/config';
 import data from '../../sample_data';
 
@@ -27,7 +27,7 @@ const types = [
   PIN_MARKER_BLUE,
 ];
 
-export default { title: 'PinMarker', component: PinMarker, decorators: [withKnobs] };
+export default { title: 'PinMarker', component: PinMarker };
 
 export const Default = () => {
   const type = select('Type', types, types[0]);

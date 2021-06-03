@@ -1,4 +1,4 @@
-import { text, withKnobs } from '@storybook/addon-knobs';
+import { text } from '@root/.preview/src/modules/knobs';
 import { MemoryRouter } from 'react-router';
 import Markdown from './index';
 import longText from './long_text.fixture';
@@ -7,7 +7,7 @@ const STORY_PARAMETERS = {
   knobs: { escapeHTML: false },
 };
 
-export default { title: 'Markdown', component: Markdown, decorators: [withKnobs] };
+export default { title: 'Markdown', component: Markdown };
 
 export const Default = () => (
   <MemoryRouter>

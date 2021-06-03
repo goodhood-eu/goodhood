@@ -21,7 +21,7 @@ export const getBoundingBox = (bounds) => {
 
 export const mergeLayersBounds = (bounds) => {
   if (!isFilledArray(bounds)) return undefined;
-  return bounds.flat(1);
+  return [].concat(...bounds);
 };
 
 export const isSinglePoint = (boundingBox) => {

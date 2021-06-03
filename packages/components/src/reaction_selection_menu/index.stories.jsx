@@ -1,10 +1,9 @@
-import { withKnobs } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { action } from '@root/.preview/src/modules/actions';
 import ReactionSelectionMenu from './index';
 import { REACTION_BRAVO, REACTION_GOOD_IDEA, REACTION_LOVE, REACTION_THANK_YOU } from '../constants';
 import styles from './index.stories.module.scss';
 
-export default { title: 'ReactionSelectionMenu', component: ReactionSelectionMenu, decorators: [withKnobs] };
+export default { title: 'ReactionSelectionMenu', component: ReactionSelectionMenu };
 
 const STRINGS = {
   [REACTION_THANK_YOU]: 'Thank You',

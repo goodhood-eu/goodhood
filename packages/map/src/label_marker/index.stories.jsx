@@ -1,4 +1,4 @@
-import { text, withKnobs } from '@storybook/addon-knobs';
+import { text } from '@root/.preview/src/modules/knobs';
 import config from '@root/config';
 import data from '../../sample_data';
 
@@ -6,7 +6,7 @@ import LabelMarker from './index';
 import Map from '../map';
 
 
-export default { title: 'LabelMarker', component: LabelMarker, decorators: [withKnobs] };
+export default { title: 'LabelMarker', component: LabelMarker };
 
 export const Default = () => (
   <Map credentials={config.map_credentials}>

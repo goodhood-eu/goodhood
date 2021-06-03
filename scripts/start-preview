@@ -1,0 +1,4 @@
+#!/bin/sh
+# expects cwd to be subpackage root
+node ../../.preview/app
+

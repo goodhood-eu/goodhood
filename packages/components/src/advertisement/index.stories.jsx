@@ -1,11 +1,11 @@
-import { text, withKnobs } from '@storybook/addon-knobs';
+import { text } from '@root/.preview/src/modules/knobs';
 
 import Advertisement from './index';
 
 const domain = 'nebenan.de';
 const src = 'https://adn.nebenan.de/adn.js';
 
-export default { title: 'Advertisement', component: Advertisement, decorators: [withKnobs] };
+export default { title: 'Advertisement', component: Advertisement };
 
 // Most props are passed directly to the Ad library
 // See full list of options here:

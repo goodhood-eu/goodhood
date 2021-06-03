@@ -112,4 +112,4 @@ const App = () => (
       import { PortalLink, Action } from '@goodhood/chargebee';
     ```
 - Create `src/*/index.stories.jsx`
-  - Storybook will take it up automatically
+  - Preview will take it up automatically

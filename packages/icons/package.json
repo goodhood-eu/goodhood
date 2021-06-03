@@ -13,11 +13,10 @@
   },
   "version": "2.0.0-beta.0",
   "scripts": {
-    "reinstall": "rm -rf node_modules package-lock.json && npm install",
+    "reinstall": "rm -rf node_modules && yarn install",
     "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
     "start": "webpack serve",
-    "build": "rm -rf ./lib && node scripts/build.js",
-    "update:lock": "npm i --package-lock-only --no-audit --no-fund"
+    "build": "rm -rf ./lib && node scripts/build.js"
   },
   "files": [
     "/lib"
@@ -31,6 +30,7 @@
     "html-webpack-plugin": "^4.5.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-is": "^16.13.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "styled-components": "^5.2.1",

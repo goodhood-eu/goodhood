@@ -19,12 +19,11 @@
     "/lib"
   ],
   "scripts": {
-    "reinstall": "rm -rf node_modules package-lock.json && npm install",
+    "reinstall": "rm -rf node_modules && yarn install",
     "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
     "build": "rollup --config rollup.config.js",
-    "start": "../../scripts/start-storybook",
-    "test": "../../scripts/run-tests",
-    "update:lock": "npm i --package-lock-only --no-audit --no-fund"
+    "start": "../../scripts/start-preview",
+    "test": "../../scripts/run-tests"
   },
   "devDependencies": {
     "react-load-script": "0.0.6"

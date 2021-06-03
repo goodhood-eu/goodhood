@@ -1,11 +1,11 @@
 import config from '@root/config';
-import { number, withKnobs } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { number } from '@root/.preview/src/modules/knobs';
+import { action } from '@root/.preview/src/modules/actions';
 import Component from './index';
 
 const getConfigKeys = () => Object.keys(config);
 
-export default { title: 'TestTitle', component: Component, decorators: [withKnobs] };
+export default { title: 'TestTitle', component: Component };
 
 export const Default = () => <Component />;
 export const WithOneNumber = () => <Component numberA={123} />;

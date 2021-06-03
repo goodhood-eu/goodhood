@@ -4,3 +4,5 @@ node_modules
 lerna-debug.log
 config/local.js
 reports
+
+yarn-error.log
