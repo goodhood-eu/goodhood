@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { number, withKnobs } from '@storybook/addon-knobs';
+import { number } from '@root/.preview/src/modules/knobs';
 import config from '@root/config';
 import transformRotate from '@turf/transform-rotate';
 import circle from '@turf/circle';
@@ -9,7 +9,7 @@ import { CIRCLE_ACTIVE, POLYGON_ACTIVE } from '..';
 import Circle from '../circle';
 import data from '../../sample_data';
 
-export default { title: 'Performance', decorators: [withKnobs] };
+export default { title: 'Performance' };
 
 const LON_SPACE = 0.0001;
 const LAT_SPACE = 0.0001;

@@ -1,8 +1,8 @@
-import { text, boolean, withKnobs } from '@storybook/addon-knobs';
+import { text, boolean } from '@root/.preview/src/modules/knobs';
 
 import CookiesForm from './index';
 
-export default { title: 'CookiesForm', component: CookiesForm, decorators: [withKnobs] };
+export default { title: 'CookiesForm', component: CookiesForm };
 
 export const Default = () => {
   const defaultModel = {

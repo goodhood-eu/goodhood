@@ -16,12 +16,11 @@
   "main": "lib/index.js",
   "sideEffects": false,
   "scripts": {
-    "reinstall": "rm -rf node_modules package-lock.json && npm install",
+    "reinstall": "rm -rf node_modules && yarn install",
     "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
     "build": "rollup --config rollup.config.js",
-    "start": "../../scripts/start-storybook",
-    "test": "../../scripts/run-tests",
-    "update:lock": "npm i --package-lock-only --no-audit --no-fund"
+    "start": "../../scripts/start-preview",
+    "test": "../../scripts/run-tests"
   },
   "devDependencies": {
     "@turf/circle": "^6.0.1",

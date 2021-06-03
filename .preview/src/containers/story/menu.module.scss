@@ -1,0 +1,16 @@
+@import "nebenan-ui-kit";
+
+.root {
+  padding: $offset-m;
+  border-right: $border-dark;
+
+  ul {
+    margin-bottom: 5px;
+    padding-left: 15px;
+  }
+}
+
+a.activeLink {
+  font-weight: $font-weight-l;
+  color: $color-red-01;
+}

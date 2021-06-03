@@ -1,9 +1,9 @@
-import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { boolean, select, text } from '@root/.preview/src/modules/knobs';
+import { action } from '@root/.preview/src/modules/actions';
 import { MemoryRouter } from 'react-router';
 import LinkHeader, { LinkHeaderLinkTheme } from './index';
 
-export default { title: 'LinkHeader', component: LinkHeader, decorators: [withKnobs] };
+export default { title: 'LinkHeader', component: LinkHeader };
 
 export const WithRouter = () => (
   <MemoryRouter>

@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { button, select, withKnobs } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { button, select } from '@root/.preview/src/modules/knobs';
+import { action } from '@root/.preview/src/modules/actions';
 import Input from 'nebenan-form/lib/input';
 import NetworkForm from './index';
 import { UNKNOWN_ERROR } from './constants';
 
-export default { title: 'NetworkForm', component: NetworkForm, decorators: [withKnobs] };
+export default { title: 'NetworkForm', component: NetworkForm };
 
 const ERROR_LABELS = {
   [UNKNOWN_ERROR]: 'Server sent us bad stuff, yo',

@@ -185,4 +185,4 @@ const App = () => (
       import { Map, MapType } from '@goodhood/map';
     ```
 - Create `src/*/index.stories.jsx`
-  - Storybook will take it up automatically
+  - Preview will take it up automatically

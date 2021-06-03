@@ -1,4 +1,4 @@
-import { text, select, withKnobs } from '@storybook/addon-knobs';
+import { text, select } from '@root/.preview/src/modules/knobs';
 import Tooltip from './index';
 import styles from './index.stories.module.scss';
 import {
@@ -10,7 +10,7 @@ import {
 
 const TOOLTIP_PLACEHOLDER = 'Design is like a joke.';
 
-export default { title: 'Tooltip', component: Tooltip, decorators: [withKnobs] };
+export default { title: 'Tooltip', component: Tooltip };
 
 const POSITIONING_OPTIONS = {
   top: TOOLTIP_POSITION_TOP,

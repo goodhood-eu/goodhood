@@ -1,8 +1,8 @@
-import { select, withKnobs } from '@storybook/addon-knobs';
+import { select } from '@root/.preview/src/modules/knobs';
 import ReactionIconBubble from './index';
 import { REACTIONS } from '../constants';
 
-export default { title: 'ReactionIconBubble', component: ReactionIconBubble, decorators: [withKnobs] };
+export default { title: 'ReactionIconBubble', component: ReactionIconBubble };
 
 export const Default = () => {
   const reaction = select('reaction', REACTIONS, REACTIONS[0]);

@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const svgoConfig = require('./svgo.config');
 
-const PREVIEW = `${__dirname}/preview`;
+const PREVIEW = `${__dirname}/.preview`;
 
 module.exports = {
   mode: 'development',
@@ -24,7 +24,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve('./preview/icon_list.js'),
+        test: require.resolve('./.preview/icon_list.js'),
         enforce: 'pre',
         use: ['val-loader'],
       },

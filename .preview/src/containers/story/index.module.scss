@@ -1,0 +1,63 @@
+@import "nebenan-ui-kit";
+
+.root {
+  display: grid;
+  grid-template-rows: 5fr minmax(0, 3fr);
+}
+
+.story {
+  padding: $offset-m;
+  overflow: auto;
+  background-color: #fff;
+  position: relative;
+}
+
+.panel {
+  display: flex;
+
+  &.isExpanded {
+    .menu {
+      display: block;
+      flex: 1 0;
+    }
+
+    .knobs {
+      display: none;
+    }
+  }
+}
+
+.menu {
+  display: none;
+  overflow: auto;
+}
+
+.knobs {
+  flex: 1 0;
+  overflow: auto;
+}
+
+.menuButton {
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media ($media-m) {
+  .menuButton {
+    display: none;
+  }
+
+  .panel.isExpanded,
+  .panel {
+    .knobs {
+      display: block;
+    }
+
+    .menu {
+      max-width: 200px;
+      display: block;
+    }
+  }
+}

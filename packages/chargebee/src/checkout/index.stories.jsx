@@ -1,5 +1,5 @@
 import config from '@root/config';
-import { action } from '@storybook/addon-actions';
+import { action } from '@root/.preview/src/modules/actions';
 import Checkout from './index';
 
 export default { title: 'Checkout', component: Checkout };

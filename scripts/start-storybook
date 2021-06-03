@@ -1,4 +1,0 @@
-#!/bin/sh
-# expects cwd to be subpackage root
-start-storybook -p 3000 --ci --config-dir ../../.storybook
-

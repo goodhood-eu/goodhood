@@ -1,5 +1,5 @@
 import config from '@root/config';
-import { action } from '@storybook/addon-actions';
+import { action } from '@root/.preview/src/modules/actions';
 import PortalLink from './index';
 import { SECTION_INVOICES } from '../constants';
 

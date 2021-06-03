@@ -1,9 +1,9 @@
 import config from '@root/config';
-import { action } from '@storybook/addon-actions';
-import { boolean, withKnobs } from '@storybook/addon-knobs';
+import { action } from '@root/.preview/src/modules/actions';
+import { boolean } from '@root/.preview/src/modules/knobs';
 import Action from './index';
 
-export default { title: 'Action', component: Action, decorators: [withKnobs] };
+export default { title: 'Action', component: Action };
 
 export const Default = () => (
   <Action

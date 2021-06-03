@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import config from '@root/config';
-import { boolean, number, withKnobs } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { boolean, number } from '@root/.preview/src/modules/knobs';
+import { action } from '@root/.preview/src/modules/actions';
 import Map from '../map';
 import data from '../../sample_data';
 import Marker from '../marker';
 import Popup from './index';
 
 
-export default { title: 'Popup', component: Popup, decorators: [withKnobs] };
+export default { title: 'Popup', component: Popup };
 
 const useCurrentTime = () => {
   const [time, setTime] = useState(null);

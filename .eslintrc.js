@@ -17,6 +17,7 @@ const getPackageOptions = (pkg) => ({
     ],
   },
   settings: {
+    'import/internal-regex': /^@root/,
     'import/resolver': {
       alias: {
         map: [
@@ -47,9 +48,9 @@ module.exports = {
       },
     },
     {
-      files: ['.storybook/**/*'],
+      files: ['.preview/**/*'],
 
-      // Use react package template as baseline for @-imports in storybook
+      // Use react package template as baseline for @-imports in preview
       ...getPackageOptions('package-templates/react'),
     },
     ...getPackages().map(getOverridesForPackage),

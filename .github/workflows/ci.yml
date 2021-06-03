@@ -9,7 +9,8 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: '12.x'
-    - run: npm ci
+        node-version: '14.x'
+    - run: npm i -g npm@7 --registry=https://registry.npmjs.org
+    - run: npm run ci
     - run: npm run check
 

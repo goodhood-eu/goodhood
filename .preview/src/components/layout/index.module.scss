@@ -1,0 +1,19 @@
+@import "nebenan-ui-kit";
+
+.root {
+  height: 100vh;
+  display: grid;
+
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.header {
+  padding: $offset-m;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: $border-dark;
+
+  > h1 {
+    margin: 0;
+  }
+}
