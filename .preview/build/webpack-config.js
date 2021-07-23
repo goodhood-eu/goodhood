@@ -119,7 +119,7 @@ const getConfig = () => (
           test: SCRIPT_REGEX,
           exclude: /node_modules/,
           sideEffects: false,
-          use: getScriptLoaders({ fastRefresh: true }),
+          use: getScriptLoaders({ fastRefresh: false }),
         },
         {
           test: CSS_REGEX,
