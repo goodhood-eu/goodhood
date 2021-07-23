@@ -21,7 +21,7 @@ const getResolveAlias = () => ({
   '@': PKG_PATH,
 });
 
-const publicPath = `/goodhood/${path.relative(ROOT_PKG_PATH, PKG_PATH)}/preview`;
+const publicPath = `/goodhood/${path.relative(ROOT_PKG_PATH, PKG_PATH)}/preview/`;
 
 const BASE_CONFIG = {
   mode: 'development',
