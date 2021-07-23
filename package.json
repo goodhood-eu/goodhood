@@ -94,6 +94,7 @@
     "reinstall": "rm -rf node_modules yarn.lock && yarn",
     "ci": "yarn install --frozen-lockfile",
     "build": "lerna exec --parallel --no-bail yarn run build",
+    "tryBuild:preview": "lerna exec --parallel --no-bail yarn run build:preview || true",
     "tryBuild": "lerna exec --parallel --no-bail yarn run build || true",
     "lint": "npm run eslint && npm run stylelint",
     "eslint": "eslint -f codeframe \"./**/*.{js,jsx}\" ",

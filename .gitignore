@@ -6,3 +6,5 @@ config/local.js
 reports
 
 yarn-error.log
+
+packages/*/preview
