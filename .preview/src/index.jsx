@@ -28,7 +28,8 @@ if (isPrerender) {
   document.body.appendChild(node);
 
   render((
-    <HashRouter basename={process.env.publicPath}>
+    // eslint-disable-next-line no-undef
+    <HashRouter basename={PUBLIC_PATH}>
       {Component}
     </HashRouter>
   ), node);
