@@ -21,7 +21,8 @@ const getResolveAlias = () => ({
   '@': PKG_PATH,
 });
 
-const publicPath = `/goodhood/${path.relative(ROOT_PKG_PATH, PKG_PATH)}/preview/`;
+const relativePath = `${path.relative(ROOT_PKG_PATH, PKG_PATH)}`;
+const publicPath = `/goodhood/${relativePath}/preview/`;
 
 const BASE_CONFIG = {
   mode: 'development',
@@ -48,7 +49,7 @@ const BASE_CONFIG = {
         publicPath,
       }),
     }),
-    new HtmlWebpackPlugin({ title: "TODO pkg name" }),
+    new HtmlWebpackPlugin({ title: relativePath }),
   ],
   optimization: {
     emitOnErrors: false,
