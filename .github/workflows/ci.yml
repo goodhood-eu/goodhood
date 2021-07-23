@@ -24,7 +24,7 @@ jobs:
           node-version: '14.x'
       - run: npm i -g npm@7 --registry=https://registry.npmjs.org
       - run: npm run ci
-      - run: npm run build:preview
+      - run: npm run tryBuild:preview
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
