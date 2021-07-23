@@ -6,7 +6,7 @@ const svgoConfig = require('./svgo.config');
 const PREVIEW = `${__dirname}/.preview`;
 
 const publicPath = process.env.BUILD
-  ? '/packages/icons/preview/'
+  ? '/goodhood/packages/icons/preview/'
   : '/';
 
 module.exports = {
