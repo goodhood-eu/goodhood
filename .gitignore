@@ -7,4 +7,5 @@ reports
 
 yarn-error.log
 
-packages/*/preview
+# do not exclude packages/*/preview, otherwise github-pages integration
+# stops working
