@@ -17,7 +17,7 @@
     "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
     "start": "webpack serve",
     "build": "rm -rf ./lib && node scripts/build.js",
-    "build:preview": "webpack --output-path ./.preview/dist"
+    "build:preview": "BUILD=true webpack build"
   },
   "files": [
     "/lib"

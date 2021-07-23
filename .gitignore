@@ -7,4 +7,4 @@ reports
 
 yarn-error.log
 
-packages/*/.preview/dist
+packages/*/preview
