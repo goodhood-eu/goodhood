@@ -1,4 +1,4 @@
-import { hydrate } from 'react-dom';
+import { hydrate, render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './routes';
 import './index.scss';
@@ -8,11 +8,20 @@ import { loadConfig } from './modules/package';
 loadConfig();
 
 const Component = (
-  <BrowserRouter>
+  <BrowserRouter basename={process.env.publicPath}>
     <KnobsProvider>
       <Routes />
     </KnobsProvider>
   </BrowserRouter>
 );
 
-hydrate(Component, document.getElementById('main'));
+
+const mainNode = document.getElementById('main');
+
+if (mainNode) {
+  hydrate(Component, mainNode);
+} else {
+  const node = document.createElement('main');
+  document.body.appendChild(node);
+  render(Component, node);
+}
