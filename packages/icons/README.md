@@ -3,6 +3,8 @@
 
 SVG icons to use in GoodHood projects
 
+- [Preview](https://goodhood-eu.github.io/goodhood/packages/icons/preview/)
+
 ### How to:
 ```
 npm install
