@@ -1,0 +1,33 @@
+{
+  "name": "@goodhood/modals",
+  "description": "Modal components",
+  "author": "goodhood.eu <max@nebenan.de>",
+  "license": "SEE LICENSE IN LICENSE FILE",
+  "homepage": "https://goodhood.eu/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goodhood-eu/goodhood.git"
+  },
+  "bugs": {
+    "url": "https://github.com/goodhood-eu/goodhood/issues"
+  },
+  "version": "0.0.1",
+  "module": "lib/index.esm.js",
+  "main": "lib/index.js",
+  "sideEffects": false,
+  "files": [
+    "/lib"
+  ],
+  "scripts": {
+    "reinstall": "rm -rf node_modules && yarn install",
+    "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
+    "build": "rollup --config rollup.config.js",
+    "start": "../../scripts/start-preview",
+    "test": "../../scripts/run-tests"
+  },
+  "peerDependencies": {
+    "@babel/runtime": "^7.11.2",
+    "prop-types": "^15.7.2",
+    "react": "^16.14.0"
+  }
+}
