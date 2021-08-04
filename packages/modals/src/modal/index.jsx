@@ -12,7 +12,7 @@ import {
   useUnmount,
 } from './hooks';
 import { useModalProvider } from '../provider/hooks';
-import Portal from '../../portal';
+import Portal from '../portal';
 
 import styles from './index.module.scss';
 
