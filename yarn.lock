@@ -7655,6 +7655,11 @@ jest-worker@^26.6.2:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
+js-cookie@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-2.2.1.tgz#69e106dc5d5806894562902aa5baec3744e9b2b8"
+  integrity sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -8846,6 +8851,13 @@ nebenan-react-hocs@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/nebenan-react-hocs/-/nebenan-react-hocs-8.0.0.tgz#fc617ee38e22867f94349a7ae60c997a6fd066d2"
   integrity sha512-4XMR1g3DFdMJXp1EcjDkLrjM/4O2ep1GfJqDLXdUL8ihYqL7wV+KRfSs0HFn6Tf5HsyTne4DUNapKLajjxdrGA==
+
+nebenan-redux-tools@^5.11.0:
+  version "5.11.0"
+  resolved "https://registry.yarnpkg.com/nebenan-redux-tools/-/nebenan-redux-tools-5.11.0.tgz#41cf8a278fd68dbbbfd6fb54b2b8910673e19683"
+  integrity sha512-KV3oYMgfDqTVFHWGvxUwA6tvFk/fE5Az09tU/Pv9vrNp8i1yccjasvNpyljcdpQY0kDnTKhenQjzughmu5VDNw==
+  dependencies:
+    js-cookie "^2.2.1"
 
 nebenan-rollup-plugin-postcss@^1.0.0:
   version "1.0.0"

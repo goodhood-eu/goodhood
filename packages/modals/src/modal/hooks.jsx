@@ -1,9 +1,7 @@
 import { useEffect, useImperativeHandle, useRef } from 'react';
 import keymanager from 'nebenan-helpers/lib/keymanager';
 import { invoke } from 'nebenan-helpers/lib/utils';
-import { track } from 'nebenan-services/lib/analytics';
 import { useModalProvider } from '../provider/hooks';
-
 
 export const useUnmount = (onUnmount) => {
   const ref = useRef();
@@ -31,7 +29,7 @@ export const useTrack = (containerRef) => {
         payload.data_track = node.getAttribute('data-track');
       }
 
-      track(payload);
+      // TOOD: track payload
     };
 
     trackModalEvent('modal_open');
