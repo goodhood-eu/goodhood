@@ -39,7 +39,6 @@
     "@goodhood/components": "^6.1.0",
     "@goodhood/icons": "^2.2.0",
     "nebenan-helpers": "^5.0.0",
-    "nebenan-redux-tools": "^5.11.0",
     "nebenan-ui-kit": "^5.3.0"
   }
 }
