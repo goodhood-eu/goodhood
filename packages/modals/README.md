@@ -1,6 +1,6 @@
 # `@goodhood/modals`
 
-> React map components
+> React modal components
 
 ## Install
 
