@@ -23,7 +23,7 @@ export const Default = () => {
           onClose={() => setActive(false)}
         >
           <ul>
-            {[...(new Int8Array(100))].map((value, key) => (
+            {[...(new Uint8Array(0x64))].map((value, key) => (
               <li key={key}>Item {key}</li>
             ))}
           </ul>
