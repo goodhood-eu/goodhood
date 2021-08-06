@@ -1,0 +1,15 @@
+@import '~nebenan-ui-kit';
+
+.root {
+  > header {
+    border-bottom: $border-dark;
+  }
+
+  img {
+    display: block;
+
+    + .ui-card-section {
+      border-top: none;
+    }
+  }
+}
