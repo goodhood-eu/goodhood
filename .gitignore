@@ -6,3 +6,6 @@ config/local.js
 reports
 
 yarn-error.log
+
+# do not exclude packages/*/preview, otherwise github-pages integration
+# stops working

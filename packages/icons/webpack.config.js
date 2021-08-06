@@ -1,7 +1,13 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const { DefinePlugin } = require('webpack');
 const svgoConfig = require('./svgo.config');
 
 const PREVIEW = `${__dirname}/.preview`;
+
+const publicPath = process.env.BUILD
+  ? '/goodhood/packages/icons/preview/'
+  : '/';
 
 module.exports = {
   mode: 'development',
@@ -16,7 +22,14 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({ title: 'Icons preview' }),
+    new DefinePlugin({
+      PUBLIC_PATH: JSON.stringify(publicPath),
+    }),
   ],
+  output: {
+    path: path.resolve(__dirname, './preview'),
+    publicPath,
+  },
   resolve: {
     symlinks: false,
     extensions: ['.js', '.jsx', '.json'],

@@ -1,5 +1,5 @@
-import { hydrate } from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { hydrate, render } from 'react-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import Routes from './routes';
 import './index.scss';
 import KnobsProvider from './modules/knobs';
@@ -8,11 +8,29 @@ import { loadConfig } from './modules/package';
 loadConfig();
 
 const Component = (
-  <BrowserRouter>
-    <KnobsProvider>
-      <Routes />
-    </KnobsProvider>
-  </BrowserRouter>
+  <KnobsProvider>
+    <Routes />
+  </KnobsProvider>
 );
 
-hydrate(Component, document.getElementById('main'));
+
+const mainNode = document.getElementById('main');
+const isPrerender = Boolean(mainNode);
+
+if (isPrerender) {
+  hydrate((
+    <BrowserRouter>
+      {Component}
+    </BrowserRouter>
+  ), mainNode);
+} else {
+  const node = document.createElement('main');
+  document.body.appendChild(node);
+
+  render((
+    // eslint-disable-next-line no-undef
+    <HashRouter basename={PUBLIC_PATH}>
+      {Component}
+    </HashRouter>
+  ), node);
+}

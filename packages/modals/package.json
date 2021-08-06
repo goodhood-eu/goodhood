@@ -25,6 +25,7 @@
     "reinstall": "rm -rf node_modules && yarn install",
     "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
     "build": "rollup --config rollup.config.js",
+    "build:preview": "../../scripts/build-preview",
     "start": "../../scripts/start-preview",
     "test": "../../scripts/run-tests"
   },

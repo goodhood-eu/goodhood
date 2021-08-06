@@ -20,7 +20,8 @@ const GlobalStyle = createGlobalStyle`
 const node = document.createElement('main');
 document.body.appendChild(node);
 render((
-  <BrowserRouter>
+  // eslint-disable-next-line no-undef
+  <BrowserRouter basename={PUBLIC_PATH}>
     <Normalize />
     <GlobalStyle />
     <Switch>
