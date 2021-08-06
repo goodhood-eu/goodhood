@@ -1,6 +1,9 @@
 # `@goodhood/modals`
 
 > React modal components
+ 
+- [Preview](https://goodhood-eu.github.io/goodhood/packages/modals/preview/)
+
 
 ## Install
 
