@@ -1,9 +1,31 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Icons preview</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"></head>
-  <body>
-  <script src="/goodhood/packages/icons/preview/main.js"></script></body>
-</html>
+<head><meta name="viewport" content="width=device-width, initial-scale=1"></head>Html Webpack Plugin:
+<pre>
+  TypeError: Cannot read property 'tap' of undefined
+  
+  - ExternalModuleFactoryPlugin.js:17 ExternalModuleFactoryPlugin.apply
+    [icons]/[webpack]/lib/ExternalModuleFactoryPlugin.js:17:37
+  
+  - ExternalsPlugin.js:16 
+    [icons]/[webpack]/lib/ExternalsPlugin.js:16:63
+  
+  
+  - Hook.js:14 Hook.CALL_DELEGATE [as _call]
+    [goodhood]/[webpack]/[tapable]/lib/Hook.js:14:14
+  
+  - Compiler.js:1074 
+    [goodhood]/[webpack]/lib/Compiler.js:1074:23
+  
+  
+  - Hook.js:18 Hook.CALL_ASYNC_DELEGATE [as _callAsync]
+    [goodhood]/[webpack]/[tapable]/lib/Hook.js:18:14
+  
+  - Compiler.js:1071 Compiler.compile
+    [goodhood]/[webpack]/lib/Compiler.js:1071:28
+  
+  - Compiler.js:522 Compiler.runAsChild
+    [goodhood]/[webpack]/lib/Compiler.js:522:8
+  
+  - child-compiler.js:110 
+    [icons]/[html-webpack-plugin]/lib/child-compiler.js:110:21
+  
+</pre><script src="/goodhood/packages/icons/preview/main.js"></script>
