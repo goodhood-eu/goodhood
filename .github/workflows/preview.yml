@@ -2,7 +2,7 @@ name: Build & Deploy preview
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   deploy-preview:
     name: Build & Deploy preview
