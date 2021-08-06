@@ -32,7 +32,7 @@ configure({
 ## Import:
 
 ```js
-import Modal { Alert, configure } from '@goodhood/modals';
+import Modal, { Alert, configure } from '@goodhood/modals';
 ```
 
 # API
