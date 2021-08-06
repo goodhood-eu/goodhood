@@ -13,8 +13,6 @@ Install peer dependencies
 npm i react // v16.x.x
 npm i prop-types // v15.x.x
 npm i @babel/runtime // v7.x.x
-npm i clsx // v1.x.x
-npm i @goodhood/icons // >= v2.x.x
 npm i @goodhood/components // >= v6.x.x
 npm i nebenan-ui-kit // >= v5.x.x
 npm i nebenan-helpers // >= v5.x.x
