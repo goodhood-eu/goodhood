@@ -29,7 +29,7 @@ configure({
 });
 ```
 
-## Include:
+## Import:
 
 ```js
 import Modal { Alert, configure } from '@goodhood/modals';
