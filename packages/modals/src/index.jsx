@@ -1,5 +1,6 @@
 export { default } from './modal';
 export { default as ModalProvider } from './provider';
+export { Consumer as ModalConsumer } from './provider/context';
 export { configure } from './modal/utils';
 
 export { default as Alert } from './alert';
