@@ -5,6 +5,8 @@ import { invoke } from '../utils';
 
 const Checkout = ({
   onHostedPageGet,
+  onLoaded,
+  onStep,
   onClose,
   onSuccess,
   onError,
@@ -15,6 +17,8 @@ const Checkout = ({
 
     instance.openCheckout({
       hostedPage: () => onHostedPageGet(),
+      loaded: onLoaded,
+      step: onStep,
       success: () => { isSuccess = true; },
       error: onError,
       close: () => {
@@ -29,6 +33,8 @@ const Checkout = ({
 
 Checkout.propTypes = {
   onHostedPageGet: PropTypes.func.isRequired,
+  onLoaded: PropTypes.func,
+  onStep: PropTypes.func,
   onClose: PropTypes.func,
   onSuccess: PropTypes.func,
   onError: PropTypes.func,
