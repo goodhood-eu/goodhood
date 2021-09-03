@@ -14,7 +14,6 @@ export const useScrollLock = () => {
 
 export const useMaxHeight = () => {
   const [deviceHeight, setHeight] = useState(STARTING_HEIGHT);
-  const isResizerActive = useRef(false);
   const stopListeningToResize = useRef();
 
   const checkDeviceHeight = () => {
@@ -37,7 +36,7 @@ export const useMaxHeight = () => {
   useEffect(() => {
     activateResizer();
     return () => deactivateResizer();
-  }, [isResizerActive]);
+  }, []);
 
   return deviceHeight;
 };
