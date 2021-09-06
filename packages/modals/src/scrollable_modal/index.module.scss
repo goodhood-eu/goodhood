@@ -1,3 +1,9 @@
+@import '~nebenan-ui-kit';
+
+.modalBody {
+  place-self: start center;
+}
+
 .card {
   max-height: 100%;
   display: flex;
@@ -5,8 +11,17 @@
 }
 
 .children {
+  $modal-spacing: 65px;
+
+  min-height: 210px;
+  height: calc(70vh - #{$modal-spacing});
   flex-grow: 1;
   flex-shrink: 1;
+
+  @media ($media-m) {
+    max-height: 40vh;
+    height: auto;
+  }
 
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;

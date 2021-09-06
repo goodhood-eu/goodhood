@@ -5,31 +5,28 @@ import { stopPropagation } from 'nebenan-helpers/lib/dom';
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 import Modal from '../modal';
 import styles from './index.module.scss';
-import { useScrollLock, useMaxHeight } from './hooks';
+import { useScrollLock } from './hooks';
 
 const ScrollableModal = forwardRef((props, ref) => {
-  const { header, footer, children, childrenClassName, ...cleanProps } = props;
+  const { header, footer, children, ...cleanProps } = props;
   const modalRef = useRef(null);
   const scrollableRef = useRef(null);
 
   useScrollLock();
-
-  const maxHeight = useMaxHeight();
 
   useImperativeHandle(ref, () => ({
     getScrolledNode: () => scrollableRef.current,
     close: () => { modalRef.current.close(); },
   }));
 
-  const className = clsx('ui-card-section', styles.children, childrenClassName);
+  const childrenClassName = clsx('ui-card-section', styles.children);
 
   return (
-    <Modal {...cleanProps} ref={modalRef}>
+    <Modal {...cleanProps} bodyClassName={styles.modalBody} ref={modalRef}>
       <article className={`ui-card ${styles.card}`}>
         {header}
         <div
-          style={{ maxHeight }}
-          className={className}
+          className={childrenClassName}
           ref={scrollableRef} onTouchMove={stopPropagation}
         >
           {children}
