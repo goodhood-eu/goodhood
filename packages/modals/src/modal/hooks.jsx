@@ -44,7 +44,12 @@ export const useKeyManager = (onClose) => (
 
 export const useLegacyHandle = (ref, containerRef, onClose) => (
   useImperativeHandle(ref, () => ({
-    close: () => invoke(onClose),
+    close: (done) => {
+      // simulate calling done after modal is closed
+      setTimeout(() => invoke(done));
+
+      return invoke(onClose);
+    },
     getNode: () => containerRef.current,
   }), [containerRef.current, onClose])
 );
