@@ -19,14 +19,12 @@ const ScrollableModal = forwardRef((props, ref) => {
     close: () => { modalRef.current.close(); },
   }));
 
-  const childrenClassName = clsx('ui-card-section', styles.children);
-
   return (
     <Modal {...cleanProps} bodyClassName={styles.modalBody} ref={modalRef}>
       <article className={`ui-card ${styles.card}`}>
         {header}
         <div
-          className={childrenClassName}
+          className={clsx('ui-card-section', styles.children)}
           ref={scrollableRef} onTouchMove={stopPropagation}
         >
           {children}
@@ -41,7 +39,6 @@ ScrollableModal.propTypes = {
   header: PropTypes.node,
   footer: PropTypes.node,
   children: PropTypes.node,
-  childrenClassName: PropTypes.string,
 };
 
 export default ScrollableModal;
