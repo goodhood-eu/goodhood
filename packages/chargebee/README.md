@@ -78,6 +78,12 @@ const App = () => (
     {/* Should return a promise, that will resolve a hosted page object */}
     onHostedPageGet={() => Promise.resolve({ id: '', url: '' })}
 
+    {/* Will be called once the checkout page is loaded */}
+    onLoaded={() => {}}
+
+    {/* Will be called everytime an user navigates from one step to another */}
+    onStep={(currentStep) => {}}
+
     {/* This function will be called once the portal is closed by the end user */}
     onClose={() => {}}
 
@@ -104,12 +110,12 @@ const App = () => (
   - Default exports will be re-exported with the chargebee name
   - Named exports will be re-exported as they are (watch out for collisions)
     ```js
-      // src/chargebee/index.jsx
-      export const PortalLink = () => {};
-      export const Action = () => {};
+    // src/chargebee/index.jsx
+    export const PortalLink = () => {};
+    export const Action = () => {};
 
-      // usage
-      import { PortalLink, Action } from '@goodhood/chargebee';
+    // usage
+    import { PortalLink, Action } from '@goodhood/chargebee';
     ```
 - Create `src/*/index.stories.jsx`
   - Preview will take it up automatically
