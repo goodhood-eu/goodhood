@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { stopPropagation } from 'nebenan-helpers/lib/dom';
 
@@ -6,7 +7,8 @@ import Modal from '../modal';
 import styles from './index.module.scss';
 import { useScrollLock } from './hooks';
 
-const ScrollableModal = forwardRef(({ header, footer, children, ...cleanProps }, ref) => {
+const ScrollableModal = forwardRef((props, ref) => {
+  const { header, footer, children, staticPosition, ...cleanProps } = props;
   const modalRef = useRef(null);
   const scrollableRef = useRef(null);
 
@@ -17,12 +19,20 @@ const ScrollableModal = forwardRef(({ header, footer, children, ...cleanProps },
     close: () => { modalRef.current.close(); },
   }));
 
+  const childrenClassName = clsx('ui-card-section', styles.children, {
+    [styles.isStatic]: staticPosition,
+  });
+
   return (
-    <Modal {...cleanProps} ref={modalRef}>
+    <Modal
+      {...cleanProps}
+      staticPosition={staticPosition}
+      ref={modalRef}
+    >
       <article className={`ui-card ${styles.card}`}>
         {header}
         <div
-          className={`ui-card-section ${styles.children}`}
+          className={childrenClassName}
           ref={scrollableRef} onTouchMove={stopPropagation}
         >
           {children}
@@ -33,10 +43,15 @@ const ScrollableModal = forwardRef(({ header, footer, children, ...cleanProps },
   );
 });
 
+ScrollableModal.defaultProps = {
+  staticPosition: false,
+};
+
 ScrollableModal.propTypes = {
   header: PropTypes.node,
   footer: PropTypes.node,
   children: PropTypes.node,
+  staticPosition: PropTypes.bool,
 };
 
 export default ScrollableModal;

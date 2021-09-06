@@ -12,6 +12,7 @@ const Confirm = forwardRef(({
   children,
   cancelLabel,
   confirmLabel,
+  contentClassName,
 
   onCancel,
   onConfirm,
@@ -77,7 +78,7 @@ const Confirm = forwardRef(({
     >
       <article className="ui-card">
         {header}
-        <div className="ui-card-section">
+        <div className={clsx('ui-card-section', contentClassName)}>
           {contentNode}
           {children}
         </div>
@@ -100,6 +101,7 @@ Confirm.propTypes = {
   children: PropTypes.node,
   cancelLabel: PropTypes.string,
   confirmLabel: PropTypes.string,
+  contentClassName: PropTypes.string,
 
   onCancel: PropTypes.func,
   onConfirm: PropTypes.func,

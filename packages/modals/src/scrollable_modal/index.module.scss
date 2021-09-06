@@ -1,7 +1,22 @@
+@import '~nebenan-ui-kit';
+
 .card {
   max-height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+.isStatic {
+  $modal-spacing: 65px;
+
+  min-height: 210px;
+  max-height: calc(70vh - #{$modal-spacing});
+  height: 100vh;
+
+  @media ($media-m) {
+    max-height: 40vh;
+    height: auto;
+  }
 }
 
 .children {
