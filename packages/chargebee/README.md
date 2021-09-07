@@ -81,7 +81,9 @@ const App = () => (
     {/* Will be called once the checkout page is loaded */}
     onLoaded={() => {}}
 
-    {/* Will be called everytime an user navigates from one step to another */}
+    {/* Will be called everytime an user navigates from one step to another.
+      * String values for currentStep see cb-checkout at 
+      * {@link https://www.chargebee.com/docs/2.0/gtm.html} */}
     onStep={(currentStep) => {}}
 
     {/* This function will be called once the portal is closed by the end user */}
