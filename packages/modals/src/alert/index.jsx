@@ -11,6 +11,7 @@ const Alert = forwardRef(({
   children,
   closeLabel,
   button,
+  alternativeButton,
   ...rest
 }, ref) => {
   const modalRef = useRef();
@@ -27,9 +28,16 @@ const Alert = forwardRef(({
       modalRef.current.close();
     };
 
+    let alternativeAction;
+    if (alternativeButton) {
+      alternativeAction = alternativeButton;
+    } else {
+      alternativeAction = <span className="ui-link" onClick={handleClose}>{closeLabel}</span>;
+    }
+
     footer = (
       <footer className={footerClassName}>
-        <span className="ui-link" onClick={handleClose}>{closeLabel}</span>
+        {alternativeAction}
         {button}
       </footer>
     );
@@ -62,6 +70,7 @@ Alert.propTypes = {
   closeLabel: PropTypes.string,
   persist: PropTypes.bool.isRequired,
   button: PropTypes.node,
+  alternativeButton: PropTypes.node,
   children: PropTypes.node,
 };
 
