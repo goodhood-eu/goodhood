@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import { useState } from 'react';
+import { boolean } from '@root/.preview/src/modules/knobs';
 import ScrollableModal from './index';
 import ModalProvider from '../provider';
 
@@ -7,6 +8,7 @@ export default { title: 'ScrollableModal', component: ScrollableModal };
 
 export const Default = () => {
   const [isActive, setActive] = useState();
+  const staticPosition = boolean('staticPosition', false);
 
   return (
     <ModalProvider>
@@ -21,6 +23,7 @@ export const Default = () => {
             <footer className="ui-card-section">Footer</footer>
           )}
           onClose={() => setActive(false)}
+          staticPosition={staticPosition}
         >
           <ul>
             {[...(new Uint8Array(0x64))].map((value, key) => (

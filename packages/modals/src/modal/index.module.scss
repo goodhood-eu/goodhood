@@ -5,7 +5,7 @@
   height: 100%;
   padding: 0 $layout-spacing;
   display: grid;
-  grid-template-rows: 40px auto 40px;
+  grid-template-rows: 40px minmax(0, 1fr) 40px;
   overflow: auto;
   position: fixed;
   top: 0;

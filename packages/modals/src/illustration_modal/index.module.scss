@@ -1,6 +1,9 @@
 @import '~nebenan-ui-kit';
 
 .root {
+  max-height: 100%;
+  overflow-y: auto;
+
   > header {
     border-bottom: $border-dark;
   }
