@@ -1,5 +1,6 @@
 import { forwardRef, useRef, useImperativeHandle } from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { Markdown } from '@goodhood/components';
 import Modal from '../modal';
 
@@ -9,6 +10,8 @@ const Alert = forwardRef(({
   persist,
   children,
   closeLabel,
+  button,
+  alternativeButton,
   ...rest
 }, ref) => {
   const modalRef = useRef();
@@ -19,13 +22,23 @@ const Alert = forwardRef(({
 
   let footer;
   if (!persist) {
+    const footerClassName = clsx('ui-card-section', { 'ui-controls': button });
+
     const handleClose = () => {
       modalRef.current.close();
     };
 
+    let alternativeAction;
+    if (alternativeButton) {
+      alternativeAction = alternativeButton;
+    } else {
+      alternativeAction = <span className="ui-link" onClick={handleClose}>{closeLabel}</span>;
+    }
+
     footer = (
-      <footer className="ui-card-section">
-        <span className="ui-link" onClick={handleClose}>{closeLabel}</span>
+      <footer className={footerClassName}>
+        {alternativeAction}
+        {button}
       </footer>
     );
   }
@@ -56,6 +69,8 @@ Alert.propTypes = {
   content: PropTypes.string,
   closeLabel: PropTypes.string,
   persist: PropTypes.bool.isRequired,
+  button: PropTypes.node,
+  alternativeButton: PropTypes.node,
   children: PropTypes.node,
 };
 
