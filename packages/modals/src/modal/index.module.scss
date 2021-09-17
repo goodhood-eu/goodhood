@@ -5,7 +5,7 @@
   height: 100%;
   padding: 0 $layout-spacing;
   display: grid;
-  grid-template-rows: 40px auto 40px;
+  grid-template-rows: 40px minmax(0, 1fr) 40px;
   overflow: auto;
   position: fixed;
   top: 0;
@@ -15,6 +15,10 @@
   background: $color-dark-alpha;
   animation: modal-fade-in 200ms ease;
 
+  &.isStatic {
+    grid-template-rows: minmax(40px, 10vh) minmax(0, 1fr) 40px;
+  }
+
   // Empty grid rows won't be displayed with overflow: auto
   &::before,
   &::after {
@@ -22,21 +26,27 @@
   }
 }
 
-.isStatic {
-  grid-template-rows: minmax(40px, 10vh) auto 40px;
-
-  .body {
-    align-self: start;
-  }
-}
-
 .body {
   // Prevent body to be wider than root
   min-width: 0;
   max-width: $layout-content-width;
+  max-height: 100%;
   width: 100%;
   place-self: center;
+  display: grid;
   position: relative;
+
+  grid-template-rows: minmax(0, 1fr);
+
+  .isStatic & {
+    height: 100%;
+    align-self: start;
+
+    @media ($media-m) {
+      max-height: 40vh;
+      height: auto;
+    }
+  }
 
   img {
     max-width: 100%;
@@ -44,6 +54,16 @@
 
   :global(.ui-card) {
     border: none;
+  }
+}
+
+.content {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+
+  .isScrollable & {
+    grid-template-rows: 1fr;
+    overflow: auto;
   }
 }
 

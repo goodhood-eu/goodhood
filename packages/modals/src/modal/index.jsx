@@ -17,12 +17,13 @@ import Portal from '../portal';
 import styles from './index.module.scss';
 
 const Modal = forwardRef(({
-  className,
+  className: passedClassName,
   bodyClassName,
   children,
 
   persist,
   staticPosition,
+  scrollable,
   onClose,
   onUnmount,
 
@@ -74,12 +75,17 @@ const Modal = forwardRef(({
     controls = <CrossIcon className={styles.close} onClick={closeModal} />;
   }
 
+  const className = clsx(styles.root, passedClassName, {
+    [styles.isStatic]: staticPosition,
+    [styles.isScrollable]: scrollable,
+  });
+
   return (
     <Portal>
       <div
         {...rest}
         ref={containerRef}
-        className={clsx(styles.root, className, { [styles.isStatic]: staticPosition })}
+        className={className}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onTouchStart={handleTouchStart}
@@ -87,7 +93,9 @@ const Modal = forwardRef(({
       >
         <div className={clsx(styles.body, bodyClassName)}>
           {controls}
-          {children}
+          <div className={styles.content}>
+            {children}
+          </div>
         </div>
       </div>
     </Portal>
@@ -97,6 +105,7 @@ const Modal = forwardRef(({
 Modal.defaultProps = {
   persist: false,
   staticPosition: false,
+  scrollable: true,
 };
 
 Modal.propTypes = {
@@ -106,6 +115,7 @@ Modal.propTypes = {
 
   persist: PropTypes.bool,
   staticPosition: PropTypes.bool,
+  scrollable: PropTypes.bool,
   onClose: PropTypes.func,
   onUnmount: PropTypes.func,
 
