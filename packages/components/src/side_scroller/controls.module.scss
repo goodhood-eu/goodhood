@@ -1,0 +1,43 @@
+@import "nebenan-ui-kit";
+
+.control {
+  // rgba(255, 255, 255, 0) is important to fade through white is Safari
+  $gradient-colors: $color-gray-09 0, $color-gray-09 20%, rgba(255, 255, 255, 0) 100%;
+
+  width: 40px;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  background: linear-gradient(90deg, $gradient-colors);
+  cursor: pointer;
+
+  animation: slide-scroller-fade-in 100ms;
+
+  i {
+    @include icon-size(16px);
+    margin: 5px;
+  }
+
+  &.is-right {
+    justify-content: flex-end;
+    right: 0;
+    left: auto;
+    background: linear-gradient(-90deg, $gradient-colors);
+  }
+}
+
+@keyframes slide-scroller-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

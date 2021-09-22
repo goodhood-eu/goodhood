@@ -1,0 +1,18 @@
+@import "nebenan-ui-kit";
+
+.root {
+  overflow: hidden;
+  position: relative;
+}
+
+.container {
+  margin-bottom: -30px;
+  padding-bottom: 30px;
+  box-sizing: content-box;
+
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  transform: translate3d(0, 0, 0);
+}
