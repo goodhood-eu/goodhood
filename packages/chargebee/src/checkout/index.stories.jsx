@@ -21,6 +21,8 @@ export const Default = () => (
     className="ui-button ui-button-primary"
     site={config.chargebee.site}
     onHostedPageGet={() => Promise.resolve(dummyData)}
+    onLoaded={action('Loaded')}
+    onStep={(s) => action(`Step: ${s}`)}
     onSuccess={action('Success')}
     onError={action('Error')}
     onClose={action('Close')}
