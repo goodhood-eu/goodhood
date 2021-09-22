@@ -1,12 +1,12 @@
 import { useContext, useEffect } from 'react';
 import Context from './context';
 
-const Trigger = (payload) => {
+const Trigger = ({ event, ...payload }) => {
   const context = useContext(Context);
 
   useEffect(() => {
-    context.track(payload);
-  }, []);
+    context.track({ event, ...payload });
+  }, [event]);
 
   return null;
 };
