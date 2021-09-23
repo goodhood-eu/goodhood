@@ -48,7 +48,7 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
 
   const updateSizes = () => {
     const { width: containerWidth } = size(containerRef.current);
-    const { height: nextHeight } = size(contentRef.current.getNode());
+    const { height: nextHeight } = size(contentRef.current);
 
     containerWidthRef.current = containerWidth;
     contentWidthRef.current = getScrollableNode().scrollWidth;
@@ -112,7 +112,7 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
         onScroll={updateScroll} onLoad={updateSizes}
       >
         <Draggable
-          ref={contentRef}
+          contentRef={contentRef}
           onDragStart={handleDragStart}
           onDrag={handleDrag}
           onClickCapture={handleClickCapture}
