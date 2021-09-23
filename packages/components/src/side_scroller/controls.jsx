@@ -4,6 +4,12 @@ import styles from './controls.module.scss';
 import { getAnimationPosition } from './utils';
 import { SHIFT_PERCENT, SHIFT_TOLERANCE, ANIMATION_DURATION, ANIMATION_FPS } from './constants';
 
+const Control = ({ type, handler }) => (
+  <span className={clsx(styles.control, styles[`is-${type}`])} onClick={handler}>
+    <i className={`icon-arrow_${type}`} />
+  </span>
+);
+
 const Controls = ({
   canScrollLeft,
   canScrollRight,
@@ -52,19 +58,13 @@ const Controls = ({
     handleShift(SHIFT_PERCENT);
   };
 
-  const renderControl = (type, handler) => (
-    <span className={clsx(styles.control, styles[`is-${type}`])} onClick={handler}>
-      <i className={`icon-arrow_${type}`} />
-    </span>
-  );
-
   if (!canScrollLeft && !canScrollRight) return null;
 
   let leftControl;
-  if (canScrollLeft) leftControl = renderControl('left', handleScrollLeft);
+  if (canScrollLeft) leftControl = <Control type="left" handler={handleScrollLeft} />;
 
   let rightControl;
-  if (canScrollRight) rightControl = renderControl('right', handleScrollRight);
+  if (canScrollRight) rightControl = <Control type="right" handler={handleScrollRight} />;
 
   return <>{leftControl}{rightControl}</>;
 };
