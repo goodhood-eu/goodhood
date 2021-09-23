@@ -7,7 +7,7 @@ import { SHIFT_PERCENT, SHIFT_TOLERANCE, ANIMATION_DURATION, ANIMATION_FPS } fro
 const Controls = ({
   canScrollLeft,
   canScrollRight,
-  node,
+  scrollableNode,
   containerWidthRef,
   contentWidthRef,
   onAnimateScroll,
@@ -16,10 +16,15 @@ const Controls = ({
     let time = 0;
 
     const animateScroll = () => {
-      const newValue = getAnimationPosition(node.scrollLeft, target, time, ANIMATION_DURATION);
+      const newValue = getAnimationPosition(
+        scrollableNode.scrollLeft,
+        target,
+        time,
+        ANIMATION_DURATION,
+      );
 
       time += 1000 / ANIMATION_FPS;
-      node.scrollLeft = newValue;
+      scrollableNode.scrollLeft = newValue;
 
       if (newValue !== target) onAnimateScroll(animateScroll);
     };
@@ -28,7 +33,7 @@ const Controls = ({
   };
 
   const handleShift = (percent) => {
-    const { scrollLeft } = node;
+    const { scrollLeft } = scrollableNode;
     const shiftAmount = Math.floor(percent * containerWidthRef.current);
     const maxScrollPosition = contentWidthRef.current - containerWidthRef.current;
 
@@ -67,7 +72,7 @@ const Controls = ({
 Controls.propTypes = {
   canScrollLeft: PropTypes.bool,
   canScrollRight: PropTypes.bool,
-  node: PropTypes.node,
+  scrollableNode: PropTypes.node,
   onAnimateScroll: PropTypes.func,
   containerWidthRef: PropTypes.object,
   contentWidthRef: PropTypes.object,

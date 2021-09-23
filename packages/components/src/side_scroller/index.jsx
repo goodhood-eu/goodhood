@@ -6,9 +6,9 @@ import styles from './index.module.scss';
 
 import Draggable from '../draggable';
 import Controls from './controls';
-import { DISABLE_SCROLL_DISTANCE } from '../constants/swipe';
+import { DISABLE_SCROLL_DISTANCE } from './constants';
 
-const SideScroller = ({ className: passedClassName, children, ...props }) => {
+const SideScroller = ({ className: passedClassName, children, ...cleanProps }) => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [height, setHeight] = useState(0);
@@ -24,7 +24,6 @@ const SideScroller = ({ className: passedClassName, children, ...props }) => {
   const stopListeningToResizeRef = useRef(null);
 
   const className = clsx(styles.root, passedClassName);
-  const cleanProps = props;
 
   // Fixes issue with most browsers reducing size of the scrollable element children
   // as if to compensate for scrollbars, even when they are hidden
@@ -127,7 +126,7 @@ const SideScroller = ({ className: passedClassName, children, ...props }) => {
       <Controls
         canScrollLeft={canScrollLeft}
         canScrollRight={canScrollRight}
-        node={getScrollableNode()}
+        scrollableNode={getScrollableNode()}
         animationIdRef={animationIdRef}
         containerWidthRef={containerWidthRef}
         contentWidthRef={contentWidthRef}

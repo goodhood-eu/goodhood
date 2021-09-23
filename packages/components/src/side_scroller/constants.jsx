@@ -5,3 +5,5 @@ export const SHIFT_TOLERANCE = 10;
 
 export const ANIMATION_DURATION = 200;
 export const ANIMATION_FPS = 90;
+
+export const DISABLE_SCROLL_DISTANCE = 10;
