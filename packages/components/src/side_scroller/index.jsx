@@ -65,8 +65,6 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
     stopScrollAnimation();
   };
 
-  const handleDragStop = () => { };
-
   const handleDrag = (event) => {
     const diff = startXRef.current - eventCoordinates(event, 'pageX').pageX;
     const shift = Math.abs(diff);
@@ -115,7 +113,6 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
       >
         <Draggable
           ref={contentRef}
-          onDragStop={handleDragStop}
           onDragStart={handleDragStart}
           onDrag={handleDrag}
           onClickCapture={handleClickCapture}
