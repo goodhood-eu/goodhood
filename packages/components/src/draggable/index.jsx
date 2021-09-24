@@ -1,89 +1,61 @@
-import { useRef, useEffect } from 'react';
-import omit from 'lodash/omit';
+import { useRef } from 'react';
+import { useEventListener } from 'nebenan-react-hocs/lib/use_event_listener';
 
-const Draggable = (props) => {
-  const {
-    contentRef,
-    onDragStop,
-    onDragStart,
-    onDrag,
-    onMouseDown,
-    onTouchStart,
-  } = props;
-
+const Draggable = ({
+  contentRef,
+  onDragStop,
+  onDragStart,
+  onDrag,
+  onMouseDown,
+  onTouchStart,
+  ...cleanProps
+}) => {
+  const documentRef = { current: global.document };
   const isMouseActive = useRef(false);
   const isTouchActive = useRef(false);
 
-  const handleMove = (event) => {
-    if (onDrag) onDrag(event);
-  };
-
-  const handleStop = (event) => {
-    if (isTouchActive.current) {
-      document.removeEventListener('touchmove', handleMove);
-      document.removeEventListener('touchend', handleStop);
-      isTouchActive.current = false;
-    }
-    if (isMouseActive.current) {
-      document.removeEventListener('mousemove', handleMove);
-      document.removeEventListener('mouseup', handleStop);
-      isMouseActive.current = false;
-    }
-    if (onDragStop) onDragStop(event);
-  };
-
-  const deactivateTouch = () => {
-    if (!isTouchActive.current) return;
-    document.removeEventListener('touchmove', handleMove);
-    document.removeEventListener('touchend', handleStop);
-    isTouchActive.current = false;
-  };
-
-  const deactivateMouse = () => {
-    if (!isMouseActive.current) return;
-    document.removeEventListener('mousemove', handleMove);
-    document.removeEventListener('mouseup', handleStop);
-    isMouseActive.current = false;
-  };
-
-  const activateMouse = () => {
-    if (isMouseActive.current) return;
-    document.addEventListener('mousemove', handleMove);
-    document.addEventListener('mouseup', handleStop);
-    isMouseActive.current = true;
-  };
-
-  const activateTouch = () => {
-    if (isTouchActive.current) return;
-    document.addEventListener('touchmove', handleMove);
-    document.addEventListener('touchend', handleStop);
+  useEventListener(contentRef, 'touchstart', (event) => {
     isTouchActive.current = true;
-  };
+    onTouchStart?.(event);
+    onDragStart?.(event);
+  }, { passive: false });
 
-  const handleTouchStart = (event) => {
-    activateTouch();
-    if (onTouchStart) onTouchStart(event);
-    if (onDragStart) onDragStart(event);
-  };
+  useEventListener(contentRef, 'touchmove', (event) => {
+    if (!isTouchActive.current) return;
 
-  const handleMouseDown = (event) => {
-    activateMouse();
-    if (onMouseDown) onMouseDown(event);
-    if (onDragStart) onDragStart(event);
-  };
+    onDrag?.(event);
+  }, { passive: false });
 
-  useEffect(() => () => {
-    deactivateMouse();
-    deactivateTouch();
-  }, []);
+  useEventListener(contentRef, 'touchend', (event) => {
+    if (!isTouchActive.current) return;
 
-  const cleanProps = omit(props, 'onDragStart', 'onDrag', 'onDragStop', 'contentRef');
+    onDragStop?.(event);
+    isTouchActive.current = false;
+  }, { passive: false });
+
+  useEventListener(contentRef, 'mousedown', (event) => {
+    isMouseActive.current = true;
+    onMouseDown?.(event);
+    onDragStart?.(event);
+  }, { passive: false });
+
+  useEventListener(documentRef, 'mousemove', (event) => {
+    if (!isMouseActive.current) return;
+
+    onDrag?.(event);
+  }, { passive: false });
+
+  useEventListener(documentRef, 'mouseup', (event) => {
+    if (!isMouseActive.current) return;
+
+    isMouseActive.current = false;
+    onDragStop?.(event);
+  }, { passive: false });
+
   return (
     <div
       {...cleanProps}
       ref={contentRef}
-      onTouchStart={handleTouchStart}
-      onMouseDown={handleMouseDown}
     />
   );
 };

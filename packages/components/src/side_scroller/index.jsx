@@ -36,7 +36,7 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
   };
 
   const updateScroll = () => {
-    const { scrollLeft } = getScrollableNode();
+    const { scrollLeft } = containerRef.current;
     const maxScrollPosition = contentWidthRef.current - containerWidthRef.current;
 
     const nextCanScrollLeft = scrollLeft > 0;
