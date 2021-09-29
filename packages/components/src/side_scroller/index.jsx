@@ -81,10 +81,9 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
   };
 
   const handleClickCapture = (event) => {
-    if (preventClickRef.current) {
-      stopEvent(event);
-      preventClickRef.current = false;
-    }
+    if (!preventClickRef.current) return;
+    stopEvent(event);
+    preventClickRef.current = false;
   };
 
   const handleAnimateScroll = (callback) => {
