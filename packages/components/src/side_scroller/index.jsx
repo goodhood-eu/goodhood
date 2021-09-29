@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { size, eventCoordinates, stopEvent } from 'nebenan-helpers/lib/dom';
 import eventproxy from 'nebenan-helpers/lib/eventproxy';
@@ -130,6 +131,11 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
       />
     </article>
   );
+};
+
+SideScroller.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.object,
 };
 
 export default SideScroller;
