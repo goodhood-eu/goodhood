@@ -7,7 +7,8 @@ import styles from './index.module.scss';
 
 import Draggable from '../draggable';
 import Controls from './controls';
-import { DISABLE_SCROLL_DISTANCE } from './constants';
+import { DISABLE_SCROLL_DISTANCE, SHIFT_PERCENT, SHIFT_TOLERANCE, ANIMATION_DURATION, ANIMATION_FPS } from './constants';
+import { getAnimationPosition } from './utils';
 
 const SideScroller = ({ className: passedClassName, children, ...cleanProps }) => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -89,6 +90,46 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
     animationIdRef.current = global.requestAnimationFrame(callback);
   };
 
+  const startScrollAnimation = (target) => {
+    let time = 0;
+
+    const animateScroll = () => {
+      const newValue = getAnimationPosition(
+        containerRef.current.scrollLeft,
+        target,
+        time,
+        ANIMATION_DURATION,
+      );
+
+      time += 1000 / ANIMATION_FPS;
+      containerRef.current.scrollLeft = newValue;
+
+      if (newValue !== target) handleAnimateScroll(animateScroll);
+    };
+
+    animateScroll();
+  };
+
+  const handleShift = (percent) => {
+    const { scrollLeft } = containerRef.current;
+    const shiftAmount = Math.floor(percent * containerWidthRef.current);
+    const maxScrollPosition = contentWidthRef.current - containerWidthRef.current;
+
+    let target = scrollLeft + shiftAmount;
+    if (target + SHIFT_TOLERANCE >= maxScrollPosition) target = maxScrollPosition;
+    if (target - SHIFT_TOLERANCE <= 0) target = 0;
+
+    startScrollAnimation(target);
+  };
+
+  const handleScrollLeft = () => {
+    handleShift(-SHIFT_PERCENT);
+  };
+
+  const handleScrollRight = () => {
+    handleShift(SHIFT_PERCENT);
+  };
+
   const handleScroll = () => updateScroll();
   const handleLoad = () => updateSizes();
 
@@ -124,11 +165,8 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
       <Controls
         canScrollLeft={canScrollLeft}
         canScrollRight={canScrollRight}
-        scrollableNode={containerRef.current}
-        animationIdRef={animationIdRef}
-        containerWidthRef={containerWidthRef}
-        contentWidthRef={contentWidthRef}
-        onAnimateScroll={handleAnimateScroll}
+        onLeftClick={handleScrollLeft}
+        onRightClick={handleScrollRight}
       />
     </article>
   );

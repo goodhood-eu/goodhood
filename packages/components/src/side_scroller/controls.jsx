@@ -1,11 +1,9 @@
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import styles from './controls.module.scss';
-import { getAnimationPosition } from './utils';
-import { SHIFT_PERCENT, SHIFT_TOLERANCE, ANIMATION_DURATION, ANIMATION_FPS } from './constants';
 
-const Control = ({ type, handler }) => (
-  <span className={clsx(styles.control, styles[`is-${type}`])} onClick={handler}>
+const Control = ({ type, onClick }) => (
+  <span className={clsx(styles.control, styles[`is-${type}`])} onClick={onClick}>
     <i className={`icon-arrow_${type}`} />
   </span>
 );
@@ -13,58 +11,16 @@ const Control = ({ type, handler }) => (
 const Controls = ({
   canScrollLeft,
   canScrollRight,
-  scrollableNode,
-  containerWidthRef,
-  contentWidthRef,
-  onAnimateScroll,
+  onLeftClick,
+  onRightClick,
 }) => {
-  const startScrollAnimation = (target) => {
-    let time = 0;
-
-    const animateScroll = () => {
-      const newValue = getAnimationPosition(
-        scrollableNode.scrollLeft,
-        target,
-        time,
-        ANIMATION_DURATION,
-      );
-
-      time += 1000 / ANIMATION_FPS;
-      scrollableNode.scrollLeft = newValue;
-
-      if (newValue !== target) onAnimateScroll(animateScroll);
-    };
-
-    animateScroll();
-  };
-
-  const handleShift = (percent) => {
-    const { scrollLeft } = scrollableNode;
-    const shiftAmount = Math.floor(percent * containerWidthRef.current);
-    const maxScrollPosition = contentWidthRef.current - containerWidthRef.current;
-
-    let target = scrollLeft + shiftAmount;
-    if (target + SHIFT_TOLERANCE >= maxScrollPosition) target = maxScrollPosition;
-    if (target - SHIFT_TOLERANCE <= 0) target = 0;
-
-    startScrollAnimation(target);
-  };
-
-  const handleScrollLeft = () => {
-    handleShift(-SHIFT_PERCENT);
-  };
-
-  const handleScrollRight = () => {
-    handleShift(SHIFT_PERCENT);
-  };
-
   if (!canScrollLeft && !canScrollRight) return null;
 
   let leftControl;
-  if (canScrollLeft) leftControl = <Control type="left" handler={handleScrollLeft} />;
+  if (canScrollLeft) leftControl = <Control type="left" onClick={onLeftClick} />;
 
   let rightControl;
-  if (canScrollRight) rightControl = <Control type="right" handler={handleScrollRight} />;
+  if (canScrollRight) rightControl = <Control type="right" onClick={onRightClick} />;
 
   return <>{leftControl}{rightControl}</>;
 };
@@ -72,10 +28,8 @@ const Controls = ({
 Controls.propTypes = {
   canScrollLeft: PropTypes.bool,
   canScrollRight: PropTypes.bool,
-  scrollableNode: PropTypes.node,
-  onAnimateScroll: PropTypes.func,
-  containerWidthRef: PropTypes.object,
-  contentWidthRef: PropTypes.object,
+  onLeftClick: PropTypes.func,
+  onRightClick: PropTypes.func,
 };
 
 
