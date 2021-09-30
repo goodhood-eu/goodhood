@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { size, eventCoordinates, stopEvent } from 'nebenan-helpers/lib/dom';
@@ -30,13 +30,11 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
   // as if to compensate for scrollbars, even when they are hidden
   const style = { height };
 
-  const getScrollableNode = () => containerRef.current;
-
-  const stopScrollAnimation = () => {
+  const stopScrollAnimation = useCallback(() => {
     if (animationIdRef.current) global.cancelAnimationFrame(animationIdRef.current);
-  };
+  }, []);
 
-  const updateScroll = () => {
+  const updateScroll = useCallback(() => {
     const { scrollLeft } = containerRef.current;
     const maxScrollPosition = contentWidthRef.current - containerWidthRef.current;
 
@@ -45,24 +43,24 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
 
     setCanScrollLeft(nextCanScrollLeft);
     setCanScrollRight(nextCanScrollRight);
-  };
+  }, []);
 
-  const updateSizes = () => {
+  const updateSizes = useCallback(() => {
     const { width: containerWidth } = size(containerRef.current);
     const { height: nextHeight } = size(contentRef.current);
 
     containerWidthRef.current = containerWidth;
-    contentWidthRef.current = getScrollableNode().scrollWidth;
+    contentWidthRef.current = containerRef.current.scrollWidth;
 
     updateScroll();
     setHeight(nextHeight);
-  };
+  }, [updateScroll]);
 
   const handleDragStart = (event) => {
     // Prevents DOM nodes like images from being dragged
     event.preventDefault();
     startXRef.current = eventCoordinates(event, 'pageX').pageX;
-    startPositionRef.current = getScrollableNode().scrollLeft;
+    startPositionRef.current = containerRef.current.scrollLeft;
     stopScrollAnimation();
   };
 
@@ -78,7 +76,7 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
       event.preventDefault();
     }
 
-    getScrollableNode().scrollLeft = newPosition;
+    containerRef.current.scrollLeft = newPosition;
   };
 
   const handleClickCapture = (event) => {
@@ -91,6 +89,9 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
     animationIdRef.current = global.requestAnimationFrame(callback);
   };
 
+  const handleScroll = () => updateScroll();
+  const handleLoad = () => updateSizes();
+
   useEffect(() => {
     stopListeningToResizeRef.current = eventproxy('resize', updateSizes);
     updateSizes();
@@ -99,17 +100,17 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
       stopListeningToResizeRef.current();
       stopScrollAnimation();
     };
-  }, []);
+  }, [updateSizes, stopScrollAnimation]);
 
   useEffect(() => {
     updateSizes();
-  }, [children]);
+  }, [children, updateSizes]);
 
   return (
     <article {...cleanProps} className={className}>
       <div
         className={styles.container} ref={containerRef} style={style}
-        onScroll={updateScroll} onLoad={updateSizes}
+        onScroll={handleScroll} onLoad={handleLoad}
       >
         <Draggable
           ref={contentRef}
@@ -123,7 +124,7 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
       <Controls
         canScrollLeft={canScrollLeft}
         canScrollRight={canScrollRight}
-        scrollableNode={getScrollableNode()}
+        scrollableNode={containerRef.current}
         animationIdRef={animationIdRef}
         containerWidthRef={containerWidthRef}
         contentWidthRef={contentWidthRef}
