@@ -112,7 +112,7 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
         onScroll={updateScroll} onLoad={updateSizes}
       >
         <Draggable
-          contentRef={contentRef}
+          ref={contentRef}
           onDragStart={handleDragStart}
           onDrag={handleDrag}
           onClickCapture={handleClickCapture}

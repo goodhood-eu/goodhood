@@ -1,39 +1,38 @@
-import { useRef } from 'react';
+import { useRef, forwardRef } from 'react';
 import { useEventListener } from 'nebenan-react-hocs/lib/use_event_listener';
 
-const Draggable = ({
-  contentRef,
+const Draggable = forwardRef(({
   onDragStop,
   onDragStart,
   onDrag,
   onMouseDown,
   onTouchStart,
   ...cleanProps
-}) => {
+}, ref) => {
   const documentRef = { current: global.document };
   const isMouseActive = useRef(false);
   const isTouchActive = useRef(false);
 
-  useEventListener(contentRef, 'touchstart', (event) => {
+  useEventListener(ref, 'touchstart', (event) => {
     isTouchActive.current = true;
     onTouchStart?.(event);
     onDragStart?.(event);
   }, { passive: false });
 
-  useEventListener(contentRef, 'touchmove', (event) => {
+  useEventListener(ref, 'touchmove', (event) => {
     if (!isTouchActive.current) return;
 
     onDrag?.(event);
   }, { passive: false });
 
-  useEventListener(contentRef, 'touchend', (event) => {
+  useEventListener(ref, 'touchend', (event) => {
     if (!isTouchActive.current) return;
 
     onDragStop?.(event);
     isTouchActive.current = false;
   }, { passive: false });
 
-  useEventListener(contentRef, 'mousedown', (event) => {
+  useEventListener(ref, 'mousedown', (event) => {
     isMouseActive.current = true;
     onMouseDown?.(event);
     onDragStart?.(event);
@@ -55,9 +54,9 @@ const Draggable = ({
   return (
     <div
       {...cleanProps}
-      ref={contentRef}
+      ref={ref}
     />
   );
-};
+});
 
 export default Draggable;
