@@ -86,11 +86,15 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
     preventClickRef.current = false;
   };
 
-  const handleAnimateScroll = (callback) => {
-    animationIdRef.current = global.requestAnimationFrame(callback);
-  };
+  const handleShift = (percent) => {
+    const { scrollLeft } = containerRef.current;
+    const shiftAmount = Math.floor(percent * containerWidthRef.current);
+    const maxScrollPosition = contentWidthRef.current - containerWidthRef.current;
 
-  const startScrollAnimation = (target) => {
+    let target = scrollLeft + shiftAmount;
+    if (target + SHIFT_TOLERANCE >= maxScrollPosition) target = maxScrollPosition;
+    if (target - SHIFT_TOLERANCE <= 0) target = 0;
+
     let time = 0;
 
     const animateScroll = () => {
@@ -104,22 +108,12 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
       time += 1000 / ANIMATION_FPS;
       containerRef.current.scrollLeft = newValue;
 
-      if (newValue !== target) handleAnimateScroll(animateScroll);
+      if (newValue !== target) {
+        animationIdRef.current = global.requestAnimationFrame(animateScroll);
+      }
     };
 
     animateScroll();
-  };
-
-  const handleShift = (percent) => {
-    const { scrollLeft } = containerRef.current;
-    const shiftAmount = Math.floor(percent * containerWidthRef.current);
-    const maxScrollPosition = contentWidthRef.current - containerWidthRef.current;
-
-    let target = scrollLeft + shiftAmount;
-    if (target + SHIFT_TOLERANCE >= maxScrollPosition) target = maxScrollPosition;
-    if (target - SHIFT_TOLERANCE <= 0) target = 0;
-
-    startScrollAnimation(target);
   };
 
   const handleScrollLeft = () => {
