@@ -1,4 +1,3 @@
-// import { arrayOf } from 'nebenan-helpers/lib/data';
 import SideScroller from './index';
 
 export default { title: 'SideScroller', component: SideScroller };
