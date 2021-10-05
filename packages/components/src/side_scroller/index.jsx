@@ -10,7 +10,8 @@ import Controls from './controls';
 import { DISABLE_SCROLL_DISTANCE, SHIFT_PERCENT, SHIFT_TOLERANCE, ANIMATION_DURATION, ANIMATION_FPS } from './constants';
 import { getAnimationPosition } from './utils';
 
-const SideScroller = ({ className: passedClassName, children, onShift, ...cleanProps }) => {
+const SideScroller = (props) => {
+  const { className: passedClassName, children, onShift, onDragStart, ...cleanProps } = props;
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [height, setHeight] = useState(0);
@@ -60,6 +61,7 @@ const SideScroller = ({ className: passedClassName, children, onShift, ...cleanP
   const handleDragStart = (event) => {
     // Prevents DOM nodes like images from being dragged
     event.preventDefault();
+    onDragStart?.();
     startXRef.current = eventCoordinates(event, 'pageX').pageX;
     startPositionRef.current = containerRef.current.scrollLeft;
     stopScrollAnimation();
@@ -172,6 +174,7 @@ SideScroller.propTypes = {
   className: PropTypes.string,
   children: PropTypes.object,
   onShift: PropTypes.func,
+  onDragStart: PropTypes.func,
 };
 
 export default SideScroller;
