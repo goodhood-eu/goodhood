@@ -10,7 +10,7 @@ import Controls from './controls';
 import { DISABLE_SCROLL_DISTANCE, SHIFT_PERCENT, SHIFT_TOLERANCE, ANIMATION_DURATION, ANIMATION_FPS } from './constants';
 import { getAnimationPosition } from './utils';
 
-const SideScroller = ({ className: passedClassName, children, ...cleanProps }) => {
+const SideScroller = ({ className: passedClassName, children, onShift, ...cleanProps }) => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [height, setHeight] = useState(0);
@@ -113,6 +113,8 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
       }
     };
 
+    onShift?.();
+
     animateScroll();
   };
 
@@ -169,6 +171,7 @@ const SideScroller = ({ className: passedClassName, children, ...cleanProps }) =
 SideScroller.propTypes = {
   className: PropTypes.string,
   children: PropTypes.object,
+  onShift: PropTypes.func,
 };
 
 export default SideScroller;
