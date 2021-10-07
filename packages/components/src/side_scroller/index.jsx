@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { size, eventCoordinates, stopEvent } from 'nebenan-helpers/lib/dom';
 import eventproxy from 'nebenan-helpers/lib/eventproxy';
+import { clamp } from 'lodash';
 import styles from './index.module.scss';
 
 import Draggable from '../draggable';
@@ -10,8 +11,12 @@ import Controls from './controls';
 import { DISABLE_SCROLL_DISTANCE, SHIFT_PERCENT, SHIFT_TOLERANCE, ANIMATION_DURATION, ANIMATION_FPS } from './constants';
 import { getAnimationPosition } from './utils';
 
-const SideScroller = (props) => {
-  const { className: passedClassName, children, onShift, onDragStart, ...cleanProps } = props;
+const SideScroller = ({
+  className: passedClassName,
+  children,
+  onScroll,
+  ...cleanProps
+}) => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [height, setHeight] = useState(0);
@@ -61,7 +66,6 @@ const SideScroller = (props) => {
   const handleDragStart = (event) => {
     // Prevents DOM nodes like images from being dragged
     event.preventDefault();
-    onDragStart?.();
     startXRef.current = eventCoordinates(event, 'pageX').pageX;
     startPositionRef.current = containerRef.current.scrollLeft;
     stopScrollAnimation();
@@ -70,7 +74,6 @@ const SideScroller = (props) => {
   const handleDrag = (event) => {
     const diff = startXRef.current - eventCoordinates(event, 'pageX').pageX;
     const shift = Math.abs(diff);
-    const newPosition = startPositionRef.current + diff;
 
     if (shift >= DISABLE_SCROLL_DISTANCE) {
       preventClickRef.current = true;
@@ -79,7 +82,11 @@ const SideScroller = (props) => {
       event.preventDefault();
     }
 
+    const maxScrollPosition = contentWidthRef.current - containerWidthRef.current;
+    const newPosition = clamp(startPositionRef.current + diff, 0, maxScrollPosition);
+
     containerRef.current.scrollLeft = newPosition;
+    onScroll?.(newPosition / maxScrollPosition);
   };
 
   const handleClickCapture = (event) => {
@@ -110,12 +117,12 @@ const SideScroller = (props) => {
       time += 1000 / ANIMATION_FPS;
       containerRef.current.scrollLeft = newValue;
 
+      onScroll?.(newValue / maxScrollPosition);
+
       if (newValue !== target) {
         animationIdRef.current = global.requestAnimationFrame(animateScroll);
       }
     };
-
-    onShift?.();
 
     animateScroll();
   };
@@ -173,8 +180,7 @@ const SideScroller = (props) => {
 SideScroller.propTypes = {
   className: PropTypes.string,
   children: PropTypes.object,
-  onShift: PropTypes.func,
-  onDragStart: PropTypes.func,
+  onScroll: PropTypes.func,
 };
 
 export default SideScroller;
