@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "1.4.0",
+  "version": "1.4.1",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,

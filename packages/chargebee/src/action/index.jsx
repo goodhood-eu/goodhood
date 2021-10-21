@@ -37,7 +37,9 @@ const Action = ({
       if (!disabled) invoke(onCall, instanceRef.current, global.Chargebee);
     };
 
-    node = <span {...rest} onClick={handleClick} />;
+    const { onStep, ...cleanProps } = rest;
+
+    node = <span {...cleanProps} onClick={handleClick} />;
   }
 
   return (
