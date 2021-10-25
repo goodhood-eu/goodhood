@@ -1,0 +1,17 @@
+.control {
+  cursor: pointer;
+}
+
+:global(.icon-arrow_up) {
+  display: none;
+}
+
+.isActive .control {
+  :global(.icon-arrow_up) {
+    display: inline-block;
+  }
+
+  :global(.icon-arrow_down) {
+    display: none;
+  }
+}
