@@ -1,19 +1,17 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './index.module.scss';
-
 import Expandable from '../expandable';
 
-
-const ExpandableCard = (props) => {
-  const {
-    children,
-    title,
-    controlClassName: passedControlClassName,
-    stateClassName: passedStateClassName,
-    ...cleanProps
-  } = props;
-  const className = clsx(styles.root, props.className);
+const ExpandableCard = ({
+  className: passedClassName,
+  children,
+  title,
+  controlClassName: passedControlClassName,
+  stateClassName: passedStateClassName,
+  ...cleanProps
+}) => {
+  const className = clsx(styles.root, passedClassName);
   const controlClassName = clsx(styles.control, passedControlClassName);
   const stateClassName = clsx(styles.state, 'ui-link', passedStateClassName);
 

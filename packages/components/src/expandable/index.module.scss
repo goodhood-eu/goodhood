@@ -7,11 +7,13 @@
 }
 
 .isActive .control {
-  :global(.icon-arrow_up) {
-    display: inline-block;
-  }
+  :global {
+    .icon-arrow_up {
+      display: inline-block;
+    }
 
-  :global(.icon-arrow_down) {
-    display: none;
+    .icon-arrow_down {
+      display: none;
+    }
   }
 }

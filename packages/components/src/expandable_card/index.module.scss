@@ -6,6 +6,16 @@
   margin-top: 15px;
 }
 
+.control::before,
+.control::after {
+  content: " ";
+  display: table;
+}
+
+.control::after {
+  clear: both;
+}
+
 .control {
   overflow: hidden;
 }
