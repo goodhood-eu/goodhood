@@ -1,19 +1,19 @@
 .control {
   cursor: pointer;
-}
 
-:global(.icon-arrow_up) {
-  display: none;
-}
+  :global(.icon-arrow_up) {
+    display: none;
+  }
 
-.isActive .control {
-  :global {
-    .icon-arrow_up {
-      display: inline-block;
-    }
+  .isActive & {
+    :global {
+      .icon-arrow_up {
+        display: inline-block;
+      }
 
-    .icon-arrow_down {
-      display: none;
+      .icon-arrow_down {
+        display: none;
+      }
     }
   }
 }
