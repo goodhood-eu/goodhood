@@ -20,7 +20,7 @@ const Expandable = (props) => {
     onUpdate?.();
   }, [isActive]);
 
-  const className = clsx(passedClassName, { 'is-active': isActive });
+  const className = clsx(passedClassName, { [styles.isActive]: isActive });
 
   const content = isActive && <div className={expandableContentClassName}>{children}</div>;
 
