@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './index.module.scss';
 
-const Expandable = (props) => {
-  const {
-    className: passedClassName,
-    children,
-    defaultState,
-    control,
-    onUpdate,
-    expandableContentClassName,
-    ...cleanProps
-  } = props;
+const Expandable = ({
+  className: passedClassName,
+  children,
+  defaultState,
+  control,
+  onUpdate,
+  expandableContentClassName,
+  ...cleanProps
+}) => {
   const [isActive, setIsActive] = useState(defaultState);
 
   const handleControlClick = useCallback(() => {
