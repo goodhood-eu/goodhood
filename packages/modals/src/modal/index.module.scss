@@ -60,9 +60,11 @@
 .content {
   display: grid;
   grid-template-rows: minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
 
   .isScrollable & {
     grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
     overflow: auto;
   }
 }
