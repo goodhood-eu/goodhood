@@ -12,7 +12,7 @@ export const Default = () => {
   const staticPosition = boolean('Static position', false);
   const persist = boolean('Persist', false);
   const unmountAction = action('Unmount');
-  const withLongContent = boolean('Long Content', false);
+  const scrollable = boolean('Scrollable', true);
 
   return (
     <ModalProvider>
@@ -20,20 +20,39 @@ export const Default = () => {
 
       {isActive && (
         <Modal
-          {...{ staticPosition, persist }}
+          {...{ staticPosition, persist, scrollable }}
           onClose={() => setActive(false)}
           onUnmount={unmountAction}
         >
-          {!withLongContent && (
-            <div className="ui-card">
-              Hello world
-            </div>
-          )}
-          {withLongContent && (
-            <div className="ui-card">
-              <img className={styles.img} src="https://longc.at/longcat.jpg" alt="" />
-            </div>
-          )}
+          <div className="ui-card">
+            Hello world
+          </div>
+        </Modal>
+      )}
+    </ModalProvider>
+  );
+};
+
+export const LongAndScrollable = () => {
+  const [isActive, setActive] = useState();
+  const staticPosition = boolean('Static position', false);
+  const persist = boolean('Persist', false);
+  const unmountAction = action('Unmount');
+  const scrollable = boolean('Scrollable', true);
+
+  return (
+    <ModalProvider>
+      <span onClick={() => setActive(true)}>Open Modal</span>
+
+      {isActive && (
+        <Modal
+          {...{ staticPosition, persist, scrollable }}
+          onClose={() => setActive(false)}
+          onUnmount={unmountAction}
+        >
+          <div className="ui-card">
+            <img className={styles.img} src="https://longc.at/longcat.jpg" alt="" />
+          </div>
         </Modal>
       )}
     </ModalProvider>
