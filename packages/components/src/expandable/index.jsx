@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './index.module.scss';
@@ -14,10 +14,9 @@ const Expandable = ({
 }) => {
   const [isActive, setIsActive] = useState(defaultState);
 
-  const handleControlClick = useCallback(() => {
+  const handleControlClick = () => {
     setIsActive(!isActive);
-    onUpdate?.();
-  }, [isActive]);
+  };
 
   const className = clsx(passedClassName, { [styles.isActive]: isActive });
 
