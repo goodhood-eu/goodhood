@@ -16,7 +16,7 @@
   animation: modal-fade-in 200ms ease;
 
   &.isStatic {
-    grid-template-rows: minmax(40px, 10vh) minmax(0, 1fr) 40px;
+    grid-template-rows: minmax(40px, 10vh) minmax(0, 1fr) minmax(40px, 10vh);
   }
 
   // Empty grid rows won't be displayed with overflow: auto
@@ -43,7 +43,6 @@
     align-self: start;
 
     @media ($media-m) {
-      max-height: 40vh;
       height: auto;
     }
   }
