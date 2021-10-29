@@ -9027,15 +9027,10 @@ nebenan-form@^9.0.0:
   dependencies:
     nebenan-react-datepicker "^1.1.2"
 
-nebenan-helpers@^4.5.0:
-  version "4.7.1"
-  resolved "https://registry.yarnpkg.com/nebenan-helpers/-/nebenan-helpers-4.7.1.tgz#753875b90a0014a6d5952e7960d18157e6ed396e"
-  integrity sha512-4/zgXQahNks1Ae7yvEfNClnEH2PoRMgbyHwsP/lGBGdG3scas0CVoorkJoNZ7ztXMlaw/jgxpelxeYPe8HpPBQ==
-
-nebenan-helpers@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/nebenan-helpers/-/nebenan-helpers-5.0.0.tgz#0c50eba659a82fa4b2b209b42e5ffbe60b707a9b"
-  integrity sha512-En830n9hCcJeGOUMtaophOJ0OSpWMNWjvLtfE/HyIo7tpg+kxDRr+hPBbxB+BgGbyOXhJFhaBKBrAyETEjWX9A==
+nebenan-helpers@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/nebenan-helpers/-/nebenan-helpers-6.0.0.tgz#bb2dcfc01f77b93c325fa8e35e3fe52ae1ae642a"
+  integrity sha512-2gZGPf3SDo/3Gcs/+pJdmuQ7hnw8Idq+0qA8zOJEW/MIkXyxYmhQiWTkr4xrpqsN2te6OtGj6mck+BNeuzb8cQ==
 
 nebenan-react-datepicker@^1.1.2:
   version "1.1.2"
