@@ -59,7 +59,7 @@
     "lodash": "^4.17.20",
     "mini-css-extract-plugin": "^1.6.0",
     "mocha": "^8.2.1",
-    "nebenan-helpers": "^4.5.0",
+    "nebenan-helpers": "^6.0.0",
     "nebenan-rollup-plugin-postcss": "^1.0.0",
     "nebenan-ui-kit": "^4.15.0",
     "postcss-preset-env": "^6.7.0",
