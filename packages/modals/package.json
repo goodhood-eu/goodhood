@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "0.4.4",
+  "version": "0.5.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -35,8 +35,8 @@
   },
   "peerDependencies": {
     "@babel/runtime": "^7.11.2",
-    "@goodhood/components": "^6.1.0",
-    "nebenan-helpers": "^5.0.0",
+    "@goodhood/components": "^6.4.0",
+    "nebenan-helpers": "^6.0.0",
     "nebenan-ui-kit": "^5.3.0",
     "prop-types": "^15.7.2",
     "react": "^16.14.0 || ^17.0.1",
@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@goodhood/components": "^6.1.0",
-    "nebenan-helpers": "^5.0.0",
+    "nebenan-helpers": "^6.0.0",
     "nebenan-ui-kit": "^5.3.0"
   }
 }
