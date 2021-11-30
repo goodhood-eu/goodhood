@@ -1,5 +1,4 @@
 import pickBy from 'lodash/pickBy';
-import { ADS_GENDER_MAP } from '@/src/advertisement/constants';
 
 const boolFilter = (value) => Boolean(value);
 
@@ -12,8 +11,8 @@ export const getRequestOptions = ({
   width,
   height,
   categories,
+  adnuntiusId,
   keyValues = [],
-  sex_id,
 
   options,
 }) => {
@@ -23,15 +22,8 @@ export const getRequestOptions = ({
     env,
   }, boolFilter);
 
-  const kvData = { app: ['WEB'] };
-  const gender = ADS_GENDER_MAP[sex_id];
-
-  if (gender) {
-    kvData.gender = [gender];
-  }
-
   const kVs = [
-    kvData,
+    { app: ['WEB'] },
   ].concat(keyValues).filter(boolFilter);
 
   const adUnit = pickBy({
@@ -39,6 +31,7 @@ export const getRequestOptions = ({
     auW: width,
     auH: height,
     c: categories,
+    usi: adnuntiusId,
     kv: kVs,
   }, boolFilter);
 
