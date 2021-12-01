@@ -11,6 +11,7 @@ export const getRequestOptions = ({
   width,
   height,
   categories,
+  userId,
   keyValues = [],
 
   options,
@@ -30,6 +31,7 @@ export const getRequestOptions = ({
     auW: width,
     auH: height,
     c: categories,
+    usi: userId,
     kv: kVs,
   }, boolFilter);
 
