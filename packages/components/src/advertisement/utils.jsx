@@ -31,7 +31,6 @@ export const getRequestOptions = ({
     auW: width,
     auH: height,
     c: categories,
-    usi: userId,
     kv: kVs,
   }, boolFilter);
 
@@ -40,7 +39,7 @@ export const getRequestOptions = ({
     ...props,
 
     adUnits: [adUnit],
-
+    usi: userId,
     // improves sandboxing, may cause issues with some ads, disabled for now
     // isolateFrame: true,
 
