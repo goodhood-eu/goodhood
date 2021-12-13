@@ -1,3 +1,5 @@
 **/node_modules/
 **/lib/
+/package-templates/*/preview/
+/packages/*/preview/
 !.preview
