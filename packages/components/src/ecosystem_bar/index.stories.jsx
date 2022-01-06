@@ -12,8 +12,8 @@ const PROJECT_URLS = {
 const MENU_ITEMS = [
   {
     key: 'core',
-    project: 'core',
     link: PROJECT_URLS.core_url,
+    isActive: true,
     event: 'navigation_bar_neighbors',
     mobile: {
       core: 'NACHBAR:INNEN',
@@ -24,9 +24,9 @@ const MENU_ITEMS = [
   },
   {
     key: 'business',
-    project: 'core',
-    event: 'navigation_bar_businesses',
     link: PROJECT_URLS.businesses_url,
+    isActive: false,
+    event: 'navigation_bar_businesses',
     mobile: {
       business: 'GEWERBE',
     },
@@ -36,9 +36,9 @@ const MENU_ITEMS = [
   },
   {
     key: 'organisations',
-    project: 'core',
-    event: 'navigation_bar_organizations',
     link: PROJECT_URLS.organizations_url,
+    isActive: false,
+    event: 'navigation_bar_organizations',
     mobile: {
       organisations: 'ORGANISATIONEN',
     },
@@ -48,9 +48,9 @@ const MENU_ITEMS = [
   },
   {
     key: 'administrations',
-    project: 'core',
-    event: 'navigation_bar_administrations',
     link: PROJECT_URLS.administrations_url,
+    isActive: false,
+    event: 'navigation_bar_administrations',
     mobile: {
       administrations: 'VERWALTUNGEN',
     },
@@ -64,6 +64,6 @@ export const Default = () => {
   const handleFirstSwipeTracking = () => {}; // first swipe was triggered and will be called once
 
   return (
-    <EcosystemBar items={MENU_ITEMS} onFirstSwipe={handleFirstSwipeTracking} project="core" />
+    <EcosystemBar items={MENU_ITEMS} onFirstSwipe={handleFirstSwipeTracking} />
   );
 };

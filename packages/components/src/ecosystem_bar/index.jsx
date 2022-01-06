@@ -15,10 +15,10 @@ const EcosystemBar = ({ items, onFirstSwipe }) => {
       {items.map((item) => (
         <li key={item.key} className={styles.item}>
           <a
-            className={clsx(styles.link, { [styles.isActive]: (item.key === item.project) })}
+            className={clsx(styles.link, { [styles.isActive]: item.isActive })}
             href={item.link}
             rel="noreferrer noopener"
-            target={item.key === item.project ? '_self' : '_blank'}
+            target={item.isActive ? '_self' : '_blank'}
           >
             <span className={styles.onlyMobile}>
               {item.mobile[item.key]}
