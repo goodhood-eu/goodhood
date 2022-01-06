@@ -1,0 +1,82 @@
+@import "~nebenan-ui-kit";
+
+// IMPORTANT: global class names dependency
+// 'client/components/layout_header/index.jsx'
+$external-header-wrapper: ".c-layout_header";
+$external-header-panel: ".c-layout_header_panel";
+$external-header-menu: ".c-layout_header-menu-body";
+
+.root {
+  height: 40px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: #303030;
+
+  overflow: scroll;
+
+  @media ($media-m) {
+    justify-content: center;
+    overflow: auto;
+  }
+
+  & + :global(#{$external-header-wrapper}) {
+    :global {
+      #{$external-header-panel} {
+        position: static;
+      }
+
+      #{$external-header-menu} {
+        margin-top: 0;
+      }
+    }
+  }
+
+  &.scrolled {
+    & + :global(#{$external-header-wrapper}) {
+      :global {
+        #{$external-header-panel} {
+          position: fixed;
+        }
+      }
+    }
+  }
+}
+
+.item {
+  font-weight: $font-weight-l;
+  font-size: $font-size-s;
+  letter-spacing: .5px;
+  line-height: 24px;
+
+  .link {
+    color: $color-gray-03;
+    transition: color $transition;
+    padding: 8px 16px;
+
+    &.isActive {
+      color: $color-gray-09;
+    }
+
+    @media (pointer: fine) {
+      &:hover {
+        color: $color-gray-09;
+      }
+    }
+  }
+}
+
+.notMobile {
+  display: none;
+}
+
+@media ($media-m) {
+  .onlyMobile {
+    display: none;
+  }
+
+  .notMobile {
+    display: inline-block;
+  }
+}
