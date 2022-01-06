@@ -62,8 +62,13 @@ const MENU_ITEMS = [
 
 export const Default = () => {
   const handleFirstSwipeTracking = () => {}; // first swipe was triggered and will be called once
+  const handleClickItem = () => {}; // will fire event that item is clicked
 
   return (
-    <EcosystemBar items={MENU_ITEMS} onFirstSwipe={handleFirstSwipeTracking} />
+    <EcosystemBar
+      items={MENU_ITEMS}
+      onFirstSwipe={handleFirstSwipeTracking}
+      onClickItem={handleClickItem}
+    />
   );
 };

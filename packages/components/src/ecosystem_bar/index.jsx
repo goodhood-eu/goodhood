@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import { useOnceSwipeTracking, useScrolled } from '@/src/ecosystem_bar/hooks';
 import styles from './index.module.scss';
 
-const EcosystemBar = ({ items, onFirstSwipe }) => {
+const EcosystemBar = ({ items, onFirstSwipe, onClickItem }) => {
   const navRef = useRef(null);
   const scrolled = useScrolled(navRef);
 
@@ -19,6 +19,7 @@ const EcosystemBar = ({ items, onFirstSwipe }) => {
             href={item.link}
             rel="noreferrer noopener"
             target={item.isActive ? '_self' : '_blank'}
+            onClick={() => onClickItem(item.event)}
           >
             <span className={styles.onlyMobile}>
               {item.mobile[item.key]}
@@ -37,6 +38,7 @@ const EcosystemBar = ({ items, onFirstSwipe }) => {
 EcosystemBar.propTypes = {
   items: PropTypes.array.isRequired,
   onFirstSwipe: PropTypes.func.isRequired,
+  onClickItem: PropTypes.func.isRequired,
 };
 
 export default EcosystemBar;
