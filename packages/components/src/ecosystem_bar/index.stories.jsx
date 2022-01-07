@@ -68,7 +68,7 @@ export const Default = () => {
     <EcosystemBar
       items={MENU_ITEMS}
       onFirstSwipe={handleFirstSwipeTracking}
-      onClickItem={handleClickItem}
+      onItemClick={handleClickItem}
     />
   );
 };
