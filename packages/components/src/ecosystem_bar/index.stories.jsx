@@ -15,48 +15,32 @@ const MENU_ITEMS = [
     link: PROJECT_URLS.core_url,
     isActive: true,
     event: 'navigation_bar_neighbors',
-    mobile: {
-      core: 'NACHBAR:INNEN',
-    },
-    other: {
-      core: 'FÜR NACHBAR:INNEN',
-    },
+    mobile: 'NACHBAR:INNEN',
+    others: 'FÜR NACHBAR:INNEN',
   },
   {
     key: 'business',
     link: PROJECT_URLS.businesses_url,
     isActive: false,
     event: 'navigation_bar_businesses',
-    mobile: {
-      business: 'GEWERBE',
-    },
-    other: {
-      business: 'FÜR GEWERBE',
-    },
+    mobile: 'GEWERBE',
+    others: 'FÜR GEWERBE',
   },
   {
     key: 'organisations',
     link: PROJECT_URLS.organizations_url,
     isActive: false,
     event: 'navigation_bar_organizations',
-    mobile: {
-      organisations: 'ORGANISATIONEN',
-    },
-    other: {
-      organisations: 'FÜR ORGANISATIONEN',
-    },
+    mobile: 'ORGANISATIONEN',
+    others: 'FÜR ORGANISATIONEN',
   },
   {
     key: 'administrations',
     link: PROJECT_URLS.administrations_url,
     isActive: false,
     event: 'navigation_bar_administrations',
-    mobile: {
-      administrations: 'VERWALTUNGEN',
-    },
-    other: {
-      administrations: 'FÜR VERWALTUNGEN',
-    },
+    mobile: 'VERWALTUNGEN',
+    others: 'FÜR VERWALTUNGEN',
   },
 ];
 
