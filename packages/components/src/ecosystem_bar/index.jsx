@@ -10,26 +10,28 @@ const EcosystemBar = ({ items, onFirstSwipe, onItemClick }) => {
 
   useOnceSwipeTracking(navRef, onFirstSwipe);
 
+  const renderItem = (item) => (
+    <li key={item.key} className={styles.item}>
+      <a
+        className={clsx(styles.link, { [styles.isActive]: item.isActive })}
+        href={item.link}
+        rel="noreferrer noopener"
+        target={item.isActive ? '_self' : '_blank'}
+        onClick={onItemClick.bind(undefined, item.event)}
+      >
+        <span className={styles.onlyMobile}>
+          {item.mobile}
+        </span>
+        <span className={styles.notMobile}>
+          {item.others}
+        </span>
+      </a>
+    </li>
+  );
+
   return (
     <ul className={clsx(styles.root, { [styles.scrolled]: scrolled })} ref={navRef}>
-      {items.map((item) => (
-        <li key={item.key} className={styles.item}>
-          <a
-            className={clsx(styles.link, { [styles.isActive]: item.isActive })}
-            href={item.link}
-            rel="noreferrer noopener"
-            target={item.isActive ? '_self' : '_blank'}
-            onClick={() => onItemClick(item.event)}
-          >
-            <span className={styles.onlyMobile}>
-              {item.mobile}
-            </span>
-            <span className={styles.notMobile}>
-              {item.others}
-            </span>
-          </a>
-        </li>
-      ))}
+      {items.map(renderItem)}
     </ul>
   );
 };
