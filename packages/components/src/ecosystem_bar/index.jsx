@@ -20,10 +20,10 @@ const EcosystemBar = ({ items, onFirstSwipe, onItemClick }) => {
         onClick={onItemClick.bind(undefined, item.event)}
       >
         <span className={styles.onlyMobile}>
-          {item.mobile}
+          {item.text.mobile}
         </span>
         <span className={styles.notMobile}>
-          {item.others}
+          {item.text.others}
         </span>
       </a>
     </li>
