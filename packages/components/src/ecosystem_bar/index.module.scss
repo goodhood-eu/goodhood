@@ -12,7 +12,7 @@ $external-header-menu: ".c-layout_header-menu-body";
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background: #303030;
+  background: #303030; // TODO: set as variable, when ui-kit gets updated
 
   overflow: scroll;
 
