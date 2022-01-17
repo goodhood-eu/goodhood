@@ -1,0 +1,108 @@
+@import '~nebenan-ui-kit';
+
+.inputWrapper {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  align-items: center;
+  background: $color-gray-08;
+  border: 1px solid $color-gray-06;
+  box-sizing: border-box;
+  border-radius: 4px;
+
+  &.small {
+    height: 30px;
+  }
+
+  &.large {
+    height: 60px;
+
+    .input { padding-top: 16px; }
+  }
+
+  &.disableBorder {
+    border-color: $color-gray-08;
+  }
+
+  &.withError {
+    border-color: $color-orange-01;
+  }
+
+  &.disabled {
+    opacity: 0.6;
+
+    .label {
+      cursor: default;
+    }
+  }
+}
+
+.attachment {
+  max-width: 24px;
+  max-height: 24px;
+  overflow: hidden;
+
+  cursor: pointer;
+}
+
+.attachmentLeft {
+  margin-right: 10px;
+}
+
+.attachmentRight {
+  margin-left: 10px;
+}
+
+.label {
+  position: relative;
+  flex: auto;
+  cursor: text;
+}
+
+.labelText {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $color-gray-03;
+  font-size: $font-size-m;
+  transition: all 0.2s ease;
+
+  &.large {
+    font-size: $heading-size-4;
+    font-weight: $font-weight-l;
+  }
+
+  &.focus {
+    &.small,
+    &.medium {
+      display: none;
+    }
+
+    &.large {
+      top: 10px;
+      transform: translateY(0);
+      color: $color-gray-02;
+      font-size: $text-detail-1-size;
+    }
+  }
+}
+
+.input {
+  color: $color-gray-00;
+  font-weight: $font-weight-l;
+  font-size: $heading-size-4;
+  line-height: 20px;
+  background: none;
+  width: 100%;
+  height: 100%;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.meta {
+  margin-top: 3px;
+}

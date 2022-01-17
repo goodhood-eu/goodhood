@@ -1,0 +1,18 @@
+@import '~nebenan-ui-kit';
+
+.meta {
+  display: flex;
+  font-size: $text-detail-1-size;
+}
+
+.lengthCounter {
+  margin-left: auto;
+  padding-left: 10px;
+  color: $color-gray-02;
+  flex-shrink: 0;
+}
+
+.error {
+  flex: auto;
+  color: $color-orange-01;
+}

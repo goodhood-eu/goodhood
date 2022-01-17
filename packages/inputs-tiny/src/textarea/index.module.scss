@@ -1,0 +1,73 @@
+@import '~nebenan-ui-kit';
+
+.inputWrapper {
+  display: flex;
+  width: 100%;
+  min-height: 135px;
+  padding: 0 8px;
+  align-items: center;
+  background: $color-gray-08;
+  border: 1px solid $color-gray-06;
+  box-sizing: border-box;
+  border-radius: 4px;
+
+  &.disableBorder {
+    border-color: $color-gray-08;
+  }
+
+  &.withError {
+    border-color: $color-orange-01;
+  }
+
+  &.disabled {
+    opacity: 0.6;
+
+    .label {
+      cursor: default;
+    }
+  }
+}
+
+.label {
+  position: relative;
+  flex: auto;
+  cursor: text;
+  padding: 22px 0 10px;
+  height: 100%;
+}
+
+.labelText {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  transform: translateY(0);
+  color: $color-gray-03;
+  transition: all 0.2s ease;
+  font-size: $heading-size-4;
+  font-weight: $font-weight-l;
+
+  &.focus {
+    transform: translateY(-12px);
+    color: $color-gray-02;
+    font-size: $text-detail-1-size;
+  }
+}
+
+.input {
+  box-sizing: border-box;
+  color: $color-gray-00;
+  font-weight: $font-weight-l;
+  font-size: $heading-size-4;
+  line-height: 20px;
+  background: none;
+  width: 100%;
+  height: 100%;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.meta {
+  margin-top: 3px;
+}
