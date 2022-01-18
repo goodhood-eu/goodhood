@@ -24,7 +24,8 @@ export const useProviderValue = ({ offset, setOffset, setModal }) => {
     setModal,
     lock: () => {
       locksCount.current += 1;
-      if (locksCount.current === 1) setOffset(scroll(global).get());
+      const isLastScrollRestorationDone = prevOffset.current === null;
+      if (locksCount.current === 1 && isLastScrollRestorationDone) setOffset(scroll(global).get());
     },
 
     unlock: () => {
