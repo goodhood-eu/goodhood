@@ -15,7 +15,7 @@ const {
   ASSET_REGEX,
   SVG_REGEX,
   SCRIPT_REGEX,
-} = require('../build/webpack-base');
+} = require('../build/webpack_base');
 
 
 const CONFIG_NAME_CLIENT = 'client';

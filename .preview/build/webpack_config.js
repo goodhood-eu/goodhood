@@ -17,7 +17,7 @@ const {
   ASSET_REGEX,
   SVG_REGEX,
   SCRIPT_REGEX,
-} = require('./webpack-base');
+} = require('./webpack_base');
 
 const relativePath = `${path.relative(ROOT_PKG_PATH, PKG_PATH)}`;
 const publicPath = `/goodhood/${relativePath}/preview/`;
