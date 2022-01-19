@@ -9131,26 +9131,6 @@ nebenan-react-hocs@^8.0.0:
   resolved "https://registry.yarnpkg.com/nebenan-react-hocs/-/nebenan-react-hocs-8.2.0.tgz#fed4b08c2d4c5056de172b893081911c4ae70e9a"
   integrity sha512-jBUtiwyH6U9s0eFwOyHY+FTxgICKYssyfns6qJuXynJzZDaLCIOwgnLo5AdsVFWRlz4r5s/Noa2bU0okzloZ7Q==
 
-nebenan-rollup-plugin-postcss@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/nebenan-rollup-plugin-postcss/-/nebenan-rollup-plugin-postcss-1.0.0.tgz#2ce3dcc88e40fcb8b4991234ae65b94dd5da7180"
-  integrity sha512-qFY432RGVt8kzz+DdSEF5/TmipErqiaxi9w2ux61JYbias/1l1epJwu3+aZWsHBKOkyQChP2IdbxFpJLkvOT7g==
-  dependencies:
-    chalk "^4.0.0"
-    concat-with-sourcemaps "^1.1.0"
-    cssnano "^4.1.10"
-    import-cwd "^3.0.0"
-    p-queue "^6.3.0"
-    pify "^5.0.0"
-    postcss "^7.0.27"
-    postcss-load-config "^2.1.0"
-    postcss-modules "^2.0.0"
-    promise.series "^0.2.0"
-    resolve "^1.16.1"
-    rollup-pluginutils "^2.8.2"
-    safe-identifier "^0.4.1"
-    style-inject "^0.3.0"
-
 nebenan-ui-kit@^4.15.0:
   version "4.17.1"
   resolved "https://registry.yarnpkg.com/nebenan-ui-kit/-/nebenan-ui-kit-4.17.1.tgz#4776912faa0bf08dccd81a1939bc2d3e66c4474d"
@@ -11822,6 +11802,26 @@ rollup-plugin-peer-deps-external@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/rollup-plugin-peer-deps-external/-/rollup-plugin-peer-deps-external-2.2.4.tgz#8a420bbfd6dccc30aeb68c9bf57011f2f109570d"
   integrity sha512-AWdukIM1+k5JDdAqV/Cxd+nejvno2FVLVeZ74NKggm3Q5s9cbbcOgUPGdbxPi4BXu7xGaZ8HG12F+thImYu/0g==
+
+rollup-plugin-postcss@^3.0.0:
+  version "3.1.8"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-postcss/-/rollup-plugin-postcss-3.1.8.tgz#d1bcaf8eb0fcb0936e3684c22dd8628d13a82fd1"
+  integrity sha512-JHnGfW8quNc6ePxEkZ05HEZ1YiRxDgY9RKEetMfsrwxR2kh/d90OVScTc6b1c2Q17Cs/5TRYL+1uddG21lQe3w==
+  dependencies:
+    chalk "^4.0.0"
+    concat-with-sourcemaps "^1.1.0"
+    cssnano "^4.1.10"
+    import-cwd "^3.0.0"
+    p-queue "^6.3.0"
+    pify "^5.0.0"
+    postcss "^7.0.27"
+    postcss-load-config "^2.1.0"
+    postcss-modules "^2.0.0"
+    promise.series "^0.2.0"
+    resolve "^1.16.1"
+    rollup-pluginutils "^2.8.2"
+    safe-identifier "^0.4.1"
+    style-inject "^0.3.0"
 
 rollup-pluginutils@^2.8.2:
   version "2.8.2"
