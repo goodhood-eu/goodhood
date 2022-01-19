@@ -4,7 +4,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const path = require('path');
 const express = require('express');
 const { getStatsByName, getClientAssets, getPrerenderedContent } = require('./utils');
-const { getConfig, CONFIG_NAME_CLIENT, CONFIG_NAME_SERVER } = require('./webpack-config');
+const { getConfig, CONFIG_NAME_CLIENT, CONFIG_NAME_SERVER } = require('./webpack_config');
 const template = require('../templates');
 
 const startListening = () => {
