@@ -27,7 +27,7 @@
     "@babel/runtime": "^7.12.5",
     "@goodhood/icons": "^2.2.0",
     "@octokit/core": "^3.2.1",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
     "@rollup/plugin-alias": "^3.1.1",
     "@rollup/plugin-babel": "^5.2.1",
     "@rollup/plugin-commonjs": "^16.0.0",
