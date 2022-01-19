@@ -17,8 +17,8 @@ export const Default = () => {
       <section className={styles.overlay}>
         <h1>This thing is here so that you can scroll down</h1>
 
-        {arrayOf(50).map(() => (
-          <p>Lorem ipsum</p>
+        {arrayOf(50).map((i) => (
+          <p key={i}>Lorem ipsum</p>
         ))}
 
         <span className="ui-button ui-button-primary" onClick={setActiveModal.bind(undefined, 1)}>
