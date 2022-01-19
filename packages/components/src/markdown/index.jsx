@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import marked from 'marked';
+import { marked } from 'marked';
 import styles from './index.module.scss';
 
 import { sanitizeText } from './utils';
