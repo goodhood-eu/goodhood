@@ -9020,27 +9020,39 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
-nebenan-form@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/nebenan-form/-/nebenan-form-9.0.0.tgz#a22cb4aff4a65da1c293972b25d3dc4dfbbd4e31"
-  integrity sha512-rfYieW62ZypFeTnV68LByll3Cp2cXnu+t1ARL2E/VXCQVxHRI5Jwv4ipQYB9XMgWSa8b7SLruT1Rv3GLilGgEA==
+nebenan-eventproxy@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/nebenan-eventproxy/-/nebenan-eventproxy-1.0.0.tgz#88db9ea51edf6f1c3d55590272bcb13c44af30ab"
+  integrity sha512-chPgbdpnssu4WIiDMZe/zDjjGP5XSmB2f5W7dTGdgQrz2+gfWbGfI0nIx4npcPCDUsHGwN0YwudImSgeoi1fUA==
+  dependencies:
+    lodash "^4.17.21"
+
+nebenan-form@9.2.0-beta.0:
+  version "9.2.0-beta.0"
+  resolved "https://registry.yarnpkg.com/nebenan-form/-/nebenan-form-9.2.0-beta.0.tgz#44062b4d42e7769ee45bc8fec2cc166cae937e33"
+  integrity sha512-Zh0iGZIvqmWqX0jC9AT1QN39Pjy/ojLq7DMifHp6UiupeYeBpBk3HK4pw/5dHeVS+27tklIn1ExDprJLPFpORg==
   dependencies:
     nebenan-react-datepicker "^1.1.2"
 
-nebenan-helpers@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/nebenan-helpers/-/nebenan-helpers-6.0.0.tgz#bb2dcfc01f77b93c325fa8e35e3fe52ae1ae642a"
-  integrity sha512-2gZGPf3SDo/3Gcs/+pJdmuQ7hnw8Idq+0qA8zOJEW/MIkXyxYmhQiWTkr4xrpqsN2te6OtGj6mck+BNeuzb8cQ==
+nebenan-helpers@7.0.0-beta.0, nebenan-helpers@^7.0.0-beta.0:
+  version "7.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/nebenan-helpers/-/nebenan-helpers-7.0.0-beta.0.tgz#f24f5417eb977579e877aadc5c7e1210db2624cf"
+  integrity sha512-FRIpaISa0L2xxw+wJnDoiQQSHOJ5J7/nrRL0uOKxZdtx+RisDLr8elvpYno0t5kAp2HGG6JnjwxT9TLlCb6F0A==
+
+nebenan-keymanager@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/nebenan-keymanager/-/nebenan-keymanager-1.0.1.tgz#e9b22f78a96b1515142243e57f4e68be540a07b7"
+  integrity sha512-glnQ3bUOfNQCNbCTHtRL/Snwo7qVqJ1iOQD+mpTNDnZ3ces52fSXDQ7pUCNrW4pFTl2vG1toK0oD81Fi2gQ0Fg==
 
 nebenan-react-datepicker@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/nebenan-react-datepicker/-/nebenan-react-datepicker-1.1.2.tgz#4eee44516998357c1ea43b9a5e8cc81dc9ddca1c"
   integrity sha512-vvX6ra9eFseyFqOfq1omdcx34Cr1bW3TvdiW/z4T/OSfl8MHmTU/CXM1s8PK7JYRiKzWOO9hbAi8tjsipRi1zA==
 
-nebenan-react-hocs@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/nebenan-react-hocs/-/nebenan-react-hocs-8.0.0.tgz#fc617ee38e22867f94349a7ae60c997a6fd066d2"
-  integrity sha512-4XMR1g3DFdMJXp1EcjDkLrjM/4O2ep1GfJqDLXdUL8ihYqL7wV+KRfSs0HFn6Tf5HsyTne4DUNapKLajjxdrGA==
+nebenan-react-hocs@8.3.0-beta.0:
+  version "8.3.0-beta.0"
+  resolved "https://registry.yarnpkg.com/nebenan-react-hocs/-/nebenan-react-hocs-8.3.0-beta.0.tgz#0b0ce2aa6aa2d56bf476a514cfe4737504e76717"
+  integrity sha512-lZ8NlqwWD2zXBNKYFZriwD7cqPyIVJIzrQPtLcng9Fdwq8NDC/AkEidQY9SUrXWVAdZ+jpFpsaeMxRvnAxFpGQ==
 
 nebenan-rollup-plugin-postcss@^1.0.0:
   version "1.0.0"
