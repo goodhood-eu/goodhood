@@ -1,10 +1,10 @@
 @import '~nebenan-ui-kit';
 
 .inputWrapper {
-  display: flex;
-  width: 100%;
   min-height: 135px;
+  width: 100%;
   padding: 0 8px;
+  display: flex;
   align-items: center;
   background: $color-gray-08;
   border: 1px solid $color-gray-06;
@@ -20,7 +20,7 @@
   }
 
   &.disabled {
-    opacity: 0.6;
+    opacity: .6;
 
     .label {
       cursor: default;
@@ -29,20 +29,20 @@
 }
 
 .label {
-  position: relative;
-  flex: auto;
-  cursor: text;
-  padding: 22px 0 10px;
   height: 100%;
+  padding: 22px 0 10px;
+  flex: auto;
+  position: relative;
+  cursor: text;
 }
 
 .labelText {
   position: absolute;
-  left: 0;
   top: 20px;
+  left: 0;
   transform: translateY(0);
   color: $color-gray-03;
-  transition: all 0.2s ease;
+  transition: all .2s ease;
   font-size: $heading-size-4;
   font-weight: $font-weight-l;
 
