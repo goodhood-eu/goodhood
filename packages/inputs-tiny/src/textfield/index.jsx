@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import Meta from '../textfields_meta';
+import { SIZES_KEYS } from '@/src/constants';
+import Meta from '@/src/textfields_meta';
 import styles from './index.module.scss';
 
 const TextField = ({
@@ -19,6 +20,7 @@ const TextField = ({
   maxLength,
   placeholder,
   disabled,
+  type = 'text',
   ...rest
 }) => {
   const [inFocus, setFocus] = useState(false);
@@ -77,6 +79,7 @@ const TextField = ({
             onChange={handleChange}
             value={value}
             disabled={disabled}
+            type={type}
             {...rest}
           />
         </label>
@@ -111,11 +114,12 @@ TextField.propTypes = {
   onAttachmentLeftClick: PropTypes.func,
   attachmentRight: PropTypes.node,
   onAttachmentRightClick: PropTypes.func,
-  size: PropTypes.oneOf(['large', 'medium', 'small']),
+  size: PropTypes.oneOf(SIZES_KEYS),
   className: PropTypes.string,
   disableBorder: PropTypes.bool,
   maxLength: PropTypes.number,
   disabled: PropTypes.bool,
+  type: PropTypes.string,
 };
 
 export default TextField;

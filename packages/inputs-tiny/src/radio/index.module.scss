@@ -1,0 +1,55 @@
+@import '~nebenan-ui-kit';
+
+.label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  &.disabled {
+    cursor: default;
+    opacity: 0.4;
+    user-select: none;
+  }
+}
+
+.input {
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+
+  &:checked + .checkbox {
+    background: #B2CA06;
+    border: none;
+  }
+}
+
+.checkbox {
+  display: block;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  background: #fff;
+  border: 1px solid #9C9C9C;
+  border-radius: 50%;
+
+  &:after {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    content: "";
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.labelText {
+  display: block;
+  margin-left: 10px;
+  line-height: 22px;
+  color: #393939;
+  font-size: 14px;
+}

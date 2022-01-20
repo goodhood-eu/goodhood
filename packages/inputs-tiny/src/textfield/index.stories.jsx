@@ -15,7 +15,7 @@ export const Default = () => {
         value={value}
         label="My Awesome Input"
         placeholder="Hello TextField"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
       />
     </div>
   );
@@ -30,7 +30,7 @@ export const DefaultDisabled = () => {
         value={value}
         label="My Awesome Input"
         placeholder="Hello TextField"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         disabled
       />
     </div>
@@ -46,7 +46,7 @@ export const DefaultWithError = () => {
         value={value}
         label="My Awesome Input"
         placeholder="Hello TextField"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         error="Error message"
       />
     </div>
@@ -62,7 +62,7 @@ export const DefaultWithLengthCounter = () => {
         value={value}
         label="My Awesome Input"
         placeholder="Hello TextField"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         maxLength={10}
       />
     </div>
@@ -78,7 +78,7 @@ export const DefaultWithAttachments = () => {
         value={value}
         label="My Awesome Input"
         placeholder="Hello TextField"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         attachmentRight={<MoreIcon />}
         attachmentLeft={<SearchIcon />}
       />
@@ -95,7 +95,7 @@ export const DefaultWithoutBorder = () => {
         value={value}
         label="My Awesome Input"
         placeholder="Hello TextField"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         disableBorder
       />
     </div>
@@ -112,7 +112,7 @@ export const Large = () => {
         value={value}
         label="My Awesome Input"
         placeholder="Hello TextField"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         size="large"
       />
     </div>
@@ -128,7 +128,7 @@ export const LargeDisabled = () => {
         value={value}
         label="My Awesome Input"
         placeholder="Hello TextField"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         disabled
         size="large"
       />
@@ -145,7 +145,7 @@ export const LargeWithError = () => {
         value={value}
         label="My Awesome Input"
         placeholder="Hello TextField"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         error="Error message"
         size="large"
       />
@@ -162,7 +162,7 @@ export const LargeWithLengthCounter = () => {
         value={value}
         label="My Awesome Input"
         placeholder="Hello TextField"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         maxLength={10}
         size="large"
       />
@@ -179,7 +179,7 @@ export const LargeWithAttachments = () => {
         value={value}
         label="My Awesome Input"
         placeholder="Hello TextField"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         attachmentRight={<MoreIcon />}
         attachmentLeft={<SearchIcon />}
         size="large"
@@ -197,7 +197,7 @@ export const LargeWithoutBorder = () => {
         value={value}
         label="My Awesome Input"
         placeholder="Hello TextField"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         disableBorder
         size="large"
       />
@@ -215,7 +215,7 @@ export const Small = () => {
         value={value}
         label="My Awesome Input"
         placeholder="Hello TextField"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         size="small"
       />
     </div>
@@ -231,7 +231,7 @@ export const SmallDisabled = () => {
         value={value}
         label="My Awesome Input"
         placeholder="Hello TextField"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         disabled
         size="small"
       />
@@ -248,7 +248,7 @@ export const SmallWithError = () => {
         value={value}
         label="My Awesome Input"
         placeholder="Hello TextField"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         error="Error message"
         size="small"
       />
@@ -265,7 +265,7 @@ export const SmallWithLengthCounter = () => {
         value={value}
         label="My Awesome Input"
         placeholder="Hello TextField"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         maxLength={10}
         size="small"
       />
@@ -282,7 +282,7 @@ export const SmallWithAttachments = () => {
         value={value}
         label="My Awesome Input"
         placeholder="Hello TextField"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         attachmentRight={<MoreIcon />}
         attachmentLeft={<SearchIcon />}
         size="small"
@@ -300,7 +300,7 @@ export const SmallWithoutBorder = () => {
         value={value}
         label="My Awesome Input"
         placeholder="Hello TextField"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         disableBorder
         size="small"
       />

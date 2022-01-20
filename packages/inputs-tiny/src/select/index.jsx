@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { SIZES_KEYS } from '@/src/constants';
 import Meta from '../textfields_meta';
 import styles from './index.module.scss';
 
@@ -8,6 +9,7 @@ const Select = ({
   error,
   value = '',
   options,
+  size = 'medium',
   onChange,
   className,
   disableBorder,
@@ -25,6 +27,7 @@ const Select = ({
       <div
         className={clsx(
           styles.inputWrapper,
+          styles[size],
           {
             [styles.disableBorder]: disableBorder,
             [styles.withError]: error,
@@ -38,7 +41,7 @@ const Select = ({
           <span
             className={clsx(
               styles.labelText,
-              { [styles.focus]: value !== undefined },
+              styles[size],
             )}
           >
             {label}
@@ -75,6 +78,7 @@ Select.propTypes = {
   label: PropTypes.string,
   error: PropTypes.string,
   value: PropTypes.string,
+  defaultSelected: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.string,
@@ -82,6 +86,7 @@ Select.propTypes = {
     }),
   ).isRequired,
   onChange: PropTypes.func.isRequired,
+  size: PropTypes.oneOf(SIZES_KEYS),
   className: PropTypes.string,
   disableBorder: PropTypes.bool,
   disabled: PropTypes.bool,

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { SIZES } from '@/src/constants';
 import Select from './index';
 import styles from './index.stories.module.scss';
 
@@ -67,6 +68,56 @@ export const DefaultWithoutBorder = () => {
         label="Label"
         onChange={(val) => setValue(val)}
         disableBorder
+      />
+    </div>
+  );
+};
+
+export const DefaultWithoutDefaultSelected = () => {
+  const [value, setValue] = useState('');
+
+  return (
+    <div className={styles.container}>
+      <Select
+        value={value}
+        options={OPTIONS}
+        label="Label"
+        onChange={(val) => setValue(val)}
+        defaultSelected={`${OPTIONS[2].value}`}
+      />
+    </div>
+  );
+};
+
+/* Large */
+export const Large = () => {
+  const [value, setValue] = useState('');
+
+  return (
+    <div className={styles.container}>
+      <Select
+        value={value}
+        options={OPTIONS}
+        label="Label"
+        onChange={(val) => { setValue(val); }}
+        size={SIZES.large}
+      />
+    </div>
+  );
+};
+
+/* Small */
+export const Small = () => {
+  const [value, setValue] = useState('');
+
+  return (
+    <div className={styles.container}>
+      <Select
+        value={value}
+        options={OPTIONS}
+        label="Label"
+        onChange={(val) => { setValue(val); }}
+        size={SIZES.small}
       />
     </div>
   );

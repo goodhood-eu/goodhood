@@ -12,7 +12,7 @@ export const Default = () => {
         value={value}
         label="Label"
         placeholder="Hello TextArea"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
       />
     </div>
   );
@@ -27,7 +27,7 @@ export const DefaultDisabled = () => {
         value={value}
         label="Label"
         placeholder="Hello TextArea"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         disabled
       />
     </div>
@@ -43,7 +43,7 @@ export const DefaultWithError = () => {
         value={value}
         label="Label"
         placeholder="Hello TextArea"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         error="Error message"
       />
     </div>
@@ -59,7 +59,7 @@ export const DefaultWithLengthCounter = () => {
         value={value}
         label="Label"
         placeholder="Hello TextArea"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         maxLength={10}
       />
     </div>
@@ -75,7 +75,7 @@ export const DefaultWithoutBorder = () => {
         value={value}
         label="Label"
         placeholder="Hello TextArea"
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
         disableBorder
       />
     </div>
