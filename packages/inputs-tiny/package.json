@@ -1,7 +1,7 @@
 {
   "name": "@goodhood/inputs-tiny",
-  "description": "FUN FUN FUN",
-  "author": "goodhood.eu <max@nebenan.de>",
+  "description": "Nebenan inputs package",
+  "author": "goodhood.eu <rafik@nebenan.de>",
   "license": "SEE LICENSE IN LICENSE FILE",
   "homepage": "https://goodhood.eu/",
   "repository": {
