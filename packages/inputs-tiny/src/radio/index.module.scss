@@ -18,7 +18,7 @@
   opacity: 0;
 
   &:checked + .checkbox {
-    background: #B2CA06;
+    background: $color-green-02;
     border: none;
   }
 }
@@ -29,8 +29,8 @@
   width: 24px;
   height: 24px;
   position: relative;
-  background: #fff;
-  border: 1px solid #9C9C9C;
+  background: $color-gray-09;
+  border: 1px solid $color-gray-03;
   border-radius: 50%;
 
   &:after {
@@ -38,7 +38,7 @@
     width: 12px;
     height: 12px;
     content: "";
-    background: #fff;
+    background: $color-gray-09;
     top: 50%;
     left: 50%;
     border-radius: 50%;
@@ -50,6 +50,6 @@
   display: block;
   margin-left: 10px;
   line-height: 22px;
-  color: #393939;
-  font-size: 14px;
+  color: $color-gray-00;
+  font-size: $font-size-m;
 }

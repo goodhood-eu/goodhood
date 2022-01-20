@@ -14,7 +14,6 @@ const OPTIONS2 = [
   { label: 'Option 3', value: 3 },
 ];
 
-/* Default (medium size) */
 export const Default = () => {
   const [value, setValue] = useState('');
 
