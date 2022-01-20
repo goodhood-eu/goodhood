@@ -1,10 +1,11 @@
 import { startCase, kebabCase } from 'lodash';
 
-const getExample = (module, namedExport, idPrefix) => {
-  const id = [idPrefix, kebabCase(namedExport)].join('--');
+const getExample = (module, namedExport, storyId) => {
+  const id = [storyId, kebabCase(namedExport)].join('--');
 
   return {
     id,
+    storyId,
     title: startCase(namedExport),
     Component: module[namedExport],
   };
@@ -13,12 +14,13 @@ const getExample = (module, namedExport, idPrefix) => {
 const getStory = (module, key) => {
   const meta = module.default;
 
-  const { title } = meta;
+  const { title, layout } = meta;
 
   return {
     id: kebabCase(title),
     path: key,
     title,
+    layout,
     examples: [],
   };
 };

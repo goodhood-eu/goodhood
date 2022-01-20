@@ -16,8 +16,11 @@ const Story = ({ match }) => {
   const [isExpanded, setExpanded] = useState(true);
   const exampleId = getExampleIdFromParams(match.params);
   const example = entities.examples[exampleId];
+  const story = example && entities.stories[example.storyId];
 
   const handleToggle = () => setExpanded((v) => !v);
+
+  if (example && story?.layout === false) return <example.Component />;
 
   return (
     <Layout>
