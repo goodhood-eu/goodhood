@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - master
-      - fix-gh-actions
 jobs:
   deploy-preview:
     name: Build & Deploy preview
