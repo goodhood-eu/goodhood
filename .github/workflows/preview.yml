@@ -13,8 +13,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '16.x'
-      - run: npm run ci
-      - run: npm run tryBuild:preview
+      - run: yarn install --frozen-lockfile
+      - run: yarn run tryBuild:preview
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
