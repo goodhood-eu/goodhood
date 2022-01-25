@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: '16.x'
       - run: yarn install --frozen-lockfile
-      - run: npm run tryBuild:preview
+      - run: yarn run tryBuild:preview
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:

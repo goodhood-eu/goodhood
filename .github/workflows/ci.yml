@@ -11,5 +11,5 @@ jobs:
       with:
         node-version: '16.x'
     - run: yarn install --frozen-lockfile
-    - run: npm run check
+    - run: yarn run check
 
