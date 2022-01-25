@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - fix-gh-actions
 jobs:
   deploy-preview:
     name: Build & Deploy preview
@@ -13,7 +14,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '16.x'
-      - run: npm run ci
+      - run: yarn install --frozen-lockfile
       - run: npm run tryBuild:preview
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4
