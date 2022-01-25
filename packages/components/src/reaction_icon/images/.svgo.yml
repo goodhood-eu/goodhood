@@ -1,3 +1,6 @@
 plugins:
-  - removeViewBox: false
-  - removeRasterImage: true
+  - name: preset-default
+    params:
+      overrides:
+        removeViewBox: false
+  - removeRasterImages

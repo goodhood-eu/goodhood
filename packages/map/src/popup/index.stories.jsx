@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import config from '@root/config';
 import { boolean, number } from '@root/.preview/src/modules/knobs';
 import { action } from '@root/.preview/src/modules/actions';
-import Map from '../map';
 import data from '../../sample_data';
 import Marker from '../marker';
 import Popup from './index';
+import Map from '../map';
 
 
 export default { title: 'Popup', component: Popup };
