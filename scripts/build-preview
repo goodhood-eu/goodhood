@@ -1,4 +1,4 @@
 #!/bin/sh
 # expects cwd to be subpackage root
 ../../node_modules/.bin/webpack build \
-  --config ../../.preview/build/webpack-config.js
+  --config ../../.preview/build/webpack_config.js
