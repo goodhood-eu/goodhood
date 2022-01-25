@@ -39,7 +39,7 @@
     "svgo": "^2.8.0",
     "svgo-loader": "^3.0.0",
     "val-loader": "^2.1.2",
-    "webpack": "^4.44.2",
+    "webpack": "^5.36.2",
     "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.3"
   },
