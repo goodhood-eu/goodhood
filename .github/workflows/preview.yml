@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - master
-      - hotfix/update-webpack-version-for-icon-preview
 jobs:
   deploy-preview:
     name: Build & Deploy preview
