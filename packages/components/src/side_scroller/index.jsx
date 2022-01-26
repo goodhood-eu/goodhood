@@ -10,6 +10,7 @@ import Draggable from '../draggable';
 import Controls from './controls';
 import { DISABLE_SCROLL_DISTANCE, SHIFT_PERCENT, SHIFT_TOLERANCE, ANIMATION_DURATION, ANIMATION_FPS } from './constants';
 import { getAnimationPosition } from './utils';
+import useMounted from 'nebenan-react-hocs/lib/use_mounted';
 
 const SideScroller = ({
   className: passedClassName,
@@ -20,6 +21,8 @@ const SideScroller = ({
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [height, setHeight] = useState(0);
+
+  const isMounted = useMounted();
 
   const containerRef = useRef(null);
   const contentRef = useRef(null);
@@ -107,6 +110,8 @@ const SideScroller = ({
     let time = 0;
 
     const animateScroll = () => {
+      if (!isMounted.current) return;
+
       const newValue = getAnimationPosition(
         containerRef.current.scrollLeft,
         target,
