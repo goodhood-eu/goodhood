@@ -8267,10 +8267,10 @@ nebenan-react-datepicker@^1.1.2:
   resolved "https://registry.yarnpkg.com/nebenan-react-datepicker/-/nebenan-react-datepicker-1.1.2.tgz#4eee44516998357c1ea43b9a5e8cc81dc9ddca1c"
   integrity sha512-vvX6ra9eFseyFqOfq1omdcx34Cr1bW3TvdiW/z4T/OSfl8MHmTU/CXM1s8PK7JYRiKzWOO9hbAi8tjsipRi1zA==
 
-nebenan-react-hocs@8.3.0-beta.0:
-  version "8.3.0-beta.0"
-  resolved "https://registry.yarnpkg.com/nebenan-react-hocs/-/nebenan-react-hocs-8.3.0-beta.0.tgz#0b0ce2aa6aa2d56bf476a514cfe4737504e76717"
-  integrity sha512-lZ8NlqwWD2zXBNKYFZriwD7cqPyIVJIzrQPtLcng9Fdwq8NDC/AkEidQY9SUrXWVAdZ+jpFpsaeMxRvnAxFpGQ==
+nebenan-react-hocs@^7.0.0:
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/nebenan-react-hocs/-/nebenan-react-hocs-7.4.0.tgz#138ee6d6ef6e1b7e53e6292c51453ad70ef35776"
+  integrity sha512-5+XZd1p054oStr0g++WLJg7QqoCy5iWQ6TF0aQysLqpU4H2lDqn2Ofo3qm11PCMMAzGo02vOtUn3cY+0YzmLyg==
 
 nebenan-react-hocs@^9.0.0:
   version "9.0.0"
