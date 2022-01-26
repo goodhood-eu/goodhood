@@ -25,7 +25,6 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.12.5",
-    "@goodhood/icons": "^2.0.0",
     "date-fns": "^2.16.1",
     "nebenan-eventproxy": "^1.0.0",
     "nebenan-form": "^10.0.0",
@@ -47,6 +46,7 @@
     "string-validate": "^3.5.0"
   },
   "dependencies": {
+    "@goodhood/icons": "^2.0.0",
     "clsx": "^1.1.1",
     "lodash": "^4.17.20",
     "@popperjs/core": "^2.5.4",
@@ -56,7 +56,6 @@
   },
   "peerDependencies": {
     "@babel/runtime": "^7.12.5",
-    "@goodhood/icons": "^2.0.0",
     "nebenan-form": "^8.9.0 || ^9.0.0 || ^10.0.0",
     "nebenan-eventproxy": "^1.0.0",
     "nebenan-keymanager": "^1.0.1",
