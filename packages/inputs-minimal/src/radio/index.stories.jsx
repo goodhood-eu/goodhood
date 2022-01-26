@@ -25,12 +25,9 @@ export const Default = () => {
           value={option.value}
           label={option.label}
           disabled={option.disabled}
-          onChange={(v) => {
-            console.log(v);
-            setValue(v);
-          }}
+          onChange={setValue}
           name="example1"
-          selectedValue={value}
+          checked={value === option.value}
         />
       ))}
     </div>
@@ -48,12 +45,9 @@ export const DefaultSelected = () => {
           value={option.value}
           label={option.label}
           disabled={option.disabled}
-          onChange={(v) => {
-            console.log(v);
-            setValue(v);
-          }}
+          onChange={setValue}
           name="example1"
-          selectedValue={value}
+          checked={value === option.value}
         />
       ))}
     </div>
@@ -71,17 +65,13 @@ export const DefaultSelecteDisabled = () => {
           value={option.value}
           label={option.label}
           disabled={option.disabled}
-          onChange={(v) => {
-            console.log(v);
-            setValue(v);
-          }}
+          onChange={setValue}
           name="example1"
-          selectedValue={value}
+          checked={value === option.value}
         />
       ))}
     </div>
   );
 };
-
 
 export default { title: 'Radio', component: Radio };

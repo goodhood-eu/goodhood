@@ -1,26 +1,37 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { SIZES_KEYS } from '@/src/constants';
-import Meta from '../textfields_meta';
+import Meta from '@/src/textfields_meta';
 import styles from './index.module.scss';
 
-const Select = ({
+const TextField = ({
   label,
   error,
   value = '',
-  options,
-  size = 'medium',
   onChange,
+  attachmentLeft,
+  attachmentRight,
+  size = 'medium',
   className,
   disableBorder,
+  maxLength,
+  placeholder,
   disabled,
-  ...rest
 }) => {
+  const [inFocus, setFocus] = useState(false);
+
   const handleChange = (e) => {
     const val = e.target.value;
 
+    if (maxLength && val.length > maxLength) {
+      return;
+    }
+
     onChange(val, e);
   };
+
+  const labelText = label || placeholder;
 
   return (
     <div>
@@ -35,61 +46,66 @@ const Select = ({
           },
         )}
       >
+        {attachmentLeft && (
+          <div className={clsx(styles.attachment, styles.attachmentLeft)}>
+            {attachmentLeft}
+          </div>
+        )}
+
         <label
           className={clsx(styles.label)}
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
         >
           <span
             className={clsx(
               styles.labelText,
               styles[size],
+              { [styles.focus]: inFocus || value },
             )}
           >
-            {label}
+            {labelText}
           </span>
 
-          <select
-            className={clsx(styles.input, className)}
+          <input
+            className={clsx(styles.input, styles[size], className)}
             onChange={handleChange}
             value={value}
             disabled={disabled}
-            {...rest}
-          >
-            {options.map((option) => (
-              <option
-                key={option.value}
-                value={option.value}
-              >
-                {option.key}
-              </option>
-            ))}
-          </select>
+            type="text"
+          />
         </label>
+
+        {attachmentRight && (
+          <div className={clsx(styles.attachment, styles.attachmentRight)}>
+            {attachmentRight}
+          </div>
+        )}
       </div>
 
       <Meta
         className={styles.meta}
+        value={value}
+        maxLength={maxLength}
         error={error}
       />
     </div>
   );
 };
 
-Select.propTypes = {
+TextField.propTypes = {
   label: PropTypes.string,
+  placeholder: PropTypes.string,
   error: PropTypes.string,
   value: PropTypes.string,
-  defaultSelected: PropTypes.string,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.string,
-      value: PropTypes.string,
-    }),
-  ).isRequired,
   onChange: PropTypes.func.isRequired,
+  attachmentLeft: PropTypes.node,
+  attachmentRight: PropTypes.node,
   size: PropTypes.oneOf(SIZES_KEYS),
   className: PropTypes.string,
   disableBorder: PropTypes.bool,
+  maxLength: PropTypes.number,
   disabled: PropTypes.bool,
 };
 
-export default Select;
+export default TextField;

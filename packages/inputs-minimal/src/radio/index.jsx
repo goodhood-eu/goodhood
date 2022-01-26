@@ -8,22 +8,22 @@ const Radio = ({
   disabled,
   value,
   label,
-  selectedValue,
-  ...rest
+  checked,
+  name,
 }) => {
   const handleChange = (e) => {
-    onChange(value.toString(), e);
+    onChange(value, e);
   };
 
   return (
-    <label className={clsx(styles.label, { [styles.disabled]: disabled })}>
+    <label className={clsx(styles.label, className, { [styles.disabled]: disabled })}>
       <input
-        {...rest}
-        className={clsx(styles.input, className)}
+        className={styles.input}
         onChange={handleChange}
         disabled={disabled}
         type="radio"
-        checked={selectedValue === value.toString()}
+        checked={checked}
+        name={name}
       />
       <i className={styles.checkbox} />
 
@@ -35,8 +35,9 @@ const Radio = ({
 Radio.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
   label: PropTypes.string,
-  selectedValue: PropTypes.string,
+  checked: PropTypes.bool,
   className: PropTypes.string,
   disabled: PropTypes.bool,
 };

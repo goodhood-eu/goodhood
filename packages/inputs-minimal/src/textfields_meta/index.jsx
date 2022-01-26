@@ -13,7 +13,7 @@ const Meta = ({
       <div className={styles.error}>{error}</div>
     )}
 
-    {maxLength && (
+    {Boolean(maxLength) && (
       <div className={styles.lengthCounter}>{value.length} / {maxLength}</div>
     )}
   </div>

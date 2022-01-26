@@ -1,4 +1,4 @@
-# `@goodhood/inputs-tiny`
+# `@goodhood/inputs-minimal`
 Nebenan inputs package
  
 - [Preview](https://goodhood-eu.github.io/goodhood/package-templates/react/preview/)
@@ -9,7 +9,7 @@ Nebenan inputs package
 - Visit http://localhost:3000
 
 ## Usage
-- `import { TextField } from "@goodhood/inputs-tiny"`
+- `import { TextField } from "@goodhood/inputs-minimal"`
 
 ## Add a new component
 
@@ -22,7 +22,7 @@ Nebenan inputs package
       export default 666;
     
       // usage
-      import { MicroHelmet, MicroHelmetProvider } from '@goodhood/inputs-tiny';
+      import { MicroHelmet, MicroHelmetProvider } from 'packages/inputs-minimal';
     ```
 - Create `src/*/index.stories.jsx`
   - Preview will take it up automatically

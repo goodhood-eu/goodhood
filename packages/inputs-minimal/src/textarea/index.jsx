@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { SIZES_KEYS } from '@/src/constants';
 import Meta from '@/src/textfields_meta';
 import styles from './index.module.scss';
 
@@ -15,7 +14,6 @@ const TextArea = ({
   maxLength,
   placeholder,
   disabled,
-  ...rest
 }) => {
   const [inFocus, setFocus] = useState(false);
 
@@ -62,7 +60,6 @@ const TextArea = ({
             onChange={handleChange}
             value={value}
             disabled={disabled}
-            {...rest}
           />
         </label>
       </div>
@@ -83,11 +80,6 @@ TextArea.propTypes = {
   error: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  attachmentLeft: PropTypes.node,
-  onAttachmentLeftClick: PropTypes.func,
-  attachmentRight: PropTypes.node,
-  onAttachmentRightClick: PropTypes.func,
-  size: PropTypes.oneOf(SIZES_KEYS),
   className: PropTypes.string,
   disableBorder: PropTypes.bool,
   maxLength: PropTypes.number,
