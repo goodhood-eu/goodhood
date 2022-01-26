@@ -1,8 +1,20 @@
 module.exports = {
   plugins: [
-    { removeViewBox: false },
-    { removeRasterImages: true },
-    { convertColors: { currentColor: true } },
+    'removeRasterImages',
+    {
+      name: 'convertColors',
+      params: {
+        currentColor: true,
+      },
+    },
+    {
+      name: 'preset-default',
+      params: {
+        overrides: {
+          removeViewBox: false,
+        },
+      },
+    },
   ],
   js2svg: {
     pretty: true,

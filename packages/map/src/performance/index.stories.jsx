@@ -3,11 +3,11 @@ import { number } from '@root/.preview/src/modules/knobs';
 import config from '@root/config';
 import transformRotate from '@turf/transform-rotate';
 import circle from '@turf/circle';
-import Map from '../map';
 import Polygon from '../polygon';
-import { CIRCLE_ACTIVE, POLYGON_ACTIVE } from '..';
 import Circle from '../circle';
 import data from '../../sample_data';
+import { CIRCLE_ACTIVE, POLYGON_ACTIVE } from '..';
+import Map from '../map';
 
 export default { title: 'Performance' };
 
