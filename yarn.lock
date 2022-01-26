@@ -8249,6 +8249,13 @@ nebenan-react-hocs@8.3.0-beta.0:
   resolved "https://registry.yarnpkg.com/nebenan-react-hocs/-/nebenan-react-hocs-8.3.0-beta.0.tgz#0b0ce2aa6aa2d56bf476a514cfe4737504e76717"
   integrity sha512-lZ8NlqwWD2zXBNKYFZriwD7cqPyIVJIzrQPtLcng9Fdwq8NDC/AkEidQY9SUrXWVAdZ+jpFpsaeMxRvnAxFpGQ==
 
+nebenan-react-hocs@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/nebenan-react-hocs/-/nebenan-react-hocs-9.0.0.tgz#00bcdc642ea62d981c916f683d78373c1b6ca08c"
+  integrity sha512-TA6uTagdZ/B+s+vZ9ghRmTZGwMmUB2SJp7pHQ5LoFN768indV/bYALKmO3b0szNw0ma1asBNmSCtdnay3X7ihw==
+  dependencies:
+    lodash "^4.17.21"
+
 nebenan-ui-kit@^4.15.0:
   version "4.17.1"
   resolved "https://registry.yarnpkg.com/nebenan-ui-kit/-/nebenan-ui-kit-4.17.1.tgz#4776912faa0bf08dccd81a1939bc2d3e66c4474d"
