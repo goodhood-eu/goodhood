@@ -1083,6 +1083,15 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.2.tgz#30aa825f11d438671d585bd44e7fd564535fc210"
   integrity sha512-82cpyJyKRoQoRi+14ibCeGPu0CwypgtBAdBhq1WfvagpCZNKqwXbKwXllYSMG91DhmG4jt9gN8eP6lGOtozuaw==
 
+"@goodhood/components@6.7.0-beta.0":
+  version "6.7.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@goodhood/components/-/components-6.7.0-beta.0.tgz#ed32cde273661a8a8ce518094b77a7f4c2a61752"
+  integrity sha512-MUT034iFuZwQR+wb2IXjvePLiifST/htmHLQ9jhWOJsPvx69WUjPkMIVuO3INUGFPJhWhiwIkfwXAVopu+HUVA==
+  dependencies:
+    "@popperjs/core" "^2.5.4"
+    escape-html "^1.0.3"
+    marked "^2.0.3"
+
 "@humanwhocodes/config-array@^0.5.0":
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.5.0.tgz#1407967d4c6eecd7388f83acf1eaf4d0c6e58ef9"
@@ -7723,6 +7732,11 @@ maplibre-gl@^1.14.0:
     tinyqueue "^2.0.3"
     vt-pbf "^3.1.1"
 
+marked@^2.0.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-2.1.3.tgz#bd017cef6431724fd4b27e0657f5ceb14bff3753"
+  integrity sha512-/Q+7MGzaETqifOMWYEA7HVMaZb4XbcRfaOzcSsHZEith83KGlvaSG33u0SKu89Mj5h+T8V2hM+8O45Qc5XTgwA==
+
 marked@^4.0.0:
   version "4.0.10"
   resolved "https://registry.yarnpkg.com/marked/-/marked-4.0.10.tgz#423e295385cc0c3a70fa495e0df68b007b879423"
@@ -8217,12 +8231,16 @@ nebenan-eventproxy@^1.0.0:
   dependencies:
     lodash "^4.17.21"
 
-nebenan-form@9.2.0-beta.0:
-  version "9.2.0-beta.0"
-  resolved "https://registry.yarnpkg.com/nebenan-form/-/nebenan-form-9.2.0-beta.0.tgz#44062b4d42e7769ee45bc8fec2cc166cae937e33"
-  integrity sha512-Zh0iGZIvqmWqX0jC9AT1QN39Pjy/ojLq7DMifHp6UiupeYeBpBk3HK4pw/5dHeVS+27tklIn1ExDprJLPFpORg==
+nebenan-form@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/nebenan-form/-/nebenan-form-10.0.0.tgz#8fdffefae6e378c32ed30c069f72ad4007cb05a2"
+  integrity sha512-D9Vs5KbIfvavhtfCO/dPPFd6w4uC4swXlZ780KvuaigSpNgqjNjAwenyB7FGy8kMonY66mgAquo8RS/zkVJqjQ==
   dependencies:
+    clsx "^1.1.1"
+    lodash "^4.17.20"
+    nebenan-helpers "^7.0.0"
     nebenan-react-datepicker "^1.1.2"
+    string-validate "^3.5.0"
 
 nebenan-helpers@7.0.0-beta.0, nebenan-helpers@^7.0.0-beta.0:
   version "7.0.0-beta.0"
@@ -8233,6 +8251,11 @@ nebenan-helpers@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/nebenan-helpers/-/nebenan-helpers-6.0.0.tgz#bb2dcfc01f77b93c325fa8e35e3fe52ae1ae642a"
   integrity sha512-2gZGPf3SDo/3Gcs/+pJdmuQ7hnw8Idq+0qA8zOJEW/MIkXyxYmhQiWTkr4xrpqsN2te6OtGj6mck+BNeuzb8cQ==
+
+nebenan-helpers@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/nebenan-helpers/-/nebenan-helpers-7.0.0.tgz#af5e94c6f91efe99fea9808adbce7d32aff5f638"
+  integrity sha512-N5mPO2FkI9PsMR/ydJkqg4cA/dcTbDTPo0y4e5HQgDkw2OOeNmbZz0TN/zQkxc9Ma+OPm8tce4ckm5dlfTNK1A==
 
 nebenan-keymanager@^1.0.1:
   version "1.0.1"
