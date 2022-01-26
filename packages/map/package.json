@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "maplibre-gl": "^1.14.0",
-    "nebenan-react-hocs": "^7.0.0",
+    "nebenan-react-hocs": "^9.0.0",
     "@goodhood/icons": "^2.0.0",
     "clsx": "^1.1.1"
   },
