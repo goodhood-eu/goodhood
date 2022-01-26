@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { SIZES, SIZES_KEYS } from '@/src/constants';
+import { ReactComponent as ArrowIcon } from './arrow.svg';
 import Meta from '../textfields_meta';
 import styles from './index.module.scss';
 
@@ -61,6 +62,8 @@ const Select = ({
               </option>
             ))}
           </select>
+
+          <ArrowIcon className={clsx(styles.icon, styles[size])} />
         </label>
       </div>
 

@@ -1,4 +1,4 @@
-@import '~nebenan-ui-kit';
+@import 'nebenan-ui-kit';
 
 .inputWrapper {
   width: 100%;
@@ -8,12 +8,10 @@
   border: 1px solid $color-gray-06;
   box-sizing: border-box;
   border-radius: 4px;
-  background: $color-gray-08 url("arrow.svg") right 13px center no-repeat;
-  background-size: 20px;
+  background: $color-gray-08;
 
   &.small {
     height: 30px;
-    background-size: 16px;
   }
 
   &.large {
@@ -83,6 +81,21 @@
 
   &:focus {
     outline: none;
+  }
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+
+  &.small {
+    width: 16px;
+    height: 16px;
   }
 }
 
