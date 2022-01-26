@@ -7,9 +7,9 @@ import data from '../../sample_data';
 import { POLYGON_ACTIVE, POLYGON_DEFAULT, POLYGON_HIGHLIGHTED, POLYGON_SOLID, POLYGON_THIN } from './constants';
 
 import Polygon from './index';
-import Map from '../map';
 import Marker from '../marker';
 import Popup from '../popup';
+import Map from '../map';
 
 
 const types = [
