@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import keymanager from 'nebenan-helpers/lib/keymanager';
-import eventproxy from 'nebenan-helpers/lib/eventproxy';
+import keymanager from 'nebenan-keymanager';
+import eventproxy from 'nebenan-eventproxy';
 import { invoke } from 'nebenan-helpers/lib/utils';
 import { TOOLTIP_TRIGGER_DELAYED, TOOLTIP_DELAY_TIMEOUT } from '../base_tooltip';
 
