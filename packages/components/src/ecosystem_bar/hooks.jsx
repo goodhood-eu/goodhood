@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import eventproxy from 'nebenan-helpers/lib/eventproxy';
+import eventproxy from 'nebenan-eventproxy';
 import useStableCallback from 'nebenan-react-hocs/lib/use_stable_callback';
 import { useEventListener } from 'nebenan-react-hocs/lib/use_event_listener';
 

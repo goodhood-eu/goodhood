@@ -1,5 +1,5 @@
 import { useEffect, useImperativeHandle, useRef } from 'react';
-import keymanager from 'nebenan-helpers/lib/keymanager';
+import keymanager from 'nebenan-keymanager';
 import { invoke } from 'nebenan-helpers/lib/utils';
 import { useModalProvider } from '../provider/hooks';
 import { track } from './utils';
