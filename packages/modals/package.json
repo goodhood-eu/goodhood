@@ -37,7 +37,7 @@
   "peerDependencies": {
     "@babel/runtime": "^7.11.2",
     "nebenan-keymanager": "^1.0.1",
-    "nebenan-ui-kit": "^5.3.0",
+    "nebenan-ui-kit": "^5.4.0",
     "prop-types": "^15.7.2",
     "react": "^16.14.0 || ^17.0.1",
     "react-dom": "^16.14.0 || ^17.0.1",
@@ -46,6 +46,6 @@
   "devDependencies": {
     "@goodhood/components": "^7.0.0",
     "nebenan-keymanager": "^1.0.1",
-    "nebenan-ui-kit": "^5.3.0"
+    "nebenan-ui-kit": "^5.4.0"
   }
 }
