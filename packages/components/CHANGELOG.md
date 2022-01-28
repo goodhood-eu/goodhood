@@ -1,3 +1,13 @@
+## v7.0.0 Breaking changes
+
+- Changed peer deps
+  - +`nebenan-keymanager`
+  - +`nebenan-eventproxy`
+  - -`@goodhood/icons`
+  - -`clsx`
+  - -`lodash`
+  - (plus some version changes)
+
 ## v6.0.0 Breaking changes
 
 - Bump `@goodhood/icons` peer dependency to `^2.0.0`
