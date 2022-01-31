@@ -1,0 +1,12 @@
+@import 'nebenan-ui-kit';
+
+.root {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  & + & {
+    margin-left: 24px;
+  }
+}

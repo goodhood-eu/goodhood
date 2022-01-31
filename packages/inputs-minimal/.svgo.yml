@@ -1,0 +1,9 @@
+plugins:
+  - name: preset-default
+    params:
+      overrides:
+        removeViewBox: false
+  - removeRasterImages
+  - name: convertColors
+    params:
+      currentColor: true
