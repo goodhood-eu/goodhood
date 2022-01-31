@@ -35,7 +35,7 @@ export const Default = () => {
 };
 
 export const DefaultSelected = () => {
-  const [value, setValue] = useState('2');
+  const [value, setValue] = useState(2);
 
   return (
     <div className={styles.container}>

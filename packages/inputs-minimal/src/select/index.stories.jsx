@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { text, boolean, select } from '@root/.preview/src/modules/knobs';
-import { SIZES } from '@/src/constants';
+import { Sizes } from '@/src/constants';
 import Select from './index';
 import styles from './index.stories.module.scss';
 
@@ -24,7 +24,7 @@ export const Default = () => {
         disabled={boolean('Disabled', false)}
         error={text('Error message', '')}
         disableBorder={boolean('disableBorder', false)}
-        size={select('Size', SIZES, SIZES.medium)}
+        size={select('Size', Sizes, Sizes.medium)}
       />
     </div>
   );

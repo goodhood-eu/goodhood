@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { SIZES, SIZES_KEYS } from '@/src/constants';
+import { Sizes, SIZES_KEYS } from '@/src/constants';
 import { ReactComponent as ArrowIcon } from './arrow.svg';
 import Meta from '../textfields_meta';
 import styles from './index.module.scss';
@@ -10,7 +10,7 @@ const Select = ({
   error,
   value = '',
   options,
-  size = SIZES.medium,
+  size = Sizes.medium,
   onChange,
   className,
   disableBorder,

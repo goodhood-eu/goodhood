@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { text, boolean, number, select } from '@root/.preview/src/modules/knobs';
-import { SIZES } from '../constants';
+import { Sizes } from '../constants';
 import TextField from './index';
 import styles from './index.stories.module.scss';
 
@@ -22,7 +22,7 @@ export const Default = () => {
         error={text('Error message', '')}
         maxLength={number('maxLength')}
         disableBorder={boolean('disableBorder', false)}
-        size={select('Size', SIZES, SIZES.medium)}
+        size={select('Size', Sizes, Sizes.medium)}
       />
     </div>
   );
@@ -44,7 +44,7 @@ export const WithAttachments = () => {
         error={text('Error message', '')}
         maxLength={number('maxLength')}
         disableBorder={boolean('disableBorder', false)}
-        size={select('Size', SIZES, SIZES.medium)}
+        size={select('Size', Sizes, Sizes.medium)}
       />
     </div>
   );

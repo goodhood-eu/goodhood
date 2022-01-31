@@ -1,7 +1,7 @@
 # `@goodhood/inputs-minimal`
 Nebenan inputs package
  
-- [Preview](https://goodhood-eu.github.io/goodhood/package-templates/react/preview/)
+- [Preview](https://goodhood-eu.github.io/goodhood/inputs-minimal/preview/)
 
 ## Preview
 

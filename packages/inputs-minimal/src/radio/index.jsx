@@ -35,7 +35,7 @@ const Radio = ({
 Radio.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   label: PropTypes.string,
   checked: PropTypes.bool,
   className: PropTypes.string,
