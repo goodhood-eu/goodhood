@@ -22,7 +22,7 @@
   // Empty grid rows won't be displayed with overflow: auto
   &::before,
   &::after {
-    content: '';
+    content: "";
   }
 }
 
