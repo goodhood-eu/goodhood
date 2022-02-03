@@ -2,7 +2,7 @@
 
 .control {
   // rgba(255, 255, 255, 0) is important to fade through white is Safari
-  $gradient-colors: $color-gray-09 0, $color-gray-09 20%, rgba(255, 255, 255, 0) 100%;
+  $gradient-colors: $color-gray-09 0, $color-gray-09 20%, rgb(255 255 255 / 0%) 100%;
 
   width: 40px;
   height: 100%;
