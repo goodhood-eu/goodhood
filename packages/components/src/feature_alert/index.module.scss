@@ -1,4 +1,4 @@
-@import 'nebenan-ui-kit';
+@import "nebenan-ui-kit";
 
 $feature-alert-arrow-size: 16px;
 
@@ -22,19 +22,19 @@ $feature-alert-arrow-size: 16px;
   animation-timing-function: ease-in;
 }
 
-.tooltip:global([data-popper-placement^='top']) > .arrow {
+.tooltip:global([data-popper-placement^="top"]) > .arrow {
   bottom: -4px;
 }
 
-.tooltip:global([data-popper-placement^='bottom']) > .arrow {
+.tooltip:global([data-popper-placement^="bottom"]) > .arrow {
   top: -4px;
 }
 
-.tooltip:global([data-popper-placement^='left']) > .arrow {
+.tooltip:global([data-popper-placement^="left"]) > .arrow {
   right: -4px;
 }
 
-.tooltip:global([data-popper-placement^='right']) > .arrow {
+.tooltip:global([data-popper-placement^="right"]) > .arrow {
   left: -4px;
 }
 
@@ -48,7 +48,7 @@ $feature-alert-arrow-size: 16px;
 }
 
 .arrow::before {
-  content: '';
+  content: "";
   position: absolute;
 
   border-radius: $border-radius-m;

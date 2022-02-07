@@ -3,6 +3,14 @@ goodhood
 
 An umbrella repository to hold all "semi open source" packages used by GoodHood exclusively.
 
+- [@goodhood/chargebee](https://goodhood-eu.github.io/goodhood/packages/chargebee/)
+- [@goodhood/components](https://goodhood-eu.github.io/goodhood/packages/components/)
+- [@goodhood/icons](https://goodhood-eu.github.io/goodhood/packages/icons/)
+- [@goodhood/inputs-minimal](https://goodhood-eu.github.io/goodhood/packages/inputs-minimal/)
+- [@goodhood/map](https://goodhood-eu.github.io/goodhood/packages/map/)
+- [@goodhood/modals](https://goodhood-eu.github.io/goodhood/packages/modals)
+- [@goodhood/tracking](https://goodhood-eu.github.io/goodhood/packages/tracking)
+
 ## Setup
 
 - (Install yarn `npm i -g yarn`)
