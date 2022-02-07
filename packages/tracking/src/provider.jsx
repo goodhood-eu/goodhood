@@ -26,7 +26,6 @@ const Provider = forwardRef(({
     track: handleTrack,
   }));
 
-  // eslint-disable-next-line react/jsx-no-constructed-context-values
   const value = {
     payload,
     track: handleTrack,
