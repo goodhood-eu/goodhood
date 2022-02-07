@@ -10898,10 +10898,10 @@ stylehacks@^5.0.2:
     browserslist "^4.16.6"
     postcss-selector-parser "^6.0.4"
 
-stylelint-config-nebenan@^2.0.0-beta.3:
-  version "2.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/stylelint-config-nebenan/-/stylelint-config-nebenan-2.0.0-beta.3.tgz#63a5fee041a281f53b448b1ceeced8bc369efe58"
-  integrity sha512-Aga8sTEnkf7y53az2xnDYJITCUcQhO8mxe5l1beYQDkuAfLMRKDjlygPy775YxDsL2lWiHwjXbYo9UQy74RA4w==
+stylelint-config-nebenan@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/stylelint-config-nebenan/-/stylelint-config-nebenan-2.0.0.tgz#a7204af7843f5c50fcab19698cebda77174e92ce"
+  integrity sha512-dw6IH5Po9eiI3olj+6gXGD2YLi89XkwiwrQKfvDivUVNftFhYgMtMs7dI0i4VqAHBuqwIX0Xq2l5hggGf4IDGA==
   dependencies:
     stylelint-config-standard "^24.0.0"
     stylelint-config-standard-scss "^3.0.0"
