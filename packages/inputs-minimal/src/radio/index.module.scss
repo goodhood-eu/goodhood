@@ -7,7 +7,6 @@
 
   &.disabled {
     cursor: default;
-    opacity: .4;
     user-select: none;
   }
 }
@@ -19,7 +18,12 @@
 
   &:checked + .checkbox {
     background: $color-green-02;
-    border: none;
+    border-color: $color-green-02;
+
+    &.disabled {
+      background: #e0ea9b;
+      border-color: #e0ea9b;
+    }
   }
 }
 
@@ -32,6 +36,10 @@
   background: $color-gray-09;
   border: 1px solid $color-gray-03;
   border-radius: 50%;
+
+  &.disabled {
+    border-color: $color-gray-05;
+  }
 
   &::after {
     width: 12px;
@@ -49,7 +57,20 @@
 .labelText {
   margin-left: 10px;
   display: block;
+  font-weight: 600;
   line-height: 22px;
-  color: $color-gray-00;
+  color: $color-gray-02;
   font-size: $font-size-m;
+
+  &.checked {
+    color: $color-gray-00;
+  }
+
+  &.disabled {
+    color: $color-gray-05;
+
+    &.checked {
+      color: #bbb;
+    }
+  }
 }

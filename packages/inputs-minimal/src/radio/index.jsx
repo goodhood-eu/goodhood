@@ -25,9 +25,18 @@ const Radio = ({
         checked={checked}
         name={name}
       />
-      <i className={styles.checkbox} />
+      <i className={clsx(styles.checkbox, { [styles.disabled]: disabled })} />
 
-      {label && <div className={styles.labelText}>{label}</div>}
+      {label && (
+        <div
+          className={clsx(styles.labelText, {
+            [styles.checked]: checked,
+            [styles.disabled]: disabled,
+          })}
+        >
+          {label}
+        </div>
+      )}
     </label>
   );
 };

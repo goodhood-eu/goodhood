@@ -6,6 +6,7 @@ import styles from './index.stories.module.scss';
 
 import { ReactComponent as MoreIcon } from '../../../icons/lib/tiny/more.svg';
 import { ReactComponent as SearchIcon } from '../../../icons/lib/tiny/search.svg';
+import { ReactComponent as BookmarkIcon } from '../../../icons/lib/medium/bookmark_filled.svg';
 
 /* Default (medium size) */
 export const Default = () => {
@@ -40,6 +41,28 @@ export const WithAttachments = () => {
         onChange={setValue}
         attachmentRight={<MoreIcon />}
         attachmentLeft={<SearchIcon />}
+        disabled={boolean('Disabled', false)}
+        error={text('Error message', '')}
+        maxLength={number('maxLength')}
+        disableBorder={boolean('disableBorder', false)}
+        size={select('Size', Sizes, Sizes.medium)}
+      />
+    </div>
+  );
+};
+
+export const WithAttachmentsBigIcons = () => {
+  const [value, setValue] = useState('');
+
+  return (
+    <div className={styles.container}>
+      <TextField
+        value={value}
+        label="My Awesome Input"
+        placeholder="Hello TextField"
+        onChange={setValue}
+        attachmentRight={<BookmarkIcon />}
+        attachmentLeft={<BookmarkIcon />}
         disabled={boolean('Disabled', false)}
         error={text('Error message', '')}
         maxLength={number('maxLength')}

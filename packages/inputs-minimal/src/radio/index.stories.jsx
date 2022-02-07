@@ -54,8 +54,8 @@ export const DefaultSelected = () => {
   );
 };
 
-export const DefaultSelecteDisabled = () => {
-  const [value, setValue] = useState('2');
+export const DefaultSelectedDisabled = () => {
+  const [value, setValue] = useState(2);
 
   return (
     <div className={styles.container}>
