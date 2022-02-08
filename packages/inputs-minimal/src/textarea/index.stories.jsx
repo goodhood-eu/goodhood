@@ -11,7 +11,7 @@ export const Default = () => {
     <div className={styles.container}>
       <TextArea
         value={value}
-        label="My Awesome"
+        label="My Awesome Label"
         onChange={setValue}
         disabled={boolean('Disabled', false)}
         error={text('Error message', '')}
