@@ -16,7 +16,6 @@ const TextField = ({
   className,
   disableBorder,
   maxLength,
-  placeholder,
   disabled,
 }) => {
   const [inFocus, setFocus] = useState(false);
@@ -30,8 +29,6 @@ const TextField = ({
 
     onChange(val, e);
   };
-
-  const labelText = label || placeholder;
 
   return (
     <div>
@@ -64,7 +61,7 @@ const TextField = ({
               { [styles.focus]: inFocus || value },
             )}
           >
-            {labelText}
+            {label}
           </span>
 
           <input
@@ -95,7 +92,6 @@ const TextField = ({
 
 TextField.propTypes = {
   label: PropTypes.string,
-  placeholder: PropTypes.string,
   error: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Meta from '@/src/textfields_meta';
+import { TEXTAREA_DEFAULT_ROWS } from '@/src/constants';
 import styles from './index.module.scss';
 
 const TextArea = ({
@@ -12,8 +13,8 @@ const TextArea = ({
   className,
   disableBorder,
   maxLength,
-  placeholder,
   disabled,
+  rows = TEXTAREA_DEFAULT_ROWS,
 }) => {
   const [inFocus, setFocus] = useState(false);
 
@@ -26,8 +27,6 @@ const TextArea = ({
 
     onChange(val, e);
   };
-
-  const labelText = label || placeholder;
 
   return (
     <div>
@@ -52,7 +51,7 @@ const TextArea = ({
               { [styles.focus]: inFocus || value },
             )}
           >
-            {labelText}
+            {label}
           </span>
 
           <textarea
@@ -60,6 +59,7 @@ const TextArea = ({
             onChange={handleChange}
             value={value}
             disabled={disabled}
+            rows={rows}
           />
         </label>
       </div>
@@ -76,7 +76,6 @@ const TextArea = ({
 
 TextArea.propTypes = {
   label: PropTypes.string,
-  placeholder: PropTypes.string,
   error: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
@@ -84,6 +83,7 @@ TextArea.propTypes = {
   disableBorder: PropTypes.bool,
   maxLength: PropTypes.number,
   disabled: PropTypes.bool,
+  rows: PropTypes.number,
 };
 
 export default TextArea;

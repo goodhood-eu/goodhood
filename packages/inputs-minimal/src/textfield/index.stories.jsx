@@ -17,7 +17,6 @@ export const Default = () => {
       <TextField
         value={value}
         label="My Awesome Input"
-        placeholder="Hello TextField"
         onChange={setValue}
         disabled={boolean('Disabled', false)}
         error={text('Error message', '')}
@@ -37,7 +36,6 @@ export const WithAttachments = () => {
       <TextField
         value={value}
         label="My Awesome Input"
-        placeholder="Hello TextField"
         onChange={setValue}
         attachmentRight={<MoreIcon />}
         attachmentLeft={<SearchIcon />}
@@ -59,7 +57,6 @@ export const WithAttachmentsBigIcons = () => {
       <TextField
         value={value}
         label="My Awesome Input"
-        placeholder="Hello TextField"
         onChange={setValue}
         attachmentRight={<BookmarkIcon />}
         attachmentLeft={<BookmarkIcon />}
