@@ -9,9 +9,10 @@ const RadioGroup = ({
   items,
   name,
   value,
+  inputProps,
 }) => {
-  const handleChange = (val, event) => {
-    onChange(val, event);
+  const handleChange = (event, val) => {
+    onChange(event, val);
   };
 
   return (
@@ -26,6 +27,7 @@ const RadioGroup = ({
           value={item.value}
           disabled={item.disabled}
           checked={value === item.value}
+          {...inputProps}
         />
       ))}
     </div>
@@ -44,6 +46,7 @@ RadioGroup.propTypes = {
     }),
   ).isRequired,
   className: PropTypes.string,
+  inputProps: PropTypes.any,
 };
 
 export default RadioGroup;

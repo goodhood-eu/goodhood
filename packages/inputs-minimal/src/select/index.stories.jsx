@@ -14,13 +14,17 @@ const OPTIONS = [
 export const Default = () => {
   const [value, setValue] = useState('');
 
+  const handleChange = (e, val) => {
+    setValue(val);
+  };
+
   return (
     <div className={styles.container}>
       <Select
         value={value}
         options={OPTIONS}
         label="Label"
-        onChange={(val) => { setValue(val); }}
+        onChange={handleChange}
         disabled={boolean('Disabled', false)}
         error={text('Error message', '')}
         disableBorder={boolean('disableBorder', false)}
@@ -33,13 +37,17 @@ export const Default = () => {
 export const WithDefaultSelected = () => {
   const [value, setValue] = useState(OPTIONS[1].value);
 
+  const handleChange = (e, val) => {
+    setValue(val);
+  };
+
   return (
     <div className={styles.container}>
       <Select
         value={value}
         options={OPTIONS}
         label="Label"
-        onChange={setValue}
+        onChange={handleChange}
       />
     </div>
   );

@@ -18,6 +18,7 @@ const TextField = ({
   disableBorder,
   maxLength,
   disabled,
+  inputProps,
 }) => {
   const [inFocus, setFocus] = useState(false);
 
@@ -28,7 +29,7 @@ const TextField = ({
       return;
     }
 
-    onChange(val, e);
+    onChange(e, val);
   };
 
   return (
@@ -72,6 +73,7 @@ const TextField = ({
             disabled={disabled}
             type="text"
             name={name}
+            {...inputProps}
           />
         </label>
 
@@ -105,6 +107,7 @@ TextField.propTypes = {
   disableBorder: PropTypes.bool,
   maxLength: PropTypes.number,
   disabled: PropTypes.bool,
+  inputProps: PropTypes.any,
 };
 
 export default TextField;

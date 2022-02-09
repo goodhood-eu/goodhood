@@ -16,11 +16,12 @@ const Select = ({
   className,
   disableBorder,
   disabled,
+  inputProps,
 }) => {
   const handleChange = (e) => {
     const { selectedIndex } = e.target;
     const selectedValue = options[selectedIndex].value || options[selectedIndex];
-    onChange(selectedValue, e);
+    onChange(e, selectedValue);
   };
 
   return (
@@ -54,6 +55,7 @@ const Select = ({
             value={value}
             disabled={disabled}
             name={name}
+            {...inputProps}
           >
             {options.map((option) => (
               <option
@@ -96,6 +98,7 @@ Select.propTypes = {
   className: PropTypes.string,
   disableBorder: PropTypes.bool,
   disabled: PropTypes.bool,
+  inputProps: PropTypes.any,
 };
 
 export default Select;

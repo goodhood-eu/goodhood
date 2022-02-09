@@ -11,11 +11,15 @@ const OPTIONS = [
 export const Default = () => {
   const [value, setValue] = useState('');
 
+  const handleChange = (e, val) => {
+    setValue(val);
+  };
+
   return (
     <div className={styles.container}>
       <RadioGroup
         value={value}
-        onChange={setValue}
+        onChange={handleChange}
         name="Example 1"
         items={OPTIONS}
       />

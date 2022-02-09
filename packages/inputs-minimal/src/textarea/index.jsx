@@ -16,6 +16,7 @@ const TextArea = ({
   maxLength,
   disabled,
   rows = TEXTAREA_DEFAULT_ROWS,
+  inputProps,
 }) => {
   const [inFocus, setFocus] = useState(false);
 
@@ -26,7 +27,7 @@ const TextArea = ({
       return;
     }
 
-    onChange(val, e);
+    onChange(e, val);
   };
 
   return (
@@ -62,6 +63,7 @@ const TextArea = ({
             disabled={disabled}
             rows={rows}
             name={name}
+            {...inputProps}
           />
         </label>
       </div>
@@ -87,6 +89,7 @@ TextArea.propTypes = {
   maxLength: PropTypes.number,
   disabled: PropTypes.bool,
   rows: PropTypes.number,
+  inputProps: PropTypes.any,
 };
 
 export default TextArea;

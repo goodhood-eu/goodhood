@@ -12,12 +12,16 @@ import { ReactComponent as BookmarkIcon } from '../../../icons/lib/medium/bookma
 export const Default = () => {
   const [value, setValue] = useState('');
 
+  const handleChange = (e, val) => {
+    setValue(val);
+  };
+
   return (
     <div className={styles.container}>
       <TextField
         value={value}
         label="My Awesome Input"
-        onChange={setValue}
+        onChange={handleChange}
         disabled={boolean('Disabled', false)}
         error={text('Error message', '')}
         maxLength={number('maxLength')}
@@ -31,12 +35,16 @@ export const Default = () => {
 export const WithAttachments = () => {
   const [value, setValue] = useState('');
 
+  const handleChange = (e, val) => {
+    setValue(val);
+  };
+
   return (
     <div className={styles.container}>
       <TextField
         value={value}
         label="My Awesome Input"
-        onChange={setValue}
+        onChange={handleChange}
         attachmentRight={<MoreIcon />}
         attachmentLeft={<SearchIcon />}
         disabled={boolean('Disabled', false)}
@@ -52,12 +60,16 @@ export const WithAttachments = () => {
 export const WithAttachmentsBigIcons = () => {
   const [value, setValue] = useState('');
 
+  const handleChange = (e, val) => {
+    setValue(val);
+  };
+
   return (
     <div className={styles.container}>
       <TextField
         value={value}
         label="My Awesome Input"
-        onChange={setValue}
+        onChange={handleChange}
         attachmentRight={<BookmarkIcon />}
         attachmentLeft={<BookmarkIcon />}
         disabled={boolean('Disabled', false)}
