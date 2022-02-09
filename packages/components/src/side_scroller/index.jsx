@@ -8,7 +8,15 @@ import styles from './index.module.scss';
 
 import Draggable from '../draggable';
 import Controls from './controls';
-import { DISABLE_SCROLL_DISTANCE, SHIFT_PERCENT, SHIFT_TOLERANCE, ANIMATION_DURATION, ANIMATION_FPS } from './constants';
+import {
+  DISABLE_SCROLL_DISTANCE,
+  SHIFT_PERCENT,
+  SHIFT_TOLERANCE,
+  ANIMATION_DURATION,
+  ANIMATION_FPS,
+  EVENT_MOUSE_MOVE,
+  EVENT_TOUCH_START,
+} from './constants';
 import { getAnimationPosition } from './utils';
 
 const SideScroller = ({
@@ -64,11 +72,14 @@ const SideScroller = ({
   }, [updateScroll]);
 
   const handleDragStart = (event) => {
-    // Prevents DOM nodes like images from being dragged
-    event.preventDefault();
     startXRef.current = eventCoordinates(event, 'pageX').pageX;
     startPositionRef.current = containerRef.current.scrollLeft;
     stopScrollAnimation();
+
+    if (event.type === EVENT_TOUCH_START) return;
+
+    // Prevents DOM nodes like images from being dragged
+    event.preventDefault();
   };
 
   const handleDrag = (event) => {
@@ -76,7 +87,7 @@ const SideScroller = ({
     const shift = Math.abs(diff);
 
     if (shift >= DISABLE_SCROLL_DISTANCE) {
-      preventClickRef.current = true;
+      preventClickRef.current = event.type === EVENT_MOUSE_MOVE;
 
       // Prevents vertical scroll on touch devices
       event.preventDefault();

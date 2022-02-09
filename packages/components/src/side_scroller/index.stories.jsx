@@ -11,3 +11,14 @@ export const Default = () => (
     />
   </SideScroller>
 );
+
+export const SideScrollerWithLink = () => (
+  <SideScroller onScroll={action('onScroll')}>
+    <a href="https://google.com">
+      <img
+        src="https://www.west-crete.com/images/panoramas/house-view.jpg"
+        height="300px" alt=""
+      />
+    </a>
+  </SideScroller>
+);
