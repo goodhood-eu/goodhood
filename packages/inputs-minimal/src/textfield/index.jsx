@@ -9,6 +9,7 @@ const TextField = ({
   label,
   error,
   value = '',
+  name,
   onChange,
   attachmentLeft,
   attachmentRight,
@@ -70,6 +71,7 @@ const TextField = ({
             value={value}
             disabled={disabled}
             type="text"
+            name={name}
           />
         </label>
 
@@ -94,6 +96,7 @@ TextField.propTypes = {
   label: PropTypes.string,
   error: PropTypes.string,
   value: PropTypes.string,
+  name: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   attachmentLeft: PropTypes.node,
   attachmentRight: PropTypes.node,

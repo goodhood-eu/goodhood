@@ -9,6 +9,7 @@ const Select = ({
   label,
   error,
   value = '',
+  name,
   options,
   size = Sizes.medium,
   onChange,
@@ -52,6 +53,7 @@ const Select = ({
             onChange={handleChange}
             value={value}
             disabled={disabled}
+            name={name}
           >
             {options.map((option) => (
               <option
@@ -79,6 +81,7 @@ Select.propTypes = {
   label: PropTypes.string,
   error: PropTypes.string,
   value: PropTypes.string,
+  name: PropTypes.string,
   options: PropTypes.oneOfType([
     PropTypes.arrayOf(
       PropTypes.shape({

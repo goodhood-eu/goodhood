@@ -9,6 +9,7 @@ const TextArea = ({
   label,
   error,
   value = '',
+  name,
   onChange,
   className,
   disableBorder,
@@ -60,6 +61,7 @@ const TextArea = ({
             value={value}
             disabled={disabled}
             rows={rows}
+            name={name}
           />
         </label>
       </div>
@@ -76,6 +78,7 @@ const TextArea = ({
 
 TextArea.propTypes = {
   label: PropTypes.string,
+  name: PropTypes.string,
   error: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
