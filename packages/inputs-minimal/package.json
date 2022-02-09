@@ -11,12 +11,13 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "0.0.1-beta.5",
+  "version": "0.0.1-beta.6",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
   "files": [
-    "/lib"
+    "/lib",
+    "styles.css"
   ],
   "scripts": {
     "reinstall": "rm -rf node_modules && yarn install",
