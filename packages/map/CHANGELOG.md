@@ -1,3 +1,10 @@
+## v7.0.0 Changes
+- Changed peer deps
+  - -`@goodhood/icons`
+  - -`clsx`
+  - -`nebenan-react-hocs`
+  - `nebenan-ui-kit` -> v5
+
 ## v6.0.0 Changes
 - Bump `@goodhood/icons` peer dependency to `^2.0.0`
 

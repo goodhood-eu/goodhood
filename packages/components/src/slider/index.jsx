@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import omit from 'lodash/omit';
 
-import eventproxy from 'nebenan-helpers/lib/eventproxy';
+import eventproxy from 'nebenan-eventproxy';
 import { documentOffset, size, getPrefixed, eventCoordinates } from 'nebenan-helpers/lib/dom';
 import { bindTo, invoke } from 'nebenan-helpers/lib/utils';
 

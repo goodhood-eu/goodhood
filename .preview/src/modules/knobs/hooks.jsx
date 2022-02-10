@@ -5,7 +5,11 @@ export const useKnobsContext = () => useContext(Context);
 export const useControl = (id) => {
   const context = useKnobsContext();
 
-  const handleUpdate = (value) => {
+  const handleUpdate = (valueOrGetter) => {
+    const value = typeof valueOrGetter === 'function'
+      ? valueOrGetter()
+      : valueOrGetter;
+
     context.updateValue(id, value);
   };
 
