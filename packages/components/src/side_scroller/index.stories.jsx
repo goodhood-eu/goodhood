@@ -12,7 +12,7 @@ export const Default = () => (
   </SideScroller>
 );
 
-export const SideScrollerWithLink = () => (
+export const WithLink = () => (
   <SideScroller onScroll={action('onScroll')}>
     <a href="https://google.com">
       <img
