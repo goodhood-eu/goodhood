@@ -11,12 +11,13 @@ const ReactionsRow = ({
   reactions,
   onClick,
   className: passedClassName,
+  showNull = true,
   ...cleanProps
 }) => {
   const { list: sortedReactionTypes, count } = useReactionData(reactions);
   const reactionTypes = sortedReactionTypes.slice(-limit);
 
-  if (withCounter && count === 0) return null;
+  if (withCounter && count === 0) return showNull ? null : 0;
 
   const renderReaction = (reaction) => (
     <ReactionIconBubble
@@ -46,6 +47,7 @@ ReactionsRow.propTypes = {
   onClick: PropTypes.func,
   className: PropTypes.string,
   withCounter: PropTypes.bool,
+  showNull: PropTypes.bool,
   limit: PropTypes.number,
 };
 
