@@ -27,7 +27,7 @@ export const ZeroReactions = () => {
   return (
     <ReactionsRow
       reactions={reactions}
-      withNullableCounter={boolean('withNullableCounter', false)}
+      withZeroableCounter={boolean('withZeroableCounter', false)}
     />
   );
 };
