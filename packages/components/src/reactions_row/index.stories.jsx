@@ -21,3 +21,13 @@ export const Default = () => {
     />
   );
 };
+
+export const ZeroReactions = () => {
+  const reactions = { thankyou: 0, love: 0, good_idea: 0, bravo: 0 };
+  return (
+    <ReactionsRow
+      reactions={reactions}
+      withZeroableCounter={boolean('withZeroableCounter', false)}
+    />
+  );
+};
