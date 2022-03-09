@@ -22,7 +22,12 @@ export const Default = () => {
   );
 };
 
-export const ZeroReactionsShowNumber = () => {
+export const ZeroReactions = () => {
   const reactions = { thankyou: 0, love: 0, good_idea: 0, bravo: 0 };
-  return <ReactionsRow reactions={reactions} showNull={false} />;
+  return (
+    <ReactionsRow
+      reactions={reactions}
+      withNullableCounter={boolean('withNullableCounter', false)}
+    />
+  );
 };
