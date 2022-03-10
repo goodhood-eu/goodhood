@@ -1,14 +1,30 @@
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import Radio from '../radio';
 import styles from './index.module.scss';
+import { Children } from 'react';
+
+export const RadioGroupHorizontalLayout = ({ children }) => (
+  <div className={styles.horizontalLayout}>
+    {Children.map(children, (child) => (
+      <div className={styles.item}>{child}</div>
+    ))}
+  </div>
+);
+
+export const RadioGroupVerticalLayout = ({ children }) => (
+  <div className={styles.verticalLayout}>
+    {Children.map(children, (child) => (
+      <div className={styles.item}>{child}</div>
+    ))}
+  </div>
+);
 
 const RadioGroup = ({
   onChange,
-  className,
   items,
   name,
   value,
+  Layout = RadioGroupHorizontalLayout,
   inputProps,
 }) => {
   const handleChange = (event, val) => {
@@ -16,10 +32,9 @@ const RadioGroup = ({
   };
 
   return (
-    <div className={clsx(styles.root, className)}>
+    <Layout>
       {items.map((item) => (
         <Radio
-          className={styles.item}
           key={item.value}
           onChange={handleChange}
           name={name}
@@ -30,7 +45,7 @@ const RadioGroup = ({
           {...inputProps}
         />
       ))}
-    </div>
+    </Layout>
   );
 };
 
@@ -38,6 +53,7 @@ RadioGroup.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
+  Layout: PropTypes.node,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,

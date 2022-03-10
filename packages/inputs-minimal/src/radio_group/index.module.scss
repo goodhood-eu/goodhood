@@ -1,12 +1,20 @@
 @import "nebenan-ui-kit";
 
-.root {
+.horizontalLayout {
   display: flex;
   flex-wrap: wrap;
-}
 
-.item {
-  & + & {
+  .item + .item {
     margin-left: 24px;
   }
 }
+
+.verticalLayout {
+  display: flex;
+  flex-direction: column;
+
+  .item + .item {
+    margin-top: 12px;
+  }
+}
+
