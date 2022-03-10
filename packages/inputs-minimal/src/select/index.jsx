@@ -20,7 +20,11 @@ const Select = ({
 }) => {
   const handleChange = (e) => {
     const { selectedIndex } = e.target;
-    const selectedValue = options[selectedIndex].value || options[selectedIndex];
+    const selectedPropValue = options[selectedIndex].value;
+    const selectedValue = selectedPropValue !== undefined
+      ? selectedPropValue
+      : options[selectedIndex];
+
     onChange(e, selectedValue);
   };
 
