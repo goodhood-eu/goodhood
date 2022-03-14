@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { size, eventCoordinates, stopEvent } from 'nebenan-helpers/lib/dom';
+import useMounted from 'nebenan-react-hocs/lib/use_mounted';
 import eventproxy from 'nebenan-eventproxy';
 import { clamp } from 'lodash';
 import styles from './index.module.scss';
@@ -18,7 +19,6 @@ import {
   EVENT_TOUCH_START,
 } from './constants';
 import { getAnimationPosition } from './utils';
-import useMounted from 'nebenan-react-hocs/lib/use_mounted';
 
 const SideScroller = ({
   className: passedClassName,
