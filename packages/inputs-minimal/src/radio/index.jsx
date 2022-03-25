@@ -10,7 +10,8 @@ const Radio = ({
   label,
   checked,
   name,
-  inputProps,
+  onBlur,
+  onFocus,
 }) => {
   const handleChange = (e) => {
     onChange(e, value);
@@ -25,7 +26,8 @@ const Radio = ({
         type="radio"
         checked={checked}
         name={name}
-        {...inputProps}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
       <i className={clsx(styles.checkbox, { [styles.disabled]: disabled })} />
 
@@ -51,7 +53,8 @@ Radio.propTypes = {
   checked: PropTypes.bool,
   className: PropTypes.string,
   disabled: PropTypes.bool,
-  inputProps: PropTypes.any,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
 };
 
 export default Radio;

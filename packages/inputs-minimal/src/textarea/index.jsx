@@ -16,7 +16,8 @@ const TextArea = ({
   maxLength,
   disabled,
   rows = TEXTAREA_DEFAULT_ROWS,
-  inputProps,
+  onBlur,
+  onFocus,
 }) => {
   const [inFocus, setFocus] = useState(false);
 
@@ -63,7 +64,8 @@ const TextArea = ({
             disabled={disabled}
             rows={rows}
             name={name}
-            {...inputProps}
+            onBlur={onBlur}
+            onFocus={onFocus}
           />
         </label>
       </div>
@@ -89,7 +91,8 @@ TextArea.propTypes = {
   maxLength: PropTypes.number,
   disabled: PropTypes.bool,
   rows: PropTypes.number,
-  inputProps: PropTypes.any,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
 export default TextArea;

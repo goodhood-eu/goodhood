@@ -25,7 +25,6 @@ const RadioGroup = ({
   name,
   value,
   Layout = RadioGroupHorizontalLayout,
-  inputProps,
 }) => {
   const handleChange = (event, val) => {
     onChange(event, val);
@@ -42,7 +41,6 @@ const RadioGroup = ({
           value={item.value}
           disabled={item.disabled}
           checked={value === item.value}
-          {...inputProps}
         />
       ))}
     </Layout>
@@ -61,8 +59,6 @@ RadioGroup.propTypes = {
       disabled: PropTypes.bool,
     }),
   ).isRequired,
-  className: PropTypes.string,
-  inputProps: PropTypes.any,
 };
 
 export default RadioGroup;

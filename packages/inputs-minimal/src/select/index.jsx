@@ -13,10 +13,11 @@ const Select = ({
   options,
   size = Sizes.medium,
   onChange,
+  onFocus,
+  onBlur,
   className,
   disableBorder,
   disabled,
-  inputProps,
 }) => {
   const handleChange = (e) => {
     const { selectedIndex } = e.target;
@@ -59,7 +60,8 @@ const Select = ({
             value={value}
             disabled={disabled}
             name={name}
-            {...inputProps}
+            onFocus={onFocus}
+            onBlur={onBlur}
           >
             {options.map((option) => (
               <option
@@ -102,7 +104,8 @@ Select.propTypes = {
   className: PropTypes.string,
   disableBorder: PropTypes.bool,
   disabled: PropTypes.bool,
-  inputProps: PropTypes.any,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
 export default Select;
