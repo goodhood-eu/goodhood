@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { SIZES_KEYS } from '@/src/constants';
+import { AUTOCOMPLETE_OPTIONS_KEYS, SIZES_KEYS } from '@/src/constants';
 import Meta from '@/src/textfields_meta';
 import styles from './index.module.scss';
 
@@ -20,6 +20,7 @@ const TextField = ({
   disabled,
   onFocus,
   onBlur,
+  autocomplete,
 }) => {
   const [inFocus, setFocus] = useState(false);
 
@@ -72,6 +73,7 @@ const TextField = ({
             onChange={handleChange}
             value={value}
             disabled={disabled}
+            autoComplete={autocomplete}
             type="text"
             name={name}
             onFocus={onFocus}
@@ -111,6 +113,7 @@ TextField.propTypes = {
   disabled: PropTypes.bool,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
+  autocomplete: PropTypes.oneOf(AUTOCOMPLETE_OPTIONS_KEYS),
 };
 
 export default TextField;
