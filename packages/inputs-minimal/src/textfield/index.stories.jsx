@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { text, boolean, number, select } from '@root/.preview/src/modules/knobs';
-import { AutocompleteOptions, Sizes } from '../constants';
+import { boolean, number, select, text } from '@root/.preview/src/modules/knobs';
+import { Sizes } from '../constants';
 import TextField from './index';
 import styles from './index.stories.module.scss';
 
@@ -27,7 +27,6 @@ export const Default = () => {
         maxLength={number('maxLength')}
         disableBorder={boolean('disableBorder', false)}
         size={select('Size', Sizes, Sizes.medium)}
-        autocomplete={select('Autocomplete', AutocompleteOptions, undefined)}
       />
     </div>
   );
@@ -53,7 +52,6 @@ export const WithAttachments = () => {
         maxLength={number('maxLength')}
         disableBorder={boolean('disableBorder', false)}
         size={select('Size', Sizes, Sizes.medium)}
-        autocomplete={select('Autocomplete', AutocompleteOptions, undefined)}
       />
     </div>
   );
@@ -79,7 +77,6 @@ export const WithAttachmentsBigIcons = () => {
         maxLength={number('maxLength')}
         disableBorder={boolean('disableBorder', false)}
         size={select('Size', Sizes, Sizes.medium)}
-        autocomplete={select('Autocomplete', AutocompleteOptions, undefined)}
       />
     </div>
   );

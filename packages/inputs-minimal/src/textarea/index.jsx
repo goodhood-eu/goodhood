@@ -64,6 +64,7 @@ const TextArea = ({
             disabled={disabled}
             rows={rows}
             name={name}
+            autoComplete="off"
             onBlur={onBlur}
             onFocus={onFocus}
           />
