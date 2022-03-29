@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
-import ArrowLeftIcon from '@goodhood/icons/lib/tiny/arrow_left';
-import ArrowRightIcon from '@goodhood/icons/lib/tiny/arrow_right';
+import ChevronLeft from '@goodhood/icons/lib/tiny/chevron_left';
+import ChevronRight from '@goodhood/icons/lib/tiny/chevron_right';
 import styles from './index.module.scss';
 import defaultTheme from './default_theme.module.scss';
 
@@ -27,7 +27,7 @@ const LinkHeader = ({
 
   let icon;
   if (isClickable) {
-    const Icon = reversed ? ArrowLeftIcon : ArrowRightIcon;
+    const Icon = reversed ? ChevronLeft : ChevronRight;
 
     icon = (
       <div className={clsx(styles.navigation, theme.navigation)}>

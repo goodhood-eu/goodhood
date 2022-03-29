@@ -46,7 +46,7 @@
     "string-validate": "^3.5.0"
   },
   "dependencies": {
-    "@goodhood/icons": "^2.0.0",
+    "@goodhood/icons": "^3.0.0-beta.0",
     "clsx": "^1.1.1",
     "lodash": "^4.17.20",
     "@popperjs/core": "^2.5.4",
