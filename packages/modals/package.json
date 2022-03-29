@@ -30,7 +30,7 @@
     "test": "../../scripts/run-tests"
   },
   "dependencies": {
-    "@goodhood/icons": "^2.2.0",
+    "@goodhood/icons": "^3.0.0",
     "clsx": "^1.1.1",
     "nebenan-helpers": "^7.0.0"
   },
