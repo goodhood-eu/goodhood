@@ -20,8 +20,8 @@ sed -i '' 's#@goodhood/icons/lib/28x28/#@goodhood/icons/lib/large/#g' **/*.jsx
 
 Migrate script:
 ```bash
-sed -i '' 's#@goodhood/icons/lib/tiny/Arrow_Down#@goodhood/icons/lib/tiny/Chevron_Down#g' **/*.jsx
-sed -i '' 's#@goodhood/icons/lib/tiny/Arrow_Up#@goodhood/icons/lib/tiny/Chevron_Up#g' **/*.jsx
-sed -i '' 's#@goodhood/icons/lib/tiny/Arrow_Left#@goodhood/icons/lib/tiny/Chevron_Left#g' **/*.jsx
-sed -i '' 's#@goodhood/icons/lib/tiny/Arrow_Right#@goodhood/icons/lib/tiny/Chevron_Right#g' **/*.jsx
+sed -i '' 's#@goodhood/icons/lib/tiny/arrow_down#@goodhood/icons/lib/tiny/chevron_down#g' **/*.jsx
+sed -i '' 's#@goodhood/icons/lib/tiny/arrow_up#@goodhood/icons/lib/tiny/chevron_up#g' **/*.jsx
+sed -i '' 's#@goodhood/icons/lib/tiny/arrow_left#@goodhood/icons/lib/tiny/chevron_left#g' **/*.jsx
+sed -i '' 's#@goodhood/icons/lib/tiny/arrow_right#@goodhood/icons/lib/tiny/chevron_right#g' **/*.jsx
 ```
