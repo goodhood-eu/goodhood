@@ -1,4 +1,4 @@
-import { boolean, select, text } from '@root/.preview/src/modules/knobs';
+import { select } from '@root/.preview/src/modules/knobs';
 import { action } from '@root/.preview/src/modules/actions';
 import config from '@root/config';
 import data from '../../sample_data';
