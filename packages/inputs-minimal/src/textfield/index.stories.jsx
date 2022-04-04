@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { boolean, number, select, text } from '@root/.preview/src/modules/knobs';
+import { boolean, select, text } from '@root/.preview/src/modules/knobs';
 import { Sizes } from '../constants';
 import TextField from './index';
 import styles from './index.stories.module.scss';
@@ -24,7 +24,7 @@ export const Default = () => {
         onChange={handleChange}
         disabled={boolean('Disabled', false)}
         error={text('Error message', '')}
-        maxLength={number('maxLength')}
+        hint={text('Hint', '')}
         disableBorder={boolean('disableBorder', false)}
         size={select('Size', Sizes, Sizes.medium)}
       />
@@ -49,7 +49,7 @@ export const WithAttachments = () => {
         attachmentLeft={<SearchIcon />}
         disabled={boolean('Disabled', false)}
         error={text('Error message', '')}
-        maxLength={number('maxLength')}
+        hint={text('Hint', '')}
         disableBorder={boolean('disableBorder', false)}
         size={select('Size', Sizes, Sizes.medium)}
       />
@@ -74,7 +74,7 @@ export const WithAttachmentsBigIcons = () => {
         attachmentLeft={<BookmarkIcon />}
         disabled={boolean('Disabled', false)}
         error={text('Error message', '')}
-        maxLength={number('maxLength')}
+        hint={text('Hint', '')}
         disableBorder={boolean('disableBorder', false)}
         size={select('Size', Sizes, Sizes.medium)}
       />

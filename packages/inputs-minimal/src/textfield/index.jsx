@@ -16,7 +16,7 @@ const TextField = ({
   size = Sizes.medium,
   className,
   disableBorder,
-  maxLength,
+  hint,
   disabled,
   onFocus,
   onBlur,
@@ -25,10 +25,6 @@ const TextField = ({
 
   const handleChange = (e) => {
     const val = e.target.value;
-
-    if (maxLength && val.length > maxLength) {
-      return;
-    }
 
     onChange(e, val);
   };
@@ -89,8 +85,7 @@ const TextField = ({
 
       <Meta
         className={styles.meta}
-        value={value}
-        maxLength={maxLength}
+        hint={hint}
         error={error}
       />
     </div>
@@ -108,7 +103,7 @@ TextField.propTypes = {
   size: PropTypes.oneOf(SIZES_KEYS),
   className: PropTypes.string,
   disableBorder: PropTypes.bool,
-  maxLength: PropTypes.number,
+  hint: PropTypes.string,
   disabled: PropTypes.bool,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,

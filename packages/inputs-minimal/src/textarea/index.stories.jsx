@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { text, boolean, number } from '@root/.preview/src/modules/knobs';
+import { text, boolean } from '@root/.preview/src/modules/knobs';
 import TextArea from './index';
 import styles from './index.stories.module.scss';
 
@@ -19,7 +19,7 @@ export const Default = () => {
         onChange={handleChange}
         disabled={boolean('Disabled', false)}
         error={text('Error message', '')}
-        maxLength={number('maxLength')}
+        hint={text('Hint', '')}
         disableBorder={boolean('disableBorder', false)}
       />
     </div>

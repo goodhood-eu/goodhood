@@ -13,7 +13,7 @@ const TextArea = ({
   onChange,
   className,
   disableBorder,
-  maxLength,
+  hint,
   disabled,
   rows = TEXTAREA_DEFAULT_ROWS,
   onBlur,
@@ -23,10 +23,6 @@ const TextArea = ({
 
   const handleChange = (e) => {
     const val = e.target.value;
-
-    if (maxLength && val.length > maxLength) {
-      return;
-    }
 
     onChange(e, val);
   };
@@ -73,8 +69,7 @@ const TextArea = ({
 
       <Meta
         className={styles.meta}
-        value={value}
-        maxLength={maxLength}
+        hint={hint}
         error={error}
       />
     </div>
@@ -89,7 +84,7 @@ TextArea.propTypes = {
   onChange: PropTypes.func.isRequired,
   className: PropTypes.string,
   disableBorder: PropTypes.bool,
-  maxLength: PropTypes.number,
+  hint: PropTypes.string,
   disabled: PropTypes.bool,
   rows: PropTypes.number,
   onFocus: PropTypes.func,
