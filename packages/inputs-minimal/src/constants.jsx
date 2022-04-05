@@ -5,3 +5,5 @@ export const Sizes = {
 };
 
 export const SIZES_KEYS = Object.keys(Sizes);
+
+export const TEXTAREA_DEFAULT_ROWS = 5;

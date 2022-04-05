@@ -2,32 +2,30 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Meta from '@/src/textfields_meta';
+import { TEXTAREA_DEFAULT_ROWS } from '@/src/constants';
 import styles from './index.module.scss';
 
 const TextArea = ({
   label,
   error,
   value = '',
+  name,
   onChange,
   className,
   disableBorder,
-  maxLength,
-  placeholder,
+  hint,
   disabled,
+  rows = TEXTAREA_DEFAULT_ROWS,
+  onBlur,
+  onFocus,
 }) => {
   const [inFocus, setFocus] = useState(false);
 
   const handleChange = (e) => {
     const val = e.target.value;
 
-    if (maxLength && val.length > maxLength) {
-      return;
-    }
-
-    onChange(val, e);
+    onChange(e, val);
   };
-
-  const labelText = label || placeholder;
 
   return (
     <div>
@@ -52,7 +50,7 @@ const TextArea = ({
               { [styles.focus]: inFocus || value },
             )}
           >
-            {labelText}
+            {label}
           </span>
 
           <textarea
@@ -60,14 +58,18 @@ const TextArea = ({
             onChange={handleChange}
             value={value}
             disabled={disabled}
+            rows={rows}
+            name={name}
+            autoComplete="off"
+            onBlur={onBlur}
+            onFocus={onFocus}
           />
         </label>
       </div>
 
       <Meta
         className={styles.meta}
-        value={value}
-        maxLength={maxLength}
+        hint={hint}
         error={error}
       />
     </div>
@@ -76,14 +78,17 @@ const TextArea = ({
 
 TextArea.propTypes = {
   label: PropTypes.string,
-  placeholder: PropTypes.string,
+  name: PropTypes.string,
   error: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   className: PropTypes.string,
   disableBorder: PropTypes.bool,
-  maxLength: PropTypes.number,
+  hint: PropTypes.string,
   disabled: PropTypes.bool,
+  rows: PropTypes.number,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
 export default TextArea;

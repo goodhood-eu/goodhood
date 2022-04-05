@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import RadioGroup from './index';
+import RadioGroup, { RadioGroupHorizontalLayout, RadioGroupVerticalLayout } from './index';
 import styles from './index.stories.module.scss';
+import { select } from '@root/.preview/src/modules/knobs';
 
 const OPTIONS = [
   { label: 'Option 1', value: 1 },
@@ -8,16 +9,26 @@ const OPTIONS = [
   { label: 'Option 3', value: 3 },
 ];
 
+const Layouts = {
+  horizontal: RadioGroupHorizontalLayout,
+  vertical: RadioGroupVerticalLayout,
+};
+
 export const Default = () => {
   const [value, setValue] = useState('');
+
+  const handleChange = (e, val) => {
+    setValue(val);
+  };
 
   return (
     <div className={styles.container}>
       <RadioGroup
         value={value}
-        onChange={setValue}
+        onChange={handleChange}
         name="Example 1"
         items={OPTIONS}
+        Layout={select('Layout', Layouts, Layouts.horizontal)}
       />
     </div>
   );
