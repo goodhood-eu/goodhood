@@ -9,17 +9,24 @@ const Select = ({
   label,
   error,
   value = '',
+  name,
   options,
   size = Sizes.medium,
   onChange,
+  onFocus,
+  onBlur,
   className,
   disableBorder,
   disabled,
 }) => {
   const handleChange = (e) => {
     const { selectedIndex } = e.target;
-    const selectedValue = options[selectedIndex].value || options[selectedIndex];
-    onChange(selectedValue, e);
+    const selectedPropValue = options[selectedIndex].value;
+    const selectedValue = selectedPropValue !== undefined
+      ? selectedPropValue
+      : options[selectedIndex];
+
+    onChange(e, selectedValue);
   };
 
   return (
@@ -52,6 +59,9 @@ const Select = ({
             onChange={handleChange}
             value={value}
             disabled={disabled}
+            name={name}
+            onFocus={onFocus}
+            onBlur={onBlur}
           >
             {options.map((option) => (
               <option
@@ -79,6 +89,7 @@ Select.propTypes = {
   label: PropTypes.string,
   error: PropTypes.string,
   value: PropTypes.string,
+  name: PropTypes.string,
   options: PropTypes.oneOfType([
     PropTypes.arrayOf(
       PropTypes.shape({
@@ -93,6 +104,8 @@ Select.propTypes = {
   className: PropTypes.string,
   disableBorder: PropTypes.bool,
   disabled: PropTypes.bool,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
 export default Select;

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { SIZES_KEYS } from '@/src/constants';
+import { Sizes, SIZES_KEYS } from '@/src/constants';
 import Meta from '@/src/textfields_meta';
 import styles from './index.module.scss';
 
@@ -9,29 +9,25 @@ const TextField = ({
   label,
   error,
   value = '',
+  name,
   onChange,
   attachmentLeft,
   attachmentRight,
-  size = 'medium',
+  size = Sizes.medium,
   className,
   disableBorder,
-  maxLength,
-  placeholder,
+  hint,
   disabled,
+  onFocus,
+  onBlur,
 }) => {
   const [inFocus, setFocus] = useState(false);
 
   const handleChange = (e) => {
     const val = e.target.value;
 
-    if (maxLength && val.length > maxLength) {
-      return;
-    }
-
-    onChange(val, e);
+    onChange(e, val);
   };
-
-  const labelText = label || placeholder;
 
   return (
     <div>
@@ -64,7 +60,7 @@ const TextField = ({
               { [styles.focus]: inFocus || value },
             )}
           >
-            {labelText}
+            {label}
           </span>
 
           <input
@@ -72,7 +68,11 @@ const TextField = ({
             onChange={handleChange}
             value={value}
             disabled={disabled}
+            autoComplete="off"
             type="text"
+            name={name}
+            onFocus={onFocus}
+            onBlur={onBlur}
           />
         </label>
 
@@ -85,8 +85,7 @@ const TextField = ({
 
       <Meta
         className={styles.meta}
-        value={value}
-        maxLength={maxLength}
+        hint={hint}
         error={error}
       />
     </div>
@@ -95,17 +94,19 @@ const TextField = ({
 
 TextField.propTypes = {
   label: PropTypes.string,
-  placeholder: PropTypes.string,
   error: PropTypes.string,
   value: PropTypes.string,
+  name: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   attachmentLeft: PropTypes.node,
   attachmentRight: PropTypes.node,
   size: PropTypes.oneOf(SIZES_KEYS),
   className: PropTypes.string,
   disableBorder: PropTypes.bool,
-  maxLength: PropTypes.number,
+  hint: PropTypes.string,
   disabled: PropTypes.bool,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
 export default TextField;

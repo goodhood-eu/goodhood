@@ -17,6 +17,10 @@ const OPTIONS2 = [
 export const Default = () => {
   const [value, setValue] = useState('');
 
+  const handleChange = (e, val) => {
+    setValue(val);
+  };
+
   return (
     <div className={styles.container}>
       {OPTIONS.map((option) => (
@@ -25,7 +29,7 @@ export const Default = () => {
           value={option.value}
           label={option.label}
           disabled={option.disabled}
-          onChange={setValue}
+          onChange={handleChange}
           name="example1"
           checked={value === option.value}
         />
@@ -37,6 +41,10 @@ export const Default = () => {
 export const DefaultSelected = () => {
   const [value, setValue] = useState(2);
 
+  const handleChange = (e, val) => {
+    setValue(val);
+  };
+
   return (
     <div className={styles.container}>
       {OPTIONS.map((option) => (
@@ -45,7 +53,7 @@ export const DefaultSelected = () => {
           value={option.value}
           label={option.label}
           disabled={option.disabled}
-          onChange={setValue}
+          onChange={handleChange}
           name="example1"
           checked={value === option.value}
         />
@@ -54,8 +62,12 @@ export const DefaultSelected = () => {
   );
 };
 
-export const DefaultSelecteDisabled = () => {
-  const [value, setValue] = useState('2');
+export const DefaultSelectedDisabled = () => {
+  const [value, setValue] = useState(2);
+
+  const handleChange = (e, val) => {
+    setValue(val);
+  };
 
   return (
     <div className={styles.container}>
@@ -65,7 +77,7 @@ export const DefaultSelecteDisabled = () => {
           value={option.value}
           label={option.label}
           disabled={option.disabled}
-          onChange={setValue}
+          onChange={handleChange}
           name="example1"
           checked={value === option.value}
         />

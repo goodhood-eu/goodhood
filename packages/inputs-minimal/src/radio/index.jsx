@@ -10,9 +10,11 @@ const Radio = ({
   label,
   checked,
   name,
+  onBlur,
+  onFocus,
 }) => {
   const handleChange = (e) => {
-    onChange(value, e);
+    onChange(e, value);
   };
 
   return (
@@ -24,10 +26,21 @@ const Radio = ({
         type="radio"
         checked={checked}
         name={name}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
-      <i className={styles.checkbox} />
+      <i className={clsx(styles.checkbox, { [styles.disabled]: disabled })} />
 
-      {label && <div className={styles.labelText}>{label}</div>}
+      {label && (
+        <div
+          className={clsx(styles.labelText, {
+            [styles.checked]: checked,
+            [styles.disabled]: disabled,
+          })}
+        >
+          {label}
+        </div>
+      )}
     </label>
   );
 };
@@ -40,6 +53,8 @@ Radio.propTypes = {
   checked: PropTypes.bool,
   className: PropTypes.string,
   disabled: PropTypes.bool,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
 };
 
 export default Radio;
