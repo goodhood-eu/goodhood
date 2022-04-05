@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "7.0.1",
+  "version": "7.2.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -46,7 +46,7 @@
     "string-validate": "^3.5.0"
   },
   "dependencies": {
-    "@goodhood/icons": "^2.0.0",
+    "@goodhood/icons": "^3.0.0",
     "clsx": "^1.1.1",
     "lodash": "^4.17.20",
     "@popperjs/core": "^2.5.4",
@@ -60,7 +60,6 @@
     "nebenan-eventproxy": "^1.0.0",
     "nebenan-keymanager": "^1.0.1",
     "nebenan-ui-kit": "^5.0.0",
-    "prop-types": "^15.7.2",
     "react": "^16.14.0 || ^17.0.1",
     "react-load-script": "^0.0.6",
     "react-router": "^5.2.0",

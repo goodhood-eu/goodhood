@@ -24,7 +24,7 @@ const Action = ({
       // getInstance method throws an error if instance was not created
       instanceRef.current = global.Chargebee.getInstance();
     } catch (e) {
-      instanceRef.current = global.Chargebee.init({ site });
+      instanceRef.current = global.Chargebee.init({ site, enableGTMTracking: true });
     }
 
     setReady(true);

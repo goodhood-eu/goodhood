@@ -7,3 +7,6 @@ export const ANIMATION_DURATION = 200;
 export const ANIMATION_FPS = 90;
 
 export const DISABLE_SCROLL_DISTANCE = 10;
+
+export const EVENT_MOUSE_MOVE = 'mousemove';
+export const EVENT_TOUCH_START = 'touchstart';
