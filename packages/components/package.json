@@ -60,7 +60,6 @@
     "nebenan-eventproxy": "^1.0.0",
     "nebenan-keymanager": "^1.0.1",
     "nebenan-ui-kit": "^5.0.0",
-    "prop-types": "^15.7.2",
     "react": "^16.14.0 || ^17.0.1",
     "react-load-script": "^0.0.6",
     "react-router": "^5.2.0",
