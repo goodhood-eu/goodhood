@@ -43,6 +43,7 @@ export default (pkg, pkgPath) => ({
       file: pkg.main,
       format: 'cjs',
       sourcemap: true,
+      exports: 'named',
     },
   ],
   plugins: [
@@ -85,7 +86,10 @@ export default (pkg, pkgPath) => ({
         /node_modules/,
       ],
     }),
-    resolve({ browser: true, extensions: ['.js', '.jsx', '.json'] }),
+    resolve({
+      browser: true,
+      extensions: ['.js', '.jsx', '.json'],
+    }),
     globImport({
       format: 'mixed',
       rename: (name, id) => {

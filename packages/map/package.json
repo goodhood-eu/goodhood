@@ -25,7 +25,8 @@
   },
   "devDependencies": {
     "@turf/circle": "^6.0.1",
-    "@turf/transform-rotate": "^5.1.5"
+    "@turf/transform-rotate": "^5.1.5",
+    "prop-types": "^15.7.2"
   },
   "dependencies": {
     "maplibre-gl": "^1.14.0",
@@ -36,7 +37,6 @@
   "peerDependencies": {
     "@babel/runtime": "^7.12.5",
     "nebenan-ui-kit": "^5.0.0",
-    "prop-types": "^15.7.2",
     "react": "^16.14.0 || ^17.0.1",
     "react-dom": "^16.14.0 || ^17.0.1"
   },

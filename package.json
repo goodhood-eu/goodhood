@@ -62,7 +62,7 @@
     "nebenan-helpers": "^6.0.0",
     "nebenan-ui-kit": "^4.15.0",
     "postcss": "^8.4.6",
-    "postcss-preset-env": "^6.7.0",
+    "postcss-preset-env": "^7.4.3",
     "prop-types": "^15.7.2",
     "qs": "^6.9.4",
     "react": "^16.14.0",
