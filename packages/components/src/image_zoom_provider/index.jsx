@@ -18,7 +18,6 @@ const ImageZoomProvider = ({ children }) => {
     setImageSize(getScaledImageSize(imageNode, 1));
   };
 
-  // eslint-disable-next-line react/jsx-no-constructed-context-values
   const value = {
     isLoaded,
     scale,
