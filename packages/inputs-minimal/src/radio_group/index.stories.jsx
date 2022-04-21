@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { select } from '@root/.preview/src/modules/knobs';
 import RadioGroup, { RadioGroupHorizontalLayout, RadioGroupVerticalLayout } from './index';
 import styles from './index.stories.module.scss';
-
+import { select } from '@root/.preview/src/modules/knobs';
 
 const OPTIONS = [
   { label: 'Option 1', value: 1 },

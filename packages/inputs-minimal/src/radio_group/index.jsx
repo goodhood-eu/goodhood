@@ -1,8 +1,7 @@
-import { Children } from 'react';
 import PropTypes from 'prop-types';
 import Radio from '../radio';
 import styles from './index.module.scss';
-
+import { Children } from 'react';
 
 export const RadioGroupHorizontalLayout = ({ children }) => (
   <div className={styles.horizontalLayout}>
