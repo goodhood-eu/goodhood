@@ -22,20 +22,44 @@ $feature-alert-arrow-size: 16px;
   animation-timing-function: ease-in;
 }
 
-.tooltip:global([data-popper-placement^="top"]) > .arrow {
-  bottom: -4px;
+.tooltip:global([data-popper-placement^="top"]) {
+  > .arrow {
+    bottom: -12px;
+
+    &::before {
+      top: -50%;
+    }
+  }
 }
 
-.tooltip:global([data-popper-placement^="bottom"]) > .arrow {
-  top: -4px;
+.tooltip:global([data-popper-placement^="bottom"]) {
+  > .arrow {
+    top: -12px;
+
+    &::before {
+      bottom: -50%;
+    }
+  }
 }
 
-.tooltip:global([data-popper-placement^="left"]) > .arrow {
-  right: -4px;
+.tooltip:global([data-popper-placement^="left"]) {
+  > .arrow {
+    right: -12px;
+
+    &::before {
+      left: -50%;
+    }
+  }
 }
 
-.tooltip:global([data-popper-placement^="right"]) > .arrow {
-  left: -4px;
+.tooltip:global([data-popper-placement^="right"]) {
+  > .arrow {
+    left: -12px;
+
+    &::before {
+      right: -50%;
+    }
+  }
 }
 
 .arrow,
@@ -44,7 +68,7 @@ $feature-alert-arrow-size: 16px;
   height: $feature-alert-arrow-size;
 
   display: block;
-  z-index: -1;
+  overflow: hidden;
 }
 
 .arrow::before {
@@ -54,7 +78,6 @@ $feature-alert-arrow-size: 16px;
   border-radius: $border-radius-m;
 
   background: $color-blue-01;
-  box-shadow: $shadow-bottom-default;
   transform: rotate(45deg);
 }
 
