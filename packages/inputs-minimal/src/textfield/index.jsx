@@ -20,6 +20,7 @@ const TextField = ({
   disabled,
   onFocus,
   onBlur,
+  placeholder,
 }) => {
   const [inFocus, setFocus] = useState(false);
 
@@ -73,6 +74,7 @@ const TextField = ({
             name={name}
             onFocus={onFocus}
             onBlur={onBlur}
+            placeholder={placeholder}
           />
         </label>
 
@@ -97,6 +99,7 @@ TextField.propTypes = {
   error: PropTypes.string,
   value: PropTypes.string,
   name: PropTypes.string,
+  placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   attachmentLeft: PropTypes.node,
   attachmentRight: PropTypes.node,
