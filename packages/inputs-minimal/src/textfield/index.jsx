@@ -20,6 +20,7 @@ const TextField = ({
   disabled,
   onFocus,
   onBlur,
+  type,
 }) => {
   const [inFocus, setFocus] = useState(false);
 
@@ -69,7 +70,7 @@ const TextField = ({
             value={value}
             disabled={disabled}
             autoComplete="off"
-            type="text"
+            type={type}
             name={name}
             onFocus={onFocus}
             onBlur={onBlur}
@@ -92,6 +93,10 @@ const TextField = ({
   );
 };
 
+TextField.defaultProps = {
+  type: 'text',
+};
+
 TextField.propTypes = {
   label: PropTypes.string,
   error: PropTypes.string,
@@ -107,6 +112,7 @@ TextField.propTypes = {
   disabled: PropTypes.bool,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
+  type: PropTypes.string.isRequired,
 };
 
 export default TextField;
