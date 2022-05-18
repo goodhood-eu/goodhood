@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import TextField from '../textfield';
-import styles from './index.module.scss';
 import omit from 'lodash/omit';
+import Eye1Icon from '@goodhood/icons/lib/medium/eye_1';
+import Eye2Icon from '@goodhood/icons/lib/medium/eye_2';
 
 const Password = ({
   className,
@@ -17,18 +17,12 @@ const Password = ({
   };
 
   const type = isVisible ? 'text' : 'password';
-  const iconClassName = clsx(styles.icon, {
-    'icon-eye': !isVisible,
-    'icon-eye_crossed': isVisible,
-  });
+  const Icon = isVisible ? Eye2Icon : Eye1Icon;
 
   const cleanProps = omit(restProps, 'attachmentLeft', 'attachmentRight');
 
   return (
-    <span className={clsx(styles.root, className)}>
-      <TextField className={styles.input} {...cleanProps} __type={type} />
-      <i className={iconClassName} onClick={handleClick} />
-    </span>
+    <TextField {...cleanProps} __type={type} attachmentRight={<Icon onClick={handleClick} />} />
   );
 };
 

@@ -20,7 +20,7 @@ const TextField = ({
   disabled,
   onFocus,
   onBlur,
-  __type,
+  __type = 'text',
 }) => {
   const [inFocus, setFocus] = useState(false);
 
@@ -91,10 +91,6 @@ const TextField = ({
       />
     </div>
   );
-};
-
-TextField.defaultProps = {
-  __type: 'text',
 };
 
 TextField.propTypes = {
