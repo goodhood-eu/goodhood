@@ -34,7 +34,8 @@
   &.disabled {
     opacity: .6;
 
-    .label {
+    .label,
+    .attachment {
       cursor: default;
     }
   }

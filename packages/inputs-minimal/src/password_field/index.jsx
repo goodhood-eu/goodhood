@@ -7,6 +7,7 @@ import Eye2Icon from '@goodhood/icons/lib/medium/eye_2';
 
 const Password = ({
   className,
+  disabled,
   ...restProps
 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -22,12 +23,18 @@ const Password = ({
   const cleanProps = omit(restProps, 'attachmentLeft', 'attachmentRight');
 
   return (
-    <TextField {...cleanProps} __type={type} attachmentRight={<Icon onClick={handleClick} />} />
+    <TextField
+      {...cleanProps}
+      disabled={disabled}
+      __type={type}
+      attachmentRight={<Icon onClick={disabled ? undefined : handleClick} />}
+    />
   );
 };
 
 Password.propTypes = {
   className: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export default Password;
