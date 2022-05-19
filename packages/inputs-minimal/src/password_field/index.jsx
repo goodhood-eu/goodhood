@@ -11,8 +11,7 @@ const Password = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleClick = (event) => {
-    event.preventDefault();
+  const handleClick = () => {
     setIsVisible((prevState) => !prevState);
   };
 
