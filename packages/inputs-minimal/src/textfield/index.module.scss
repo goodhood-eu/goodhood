@@ -34,7 +34,8 @@
   &.disabled {
     opacity: .6;
 
-    .label {
+    .label,
+    .attachment {
       cursor: default;
     }
   }
@@ -43,6 +44,7 @@
 .attachment {
   max-width: 24px;
   max-height: 24px;
+  display: flex;
   overflow: hidden;
 
   cursor: pointer;
