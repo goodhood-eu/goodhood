@@ -108,7 +108,7 @@ TextField.propTypes = {
   disabled: PropTypes.bool,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  __type: PropTypes.string.isRequired,
+  __type: PropTypes.string,
 };
 
 export default TextField;

@@ -4,9 +4,10 @@ import TextField from '../textfield';
 import omit from 'lodash/omit';
 import Eye1Icon from '@goodhood/icons/lib/medium/eye_1';
 import Eye2Icon from '@goodhood/icons/lib/medium/eye_2';
+import { SIZES_KEYS } from '../constants';
 
-const Password = ({
-  className,
+const PasswordField = ({
+  disabled,
   ...restProps
 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -18,15 +19,31 @@ const Password = ({
   const type = isVisible ? 'text' : 'password';
   const Icon = isVisible ? Eye2Icon : Eye1Icon;
 
-  const cleanProps = omit(restProps, 'attachmentLeft', 'attachmentRight');
+  const cleanProps = omit(restProps, 'attachmentLeft');
 
   return (
-    <TextField {...cleanProps} __type={type} attachmentRight={<Icon onClick={handleClick} />} />
+    <TextField
+      {...cleanProps}
+      disabled={disabled}
+      __type={type}
+      attachmentRight={<Icon onClick={disabled ? undefined : handleClick} />}
+    />
   );
 };
 
-Password.propTypes = {
+PasswordField.propTypes = {
+  label: PropTypes.string,
+  error: PropTypes.string,
+  value: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  size: PropTypes.oneOf(SIZES_KEYS),
   className: PropTypes.string,
+  disableBorder: PropTypes.bool,
+  hint: PropTypes.string,
+  disabled: PropTypes.bool,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
-export default Password;
+export default PasswordField;

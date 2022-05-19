@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { boolean, select, text } from '@root/.preview/src/modules/knobs';
 import { Sizes } from '../constants';
-import Password from './index';
+import PasswordField from './index';
 import styles from './index.stories.module.scss';
 
 
@@ -15,7 +15,7 @@ export const Default = () => {
 
   return (
     <div className={styles.container}>
-      <Password
+      <PasswordField
         value={value}
         label="My Awesome Input"
         onChange={handleChange}
@@ -29,4 +29,4 @@ export const Default = () => {
   );
 };
 
-export default { title: 'Password', component: Password };
+export default { title: 'PasswordField', component: PasswordField };
