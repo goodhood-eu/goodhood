@@ -1,0 +1,40 @@
+@import "nebenan-ui-kit";
+
+.root {
+  height: 20px;
+
+  overflow: hidden;
+  position: relative;
+
+  border-radius: $border-radius-m;
+  background: $color-gray-05;
+
+  color: $color-gray-09;
+  font-size: $font-size-s;
+  line-height: 20px;
+  text-align: right;
+}
+
+.progressState {
+  height: 100%;
+  position: absolute;
+  background: $color-green-02;
+  top: 0;
+  left: 0;
+
+  transition: width $transition;
+
+  em {
+    padding: 0 5px;
+    font-style: normal;
+  }
+}
+
+.small {
+  height: 10px;
+  border-radius: 5px;
+
+  .progressState {
+    @include text-invisible;
+  }
+}
