@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { getPercentage } from './utils';
+import { getPercentageString } from './utils';
 import styles from './index.module.scss';
 
 const ProgressBar = ({
@@ -11,7 +11,7 @@ const ProgressBar = ({
   progressBarProgressIndicatorStyles,
   ...cleanProps
 }) => {
-  const percent = getPercentage(state);
+  const percent = getPercentageString(state);
 
   const className = clsx(styles.root, progressBarStyles, {
     [styles.small]: size === 'small',
@@ -23,7 +23,7 @@ const ProgressBar = ({
         className={clsx(styles.progressState, progressBarProgressIndicatorStyles)}
         style={{ width: percent }}
       >
-        <em>{percent}</em>
+        <em className={styles.percent}>{percent}</em>
       </span>
       {children}
     </div>

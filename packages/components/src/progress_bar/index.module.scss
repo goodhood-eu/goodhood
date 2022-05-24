@@ -23,11 +23,11 @@
   left: 0;
 
   transition: width $transition;
+}
 
-  em {
-    padding: 0 5px;
-    font-style: normal;
-  }
+.percent {
+  padding: 0 5px;
+  font-style: normal;
 }
 
 .small {

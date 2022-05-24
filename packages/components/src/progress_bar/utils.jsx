@@ -1,9 +1,5 @@
-export const getPercentage = (input) => {
-  let percent;
-  if (typeof input === 'number' && input < 1) percent = String(input * 100);
-  else percent = String(input);
-
-  if (!percent.includes('%')) percent = `${percent}%`;
-
-  return percent;
+export const getPercentageString = (input) => {
+  if (typeof input === 'number' && input < 1) return `${input}%`;
+  if (`${input}`.includes('%')) return `${input}`;
+  return `${input}%`;
 };
