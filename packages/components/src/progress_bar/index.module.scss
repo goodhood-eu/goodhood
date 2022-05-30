@@ -6,23 +6,38 @@
   overflow: hidden;
   position: relative;
 
-  border-radius: $border-radius-m;
-  background: $color-gray-05;
-
   color: $color-gray-09;
   font-size: $font-size-s;
   line-height: 20px;
   text-align: right;
+
+  &.theme-modern {
+    border-radius: 8px;
+    background: $color-blue-03;
+  }
+
+  &.theme-legacy {
+    border-radius: $border-radius-m;
+    background: $color-gray-05;
+  }
 }
 
 .progressState {
   height: 100%;
   position: absolute;
-  background: $color-green-02;
   top: 0;
   left: 0;
 
   transition: width $transition;
+
+  &.theme-modern {
+    background: linear-gradient(90deg, #008291 0%, #33a6b4 100%);
+    border-radius: 8px;
+  }
+
+  &.theme-legacy {
+    background: $color-green-02;
+  }
 }
 
 .percent {
