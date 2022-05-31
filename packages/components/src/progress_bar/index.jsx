@@ -10,7 +10,6 @@ const ProgressBar = ({
   state,
   size,
   theme = PROGRESS_BAR_THEME_MODERN,
-  ...cleanProps
 }) => {
   const percent = getPercentageString(state);
 
@@ -19,7 +18,7 @@ const ProgressBar = ({
   });
 
   return (
-    <div {...cleanProps} className={className}>
+    <div className={className}>
       <span
         className={clsx(styles.progressState, styles[`theme-${theme}`])}
         style={{ width: percent }}
