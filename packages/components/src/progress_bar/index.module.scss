@@ -1,0 +1,55 @@
+@import "nebenan-ui-kit";
+
+.root {
+  height: 20px;
+
+  overflow: hidden;
+  position: relative;
+
+  color: $color-gray-09;
+  font-size: $font-size-s;
+  line-height: 20px;
+  text-align: right;
+
+  &.theme-modern {
+    border-radius: 8px;
+    background: $color-blue-03;
+  }
+
+  &.theme-legacy {
+    border-radius: $border-radius-m;
+    background: $color-gray-05;
+  }
+}
+
+.progressState {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transition: width $transition;
+
+  &.theme-modern {
+    background: linear-gradient(90deg, #008291 0%, #33a6b4 100%);
+    border-radius: 8px;
+  }
+
+  &.theme-legacy {
+    background: $color-green-02;
+  }
+}
+
+.percent {
+  padding: 0 5px;
+  font-style: normal;
+}
+
+.small {
+  height: 10px;
+  border-radius: 5px;
+
+  .progressState {
+    @include text-invisible;
+  }
+}
