@@ -3,13 +3,13 @@ import clsx from 'clsx';
 import { getPercentageString } from './utils';
 import styles from './index.module.scss';
 
-export const THEME_MODERN = 'modern';
+export const PROGRESS_BAR_THEME_MODERN = 'modern';
+export const PROGRESS_BAR_THEME_LEGACY = 'legacy';
 
 const ProgressBar = ({
   state,
   size,
-  children,
-  theme = THEME_MODERN,
+  theme = PROGRESS_BAR_THEME_MODERN,
   ...cleanProps
 }) => {
   const percent = getPercentageString(state);
@@ -26,21 +26,17 @@ const ProgressBar = ({
       >
         <em className={styles.percent}>{percent}</em>
       </span>
-      {children}
     </div>
   );
 };
 
 ProgressBar.propTypes = {
-  progressBarStyles: PropTypes.string,
-  progressBarProgressIndicatorStyles: PropTypes.string,
   state: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
   ]),
   size: PropTypes.string,
-  children: PropTypes.node,
-  theme: PropTypes.object,
+  theme: PropTypes.string,
 };
 
 export default ProgressBar;
