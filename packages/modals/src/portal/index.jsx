@@ -1,14 +1,15 @@
 import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
-
-
-const isServer = typeof window === 'undefined';
-let node;
-if (!isServer) node = document.body;
+import { useEffect, useState } from 'react';
 
 const Portal = ({ children }) => {
-  if (isServer) return null;
-  return createPortal(children, node);
+  const [node, setNode] = useState(null);
+
+  useEffect(() => {
+    setNode(document.body);
+  }, []);
+
+  return node ? createPortal(children, node) : null;
 };
 
 Portal.propTypes = {
