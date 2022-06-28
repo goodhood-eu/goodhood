@@ -1,0 +1,23 @@
+@import "nebenan-ui-kit";
+
+.root {
+  gap: 4px;
+  height: 6px;
+  display: flex;
+  flex-wrap: nowrap;
+
+  &.thin {
+    height: 2px;
+  }
+}
+
+.step {
+  flex-grow: 1;
+  opacity: 0.2;
+  border-radius: 8px;
+  background: $color-blue-01;
+
+  &.active {
+    opacity: 1;
+  }
+}
