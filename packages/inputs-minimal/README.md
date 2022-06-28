@@ -1,5 +1,5 @@
 # `@goodhood/inputs-minimal`
-Nebenan inputs package
+Collection of dumb input components. Uses the [nebenan design system](https://www.figma.com/file/PBPtYOEh3AvPce2CsnzcgL/%E2%AC%A1-Design-System?node-id=143%3A177) as single source of truth.
 - [Preview](https://goodhood-eu.github.io/goodhood/packages/inputs-minimal/preview/#/)
 
 ## Preview
