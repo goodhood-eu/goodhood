@@ -1128,6 +1128,19 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
+"@goodhood/components@^7.0.0":
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/@goodhood/components/-/components-7.3.0.tgz#58ff83c8f68753a000c9122e33e5827c56a416df"
+  integrity sha512-gst0n6tx/4vSWS3IBxEZCz/5PR4mOXMWEvNNlYN3DmIDKIV5pREYOQMIUfef2uAY6OLrmjHZcz+oIyoHMHrkLA==
+  dependencies:
+    "@goodhood/icons" "^3.0.0"
+    "@popperjs/core" "^2.5.4"
+    clsx "^1.1.1"
+    escape-html "^1.0.3"
+    lodash "^4.17.20"
+    marked "^4.0.0"
+    nebenan-react-hocs "^9.0.0"
+
 "@goodhood/icons@^2.0.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@goodhood/icons/-/icons-2.2.0.tgz#77d5eb6f5d656518f457f895eca892080ea0bc69"
