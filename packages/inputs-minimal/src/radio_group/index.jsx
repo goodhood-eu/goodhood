@@ -33,7 +33,7 @@ const RadioGroup = ({
   };
 
   return (
-    <>
+    <div className={styles.root}>
       <Layout>
         {items.map((item) => (
           <Radio
@@ -46,13 +46,13 @@ const RadioGroup = ({
             checked={value === item.value}
           />
         ))}
-      </Layout>
 
-      <Meta
-        className={styles.meta}
-        error={error}
-      />
-    </>
+        <Meta
+          className={styles.meta}
+          error={error}
+        />
+      </Layout>
+    </div>
   );
 };
 
