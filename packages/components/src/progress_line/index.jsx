@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import styles from './index.module.scss';
 
 export const PROGRESS_LINE_WEIGHT_THIN = 'thin';
-export const PROGRESS_LINE_WEIGHT_DEFAULT = 'normal';
+export const PROGRESS_LINE_WEIGHT_NORMAL = 'normal';
 
 const ProgressLine = (props) => {
   const { steps, current, weight, ...cleanProps } = props;
@@ -27,7 +27,7 @@ const ProgressLine = (props) => {
 ProgressLine.defaultProps = {
   steps: 1,
   current: 0,
-  weight: PROGRESS_LINE_WEIGHT_DEFAULT,
+  weight: PROGRESS_LINE_WEIGHT_NORMAL,
 };
 
 ProgressLine.propTypes = {
@@ -36,7 +36,7 @@ ProgressLine.propTypes = {
   current: PropTypes.number.isRequired,
   weight: PropTypes.oneOf([
     PROGRESS_LINE_WEIGHT_THIN,
-    PROGRESS_LINE_WEIGHT_DEFAULT,
+    PROGRESS_LINE_WEIGHT_NORMAL,
   ]),
 };
 
