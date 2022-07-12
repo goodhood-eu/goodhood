@@ -3,19 +3,21 @@
 .horizontalLayout {
   display: flex;
   flex-wrap: wrap;
+  gap: 24px;
 
-  .item + .item {
-    margin-left: 24px;
+  @media screen and ($media-xs) {
+    gap: 12px;
   }
 }
 
 .verticalLayout {
   display: flex;
   flex-direction: column;
+  gap: 12px;
 
-  .item + .item {
-    margin-top: 12px;
-  }
+  // .item.item:not(:last-child) {
+  //   margin-bottom: 12px;
+  // }
 }
 
 .meta {
