@@ -4,19 +4,25 @@ import Meta from '../textfields_meta';
 import Radio from '../radio';
 import styles from './index.module.scss';
 
-export const RadioGroupHorizontalLayout = ({ children }) => (
-  <div className={styles.horizontalLayout}>
-    {Children.map(children, (child) => (
-      <div className={styles.item}>{child}</div>
-    ))}
+export const RadioGroupHorizontalLayout = ({ meta, children }) => (
+  <div>
+    <div className={styles.horizontalLayout}>
+      {Children.map(children, (child) => (
+        <div className={styles.item}>{child}</div>
+      ))}
+    </div>
+    {meta}
   </div>
 );
 
-export const RadioGroupVerticalLayout = ({ children }) => (
-  <div className={styles.verticalLayout}>
-    {Children.map(children, (child) => (
-      <div className={styles.item}>{child}</div>
-    ))}
+export const RadioGroupVerticalLayout = ({ meta, children }) => (
+  <div>
+    <div className={styles.verticalLayout}>
+      {Children.map(children, (child) => (
+        <div className={styles.item}>{child}</div>
+      ))}
+    </div>
+    {meta}
   </div>
 );
 
@@ -34,7 +40,14 @@ const RadioGroup = ({
 
   return (
     <div>
-      <Layout>
+      <Layout
+        meta={(
+          <Meta
+            className={styles.meta}
+            error={error}
+          />
+        )}
+      >
         {items.map((item) => (
           <Radio
             key={item.value}
@@ -47,11 +60,6 @@ const RadioGroup = ({
           />
         ))}
       </Layout>
-
-      <Meta
-        className={styles.meta}
-        error={error}
-      />
     </div>
   );
 };
