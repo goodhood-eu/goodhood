@@ -1,20 +1,24 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { arrayOf } from 'nebenan-helpers/lib/data';
 import styles from './index.module.scss';
+import { PROGRESS_LINE_WEIGHT_NORMAL, PROGRESS_LINE_WEIGHT_THIN } from './constants';
 
-export const PROGRESS_LINE_WEIGHT_THIN = 'thin';
-export const PROGRESS_LINE_WEIGHT_NORMAL = 'normal';
-
-const ProgressLine = (props) => {
-  const { steps, current, weight, ...cleanProps } = props;
-  const className = clsx(styles.root, props.className, {
+const ProgressLine = ({
+  steps,
+  current,
+  weight,
+  className: passedClassName,
+  ...cleanProps
+}) => {
+  const className = clsx(styles.root, passedClassName, {
     [styles.thin]: weight === PROGRESS_LINE_WEIGHT_THIN,
   });
 
-  const chunks = Array.from({ length: steps }, (_, index) => (
+  const chunks = arrayOf(steps).map((step) => (
     <li
-      key={index} className={clsx(styles.step, {
-        [styles.active]: index + 1 <= current,
+      key={step} className={clsx(styles.step, {
+        [styles.active]: step + 1 <= current,
       })}
     />
   ));

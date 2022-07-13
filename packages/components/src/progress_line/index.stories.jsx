@@ -1,5 +1,6 @@
 import { number, select } from '@root/.preview/src/modules/knobs';
-import ProgressLine, { PROGRESS_LINE_WEIGHT_THIN, PROGRESS_LINE_WEIGHT_NORMAL } from './index';
+import { PROGRESS_LINE_WEIGHT_THIN, PROGRESS_LINE_WEIGHT_NORMAL } from './constants';
+import ProgressLine from './index';
 
 export default { title: 'ProgressLine', component: ProgressLine };
 
