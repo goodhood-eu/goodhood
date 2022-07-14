@@ -44,6 +44,8 @@
   transition: all .2s ease;
   font-size: $heading-size-4;
   font-weight: $font-weight-l;
+  cursor: auto;
+  user-select: none;
 
   &.focus {
     transform: translateY(-12px);

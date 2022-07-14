@@ -73,6 +73,7 @@
   color: $color-gray-03;
   font-size: $font-size-m;
   transition: all .2s ease;
+  user-select: none;
 
   &.large {
     font-size: $heading-size-4;
