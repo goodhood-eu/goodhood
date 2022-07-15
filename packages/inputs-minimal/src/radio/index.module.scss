@@ -61,6 +61,7 @@
   line-height: 22px;
   color: $color-gray-02;
   font-size: $font-size-m;
+  user-select: none;
 
   &.checked {
     color: $color-gray-00;
