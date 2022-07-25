@@ -8,7 +8,16 @@ Collection of dumb input components. Uses the [nebenan design system](https://ww
 - Visit http://localhost:3000
 
 ## Usage
-- `import { TextField } from "@goodhood/inputs-minimal"`
+
+- Import styles globally
+```scss
+  @import "@goodhood/inputs-minimal/styles"
+```
+
+- Import components e.g.
+```js
+  import { TextField } from "@goodhood/inputs-minimal"
+```
 
 ## Add a new component
 
