@@ -37,9 +37,10 @@ const Modal = forwardRef(({
   // Support legacy modals that were set via setModal method
   const { setModal } = useModalProvider();
   const closeModal = useCallback(() => {
+    if (persist) return;
     if (onClose) onClose();
     else setModal(null);
-  }, [onClose, setModal]);
+  }, [onClose, setModal, persist]);
 
   const containerRef = useRef();
   const [handleMisclickStart, handleMisclickEnd] = useMisclickHandlers(containerRef, closeModal);
