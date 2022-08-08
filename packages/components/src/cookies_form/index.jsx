@@ -35,6 +35,7 @@ const CookiesForm = ({
         className="ui-button ui-button-primary"
         onClick={() => handleValidSubmit({ tracking: true })}
         data-track="cookies_form-enable_all"
+        data-testid="cookies_form-enable_all"
       >
         {translations.label_enable_all}
       </span>
