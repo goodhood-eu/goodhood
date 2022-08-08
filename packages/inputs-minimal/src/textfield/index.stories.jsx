@@ -27,6 +27,7 @@ export const Default = () => {
         hint={text('Hint', '')}
         disableBorder={boolean('disableBorder', false)}
         size={select('Size', Sizes, Sizes.medium)}
+        data-testid="MyTextfield"
       />
     </div>
   );

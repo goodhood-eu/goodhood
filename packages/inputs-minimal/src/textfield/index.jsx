@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { Sizes, SIZES_KEYS } from '@/src/constants';
 import Meta from '@/src/textfields_meta';
 import styles from './index.module.scss';
+import { pickDataAttributes } from '../utils';
 
 const TextField = ({
   label,
@@ -21,6 +22,7 @@ const TextField = ({
   onFocus,
   onBlur,
   __type = 'text',
+  ...rest
 }) => {
   const [inFocus, setFocus] = useState(false);
 
@@ -31,7 +33,7 @@ const TextField = ({
   };
 
   return (
-    <div>
+    <div {...pickDataAttributes(rest)}>
       <div
         className={clsx(
           styles.inputWrapper,
