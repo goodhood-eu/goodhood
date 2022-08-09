@@ -6,19 +6,25 @@ const Meta = ({
   error,
   hint,
   className,
-}) => (
-  <div className={clsx(styles.meta, className)}>
-    {error && (
-      <div className={styles.error}>{error}</div>
-    )}
-    {hint && (
-      <div className={styles.hint}>{hint}</div>
-    )}
-  </div>
-);
+}) => {
+  const useInputGroup = (hint || error) && typeof error !== 'string';
+
+  if (useInputGroup) return null;
+
+  return (
+    <div className={clsx(styles.meta, className)}>
+      {error && (
+        <div className={styles.error}>{error}</div>
+      )}
+      {hint && (
+        <div className={styles.hint}>{hint}</div>
+      )}
+    </div>
+  );
+};
 
 Meta.propTypes = {
-  error: PropTypes.string,
+  error: PropTypes.any,
   hint: PropTypes.string,
   className: PropTypes.string,
 };
