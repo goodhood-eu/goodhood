@@ -7,10 +7,10 @@ const Meta = ({
   hint,
   className,
 }) => {
-  const hasHintOrError = Boolean(hint || error);
-  const useInputGroup = hasHintOrError && typeof error !== 'string';
+  const hasError = typeof error === 'string';
+  const hasHint = Boolean(hint);
 
-  if (!hasHintOrError || useInputGroup) return null;
+  if (!hasError && !hasHint) return null;
 
   return (
     <div className={clsx(styles.meta, className)}>
