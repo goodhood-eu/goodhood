@@ -6,19 +6,22 @@ const Meta = ({
   error,
   hint,
   className,
-}) => (
-  <div className={clsx(styles.meta, className)}>
-    {error && (
+}) => {
+  const hasError = typeof error === 'string';
+  const hasHint = Boolean(hint);
+
+  if (!hasError && !hasHint) return null;
+
+  return (
+    <div className={clsx(styles.meta, className)}>
       <div className={styles.error}>{error}</div>
-    )}
-    {hint && (
       <div className={styles.hint}>{hint}</div>
-    )}
-  </div>
-);
+    </div>
+  );
+};
 
 Meta.propTypes = {
-  error: PropTypes.string,
+  error: PropTypes.any,
   hint: PropTypes.string,
   className: PropTypes.string,
 };
