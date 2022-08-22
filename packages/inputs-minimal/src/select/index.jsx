@@ -4,6 +4,7 @@ import { Sizes, SIZES_KEYS } from '@/src/constants';
 import { ReactComponent as ArrowIcon } from './arrow.svg';
 import Meta from '../textfields_meta';
 import styles from './index.module.scss';
+import { pickDataAttributes } from '../utils';
 
 const Select = ({
   label,
@@ -18,6 +19,7 @@ const Select = ({
   className,
   disableBorder,
   disabled,
+  ...rest
 }) => {
   const handleChange = (e) => {
     const { selectedIndex } = e.target;
@@ -30,7 +32,7 @@ const Select = ({
   };
 
   return (
-    <div>
+    <div {...pickDataAttributes(rest)}>
       <div
         className={clsx(
           styles.inputWrapper,

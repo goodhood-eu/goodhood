@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import Meta from '@/src/textfields_meta';
 import { TEXTAREA_DEFAULT_ROWS } from '@/src/constants';
 import styles from './index.module.scss';
+import { pickDataAttributes } from '../utils';
 
 const TextArea = ({
   label,
@@ -18,6 +19,7 @@ const TextArea = ({
   rows = TEXTAREA_DEFAULT_ROWS,
   onBlur,
   onFocus,
+  ...rest
 }) => {
   const [inFocus, setFocus] = useState(false);
 
@@ -28,7 +30,7 @@ const TextArea = ({
   };
 
   return (
-    <div>
+    <div {...pickDataAttributes(rest)}>
       <div
         className={clsx(
           styles.inputWrapper,

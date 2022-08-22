@@ -21,6 +21,7 @@ export const Default = () => {
         error={text('Error message', '')}
         hint={text('Hint', '')}
         disableBorder={boolean('disableBorder', false)}
+        data-testid="mytextarea"
       />
     </div>
   );
