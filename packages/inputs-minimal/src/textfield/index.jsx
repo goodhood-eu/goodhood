@@ -97,7 +97,7 @@ const TextField = ({
 
 TextField.propTypes = {
   label: PropTypes.string,
-  error: PropTypes.string,
+  error: PropTypes.any,
   value: PropTypes.string,
   name: PropTypes.string,
   onChange: PropTypes.func.isRequired,
