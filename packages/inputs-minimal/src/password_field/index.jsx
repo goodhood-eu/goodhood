@@ -17,7 +17,7 @@ const PasswordField = ({
   };
 
   const type = isVisible ? 'text' : 'password';
-  const Icon = isVisible ? Eye2Icon : Eye1Icon;
+  const Icon = isVisible ? Eye1Icon : Eye2Icon;
 
   const cleanProps = omit(restProps, 'attachmentLeft');
 
