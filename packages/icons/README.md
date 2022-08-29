@@ -1,7 +1,7 @@
 @goodhood/icons
 ===============
 
-SVG icons to use in GoodHood projects
+SVG icons to use in GoodHood projects. Uses the [nebenan design system](https://www.figma.com/file/PBPtYOEh3AvPce2CsnzcgL/%E2%AC%A1-Design-System?node-id=111%3A126) as single source of truth.
 
 - [Preview](https://goodhood-eu.github.io/goodhood/packages/icons/preview/)
 
@@ -15,20 +15,22 @@ npm start
 
 #### React Component
 ```jsx
-import AddressBook from "@goodhood/icons/lib/28x28/address_book"
+import AddressBook from "@goodhood/icons/lib/large/address_book"
 
 <AddressBook />
 ```
 
 #### Raw SVG
 ```jsx
-import addressBook from "@goodhood/icons/lib/28x28/address_book.svg"
+import addressBook from "@goodhood/icons/lib/large/address_book.svg"
 
 <img src={addressBook} alt="" />
 ```
 
 ### How to update:
+1. Found some icon in a screen design? Search it in the design system and note down name and group. (Can't find it? *Then do not add it!*)
 1. Add an icon to the `src/*/` folder.
-1. Check that there are no duplicates and the name makes sense (follow other names as a guide).
 1. Check preview.
-1. Publish new version.
+1. Create PR
+1. Wait for reviews
+1. Merge & publish
