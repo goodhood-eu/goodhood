@@ -3,6 +3,9 @@ import { useRef } from 'react';
 import Form from 'nebenan-form/lib/form';
 import { useForm } from './hooks';
 
+/**
+ * @deprecated use app specific Formik based implementation
+ */
 const NetworkForm = ({
   Component,
   getErrorLabel,
