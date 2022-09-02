@@ -54,7 +54,7 @@ const TextField = ({
         )}
 
         <label
-          className={clsx(styles.label)}
+          className={styles.label}
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
         >
