@@ -51,11 +51,13 @@ export const LoginForm = () => {
           label="Email"
           type="email"
           data-testid="login-email"
+          size="large"
           onChange={handleChangeTextEmail}
           value={textFieldValue}
         />
         <PasswordField
           value={passwordValue}
+          size="large"
           label="My Awesome Input"
           onChange={handleChangePassword}
           disabled={boolean('Disabled', false)}

@@ -1,7 +1,5 @@
 @import "nebenan-ui-kit";
 
-@keyframes onAutoFillTriggered { from {/**/} to {/**/} }
-
 .inputWrapper {
   width: 100%;
   height: 40px;
@@ -108,10 +106,6 @@
 
   &:focus {
     outline: none;
-  }
-
-  &:-webkit-autofill {
-    animation-name: onAutoFillTriggered;
   }
 }
 

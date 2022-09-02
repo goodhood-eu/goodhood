@@ -5,6 +5,7 @@ import { Sizes, SIZES_KEYS } from '@/src/constants';
 import Meta from '@/src/textfields_meta';
 import styles from './index.module.scss';
 import { pickDataAttributes } from '../utils';
+import { useAutofill } from './use_autofill';
 
 const TextField = ({
   label,
@@ -25,12 +26,7 @@ const TextField = ({
   ...rest
 }) => {
   const [inFocus, setFocus] = useState(false);
-
-  const handleAnimationStart = (e) => {
-    if (e.animationName.includes('onAutoFillTriggered')) {
-      console.log('autofill was triggered, call onChange correctly somehow');
-    }
-  };
+  const [isAutofilled, inputProps] = useAutofill();
 
   const handleChange = (e) => {
     const val = e.target.value;
@@ -66,16 +62,16 @@ const TextField = ({
             className={clsx(
               styles.labelText,
               styles[size],
-              { [styles.focus]: inFocus || value },
+              { [styles.focus]: isAutofilled || inFocus || value },
             )}
           >
             {label}
           </span>
 
           <input
-            className={clsx(styles.input, styles[size], className)}
+            {...inputProps}
+            className={clsx(styles.input, styles[size], className, inputProps.className)}
             onChange={handleChange}
-            onAnimationStart={handleAnimationStart}
             value={value}
             disabled={disabled}
             autoComplete="off"
