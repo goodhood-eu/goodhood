@@ -26,6 +26,12 @@ const TextField = ({
 }) => {
   const [inFocus, setFocus] = useState(false);
 
+  const handleAnimationStart = (e) => {
+    if (e.animationName.includes('onAutoFillTriggered')) {
+      console.log('autofill was triggered, call onChange correctly somehow');
+    }
+  };
+
   const handleChange = (e) => {
     const val = e.target.value;
 
@@ -69,6 +75,7 @@ const TextField = ({
           <input
             className={clsx(styles.input, styles[size], className)}
             onChange={handleChange}
+            onAnimationStart={handleAnimationStart}
             value={value}
             disabled={disabled}
             autoComplete="off"
