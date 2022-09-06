@@ -35,12 +35,10 @@ export const LoginForm = () => {
   const [passwordValue, setPasswordValue] = useState('');
 
   const handleChangeTextEmail = (e, val) => {
-    console.log('handleChangeTextEmail', val);
     setTextfieldValue(val);
   };
 
   const handleChangePassword = (e, val) => {
-    console.log('handleChangeTextEmail', val);
     setPasswordValue(val);
   };
 
