@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "1.5.1",
+  "version": "1.5.2",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -25,7 +25,8 @@
     "build": "rollup --config rollup.config.js",
     "build:preview": "../../scripts/build-preview",
     "start": "../../scripts/start-preview",
-    "test": "../../scripts/run-tests"
+    "test": "../../scripts/run-tests",
+    "stylelint": "stylelint \"./**/*.scss\" "
   },
   "peerDependencies": {
     "@babel/runtime": "^7.11.2",
