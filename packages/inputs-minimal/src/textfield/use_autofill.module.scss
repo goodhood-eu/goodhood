@@ -1,0 +1,29 @@
+@keyframes onAutoFillStart { // stylelint-disable-line keyframes-name-pattern
+  from {
+    display: block;
+  }
+
+  to {
+    display: block;
+  }
+}
+
+@keyframes onAutoFillCancel { // stylelint-disable-line keyframes-name-pattern
+  from {
+    display: block;
+  }
+
+  to {
+    display: block;
+  }
+}
+
+.input:-webkit-autofill {
+  animation-name: onAutoFillStart;
+  animation-duration: 2000s;
+}
+
+.input:not(:-webkit-autofill) {
+  animation-name: onAutoFillCancel;
+  animation-duration: 2000s;
+}
