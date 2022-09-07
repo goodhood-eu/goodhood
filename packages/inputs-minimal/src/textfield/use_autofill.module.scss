@@ -1,5 +1,4 @@
-// stylelint-disable-next-line
-@keyframes onAutoFillStart {
+@keyframes onAutoFillStart { // stylelint-disable-line keyframes-name-pattern
   from {
     display: block;
   }
@@ -9,8 +8,7 @@
   }
 }
 
-// stylelint-disable-next-line
-@keyframes onAutoFillCancel {
+@keyframes onAutoFillCancel { // stylelint-disable-line keyframes-name-pattern
   from {
     display: block;
   }
