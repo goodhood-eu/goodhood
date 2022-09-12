@@ -11,7 +11,9 @@ module.exports = {
       name: 'preset-default',
       params: {
         overrides: {
-          cleanupIDs: false,
+          cleanupIDs: {
+            preservePrefixes: ['goodhood_'], // only keeps ids which are prefixed
+          },
           removeViewBox: false,
         },
       },
