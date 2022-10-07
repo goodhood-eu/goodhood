@@ -1,3 +1,9 @@
+## v7.0.2 Changes
+- [CORE-11289] Update maplibre-gl to fix undefined sourceCaches errors
+
+## v7.0.1 Changes
+- [CORE-9769] Update to maplibre-gl v2
+
 ## v7.0.0 Changes
 - Changed peer deps
   - -`@goodhood/icons`
