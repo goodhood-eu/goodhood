@@ -1,29 +1,56 @@
-import { useRef, forwardRef, useCallback } from 'react';
-import PropTypes from 'prop-types';
+import {
+  forwardRef,
+  ReactNode,
+  useCallback,
+  useRef,
+  MouseEvent,
+  TouchEvent,
+  ElementRef,
+  useEffect
+} from 'react';
 import clsx from 'clsx';
 import CrossIcon from '@goodhood/icons/lib/small/cross';
 
 import {
-  useScrollLock,
-  useTrack,
+  LegacyHandlers,
   useKeyManager,
   useLegacyHandle,
   useMisclickHandlers,
+  useScrollLock,
+  useTrack,
   useUnmount,
 } from './hooks';
-import { useModalProvider } from '../provider/hooks';
+import {useModalProvider} from '../provider/hooks';
 import Portal from '../portal';
 
 import styles from './index.module.scss';
 
-const Modal = forwardRef(({
+type ModalProps = {
+  className: string,
+  bodyClassName: string,
+  children: ReactNode,
+  persist: boolean,
+  staticPosition: boolean,
+  scrollable: boolean,
+  onClose?: () => void,
+  onUnmount?: () => void,
+  onMouseDown?: (event: MouseEvent) => void,
+  onMouseUp?: (event: MouseEvent) => void,
+  onTouchStart?: (event: TouchEvent) => void,
+  onTouchEnd?: (event: TouchEvent) => void,
+  onClick: (event: MouseEvent) => void,
+};
+
+type ModalHandlers = LegacyHandlers;
+
+const Modal = forwardRef<ModalHandlers, ModalProps>(({
   className: passedClassName,
   bodyClassName,
   children,
 
-  persist,
-  staticPosition,
-  scrollable,
+  persist = false,
+  staticPosition = false,
+  scrollable = true,
   onClose,
   onUnmount,
 
@@ -42,7 +69,7 @@ const Modal = forwardRef(({
     else setModal(null);
   }, [onClose, setModal, persist]);
 
-  const containerRef = useRef();
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [handleMisclickStart, handleMisclickEnd] = useMisclickHandlers(containerRef, closeModal);
 
   useTrack(containerRef);
@@ -51,22 +78,22 @@ const Modal = forwardRef(({
   useLegacyHandle(ref, containerRef, closeModal);
   useUnmount(onUnmount);
 
-  const handleMouseDown = (event) => {
+  const handleMouseDown = (event: MouseEvent) => {
     onMouseDown?.(event);
     handleMisclickStart(event);
   };
 
-  const handleMouseUp = (event) => {
+  const handleMouseUp = (event: MouseEvent) => {
     onMouseUp?.(event);
     handleMisclickEnd(event);
   };
 
-  const handleTouchStart = (event) => {
+  const handleTouchStart = (event: TouchEvent) => {
     onTouchStart?.(event);
     handleMisclickStart(event);
   };
 
-  const handleTouchEnd = (event) => {
+  const handleTouchEnd = (event: TouchEvent) => {
     onTouchEnd?.(event);
     handleMisclickEnd(event);
   };
@@ -103,28 +130,5 @@ const Modal = forwardRef(({
   );
 });
 
-Modal.defaultProps = {
-  persist: false,
-  staticPosition: false,
-  scrollable: true,
-};
-
-Modal.propTypes = {
-  className: PropTypes.string,
-  bodyClassName: PropTypes.string,
-  children: PropTypes.any,
-
-  persist: PropTypes.bool,
-  staticPosition: PropTypes.bool,
-  scrollable: PropTypes.bool,
-  onClose: PropTypes.func,
-  onUnmount: PropTypes.func,
-
-  onMouseDown: PropTypes.func,
-  onMouseUp: PropTypes.func,
-  onTouchStart: PropTypes.func,
-  onTouchEnd: PropTypes.func,
-  onClick: PropTypes.func,
-};
 
 export default Modal;

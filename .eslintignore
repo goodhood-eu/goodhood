@@ -3,3 +3,7 @@
 /package-templates/*/preview/
 /packages/*/preview/
 !.preview
+
+# TODO: find a proper solution
+**/*.ts
+**/*.tsx
