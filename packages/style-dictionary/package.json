@@ -1,0 +1,20 @@
+{
+  "name": "@goodhood/style-dictionary",
+  "version": "0.0.1-beta",
+  "description": "nebenan style dictionary for transforming design tokens into platform specific code",
+  "main": "build/index.js",
+  "license": "MIT",
+  "files": [
+    "build",
+    "properties"
+  ],
+  "scripts": {
+    "build": "style-dictionary build",
+    "clean": "rm -rf build",
+    "prepublishOnly": "npm run clean && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "style-dictionary": "^3.7.1"
+  }
+}

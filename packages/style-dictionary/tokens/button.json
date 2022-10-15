@@ -1,0 +1,14 @@
+{
+  "color": {
+    "button": {
+      "background": {
+        "primary": {
+          "value": "{color.base.knallgreen.120}",
+          "comment": "the primary buttons's background color"
+        },
+        "secondary": { "value": "{color.base.knallgreen.20}"},
+        "tertiary": { "value": "{color.base.planschblau.60}" }
+      }
+    }
+  }
+}
