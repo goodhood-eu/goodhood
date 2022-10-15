@@ -3,16 +3,15 @@
   "platforms": {
     "scss": {
       "transformGroup": "scss",
-      "buildPath": "build/scss/",
       "files": [{
-        "destination": "tokens.scss",
+        "destination": "_index.scss",
         "format": "scss/variables"
       }]
     },
     "js": {
       "transformGroup": "js",
       "files": [{
-        "destination": "tokens.js",
+        "destination": "index.js",
         "format": "javascript/es6"
       }]
     }
