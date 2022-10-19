@@ -1,9 +1,6 @@
 import {useContext, useMemo, useRef, useEffect, useState, ReactNode} from 'react';
 import { scroll } from 'nebenan-helpers/lib/dom';
-import Context, {ProviderContext} from './context';
-
-
-export const useModalProvider = () => useContext(Context);
+import Context, { ProviderContext } from './context';
 
 enum Steps {
   NoOperation,
@@ -11,11 +8,13 @@ enum Steps {
   Unlock = 'unlock',
 }
 
-type ValueArguments = {
+export interface ValueArguments {
   offset: number | null,
-  setOffset: (offset: number) => void,
+  setOffset: (offset: number | null) => void,
   setModal: (modal: ReactNode) => void,
 }
+
+export const useModalProvider = () => useContext(Context);
 
 export const useProviderValue = ({ offset, setOffset, setModal } : ValueArguments) => {
   const prevOffset = useRef<number | null>(null);
@@ -47,7 +46,7 @@ export const useProviderValue = ({ offset, setOffset, setModal } : ValueArgument
       return;
     }
 
-    scroll(global.window).to(prevOffset.current);
+    scroll(global.window).to(prevOffset.current as number);
     prevOffset.current = null;
   }, [offset]);
 

@@ -27,6 +27,8 @@ export const useClickHandler = (onClick) => {
       else global.open(href, undefined, 'noreferrer noopener');
     }
 
+    console.log('This is called anytime you click on a markdown');
+
     invoke(onClick, event);
   }, [onClick, history]);
 };

@@ -6,6 +6,8 @@ export const useScrollLock = () => {
     const documentScroll = scroll(global);
     documentScroll.lock();
 
-    return () => { documentScroll.unlock(); };
+    return () => {
+      documentScroll.unlock();
+    };
   }, []);
 };

@@ -14,6 +14,7 @@
   "version": "1.0.2",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
+  "types": "./index.d.ts",
   "sideEffects": false,
   "files": [
     "lib",
@@ -24,6 +25,7 @@
   "scripts": {
     "reinstall": "rm -rf node_modules && yarn install",
     "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
+    "watch": "rollup --config rollup.config.js --watch",
     "build": "rollup --config rollup.config.js",
     "build:preview": "../../scripts/build-preview",
     "start": "../../scripts/start-preview",

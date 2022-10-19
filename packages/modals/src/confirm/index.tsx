@@ -1,14 +1,30 @@
-import { forwardRef, useRef, useImperativeHandle } from 'react';
-import PropTypes from 'prop-types';
+import { forwardRef, useRef, useImperativeHandle, ReactNode, ElementRef } from 'react';
 import clsx from 'clsx';
 import { Markdown } from '@goodhood/components';
-import Modal from '../modal';
+import Modal, { ModalProps } from '../modal';
 
-const Confirm = forwardRef(({
+export interface ConfirmProps extends ModalProps {
+  inverted: boolean;
+  locked: boolean;
+  content?: string;
+  title?: string;
+  button?: ReactNode;
+  closeLabel?: string;
+  cancelLabel?: string,
+  confirmLabel?: string,
+  contentClassName?: string,
+  alternativeButton?: ReactNode;
+  onCancel?: () => void;
+  onConfirm?: () => void;
+}
+
+export type ConfirmHandler = Nullable<ElementRef<typeof Modal>>;
+
+const Confirm = forwardRef<ConfirmHandler, ConfirmProps>(({
   title,
   content,
-  inverted,
-  locked,
+  inverted = false,
+  locked = false,
   children,
   cancelLabel,
   confirmLabel,
@@ -19,19 +35,19 @@ const Confirm = forwardRef(({
   onUnmount,
   ...rest
 }, ref) => {
-  const modalRef = useRef();
-  const handledRef = useRef(false);
-  useImperativeHandle(ref, () => modalRef.current);
+  const modalRef = useRef<ConfirmHandler>(null);
+  useImperativeHandle<ConfirmHandler, ConfirmHandler>(ref, () => modalRef.current);
+  const handledRef = useRef<boolean>(false);
 
   const handleCancel = () => {
     handledRef.current = true;
-    modalRef.current.close();
+    modalRef.current?.close();
     onCancel?.();
   };
 
   const handleConfirm = () => {
     handledRef.current = true;
-    modalRef.current.close();
+    modalRef.current?.close();
     onConfirm?.();
   };
 
@@ -87,25 +103,5 @@ const Confirm = forwardRef(({
     </Modal>
   );
 });
-
-Confirm.defaultProps = {
-  inverted: false,
-  locked: false,
-};
-
-Confirm.propTypes = {
-  title: PropTypes.string,
-  content: PropTypes.string,
-  inverted: PropTypes.bool.isRequired,
-  locked: PropTypes.bool.isRequired,
-  children: PropTypes.node,
-  cancelLabel: PropTypes.string,
-  confirmLabel: PropTypes.string,
-  contentClassName: PropTypes.string,
-
-  onCancel: PropTypes.func,
-  onConfirm: PropTypes.func,
-  onUnmount: PropTypes.func,
-};
 
 export default Confirm;

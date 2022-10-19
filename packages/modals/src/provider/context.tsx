@@ -1,6 +1,6 @@
 import {createContext, ReactNode} from 'react';
 
-type ProviderContext = {
+export interface ProviderContext {
   lock: () => void,
   unlock: () => void,
   setModal: (modal: ReactNode) => void,
@@ -18,4 +18,3 @@ const instance = createContext<ProviderContext>({
 
 export default instance;
 export const { Provider, Consumer } = instance;
-export { ProviderContext };

@@ -10,6 +10,8 @@ declare module '@goodhood/icons/lib/*' {
 }
 
 declare module 'nebenan-helpers/lib/dom' {
+  import { UIEvent} from "react";
+
   interface Scroller {
     get(): number,
     to(position: number): void,
@@ -17,14 +19,21 @@ declare module 'nebenan-helpers/lib/dom' {
     unlock(): void,
   }
 
-  export const scroll = (node: Window) => Scroller;
+  export const scroll: (node: typeof globalThis) => Scroller;
+  export const stopPropagation: (e: UIEvent) => void;
 }
 
 declare module 'nebenan-keymanager' {
   type ListenerTeardown = () => void;
-  const addListener = (keyNames: string, callback: (event: string) => void) => ListenerTeardown;
 
-  export default addListener;
+  const keymanager: (
+    keyNames: string,
+    callback: (event: string) => void
+  ) => ListenerTeardown;
+
+  export = keymanager;
 }
+
+declare module '@goodhood/components';
 
 type Nullable<T> = T | null;

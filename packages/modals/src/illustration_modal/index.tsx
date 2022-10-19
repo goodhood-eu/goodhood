@@ -1,11 +1,27 @@
-import { useRef, useImperativeHandle, forwardRef } from 'react';
-import PropTypes from 'prop-types';
+import {
+  useRef,
+  useImperativeHandle,
+  forwardRef,
+  ElementRef,
+  ReactNode,
+  Ref
+} from 'react';
 import { Markdown } from '@goodhood/components';
-import Modal from '../modal';
+import Modal, { ModalProps } from '../modal';
 import styles from './index.module.scss';
 
-const IllustrationModal = forwardRef(({
-  persist,
+export interface IllustrationModalProps extends ModalProps {
+  image: string;
+  title?: string;
+  content?: string;
+  button?: ReactNode;
+  closeLabel?: string;
+}
+
+export type IllustrationRef = Nullable<ElementRef<typeof Modal>>;
+
+const IllustrationModal = forwardRef<IllustrationRef, IllustrationModalProps>(({
+  persist = false,
   image,
   title,
   content,
@@ -14,8 +30,8 @@ const IllustrationModal = forwardRef(({
   closeLabel,
   ...rest
 }, ref) => {
-  const modalRef = useRef();
-  useImperativeHandle(ref, () => modalRef.current);
+  const modalRef = useRef<IllustrationRef>(null);
+  useImperativeHandle<IllustrationRef, IllustrationRef>(ref, () => modalRef.current);
 
   let header;
   if (title) header = <header className="ui-card-section"><h1>{title}</h1></header>;
@@ -26,7 +42,7 @@ const IllustrationModal = forwardRef(({
   let footer;
   if (!persist) {
     const handleClose = () => {
-      modalRef.current.close();
+      modalRef.current?.close();
     };
 
     footer = (
@@ -51,20 +67,5 @@ const IllustrationModal = forwardRef(({
     </Modal>
   );
 });
-
-IllustrationModal.defaultProps = {
-  persist: false,
-};
-
-IllustrationModal.propTypes = {
-  children: PropTypes.node,
-
-  persist: PropTypes.bool.isRequired,
-  image: PropTypes.string.isRequired,
-  title: PropTypes.string,
-  content: PropTypes.string,
-  button: PropTypes.node,
-  closeLabel: PropTypes.string,
-};
 
 export default IllustrationModal;

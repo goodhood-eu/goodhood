@@ -4,18 +4,17 @@ import styles from './index.module.scss';
 import {Provider} from './context';
 import {useProviderValue} from './hooks';
 
-
 type ModalProviderProps = {
   className: string,
   children: ReactNode,
   rest: any[],
 };
 
-const ModalProvider = forwardRef(({
-                                    className,
-                                    children,
-                                    ...rest
-                                  }: ModalProviderProps, ref) => {
+const ModalProvider = forwardRef<unknown, ModalProviderProps>(({
+  className,
+  children,
+  ...rest
+}, ref) => {
   // Support legacy API
   const [modal, setModal] = useState<ReactNode | null>(null);
   const [offset, setOffset] = useState<number | null>(null);

@@ -1,12 +1,15 @@
-import {Ref, RefObject, useEffect, useImperativeHandle, useRef, UIEvent} from 'react';
+import { Ref, RefObject, useEffect, useImperativeHandle, useRef, UIEvent } from 'react';
 import keymanager from 'nebenan-keymanager';
-import {useModalProvider} from '../provider/hooks';
+import { useModalProvider } from '../provider/hooks';
 import { track, TrackEvent } from './utils';
 
-export const useUnmount = (onUnmount: (() => void) | undefined) => {
+export const useUnmount = (onUnmount?: () => void) => {
   const ref = useRef<typeof onUnmount>();
   ref.current = onUnmount;
-  useEffect(() => () => { ref.current?.(); }, []);
+
+  useEffect(() => () => {
+    ref.current?.();
+  }, []);
 };
 
 export const useScrollLock = () => {
@@ -18,7 +21,7 @@ export const useScrollLock = () => {
   }, []);
 };
 
-export const useTrack = (containerRef: RefObject<HTMLElement | undefined>) => {
+export const useTrack = (containerRef: RefObject<HTMLElement>) => {
   useEffect(() => {
     const trackModalEvent = (event: string) => {
       const payload: TrackEvent = { event };
@@ -37,21 +40,25 @@ export const useTrack = (containerRef: RefObject<HTMLElement | undefined>) => {
   }, []);
 };
 
-export const useKeyManager = (onClose: (() => void) | null) => (
-  useEffect(() => onClose && keymanager('esc', onClose), [onClose])
-);
+export const useKeyManager = (onClose?: Nullable<() => void>) => {
+  useEffect(() => {
+    if (onClose) {
+      return keymanager('esc', onClose)
+    }
+  }, [onClose])
+};
 
-export type LegacyHandlers = {
-  close: (done?: () => void) => any,
+export interface LegacyHandlers {
+  close: (done?: () => void) => unknown,
   getNode: () => HTMLElement | null | undefined,
 }
 
 export const useLegacyHandle = (
-  ref: Ref<unknown>,
+  ref: Ref<LegacyHandlers>,
   containerRef: RefObject<HTMLElement | undefined>,
-  onClose?: () => any,
+  onClose?: () => unknown,
 ) => (
-  useImperativeHandle<unknown, LegacyHandlers>(ref, () => ({
+  useImperativeHandle<LegacyHandlers, LegacyHandlers>(ref, () => ({
     close: (done) => {
       // simulate calling done after modal is closed
       setTimeout(() => done?.());

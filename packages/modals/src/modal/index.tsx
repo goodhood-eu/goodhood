@@ -5,8 +5,6 @@ import {
   useRef,
   MouseEvent,
   TouchEvent,
-  ElementRef,
-  useEffect
 } from 'react';
 import clsx from 'clsx';
 import CrossIcon from '@goodhood/icons/lib/small/cross';
@@ -20,12 +18,12 @@ import {
   useTrack,
   useUnmount,
 } from './hooks';
-import {useModalProvider} from '../provider/hooks';
+import { useModalProvider } from '../provider/hooks';
 import Portal from '../portal';
 
 import styles from './index.module.scss';
 
-type ModalProps = {
+export interface ModalProps {
   className: string,
   bodyClassName: string,
   children: ReactNode,
@@ -129,6 +127,5 @@ const Modal = forwardRef<ModalHandlers, ModalProps>(({
     </Portal>
   );
 });
-
 
 export default Modal;
