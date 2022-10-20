@@ -60,6 +60,6 @@ module.exports = {
       json: 'always',
     }],
     // TODO: revisit
-    'import/no-unresolved': ['never'],
+    'import/no-unresolved': ['off'],
   },
 };

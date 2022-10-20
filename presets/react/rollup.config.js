@@ -30,6 +30,16 @@ const move = (source, target) => ({
   },
 });
 
+const getTSConfig = (base) => {
+  const tsconfig = path.join(base, 'tsconfig.json');
+
+  if (!fs.existsSync(tsconfig)) {
+    return path.resolve(base, '../..', 'tsconfig.json');
+  }
+
+  return tsconfig;
+};
+
 export default (pkg, pkgPath) => ({
   input: 'src/index.jsx',
   acorn: { jsx: true },
@@ -81,7 +91,7 @@ export default (pkg, pkgPath) => ({
       ],
     }),
     typescript({
-      tsconfig: path.join(pkgPath, 'tsconfig.json'),
+      tsconfig: getTSConfig(pkgPath),
     }),
     babel({
       babelHelpers: 'runtime',
