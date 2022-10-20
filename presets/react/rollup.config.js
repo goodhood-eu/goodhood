@@ -81,15 +81,7 @@ export default (pkg, pkgPath) => ({
       ],
     }),
     typescript({
-      exclude: [
-        /node_modules/,
-        'lib',
-      ],
-      tsconfig: path.join(ROOT_PKG_PATH, 'tsconfig.json'),
-      compilerOptions: {
-        outDir: 'lib',
-        declaration: true,
-      },
+      tsconfig: path.join(pkgPath, 'tsconfig.json'),
     }),
     babel({
       babelHelpers: 'runtime',

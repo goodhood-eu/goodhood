@@ -59,5 +59,7 @@ module.exports = {
     'import/extensions': ['error', 'never', {
       json: 'always',
     }],
+    // TODO: revisit
+    'import/no-unresolved': ['never'],
   },
 };

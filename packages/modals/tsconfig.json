@@ -8,5 +8,6 @@
       "@root/*": ["../../*"]
     }
   },
+  "files": ["index.d.ts"],
   "include": ["./src"],
 }
