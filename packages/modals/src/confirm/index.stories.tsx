@@ -7,7 +7,7 @@ import ModalProvider from '../provider';
 export default { title: 'Confirm', component: Confirm };
 
 export const Default = () => {
-  const [isActive, setActive] = useState();
+  const [isActive, setActive] = useState<boolean>(false);
   const locked = boolean('Locked', false);
   const inverted = boolean('Inverted', false);
   const title = text('Title', 'Title');

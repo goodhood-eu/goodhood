@@ -6,7 +6,7 @@ import ModalProvider from '../provider';
 export default { title: 'Alert', component: Alert };
 
 export const Default = () => {
-  const [isActive, setActive] = useState();
+  const [isActive, setActive] = useState<boolean>(false);
   const persist = boolean('Persist', false);
   const title = text('Title', 'Title');
   const content = text('Content', 'Halo halo');

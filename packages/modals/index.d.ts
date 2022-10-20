@@ -23,6 +23,10 @@ declare module 'nebenan-helpers/lib/dom' {
   export const stopPropagation: (e: UIEvent) => void;
 }
 
+declare module 'nebenan-helpers/lib/data' {
+  export const arrayOf: (length: number) => number[];
+}
+
 declare module 'nebenan-keymanager' {
   type ListenerTeardown = () => void;
 

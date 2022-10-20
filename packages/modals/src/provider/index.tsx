@@ -1,16 +1,21 @@
-import React, {forwardRef, ReactNode, useImperativeHandle, useState} from 'react';
+import React, {
+  forwardRef,
+  ReactNode,
+  useImperativeHandle,
+  useState
+} from 'react';
 import clsx from 'clsx';
 import styles from './index.module.scss';
 import {Provider} from './context';
 import {useProviderValue} from './hooks';
 
 type ModalProviderProps = {
-  className: string,
-  children: ReactNode,
-  rest: any[],
-};
+  className?: string,
+} & Partial<{
+  [key: string]: unknown;
+}>;
 
-const ModalProvider = forwardRef<unknown, ModalProviderProps>(({
+const ModalProvider: React.FC = forwardRef<unknown, ModalProviderProps>(({
   className,
   children,
   ...rest
