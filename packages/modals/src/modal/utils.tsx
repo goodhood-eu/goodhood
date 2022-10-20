@@ -3,15 +3,14 @@ export interface TrackEvent {
   [key: string]: any;
 }
 
-type TrackFunc = Nullable<(event: TrackEvent) => void>;
+type TrackFunc = (event: TrackEvent) => void;
 
-type Configure = (options: {
+let trackFunc: TrackFunc;
+
+export const configure = (options: {
   track?: TrackFunc
-}) => void;
-
-let trackFunc: TrackFunc = null;
-
-export const configure: Configure = ({ track }) => {
+}) => {
+  const { track } = options;
   if (track === undefined) return;
 
   trackFunc = track;
