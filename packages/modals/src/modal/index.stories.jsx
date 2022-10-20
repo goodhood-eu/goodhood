@@ -8,7 +8,7 @@ import styles from './index.stories.module.scss';
 export default { title: 'Modal', component: Modal };
 
 export const Default = () => {
-  const [isActive, setActive] = useState<boolean>();
+  const [isActive, setActive] = useState < boolean > (false);
   const staticPosition = boolean('Static position', false);
   const persist = boolean('Persist', false);
   const unmountAction = action('Unmount');
@@ -34,7 +34,7 @@ export const Default = () => {
 };
 
 export const LongAndScrollable = () => {
-  const [isActive, setActive] = useState<boolean>(false);
+  const [isActive, setActive] = useState < boolean > (false);
   const staticPosition = boolean('Static position', false);
   const persist = boolean('Persist', false);
   const unmountAction = action('Unmount');

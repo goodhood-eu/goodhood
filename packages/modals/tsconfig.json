@@ -1,12 +1,12 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./lib",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
       "@root/*": ["../../*"]
-    }
+    },
   },
   "files": ["index.d.ts"],
   "include": ["./src"],

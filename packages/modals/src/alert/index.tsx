@@ -10,7 +10,7 @@ import clsx from 'clsx';
 import { Markdown } from '@goodhood/components';
 import Modal, { ModalProps } from '../modal';
 
-export interface AlertProps extends ModalProps {
+export interface AlertProps extends Omit<ModalProps, 'title'> {
   title?: ReactNode;
   content?: string;
   button?: ReactNode;

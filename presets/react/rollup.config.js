@@ -34,14 +34,14 @@ const getTSConfig = (base) => {
   const tsconfig = path.join(base, 'tsconfig.json');
 
   if (!fs.existsSync(tsconfig)) {
-    return path.resolve(base, '../..', 'tsconfig.json');
+    return path.resolve(base, '../..', 'tsconfig.base.json');
   }
 
   return tsconfig;
 };
 
 export default (pkg, pkgPath) => ({
-  input: 'src/index.jsx',
+  input: 'src/index',
   acorn: { jsx: true },
   acornInjectPlugins: [acornJsx()],
   output: [
@@ -95,6 +95,7 @@ export default (pkg, pkgPath) => ({
     }),
     babel({
       babelHelpers: 'runtime',
+      presets: ['@babel/preset-typescript'],
       rootMode: 'upward',
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       exclude: [
