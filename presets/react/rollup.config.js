@@ -104,7 +104,7 @@ export default (pkg, pkgPath) => ({
     }),
     resolve({
       browser: true,
-      extensions: ['.js', '.jsx', '.json'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx', 'json'],
     }),
     globImport({
       format: 'mixed',
