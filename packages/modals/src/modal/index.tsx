@@ -25,7 +25,7 @@ import Portal from '../portal';
 
 import styles from './index.module.scss';
 
-export type ModalProps = PropsWithChildren<{
+export type ModalProps = PropsWithChildren<HTMLAttributes<HTMLDivElement> &{
   className?: string;
   bodyClassName?: string;
   persist?: boolean;
@@ -38,7 +38,7 @@ export type ModalProps = PropsWithChildren<{
   onTouchStart?: (event: TouchEvent) => void;
   onTouchEnd?: (event: TouchEvent) => void;
   onClick?: (event: MouseEvent) => void;
-} & HTMLAttributes<HTMLDivElement>>;
+}>;
 
 type ModalHandlers = LegacyHandlers;
 
