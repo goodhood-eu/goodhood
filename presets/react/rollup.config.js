@@ -34,7 +34,7 @@ const getTSConfig = (base) => {
   const tsconfig = path.join(base, 'tsconfig.json');
 
   if (!fs.existsSync(tsconfig)) {
-    return path.resolve(base, '../..', 'tsconfig.base.json');
+    return path.resolve(base, '../..', 'tsconfig.json');
   }
 
   return tsconfig;
