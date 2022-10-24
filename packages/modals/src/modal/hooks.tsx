@@ -43,9 +43,9 @@ export const useTrack = (containerRef: RefObject<HTMLElement>) => {
 export const useKeyManager = (onClose?: Nullable<() => void>) => {
   useEffect(() => {
     if (onClose) {
-      return keymanager('esc', onClose)
+      return keymanager('esc', onClose);
     }
-  }, [onClose])
+  }, [onClose]);
 };
 
 export interface LegacyHandlers {

@@ -26,7 +26,7 @@ export const useClickHandler = (onClick) => {
       if ((isLocal || isSameDomain) && !hasExtension) history.push(path);
       else global.open(href, undefined, 'noreferrer noopener');
     }
-    
+
     invoke(onClick, event);
   }, [onClick, history]);
 };

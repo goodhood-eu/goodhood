@@ -1,6 +1,6 @@
 export interface TrackEvent {
   event: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 type TrackFunc = (event: TrackEvent) => void;

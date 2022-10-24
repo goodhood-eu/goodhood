@@ -34,8 +34,11 @@ const getOverridesForPackage = (pkg) => ({
   ...getPackageOptions(pkg),
 });
 
+
 module.exports = {
-  extends: 'nebenan',
+  extends: [
+    'nebenan',
+  ],
   root: true,
   overrides: [
     {
@@ -53,13 +56,19 @@ module.exports = {
       // Use react package template as baseline for @-imports in preview
       ...getPackageOptions('package-templates/react'),
     },
+    {
+      files: ['**/*.ts', '**/*.tsx'],
+      extends: ['nebenan/typescript'],
+      parserOptions: {
+        tsconfigRootDir: __dirname,
+        project: ['./tsconfig.json'],
+      },
+    },
     ...getPackages().map(getOverridesForPackage),
   ],
   rules: {
     'import/extensions': ['error', 'never', {
       json: 'always',
     }],
-    // TODO: revisit
-    'import/no-unresolved': ['off'],
   },
 };

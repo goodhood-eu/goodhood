@@ -1,4 +1,4 @@
-import {useContext, useMemo, useRef, useEffect, useState, ReactNode} from 'react';
+import { useContext, useMemo, useRef, useEffect, useState, ReactNode } from 'react';
 import { scroll } from 'nebenan-helpers/lib/dom';
 import Context, { ProviderContext } from './context';
 

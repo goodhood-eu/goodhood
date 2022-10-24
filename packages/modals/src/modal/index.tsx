@@ -1,6 +1,5 @@
 import {
   forwardRef,
-  ReactNode,
   useCallback,
   useRef,
   MouseEvent,
@@ -25,7 +24,7 @@ import Portal from '../portal';
 
 import styles from './index.module.scss';
 
-export type ModalProps = PropsWithChildren<HTMLAttributes<HTMLDivElement> &{
+export type ModalProps = PropsWithChildren<HTMLAttributes<HTMLDivElement> & {
   className?: string;
   bodyClassName?: string;
   persist?: boolean;
@@ -57,7 +56,6 @@ const Modal = forwardRef<ModalHandlers, ModalProps>(({
   onMouseUp,
   onTouchStart,
   onTouchEnd,
-  onClick,
   ...rest
 }, ref) => {
   // Support legacy modals that were set via setModal method

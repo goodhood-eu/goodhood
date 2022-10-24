@@ -5,7 +5,7 @@ import {
   forwardRef,
   ReactNode,
   useImperativeHandle,
-  useRef
+  useRef,
 } from 'react';
 
 import Modal, { ModalProps } from '../modal';
@@ -19,7 +19,7 @@ export interface ScrollableModalProps extends ModalProps {
   children: ReactNode,
 }
 
-export type ModalRef = Nullable<ElementRef<typeof Modal>>
+export type ModalRef = Nullable<ElementRef<typeof Modal>>;
 
 export type ScrollableRef = Nullable<HTMLDivElement>;
 

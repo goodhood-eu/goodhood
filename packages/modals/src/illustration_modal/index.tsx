@@ -4,7 +4,6 @@ import {
   forwardRef,
   ElementRef,
   ReactNode,
-  Ref
 } from 'react';
 import { Markdown } from '@goodhood/components';
 import Modal, { ModalProps } from '../modal';

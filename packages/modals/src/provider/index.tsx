@@ -2,12 +2,12 @@ import React, {
   forwardRef,
   ReactNode,
   useImperativeHandle,
-  useState
+  useState,
 } from 'react';
 import clsx from 'clsx';
 import styles from './index.module.scss';
-import {Provider} from './context';
-import {useProviderValue} from './hooks';
+import { Provider } from './context';
+import { useProviderValue } from './hooks';
 
 type ModalProviderProps = {
   className?: string,
