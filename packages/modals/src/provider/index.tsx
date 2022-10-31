@@ -1,4 +1,4 @@
-import React, {
+import {
   forwardRef,
   ReactNode,
   useImperativeHandle,
@@ -15,7 +15,7 @@ type ModalProviderProps = {
   [key: string]: unknown;
 }>;
 
-const ModalProvider: React.FC = forwardRef<unknown, ModalProviderProps>(({
+const ModalProvider = forwardRef<unknown, ModalProviderProps>(({
   className,
   children,
   ...rest

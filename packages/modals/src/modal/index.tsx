@@ -24,7 +24,7 @@ import Portal from '../portal';
 
 import styles from './index.module.scss';
 
-export type ModalProps = PropsWithChildren<HTMLAttributes<HTMLDivElement> & {
+export type ModalProps = PropsWithChildren<HTMLAttributes<HTMLElement> & {
   className?: string;
   bodyClassName?: string;
   persist?: boolean;
