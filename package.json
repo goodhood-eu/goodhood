@@ -91,9 +91,13 @@
     "webpack-cli": "^4.7.2",
     "webpack-dev-middleware": "^4.3.0",
     "webpack-hot-middleware": "^2.25.0",
-    "webpack-merge": "^5.7.3"
+    "webpack-merge": "^5.7.3",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "ts-loader": "^9.4.1",
+    "tslib": "^2.4.1"
   },
   "scripts": {
+    "postinstall": "lerna bootstrap && link-parent-bin && link-parent-bin -c package-templates && yarn run tryBuild",
     "check": "npm run lint && npm run test",
     "reinstall": "rm -rf node_modules yarn.lock && yarn",
     "ci": "yarn install --frozen-lockfile",

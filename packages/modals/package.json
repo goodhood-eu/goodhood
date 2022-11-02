@@ -14,7 +14,7 @@
   "version": "1.1.0-beta.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
-  "types": "./index.d.ts",
+  "types": "lib/types",
   "sideEffects": false,
   "files": [
     "lib",

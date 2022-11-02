@@ -18,7 +18,7 @@ import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
 import url from '@rollup/plugin-url';
 import svgr from '@svgr/rollup';
-import typescript from '@rollup/plugin-typescript';
+import typescript from 'rollup-plugin-typescript2';
 
 const ROOT_PKG_PATH = path.join(__dirname, '../../');
 
@@ -29,16 +29,6 @@ const move = (source, target) => ({
     fs.renameSync(source, target);
   },
 });
-
-const getTSConfig = (base) => {
-  const tsconfig = path.join(base, 'tsconfig.json');
-
-  if (!fs.existsSync(tsconfig)) {
-    return path.resolve(base, '../..', 'tsconfig.json');
-  }
-
-  return tsconfig;
-};
 
 export default (pkg, pkgPath) => ({
   input: 'src/index',
@@ -91,11 +81,16 @@ export default (pkg, pkgPath) => ({
       ],
     }),
     typescript({
-      tsconfig: getTSConfig(pkgPath),
+      cwd: pkgPath,
+      useTsconfigDeclarationDir: true,
+      exclude: ['**/*.stories.tsx'],
+      tsconfigOverride: {
+        // needed for package scoped type definition paths
+        rootDir: path.join(pkgPath, 'src/'),
+      },
     }),
     babel({
       babelHelpers: 'runtime',
-      presets: ['@babel/preset-typescript'],
       rootMode: 'upward',
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       exclude: [

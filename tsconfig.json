@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2016",
     "jsx": "preserve",
-    "module": "esnext", 
+    "module": "esnext",
     "allowJs": true,
     "sourceMap": true,
     "removeComments": true,
@@ -11,12 +11,13 @@
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "noUnusedParameters": true, 
+    "noUnusedParameters": true,
     "moduleResolution":"node",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "declaration": true
   },
   "exclude": [
-    "**/node_modules", 
+    "**/node_modules",
     "**/.*/",
     "**/lib"
   ]
