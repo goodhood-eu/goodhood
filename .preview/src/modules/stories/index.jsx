@@ -1,4 +1,5 @@
-import { startCase, kebabCase } from 'lodash';
+import startCase from 'lodash/startCase';
+import kebabCase from 'lodash/kebabCase';
 
 const getExample = (module, namedExport, storyId) => {
   const id = [storyId, kebabCase(namedExport)].join('--');

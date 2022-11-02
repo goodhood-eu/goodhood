@@ -1,4 +1,4 @@
-import { clamp } from 'lodash';
+import clamp from 'lodash/clamp';
 import { DOUBLE_TAP_ZOOM } from './constants';
 
 export const getDistanceBetweenPoints = (pointA, pointB) => (
