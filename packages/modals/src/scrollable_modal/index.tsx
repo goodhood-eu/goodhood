@@ -1,22 +1,43 @@
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import { stopPropagation } from 'nebenan-helpers/lib/dom';
+import {
+  forwardRef,
+  ReactNode,
+  useImperativeHandle,
+  useRef,
+} from 'react';
 
-import { forwardRef, useImperativeHandle, useRef } from 'react';
-import Modal from '../modal';
+import { Modal, ModalProps, ModalRef } from '../modal';
 import styles from './index.module.scss';
 import { useScrollLock } from './hooks';
+import { LegacyHandlers } from '../modal/hooks';
 
-const ScrollableModal = forwardRef((props, ref) => {
+export interface ScrollableModalProps extends ModalProps {
+  header?: ReactNode,
+  footer?: ReactNode,
+  children: ReactNode,
+}
+
+export type ScrollableRef = Nullable<HTMLDivElement>;
+
+export interface ScrollableModalRef extends Pick<LegacyHandlers, 'close'> {
+  getScrolledNode(): ScrollableRef;
+}
+
+export const ScrollableModal = forwardRef<
+ScrollableModalRef, ScrollableModalProps
+>((props, ref) => {
   const { header, footer, children, ...cleanProps } = props;
-  const modalRef = useRef(null);
-  const scrollableRef = useRef(null);
+  const modalRef = useRef<ModalRef>(null);
+  const scrollableRef = useRef<ScrollableRef>(null);
 
   useScrollLock();
 
   useImperativeHandle(ref, () => ({
     getScrolledNode: () => scrollableRef.current,
-    close: () => { modalRef.current.close(); },
+    close: () => {
+      modalRef.current?.close();
+    },
   }));
 
   return (
@@ -38,11 +59,3 @@ const ScrollableModal = forwardRef((props, ref) => {
     </Modal>
   );
 });
-
-ScrollableModal.propTypes = {
-  header: PropTypes.node,
-  footer: PropTypes.node,
-  children: PropTypes.node,
-};
-
-export default ScrollableModal;

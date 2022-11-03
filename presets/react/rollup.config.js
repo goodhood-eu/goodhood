@@ -18,6 +18,7 @@ import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
 import url from '@rollup/plugin-url';
 import svgr from '@svgr/rollup';
+import typescript from 'rollup-plugin-typescript2';
 
 const ROOT_PKG_PATH = path.join(__dirname, '../../');
 
@@ -30,7 +31,7 @@ const move = (source, target) => ({
 });
 
 export default (pkg, pkgPath) => ({
-  input: 'src/index.jsx',
+  input: 'src/index',
   acorn: { jsx: true },
   acornInjectPlugins: [acornJsx()],
   output: [
@@ -79,16 +80,26 @@ export default (pkg, pkgPath) => ({
         postcssPresetEnv(),
       ],
     }),
+    typescript({
+      cwd: pkgPath,
+      useTsconfigDeclarationDir: true,
+      exclude: ['**/*.stories.tsx'],
+      tsconfigOverride: {
+        // needed for package scoped type definition paths
+        rootDir: path.join(pkgPath, 'src/'),
+      },
+    }),
     babel({
       babelHelpers: 'runtime',
       rootMode: 'upward',
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
       exclude: [
         /node_modules/,
       ],
     }),
     resolve({
       browser: true,
-      extensions: ['.js', '.jsx', '.json'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx', 'json'],
     }),
     globImport({
       format: 'mixed',

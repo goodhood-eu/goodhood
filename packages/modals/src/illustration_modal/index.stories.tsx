@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { boolean, text } from '@root/.preview/src/modules/knobs';
-import IllustrationModal from './index';
-import ModalProvider from '../provider';
+import { IllustrationModal } from './index';
+import { ModalProvider } from '../provider';
 
 export default { title: 'IllustrationModal', component: IllustrationModal };
 
 export const Default = () => {
-  const [isActive, setActive] = useState();
+  const [isActive, setActive] = useState<boolean>(false);
   const persist = boolean('Persist', false);
   const title = text('Title', 'Title');
   const content = text('Content', 'Halo halo');

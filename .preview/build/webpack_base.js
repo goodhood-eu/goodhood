@@ -11,7 +11,7 @@ const CSS_REGEX = /\.s?css$/;
 const CSS_MODULE_REGEX = /\.module\.s?css$/;
 const ASSET_REGEX = /\.(jpe?g|png|gif|woff2?|ttf)$/;
 const SVG_REGEX = /\.svg$/;
-const SCRIPT_REGEX = /\.(js|jsx)$/;
+const SCRIPT_REGEX = /\.(js|jsx|ts|tsx)$/;
 
 const getResolveAlias = () => ({
   '@root': ROOT_PKG_PATH,
@@ -21,7 +21,7 @@ const getResolveAlias = () => ({
 const getBaseConfig = () => ({
   mode: 'development',
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: getResolveAlias(),
   },
   output: {
@@ -46,15 +46,23 @@ const getBaseConfig = () => ({
   },
 });
 
-const getScriptLoaders = ({ fastRefresh }) => ([{
-  loader: 'babel-loader',
-  options: {
-    rootMode: 'upward',
-    plugins: [
-      fastRefresh && require.resolve('react-refresh/babel'),
-    ].filter(Boolean),
+const getScriptLoaders = ({ fastRefresh }) => ([
+  {
+    loader: 'babel-loader',
+    options: {
+      rootMode: 'upward',
+      plugins: [
+        fastRefresh && require.resolve('react-refresh/babel'),
+      ].filter(Boolean),
+    },
   },
-}]);
+  {
+    loader: 'ts-loader',
+    options: {
+      configFile: path.join(PKG_PATH, 'tsconfig.json'),
+    },
+  },
+]);
 
 const getFileLoaders = ({ emitFile }) => ([{
   loader: 'file-loader',

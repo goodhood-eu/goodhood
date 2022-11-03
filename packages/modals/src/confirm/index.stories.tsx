@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { boolean, text } from '@root/.preview/src/modules/knobs';
 import { action } from '@root/.preview/src/modules/actions';
-import Confirm from './index';
-import ModalProvider from '../provider';
+import { Confirm } from './index';
+import { ModalProvider } from '../provider';
 
 export default { title: 'Confirm', component: Confirm };
 
 export const Default = () => {
-  const [isActive, setActive] = useState();
+  const [isActive, setActive] = useState<boolean>(false);
   const locked = boolean('Locked', false);
   const inverted = boolean('Inverted', false);
   const title = text('Title', 'Title');

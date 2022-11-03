@@ -1,19 +1,28 @@
-import { useState, useImperativeHandle, forwardRef } from 'react';
-import PropTypes from 'prop-types';
+import {
+  forwardRef,
+  ReactNode,
+  useImperativeHandle,
+  useState,
+} from 'react';
 import clsx from 'clsx';
 import styles from './index.module.scss';
 import { Provider } from './context';
 import { useProviderValue } from './hooks';
 
+export type ModalProviderProps = {
+  className?: string,
+} & Partial<{
+  [key: string]: unknown;
+}>;
 
-const ModalProvider = forwardRef(({
+export const ModalProvider = forwardRef<unknown, ModalProviderProps>(({
   className,
   children,
   ...rest
 }, ref) => {
   // Support legacy API
-  const [modal, setModal] = useState(null);
-  const [offset, setOffset] = useState(null);
+  const [modal, setModal] = useState<ReactNode | null>(null);
+  const [offset, setOffset] = useState<number | null>(null);
   const providerValue = useProviderValue({ offset, setOffset, setModal });
 
   // Expose provider value for legacy layout
@@ -36,10 +45,4 @@ const ModalProvider = forwardRef(({
   );
 });
 
-ModalProvider.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node,
-};
-
-export { Consumer } from './context';
-export default ModalProvider;
+export { Consumer as ModalConsumer } from './context';

@@ -27,7 +27,7 @@ const getStory = (module, key) => {
 
 
 export const loadStories = () => {
-  const context = require.context('@/src/', true, /\.stories\.jsx$/);
+  const context = require.context('@/src/', true, /\.stories\.(j|t)sx$/);
 
   return context.keys().reduce((acc, key) => {
     const { entities, stories } = acc;
