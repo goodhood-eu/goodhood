@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { boolean, text } from '@root/.preview/src/modules/knobs';
-import IllustrationModal from './index';
-import ModalProvider from '../provider';
+import { IllustrationModal } from './index';
+import { ModalProvider } from '../provider';
 
 export default { title: 'IllustrationModal', component: IllustrationModal };
 

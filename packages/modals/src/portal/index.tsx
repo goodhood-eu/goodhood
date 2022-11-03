@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import { useEffect, useState, FC } from 'react';
 
-const Portal: FC = ({ children }) => {
+export const Portal: FC = ({ children }) => {
   const [node, setNode] = useState<Nullable<HTMLElement>>(null);
 
   useEffect(() => {
@@ -10,5 +10,3 @@ const Portal: FC = ({ children }) => {
 
   return node ? createPortal(children, node) : null;
 };
-
-export default Portal;

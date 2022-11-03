@@ -1,7 +1,7 @@
-import { forwardRef, useRef, useImperativeHandle, ReactNode, ElementRef } from 'react';
+import { forwardRef, useRef, useImperativeHandle, ReactNode } from 'react';
 import clsx from 'clsx';
 import { Markdown } from '@goodhood/components';
-import Modal, { ModalProps } from '../modal';
+import { Modal, ModalProps, ModalRef } from '../modal';
 
 export interface ConfirmProps extends ModalProps {
   inverted: boolean;
@@ -18,9 +18,9 @@ export interface ConfirmProps extends ModalProps {
   onConfirm?: () => void;
 }
 
-export type ConfirmHandler = Nullable<ElementRef<typeof Modal>>;
+export type ConfirmRef = ModalRef;
 
-const Confirm = forwardRef<ConfirmHandler, ConfirmProps>(({
+export const Confirm = forwardRef<ConfirmRef, ConfirmProps>(({
   title,
   content,
   inverted = false,
@@ -35,8 +35,8 @@ const Confirm = forwardRef<ConfirmHandler, ConfirmProps>(({
   onUnmount,
   ...rest
 }, ref) => {
-  const modalRef = useRef<ConfirmHandler>(null);
-  useImperativeHandle<ConfirmHandler, ConfirmHandler>(ref, () => modalRef.current);
+  const modalRef = useRef<ConfirmRef>(null);
+  useImperativeHandle<ConfirmRef, ConfirmRef>(ref, () => modalRef.current);
   const handledRef = useRef<boolean>(false);
 
   const handleCancel = () => {
@@ -103,5 +103,3 @@ const Confirm = forwardRef<ConfirmHandler, ConfirmProps>(({
     </Modal>
   );
 });
-
-export default Confirm;

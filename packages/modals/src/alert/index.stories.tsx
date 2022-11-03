@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { boolean, text } from '@root/.preview/src/modules/knobs';
-import Alert from './index';
-import ModalProvider from '../provider';
+import { Alert } from './index';
+import { ModalProvider } from '../provider';
 
 export default { title: 'Alert', component: Alert };
 

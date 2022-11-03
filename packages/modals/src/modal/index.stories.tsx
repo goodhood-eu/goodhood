@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { boolean } from '@root/.preview/src/modules/knobs';
 import { action } from '@root/.preview/src/modules/actions';
-import Modal from './index';
-import ModalProvider from '../provider';
+import { Modal } from './index';
+import { ModalProvider } from '../provider';
 import styles from './index.stories.module.scss';
 
 export default { title: 'Modal', component: Modal };

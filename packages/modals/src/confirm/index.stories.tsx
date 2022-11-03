@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { boolean, text } from '@root/.preview/src/modules/knobs';
 import { action } from '@root/.preview/src/modules/actions';
-import Confirm from './index';
-import ModalProvider from '../provider';
+import { Confirm } from './index';
+import { ModalProvider } from '../provider';
 
 export default { title: 'Confirm', component: Confirm };
 

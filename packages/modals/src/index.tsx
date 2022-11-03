@@ -1,9 +1,9 @@
-export { default } from './modal';
-export { default as ModalProvider } from './provider';
-export { Consumer as ModalConsumer } from './provider/context';
+export { Modal as default } from './modal';
 export { configure } from './modal/utils';
 
-export { default as Alert } from './alert';
-export { default as Confirm } from './confirm';
-export { default as IllustrationModal } from './illustration_modal';
-export { default as ScrollableModal } from './scrollable_modal';
+export * from './modal';
+export * from './provider';
+export * from './alert';
+export * from './confirm';
+export * from './illustration_modal';
+export * from './scrollable_modal';

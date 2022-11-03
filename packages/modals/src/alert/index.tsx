@@ -3,12 +3,11 @@ import {
   useRef,
   useImperativeHandle,
   ReactNode,
-  ElementRef,
   ReactElement,
 } from 'react';
 import clsx from 'clsx';
 import { Markdown } from '@goodhood/components';
-import Modal, { ModalProps } from '../modal';
+import { Modal, ModalProps, ModalRef } from '../modal';
 
 export interface AlertProps extends Omit<ModalProps, 'title'> {
   title?: ReactNode;
@@ -18,9 +17,9 @@ export interface AlertProps extends Omit<ModalProps, 'title'> {
   closeLabel?: string;
 }
 
-export type AlertRef = Nullable<ElementRef<typeof Modal>>;
+export type AlertRef = ModalRef;
 
-const Alert = forwardRef<AlertRef, AlertProps>(({
+export const Alert = forwardRef<AlertRef, AlertProps>(({
   title,
   content,
   children,
@@ -75,5 +74,3 @@ const Alert = forwardRef<AlertRef, AlertProps>(({
     </Modal>
   );
 });
-
-export default Alert;

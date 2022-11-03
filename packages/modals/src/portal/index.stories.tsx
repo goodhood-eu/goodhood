@@ -1,4 +1,4 @@
-import Portal from './index';
+import { Portal } from './index';
 
 export default { title: 'Portal', component: Portal };
 

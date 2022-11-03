@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { arrayOf } from 'nebenan-helpers/lib/data';
-import Modal from './index';
+import { Modal } from './index';
 import styles from './scroll_lock.stories.module.scss';
-import ModalProvider from '../provider';
+import { ModalProvider } from '../provider';
 
 export default { title: 'Modal - Scroll Lock', component: Modal, layout: false };
 

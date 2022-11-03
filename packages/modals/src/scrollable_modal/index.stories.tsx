@@ -1,8 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 import { useState } from 'react';
 import { boolean, number } from '@root/.preview/src/modules/knobs';
-import ScrollableModal from './index';
-import ModalProvider from '../provider';
+import { ScrollableModal } from './index';
+import { ModalProvider } from '../provider';
 
 export default { title: 'ScrollableModal', component: ScrollableModal };
 

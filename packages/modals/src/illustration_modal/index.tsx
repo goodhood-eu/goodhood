@@ -2,11 +2,10 @@ import {
   useRef,
   useImperativeHandle,
   forwardRef,
-  ElementRef,
   ReactNode,
 } from 'react';
 import { Markdown } from '@goodhood/components';
-import Modal, { ModalProps } from '../modal';
+import { Modal, ModalProps, ModalRef } from '../modal';
 import styles from './index.module.scss';
 
 export interface IllustrationModalProps extends ModalProps {
@@ -17,9 +16,9 @@ export interface IllustrationModalProps extends ModalProps {
   closeLabel?: string;
 }
 
-export type IllustrationRef = Nullable<ElementRef<typeof Modal>>;
+export type IllustrationRef = ModalRef;
 
-const IllustrationModal = forwardRef<IllustrationRef, IllustrationModalProps>(({
+export const IllustrationModal = forwardRef<IllustrationRef, IllustrationModalProps>(({
   persist = false,
   image,
   title,
@@ -66,5 +65,3 @@ const IllustrationModal = forwardRef<IllustrationRef, IllustrationModalProps>(({
     </Modal>
   );
 });
-
-export default IllustrationModal;

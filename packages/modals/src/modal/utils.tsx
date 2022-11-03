@@ -3,7 +3,7 @@ export interface TrackEvent {
   [key: string]: unknown;
 }
 
-type TrackFunc = (event: TrackEvent) => void;
+export type TrackFunc = (event: TrackEvent) => void;
 
 let trackFunc: TrackFunc;
 

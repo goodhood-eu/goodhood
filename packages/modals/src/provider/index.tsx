@@ -9,13 +9,13 @@ import styles from './index.module.scss';
 import { Provider } from './context';
 import { useProviderValue } from './hooks';
 
-type ModalProviderProps = {
+export type ModalProviderProps = {
   className?: string,
 } & Partial<{
   [key: string]: unknown;
 }>;
 
-const ModalProvider = forwardRef<unknown, ModalProviderProps>(({
+export const ModalProvider = forwardRef<unknown, ModalProviderProps>(({
   className,
   children,
   ...rest
@@ -45,5 +45,4 @@ const ModalProvider = forwardRef<unknown, ModalProviderProps>(({
   );
 });
 
-export { Consumer } from './context';
-export default ModalProvider;
+export { Consumer as ModalConsumer } from './context';

@@ -4,8 +4,8 @@ import {
   useRef,
   MouseEvent,
   TouchEvent,
-  PropsWithChildren,
   HTMLAttributes,
+  ReactNode,
 } from 'react';
 import clsx from 'clsx';
 import CrossIcon from '@goodhood/icons/lib/small/cross';
@@ -20,16 +20,19 @@ import {
   useUnmount,
 } from './hooks';
 import { useModalProvider } from '../provider/hooks';
-import Portal from '../portal';
+import { Portal } from '../portal';
 
 import styles from './index.module.scss';
 
-export type ModalProps = PropsWithChildren<HTMLAttributes<HTMLElement> & {
+export type ModalHandlers = LegacyHandlers;
+export type ModalRef = Nullable<LegacyHandlers>;
+export interface ModalProps extends HTMLAttributes<HTMLElement> {
   className?: string;
   bodyClassName?: string;
   persist?: boolean;
   staticPosition?: boolean;
   scrollable?: boolean;
+  children?: ReactNode;
   onClose?: () => void;
   onUnmount?: () => void;
   onMouseDown?: (event: MouseEvent) => void;
@@ -37,21 +40,17 @@ export type ModalProps = PropsWithChildren<HTMLAttributes<HTMLElement> & {
   onTouchStart?: (event: TouchEvent) => void;
   onTouchEnd?: (event: TouchEvent) => void;
   onClick?: (event: MouseEvent) => void;
-}>;
+}
 
-type ModalHandlers = LegacyHandlers;
-
-const Modal = forwardRef<ModalHandlers, ModalProps>(({
+export const Modal = forwardRef<ModalHandlers, ModalProps>(({
   className: passedClassName,
   bodyClassName,
   children,
-
   persist = false,
   staticPosition = false,
   scrollable = true,
   onClose,
   onUnmount,
-
   onMouseDown,
   onMouseUp,
   onTouchStart,
