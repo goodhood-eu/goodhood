@@ -96,16 +96,19 @@
     "webpack-merge": "^5.7.3"
   },
   "scripts": {
-    "postinstall": "lerna bootstrap && link-parent-bin && link-parent-bin -c package-templates && yarn run tryBuild",
-    "check": "npm run lint && npm run test",
     "reinstall": "rm -rf node_modules yarn.lock && yarn",
     "ci": "yarn install --frozen-lockfile",
     "build": "lerna exec --parallel --no-bail yarn run build",
     "tryBuild:preview": "lerna exec --parallel --no-bail yarn run build:preview || true",
     "tryBuild": "lerna exec --parallel --no-bail yarn run build || true",
-    "lint": "npm run eslint && npm run stylelint",
-    "eslint": "eslint -f stylish \"./**/*.{js,jsx,ts,tsx}\" ",
-    "stylelint": "stylelint \"./**/*.scss\" ",
-    "test": "scripts/run-tests"
+    "--- CHECKS AND TEST SCRIPTS ---": "-----------------------------",
+    "check": "npm test && npm run lint && echo \"\\033[0;32mAll checks pass\\033[0m\"",
+    "lint": "npm run lint:javascript && npm run lint:styles && npm run lint:typescript",
+    "lint:javascript": "eslint -f stylish \"./**/*.{js,jsx,ts,tsx}\"",
+    "lint:typescript": "tsc --noEmit",
+    "lint:styles": "stylelint \"./**/*.scss\" ",
+    "test": "scripts/run-tests",
+    "--- NPM LIFECYCLE SCRIPTS ---": "-----------------------------",
+    "postinstall": "lerna bootstrap && link-parent-bin && link-parent-bin -c package-templates && yarn run tryBuild"
   }
 }
