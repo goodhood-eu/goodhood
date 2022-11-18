@@ -25,8 +25,7 @@
     "build": "rollup --config rollup.config.js",
     "build:preview": "../../scripts/build-preview",
     "start": "../../scripts/start-preview",
-    "test": "../../scripts/run-tests",
-    "stylelint": "stylelint \"./**/*.scss\" "
+    "test": "../../scripts/run-tests"
   },
   "peerDependencies": {
     "@babel/runtime": "^7.11.2",
