@@ -5,11 +5,18 @@ jobs:
     name: Check
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js
-      uses: actions/setup-node@v1
+    # Checkout the Repo
+    - uses: actions/checkout@v3
+
+    # Install Node 16
+    - name: Setup Node
+      uses: actions/setup-node@v3
       with:
-        node-version: '16.x'
+        node-version: 16
+
+    # Install dependencies
     - run: yarn install --frozen-lockfile
+
+    # Run tests
     - run: yarn run check
 

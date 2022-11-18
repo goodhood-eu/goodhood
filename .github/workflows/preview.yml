@@ -8,15 +8,24 @@ jobs:
     name: Build & Deploy preview
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js
-        uses: actions/setup-node@v1
+      # Checkout the Repo
+      - uses: actions/checkout@v3
+
+      # Install Node 16
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: 16
+
+      # Install dependencies
       - run: yarn install --frozen-lockfile
+
+      # Build preview
       - run: yarn run tryBuild:preview
+
+      # Deploy to github pages
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: .
