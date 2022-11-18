@@ -22,7 +22,9 @@ export const useLongTouch = ({ onShortTap, onStart, onEnd, onMove }) => {
     // 1. prevent text selection
     // 2. Side-effect: Causes mouse events on children (especially label) to not fire.
     //    That is why we need to handle short taps ourself.
-    event.preventDefault();
+    if (event.cancelable) {
+      event.preventDefault();
+    }
 
     timer.current = setTimeout(handleTimer, LONG_TOUCH_DURATION);
     startCoordinates.current = touchCoordinates(event);
