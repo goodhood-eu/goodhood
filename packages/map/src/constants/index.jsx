@@ -4,7 +4,7 @@ export const COLOR_DARK70 = '#757575';
 export const COLOR_SIGNAL = '#ee9e2d';
 
 export const WEIGHT_S = 1;
-export const WEIGHT_L = 4;
+export const WEIGHT_L = 2;
 
 export const OPACITY_N = 0;
 export const OPACITY_S = .2;

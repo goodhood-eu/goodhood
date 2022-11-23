@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { COLOR_ACTION, COLOR_BASE, WEIGHT_L, OPACITY_S } from '../constants';
 import { CIRCLE_ACTIVE, CIRCLE_DEFAULT } from './constants';
 
@@ -7,18 +9,18 @@ const MAPBOX_TILE_WIDTH = 512;
 
 const STYLES = {
   [CIRCLE_ACTIVE]: {
-    'circle-opacity': OPACITY_S,
-    'circle-stroke-width': WEIGHT_L,
-    'circle-stroke-color': COLOR_ACTION,
-    'circle-color': COLOR_ACTION,
+    'circle-opacity': 0.60,
+    'circle-stroke-width': 4,
+    'circle-stroke-color': '#201649',
+    'circle-color': 'rgba(218, 239, 98, 1)',
     'circle-radius': 300,
   },
 
   [CIRCLE_DEFAULT]: {
-    'circle-opacity': OPACITY_S,
-    'circle-stroke-width': WEIGHT_L,
-    'circle-stroke-color': COLOR_BASE,
-    'circle-color': COLOR_BASE,
+    'circle-opacity': 0.6,
+    'circle-stroke-width': 2,
+    'circle-stroke-color': '#201649',
+    'circle-color': 'rgba(218, 239, 98, 0.3)',
     'circle-radius': 300,
   },
 };

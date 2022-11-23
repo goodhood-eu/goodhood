@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { useEffect, useMemo, useState } from 'react';
 import { number } from '@root/.preview/src/modules/knobs';
 import config from '@root/config';
@@ -6,7 +8,7 @@ import circle from '@turf/circle';
 import Polygon from '../polygon';
 import Circle from '../circle';
 import data from '../../sample_data';
-import { CIRCLE_ACTIVE, POLYGON_ACTIVE } from '..';
+import { CIRCLE_ACTIVE, CIRCLE_DEFAULT, POLYGON_ACTIVE, POLYGON_DEFAULT } from '..';
 import Map from '../map';
 
 export default { title: 'Performance' };
@@ -100,3 +102,13 @@ export const PolygonSourceChange = () => {
     </Map>
   );
 };
+
+export const Blubb = () => (
+  <Map credentials={config.map_credentials}>
+    <Polygon
+      area={data.polygons[0]}
+      type={POLYGON_DEFAULT}
+    />
+    <Circle center={data.polygons[0][0]} radius={1000} type={CIRCLE_DEFAULT} />
+  </Map>
+);
