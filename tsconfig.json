@@ -14,11 +14,7 @@
     "noUnusedParameters": true,
     "moduleResolution":"node",
     "skipLibCheck": true,
-    "declaration": true,
-    "baseUrl": ".",
-    "paths": {
-      "@root/*": ["./*"]
-    }
+    "declaration": true
   },
   "exclude": [
     "**/node_modules",

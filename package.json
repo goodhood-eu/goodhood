@@ -105,10 +105,11 @@
     "check": "npm test && npm run lint && echo \"\\033[0;32mAll checks pass\\033[0m\"",
     "lint": "npm run lint:javascript && npm run lint:styles && npm run lint:typescript",
     "lint:javascript": "eslint -f stylish \"./**/*.{js,jsx,ts,tsx}\"",
-    "lint:typescript": "scripts/check-typescript",
+    "lint:typescript": "lerna run --parallel --no-bail lint:typescript",
     "lint:styles": "stylelint \"./**/*.scss\" ",
     "test": "scripts/run-tests",
     "--- NPM LIFECYCLE SCRIPTS ---": "-----------------------------",
     "postinstall": "lerna bootstrap && link-parent-bin && link-parent-bin -c package-templates && yarn run tryBuild"
-  }
+  },
+  "dependencies": {}
 }

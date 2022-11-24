@@ -9,8 +9,5 @@
       "@root/*": ["../../*"]
     }
   },
-  "include": [
-    "index.d.ts",
-    "src/**/*"
-  ],
+  "include": ["index.d.ts"]
 }
