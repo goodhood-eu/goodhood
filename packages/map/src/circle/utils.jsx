@@ -1,6 +1,5 @@
 /* eslint-disable */
 
-import { COLOR_ACTION, COLOR_BASE, WEIGHT_L, OPACITY_S } from '../constants';
 import { CIRCLE_ACTIVE, CIRCLE_DEFAULT } from './constants';
 
 

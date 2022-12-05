@@ -15,4 +15,3 @@ export { default as Popup } from './popup';
 export * from './polygon/constants';
 export * from './circle/constants';
 export * from './pin_marker/constants';
-export * from './constants';
