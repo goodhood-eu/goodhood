@@ -1,8 +1,7 @@
-/* stylelint-disable */
 @import "nebenan-ui-kit";
 
 .root :global(.mapboxgl-popup-content) {
   background-color: #fff;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 20px rgba(0 0 0 / 20%);
   border-radius: 8px;
 }
