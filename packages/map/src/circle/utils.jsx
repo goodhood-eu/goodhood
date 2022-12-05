@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import { CIRCLE_ACTIVE, CIRCLE_DEFAULT } from './constants';
 
 
