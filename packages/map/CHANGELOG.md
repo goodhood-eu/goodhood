@@ -1,3 +1,15 @@
+## v7.1.0 Changes
+- Deprecated exports:
+  - `COLOR_BASE`
+  - `COLOR_ACTION`
+  - `COLOR_DARK70`
+  - `COLOR_SIGNAL`
+  - `WEIGHT_S`
+  - `WEIGHT_L`
+  - `OPACITY_N`
+  - `OPACITY_S`
+  - `OPACITY_M`
+
 ## v7.0.2 Changes
 - [CORE-11289] Update maplibre-gl to fix undefined sourceCaches errors
 
