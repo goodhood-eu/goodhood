@@ -16,16 +16,9 @@
     // overrides mapbox z-index
     z-index: 1;
 
-    // To prevent global link styles from overwriting, set default styles explicitly
+    // To prevent global link styles from overwriting
     a {
-      color: #000;
-      opacity: .7;
-      text-decoration: none;
-    }
-    a:hover {
-      color: inherit;
-      text-decoration: underline;
-      text-decoration-color: #777777;
+      all: unset;
     }
   }
 
