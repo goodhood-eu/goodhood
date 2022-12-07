@@ -20,6 +20,9 @@
     a {
       all: unset;
     }
+    a:hover {
+      all: unset;
+    }
   }
 
   :global(.mapboxgl-canvas-container) {
