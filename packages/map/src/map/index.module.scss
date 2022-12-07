@@ -16,7 +16,7 @@
     // overrides mapbox z-index
     z-index: 1;
 
-    // keep default mapbox link styles under any circumstances
+    // To prevent global link styles from overwriting, set default styles explicitly
     a {
       color: #000;
       opacity: .7;
