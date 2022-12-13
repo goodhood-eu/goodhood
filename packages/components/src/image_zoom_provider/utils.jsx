@@ -1,4 +1,4 @@
-import { clamp } from 'lodash';
+import clamp from 'lodash/clamp';
 
 export const getScaledImageSize = (image, scale) => {
   if (!image) return null;
