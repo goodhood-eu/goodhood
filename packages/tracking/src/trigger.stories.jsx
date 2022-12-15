@@ -16,3 +16,10 @@ export const Default = () => {
     </Provider>
   );
 };
+
+export const WithoutProvider = () => (
+  <div>
+    <Trigger event="test" />
+    Should log a warning. Check the console!
+  </div>
+);
