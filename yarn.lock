@@ -8034,7 +8034,7 @@ nebenan-helpers@^6.0.0:
   resolved "https://registry.npmjs.org/nebenan-helpers/-/nebenan-helpers-6.0.0.tgz"
   integrity sha512-2gZGPf3SDo/3Gcs/+pJdmuQ7hnw8Idq+0qA8zOJEW/MIkXyxYmhQiWTkr4xrpqsN2te6OtGj6mck+BNeuzb8cQ==
 
-nebenan-helpers@^7.0.0, nebenan-helpers@^7.0.0-beta.0:
+nebenan-helpers@^7.0.0, nebenan-helpers@^7.1.0:
   version "7.1.0"
   resolved "https://registry.npmjs.org/nebenan-helpers/-/nebenan-helpers-7.1.0.tgz"
   integrity sha512-3vJkTQWEoB3bnBoo0PrAEjfBVp/7mTgDxGCfZ1ESNxNNxFILUgNZxzEyhwdVPNQZLngB1HhqX3aVif5tV+avyQ==
