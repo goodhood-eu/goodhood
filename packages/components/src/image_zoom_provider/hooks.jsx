@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
-import { clamp } from 'lodash';
+import clamp from 'lodash/clamp';
 import { getDefaultScale, getInsideBoundaries, getOffsetForNewScaleWithCustomAnchor } from './utils';
 import { MAX_SCALE_FACTOR } from './constants';
 

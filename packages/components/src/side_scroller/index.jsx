@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { size, eventCoordinates, stopEvent } from 'nebenan-helpers/lib/dom';
 import useMounted from 'nebenan-react-hocs/lib/use_mounted';
 import eventproxy from 'nebenan-eventproxy';
-import { clamp } from 'lodash';
+import clamp from 'lodash/clamp';
 import styles from './index.module.scss';
 
 import Draggable from '../draggable';
