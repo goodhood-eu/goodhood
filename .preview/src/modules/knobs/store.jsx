@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { without } from 'lodash';
+import without from 'lodash/without';
 import updeep from 'updeep';
 
 const DEFAULT_STATE = {

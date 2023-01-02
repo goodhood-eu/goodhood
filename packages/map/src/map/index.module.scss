@@ -15,6 +15,15 @@
   :global(.mapboxgl-ctrl-bottom-right) {
     // overrides mapbox z-index
     z-index: 1;
+
+    // To prevent global link styles from overwriting
+    a {
+      all: unset;
+    }
+
+    a:hover {
+      all: unset;
+    }
   }
 
   :global(.mapboxgl-canvas-container) {

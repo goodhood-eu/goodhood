@@ -61,7 +61,11 @@ export const useLegacyHandle = (
   useImperativeHandle<LegacyHandlers, LegacyHandlers>(ref, () => ({
     close: (done) => {
       // simulate calling done after modal is closed
-      setTimeout(() => done?.());
+      setTimeout(() => {
+        // legacy code sometimes passes the close handle right into event handlers
+        // that is why this check is necessary
+        if (typeof done === 'function') done();
+      });
 
       // TODO: Why do we return onClose here??
       return onClose?.();
