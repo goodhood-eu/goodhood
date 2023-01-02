@@ -1,6 +1,6 @@
 {
   "name": "@goodhood/tracking",
-  "description": "FUN FUN FUN",
+  "description": "Declarative tracking for react apps",
   "author": "goodhood.eu <peter@nebenan.de>",
   "license": "SEE LICENSE IN LICENSE FILE",
   "homepage": "https://goodhood.eu/",
@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -27,7 +27,7 @@
     "test": "../../scripts/run-tests"
   },
   "devDependencies": {
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.8.1"
   },
   "peerDependencies": {
     "@babel/runtime": "^7.12.5",

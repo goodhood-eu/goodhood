@@ -1,11 +1,11 @@
-import { useContext, useEffect } from 'react';
-import Context from './context';
+import { useEffect } from 'react';
+import { useTrack } from './hooks';
 
 const Trigger = ({ event, ...payload }) => {
-  const context = useContext(Context);
+  const track = useTrack();
 
   useEffect(() => {
-    context.track({ event, ...payload });
+    track({ event, ...payload });
   }, [event]);
 
   return null;
