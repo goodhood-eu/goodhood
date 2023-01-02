@@ -38,6 +38,17 @@ const getPackageOptions = (pkg) => ({
         tsconfigRootDir: path.resolve(pkg),
         project: ['./tsconfig.json'],
       },
+      settings: {
+        'import/internal-regex': /^@(root)?/,
+        'import/resolver': {
+          alias: {
+            map: [
+              ['@root', ROOT_PKG_PATH],
+              ['@', path.resolve(pkg)],
+            ],
+          },
+        },
+      },
     },
   ],
 });
