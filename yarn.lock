@@ -1170,7 +1170,7 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@fontsource/open-sans@^4.1.0":
+"@fontsource/open-sans@^4.1.0", "@fontsource/open-sans@^4.5.13":
   version "4.5.13"
   resolved "https://registry.yarnpkg.com/@fontsource/open-sans/-/open-sans-4.5.13.tgz#2c99e4c055d129a75f14c11b77d040282e0388b8"
   integrity sha512-/UzqP7ZFk145XAq8KG4pvFPP7UQhtreDGXgqXZjagCDreKxcrhwn/x7DYz9rPcycWkLUVApIybcoczGZiM0cRg==
@@ -8156,20 +8156,20 @@ nebenan-react-hocs@^9.0.0:
   dependencies:
     lodash "^4.17.21"
 
-nebenan-ui-kit@^4.15.0:
-  version "4.17.1"
-  resolved "https://registry.yarnpkg.com/nebenan-ui-kit/-/nebenan-ui-kit-4.17.1.tgz#4776912faa0bf08dccd81a1939bc2d3e66c4474d"
-  integrity sha512-9HSrS6kO+8idArSqastn3Kj+Nycb1Y7+rQ1ZHglXX9g4PYSDLbkpghwksJEphk5V+SBrdsDjTScouELoGnP3sg==
-  dependencies:
-    "@fontsource/open-sans" "^4.1.0"
-    normalize.css "^8.0.1"
-
 nebenan-ui-kit@^5.1.0, nebenan-ui-kit@^5.3.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/nebenan-ui-kit/-/nebenan-ui-kit-5.5.0.tgz#bebbef9c430e6889365afcadefd4fbbfa45c820c"
   integrity sha512-xJC0yoyBLiod0LQIm+OvJIIDnSYz+les3NE3+iiOy8zdN26EZ2E1pa+OP26V73Zgz6xn9plEtu4G2IHWHkzOHg==
   dependencies:
     "@fontsource/open-sans" "^4.1.0"
+    normalize.css "^8.0.1"
+
+nebenan-ui-kit@^5.6.0:
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/nebenan-ui-kit/-/nebenan-ui-kit-5.6.0.tgz#57cdc9dd984e69be3cf9490f8e22ecc441109d42"
+  integrity sha512-Rhpdd7XukKdGofygbnU83cVHFQCrf6wGgZWi6VbCgQII1sK9sQ12NFhGVVZD8I/TXAybCapw1ipiQZ1Fceu3qg==
+  dependencies:
+    "@fontsource/open-sans" "^4.5.13"
     normalize.css "^8.0.1"
 
 negotiator@0.6.3, negotiator@^0.6.2:
