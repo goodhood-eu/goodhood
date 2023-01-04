@@ -87,5 +87,3 @@ module.exports = {
     }],
   },
 };
-
-// console.dir(module.exports, { depth: 10 });
