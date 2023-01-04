@@ -21,8 +21,8 @@
     border-color: $color-green-02;
 
     &.disabled {
-      background: #e0ea9b;
-      border-color: #e0ea9b;
+      background: $color-knallgreen-40;
+      border-color: $color-knallgreen-40;
     }
   }
 }
@@ -71,7 +71,7 @@
     color: $color-gray-05;
 
     &.checked {
-      color: #bbb;
+      color: $color-gray-04;
     }
   }
 }
