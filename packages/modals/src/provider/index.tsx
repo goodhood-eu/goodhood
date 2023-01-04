@@ -11,6 +11,7 @@ import { useProviderValue } from './hooks';
 
 export type ModalProviderProps = {
   className?: string,
+  children?: ReactNode | ReactNode[];
 } & Partial<{
   [key: string]: unknown;
 }>;

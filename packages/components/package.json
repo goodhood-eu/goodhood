@@ -21,7 +21,8 @@
     "build": "npx rollup --config rollup.config.js",
     "build:preview": "../../scripts/build-preview",
     "start": "../../scripts/start-preview",
-    "test": "../../scripts/run-tests"
+    "test": "../../scripts/run-tests",
+    "lint:typescript": "../../scripts/check-typescript"
   },
   "devDependencies": {
     "@babel/runtime": "^7.12.5",
