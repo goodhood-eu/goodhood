@@ -11,6 +11,15 @@
   box-sizing: border-box;
   border-radius: 4px;
 
+  &:hover {
+    background: $color-base-04;
+  }
+
+  &.focus {
+    background-color: $color-base-04;
+    border-color: $color-balkonmus-80;
+  }
+
   &.small {
     height: 30px;
   }
@@ -28,7 +37,8 @@
   }
 
   &.withError {
-    border-color: $color-red-00;
+    border-color: $color-red-01;
+    background-color: $color-red-03;
   }
 
   &.disabled {

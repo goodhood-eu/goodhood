@@ -44,6 +44,7 @@ const TextField = ({
             [styles.disableBorder]: disableBorder,
             [styles.withError]: error,
             [styles.disabled]: disabled,
+            [styles.focus]: inFocus,
           },
         )}
       >
