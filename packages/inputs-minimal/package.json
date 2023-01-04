@@ -29,10 +29,7 @@
     "lint:typescript": "../../scripts/check-typescript"
   },
   "peerDependencies": {
-    "@babel/runtime": "^7.11.2",
+    "@babel/runtime": "^7.12.5",
     "react": "^16.14.0 || ^17.0.1"
-  },
-  "devDependencies": {
-    "prop-types": "^15.8.1"
   }
 }
