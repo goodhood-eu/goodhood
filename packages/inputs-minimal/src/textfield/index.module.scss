@@ -42,10 +42,12 @@
   }
 
   &.disabled {
-    opacity: .6;
+    border-color: $color-gray-05;
 
     .label,
+    .labelText,
     .attachment {
+      color: $color-gray-05;
       cursor: default;
     }
   }
@@ -90,7 +92,16 @@
     font-weight: $font-weight-l;
   }
 
+  &.filled {
+
+    &.large {
+      color: $color-balkonmus-100;
+    }
+  }
+
   &.focus {
+    color: $color-gray-02;
+
     &.small,
     &.medium {
       display: none;
@@ -99,7 +110,6 @@
     &.large {
       top: 10px;
       transform: translateY(0);
-      color: $color-gray-02;
       font-size: $text-detail-1-size;
     }
   }

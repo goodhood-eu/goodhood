@@ -63,6 +63,7 @@ const TextField = ({
             className={clsx(
               styles.labelText,
               styles[size],
+              { [styles.filled]: isAutofilled || value },
               { [styles.focus]: isAutofilled || inFocus || value },
             )}
           >
