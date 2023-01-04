@@ -60,6 +60,10 @@ const getScriptLoaders = ({ fastRefresh }) => ([
     loader: 'ts-loader',
     options: {
       configFile: path.join(PKG_PATH, 'tsconfig.json'),
+      compilerOptions: {
+        transpileOnly: true,
+        onlyCompileBundledFiles: true,
+      },
     },
   },
 ]);
@@ -92,6 +96,8 @@ const getStyleLoaders = ({ modules, emitFile }) => ([
     loader: 'sass-loader',
     options: {
       implementation: sass,
+
+      sourceMap: true,
 
       sassOptions: {
         includePaths: [

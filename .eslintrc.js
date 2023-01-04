@@ -17,7 +17,7 @@ const getPackageOptions = (pkg) => ({
     ],
   },
   settings: {
-    'import/internal-regex': /^@root/,
+    'import/internal-regex': /^@(root)?/,
     'import/resolver': {
       alias: {
         map: [
@@ -27,13 +27,36 @@ const getPackageOptions = (pkg) => ({
       },
     },
   },
+  overrides: [
+    {
+      files: [
+        '**/*.ts',
+        '**/*.tsx',
+      ],
+      extends: ['nebenan/typescript'],
+      parserOptions: {
+        tsconfigRootDir: path.resolve(pkg),
+        project: ['./tsconfig.json'],
+      },
+      settings: {
+        'import/internal-regex': /^@(root)?/,
+        'import/resolver': {
+          alias: {
+            map: [
+              ['@root', ROOT_PKG_PATH],
+              ['@', path.resolve(pkg)],
+            ],
+          },
+        },
+      },
+    },
+  ],
 });
 
 const getOverridesForPackage = (pkg) => ({
   files: [`${pkg}/**/*`],
   ...getPackageOptions(pkg),
 });
-
 
 module.exports = {
   extends: [
@@ -55,14 +78,6 @@ module.exports = {
 
       // Use react package template as baseline for @-imports in preview
       ...getPackageOptions('package-templates/react'),
-    },
-    {
-      files: ['**/*.ts', '**/*.tsx'],
-      extends: ['nebenan/typescript'],
-      parserOptions: {
-        tsconfigRootDir: __dirname,
-        project: ['./tsconfig.json'],
-      },
     },
     ...getPackages().map(getOverridesForPackage),
   ],

@@ -26,7 +26,7 @@
     "build:preview": "../../scripts/build-preview",
     "start": "../../scripts/start-preview",
     "test": "../../scripts/run-tests",
-    "stylelint": "stylelint \"./**/*.scss\" "
+    "lint:typescript": "../../scripts/check-typescript"
   },
   "peerDependencies": {
     "@babel/runtime": "^7.11.2",
