@@ -8173,10 +8173,18 @@ nebenan-react-hocs@^9.0.0:
   dependencies:
     lodash "^4.17.21"
 
-nebenan-ui-kit@^5.3.0, nebenan-ui-kit@^5.6.0:
+nebenan-ui-kit@^5.3.0:
   version "5.6.0"
   resolved "https://registry.yarnpkg.com/nebenan-ui-kit/-/nebenan-ui-kit-5.6.0.tgz#57cdc9dd984e69be3cf9490f8e22ecc441109d42"
   integrity sha512-Rhpdd7XukKdGofygbnU83cVHFQCrf6wGgZWi6VbCgQII1sK9sQ12NFhGVVZD8I/TXAybCapw1ipiQZ1Fceu3qg==
+  dependencies:
+    "@fontsource/open-sans" "^4.5.13"
+    normalize.css "^8.0.1"
+
+nebenan-ui-kit@^5.6.1:
+  version "5.6.1"
+  resolved "https://registry.yarnpkg.com/nebenan-ui-kit/-/nebenan-ui-kit-5.6.1.tgz#a57a7972ec6b34871c1ac4f20db222c791c1749a"
+  integrity sha512-wk1G15TVBcnWusqsA+0mZmJD6IveZsoePsCbS4ByYnDyttUgHAHqIbMzUbUcCGGROq5gUlcUNRUDSse5PEVcdA==
   dependencies:
     "@fontsource/open-sans" "^4.5.13"
     normalize.css "^8.0.1"
