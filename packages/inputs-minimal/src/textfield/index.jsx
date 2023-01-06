@@ -44,6 +44,7 @@ const TextField = ({
             [styles.disableBorder]: disableBorder,
             [styles.withError]: error,
             [styles.disabled]: disabled,
+            [styles.focus]: inFocus,
           },
         )}
       >
@@ -62,6 +63,7 @@ const TextField = ({
             className={clsx(
               styles.labelText,
               styles[size],
+              { [styles.filled]: isAutofilled || value },
               { [styles.focus]: isAutofilled || inFocus || value },
             )}
           >
