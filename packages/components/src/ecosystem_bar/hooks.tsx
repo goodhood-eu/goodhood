@@ -4,7 +4,7 @@ import useStableCallback from 'nebenan-react-hocs/lib/use_stable_callback';
 import { useEventListener } from 'nebenan-react-hocs/lib/use_event_listener';
 
 export const useScrolled = (navRef: RefObject<HTMLElement>) => {
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState<boolean>(false);
 
   const handleScroll = useStableCallback(() => {
     const pos = navRef.current?.getBoundingClientRect().bottom;
