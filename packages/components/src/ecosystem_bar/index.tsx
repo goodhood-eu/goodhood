@@ -21,7 +21,7 @@ export type EcosystemBarProps = {
 };
 
 export const EcosystemBar = ({ items, onFirstSwipe, onItemClick }: EcosystemBarProps) => {
-  const navRef = useRef(null);
+  const navRef = useRef<HTMLUListElement>(null);
   const scrolled = useScrolled(navRef);
 
   useOnceSwipeTracking(navRef, onFirstSwipe);
