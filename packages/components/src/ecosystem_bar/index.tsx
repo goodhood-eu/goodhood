@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import { useRef } from 'react';
-import { useOnceSwipeTracking, useScrolled } from '@/src/ecosystem_bar/hooks';
+import { useOnceSwipeTracking, useScrolled } from './hooks';
 import styles from './index.module.scss';
 
-type EcosystemBarItem = {
+export type EcosystemBarItem = {
   key: string,
   link: string,
   isActive: boolean,
@@ -14,7 +14,7 @@ type EcosystemBarItem = {
   },
 };
 
-export type EcosystemBarProps = {
+type EcosystemBarProps = {
   items: EcosystemBarItem[];
   onFirstSwipe: () => void;
   onItemClick: (event: string) => void
