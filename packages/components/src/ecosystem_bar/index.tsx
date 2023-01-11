@@ -14,7 +14,7 @@ export type EcosystemBarItem = {
   },
 };
 
-type EcosystemBarProps = {
+export type EcosystemBarProps = {
   items: EcosystemBarItem[];
   onFirstSwipe: () => void;
   onItemClick: (event: string) => void
