@@ -26,7 +26,7 @@ export const EcosystemBar = ({ items, onFirstSwipe, onItemClick }: EcosystemBarP
 
   useOnceSwipeTracking(navRef, onFirstSwipe);
 
-  const renderItem = (item:EcosystemBarItem) => (
+  const renderItem = (item: EcosystemBarItem) => (
     <li key={item.key} className={styles.item}>
       <a
         className={clsx(styles.link, { [styles.isActive]: item.isActive })}
