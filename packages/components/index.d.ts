@@ -12,14 +12,14 @@ declare module 'nebenan-eventproxy' {
   export default eventproxy;
 }
 
+// TODO definition needs some work, see https://github.com/goodhood-eu/goodhood/pull/185
 declare module 'nebenan-react-hocs/lib/use_stable_callback' {
-  function useStableCallback(
-    callback: () => void
-  ) : () => void;
+  declare function useStableCallback<T>(callback: T);
 
   export default useStableCallback;
 }
 
+// TODO definition needs some work, see https://github.com/goodhood-eu/goodhood/pull/185
 declare module 'nebenan-react-hocs/lib/use_event_listener' {
   import { RefObject } from 'react';
 
