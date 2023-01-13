@@ -8142,14 +8142,13 @@ nebenan-eventproxy@^1.0.0:
     lodash "^4.17.21"
 
 nebenan-form@^10.0.0:
-  version "10.0.3"
-  resolved "https://registry.yarnpkg.com/nebenan-form/-/nebenan-form-10.0.3.tgz#d78b23c2883ecdf1b2f8552ce9d81ff7935bc2c4"
-  integrity sha512-5XQCHptWjeM+e+2PZrpuZP3GRpoHY8j27K9AgycAwpWaUVut5Xj2adFklgKSHEBb+6huo2E6eJhR61M/IahBkQ==
+  version "10.0.5"
+  resolved "https://registry.yarnpkg.com/nebenan-form/-/nebenan-form-10.0.5.tgz#475c708feac473399aeb8ad45e70318f8b74891e"
+  integrity sha512-o8gQ+WF4VoIC3IjoVNSUJvojlmIHA6mRpliq+DT7GExmbg4KfMnCnT4E2dZ8iFdHSYB7x2LJHNmnxsnXdIZ6EA==
   dependencies:
     clsx "^1.1.1"
     lodash "^4.17.20"
     nebenan-helpers "^7.0.0"
-    nebenan-react-datepicker "^2.0.0"
     string-validate "^3.5.0"
 
 nebenan-helpers@^6.0.0:
@@ -8167,13 +8166,6 @@ nebenan-keymanager@^1.0.1:
   resolved "https://registry.yarnpkg.com/nebenan-keymanager/-/nebenan-keymanager-1.0.1.tgz#e9b22f78a96b1515142243e57f4e68be540a07b7"
   integrity sha512-glnQ3bUOfNQCNbCTHtRL/Snwo7qVqJ1iOQD+mpTNDnZ3ces52fSXDQ7pUCNrW4pFTl2vG1toK0oD81Fi2gQ0Fg==
 
-nebenan-react-datepicker@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/nebenan-react-datepicker/-/nebenan-react-datepicker-2.0.0.tgz#ed3bd32d7df189b9e9c658f17c1062121aa86315"
-  integrity sha512-QTzCGHqPpZZQlOQyvS7hEaQjA0/B6qxxfRLU8cZ7gfAt/jp2R10hT8SVK8j6UqsQQvBXEGvlVnVKx8Sg7RuxUw==
-  dependencies:
-    clsx "^1.1.1"
-
 nebenan-react-hocs@^9.0.0:
   version "9.0.0"
   resolved "https://registry.yarnpkg.com/nebenan-react-hocs/-/nebenan-react-hocs-9.0.0.tgz#00bcdc642ea62d981c916f683d78373c1b6ca08c"
@@ -8181,18 +8173,18 @@ nebenan-react-hocs@^9.0.0:
   dependencies:
     lodash "^4.17.21"
 
-nebenan-ui-kit@^5.1.0, nebenan-ui-kit@^5.3.0:
-  version "5.6.0"
-  resolved "https://registry.yarnpkg.com/nebenan-ui-kit/-/nebenan-ui-kit-5.6.0.tgz#57cdc9dd984e69be3cf9490f8e22ecc441109d42"
-  integrity sha512-Rhpdd7XukKdGofygbnU83cVHFQCrf6wGgZWi6VbCgQII1sK9sQ12NFhGVVZD8I/TXAybCapw1ipiQZ1Fceu3qg==
+nebenan-ui-kit@^5.1.0, nebenan-ui-kit@^5.6.1:
+  version "5.6.1"
+  resolved "https://registry.yarnpkg.com/nebenan-ui-kit/-/nebenan-ui-kit-5.6.1.tgz#a57a7972ec6b34871c1ac4f20db222c791c1749a"
+  integrity sha512-wk1G15TVBcnWusqsA+0mZmJD6IveZsoePsCbS4ByYnDyttUgHAHqIbMzUbUcCGGROq5gUlcUNRUDSse5PEVcdA==
   dependencies:
     "@fontsource/open-sans" "^4.5.13"
     normalize.css "^8.0.1"
 
-nebenan-ui-kit@^5.6.1:
-  version "5.6.1"
-  resolved "https://registry.yarnpkg.com/nebenan-ui-kit/-/nebenan-ui-kit-5.6.1.tgz#a57a7972ec6b34871c1ac4f20db222c791c1749a"
-  integrity sha512-wk1G15TVBcnWusqsA+0mZmJD6IveZsoePsCbS4ByYnDyttUgHAHqIbMzUbUcCGGROq5gUlcUNRUDSse5PEVcdA==
+nebenan-ui-kit@^5.3.0:
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/nebenan-ui-kit/-/nebenan-ui-kit-5.6.0.tgz#57cdc9dd984e69be3cf9490f8e22ecc441109d42"
+  integrity sha512-Rhpdd7XukKdGofygbnU83cVHFQCrf6wGgZWi6VbCgQII1sK9sQ12NFhGVVZD8I/TXAybCapw1ipiQZ1Fceu3qg==
   dependencies:
     "@fontsource/open-sans" "^4.5.13"
     normalize.css "^8.0.1"
