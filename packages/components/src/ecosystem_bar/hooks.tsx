@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { RefObject, useEffect, useState } from 'react';
 import eventproxy from 'nebenan-eventproxy';
 import useStableCallback from 'nebenan-react-hocs/lib/use_stable_callback';
 import { useEventListener } from 'nebenan-react-hocs/lib/use_event_listener';
 
-export const useScrolled = (navRef) => {
-  const [scrolled, setScrolled] = useState(false);
+export const useScrolled = (navRef: RefObject<HTMLElement>) => {
+  const [scrolled, setScrolled] = useState<boolean>(false);
 
   const handleScroll = useStableCallback(() => {
     const pos = navRef.current?.getBoundingClientRect().bottom;
@@ -21,7 +21,7 @@ export const useScrolled = (navRef) => {
   return scrolled;
 };
 
-export const useOnceSwipeTracking = (ref, onFirstSwipe) => {
+export const useOnceSwipeTracking = (ref: RefObject<HTMLElement>, onFirstSwipe: () => void) => {
   useEventListener(ref, 'scroll', () => {
     if (!ref.current) return;
 

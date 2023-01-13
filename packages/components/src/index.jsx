@@ -4,3 +4,4 @@
 export * from './*/index.jsx';
 
 export * from './constants';
+export * from './ecosystem_bar';
