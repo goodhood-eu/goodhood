@@ -38,6 +38,7 @@ const TextArea = ({
             [styles.disableBorder]: disableBorder,
             [styles.withError]: error,
             [styles.disabled]: disabled,
+            [styles.focus]: inFocus,
           },
         )}
       >
@@ -49,6 +50,7 @@ const TextArea = ({
           <span
             className={clsx(
               styles.labelText,
+              { [styles.filled]: value },
               { [styles.focus]: inFocus || value },
             )}
           >

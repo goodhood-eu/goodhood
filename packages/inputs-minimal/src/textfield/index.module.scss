@@ -44,8 +44,9 @@
   &.disabled {
     border-color: $color-gray-05;
 
+    .input,
     .label,
-    .labelText,
+    .labelText.large,
     .attachment {
       color: $color-gray-05;
       cursor: default;
