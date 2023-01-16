@@ -10,18 +10,32 @@
   box-sizing: border-box;
   border-radius: 4px;
 
+  &:hover {
+    background: $color-base-04;
+  }
+
+  &.focus {
+    background-color: $color-base-04;
+    border-color: $color-balkonmus-80;
+  }
+
   &.disableBorder {
     border-color: $color-gray-08;
   }
 
   &.withError {
-    border-color: $color-red-00;
+    border-color: $color-red-01;
+    background-color: $color-red-03;
   }
 
   &.disabled {
-    opacity: .6;
+    border-color: $color-gray-05;
 
-    .label {
+    .input,
+    .label,
+    .labelText.filled,
+    .attachment {
+      color: $color-gray-05;
       cursor: default;
     }
   }
@@ -46,6 +60,12 @@
   font-weight: $font-weight-l;
   cursor: auto;
   user-select: none;
+
+  &.filled {
+    &.large {
+      color: $color-balkonmus-100;
+    }
+  }
 
   &.focus {
     transform: translateY(-12px);
