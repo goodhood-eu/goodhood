@@ -1,9 +1,9 @@
 import { createPortal } from 'react-dom';
 import { useEffect, useState, FC, ReactNode } from 'react';
 
-interface PortalProps {
+type PortalProps = {
   children?: ReactNode | ReactNode[];
-}
+};
 
 export const Portal: FC<PortalProps> = ({ children }) => {
   const [node, setNode] = useState<Nullable<HTMLElement>>(null);
