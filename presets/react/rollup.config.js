@@ -53,7 +53,9 @@ export default (pkg, pkgPath) => {
       },
     ],
 
-    external: (id) => dependencies.some((depName) => id.startsWith(depName)),
+    external: (id) => dependencies.some((depName) => (
+      id.startsWith(depName) && !id.endsWith('.css')
+    )),
 
     plugins: [
       commonjs(),
