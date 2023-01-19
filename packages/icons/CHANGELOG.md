@@ -25,3 +25,16 @@ sed -i '' 's#@goodhood/icons/lib/tiny/arrow_up#@goodhood/icons/lib/tiny/chevron_
 sed -i '' 's#@goodhood/icons/lib/tiny/arrow_left#@goodhood/icons/lib/tiny/chevron_left#g' **/*.jsx
 sed -i '' 's#@goodhood/icons/lib/tiny/arrow_right#@goodhood/icons/lib/tiny/chevron_right#g' **/*.jsx
 ```
+
+## v4.0.0 Changes
+
+- Changed names of (all) **small** and (one) **medium** `Arrow-[Up/Down,Left,Right]` -> `Chevron-[Up/Down,Left,Right]`
+
+Migrate script:
+```bash
+sed -i '' 's#@goodhood/icons/lib/small/arrow_down#@goodhood/icons/lib/small/chevron_down#g' **/*.jsx
+sed -i '' 's#@goodhood/icons/lib/small/arrow_up#@goodhood/icons/lib/small/chevron_up#g' **/*.jsx
+sed -i '' 's#@goodhood/icons/lib/small/arrow_left#@goodhood/icons/lib/small/chevron_left#g' **/*.jsx
+sed -i '' 's#@goodhood/icons/lib/small/arrow_right#@goodhood/icons/lib/small/chevron_right#g' **/*.jsx
+sed -i '' 's#@goodhood/icons/lib/medium/arrow_down#@goodhood/icons/lib/medium/chevron_down#g' **/*.jsx
+```
