@@ -44,12 +44,12 @@ loadConfig().then((svgoConfig) => (
 
     const reactComponentCode = await generateComponentCode(data, fileName, svgPath);
 
-    const reactTsComponentCode = await generateComponentCode({
+    const reactTypescriptComponentCode = await generateComponentCode(
       data,
       fileName,
       svgPath,
-      withTypescript: true,
-    });
+      true,
+    );
 
     const reactComponentCommonjsCode = babel.transform(reactComponentCode, {
       rootMode: 'upward',
@@ -63,7 +63,7 @@ loadConfig().then((svgoConfig) => (
     fs.mkdirSync(path.dirname(libSvgPath), { recursive: true });
     fs.writeFileSync(libSvgPath, optimizedData);
     fs.writeFileSync(libReactPath, reactComponentCommonjsCode);
-    fs.writeFileSync(libReactTsxPath, reactTsComponentCode);
+    fs.writeFileSync(libReactTsxPath, reactTypescriptComponentCode);
   })).then(() => {
     console.log(`Converted ${files.length} icons`);
   })
