@@ -5,12 +5,23 @@ const chalk = require('chalk');
 const { optimize, loadConfig } = require('svgo');
 const { transform } = require('@svgr/core');
 const { getFiles, getTree, SVGS_DIR } = require('../utils/icon_list');
-const { getComponentName, getLibSvgFileName, getLibJsFileName } = require('../utils/naming');
+const { getComponentName, getLibSvgFileName, getLibJsFileName, getLibTsxFileName } = require('../utils/naming');
 
 const LIB_DIR = path.resolve(__dirname, '../lib');
 
 const tree = getTree();
 const files = getFiles(tree);
+
+
+const generateComponentCode = async(
+  data,
+  fileName,
+  svgPath,
+  withTypescript,
+) => transform(data, { typescript: withTypescript }, {
+  componentName: getComponentName(fileName),
+  filePath: svgPath,
+});
 
 loadConfig().then((svgoConfig) => (
   Promise.all(files.map(async(relativeIconPath) => {
@@ -19,16 +30,26 @@ loadConfig().then((svgoConfig) => (
     const lib = path.dirname(path.join(LIB_DIR, relativeIconPath));
     const libSvgPath = path.join(lib, getLibSvgFileName(fileName));
     const libReactPath = path.join(lib, getLibJsFileName(fileName));
+    const libReactTsxPath = path.join(lib, getLibTsxFileName(fileName));
 
-    console.log(`${svgPath}\n--> ${chalk.magenta(libSvgPath)}\n--> ${chalk.red(libReactPath)}\n`);
+    console.log(`${svgPath}
+    --> ${chalk.magenta(libSvgPath)}
+    --> ${chalk.red(libReactPath)}
+    --> ${chalk.red(libReactTsxPath)}`,
+    );
 
     const data = fs.readFileSync(svgPath, 'utf-8');
 
     const { data: optimizedData } = await optimize(data, { path: svgPath, ...svgoConfig });
-    const reactComponentCode = await transform(data, {}, {
-      componentName: getComponentName(fileName),
-      filePath: svgPath,
-    });
+
+    const reactComponentCode = await generateComponentCode(data, fileName, svgPath);
+
+    const reactTypescriptComponentCode = await generateComponentCode(
+      data,
+      fileName,
+      svgPath,
+      true,
+    );
 
     const reactComponentCommonjsCode = babel.transform(reactComponentCode, {
       rootMode: 'upward',
@@ -42,6 +63,7 @@ loadConfig().then((svgoConfig) => (
     fs.mkdirSync(path.dirname(libSvgPath), { recursive: true });
     fs.writeFileSync(libSvgPath, optimizedData);
     fs.writeFileSync(libReactPath, reactComponentCommonjsCode);
+    fs.writeFileSync(libReactTsxPath, reactTypescriptComponentCode);
   })).then(() => {
     console.log(`Converted ${files.length} icons`);
   })
