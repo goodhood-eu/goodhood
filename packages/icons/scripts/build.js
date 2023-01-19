@@ -17,8 +17,8 @@ const generateComponentCode = async(
   data,
   fileName,
   svgPath,
-  withTs,
-) => transform(data, { typescript: withTs }, {
+  withTypescript,
+) => transform(data, { typescript: withTypescript }, {
   componentName: getComponentName(fileName),
   filePath: svgPath,
 });
@@ -32,7 +32,11 @@ loadConfig().then((svgoConfig) => (
     const libReactPath = path.join(lib, getLibJsFileName(fileName));
     const libReactTsxPath = path.join(lib, getLibTsxFileName(fileName));
 
-    console.log(`${svgPath}\n--> ${chalk.magenta(libSvgPath)}\n--> ${chalk.red(libReactPath)}\n`);
+    console.log(`${svgPath}
+    --> ${chalk.magenta(libSvgPath)}
+    --> ${chalk.red(libReactPath)}
+    --> ${chalk.red(libReactTsxPath)}`,
+    );
 
     const data = fs.readFileSync(svgPath, 'utf-8');
 
