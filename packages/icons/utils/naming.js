@@ -7,6 +7,7 @@ const getIconName = (fileName) => camelCase(getSourceIconName(fileName));
 const getComponentName = (fileName) => `${upperFirst(getIconName(fileName))}Icon`;
 const getLibFileName = (fileName) => snakeCase(getSourceIconName(fileName));
 const getLibSvgFileName = (fileName) => `${getLibFileName(fileName)}.svg`;
+const getLibJsFileName = (fileName) => `${getLibFileName(fileName)}.js`;
 const getLibTsxFileName = (fileName) => `${getLibFileName(fileName)}.tsx`;
 
 module.exports = {
@@ -15,5 +16,6 @@ module.exports = {
   getIconName,
   getLibFileName,
   getLibSvgFileName,
+  getLibJsFileName,
   getLibTsxFileName,
 };
