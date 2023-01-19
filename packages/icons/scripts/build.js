@@ -40,8 +40,7 @@ loadConfig().then((svgoConfig) => (
 
     const reactComponentCode = await generateComponentCode(data, fileName, svgPath);
 
-    const withTs = true;
-    const reactTsComponentCode = await generateComponentCode(data, fileName, svgPath, withTs);
+    const reactTsComponentCode = await generateComponentCode({ data, fileName, svgPath, withTypescript: true });
 
     const reactComponentCommonjsCode = babel.transform(reactComponentCode, {
       rootMode: 'upward',
