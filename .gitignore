@@ -5,11 +5,12 @@ lerna-debug.log
 config/local.js
 reports
 
-yarn-error.log
-
 # do not exclude packages/*/preview, otherwise github-pages integration
 # stops working
 
 # Yalc
 .yalc
 yalc.lock
+
+# Yarn
+yarn-error.log

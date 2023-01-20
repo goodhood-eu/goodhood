@@ -1184,6 +1184,11 @@
   resolved "https://registry.npmjs.org/@gar/promisify/-/promisify-1.1.3.tgz"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
+"@goodhood/icons@^3.0.0", "@goodhood/icons@^3.3.0":
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/@goodhood/icons/-/icons-3.6.0.tgz#d3075aadbfc1737f85fef88d8adb5877de901a2e"
+  integrity sha512-fSuE5gaYHwE/NUAk77TJyn1YJIeJlswe3YKwRBYHoPqLX6mHn+VXTokGRKq0blr/AfLaGULWk+yax5D8snfWKA==
+
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
   resolved "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.11.8.tgz"
