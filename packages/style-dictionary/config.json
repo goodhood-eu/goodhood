@@ -4,14 +4,14 @@
     "scss": {
       "transformGroup": "scss",
       "files": [{
-        "destination": "_index.css",
+        "destination": "lib/_index.css",
         "format": "css/variables"
       }]
     },
     "js": {
       "transformGroup": "js",
       "files": [{
-        "destination": "index.js",
+        "destination": "lib/index.js",
         "format": "javascript/es6"
       }]
     }

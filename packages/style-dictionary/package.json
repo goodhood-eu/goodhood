@@ -2,8 +2,8 @@
   "name": "@goodhood/style-dictionary",
   "version": "0.0.1-beta",
   "description": "nebenan style dictionary for transforming design tokens into platform specific code",
-  "main": "build/index.js",
-  "style": "build/scss/tokens.scss",
+  "main": "lib/index.js",
+  "style": "lib/_index.css",
   "license": "MIT",
   "scripts": {
     "build": "style-dictionary build",
