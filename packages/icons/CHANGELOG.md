@@ -34,7 +34,7 @@ Migrate script:
 ```bash
 sed -i '' 's#@goodhood/icons/lib/small/arrow_down#@goodhood/icons/lib/small/chevron_down#g' **/*.jsx **/*.tsx
 sed -i '' 's#@goodhood/icons/lib/small/arrow_up#@goodhood/icons/lib/small/chevron_up#g' **/*.jsx **/*.tsx
-sed -i '' 's#@goodhood/icons/lib/small/arrow_left#@goodhood/icons/lib/small/chevron_left#g' **/*.jsx **/*.tsx
-sed -i '' 's#@goodhood/icons/lib/small/arrow_right#@goodhood/icons/lib/small/chevron_right#g' **/*.jsx **/*.tsx
+sed -i '' 's#@goodhood/icons/lib/small/arrow_left_1#@goodhood/icons/lib/small/chevron_left#g' **/*.jsx **/*.tsx
+sed -i '' 's#@goodhood/icons/lib/small/arrow_right_1#@goodhood/icons/lib/small/chevron_right#g' **/*.jsx **/*.tsx
 sed -i '' 's#@goodhood/icons/lib/medium/arrow_down#@goodhood/icons/lib/medium/chevron_down#g' **/*.jsx **/*.tsx
 ```
