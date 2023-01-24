@@ -1,11 +1,11 @@
 {
-  "source": ["tokens/**/*.json"],
+  "source": ["tokens/**/design-tokens.*.json"],
   "platforms": {
     "scss": {
       "transformGroup": "scss",
       "files": [{
-        "destination": "_index.scss",
-        "format": "scss/variables"
+        "destination": "_index.css",
+        "format": "css/variables"
       }]
     },
     "js": {
