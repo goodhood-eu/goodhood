@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import ArrowRight1 from '@goodhood/icons/lib/small/arrow_right_1';
-import ArrowLeft1 from '@goodhood/icons/lib/small/arrow_left_1';
+import ChevronRight from '@goodhood/icons/lib/small/chevron_right';
+import ChevronLeft from '@goodhood/icons/lib/small/chevron_left';
 import { useState } from 'react';
 import Layout from '../../components/layout';
 import styles from './index.module.scss';
@@ -30,8 +30,8 @@ const Story = ({ match }) => {
         </div>
         <div className={clsx(styles.panel, { [styles.isExpanded]: isExpanded })}>
           <span className={clsx(styles.menuButton, 'ui-link')} onClick={handleToggle}>
-            {isExpanded && <ArrowLeft1 />}
-            {!isExpanded && <ArrowRight1 />}
+            {isExpanded && <ChevronLeft />}
+            {!isExpanded && <ChevronRight />}
           </span>
           <Menu className={styles.menu} />
           <Knobs className={styles.knobs} />

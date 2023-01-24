@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "3.6.0",
+  "version": "4.0.0",
   "scripts": {
     "reinstall": "rm -rf node_modules && yarn install",
     "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
@@ -25,25 +25,24 @@
   "devDependencies": {
     "@svgr/core": "^6.5.1",
     "@svgr/webpack": "^6.2.0",
-    "babel-plugin-styled-components": "^1.12.0",
     "chalk": "^4.1.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "react-is": "^16.13.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-is": "^18.2.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "styled-components": "^5.2.1",
     "styled-normalize": "^8.0.7",
-    "svgo": "^2.8.0",
-    "svgo-loader": "^3.0.0",
+    "svgo": "^3.0.2",
+    "svgo-loader": "^3.0.3",
     "val-loader": "^2.1.2",
     "webpack": "^5.36.2",
     "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.3"
   },
   "peerDependencies": {
-    "react": "^16.14.0 || ^17.0.1"
+    "react": ">= 16.14.0"
   }
 }
