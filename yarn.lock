@@ -8105,7 +8105,7 @@ nebenan-eventproxy@^1.0.0:
   dependencies:
     lodash "^4.17.21"
 
-nebenan-form@^10.0.0:
+nebenan-form@^10.1.0:
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/nebenan-form/-/nebenan-form-10.1.0.tgz#9c4c0530f5a087738a78839b122b1770213e121c"
   integrity sha512-KszKF3fSI0oR69+bwZSU12hvfLSp4hhNEA1bf7IKcUUvYVM3rx68YlfwKPdkr7+yyzz9sl0RWpy49iv0ysMYFQ==
