@@ -18,6 +18,7 @@ module.exports = {
         },
       },
     },
+    'cleanupListOfValues',
   ],
   js2svg: {
     pretty: true,

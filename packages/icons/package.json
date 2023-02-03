@@ -16,7 +16,7 @@
     "reinstall": "rm -rf node_modules && yarn install",
     "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
     "start": "webpack serve",
-    "build": "rm -rf ./lib && node scripts/build.js",
+    "build": "node scripts/build.js",
     "build:preview": "BUILD=true webpack build"
   },
   "files": [
