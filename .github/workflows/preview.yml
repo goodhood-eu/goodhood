@@ -21,7 +21,7 @@ jobs:
       - run: yarn install --frozen-lockfile
 
       # Build preview
-      - run: yarn run tryBuild:preview
+      - run: yarn run build:preview
 
       # Deploy to github pages
       - name: Deploy
