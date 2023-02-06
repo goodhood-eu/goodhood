@@ -44,11 +44,18 @@ sed -i '' 's#@goodhood/icons/lib/medium/arrow_down#@goodhood/icons/lib/medium/ch
 Remove some icons that were wrongly added (not included in the design system).
 
 ```
-huge/Quote.svg
-large/CheckBadge.svg
-large/Handshake.svg
-large/Shield.svg
-small/ThumbsUp.svg
+huge/quote
+large/check_badge
+large/handshake
+large/shield
+small/thumbs_up
 ```  
 
 Migrate path: Sadly there is no automated solution. Just copy the source svgs from v4.
+
+Usage lookup script:
+```bash
+# tested on osx 13.0.1
+find -E . -regex ".*\.(js|jsx|ts|tsx|scss)" -exec \
+ grep -E "huge/quote|large/check_badge|large/handshake|large/shield|small/thumbs_up" -n {} /dev/null \;
+```
