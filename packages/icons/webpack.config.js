@@ -56,7 +56,7 @@ module.exports = {
         test: /\.svg$/,
         use: [
           // About the order of loaders:
-          // svgr/webpack only adds the `ReactComponent` export if there already
+          // svgr/webpack only adds the `ReactComponent` export if there's already
           // a `default` export. Other than that, svgr/webpack ignores all previous
           // loaders results and uses the initial raw resource.
           '@svgr/webpack',
