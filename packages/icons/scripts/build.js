@@ -1,70 +1,105 @@
-const babel = require('@babel/core');
-const fs = require('fs');
+const fs = require('fs/promises');
 const path = require('path');
+const child_process = require('child_process');
 const chalk = require('chalk');
-const { optimize, loadConfig } = require('svgo');
-const { transform } = require('@svgr/core');
+const svgo = require('svgo');
+const svgr = require('@svgr/core');
+
 const { getFiles, getTree, SVGS_DIR } = require('../utils/icon_list');
-const { getComponentName, getLibSvgFileName, getLibJsFileName, getLibTsxFileName } = require('../utils/naming');
+const { getComponentName, getLibSvgFileName, getLibFileName } = require('../utils/naming');
 
 const LIB_DIR = path.resolve(__dirname, '../lib');
 
 const tree = getTree();
 const files = getFiles(tree);
 
+const getLibTsxFileName = (name) => `${getLibFileName(name)}.tsx`;
 
-const generateComponentCode = async(
-  data,
-  fileName,
-  svgPath,
-  withTypescript,
-) => transform(data, { typescript: withTypescript }, {
-  componentName: getComponentName(fileName),
-  filePath: svgPath,
-});
+const getOptimizedSvg = async(inputFile, svgoConfig) => {
+  const data = await fs.readFile(inputFile);
+  const { data: optimizedData } = await svgo.optimize(data, { path: inputFile, ...svgoConfig });
 
-loadConfig().then((svgoConfig) => (
-  Promise.all(files.map(async(relativeIconPath) => {
+  return optimizedData;
+};
+
+const prepareLib = async() => {
+  console.log(chalk.cyan('Preparing lib'));
+
+  await fs.rm(LIB_DIR, { recursive: true, force: true });
+  await fs.mkdir(LIB_DIR);
+
+  await Promise.all(files.map(async(relativeIconPath) => {
+    const fileName = path.basename(relativeIconPath);
+    const lib = path.dirname(path.join(LIB_DIR, relativeIconPath));
+    const libSvgPath = path.join(lib, getLibSvgFileName(fileName));
+
+    await fs.mkdir(path.dirname(libSvgPath), { recursive: true });
+  }));
+};
+
+const optimizeAndSaveSvgs = async() => {
+  console.log(chalk.red('Optimizing SVGs:'));
+
+  const svgConfig = await svgo.loadConfig();
+  await Promise.all(files.map(async(relativeIconPath) => {
     const fileName = path.basename(relativeIconPath);
     const svgPath = path.join(SVGS_DIR, relativeIconPath);
     const lib = path.dirname(path.join(LIB_DIR, relativeIconPath));
     const libSvgPath = path.join(lib, getLibSvgFileName(fileName));
-    const libReactPath = path.join(lib, getLibJsFileName(fileName));
-    const libReactTsxPath = path.join(lib, getLibTsxFileName(fileName));
 
     console.log(`${svgPath}
-    --> ${chalk.magenta(libSvgPath)}
-    --> ${chalk.red(libReactPath)}
-    --> ${chalk.red(libReactTsxPath)}`,
-    );
+-> ${libSvgPath}`);
+    await fs.writeFile(libSvgPath, await getOptimizedSvg(svgPath, svgConfig));
+  }));
+};
 
-    const data = fs.readFileSync(svgPath, 'utf-8');
 
-    const { data: optimizedData } = await optimize(data, { path: svgPath, ...svgoConfig });
+const generateTypescriptComponents = async() => {
+  console.log(chalk.blue('Generating typescript source files:'));
 
-    const reactComponentCode = await generateComponentCode(data, fileName, svgPath);
+  await Promise.all(files.map(async(relativeIconPath) => {
+    const fileName = path.basename(relativeIconPath);
+    const svgPath = path.join(SVGS_DIR, relativeIconPath);
+    const lib = path.dirname(path.join(LIB_DIR, relativeIconPath));
+    const libSvgPath = path.join(lib, getLibSvgFileName(fileName));
+    const libTsxPath = path.join(lib, getLibTsxFileName(fileName));
 
-    const reactTypescriptComponentCode = await generateComponentCode(
-      data,
-      fileName,
-      svgPath,
-      true,
-    );
+    console.log(`${libSvgPath}
+-> ${libTsxPath}`);
 
-    const reactComponentCommonjsCode = babel.transform(reactComponentCode, {
-      rootMode: 'upward',
-      presets: ['@babel/preset-env'],
+    const data = await fs.readFile(libSvgPath);
+    const code = await svgr.transform(data, { typescript: true }, {
+      componentName: getComponentName(fileName),
+      filePath: svgPath,
+    });
 
-      // Workaround: Babel needs a filename to check overrides
-      // https://github.com/danger/danger-js/issues/664
-      filename: svgPath,
-    }).code;
+    await fs.writeFile(libTsxPath, code);
+  }));
+};
 
-    fs.mkdirSync(path.dirname(libSvgPath), { recursive: true });
-    fs.writeFileSync(libSvgPath, optimizedData);
-    fs.writeFileSync(libReactPath, reactComponentCommonjsCode);
-    fs.writeFileSync(libReactTsxPath, reactTypescriptComponentCode);
-  })).then(() => {
-    console.log(`Converted ${files.length} icons`);
-  })
-));
+const compileTypescript = async() => {
+  console.log(chalk.green('Compiling typescript:'));
+
+  child_process.execSync('tsc', { stdio: 'inherit' });
+};
+
+const cleanUpTypescriptComponents = async() => {
+  console.log(chalk.yellow('Cleaning up typescript source files:'));
+
+  await Promise.all(files.map(async(relativeIconPath) => {
+    const fileName = path.basename(relativeIconPath);
+    const lib = path.dirname(path.join(LIB_DIR, relativeIconPath));
+    const libTsxPath = path.join(lib, getLibTsxFileName(fileName));
+
+    console.log(libTsxPath);
+    await fs.rm(libTsxPath);
+  }));
+};
+
+(async() => {
+  await prepareLib();
+  await optimizeAndSaveSvgs();
+  await generateTypescriptComponents();
+  await compileTypescript();
+  await cleanUpTypescriptComponents();
+})();
