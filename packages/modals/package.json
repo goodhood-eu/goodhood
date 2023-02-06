@@ -32,7 +32,7 @@
     "lint:typescript": "../../scripts/check-typescript"
   },
   "dependencies": {
-    "@goodhood/icons": "^3.0.0",
+    "@goodhood/icons": "^5.0.0",
     "clsx": "^1.1.1",
     "nebenan-helpers": "^7.0.0"
   },
