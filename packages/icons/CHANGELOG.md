@@ -38,3 +38,17 @@ sed -i '' 's#@goodhood/icons/lib/small/arrow_left_1#@goodhood/icons/lib/small/ch
 sed -i '' 's#@goodhood/icons/lib/small/arrow_right_1#@goodhood/icons/lib/small/chevron_right#g' **/*.jsx **/*.tsx
 sed -i '' 's#@goodhood/icons/lib/medium/arrow_down#@goodhood/icons/lib/medium/chevron_down#g' **/*.jsx **/*.tsx
 ```
+
+## v5.0.0 Changes
+
+Remove some icons that were wrongly added (not included in the design system).
+
+```
+huge/Quote.svg
+large/CheckBadge.svg
+large/Handshake.svg
+large/Shield.svg
+small/ThumbsUp.svg
+```  
+
+Migrate path: Sadly there is no automated solution. Just copy the source svgs from v4.
