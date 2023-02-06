@@ -99,7 +99,7 @@
     "reinstall": "rm -rf node_modules yarn.lock && yarn",
     "ci": "yarn install --frozen-lockfile",
     "build": "lerna exec --parallel --no-bail yarn run build",
-    "tryBuild:preview": "lerna exec --parallel --no-bail yarn run build:preview || true",
+    "build:preview": "lerna exec --parallel --no-bail yarn run build:preview",
     "tryBuild": "lerna exec --parallel --no-bail yarn run build || true",
     "--- CHECKS AND TEST SCRIPTS ---": "-----------------------------",
     "check": "npm test && npm run lint && echo \"\\033[0;32mAll checks pass\\033[0m\"",
