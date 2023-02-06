@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="39px" height="47px" viewBox="0 0 39 47" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>02 Elements/04 Display/Navigation/Pin Copy 5</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="59.5039403%" y1="34.4545567%" x2="7.68%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#EEEEEE" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#000000" stop-opacity="0.7" offset="100%"></stop>
+        </linearGradient>
+        <path d="M16.5,47 C27.5,32.7417989 33,22.5751322 33,16.5 C33,7.38730163 25.6126984,0 16.5,0 C7.38730163,0 0,7.38730163 0,16.5 C0,22.5751322 5.5,32.7417989 16.5,47 Z" id="path-2"></path>
+    </defs>
+    <g id="Elements" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Misc." transform="translate(-269.000000, -127.000000)">
+            <g id="Navigation-Pin" transform="translate(179.000000, 25.000000)">
+                <g id="02-Elements/04-Display/Navigation/Pin-Copy-5" transform="translate(90.000000, 102.000000)">
+                    <polygon id="Rectangle-7" fill="url(#linearGradient-1)" points="17 21 40 36 17 46"></polygon>
+                    <mask id="mask-3" fill="white">
+                        <use xlink:href="#path-2"></use>
+                    </mask>
+                    <g id="Oval-4"></g>
+                    <g id="Fill-Colour" mask="url(#mask-3)" fill="#0090A1" fill-rule="nonzero">
+                        <rect id="Colours/Green/#B2CA06/Fill" x="0" y="0" width="40" height="47"></rect>
+                    </g>
+                    <path d="M16.5,45.3574552 C26.8378441,31.8139155 32,22.1332202 32,16.5 C32,7.93958638 25.0604136,1 16.5,1 C7.93958638,1 1,7.93958638 1,16.5 C1,22.1332202 6.1621559,31.8139155 16.5,45.3574552 Z" id="Oval-4-Copy" stroke="#FFFFFF" stroke-width="2" mask="url(#mask-3)"></path>
+                    <circle id="Oval-5" fill="#FFFFFF" mask="url(#mask-3)" cx="16.5" cy="16.5" r="5.5"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
