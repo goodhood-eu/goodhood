@@ -32,7 +32,7 @@
   "dependencies": {
     "maplibre-gl": "^2.4.0",
     "nebenan-react-hocs": "^9.0.0",
-    "@goodhood/icons": "^3.3.0",
+    "@goodhood/icons": "^5.0.0",
     "clsx": "^1.2.1"
   },
   "peerDependencies": {
