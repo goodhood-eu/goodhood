@@ -1,4 +1,5 @@
 @import "nebenan-ui-kit";
+@import "@goodhood/style-dictionary";
 
 .root {
   display: block;
@@ -15,7 +16,7 @@
   border: 2px solid $color-gray-09;
 
   &.isActive {
-    background: $color-green-02;
+    background: var(--color-default-primary-1000);
   }
 
   &:first-child {
