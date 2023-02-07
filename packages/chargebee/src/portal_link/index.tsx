@@ -1,19 +1,29 @@
 import PropTypes from 'prop-types';
 
 import * as sections from '../constants';
+import { ChargebeeForwardOptions, OnCallHandler, PortalSessionSetter } from '../types';
 import Action from '../action';
+
+type PortalLinkProps = {
+  site: string;
+  onSessionGet: PortalSessionSetter;
+  onClose?: () => void;
+  section?: string;
+} & Record<string, unknown>;
 
 const PortalLink = ({
   section,
   onSessionGet,
   onClose,
   ...rest
-}) => {
-  const handleOpenLink = (instance, Chargebee) => {
+}: PortalLinkProps) => {
+  const handleOpenLink: OnCallHandler = (instance, Chargebee) => {
     let forwardOptions;
 
     if (section) {
-      forwardOptions = { sectionType: Chargebee.getPortalSections()[section] };
+      forwardOptions = {
+        sectionType: Chargebee?.getPortalSections()[section]
+      } as ChargebeeForwardOptions;
     }
 
     instance.setPortalSession(() => onSessionGet());

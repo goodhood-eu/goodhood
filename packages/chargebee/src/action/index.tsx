@@ -1,18 +1,25 @@
-import { useRef, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useRef, useState } from 'react';
 import Script from 'react-load-script';
 import { useOnUnmount } from './hooks';
 import { invoke } from '../utils';
+import { ChargebeeInstance, OnCallHandler } from '../types';
+
+type ActionProps = {
+  site: string;
+  disabled?: boolean;
+  onClick?: React.MouseEventHandler;
+  onCall?: OnCallHandler;
+} & Record<string, unknown>;
 
 const Action = ({
-  site,
-  disabled,
+  disabled = false,
   onClick,
   onCall,
+  site,
   ...rest
-}) => {
-  const instanceRef = useRef();
-  const [isReady, setReady] = useState();
+}: ActionProps) => {
+  const instanceRef = useRef<ChargebeeInstance>();
+  const [isReady, setReady] = useState<boolean>(false);
 
   useOnUnmount(() => {
     if (instanceRef.current) instanceRef.current.logout();
@@ -32,12 +39,12 @@ const Action = ({
 
   let node;
   if (isReady) {
-    const handleClick = (event) => {
+    const handleClick: React.MouseEventHandler = (event) => {
       invoke(onClick, event);
-      if (!disabled) invoke(onCall, instanceRef.current, global.Chargebee);
+      if (!disabled) onCall?.(instanceRef.current, global.Chargebee);
     };
 
-    node = <span {...rest} onClick={handleClick} />;
+    node = <span role="button" tabIndex={0} {...rest} onClick={handleClick} />;
   }
 
   return (
@@ -46,17 +53,6 @@ const Action = ({
       {node}
     </>
   );
-};
-
-Action.defaultProps = {
-  disabled: false,
-};
-
-Action.propTypes = {
-  site: PropTypes.string.isRequired,
-  disabled: PropTypes.bool.isRequired,
-  onClick: PropTypes.func,
-  onCall: PropTypes.func,
 };
 
 export default Action;

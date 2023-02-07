@@ -1,7 +1,15 @@
-import PropTypes from 'prop-types';
 import Action from '../action';
-import { invoke } from '../utils';
+import { OnCallHandler, VoidFunction, HostedPage } from '../types';
 
+type CheckoutProps = {
+  site: string;
+  onHostedPageGet: () => HostedPage;
+  onLoaded?: VoidFunction;
+  onStep?: VoidFunction;
+  onClose?: VoidFunction;
+  onSuccess?: VoidFunction;
+  onError?: VoidFunction;
+} & Record<string, unknown>;
 
 const Checkout = ({
   onHostedPageGet,
@@ -11,8 +19,8 @@ const Checkout = ({
   onSuccess,
   onError,
   ...rest
-}) => {
-  const handleCheckout = (instance) => {
+}: CheckoutProps) => {
+  const handleCheckout: OnCallHandler = (instance) => {
     let isSuccess = false;
 
     instance.openCheckout({
@@ -22,22 +30,13 @@ const Checkout = ({
       success: () => { isSuccess = true; },
       error: onError,
       close: () => {
-        invoke(onClose);
-        if (isSuccess) invoke(onSuccess);
+        onClose?.();
+        onSuccess?.();
       },
     });
   };
 
   return <Action {...rest} onCall={handleCheckout} />;
-};
-
-Checkout.propTypes = {
-  onHostedPageGet: PropTypes.func.isRequired,
-  onLoaded: PropTypes.func,
-  onStep: PropTypes.func,
-  onClose: PropTypes.func,
-  onSuccess: PropTypes.func,
-  onError: PropTypes.func,
 };
 
 export default Checkout;
