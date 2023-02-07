@@ -34,7 +34,7 @@
     "redux": "^4.0.5"
   },
   "dependencies": {
-    "@goodhood/icons": "^4.0.0",
+    "@goodhood/icons": "^5.0.0",
     "@popperjs/core": "^2.5.4",
     "clsx": "^1.2.1",
     "lodash": "^4.17.21",
