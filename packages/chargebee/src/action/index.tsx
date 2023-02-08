@@ -1,14 +1,13 @@
 import React, { useRef, useState } from 'react';
 import Script from 'react-load-script';
 import { useOnUnmount } from './hooks';
-import { invoke } from '../utils';
 import { ChargebeeInstance, OnCallHandler } from '../types';
 
 type ActionProps = {
   site: string;
+  onCall: OnCallHandler;
   disabled?: boolean;
   onClick?: React.MouseEventHandler;
-  onCall?: OnCallHandler;
 } & Record<string, unknown>;
 
 const Action = ({
@@ -40,8 +39,13 @@ const Action = ({
   let node;
   if (isReady) {
     const handleClick: React.MouseEventHandler = (event) => {
-      invoke(onClick, event);
-      if (!disabled) onCall?.(instanceRef.current, global.Chargebee);
+      onClick?.(event);
+      if (!disabled) {
+        onCall?.(
+          instanceRef.current as ChargebeeInstance,
+          global.Chargebee,
+        );
+      }
     };
 
     node = <span role="button" tabIndex={0} {...rest} onClick={handleClick} />;

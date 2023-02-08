@@ -1,11 +1,11 @@
 import Action from '../action';
-import { OnCallHandler, VoidFunction, HostedPage } from '../types';
+import { OpenCheckoutOptions, OnCallHandler, VoidFunction, HostedPage } from '../types';
 
 type CheckoutProps = {
   site: string;
   onHostedPageGet: () => HostedPage;
-  onLoaded?: VoidFunction;
-  onStep?: VoidFunction;
+  onLoaded?: OpenCheckoutOptions['loaded'];
+  onStep?: OpenCheckoutOptions['step'];
   onClose?: VoidFunction;
   onSuccess?: VoidFunction;
   onError?: VoidFunction;
@@ -13,11 +13,11 @@ type CheckoutProps = {
 
 const Checkout = ({
   onHostedPageGet,
-  onLoaded,
-  onStep,
-  onClose,
   onSuccess,
+  onLoaded,
+  onClose,
   onError,
+  onStep,
   ...rest
 }: CheckoutProps) => {
   const handleCheckout: OnCallHandler = (instance) => {
@@ -31,7 +31,7 @@ const Checkout = ({
       error: onError,
       close: () => {
         onClose?.();
-        onSuccess?.();
+        if (isSuccess) onSuccess?.();
       },
     });
   };

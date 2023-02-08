@@ -1,28 +1,52 @@
-declare const nominalType: unique symbol;
-
-export type Nominal<Type, Identifier> = Type & {
-  readonly [nominalType]: Identifier;
-};
-
-enum OpenCheckoutLayout {
-  'in_app',
-  'full_page'
-}
-
-export type VoidFunction = () => void; // TODO: check later
+export type VoidFunction = () => void;
 
 type HostedPageId = Nominal<string, 'HostedPageId'>;
 
-export type HostedPage = {};
+type HostedPageType =
+  | 'checkout_new'
+  | 'checkout_existing'
+  | 'update_payment_method'
+  | 'manage_payment_sources'
+  | 'collect_now'
+  | 'extend_subscription'
+  | 'checkout_one_time'
+  | 'pre_cancel'
+  | 'checkout_gift'
+  | 'claim_gift'
+  | 'agreement_pfd';
 
-type OpenCheckoutOptions = {
-  hostedPage: HostedPage;
+type HostedPageState =
+  | 'created'
+  | 'requested'
+  | 'succeeded'
+  | 'cancelled'
+  | 'acknowledged';
+
+type HostedPage = {
+  id: HostedPageId;
+  embed: boolean;
+  created_at: number;
+  expires_at: number;
+  object: 'hosted_page';
+  resource_version: number;
+  state: HostedPageState;
+  type: HostedPageType;
+  updated_at: number;
+  url: string;
+};
+
+type OpenCheckoutLayout =
+  | 'in_app'
+  | 'full_page';
+
+export type OpenCheckoutOptions = {
+  hostedPage: () => HostedPage;
   close?: VoidFunction;
   success: (hostedPageId: HostedPageId) => void;
   error?: VoidFunction;
   loaded?: VoidFunction;
   layout?: OpenCheckoutLayout;
-  step?: (currentStep: string) => void; // TODO: check later
+  step?: (currentStep: string) => void;
 };
 
 type ChargebeePortalOptions = {
@@ -43,7 +67,7 @@ export type ChargebeeForwardOptions = {
     subscriptionId: SubscriptionId;
     paymentSourceId: PaymentSourceId;
   }
-}
+};
 
 type ChargebeePortal = {
   open: (
@@ -52,21 +76,29 @@ type ChargebeePortal = {
   ) => void;
 };
 
+type CustomerId = Nominal<string, 'CustomerId'>;
 type PortalSessionId = Nominal<string, 'PortalSessionId'>;
 type PortalSessionToken = Nominal<string, 'PortalSessionToken'>;
 
-export type PortalSession = {
+type PortalSessionStatus =
+  | 'created'
+  | 'logged_in'
+  | 'logged_out'
+  | 'not_yet_activated'
+  | 'activated';
+
+type PortalSession = {
   id: PortalSessionId;
   token: PortalSessionToken;
+  status: PortalSessionStatus;
+  object: 'portal_session';
+  customer_id: CustomerId;
   access_url: string,
-  status: 'created';
   created_at: number,
   expires_at: number,
-  object: 'portal_session';
-  customer_id: string;
 };
 
-export type PortalSessionSetter = () => Promise<PortalSession>;
+type PortalSessionSetter = () => Promise<PortalSession>;
 
 export type OnCallHandler = (
   instance: ChargebeeInstance,
@@ -81,12 +113,24 @@ export type ChargebeeInstance = {
   closeAll: () => void;
 };
 
+type BusinessEntityId = Nominal<string, 'BusinessEntityId'>;
+
 type ChargebeeInitOptions = {
   site: string;
-  enableGTMTracking: boolean;
+  businessEntityId?: BusinessEntityId;
+  domain?: string;
+  publishableKey?: boolean;
+  iframeOnly?: boolean;
+  isItemsModel?: boolean;
+  enableGATracking?: boolean;
+  enableFBQTracking?: boolean;
+  enableGTMTracking?: boolean;
+  enableRedirectMode?: boolean;
+  enableFriendbuyTracking?: boolean;
+  enableRefersionTracking?: boolean;
 };
 
-export type Chargebee = {
+type Chargebee = {
   init: (options: ChargebeeInitOptions) => ChargebeeInstance;
   getInstance: () => ChargebeeInstance;
 
@@ -94,6 +138,6 @@ export type Chargebee = {
 };
 
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-redeclare, vars-on-top, no-var
+  // eslint-disable-next-line vars-on-top, no-var
   var Chargebee: Chargebee;
 }

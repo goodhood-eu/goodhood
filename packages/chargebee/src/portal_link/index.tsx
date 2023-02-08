@@ -22,7 +22,7 @@ const PortalLink = ({
 
     if (section) {
       forwardOptions = {
-        sectionType: Chargebee?.getPortalSections()[section]
+        sectionType: Chargebee?.getPortalSections()[section],
       } as ChargebeeForwardOptions;
     }
 

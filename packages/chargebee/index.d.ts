@@ -16,5 +16,12 @@ declare module 'react-load-script' {
     >;
   };
 
-  export default React.FC<ScriptProps>;
+  const Script: React.ComponentType<ScriptProps>;
+  export default DefaultIcon;
 }
+
+declare const nominalType: unique symbol;
+
+type Nominal<Type, Identifier> = Type & {
+  readonly [nominalType]: Identifier;
+};
