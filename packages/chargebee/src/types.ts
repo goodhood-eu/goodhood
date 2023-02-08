@@ -98,7 +98,7 @@ type PortalSession = {
   expires_at: number,
 };
 
-type PortalSessionSetter = () => Promise<PortalSession>;
+export type PortalSessionSetter = () => Promise<PortalSession>;
 
 export type OnCallHandler = (
   instance: ChargebeeInstance,
