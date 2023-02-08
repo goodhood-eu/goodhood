@@ -30,8 +30,8 @@ const Checkout = ({
       success: () => { isSuccess = true; },
       error: onError,
       close: () => {
-        onClose?.();
-        if (isSuccess) onSuccess?.();
+        onClose?.call?.(undefined);
+        if (isSuccess) onSuccess?.call?.(undefined);
       },
     });
   };

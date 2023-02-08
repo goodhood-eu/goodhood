@@ -39,9 +39,10 @@ const Action = ({
   let node;
   if (isReady) {
     const handleClick: React.MouseEventHandler = (event) => {
-      onClick?.(event);
+      onClick?.call?.(undefined, event);
       if (!disabled) {
-        onCall?.(
+        onCall?.call?.(
+          undefined,
           instanceRef.current as ChargebeeInstance,
           global.Chargebee,
         );
