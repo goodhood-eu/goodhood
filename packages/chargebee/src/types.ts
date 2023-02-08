@@ -22,7 +22,7 @@ type HostedPageState =
   | 'cancelled'
   | 'acknowledged';
 
-type HostedPage = {
+export type HostedPage = {
   id: HostedPageId;
   embed: boolean;
   created_at: number;
