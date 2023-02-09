@@ -1,14 +1,19 @@
 import PropTypes from 'prop-types';
 
 import * as sections from '../constants';
-import { ChargebeeForwardOptions, OnCallHandler, PortalSessionSetter } from '../types';
+import {
+  ChargebeeForwardOptions,
+  PortalSectionsKeys,
+  GetPortalSessionFunction,
+  OnCallHandler,
+} from '../types';
 import Action from '../action';
 
 type PortalLinkProps = {
   site: string;
-  onSessionGet: PortalSessionSetter;
+  onSessionGet: GetPortalSessionFunction;
   onClose?: () => void;
-  section?: string;
+  section?: PortalSectionsKeys;
 } & Record<string, unknown>;
 
 const PortalLink = ({

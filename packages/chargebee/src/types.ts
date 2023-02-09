@@ -46,7 +46,7 @@ export type OpenCheckoutOptions = {
   error?: VoidFunction;
   loaded?: VoidFunction;
   layout?: OpenCheckoutLayout;
-  step?: (currentStep: string) => void;
+  step?: (currentCheckoutStep: string) => void;
 };
 
 type ChargebeePortalOptions = {
@@ -55,14 +55,14 @@ type ChargebeePortalOptions = {
   paymentSourceUpdate?: VoidFunction;
   paymentSourceRemove?: VoidFunction;
   loaded?: VoidFunction;
-  visit?: (sectionType: string) => void;
+  visit?: (sectionType: PortalSectionTypes) => void;
 };
 
 type SubscriptionId = Nominal<string, 'SubscriptionId'>;
 type PaymentSourceId = Nominal<string, 'PaymentSourceId'>;
 
 export type ChargebeeForwardOptions = {
-  sectionType: string;
+  sectionType: PortalSectionTypes;
   params?: {
     subscriptionId: SubscriptionId;
     paymentSourceId: PaymentSourceId;
@@ -98,7 +98,7 @@ type PortalSession = {
   expires_at: number,
 };
 
-export type PortalSessionSetter = () => Promise<PortalSession>;
+export type GetPortalSessionFunction = () => Promise<PortalSession>;
 
 export type OnCallHandler = (
   instance: ChargebeeInstance,
@@ -107,7 +107,7 @@ export type OnCallHandler = (
 
 export type ChargebeeInstance = {
   createChargebeePortal: () => ChargebeePortal;
-  setPortalSession: (callback: PortalSessionSetter) => void;
+  setPortalSession: (callback: GetPortalSessionFunction) => void;
   openCheckout: (options: OpenCheckoutOptions) => void;
   logout: () => void;
   closeAll: () => void;
@@ -130,11 +130,33 @@ type ChargebeeInitOptions = {
   enableRefersionTracking?: boolean;
 };
 
+const PortalSections = {
+  SUBSCRIPTION_DETAILS: 'sub_details',
+  SUBSCRIPTION_CANCELLATION: 'sub_cancel',
+  EDIT_SUBSCRIPTION: 'edit_subscription',
+  VIEW_SCHEDULED_CHANGES: 'scheduled_changes',
+  ACCOUNT_DETAILS: 'account_details',
+  EDIT_ACCOUNT_DETAILS: 'portal_edit_account',
+  ADDRESS: 'portal_address',
+  EDIT_BILLING_ADDRESS: 'portal_edit_billing_address',
+  EDIT_SHIPPING_ADDRESS: 'portal_edit_shipping_address',
+  EDIT_SUBSCRIPTION_CUSTOM_FIELDS: 'portal_edit_subscription_cf',
+  PAYMENT_SOURCES: 'portal_payment_methods',
+  ADD_PAYMENT_SOURCE: 'portal_add_payment_method',
+  EDIT_PAYMENT_SOURCE: 'portal_edit_payment_method',
+  VIEW_PAYMENT_SOURCE: 'portal_view_payment_method',
+  CHOOSE_PAYMENT_METHOD_FOR_SUBSCRIPTION: 'portal_choose_payment_method',
+  BILLING_HISTORY: 'portal_billing_history',
+} as const;
+
+export type PortalSectionsKeys = keyof typeof PortalSections;
+export type PortalSectionTypes = typeof PortalSections[PortalSectionsKeys];
+
 type Chargebee = {
   init: (options: ChargebeeInitOptions) => ChargebeeInstance;
   getInstance: () => ChargebeeInstance;
 
-  getPortalSections: () => Record<string, string>;
+  getPortalSections: () => typeof PortalSections;
 };
 
 declare global {
