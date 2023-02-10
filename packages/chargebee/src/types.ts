@@ -1,6 +1,6 @@
 export type VoidFunction = () => void;
 
-type HostedPageId = Nominal<string, 'HostedPageId'>;
+export type HostedPageId = Nominal<string, 'HostedPageId'>;
 
 type HostedPageType =
   | 'checkout_new'
@@ -58,8 +58,8 @@ type ChargebeePortalOptions = {
   visit?: (sectionType: PortalSectionTypes) => void;
 };
 
-type SubscriptionId = Nominal<string, 'SubscriptionId'>;
-type PaymentSourceId = Nominal<string, 'PaymentSourceId'>;
+export type SubscriptionId = Nominal<string, 'SubscriptionId'>;
+export type PaymentSourceId = Nominal<string, 'PaymentSourceId'>;
 
 export type ChargebeeForwardOptions = {
   sectionType: PortalSectionTypes;
@@ -76,9 +76,9 @@ type ChargebeePortal = {
   ) => void;
 };
 
-type CustomerId = Nominal<string, 'CustomerId'>;
-type PortalSessionId = Nominal<string, 'PortalSessionId'>;
-type PortalSessionToken = Nominal<string, 'PortalSessionToken'>;
+export type CustomerId = Nominal<string, 'CustomerId'>;
+export type PortalSessionId = Nominal<string, 'PortalSessionId'>;
+export type PortalSessionToken = Nominal<string, 'PortalSessionToken'>;
 
 type PortalSessionStatus =
   | 'created'
@@ -113,7 +113,7 @@ export type ChargebeeInstance = {
   closeAll: () => void;
 };
 
-type BusinessEntityId = Nominal<string, 'BusinessEntityId'>;
+export type BusinessEntityId = Nominal<string, 'BusinessEntityId'>;
 
 type ChargebeeInitOptions = {
   site: string;
