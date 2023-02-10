@@ -3,12 +3,11 @@ import Script from 'react-load-script';
 import { useOnUnmount } from './hooks';
 import { ChargebeeInstance, OnCallHandler } from '../types';
 
-type ActionProps = {
+export type ActionProps = {
   site: string;
   onCall: OnCallHandler;
   disabled?: boolean;
-  onClick?: React.MouseEventHandler;
-} & Record<string, unknown>;
+} & React.ComponentPropsWithoutRef<'span'>;
 
 const Action = ({
   disabled = false,
@@ -38,7 +37,7 @@ const Action = ({
 
   let node;
   if (isReady) {
-    const handleClick: React.MouseEventHandler = (event) => {
+    const handleClick: React.MouseEventHandler<HTMLSpanElement> = (event) => {
       onClick?.call?.(undefined, event);
       if (!disabled) {
         onCall?.call?.(
@@ -49,7 +48,7 @@ const Action = ({
       }
     };
 
-    node = <span role="button" tabIndex={0} {...rest} onClick={handleClick} />;
+    node = <span {...rest} role="button" tabIndex={0} onClick={handleClick} />;
   }
 
   return (

@@ -6,15 +6,15 @@ import {
   PortalSectionsKeys,
   GetPortalSessionFunction,
   OnCallHandler,
+  VoidFunction,
 } from '../types';
-import Action from '../action';
+import Action, { ActionProps } from '../action';
 
-type PortalLinkProps = {
-  site: string;
+type PortalLinkProps = ActionProps & {
   onSessionGet: GetPortalSessionFunction;
-  onClose?: () => void;
   section?: PortalSectionsKeys;
-} & Record<string, unknown>;
+  onClose?: VoidFunction;
+};
 
 const PortalLink = ({
   section,

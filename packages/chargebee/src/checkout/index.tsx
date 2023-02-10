@@ -1,15 +1,14 @@
-import Action from '../action';
+import Action, { ActionProps } from '../action';
 import { OpenCheckoutOptions, OnCallHandler, VoidFunction, HostedPage } from '../types';
 
-type CheckoutProps = {
-  site: string;
+type CheckoutProps = ActionProps & {
   onHostedPageGet: () => HostedPage;
   onLoaded?: OpenCheckoutOptions['loaded'];
   onStep?: OpenCheckoutOptions['step'];
-  onClose?: VoidFunction;
   onSuccess?: VoidFunction;
+  onClose?: VoidFunction;
   onError?: VoidFunction;
-} & Record<string, unknown>;
+};
 
 const Checkout = ({
   onHostedPageGet,
