@@ -155,11 +155,10 @@ export type PortalSectionTypes = typeof PortalSections[PortalSectionsKeys];
 type Chargebee = {
   init: (options: ChargebeeInitOptions) => ChargebeeInstance;
   getInstance: () => ChargebeeInstance;
-
   getPortalSections: () => typeof PortalSections;
 };
 
 declare global {
-  // eslint-disable-next-line vars-on-top, no-var
+  // eslint-disable-next-line
   var Chargebee: Chargebee;
 }
