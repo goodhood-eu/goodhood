@@ -18,7 +18,7 @@ export const getRequestOptions = ({
 }) => {
   const props = pickBy({
     // Should be 'nebenan.de'
-    d: domain,
+    dn: domain,
     env,
   }, boolFilter);
 
