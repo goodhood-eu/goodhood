@@ -10,7 +10,7 @@ import {
 } from '../types';
 import Action, { ActionProps } from '../action';
 
-type PortalLinkProps = ActionProps & {
+type PortalLinkProps = Omit<ActionProps, 'onCall'> & {
   onSessionGet: GetPortalSessionFunction;
   section?: PortalSectionsKeys;
   onClose?: VoidFunction;
