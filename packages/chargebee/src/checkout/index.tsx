@@ -1,7 +1,7 @@
 import Action, { ActionProps } from '../action';
 import { OpenCheckoutOptions, OnCallHandler, VoidFunction, HostedPage } from '../types';
 
-type CheckoutProps = ActionProps & {
+type CheckoutProps = Omit<ActionProps, 'onCall'> & {
   onHostedPageGet: () => HostedPage;
   onLoaded?: OpenCheckoutOptions['loaded'];
   onStep?: OpenCheckoutOptions['step'];
