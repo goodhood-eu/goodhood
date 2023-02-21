@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "1.0.2",
+  "version": "2.0.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -28,10 +28,11 @@
     "lint:typescript": "../../scripts/check-typescript"
   },
   "devDependencies": {
-    "prop-types": "^15.8.1"
+    "prop-types": "^15.8.1",
+    "nebenan-helpers": "^6.0.0"
   },
   "peerDependencies": {
     "@babel/runtime": "^7.12.5",
-    "react": "^16.14.0 || ^17.0.1"
+    "react": ">= 16.14.0"
   }
 }
