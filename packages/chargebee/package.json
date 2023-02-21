@@ -28,8 +28,7 @@
     "lint:typescript": "../../scripts/check-typescript"
   },
   "devDependencies": {
-    "react-load-script": "0.0.6",
-    "prop-types": "^15.7.2"
+    "react-load-script": "0.0.6"
   },
   "peerDependencies": {
     "@babel/runtime": "^7.12.5",
