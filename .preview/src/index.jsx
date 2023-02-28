@@ -1,4 +1,4 @@
-import { hydrate, render } from 'react-dom';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import { BrowserRouter, HashRouter } from 'react-router-dom';
 import Routes from './routes';
 import './index.scss';
@@ -18,19 +18,19 @@ const mainNode = document.getElementById('main');
 const isPrerender = Boolean(mainNode);
 
 if (isPrerender) {
-  hydrate((
+  hydrateRoot(mainNode, (
     <BrowserRouter>
       {Component}
     </BrowserRouter>
-  ), mainNode);
+  ));
 } else {
   const node = document.createElement('main');
   document.body.appendChild(node);
 
-  render((
+  createRoot(node).render((
     // eslint-disable-next-line no-undef
     <HashRouter basename={PUBLIC_PATH}>
       {Component}
     </HashRouter>
-  ), node);
+  ));
 }
