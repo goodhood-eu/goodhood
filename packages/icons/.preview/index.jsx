@@ -1,4 +1,4 @@
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Switch, Route } from 'react-router';
 import { Normalize } from 'styled-normalize';
@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
 
 const node = document.createElement('main');
 document.body.appendChild(node);
-render((
+createRoot(node).render((
   // eslint-disable-next-line no-undef
   <BrowserRouter basename={PUBLIC_PATH}>
     <Normalize />
@@ -36,4 +36,4 @@ render((
       <Route component={Error404} />
     </Switch>
   </BrowserRouter>
-), node);
+));
