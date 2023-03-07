@@ -3,6 +3,7 @@ import { Children } from 'react';
 import Meta from '../textfields_meta';
 import Radio from '../radio';
 import styles from './index.module.scss';
+import { pickDataAttributes } from '../utils';
 
 export const RadioGroupHorizontalLayout = ({ meta, children }) => (
   <div>
@@ -57,6 +58,7 @@ const RadioGroup = ({
             onChange={handleChange}
             disabled={item.disabled}
             checked={value === item.value}
+            {...pickDataAttributes(item)}
           />
         ))}
       </Layout>
