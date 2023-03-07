@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './index.module.scss';
+import { pickDataAttributes } from '../utils';
 
 const Radio = ({
   onChange,
@@ -12,13 +13,17 @@ const Radio = ({
   name,
   onBlur,
   onFocus,
+  ...rest
 }) => {
   const handleChange = (e) => {
     onChange(e, value);
   };
 
   return (
-    <label className={clsx(styles.label, className, { [styles.disabled]: disabled })}>
+    <label
+      className={clsx(styles.label, className, { [styles.disabled]: disabled })}
+      {...pickDataAttributes(rest)}
+    >
       <input
         className={styles.input}
         onChange={handleChange}
