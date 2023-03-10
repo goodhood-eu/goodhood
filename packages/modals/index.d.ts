@@ -39,6 +39,7 @@ declare module 'nebenan-keymanager' {
   export = keymanager;
 }
 
+
 declare module '@goodhood/components';
 
 type Nullable<T> = T | null;
