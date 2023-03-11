@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { marked } from 'marked';
 import styles from './index.module.scss';
@@ -15,8 +14,8 @@ type RemainingHTMLAttributes = Omit<ComponentPropsWithoutRef<'span'>,
 
 type Props = PropsWithChildren<{
   className?: string,
-  inline: boolean,
-  blockquotes: boolean,
+  inline?: boolean,
+  blockquotes?: boolean,
   text: string,
   onClick?: ClickHandler,
 } & RemainingHTMLAttributes>;
@@ -41,20 +40,6 @@ const Markdown = ({
       {children}
     </span>
   );
-};
-
-Markdown.defaultProps = {
-  inline: false,
-  blockquotes: false,
-};
-
-Markdown.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node,
-  inline: PropTypes.bool.isRequired,
-  blockquotes: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
 };
 
 export default Markdown;
