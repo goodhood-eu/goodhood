@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "7.6.4",
+  "version": "7.7.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "types": "lib/types/packages/components/src",
@@ -32,10 +32,8 @@
     "lint:typescript": "../../scripts/check-typescript"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.4",
     "@types/escape-html": "^1.0.2",
     "@types/marked": "^4.0.8",
-    "@types/mocha": "^10.0.1",
     "@types/react-router": "^5.1.20",
     "nebenan-eventproxy": "^1.0.0",
     "nebenan-form": "^10.1.0",
