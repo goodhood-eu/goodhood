@@ -12,6 +12,7 @@ type EcosystemBarItem = {
     mobile: string,
     others: string,
   },
+  testId?: string,
 };
 
 type EcosystemBarProps = {
@@ -34,6 +35,7 @@ export const EcosystemBar = ({ items, onFirstSwipe, onItemClick }: EcosystemBarP
         rel="noreferrer noopener"
         target={item.isActive ? '_self' : '_blank'}
         onClick={() => onItemClick(item.event)}
+        data-testid={item.testId}
       >
         <span className={styles.onlyMobile}>
           {item.text.mobile}
