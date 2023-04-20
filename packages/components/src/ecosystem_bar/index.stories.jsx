@@ -1,4 +1,4 @@
-import EcosystemBar from '@/src/ecosystem_bar/index';
+import EcosystemBar from '.';
 
 export default { title: 'EcosystemBar', component: EcosystemBar };
 
