@@ -8168,6 +8168,13 @@ nebenan-keymanager@^1.0.1:
   resolved "https://registry.npmjs.org/nebenan-keymanager/-/nebenan-keymanager-1.0.1.tgz"
   integrity sha512-glnQ3bUOfNQCNbCTHtRL/Snwo7qVqJ1iOQD+mpTNDnZ3ces52fSXDQ7pUCNrW4pFTl2vG1toK0oD81Fi2gQ0Fg==
 
+nebenan-react-hocs@9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/nebenan-react-hocs/-/nebenan-react-hocs-9.1.0.tgz#195c910fb9511acad57ae1b34f891bd17ec44236"
+  integrity sha512-RBUHPrWbl47IDzrWzPB5U1M8t0EaR71t5wlVad1p3yGhGNMbI+ryX9OlkKf30mjmHiF7hfJRNh9WDpfuvBM8Lw==
+  dependencies:
+    lodash "^4.17.21"
+
 nebenan-react-hocs@^9.0.0:
   version "9.0.0"
   resolved "https://registry.npmjs.org/nebenan-react-hocs/-/nebenan-react-hocs-9.0.0.tgz"
