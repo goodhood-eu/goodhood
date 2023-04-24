@@ -3925,7 +3925,7 @@ clone@^1.0.2:
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   integrity sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==
 
-clsx@^1.1.1, clsx@^1.2.1:
+clsx@^1.1.1, clsx@^1.2.0, clsx@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.2.1.tgz#0ddc4a20a549b59c93a4116bb26f5294ca17dc12"
   integrity sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==
@@ -8278,7 +8278,7 @@ nebenan-keymanager@^1.0.1:
   resolved "https://registry.yarnpkg.com/nebenan-keymanager/-/nebenan-keymanager-1.0.1.tgz#e9b22f78a96b1515142243e57f4e68be540a07b7"
   integrity sha512-glnQ3bUOfNQCNbCTHtRL/Snwo7qVqJ1iOQD+mpTNDnZ3ces52fSXDQ7pUCNrW4pFTl2vG1toK0oD81Fi2gQ0Fg==
 
-nebenan-react-hocs@^9.0.0, nebenan-react-hocs@^9.1.0:
+nebenan-react-hocs@9.1.0:
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/nebenan-react-hocs/-/nebenan-react-hocs-9.1.0.tgz#195c910fb9511acad57ae1b34f891bd17ec44236"
   integrity sha512-RBUHPrWbl47IDzrWzPB5U1M8t0EaR71t5wlVad1p3yGhGNMbI+ryX9OlkKf30mjmHiF7hfJRNh9WDpfuvBM8Lw==
@@ -9723,7 +9723,7 @@ promzard@^0.3.0:
   dependencies:
     read "1"
 
-prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@15.8.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
