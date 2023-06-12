@@ -32,7 +32,6 @@ module.exports = {
     'transform-react-remove-prop-types',
     '@babel/plugin-transform-runtime',
     '@babel/plugin-transform-strict-mode',
-    '@babel/plugin-proposal-json-strings',
   ],
   overrides: getPackages().map(getOverridesForPackage),
   env: {
