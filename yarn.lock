@@ -3594,7 +3594,7 @@ browser-stdout@1.3.1:
   resolved "https://registry.yarnpkg.com/browser-stdout/-/browser-stdout-1.3.1.tgz#baa559ee14ced73452229bad7326467c61fabd60"
   integrity sha512-qhAVI1+Av2X7qelOfAIYwXONood6XlZE/fXaBSmW/T5SzLAmCgzi+eiWE7fUvbHaeNBQH13UftjpXxsfLkMpgw==
 
-browserslist-config-nebenan@^1.0.0:
+browserslist-config-nebenan@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/browserslist-config-nebenan/-/browserslist-config-nebenan-1.0.1.tgz#b61db1667255cc3e8ea239ba9eaf82ebcb31e6fb"
   integrity sha512-DXuGNsCJiXNlKhTnFB9dRYf4FG6ZxnSHxq4d6PBPECt7XKQWAQQsY7mMYNkAySNtKVPb8QXBgUM7A0Cd9/0xRQ==
@@ -3925,7 +3925,7 @@ clone@^1.0.2:
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   integrity sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==
 
-clsx@^1.1.1, clsx@^1.2.0, clsx@^1.2.1:
+clsx@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.2.1.tgz#0ddc4a20a549b59c93a4116bb26f5294ca17dc12"
   integrity sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==
@@ -5164,7 +5164,7 @@ eslint-config-nebenan-base@^2.0.1:
     eslint-plugin-import "^2.22.0"
     eslint-plugin-unicorn "^40.1.0"
 
-eslint-config-nebenan@^4.3.0:
+eslint-config-nebenan@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/eslint-config-nebenan/-/eslint-config-nebenan-4.4.0.tgz#5d0a87a828db9542f90822f3afcc04455dc047d5"
   integrity sha512-DtYI1W5d5EsB3IjIjxdcM38Hs7cRE/QH6aCvXeVO3NWgq32iwIzOu0JxbqznGaa587WtmdNtmL5G3fvnjYrJyA==
@@ -8259,12 +8259,7 @@ nebenan-form@^10.3.0:
     nebenan-ui-kit "^5.6.1"
     string-validate "^3.9.0"
 
-nebenan-helpers@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/nebenan-helpers/-/nebenan-helpers-6.0.0.tgz#bb2dcfc01f77b93c325fa8e35e3fe52ae1ae642a"
-  integrity sha512-2gZGPf3SDo/3Gcs/+pJdmuQ7hnw8Idq+0qA8zOJEW/MIkXyxYmhQiWTkr4xrpqsN2te6OtGj6mck+BNeuzb8cQ==
-
-nebenan-helpers@^7.0.0, nebenan-helpers@^7.1.0, nebenan-helpers@^7.2.0:
+nebenan-helpers@^7.1.0, nebenan-helpers@^7.2.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/nebenan-helpers/-/nebenan-helpers-7.2.0.tgz#37778d1ee3e2bb06ffbadbad646167e7b1420561"
   integrity sha512-HL3nYC2ji4P03DP2dNiCAr+hBN4W306bCpXgxgM8RzJPpQfoD6Hz3c6SgqF4qjWT4I6VxPZcE3vOOPeDaw2ehw==
@@ -8278,14 +8273,14 @@ nebenan-keymanager@^1.0.1:
   resolved "https://registry.yarnpkg.com/nebenan-keymanager/-/nebenan-keymanager-1.0.1.tgz#e9b22f78a96b1515142243e57f4e68be540a07b7"
   integrity sha512-glnQ3bUOfNQCNbCTHtRL/Snwo7qVqJ1iOQD+mpTNDnZ3ces52fSXDQ7pUCNrW4pFTl2vG1toK0oD81Fi2gQ0Fg==
 
-nebenan-react-hocs@9.1.0:
+nebenan-react-hocs@^9.1.0:
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/nebenan-react-hocs/-/nebenan-react-hocs-9.1.0.tgz#195c910fb9511acad57ae1b34f891bd17ec44236"
   integrity sha512-RBUHPrWbl47IDzrWzPB5U1M8t0EaR71t5wlVad1p3yGhGNMbI+ryX9OlkKf30mjmHiF7hfJRNh9WDpfuvBM8Lw==
   dependencies:
     lodash "^4.17.21"
 
-nebenan-ui-kit@^5.3.0, nebenan-ui-kit@^5.6.1:
+nebenan-ui-kit@^5.6.1:
   version "5.6.1"
   resolved "https://registry.yarnpkg.com/nebenan-ui-kit/-/nebenan-ui-kit-5.6.1.tgz#a57a7972ec6b34871c1ac4f20db222c791c1749a"
   integrity sha512-wk1G15TVBcnWusqsA+0mZmJD6IveZsoePsCbS4ByYnDyttUgHAHqIbMzUbUcCGGROq5gUlcUNRUDSse5PEVcdA==
@@ -9723,7 +9718,7 @@ promzard@^0.3.0:
   dependencies:
     read "1"
 
-prop-types@15.8.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -9899,7 +9894,7 @@ react-is@^18.2.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
-react-load-script@0.0.6, react-load-script@^0.0.6:
+react-load-script@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-load-script/-/react-load-script-0.0.6.tgz#db6851236aaa25bb622677a2eb51dad4f8d2c258"
   integrity sha512-aRGxDGP9VoLxcsaYvKWIW+LRrMOzz2eEcubTS4NvQPPugjk2VvMhow0wWTkSl7RxookomD1MwcP4l5UStg5ShQ==
