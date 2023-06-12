@@ -33,7 +33,7 @@ declare module 'nebenan-react-hocs/lib/use_event_listener' {
 declare module 'nebenan-helpers/lib/utils' {
   export function invoke<TFunc>(
     fn: TFunc | undefined | null,
-    ...args: Paramters<TFunc>
+    ...args: Parameters<TFunc>
   ): ReturnType<TFunc> | undefined;
 }
 
