@@ -3,13 +3,6 @@ declare module '*.scss' {
   export default content;
 }
 
-declare module '@goodhood/icons/lib/*' {
-  import { SVGProps } from 'react';
-
-  const DefaultIcon: React.ComponentType<SVGProps<SVGSVGElement>>;
-  export default DefaultIcon;
-}
-
 declare module 'nebenan-helpers/lib/dom' {
   import { UIEvent } from 'react';
 

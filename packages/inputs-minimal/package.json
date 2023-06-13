@@ -31,8 +31,7 @@
   "dependencies": {
     "@goodhood/icons": "^5.0.0",
     "clsx": "^1.2.1",
-    "lodash": "^4.17.21",
-    "prop-types": "15.8.1"
+    "lodash": "^4.17.21"
   },
   "peerDependencies": {
     "@babel/runtime": "^7.12.5",
