@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "7.1.2",
+  "version": "7.2.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -26,20 +26,19 @@
   },
   "devDependencies": {
     "@turf/circle": "^6.5.0",
-    "@turf/transform-rotate": "^6.5.0",
-    "prop-types": "^15.7.2"
+    "@turf/transform-rotate": "^6.5.0"
   },
   "dependencies": {
-    "maplibre-gl": "^2.4.0",
-    "nebenan-react-hocs": "^9.0.0",
     "@goodhood/icons": "^5.0.0",
-    "clsx": "^1.2.1"
+    "clsx": "^1.2.1",
+    "maplibre-gl": "^2.4.0",
+    "nebenan-react-hocs": "^9.1.0"
   },
   "peerDependencies": {
     "@babel/runtime": "^7.12.5",
     "nebenan-ui-kit": "^5.0.0",
-    "react": "^16.14.0 || ^17.0.1",
-    "react-dom": "^16.14.0 || ^17.0.1"
+    "react": ">= 16.14.0",
+    "react-dom": ">= 16.14.0"
   },
   "files": [
     "lib",

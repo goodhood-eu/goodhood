@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/goodhood-eu/goodhood/issues"
   },
-  "version": "1.6.1",
+  "version": "1.7.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "types": "lib/types/packages/chargebee/src",
@@ -28,12 +28,9 @@
     "test": "../../scripts/run-tests",
     "lint:typescript": "../../scripts/check-typescript"
   },
-  "devDependencies": {
-    "react-load-script": "0.0.6"
-  },
   "peerDependencies": {
     "@babel/runtime": "^7.12.5",
-    "react": "^16.14.0 || ^17.0.1",
+    "react": ">= 16.14.0",
     "react-load-script": "^0.0.6"
   }
 }

@@ -2307,7 +2307,7 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact, a.maplibregl-ctrl-logo.maplibregl-compact
   }
 }
 .mapboxgl-ctrl.mapboxgl-ctrl-attrib, .maplibregl-ctrl.maplibregl-ctrl-attrib {
-  background-color: hsla(0deg, 0%, 100%, 0.5);
+  background-color: hsla(0, 0%, 100%, 0.5);
   margin: 0;
   padding: 0 5px;
 }
@@ -2334,7 +2334,7 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact, a.maplibregl-ctrl-logo.maplibregl-compact
     display: none;
   }
   .mapboxgl-ctrl-attrib-button, .maplibregl-ctrl-attrib-button {
-    background-color: hsla(0deg, 0%, 100%, 0.5);
+    background-color: hsla(0, 0%, 100%, 0.5);
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='24' height='24' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg' fill-rule='evenodd'%3E%3Cpath d='M4 10a6 6 0 1 0 12 0 6 6 0 1 0-12 0m5-3a1 1 0 1 0 2 0 1 1 0 1 0-2 0m0 3a1 1 0 1 1 2 0v3a1 1 0 1 1-2 0'/%3E%3C/svg%3E");
     border: 0;
     border-radius: 12px;
@@ -2406,7 +2406,7 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact, a.maplibregl-ctrl-logo.maplibregl-compact
 }
 
 .mapboxgl-ctrl-scale, .maplibregl-ctrl-scale {
-  background-color: hsla(0deg, 0%, 100%, 0.75);
+  background-color: hsla(0, 0%, 100%, 0.75);
   border: 2px solid #333;
   border-top: #333;
   box-sizing: border-box;

@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
-import TextField from '../textfield';
 import omit from 'lodash/omit';
+import PropTypes from 'prop-types';
 import Eye1Icon from '@goodhood/icons/lib/medium/eye_1';
 import Eye2Icon from '@goodhood/icons/lib/medium/eye_2';
+import TextField from '../textfield';
 import { SIZES_KEYS } from '../constants';
 
 const PasswordField = ({

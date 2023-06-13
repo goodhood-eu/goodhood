@@ -29,3 +29,14 @@ declare module 'nebenan-react-hocs/lib/use_event_listener' {
     handler: () => void,
   );
 }
+
+declare module 'nebenan-helpers/lib/utils' {
+  export function invoke<TFunc>(
+    fn: TFunc | undefined | null,
+    ...args: Parameters<TFunc>
+  ): ReturnType<TFunc> | undefined;
+}
+
+declare module 'nebenan-helpers/lib/routes' {
+  export function stripOriginFromUrl(url: string = '', origin: string = ''): string;
+}
