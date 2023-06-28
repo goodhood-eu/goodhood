@@ -9170,6 +9170,13 @@ nebenan-react-hocs@^9.1.0:
   dependencies:
     lodash "^4.17.21"
 
+nebenan-react-hocs@^9.2.0:
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/nebenan-react-hocs/-/nebenan-react-hocs-9.2.0.tgz#b4d4cd0aa0cf5d9c5131ecf42d01c8ee5318b1c1"
+  integrity sha512-qjvvWo5t/2kcEpDj1zM9eb9w4Gv9jT0zJmmdd8foV6D9+eLCoqQd13TfGx/nsLW1dIvMiSs5cJksoRdxPw7g/g==
+  dependencies:
+    lodash "^4.17.21"
+
 nebenan-ui-kit@^5.6.1:
   version "5.6.1"
   resolved "https://registry.yarnpkg.com/nebenan-ui-kit/-/nebenan-ui-kit-5.6.1.tgz#a57a7972ec6b34871c1ac4f20db222c791c1749a"
