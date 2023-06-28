@@ -2,7 +2,7 @@
   "name": "@goodhood/components",
   "description": "A collection of React Nebenan UI Components",
   "author": "Good Hood GmbH <tech@nebenan.de>",
-  "license": "SEE LICENSE IN LICENSE FILE",
+  "license": "MIT",
   "homepage": "https://github.com/goodhood-eu/goodhood/packages/components#readme",
   "repository": "github:goodhood-eu/goodhood",
   "bugs": "https://github.com/goodhood-eu/goodhood/issues",
