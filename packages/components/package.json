@@ -1,16 +1,11 @@
 {
   "name": "@goodhood/components",
   "description": "A collection of React Nebenan UI Components",
-  "author": "goodhood.eu <max@nebenan.de>",
+  "author": "Good Hood GmbH <tech@nebenan.de>",
   "license": "SEE LICENSE IN LICENSE FILE",
-  "homepage": "https://goodhood.eu/",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/goodhood-eu/goodhood.git"
-  },
-  "bugs": {
-    "url": "https://github.com/goodhood-eu/goodhood/issues"
-  },
+  "homepage": "https://github.com/goodhood-eu/goodhood/packages/components#readme",
+  "repository": "github:goodhood-eu/goodhood",
+  "bugs": "https://github.com/goodhood-eu/goodhood/issues",
   "version": "7.9.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
@@ -50,7 +45,7 @@
     "lodash": "^4.17.21",
     "marked": "^4.0.0",
     "nebenan-helpers": "^7.2.0",
-    "nebenan-react-hocs": "^9.1.0"
+    "nebenan-react-hocs": "^9.2.0"
   },
   "peerDependencies": {
     "@babel/runtime": "^7.12.5",
