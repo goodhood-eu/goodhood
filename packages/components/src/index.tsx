@@ -38,6 +38,6 @@ export { default as ReactionsRow } from './reactions_row';
 export { default as SideScroller } from './side_scroller';
 export { default as Slider } from './slider';
 export { default as Tooltip } from './tooltip';
-export { EcosystemBar } from './ecosystem_bar';
+export { EcosystemBar, EcosystemBarItem } from './ecosystem_bar';
 
 export * from './constants';
