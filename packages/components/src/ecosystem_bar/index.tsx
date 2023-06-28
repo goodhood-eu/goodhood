@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useOnceSwipeTracking, useScrolled } from './hooks';
 import styles from './index.module.scss';
 
-type EcosystemBarItem = {
+export type EcosystemBarItem = {
   key: string,
   link: string,
   isActive: boolean,
