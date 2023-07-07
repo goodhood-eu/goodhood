@@ -1,23 +1,49 @@
-import { action } from '@root/.preview/src/modules/actions';
-import { text } from '@root/.preview/src/modules/knobs';
 import { PureComponent } from 'react';
-import { Analytics, PageTracking } from '@/src/v2/index';
+import { Provider } from './provider';
 
 export default { title: 'V2', component: PureComponent };
-
+const mapping: PageMapping[] = [
+  {
+    selector: /\/v-2--default$/,
+    track: {
+      section: 'core',
+      page_name: 'library',
+    },
+  },
+  {
+    selector: /\/feed\/(\d+)$/,
+    track: {
+      section: 'post_details_page',
+      page_name: 'post_details_page',
+    },
+  },
+  {
+    selector: /\/feed$/,
+    track: {
+      section: 'core',
+      page_name: 'main_feed',
+    },
+  },
+  {
+    selector: /\/feed\/marketplace$/,
+    track: {
+      section: 'marketplace',
+      page_name: 'marketplace_feed',
+    },
+  },
+];
 export const Default = () => (
-  <Analytics>
-    <PageTracking resolveBaseEvent={() => ({
-      event: 'gav4.pageviewEvent',
-      environment: 'string',
-      user_id: 'string',
-      section: 'string',
-      hoodname: 'string',
-      element: 'string' })}
-    >
-      <div>
-        <p>asd</p>
-      </div>
-    </PageTracking>
-  </Analytics>
+  <Provider
+    enableAnalytics gtmId="GTM-56G85MT" baseEvent={{
+      environment: 'web-bart',
+      user_id: 'some user id',
+      section: 'some section',
+      hoodname: 'Müllrose',
+      element: '1234' }}
+    pageMapping={mapping}
+  >
+    <div>
+      <p>asd</p>
+    </div>
+  </Provider>
 );
