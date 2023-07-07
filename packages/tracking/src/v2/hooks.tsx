@@ -2,6 +2,7 @@ declare const window: Window & { dataLayer: Record<string, unknown>[]; };
 declare type EventType = 'gav4.clickEvent' | 'gav4.pageviewEvent' | 'gav4.createEvent' | 'gav4.removeEvent' | 'gav4.editEvent' | 'gav5.success_failEvent' | 'gav4.reactEvent' | 'gav4.searchEvent' | 'gav4.swipeEvent' | 'gav4.viewEvent' ;
 declare type BaseEvent = {
   event: EventType
+  environment: string,
   user_id: string,
   section: string,
   hoodname: string,
@@ -32,11 +33,10 @@ declare type ClickEvent = ContentEvent & PlanInfoEvent & {
   content_position: string,
 };
 declare type PageViewEvent = BaseEvent & {
-  event: 'gav4.pageviewEvent',
-  page_path: string,
-  page_search: string,
-  page_hash: string,
+  page_name: string,
+  section:PageSection
 };
+declare type PageSection = 'core' | 'post_details_page' | 'marketplace' | 'inbox' | 'local_business' | 'groups' | 'events' | 'hood_discovery' | 'search' | 'notification' | 'profile' | 'supporter' | 'login_logout' | 'registration_verification' | 'cold_home' | 'landing_pages' | 'magazine' | 'help' | 'error' ;
 declare type RemoveEvent = ContentEvent & {
   event: 'gav4.removeEvent'
 };
@@ -78,8 +78,10 @@ export {
   SearchEvent,
   SwipeEvent,
   ViewEvent,
+  PageSection,
 };
 
 export const useTrackEvent = () => (trackingEvent: BaseEvent) => {
+  console.log('tracking', trackingEvent);
   window.dataLayer.push(trackingEvent);
 };

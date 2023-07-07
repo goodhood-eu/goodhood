@@ -1,12 +1,12 @@
 import React, { PropsWithChildren, useEffect, useState } from 'react';
 import Script from 'react-load-script';
 import { useLocation } from 'react-router';
-import { useTrackEvent, PageViewEvent } from './hooks';
+import { useTrackEvent, PageViewEvent, BaseEvent, PageSection } from './hooks';
 import { setup } from './utils';
 
-export const GTM_URL = `//www.googletagmanager.com/gtm.js?id=${'asdfg'}`;
+export const GTM_URL = `//www.googletagmanager.com/gtm.js?id=${'GTM-56G85MT'}`;
 
-export const AnalyticsNew = (props:PropsWithChildren) => {
+export const Analytics = (props:PropsWithChildren) => {
   const [isAnalyticsEnabled, setAnalyticsEnabled] = useState(false);
 
   // if (!canLoadTagManager && !canLoadAnalytics) return null;
@@ -18,43 +18,54 @@ export const AnalyticsNew = (props:PropsWithChildren) => {
     </>
   );
 };
-export const PageTracking:React.FC<{ children: React.ReactElement }> = (props) => {
+
+declare type PageMapping = {
+  selector:RegExp,
+  track:PageMappingTrackData
+};
+declare type PageMappingTrackData = {
+  section: PageSection,
+  page_name: string
+};
+const mapping: PageMapping[] = [
+  {
+    selector: /\/feed\/(\d+)$/,
+    track: {
+      section: 'post_details_page',
+      page_name: 'post_details_page',
+    },
+  },
+  {
+    selector: /\/feed$/,
+    track: {
+      section: 'core',
+      page_name: 'main_feed',
+    },
+  },
+  {
+    selector: /\/feed\/marketplace$/,
+    track: {
+      section: 'marketplace',
+      page_name: 'marketplace_feed',
+    },
+  },
+];
+
+export const PageTracking:React.FC<{
+  children: React.ReactElement,
+  resolveBaseEvent: ()=>BaseEvent }> = (props) => {
   const location = useLocation();
   const track = useTrackEvent();
+
+
   useEffect(() => {
-    /*   pageTrackingInfo = getPageTrackingInfo(location.pathname)
-        if (pageTrackingInfo.shouldTrack) {
-            track({
-                event: 'pageview',
-                page_path: pageTrackingInfo.path
-                container: pageTrackingInfo.container
-            }); */
-
+    const match = mapping.find((m) => m.selector.test(location.pathname));
+    if (match === undefined) return;
     const event:PageViewEvent = {
-      event: 'gav4.pageviewEvent',
-      user_id: 'user_id',
-      section: 'section',
-      hoodname: 'hoodname',
-      element: 'element',
-      page_path: location.pathname,
-      page_search: location.search,
-      page_hash: location.hash,
-
+      ...props.resolveBaseEvent(),
+      ...match.track,
     };
     track(event);
   }, [location]);
   return props.children;
 };
-
-/*
-const mapping = [
-  {
-    selector: /\/feed\/(\d+)/,
-    track: {
-      shouldTrack: true,
-      section: 'post_details_page',
-      pageName: 'post_details_page',
-    },
-  },
-];
-*/
