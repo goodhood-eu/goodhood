@@ -12,6 +12,20 @@ type TrackingProviderProps = PropsWithChildren<{
   gtmId: string;
 }>;
 
+const PageTrack = ({ enabled, pageMapping, children }:
+PropsWithChildren<{
+  enabled: boolean;
+  pageMapping: PageMapping[]
+}>) => {
+  usePageTracking({
+    enabled,
+    pageMapping,
+  });
+
+  // eslint-disable-next-line react/jsx-no-useless-fragment
+  return <>{children}</>;
+};
+
 export const Provider:React.FC<TrackingProviderProps> = ({
   enableAnalytics = false,
   enablePageTracking = true,
@@ -20,18 +34,16 @@ export const Provider:React.FC<TrackingProviderProps> = ({
   gtmId,
   children,
 }) => {
-  usePageTracking({
-    enabled: enableAnalytics && enablePageTracking,
-    pageMapping,
-  });
   const context = useMemo(() => ({
     baseEvent, enableAnalytics,
   }), [baseEvent, enableAnalytics]);
 
   return (
     <AnalyticsContext.Provider value={context}>
-      {enableAnalytics && <Script url={getScriptSource(gtmId)} onCreate={setup} />}
-      {children}
+      <PageTrack enabled={enableAnalytics && enablePageTracking} pageMapping={pageMapping}>
+        {enableAnalytics && <Script url={getScriptSource(gtmId)} onCreate={setup} />}
+        {children}
+      </PageTrack>
     </AnalyticsContext.Provider>
   );
 };
