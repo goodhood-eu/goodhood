@@ -1,4 +1,5 @@
 import { createContext } from 'react';
+import { BaseEvent } from './types';
 
 export type TAnalyticsContext = {
   baseEvent?: BaseEvent,

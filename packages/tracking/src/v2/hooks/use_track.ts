@@ -1,5 +1,17 @@
 import { useCallback } from 'react';
 import { useAnalytics } from './use_analytics';
+import {
+  ClickEvent,
+  PageViewEvent,
+  RemoveEvent,
+  EditEvent,
+  SuccessFailEvent,
+  ReactEvent,
+  SearchEvent,
+  SwipeEvent,
+  ViewEvent,
+  UnknownEvent,
+} from '../types';
 
 declare const window: Window & {
   dataLayer: Record<string, unknown>[];

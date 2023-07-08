@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router';
 import { useEffect } from 'react';
 import { useTrack } from './use_track';
+import { PageMapping } from '../types';
 
 type UseTrackPageViewOptions = {
   enabled: boolean;

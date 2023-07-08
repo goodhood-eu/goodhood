@@ -14,3 +14,7 @@ declare module 'react-load-script' {
   const Script: React.ComponentType<ScriptProps>;
   export default Script;
 }
+
+type Prettify<T> = {
+  [K in keyof T]: T[K];
+};

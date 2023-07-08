@@ -1,4 +1,5 @@
 import { PureComponent } from 'react';
+import { PageMapping } from './types';
 import { Provider } from './provider';
 
 export default { title: 'V2', component: PureComponent };

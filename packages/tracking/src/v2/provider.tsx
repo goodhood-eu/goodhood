@@ -2,6 +2,7 @@ import React, { PropsWithChildren, useMemo } from 'react';
 import Script from 'react-load-script';
 import { AnalyticsProvider } from './context';
 import { PageView } from './page_view';
+import { BaseEvent, PageMapping } from './types';
 import { setup, getScriptSource } from './utils';
 
 type TrackingProviderProps = PropsWithChildren<{
