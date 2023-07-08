@@ -5,4 +5,8 @@ export type TAnalyticsContext = {
   enableAnalytics: boolean,
 };
 
-export const AnalyticsContext = createContext<TAnalyticsContext>({ enableAnalytics: false });
+export const AnalyticsContext = createContext<TAnalyticsContext>({
+  enableAnalytics: false,
+});
+
+export const AnalyticsProvider = AnalyticsContext.Provider;

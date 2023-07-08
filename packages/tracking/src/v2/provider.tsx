@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useMemo } from 'react';
 import Script from 'react-load-script';
-import { AnalyticsContext } from './context';
-import { usePageTracking } from './hooks';
+import { AnalyticsProvider } from './context';
+import { useTrackPage } from './hooks/use_track_page';
 import { setup, getScriptSource } from './utils';
 
 type TrackingProviderProps = PropsWithChildren<{
@@ -17,7 +17,7 @@ PropsWithChildren<{
   enabled: boolean;
   pageMapping: PageMapping[]
 }>) => {
-  usePageTracking({
+  useTrackPage({
     enabled,
     pageMapping,
   });
@@ -39,11 +39,11 @@ export const Provider:React.FC<TrackingProviderProps> = ({
   }), [baseEvent, enableAnalytics]);
 
   return (
-    <AnalyticsContext.Provider value={context}>
+    <AnalyticsProvider value={context}>
       <PageTrack enabled={enableAnalytics && enablePageTracking} pageMapping={pageMapping}>
         {enableAnalytics && <Script url={getScriptSource(gtmId)} onCreate={setup} />}
         {children}
       </PageTrack>
-    </AnalyticsContext.Provider>
+    </AnalyticsProvider>
   );
 };
