@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useMemo } from 'react';
 import Script from 'react-load-script';
 import { AnalyticsProvider } from './context';
-import { useTrackPage } from './hooks/use_track_page';
+import { PageView } from './page_view';
 import { setup, getScriptSource } from './utils';
 
 type TrackingProviderProps = PropsWithChildren<{
@@ -12,19 +12,6 @@ type TrackingProviderProps = PropsWithChildren<{
   gtmId: string;
 }>;
 
-const PageTrack = ({ enabled, pageMapping, children }:
-PropsWithChildren<{
-  enabled: boolean;
-  pageMapping: PageMapping[]
-}>) => {
-  useTrackPage({
-    enabled,
-    pageMapping,
-  });
-
-  // eslint-disable-next-line react/jsx-no-useless-fragment
-  return <>{children}</>;
-};
 
 export const Provider:React.FC<TrackingProviderProps> = ({
   enableAnalytics = false,
@@ -40,10 +27,17 @@ export const Provider:React.FC<TrackingProviderProps> = ({
 
   return (
     <AnalyticsProvider value={context}>
-      <PageTrack enabled={enableAnalytics && enablePageTracking} pageMapping={pageMapping}>
-        {enableAnalytics && <Script url={getScriptSource(gtmId)} onCreate={setup} />}
+      <PageView
+        enabled={enableAnalytics && enablePageTracking}
+        pageMapping={pageMapping}
+      >
+        {enableAnalytics && (
+          <Script
+            url={getScriptSource(gtmId)} onCreate={setup}
+          />
+        )}
         {children}
-      </PageTrack>
+      </PageView>
     </AnalyticsProvider>
   );
 };
