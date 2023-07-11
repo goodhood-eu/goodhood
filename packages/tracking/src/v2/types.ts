@@ -1,9 +1,8 @@
 export type BaseEvent = {
   environment: string;
   user_id: string;
-  section: string;
   hoodname: string;
-  element: string;
+  section?: PageSection;
 };
 
 export type ContentEvent = {
@@ -36,7 +35,6 @@ export type ClickEvent = Prettify<ContentEvent & PlanInfoEvent & {
 
 export type PageViewEvent = {
   page_name: string;
-  section: PageSection
 };
 
 export type RemoveEvent = ContentEvent;
@@ -67,7 +65,8 @@ export type ViewEvent = ContentEvent & {
 
 export type PageMapping = {
   selector: RegExp;
-  track: Omit<PageViewEvent, 'event'>
+  section: PageSection;
+  track: PageViewEvent;
 };
 
 // TODO: Remove this during cleanup

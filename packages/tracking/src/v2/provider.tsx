@@ -23,8 +23,8 @@ export const Provider:React.FC<TrackingProviderProps> = ({
   children,
 }) => {
   const context = useMemo(() => ({
-    baseEvent, enableAnalytics,
-  }), [baseEvent, enableAnalytics]);
+    baseEvent, enableAnalytics, pageMapping,
+  }), [baseEvent, enableAnalytics, pageMapping]);
 
   return (
     <AnalyticsProvider value={context}>

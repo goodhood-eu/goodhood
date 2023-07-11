@@ -20,7 +20,7 @@ export const useTrackPageView = (
     if (!enabled) return;
 
     const match = pageMapping.find((m) => m.selector.test(location.pathname));
-    if (match) {
+    if (match && match.track) {
       track('gav4.pageViewEvent', {
         ...match.track,
       });

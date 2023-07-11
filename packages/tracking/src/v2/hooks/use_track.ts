@@ -12,6 +12,7 @@ import {
   ViewEvent,
   UnknownEvent,
 } from '../types';
+import { useLocation } from 'react-router';
 
 declare const window: Window & {
   dataLayer: Record<string, unknown>[];
@@ -43,13 +44,17 @@ type TrackFunction = {
 };
 
 export const useTrack = (): TrackFunction => {
-  const { baseEvent } = useAnalytics();
+  const { baseEvent, pageMapping } = useAnalytics();
+  const location = useLocation();
+  const match = pageMapping.find((m) => m.selector.test(location.pathname));
 
   return useCallback((event, payload) => {
     window.dataLayer.push({
       event,
+      section: match?.section,
       ...baseEvent,
+
       ...payload,
     });
-  }, [baseEvent]);
+  }, [baseEvent, location]);
 };
