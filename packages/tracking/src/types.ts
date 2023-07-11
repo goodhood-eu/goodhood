@@ -86,3 +86,6 @@ export type TrackingEvent =
   | SwipeEvent
   | ViewEvent
   | UnknownEvent;
+export type Prettify<T> = {
+  [K in keyof T]: T[K];
+};
