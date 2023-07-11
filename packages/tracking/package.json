@@ -10,7 +10,6 @@
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "types": "lib/types/types.d.ts",
-
   "sideEffects": false,
   "files": [
     "/lib"
