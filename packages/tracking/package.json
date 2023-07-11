@@ -1,16 +1,11 @@
 {
   "name": "@goodhood/tracking",
   "description": "Declarative tracking for react apps",
-  "author": "goodhood.eu <peter@nebenan.de>",
-  "license": "SEE LICENSE IN LICENSE FILE",
-  "homepage": "https://goodhood.eu/",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/goodhood-eu/goodhood.git"
-  },
-  "bugs": {
-    "url": "https://github.com/goodhood-eu/goodhood/issues"
-  },
+  "author": "Good Hood GmbH <tech@nebenan.de>",
+  "license": "MIT",
+  "homepage": "https://github.com/goodhood-eu/goodhood/packages/tracking#readme",
+  "repository": "github:goodhood-eu/goodhood",
+  "bugs": "https://github.com/goodhood-eu/goodhood/issues",
   "version": "1.1.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
