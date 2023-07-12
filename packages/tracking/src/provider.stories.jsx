@@ -1,9 +1,9 @@
 import { PureComponent } from 'react';
-import { PageMapping } from './types';
 import { Provider } from './provider';
+import config from '@root/config';
 
 export default { title: 'V2', component: PureComponent };
-const mapping: PageMapping[] = [
+const mapping = [
   {
     selector: /\/v-2--default$/,
     section: 'core',
@@ -35,7 +35,7 @@ const mapping: PageMapping[] = [
 ];
 export const Default = () => (
   <Provider
-    enableAnalytics gtmId="GTM-56G85MT" baseEvent={{
+    enableAnalytics gtmId={config.tracking.gtm_id} baseEvent={{
       environment: 'web-bart',
       user_id: 'some user id',
       hoodname: 'Müllrose',

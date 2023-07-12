@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useAnalytics } from './use_analytics';
 import {
   ClickEvent,
@@ -10,7 +10,6 @@ import {
   SearchEvent,
   SwipeEvent,
   ViewEvent,
-  UnknownEvent,
 } from '../types';
 import { useLocation } from 'react-router';
 
@@ -37,24 +36,24 @@ type TrackFunction = {
   (event: 'gav4.editEvent', payload: EditEvent): void;
   (event: 'gav4.success_failEvent', payload: SuccessFailEvent): void;
   (event: 'gav4.reactEvent', payload: ReactEvent): void;
-  (event: 'gav4.searchEvent', payload: SearchEvent): void;
   (event: 'gav4.swipeEvent', payload: SwipeEvent): void;
   (event: 'gav4.viewEvent', payload: ViewEvent): void;
-  (event: 'gav4.unknownEvent', payload: UnknownEvent): void;
+  (event: 'gav4.searchEvent', payload: SearchEvent): void;
 };
 
 export const useTrack = (): TrackFunction => {
   const { baseEvent, pageMapping } = useAnalytics();
   const location = useLocation();
-  const match = pageMapping.find((m) => m.selector.test(location.pathname));
+  const match = useMemo(
+    () => pageMapping.find((m) => m.selector.test(location.pathname)),
+    [location.pathname, pageMapping]);
 
   return useCallback((event, payload) => {
     window.dataLayer.push({
       event,
       section: match?.section,
       ...baseEvent,
-
       ...payload,
     });
-  }, [baseEvent, location]);
+  }, [baseEvent, match]);
 };

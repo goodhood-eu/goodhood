@@ -28,15 +28,9 @@ export const Provider:React.FC<TrackingProviderProps> = ({
 
   return (
     <AnalyticsProvider value={context}>
-      <PageView
-        enabled={enableAnalytics && enablePageTracking}
-        pageMapping={pageMapping}
-      >
-        {enableAnalytics && (
-          <Script
-            url={getScriptSource(gtmId)} onCreate={setup}
-          />
-        )}
+      <PageView enabled={enableAnalytics && enablePageTracking}>
+        {enableAnalytics
+          && <Script url={getScriptSource(gtmId)} onCreate={setup} async />}
         {children}
       </PageView>
     </AnalyticsProvider>

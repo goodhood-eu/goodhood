@@ -1,20 +1,19 @@
 import { useLocation } from 'react-router';
 import { useEffect } from 'react';
 import { useTrack } from './use_track';
-import { PageMapping } from '../types';
+import { useAnalytics } from './use_analytics';
 
 type UseTrackPageViewOptions = {
   enabled: boolean;
-  pageMapping: PageMapping[];
 };
 
 export const useTrackPageView = (
   {
     enabled,
-    pageMapping,
   }: UseTrackPageViewOptions) => {
   const location = useLocation();
   const track = useTrack();
+  const { pageMapping } = useAnalytics();
 
   useEffect(() => {
     if (!enabled) return;

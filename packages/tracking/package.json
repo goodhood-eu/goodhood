@@ -9,7 +9,7 @@
   "version": "1.1.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
-  "types": "lib/types/types.d.ts",
+  "types": "lib/types/packages/tracking/src",
   "sideEffects": false,
   "files": [
     "/lib"

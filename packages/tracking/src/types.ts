@@ -24,7 +24,26 @@ export type PlanInfoEvent = {
   payment_type: string;
 };
 
-export type PageSection = 'core' | 'post_details_page' | 'marketplace' | 'inbox' | 'local_business' | 'groups' | 'events' | 'hood_discovery' | 'search' | 'notification' | 'profile' | 'supporter' | 'login_logout' | 'registration_verification' | 'cold_home' | 'landing_pages' | 'magazine' | 'help' | 'error';
+export type PageSection =
+    | 'core'
+    | 'post_details_page'
+    | 'marketplace'
+    | 'inbox'
+    | 'local_business'
+    | 'groups'
+    | 'events'
+    | 'hood_discovery'
+    | 'search'
+    | 'notification'
+    | 'profile'
+    | 'supporter'
+    | 'login_logout'
+    | 'registration_verification'
+    | 'cold_home'
+    | 'landing_pages'
+    | 'magazine'
+    | 'help'
+    | 'error';
 
 export type ClickEvent = Prettify<ContentEvent & PlanInfoEvent & {
   search_term: string;
@@ -86,6 +105,7 @@ export type TrackingEvent =
   | SwipeEvent
   | ViewEvent
   | UnknownEvent;
+
 export type Prettify<T> = {
   [K in keyof T]: T[K];
 };
