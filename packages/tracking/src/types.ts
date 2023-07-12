@@ -45,39 +45,42 @@ export type PageSection =
     | 'help'
     | 'error';
 
-export type ClickEvent = Prettify<ContentEvent & PlanInfoEvent & {
+type InteractionEvent = {
+  element_name?: string;
+};
+export type ClickEvent = InteractionEvent & ContentEvent & PlanInfoEvent & {
   search_term: string;
   click_name: string;
   click_link: string;
   content_position: string;
-}>;
+};
 
 export type PageViewEvent = {
   page_name: string;
 };
 
-export type RemoveEvent = ContentEvent;
+export type RemoveEvent = InteractionEvent & ContentEvent;
 
-export type EditEvent = ContentEvent;
+export type EditEvent = InteractionEvent & ContentEvent;
 
-export type SuccessFailEvent = ContentEvent & PlanInfoEvent & {
+export type SuccessFailEvent = InteractionEvent & ContentEvent & PlanInfoEvent & {
   event_action: string;
 };
 
-export type ReactEvent = ContentEvent & {
+export type ReactEvent = InteractionEvent & ContentEvent & {
   reaction_type: string;
 };
 
-export type SearchEvent = ContentEvent & {
+export type SearchEvent = InteractionEvent & ContentEvent & {
   search_term: string;
   click_name: string;
 };
 
-export type SwipeEvent = ContentEvent & {
+export type SwipeEvent = InteractionEvent & ContentEvent & {
   swipe_direction: string;
 };
 
-export type ViewEvent = ContentEvent & {
+export type ViewEvent = InteractionEvent & ContentEvent & {
   search_term: string;
   content_position: string;
 };
