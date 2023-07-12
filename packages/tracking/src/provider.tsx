@@ -1,9 +1,11 @@
-import React, { PropsWithChildren, useMemo } from 'react';
+import { forwardRef, PropsWithChildren, useContext, useImperativeHandle, useMemo } from 'react';
 import Script from 'react-load-script';
 import { AnalyticsProvider } from './context';
 import { PageView } from './page_view';
 import { BaseEvent, PageMapping } from './types';
 import { setup, getScriptSource } from './utils';
+import { useTrack } from '@/src/hooks/use_track';
+import { TrackingProvider, TrackingContext } from './tracking_context';
 
 type TrackingProviderProps = PropsWithChildren<{
   enableAnalytics: boolean;
@@ -36,3 +38,25 @@ export const Provider:React.FC<TrackingProviderProps> = ({
     </AnalyticsProvider>
   );
 };
+
+
+export const UseTrackingProvider = forwardRef(({
+  children,
+}:PropsWithChildren, ref) => {
+  const context = useContext(TrackingContext);
+  const track = useTrack();
+
+  useImperativeHandle(ref, () => ({
+    track,
+  }));
+  // eslint-disable-next-line react/jsx-no-constructed-context-values
+  const value = {
+    track,
+  };
+
+  return (
+    <TrackingProvider value={value}>
+      {children}
+    </TrackingProvider>
+  );
+});

@@ -1,7 +1,6 @@
 import { useLocation } from 'react-router';
 import { useEffect } from 'react';
-import { useTrack } from './use_track';
-import { useAnalytics } from './use_analytics';
+import { useAnalytics, useTrack } from './use_track';
 
 type UseTrackPageViewOptions = {
   enabled: boolean;

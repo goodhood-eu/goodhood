@@ -1,5 +1,5 @@
-import { useCallback, useMemo } from 'react';
-import { useAnalytics } from './use_analytics';
+import { useCallback, useMemo, useContext } from 'react';
+// eslint-disable-next-line import/no-cycle
 import {
   ClickEvent,
   PageViewEvent,
@@ -12,6 +12,10 @@ import {
   ViewEvent, UnknownEvent,
 } from '../types';
 import { useLocation } from 'react-router';
+// eslint-disable-next-line import/no-cycle
+import { AnalyticsContext } from '../context';
+
+export const useAnalytics = () => useContext(AnalyticsContext);
 
 declare const window: Window & {
   dataLayer: Record<string, unknown>[];
@@ -31,7 +35,8 @@ type TrackEventMap = {
   'gav4.unknownEvent': UnknownEvent;
 };
 
-type TrackFunction = <K extends keyof TrackEventMap>(event: K, payload: TrackEventMap[K]) => void;
+export type TrackFunction =
+    <K extends keyof TrackEventMap>(event: K, payload: TrackEventMap[K]) => void;
 
 
 export const useTrack = (): TrackFunction => {
