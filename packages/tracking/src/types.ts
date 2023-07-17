@@ -112,3 +112,56 @@ export type TrackingEvent =
 export type Prettify<T> = {
   [K in keyof T]: T[K];
 };
+export type TCDataEventStatus =
+    | 'tcloaded'
+    | 'useractioncomplete';
+
+export type TCData = {
+  eventStatus: TCDataEventStatus;
+  purpose: {
+    consents: Record<number, boolean>;
+  },
+  vendor: {
+    consents: Record<number, boolean>;
+    legitimateInterests: Record<number, boolean>;
+  },
+};
+declare global {
+  interface Window {
+    __tcfapi: TCFAPI
+  }
+}
+
+interface TCFAPI {
+  (command: 'getCustomVendorConsents', version: 2, callback: GetCustomVendorConsents): void;
+  (command: 'addEventListener', version: 2, callback: AddEventListener, parameter?: unknown): number;
+  (command: 'removeEventListener', version: 2, callback: RemoveEventListener, listenerId: number): void;
+  (command: 'getTCData', version: 2, callback: TCDataHandler): void;
+}
+type GetCustomVendorConsents = (
+  data: Record<string, unknown> & VendorConsents,
+  success: true
+) => void;
+type AddEventListener = (
+  tcData: Record<string, unknown> & TCData,
+  success: true
+) => void;
+type RemoveEventListener = (success: true) => void;
+type TCDataHandler = (tcData: TCData, success: boolean) => void;
+export interface VendorConsents {
+  grants: Record<VendorId, {
+    vendorGrant: boolean;
+    purposeGrants: Record<string, boolean>
+  }>
+}
+export type Vendor = typeof VENDORS[number];
+export type VendorId = Nominal<string, 'VendorId'>;
+export const VENDORS = [
+  'Google Tag Manager',
+  'Google Analytics',
+] as const;
+
+declare const nominalType: unique symbol;
+export type Nominal<T, Identifier> = T & {
+  readonly [nominalType]: Identifier;
+};
