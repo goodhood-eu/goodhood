@@ -53,6 +53,7 @@ export const useTrack = (): TrackFunction => {
       ...baseEvent,
       ...payload,
       analytics_storage: hasAnalyticsStorageConsent,
+      ad_storage: hasAnalyticsStorageConsent,
     });
   }, [baseEvent, match]);
 };
