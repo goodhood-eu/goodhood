@@ -27,9 +27,5 @@
     "@babel/runtime": "^7.12.5",
     "react": ">= 16.14.0",
     "react-load-script": "^0.0.6"
-  },
-  "dependencies": {
-    "@goodhood/consent": "file:.yalc/@goodhood/consent",
-    "@goodhood/tracking": "file:.yalc/@goodhood/tracking"
   }
 }
