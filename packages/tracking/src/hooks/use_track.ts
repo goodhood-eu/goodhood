@@ -40,22 +40,19 @@ export type TrackFunction =
 
 
 export const useTrack = (): TrackFunction => {
-  const { baseEvent, pageMapping, hasGAConsent } = useAnalytics();
+  const { baseEvent, pageMapping, hasAnalyticsStorageConsent } = useAnalytics();
   const location = useLocation();
   const match = useMemo(
     () => pageMapping.find((m) => m.selector.test(location.pathname)),
     [location.pathname, pageMapping]);
 
   return useCallback((event, payload) => {
-    if (!hasGAConsent) {
-      console.log('trying to track without consent', event, payload);
-      return;
-    }
     window.dataLayer.push({
       event,
       section: match?.section,
       ...baseEvent,
       ...payload,
+      analytics_storage: hasAnalyticsStorageConsent,
     });
   }, [baseEvent, match]);
 };

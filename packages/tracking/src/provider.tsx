@@ -1,15 +1,14 @@
-import { forwardRef, PropsWithChildren, useEffect, useImperativeHandle, useMemo } from 'react';
+import { forwardRef, PropsWithChildren, useImperativeHandle, useMemo } from 'react';
 import Script from 'react-load-script';
 import { AnalyticsProvider } from './context';
 import { PageView } from './page_view';
 import { BaseEvent, PageMapping } from './types';
 import { setup, getScriptSource } from './utils';
 import { useTrack } from '@/src/hooks/use_track';
-import { ConsentManager, useGrant } from '@goodhood/consent';
 
 type TrackingProviderProps = PropsWithChildren<{
-  enableAnalytics: boolean;
-  enablePageTracking?: boolean;
+  hasAnalyticsStorageConsent?: boolean;
+  hasGoogleTagManagerConsent?: boolean;
   baseEvent: BaseEvent;
   pageMapping: PageMapping[];
   gtmId: string;
@@ -18,44 +17,33 @@ type TrackingProviderProps = PropsWithChildren<{
 
 
 export const Provider:React.FC<TrackingProviderProps> = ({
-  enableAnalytics = false,
-  enablePageTracking = true,
+  hasAnalyticsStorageConsent = false,
+  hasGoogleTagManagerConsent = false,
   baseEvent,
   pageMapping,
   gtmId,
-  consentConfiguration,
   children,
 }) => {
-  const hasGAConsent = useGrant('Google Analytics');
-  const hasTagManagerConsent = useGrant('Google Analytics');
   const context = useMemo(() => ({
-    baseEvent, enableAnalytics, pageMapping, hasGAConsent, hasTagManagerConsent,
-  }), [baseEvent, enableAnalytics, pageMapping, hasGAConsent, hasTagManagerConsent]);
+    baseEvent, pageMapping, hasAnalyticsStorageConsent, hasGoogleTagManagerConsent,
+  }), [baseEvent, pageMapping, hasAnalyticsStorageConsent, hasGoogleTagManagerConsent]);
 
   return (
-    <>
-      <ConsentManager
-        accountId={consentConfiguration.accountId}
-        propertyHref={consentConfiguration.propertyHref}
-        baseEndpoint={consentConfiguration.baseEndpoint}
-        scriptPath={consentConfiguration.scriptPath}
-        scriptHost={consentConfiguration.scriptHost}
-        vendorNamesById={consentConfiguration.vendors}
-      />
-      <AnalyticsProvider value={context}>
-        <PageView enabled={enableAnalytics && enablePageTracking}>
-          {enableAnalytics && hasTagManagerConsent
+    <AnalyticsProvider value={context}>
+      <PageView>
+        {hasGoogleTagManagerConsent
             && <Script url={getScriptSource(gtmId)} onCreate={setup} async />}
-          {children}
-        </PageView>
-      </AnalyticsProvider>
-    </>
+        {children}
+      </PageView>
+    </AnalyticsProvider>
 
   );
 };
 
-
-export const UseTrackingProvider = forwardRef(({
+/**
+ * @deprecated This component is used to track events in class components.
+ */
+export const Tracking = forwardRef(({
   children,
 }:PropsWithChildren, ref) => {
   const track = useTrack();

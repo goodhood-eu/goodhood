@@ -2,13 +2,7 @@
 import { PropsWithChildren } from 'react';
 import { useTrackPageView } from './hooks/use_track_page_view';
 
-type PageViewProps = PropsWithChildren<{
-  enabled: boolean;
-}>;
-
-export const PageView = ({
-  enabled, children,
-}: PageViewProps) => {
-  useTrackPageView({ enabled });
+export const PageView = ({ children }:PropsWithChildren) => {
+  useTrackPageView();
   return <>{children}</>;
 };

@@ -3,17 +3,15 @@ import { BaseEvent, PageMapping } from './types';
 
 export type TAnalyticsContext = {
   baseEvent?: BaseEvent,
-  enableAnalytics: boolean,
   pageMapping: PageMapping[],
-  hasGAConsent: boolean,
-  hasTagManagerConsent: boolean
+  hasAnalyticsStorageConsent: boolean,
+  hasGoogleTagManagerConsent: boolean
 };
 
 export const AnalyticsContext = createContext<TAnalyticsContext>({
-  enableAnalytics: false,
   pageMapping: [],
-  hasGAConsent: false,
-  hasTagManagerConsent: false,
+  hasAnalyticsStorageConsent: false,
+  hasGoogleTagManagerConsent: false,
 });
 
 export const AnalyticsProvider = AnalyticsContext.Provider;
