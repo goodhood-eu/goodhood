@@ -6,7 +6,7 @@
   "homepage": "https://github.com/goodhood-eu/goodhood/packages/consent#readme",
   "repository": "github:goodhood-eu/goodhood",
   "bugs": "https://github.com/goodhood-eu/goodhood/issues",
-  "version": "1.1.0",
+  "version": "1.0.0-beta.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "types": "lib/types",
@@ -18,6 +18,8 @@
     "reinstall": "rm -rf node_modules && yarn install",
     "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
     "build": "rollup --config rollup.config.js",
+    "postbuild": "cp ./src/stub.partial.html ./lib",
+
     "build:preview": "../../scripts/build-preview",
     "start": "../../scripts/start-preview",
     "test": "../../scripts/run-tests",

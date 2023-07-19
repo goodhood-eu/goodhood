@@ -1,10 +1,10 @@
-import { forwardRef, PropsWithChildren, useImperativeHandle, useMemo } from 'react';
+import { PropsWithChildren, useMemo } from 'react';
 import Script from 'react-load-script';
 import { AnalyticsProvider } from './context';
 import { PageView } from './page_view';
 import { BaseEvent, PageMapping } from './types';
-import { setup, getScriptSource } from './utils';
-import { useTrack } from '@/src/hooks/use_track';
+import { setup, getScriptSource, setupTrackingOptions } from './utils';
+import { useTrack, TrackFunction } from '@/src/hooks/use_track';
 
 type TrackingProviderProps = PropsWithChildren<{
   hasAnalyticsStorageConsent?: boolean;
@@ -12,10 +12,7 @@ type TrackingProviderProps = PropsWithChildren<{
   baseEvent: BaseEvent;
   pageMapping: PageMapping[];
   gtmId: string;
-  consentConfiguration: any;
 }>;
-
-
 export const Provider:React.FC<TrackingProviderProps> = ({
   hasAnalyticsStorageConsent = false,
   hasGoogleTagManagerConsent = false,
@@ -24,6 +21,7 @@ export const Provider:React.FC<TrackingProviderProps> = ({
   gtmId,
   children,
 }) => {
+  setupTrackingOptions();
   const context = useMemo(() => ({
     baseEvent, pageMapping, hasAnalyticsStorageConsent, hasGoogleTagManagerConsent,
   }), [baseEvent, pageMapping, hasAnalyticsStorageConsent, hasGoogleTagManagerConsent]);
@@ -40,18 +38,9 @@ export const Provider:React.FC<TrackingProviderProps> = ({
   );
 };
 
-/**
- * @deprecated This component is used to track events in class components.
- */
-export const Tracking = forwardRef(({
-  children,
-}:PropsWithChildren, ref) => {
-  const track = useTrack();
-
-  useImperativeHandle(ref, () => ({
-    track,
-  }));
-
-  // eslint-disable-next-line react/jsx-no-useless-fragment
-  return <>{children}</>;
-});
+export const withTrack = <TProps extends Record<string, unknown>>(
+  Component: React.ComponentType<TProps & { track: TrackFunction }>,
+) => (props: TProps) => {
+    const track = useTrack();
+    return <Component {...props} track={track} />;
+  };

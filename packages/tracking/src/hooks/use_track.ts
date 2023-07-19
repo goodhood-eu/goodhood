@@ -14,6 +14,7 @@ import {
 import { useLocation } from 'react-router';
 // eslint-disable-next-line import/no-cycle
 import { AnalyticsContext } from '../context';
+import { log } from '@/src/utils';
 
 export const useAnalytics = () => useContext(AnalyticsContext);
 
@@ -47,13 +48,18 @@ export const useTrack = (): TrackFunction => {
     [location.pathname, pageMapping]);
 
   return useCallback((event, payload) => {
-    window.dataLayer.push({
-      event,
-      section: match?.section,
-      ...baseEvent,
-      ...payload,
-      analytics_storage: hasAnalyticsStorageConsent,
-      ad_storage: hasAnalyticsStorageConsent,
-    });
+    if (!window.dataLayer) {
+      log('tracking without dataLayer', event, payload);
+    } else {
+      log('tracking to dataLayer', event, payload);
+      window.dataLayer.push({
+        event,
+        section: match?.section,
+        ...baseEvent,
+        ...payload,
+        analytics_storage: hasAnalyticsStorageConsent,
+        ad_storage: hasAnalyticsStorageConsent,
+      });
+    }
   }, [baseEvent, match]);
 };
