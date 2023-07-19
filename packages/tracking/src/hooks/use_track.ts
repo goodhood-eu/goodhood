@@ -14,8 +14,9 @@ import {
 import { useLocation } from 'react-router';
 // eslint-disable-next-line import/no-cycle
 import { AnalyticsContext } from '../context';
-import { log } from '@/src/utils';
+import { getLogger } from '@goodhood/helpers';
 
+const log = getLogger('@goodhood/tracking', { collapsed: true });
 export const useAnalytics = () => useContext(AnalyticsContext);
 
 declare const window: Window & {

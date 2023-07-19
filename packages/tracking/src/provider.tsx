@@ -3,7 +3,7 @@ import Script from 'react-load-script';
 import { AnalyticsProvider } from './context';
 import { PageView } from './page_view';
 import { BaseEvent, PageMapping } from './types';
-import { setup, getScriptSource, setupTrackingOptions } from './utils';
+import { setup, getScriptSource } from './utils';
 import { useTrack, TrackFunction } from '@/src/hooks/use_track';
 
 type TrackingProviderProps = PropsWithChildren<{
@@ -21,7 +21,6 @@ export const Provider:React.FC<TrackingProviderProps> = ({
   gtmId,
   children,
 }) => {
-  setupTrackingOptions();
   const context = useMemo(() => ({
     baseEvent, pageMapping, hasAnalyticsStorageConsent, hasGoogleTagManagerConsent,
   }), [baseEvent, pageMapping, hasAnalyticsStorageConsent, hasGoogleTagManagerConsent]);
