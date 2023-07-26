@@ -1,9 +1,17 @@
 declare const window: Window & {
   dataLayer: Record<string, unknown>[];
 };
-
+export const setupGTM = () => {
+  const script = document.createElement('script');
+  script.innerHTML = `
+              window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('js', new Date());
+            `;
+  document.head.appendChild(script);
+};
 export const setup = () => {
-  window.dataLayer = window.dataLayer || [];
   gtag('consent', 'default', {
     ad_storage: 'denied',
     analytics_storage: 'denied',
