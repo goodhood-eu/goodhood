@@ -85,7 +85,7 @@ export type ViewEvent = InteractionEvent & ContentEvent & {
   content_position: string;
 };
 
-export type PageMapping = {
+export type PageMap = {
   selector: RegExp;
   section: PageSection;
   track: PageViewEvent;

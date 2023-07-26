@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useContext } from 'react';
+import { useCallback, useMemo, useContext, useEffect } from 'react';
 // eslint-disable-next-line import/no-cycle
 import {
   ClickEvent,
@@ -13,11 +13,12 @@ import {
 } from '../types';
 import { useLocation } from 'react-router';
 // eslint-disable-next-line import/no-cycle
-import { AnalyticsContext } from '../context';
+import { TrackingContext } from '../context';
 import { getLogger } from '@goodhood/helpers';
+import { getConsentState } from '@/src/utils';
 
 const log = getLogger('@goodhood/tracking', { collapsed: true });
-export const useAnalytics = () => useContext(AnalyticsContext);
+export const useTrackingContext = () => useContext(TrackingContext);
 
 declare const window: Window & {
   dataLayer: Record<string, unknown>[];
@@ -42,11 +43,20 @@ export type TrackFunction =
 
 
 export const useTrack = (): TrackFunction => {
-  const { baseEvent, pageMapping, hasAnalyticsStorageConsent } = useAnalytics();
+  const {
+    baseEvent,
+    pageMapping,
+    hasAnalyticsStorageConsent,
+    hasGoogleTagManagerConsent,
+    hasAdStorageConsent,
+  } = useTrackingContext();
   const location = useLocation();
-  const match = useMemo(
+  const map = useMemo(
     () => pageMapping.find((m) => m.selector.test(location.pathname)),
     [location.pathname, pageMapping]);
+  useEffect(() => {
+    gtag('consent', 'update', { ad_storage: getConsentState(hasAdStorageConsent), analytics_storage: getConsentState(hasAnalyticsStorageConsent) });
+  }, [hasAnalyticsStorageConsent, hasGoogleTagManagerConsent]);
 
   return useCallback((event, payload) => {
     if (!window.dataLayer) {
@@ -55,12 +65,11 @@ export const useTrack = (): TrackFunction => {
       log('tracking to dataLayer', event, payload);
       window.dataLayer.push({
         event,
-        section: match?.section,
+        section: map?.section,
         ...baseEvent,
         ...payload,
-        analytics_storage: hasAnalyticsStorageConsent,
-        ad_storage: hasAnalyticsStorageConsent,
+        analytics_storage: hasAnalyticsStorageConsent ? 'granted' : 'denied',
       });
     }
-  }, [baseEvent, match]);
+  }, [baseEvent, map]);
 };

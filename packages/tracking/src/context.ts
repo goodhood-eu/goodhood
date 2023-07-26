@@ -1,17 +1,19 @@
 import { createContext } from 'react';
-import { BaseEvent, PageMapping } from './types';
+import { BaseEvent, PageMap } from './types';
 
-export type TAnalyticsContext = {
+export type TTrackingContext = {
   baseEvent?: BaseEvent,
-  pageMapping: PageMapping[],
+  pageMapping: PageMap[],
   hasAnalyticsStorageConsent: boolean,
-  hasGoogleTagManagerConsent: boolean
+  hasGoogleTagManagerConsent: boolean,
+  hasAdStorageConsent: boolean
 };
 
-export const AnalyticsContext = createContext<TAnalyticsContext>({
+export const TrackingContext = createContext<TTrackingContext>({
   pageMapping: [],
   hasAnalyticsStorageConsent: false,
   hasGoogleTagManagerConsent: false,
+  hasAdStorageConsent: false,
 });
 
-export const AnalyticsProvider = AnalyticsContext.Provider;
+export const TrackingProvider = TrackingContext.Provider;

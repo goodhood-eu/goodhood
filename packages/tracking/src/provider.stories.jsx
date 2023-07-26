@@ -5,21 +5,21 @@ import config from '@root/config';
 export default { title: 'V2', component: PureComponent };
 const mapping = [
   {
-    selector: /\/v-2--default$/,
+    selector: /^\/v-2--default$/,
     section: 'core',
     track: {
       page_name: 'library',
     },
   },
   {
-    selector: /\/feed\/(\d+)$/,
+    selector: /^\/feed\/(\d+)$/,
     section: 'post_details_page',
     track: {
       page_name: 'post_details_page',
     },
   },
   {
-    selector: /\/feed$/,
+    selector: /^\/feed$/,
     section: 'core',
     track: {
       page_name: 'main_feed',
@@ -41,6 +41,8 @@ export const Default = () => (
       hoodname: 'Müllrose',
     }}
     pageMapping={mapping}
+    hasGoogleTagManagerConsent
+    hasAnalyticsStorageConsent
   >
     <div>
       <p>asd</p>
