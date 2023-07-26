@@ -46,17 +46,11 @@ export const useTrack = (): TrackFunction => {
   const {
     baseEvent,
     pageMapping,
-    hasAnalyticsStorageConsent,
-    hasGoogleTagManagerConsent,
-    hasAdStorageConsent,
   } = useTrackingContext();
   const location = useLocation();
   const map = useMemo(
     () => pageMapping.find((m) => m.selector.test(location.pathname)),
     [location.pathname, pageMapping]);
-  useEffect(() => {
-    gtag('consent', 'update', { ad_storage: getConsentState(hasAdStorageConsent), analytics_storage: getConsentState(hasAnalyticsStorageConsent) });
-  }, [hasAnalyticsStorageConsent, hasGoogleTagManagerConsent]);
 
   return useCallback((event, payload) => {
     if (!window.dataLayer) {
@@ -68,7 +62,6 @@ export const useTrack = (): TrackFunction => {
         section: map?.section,
         ...baseEvent,
         ...payload,
-        analytics_storage: hasAnalyticsStorageConsent ? 'granted' : 'denied',
       });
     }
   }, [baseEvent, map]);
