@@ -3,7 +3,7 @@ import Script from 'react-load-script';
 import { TrackingProvider } from './context';
 import { PageView } from './page_view';
 import { BaseEvent, PageMap } from './types';
-import { setup, getScriptSource, setupGTM } from './utils';
+import { setup, getScriptSource } from './utils';
 import { useTrack, TrackFunction } from '@/src/hooks/use_track';
 
 type TrackingProviderProps = PropsWithChildren<{
@@ -37,7 +37,6 @@ export const Provider:React.FC<TrackingProviderProps> = ({
     hasGoogleTagManagerConsent,
     hasAdStorageConsent,
   ]);
-  setupGTM();
   return (
     <TrackingProvider value={context}>
       <PageView>

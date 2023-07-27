@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useContext, useEffect } from 'react';
+import { useCallback, useMemo, useContext } from 'react';
 // eslint-disable-next-line import/no-cycle
 import {
   ClickEvent,
@@ -15,7 +15,6 @@ import { useLocation } from 'react-router';
 // eslint-disable-next-line import/no-cycle
 import { TrackingContext } from '../context';
 import { getLogger } from '@goodhood/helpers';
-import { getConsentState } from '@/src/utils';
 
 const log = getLogger('@goodhood/tracking', { collapsed: true });
 export const useTrackingContext = () => useContext(TrackingContext);
