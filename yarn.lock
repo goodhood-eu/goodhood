@@ -9138,15 +9138,15 @@ nebenan-eventproxy@^1.0.0:
   dependencies:
     lodash "^4.17.21"
 
-nebenan-form@^10.3.0:
-  version "10.3.0"
-  resolved "https://registry.yarnpkg.com/nebenan-form/-/nebenan-form-10.3.0.tgz#f8ec9b6d18760edb45d677da7055fb74179f4a7c"
-  integrity sha512-y3w/7Ef/vWcJ9MBcAqEaP10F0a5ZbYsLbW0IYv6+rn1ykIHPrRYIItlbE9OT7yGB+K5uEQA46Mc7YY3pJzwTjg==
+nebenan-form@^10.4.0-beta.0:
+  version "10.4.0-beta.0"
+  resolved "https://registry.yarnpkg.com/nebenan-form/-/nebenan-form-10.4.0-beta.0.tgz#d530350663bc46686412cf567c5ca17be9595e7b"
+  integrity sha512-Vnasi17NRjbo5w4ViRQCCe/Gwv+tudqYlLWOPdJmHcR9lnB/84pRzSQh7lYQGp93aiGRiZNvkWXYmOkqyB//ZA==
   dependencies:
     clsx "^1.2.1"
     lodash "^4.17.21"
     nebenan-helpers "^7.1.0"
-    nebenan-ui-kit "^5.6.1"
+    nebenan-ui-kit "^5.7.0-beta.0"
     string-validate "^3.9.0"
 
 nebenan-helpers@^7.1.0, nebenan-helpers@^7.2.0:
@@ -9181,6 +9181,14 @@ nebenan-ui-kit@^5.6.1:
   version "5.6.1"
   resolved "https://registry.yarnpkg.com/nebenan-ui-kit/-/nebenan-ui-kit-5.6.1.tgz#a57a7972ec6b34871c1ac4f20db222c791c1749a"
   integrity sha512-wk1G15TVBcnWusqsA+0mZmJD6IveZsoePsCbS4ByYnDyttUgHAHqIbMzUbUcCGGROq5gUlcUNRUDSse5PEVcdA==
+  dependencies:
+    "@fontsource/open-sans" "^4.5.13"
+    normalize.css "^8.0.1"
+
+nebenan-ui-kit@^5.7.0-beta.0:
+  version "5.7.0-beta.0"
+  resolved "https://registry.yarnpkg.com/nebenan-ui-kit/-/nebenan-ui-kit-5.7.0-beta.0.tgz#af35610e75b3b888fab424e1cebefb62afdbd29a"
+  integrity sha512-ByArlv9ukZ2cfduN5ekXqL7XC4+O5a7GNdlrwAv/qKl2YniReiq5e3Z0/ibzCZwvpmH1DM6w58E6an2/mN2pfw==
   dependencies:
     "@fontsource/open-sans" "^4.5.13"
     normalize.css "^8.0.1"
