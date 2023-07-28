@@ -1,9 +1,9 @@
-import { PropsWithChildren, useMemo } from 'react';
+import { PropsWithChildren, useEffect, useMemo } from 'react';
 import Script from 'react-load-script';
 import { TrackingProvider } from './context';
 import { PageView } from './page_view';
 import { BaseEvent, PageMap } from './types';
-import { setup, getScriptSource } from './utils';
+import { setup, getScriptSource, getConsentState } from './utils';
 import { useTrack, TrackFunction } from '@/src/hooks/use_track';
 
 type TrackingProviderProps = PropsWithChildren<{
@@ -37,11 +37,24 @@ export const Provider:React.FC<TrackingProviderProps> = ({
     hasGoogleTagManagerConsent,
     hasAdStorageConsent,
   ]);
+  useEffect(() => {
+    gtag('consent', 'update',
+      { ad_storage: getConsentState(hasAdStorageConsent),
+        analytics_storage: getConsentState(hasAdStorageConsent),
+      });
+  }, [hasAnalyticsStorageConsent, hasAdStorageConsent]);
+
   return (
     <TrackingProvider value={context}>
       <PageView>
         {hasGoogleTagManagerConsent
-            && <Script url={getScriptSource(gtmId)} onCreate={setup} async />}
+            && (
+            <Script
+              url={getScriptSource(gtmId)}
+              onCreate={() => setup(hasAdStorageConsent, hasAnalyticsStorageConsent)}
+              async
+            />
+            )}
         {children}
       </PageView>
     </TrackingProvider>

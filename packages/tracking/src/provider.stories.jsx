@@ -43,6 +43,7 @@ export const Default = () => (
     pageMapping={mapping}
     hasGoogleTagManagerConsent
     hasAnalyticsStorageConsent
+    hasAdStorageConsent
   >
     <div>
       <p>asd</p>
