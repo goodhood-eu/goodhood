@@ -1,38 +1,63 @@
-import { PropsWithChildren, useMemo } from 'react';
+import { PropsWithChildren, useEffect, useMemo } from 'react';
 import Script from 'react-load-script';
-import { AnalyticsProvider } from './context';
+import { TrackingProvider } from './context';
 import { PageView } from './page_view';
-import { BaseEvent, PageMapping } from './types';
-import { setup, getScriptSource } from './utils';
+import { BaseEvent, PageMap } from './types';
+import { setup, getScriptSource, getConsentState } from './utils';
 import { useTrack, TrackFunction } from '@/src/hooks/use_track';
 
 type TrackingProviderProps = PropsWithChildren<{
   hasAnalyticsStorageConsent?: boolean;
   hasGoogleTagManagerConsent?: boolean;
+  hasAdStorageConsent?: boolean;
   baseEvent: BaseEvent;
-  pageMapping: PageMapping[];
+  pageMapping: PageMap[];
   gtmId: string;
 }>;
 export const Provider:React.FC<TrackingProviderProps> = ({
   hasAnalyticsStorageConsent = false,
   hasGoogleTagManagerConsent = false,
+  hasAdStorageConsent = false,
   baseEvent,
   pageMapping,
   gtmId,
   children,
 }) => {
   const context = useMemo(() => ({
-    baseEvent, pageMapping, hasAnalyticsStorageConsent, hasGoogleTagManagerConsent,
-  }), [baseEvent, pageMapping, hasAnalyticsStorageConsent, hasGoogleTagManagerConsent]);
+    baseEvent,
+    pageMapping,
+    hasAnalyticsStorageConsent,
+    hasGoogleTagManagerConsent,
+    hasAdStorageConsent,
+  }),
+  [
+    baseEvent,
+    pageMapping,
+    hasAnalyticsStorageConsent,
+    hasGoogleTagManagerConsent,
+    hasAdStorageConsent,
+  ]);
+  useEffect(() => {
+    gtag('consent', 'update',
+      { ad_storage: getConsentState(hasAdStorageConsent),
+        analytics_storage: getConsentState(hasAdStorageConsent),
+      });
+  }, [hasAnalyticsStorageConsent, hasAdStorageConsent]);
 
   return (
-    <AnalyticsProvider value={context}>
+    <TrackingProvider value={context}>
       <PageView>
         {hasGoogleTagManagerConsent
-            && <Script url={getScriptSource(gtmId)} onCreate={setup} async />}
+            && (
+            <Script
+              url={getScriptSource(gtmId)}
+              onCreate={() => setup(hasAdStorageConsent, hasAnalyticsStorageConsent)}
+              async
+            />
+            )}
         {children}
       </PageView>
-    </AnalyticsProvider>
+    </TrackingProvider>
 
   );
 };

@@ -13,11 +13,11 @@ import {
 } from '../types';
 import { useLocation } from 'react-router';
 // eslint-disable-next-line import/no-cycle
-import { AnalyticsContext } from '../context';
+import { TrackingContext } from '../context';
 import { getLogger } from '@goodhood/helpers';
 
 const log = getLogger('@goodhood/tracking', { collapsed: true });
-export const useAnalytics = () => useContext(AnalyticsContext);
+export const useTrackingContext = () => useContext(TrackingContext);
 
 declare const window: Window & {
   dataLayer: Record<string, unknown>[];
@@ -42,9 +42,12 @@ export type TrackFunction =
 
 
 export const useTrack = (): TrackFunction => {
-  const { baseEvent, pageMapping, hasAnalyticsStorageConsent } = useAnalytics();
+  const {
+    baseEvent,
+    pageMapping,
+  } = useTrackingContext();
   const location = useLocation();
-  const match = useMemo(
+  const map = useMemo(
     () => pageMapping.find((m) => m.selector.test(location.pathname)),
     [location.pathname, pageMapping]);
 
@@ -55,12 +58,10 @@ export const useTrack = (): TrackFunction => {
       log('tracking to dataLayer', event, payload);
       window.dataLayer.push({
         event,
-        section: match?.section,
+        section: map?.section,
         ...baseEvent,
         ...payload,
-        analytics_storage: hasAnalyticsStorageConsent,
-        ad_storage: hasAnalyticsStorageConsent,
       });
     }
-  }, [baseEvent, match]);
+  }, [baseEvent, map]);
 };
