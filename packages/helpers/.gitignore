@@ -1,0 +1,6 @@
+lib
+styles.css
+test-report.log
+
+## Don't ignore this directory otherwise the preview build will fail
+# preview
