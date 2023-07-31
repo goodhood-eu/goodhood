@@ -52,3 +52,4 @@ export const getLogger = (id: string, options: LoggerOptions = {}) => (...args: 
 };
 
 export const getNullLogger: typeof getLogger = () => () => {};
+export const defaultLogger = getLogger('nebenan', { collapsed: true });
