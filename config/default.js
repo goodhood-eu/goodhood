@@ -8,4 +8,7 @@ module.exports = {
   chargebee: {
     site: 'site-test',
   },
+  tracking: {
+    gtm_id: '',
+  },
 };

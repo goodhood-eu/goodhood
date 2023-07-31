@@ -10,8 +10,6 @@
     }
   },
   "include": [
-    "index.d.ts",
-    "src/**/*",
-    "node_modules/@types/gtag.js/index.d.ts"
+    "src/**/*"
   ]
 }

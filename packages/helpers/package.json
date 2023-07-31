@@ -1,15 +1,15 @@
 {
-  "name": "@goodhood/tracking",
-  "description": "Declarative tracking for react apps",
+  "name": "@goodhood/helpers",
+  "description": "shared helpers for Good Hood applications",
   "author": "Good Hood GmbH <tech@nebenan.de>",
   "license": "MIT",
   "homepage": "https://github.com/goodhood-eu/goodhood/packages/tracking#readme",
   "repository": "github:goodhood-eu/goodhood",
   "bugs": "https://github.com/goodhood-eu/goodhood/issues",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
-  "types": "lib/types/packages/tracking/src",
+  "types": "lib/types",
   "sideEffects": false,
   "files": [
     "/lib"
@@ -22,14 +22,5 @@
     "start": "../../scripts/start-preview",
     "test": "../../scripts/run-tests",
     "lint:typescript": "../../scripts/check-typescript"
-  },
-  "peerDependencies": {
-    "@babel/runtime": "^7.12.5",
-    "react": ">= 16.14.0",
-    "react-load-script": "^0.0.6"
-  },
-  "dependencies": {
-    "@goodhood/helpers": "1.0.0",
-    "@types/gtag.js": "^0.0.12"
   }
 }
