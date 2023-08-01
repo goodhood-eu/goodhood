@@ -40,8 +40,9 @@ export const Provider:React.FC<TrackingProviderProps> = ({
   useEffect(() => {
     if (window !== undefined && window.gtag !== undefined) {
       gtag('consent', 'update',
-        { ad_storage: getConsentState(hasAdStorageConsent),
-          analytics_storage: getConsentState(hasAdStorageConsent),
+        {
+          ad_storage: getConsentState(hasAdStorageConsent),
+          analytics_storage: getConsentState(hasAnalyticsStorageConsent),
         });
     }
   }, [hasAnalyticsStorageConsent, hasAdStorageConsent]);
