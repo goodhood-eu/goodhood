@@ -15,13 +15,16 @@ export const getConsentState = (consentState: boolean) => (consentState ? 'grant
 
 export const setup = (defaultAdStorageConsent = false, defaultAnalyticsStorageConstent = false) => {
   setupGTM();
-  gtag('consent', 'default', {
-    ad_storage: getConsentState(defaultAdStorageConsent),
-    analytics_storage: getConsentState(defaultAnalyticsStorageConstent),
-  });
+  if (window !== undefined && gtag) {
+    gtag('consent', 'default', {
+      ad_storage: getConsentState(defaultAdStorageConsent),
+      analytics_storage: getConsentState(defaultAnalyticsStorageConstent),
+    });
 
-  gtag('js', new Date());
+    gtag('js', new Date());
+  }
 };
+
 export const getScriptSource = (id: string) => {
   const source = new URL('/gtm.js', 'https://www.googletagmanager.com');
   source.searchParams.set('id', id);
