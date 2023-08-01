@@ -1,5 +1,6 @@
 declare const window: Window & {
   dataLayer: Record<string, unknown>[];
+  gtag: Gtag.Gtag;
 };
 export const setupGTM = () => {
   if (!document || document.querySelector('.gtm-script')) return;
@@ -15,7 +16,7 @@ export const getConsentState = (consentState: boolean) => (consentState ? 'grant
 
 export const setup = (defaultAdStorageConsent = false, defaultAnalyticsStorageConstent = false) => {
   setupGTM();
-  if (window !== undefined && gtag) {
+  if (window !== undefined && window.gtag !== undefined) {
     gtag('consent', 'default', {
       ad_storage: getConsentState(defaultAdStorageConsent),
       analytics_storage: getConsentState(defaultAnalyticsStorageConstent),
