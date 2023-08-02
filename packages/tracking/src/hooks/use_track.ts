@@ -53,9 +53,17 @@ export const useTrack = (): TrackFunction => {
 
   return useCallback((event, payload) => {
     if (!window.dataLayer) {
-      log('tracking without dataLayer', event, payload);
+      log('tracking without dataLayer', event, {
+        section: map?.section,
+        ...baseEvent,
+        ...payload,
+      });
     } else {
-      log('tracking to dataLayer', event, payload);
+      log('tracking to dataLayer', event, {
+        section: map?.section,
+        ...baseEvent,
+        ...payload,
+      });
       window.dataLayer.push({
         event,
         section: map?.section,
