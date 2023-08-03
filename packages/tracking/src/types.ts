@@ -88,7 +88,7 @@ export type ViewEvent = InteractionEvent & ContentEvent & {
 export type PageMap = {
   selector: RegExp;
   section: PageSection;
-  track: PageViewEvent;
+  track?: PageViewEvent;
 };
 
 // TODO: Remove this during cleanup

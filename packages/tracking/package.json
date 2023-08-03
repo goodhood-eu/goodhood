@@ -6,7 +6,7 @@
   "homepage": "https://github.com/goodhood-eu/goodhood/packages/tracking#readme",
   "repository": "github:goodhood-eu/goodhood",
   "bugs": "https://github.com/goodhood-eu/goodhood/issues",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "types": "lib/types/packages/tracking/src",
