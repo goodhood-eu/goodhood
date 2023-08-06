@@ -52,24 +52,18 @@ export const useTrack = (): TrackFunction => {
     [location.pathname, pageMapping]);
 
   return useCallback((event, payload) => {
-    if (!window.dataLayer) {
-      log('tracking without dataLayer', event, {
-        section: map?.section,
-        ...baseEvent,
-        ...payload,
-      });
-    } else {
-      log('tracking to dataLayer', event, {
-        section: map?.section,
-        ...baseEvent,
-        ...payload,
-      });
-      window.dataLayer.push({
-        event,
-        section: map?.section,
-        ...baseEvent,
-        ...payload,
-      });
-    }
+    window.dataLayer = window.dataLayer || [];
+
+    log('tracking to dataLayer', event, {
+      section: map?.section,
+      ...baseEvent,
+      ...payload,
+    });
+    window.dataLayer.push({
+      event,
+      section: map?.section,
+      ...baseEvent,
+      ...payload,
+    });
   }, [baseEvent, map]);
 };
