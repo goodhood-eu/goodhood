@@ -25,16 +25,16 @@ declare const window: Window & {
 
 
 type TrackEventMap = {
-  'gav4.clickEvent': ClickEvent;
-  'gav4.pageViewEvent': PageViewEvent;
-  'gav4.removeEvent': RemoveEvent;
-  'gav4.editEvent': EditEvent;
-  'gav4.success_failEvent': SuccessFailEvent;
-  'gav4.reactEvent': ReactEvent;
-  'gav4.searchEvent': SearchEvent;
-  'gav4.swipeEvent': SwipeEvent;
-  'gav4.viewEvent': ViewEvent;
-  'gav4.unknownEvent': UnknownEvent;
+  'gav4_clickEvent': ClickEvent;
+  'gav4_pageView': PageViewEvent;
+  'gav4_removeEvent': RemoveEvent;
+  'gav4_editEvent': EditEvent;
+  'gav4_success_failEvent': SuccessFailEvent;
+  'gav4_reactEvent': ReactEvent;
+  'gav4_searchEvent': SearchEvent;
+  'gav4_swipeEvent': SwipeEvent;
+  'gav4_viewEvent': ViewEvent;
+  'gav4_unknownEvent': UnknownEvent;
 };
 
 export type TrackFunction =
