@@ -1,7 +1,8 @@
 export type BaseEvent = {
   environment: string;
-  user_id: string;
-  hoodname: string;
+  user_id?: string;
+  hoodname?: string;
+  traffic_type: string;
   section?: PageSection;
 };
 
@@ -88,7 +89,7 @@ export type ViewEvent = InteractionEvent & ContentEvent & {
 export type PageMap = {
   selector: RegExp;
   section: PageSection;
-  track: PageViewEvent;
+  track?: PageViewEvent;
 };
 
 // TODO: Remove this during cleanup
