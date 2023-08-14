@@ -62,7 +62,7 @@
     "mini-css-extract-plugin": "^1.6.0",
     "mocha": "^10.2.0",
     "nebenan-helpers": "^7.2.0",
-    "nebenan-ui-kit": "^5.6.1",
+    "nebenan-ui-kit": "^5.7.0-beta.2",
     "postcss": "^8.4.19",
     "postcss-preset-env": "^7.4.3",
     "prop-types": "^15.7.2",
