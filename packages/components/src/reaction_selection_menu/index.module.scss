@@ -8,11 +8,15 @@
 
 .header {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
   position: relative;
   text-align: center;
+
+  @media ($media-s) {
+    flex-direction: row;
+  }
 }
 
 .list {
