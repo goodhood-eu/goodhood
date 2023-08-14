@@ -6,6 +6,15 @@
   -webkit-touch-callout: none;
 }
 
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+  text-align: center;
+}
+
 .list {
   padding: 5px;
 
