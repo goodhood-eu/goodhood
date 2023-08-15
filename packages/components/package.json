@@ -6,7 +6,7 @@
   "homepage": "https://github.com/goodhood-eu/goodhood/packages/components#readme",
   "repository": "github:goodhood-eu/goodhood",
   "bugs": "https://github.com/goodhood-eu/goodhood/issues",
-  "version": "7.10.0-beta.3",
+  "version": "7.10.0-beta.4",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "types": "lib/types/packages/components/src",
