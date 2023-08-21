@@ -1,6 +1,6 @@
 @import "nebenan-ui-kit";
 
-:global(.mapboxgl-ctrl-attrib.mapboxgl-compact) {
+:global(.maplibregl-ctrl-attrib.maplibregl-compact) {
   // Fix mapbox attributes style in collapsed state
   min-height: 24px;
 }
@@ -11,8 +11,8 @@
   // overrides default mapbox font
   font-family: $font-family;
 
-  :global(.mapboxgl-ctrl-top-right),
-  :global(.mapboxgl-ctrl-bottom-right) {
+  :global(.maplibregl-ctrl-top-right),
+  :global(.maplibregl-ctrl-bottom-right) {
     // overrides mapbox z-index
     z-index: 1;
 
@@ -26,12 +26,12 @@
     }
   }
 
-  :global(.mapboxgl-canvas-container) {
+  :global(.maplibregl-canvas-container) {
     // Click handlers won't work in layers without stretching this element
     @include block-fill;
   }
 
-  :global(.mapboxgl-canvas):focus {
+  :global(.maplibregl-canvas):focus {
     outline: none;
   }
 
