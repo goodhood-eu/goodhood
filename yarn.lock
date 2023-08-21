@@ -8323,7 +8323,7 @@ nebenan-keymanager@^1.0.1:
   resolved "https://registry.yarnpkg.com/nebenan-keymanager/-/nebenan-keymanager-1.0.3.tgz#93cffaacebceb6c27cfd1a486ae30bad8d5e5c05"
   integrity sha512-yvkv+0k+4lQj8dr0aj85HBiCYUJduwLEiNBWy+ZSwVZUxPRylX868ROLcRJa+BSehiCcDIeaOUJVXBEQkqlsDQ==
 
-nebenan-react-hocs@^9.1.0, nebenan-react-hocs@^9.2.0:
+nebenan-react-hocs@^9.2.0:
   version "9.2.0"
   resolved "https://registry.yarnpkg.com/nebenan-react-hocs/-/nebenan-react-hocs-9.2.0.tgz#b4d4cd0aa0cf5d9c5131ecf42d01c8ee5318b1c1"
   integrity sha512-qjvvWo5t/2kcEpDj1zM9eb9w4Gv9jT0zJmmdd8foV6D9+eLCoqQd13TfGx/nsLW1dIvMiSs5cJksoRdxPw7g/g==
