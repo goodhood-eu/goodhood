@@ -32,6 +32,7 @@ const getPackageOptions = (pkg) => ({
       files: [
         '**/*.ts',
         '**/*.tsx',
+        '**/*.d.ts',
       ],
       extends: ['nebenan/typescript'],
       parserOptions: {

@@ -1,14 +1,15 @@
 {
-  "name": "@goodhood/your-package",
-  "description": "FUN FUN FUN",
+  "name": "@goodhood/helpers",
+  "description": "shared helpers for Good Hood applications",
   "author": "Good Hood GmbH <tech@nebenan.de>",
   "license": "MIT",
-  "homepage": "https://github.com/goodhood-eu/goodhood/packages/your-package#readme",
+  "homepage": "https://github.com/goodhood-eu/goodhood/packages/tracking#readme",
   "repository": "github:goodhood-eu/goodhood",
   "bugs": "https://github.com/goodhood-eu/goodhood/issues",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
+  "types": "lib/types",
   "sideEffects": false,
   "files": [
     "/lib"
@@ -21,11 +22,5 @@
     "start": "../../scripts/start-preview",
     "test": "../../scripts/run-tests",
     "lint:typescript": "../../scripts/check-typescript"
-  },
-  "devDependencies": {
-  },
-  "peerDependencies": {
-    "@babel/runtime": "^7.11.2",
-    "react": "^16.14.0"
   }
 }
