@@ -1,3 +1,7 @@
+## v8.0.0 Changes
+- Changed peer deps
+  - `nebenan-ui-kit` -> v6
+
 ## v7.0.0 Breaking changes
 
 - Changed peer deps
