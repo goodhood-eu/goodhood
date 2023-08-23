@@ -24,7 +24,7 @@
     "@turf/transform-rotate": "^6.5.0"
   },
   "dependencies": {
-    "@goodhood/icons": "^5.0.0",
+    "@goodhood/icons": "^5.0.1",
     "clsx": "^1.2.1",
     "maplibre-gl": "^2.4.0",
     "nebenan-react-hocs": "^9.2.0"
