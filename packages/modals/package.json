@@ -35,7 +35,7 @@
     "@babel/runtime": "^7.11.2",
     "@goodhood/components": "^7.10.0-beta.1",
     "nebenan-keymanager": "^1.0.1",
-    "nebenan-ui-kit": "^5.7.0-beta.2",
+    "nebenan-ui-kit": "^6.4.0",
     "react": ">= 16.14.0",
     "react-dom": ">= 16.14.0"
   }

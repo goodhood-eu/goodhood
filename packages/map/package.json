@@ -31,7 +31,7 @@
   },
   "peerDependencies": {
     "@babel/runtime": "^7.12.5",
-    "nebenan-ui-kit": "^5.7.0-beta.2",
+    "nebenan-ui-kit": "^6.4.0",
     "react": ">= 16.14.0",
     "react-dom": ">= 16.14.0"
   },
