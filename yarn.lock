@@ -1514,11 +1514,6 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.47.0.tgz#5478fdf443ff8158f9de171c704ae45308696c7d"
   integrity sha512-P6omY1zv5MItm93kLM8s2vr1HICJH8v0dvddDhysbIuZ+vcjOHg5Zbkf1mTkcmi2JA9oBG2anOkRnW8WJTS8Og==
 
-"@fontsource/open-sans@^4.5.13":
-  version "4.5.14"
-  resolved "https://registry.yarnpkg.com/@fontsource/open-sans/-/open-sans-4.5.14.tgz#b3e1665c0b3fdfc1f030ded2843749e3cf3a5900"
-  integrity sha512-mBXIIETBlW8q/ocuUN0hyGow2iuf75hQEHQt8R/RJ/HcphVbLg8KB7pHYGbFGDqs75W+SWvTC7JkVeAjT65BuQ==
-
 "@gar/promisify@^1.0.1":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
@@ -4927,7 +4922,7 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-date-fns@^2.3.0, date-fns@^2.30.0:
+date-fns@^2.30.0:
   version "2.30.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.30.0.tgz#f367e644839ff57894ec6ac480de40cae4b0f4d0"
   integrity sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==
@@ -8687,25 +8682,16 @@ nebenan-eventproxy@^1.0.0:
   dependencies:
     lodash "^4.17.21"
 
-nebenan-form@^10.3.0:
-  version "10.3.0"
-  resolved "https://registry.yarnpkg.com/nebenan-form/-/nebenan-form-10.3.0.tgz#f8ec9b6d18760edb45d677da7055fb74179f4a7c"
-  integrity sha512-y3w/7Ef/vWcJ9MBcAqEaP10F0a5ZbYsLbW0IYv6+rn1ykIHPrRYIItlbE9OT7yGB+K5uEQA46Mc7YY3pJzwTjg==
+nebenan-form@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/nebenan-form/-/nebenan-form-11.0.0.tgz#b99e149f9854a1ae58d7e77f94f508a9b9281db9"
+  integrity sha512-sYvX6v4nmIe2+BVrjA2xYseTvnv0mTZBJPTUukYohxvzyELERIaNGg6bpydW1shFP5DbcJhKlz6VFrj7dTGwnw==
   dependencies:
     clsx "^1.2.1"
     lodash "^4.17.21"
-    nebenan-helpers "^7.1.0"
-    nebenan-ui-kit "^5.6.1"
+    nebenan-helpers "^7.2.1"
+    nebenan-ui-kit "^6.4.0"
     string-validate "^3.9.0"
-
-nebenan-helpers@^7.1.0, nebenan-helpers@^7.2.0:
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/nebenan-helpers/-/nebenan-helpers-7.2.0.tgz#37778d1ee3e2bb06ffbadbad646167e7b1420561"
-  integrity sha512-HL3nYC2ji4P03DP2dNiCAr+hBN4W306bCpXgxgM8RzJPpQfoD6Hz3c6SgqF4qjWT4I6VxPZcE3vOOPeDaw2ehw==
-  dependencies:
-    date-fns "^2.3.0"
-    lodash "^4.17.21"
-    qs "^6.9.4"
 
 nebenan-helpers@^7.2.1:
   version "7.2.1"
@@ -8716,7 +8702,7 @@ nebenan-helpers@^7.2.1:
     lodash "^4.17.21"
     qs "^6.11.2"
 
-nebenan-keymanager@^1.0.1:
+nebenan-keymanager@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/nebenan-keymanager/-/nebenan-keymanager-1.0.3.tgz#93cffaacebceb6c27cfd1a486ae30bad8d5e5c05"
   integrity sha512-yvkv+0k+4lQj8dr0aj85HBiCYUJduwLEiNBWy+ZSwVZUxPRylX868ROLcRJa+BSehiCcDIeaOUJVXBEQkqlsDQ==
@@ -8728,12 +8714,11 @@ nebenan-react-hocs@^9.2.0:
   dependencies:
     lodash "^4.17.21"
 
-nebenan-ui-kit@^5.6.1:
-  version "5.6.1"
-  resolved "https://registry.yarnpkg.com/nebenan-ui-kit/-/nebenan-ui-kit-5.6.1.tgz#a57a7972ec6b34871c1ac4f20db222c791c1749a"
-  integrity sha512-wk1G15TVBcnWusqsA+0mZmJD6IveZsoePsCbS4ByYnDyttUgHAHqIbMzUbUcCGGROq5gUlcUNRUDSse5PEVcdA==
+nebenan-ui-kit@^6.4.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/nebenan-ui-kit/-/nebenan-ui-kit-6.4.0.tgz#8bf89e4facd3c4f52fda0be9bd8212f541a189ff"
+  integrity sha512-u7018zHQVrgoeZhkj7h/fG5HbG2SNgq8tXxMGSw1q/dAGjZ+PhGGgX9MY2rBJw7NPQo1+22MklojATFkLBb5JQ==
   dependencies:
-    "@fontsource/open-sans" "^4.5.13"
     normalize.css "^8.0.1"
 
 negotiator@0.6.3, negotiator@^0.6.2:

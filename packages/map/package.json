@@ -6,7 +6,7 @@
   "homepage": "https://github.com/goodhood-eu/goodhood/packages/map#readme",
   "repository": "github:goodhood-eu/goodhood",
   "bugs": "https://github.com/goodhood-eu/goodhood/issues",
-  "version": "7.4.0-beta.0",
+  "version": "8.0.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -31,7 +31,7 @@
   },
   "peerDependencies": {
     "@babel/runtime": "^7.12.5",
-    "nebenan-ui-kit": "^5.0.0",
+    "nebenan-ui-kit": "^6.4.0",
     "react": ">= 16.14.0",
     "react-dom": ">= 16.14.0"
   },
