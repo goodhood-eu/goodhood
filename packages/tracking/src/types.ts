@@ -1,9 +1,12 @@
 export type BaseEvent = {
   environment: string;
+  traffic_type: string;
+  debug_mode?: boolean;
   user_id?: string;
   hoodname?: string;
-  traffic_type: string;
   section?: PageSection;
+  page_name?: string;
+  page_track?: boolean;
 };
 
 export type ContentEvent = {
@@ -60,11 +63,12 @@ export type PageViewEvent = {
   page_name: string;
 };
 
+
 export type RemoveEvent = InteractionEvent & ContentEvent;
 
 export type EditEvent = InteractionEvent & ContentEvent;
 
-export type SuccessFailEvent = InteractionEvent & ContentEvent & PlanInfoEvent & {
+export type ErrorEvent = InteractionEvent & ContentEvent & PlanInfoEvent & {
   event_action: string;
 };
 
@@ -89,26 +93,21 @@ export type ViewEvent = InteractionEvent & ContentEvent & {
 export type PageMap = {
   selector: RegExp;
   section: PageSection;
-  track?: PageViewEvent;
+  page_name: string;
+  page_track?: boolean;
 };
 
-// TODO: Remove this during cleanup
-export type UnknownEvent = {
-  dataCenter: string;
-  click_link: string;
-};
 
 export type TrackingEvent =
   | ClickEvent
   | PageViewEvent
   | RemoveEvent
   | EditEvent
-  | SuccessFailEvent
+  | ErrorEvent
   | ReactEvent
   | SearchEvent
   | SwipeEvent
-  | ViewEvent
-  | UnknownEvent;
+  | ViewEvent;
 
 export type Prettify<T> = {
   [K in keyof T]: T[K];
