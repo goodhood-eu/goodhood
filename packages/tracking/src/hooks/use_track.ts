@@ -52,18 +52,16 @@ export const useTrack = (): TrackFunction => {
 
   return useCallback((event, payload) => {
     window.dataLayer = window.dataLayer || [];
-
-    log('tracking to dataLayer', event, {
+    const trackingData = {
       section: map?.section,
       page_name: map?.page_name,
       ...baseEvent,
       ...payload,
-    });
+    };
+    log('tracking to dataLayer', event, trackingData);
     window.dataLayer.push({
       event,
-      section: map?.section,
-      ...baseEvent,
-      ...payload,
+      ...trackingData,
     });
   }, [baseEvent, map]);
 };
