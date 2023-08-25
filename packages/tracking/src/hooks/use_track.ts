@@ -53,9 +53,9 @@ export const useTrack = (): TrackFunction => {
   return useCallback((event, payload) => {
     window.dataLayer = window.dataLayer || [];
     const trackingData = {
+      ...baseEvent,
       section: map?.section,
       page_name: map?.page_name,
-      ...baseEvent,
       ...payload,
     };
     log('tracking to dataLayer', event, trackingData);
