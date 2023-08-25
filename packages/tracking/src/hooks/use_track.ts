@@ -5,11 +5,11 @@ import {
   PageViewEvent,
   RemoveEvent,
   EditEvent,
-  SuccessFailEvent,
+  ErrorEvent,
   ReactEvent,
   SearchEvent,
   SwipeEvent,
-  ViewEvent, UnknownEvent,
+  ViewEvent,
 } from '../types';
 import { useLocation } from 'react-router';
 // eslint-disable-next-line import/no-cycle
@@ -25,16 +25,15 @@ declare const window: Window & {
 
 
 type TrackEventMap = {
-  'gav4_clickEvent': ClickEvent;
-  'gav4_pageView': PageViewEvent;
-  'gav4_removeEvent': RemoveEvent;
-  'gav4_editEvent': EditEvent;
-  'gav4_success_failEvent': SuccessFailEvent;
-  'gav4_reactEvent': ReactEvent;
-  'gav4_searchEvent': SearchEvent;
-  'gav4_swipeEvent': SwipeEvent;
-  'gav4_viewEvent': ViewEvent;
-  'gav4_unknownEvent': UnknownEvent;
+  'click': ClickEvent;
+  'page_view': PageViewEvent;
+  'remove': RemoveEvent;
+  'edit': EditEvent;
+  'error': ErrorEvent;
+  'react': ReactEvent;
+  'search': SearchEvent;
+  'swipe': SwipeEvent;
+  'view': ViewEvent;
 };
 
 export type TrackFunction =
@@ -53,17 +52,16 @@ export const useTrack = (): TrackFunction => {
 
   return useCallback((event, payload) => {
     window.dataLayer = window.dataLayer || [];
-
-    log('tracking to dataLayer', event, {
-      section: map?.section,
+    const trackingData = {
       ...baseEvent,
+      section: map?.section,
+      page_name: map?.page_name,
       ...payload,
-    });
+    };
+    log('tracking to dataLayer', event, trackingData);
     window.dataLayer.push({
       event,
-      section: map?.section,
-      ...baseEvent,
-      ...payload,
+      ...trackingData,
     });
   }, [baseEvent, map]);
 };

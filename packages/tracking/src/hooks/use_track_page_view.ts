@@ -9,9 +9,9 @@ export const useTrackPageView = () => {
 
   useEffect(() => {
     const match = pageMapping.find((m) => m.selector.test(location.pathname));
-    if (match?.track) {
-      track('gav4_pageView', {
-        ...match.track,
+    if (match?.page_track) {
+      track('page_view', {
+        page_name: match.page_name,
       });
     }
   }, [location]);
