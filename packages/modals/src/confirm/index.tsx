@@ -52,7 +52,7 @@ export const Confirm = forwardRef<ConfirmRef, ConfirmProps>(({
   };
 
   const handleUnmount = () => {
-    if (!handledRef.current) onCancel?.();
+    // if (!handledRef.current) onCancel?.();
     onUnmount?.();
   };
 
