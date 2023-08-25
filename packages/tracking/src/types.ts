@@ -96,19 +96,3 @@ export type PageMap = {
   page_name: string;
   page_track?: boolean;
 };
-
-
-export type TrackingEvent =
-  | ClickEvent
-  | PageViewEvent
-  | RemoveEvent
-  | EditEvent
-  | ErrorEvent
-  | ReactEvent
-  | SearchEvent
-  | SwipeEvent
-  | ViewEvent;
-
-export type Prettify<T> = {
-  [K in keyof T]: T[K];
-};
