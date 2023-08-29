@@ -65,7 +65,7 @@ export const Provider:React.FC<TrackingProviderProps> = ({
   );
 };
 
-export const withTrack = <TProps extends Record<string, unknown>, TRef>(
+export const withTrack = <TProps extends Record<string, unknown>, TRef = unknown>(
   Component: React.ComponentType<TProps & { track: TrackFunction }>,
 ) => forwardRef<TRef, TProps>((props, ref) => {
     const track = useTrack();
