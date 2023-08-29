@@ -1,4 +1,4 @@
-import { PropsWithChildren, useEffect, useMemo } from 'react';
+import { forwardRef, PropsWithChildren, useEffect, useMemo } from 'react';
 import Script from 'react-load-script';
 import { TrackingProvider } from './context';
 import { PageView } from './page_view';
@@ -65,9 +65,9 @@ export const Provider:React.FC<TrackingProviderProps> = ({
   );
 };
 
-export const withTrack = <TProps extends Record<string, unknown>>(
+export const withTrack = <TProps extends Record<string, unknown>, TRef>(
   Component: React.ComponentType<TProps & { track: TrackFunction }>,
-) => (props: TProps) => {
+) => forwardRef<TRef, TProps>((props, ref) => {
     const track = useTrack();
-    return <Component {...props} track={track} />;
-  };
+    return <Component {...props} ref={ref} track={track} />;
+  });
