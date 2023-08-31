@@ -6,7 +6,7 @@
   "homepage": "https://github.com/goodhood-eu/goodhood/packages/icons#readme",
   "repository": "github:goodhood-eu/goodhood",
   "bugs": "https://github.com/goodhood-eu/goodhood/issues",
-  "version": "5.0.2",
+  "version": "5.1.0",
   "scripts": {
     "reinstall": "rm -rf node_modules && yarn install",
     "prepublishOnly": "(cd ../../ && npm run check) && npm run build",
