@@ -5,6 +5,8 @@ export type BaseEvent = {
   user_id?: string;
   hoodname?: string;
   section?: PageSection;
+  page_name?: string;
+  page_track?: boolean;
 };
 
 export type ContentEvent = {
