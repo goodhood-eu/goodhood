@@ -5,8 +5,6 @@ export type BaseEvent = {
   user_id?: string;
   hoodname?: string;
   section?: PageSection;
-  page_name?: string;
-  page_track?: boolean;
 };
 
 export type ContentEvent = {
@@ -62,7 +60,6 @@ export type ClickEvent = InteractionEvent & Partial<ContentEvent> & Partial<Plan
 export type PageViewEvent = {
   page_name: string;
 };
-
 
 export type RemoveEvent = InteractionEvent & Partial<ContentEvent>;
 

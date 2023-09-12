@@ -98,7 +98,7 @@ const ReactionSelectionMenu = ({ className, label, strings, onSelect, onClick })
       {...touchEvents}
       {...mouseEvents}
     >
-      <header onClick={onClick}>{label}</header>
+      <header onClick={onClick} className={styles.header}>{label}</header>
       {isActive && (
         <ul className={styles.list}>{REACTIONS.map(renderReaction)}</ul>
       )}
