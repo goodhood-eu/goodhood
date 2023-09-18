@@ -52,40 +52,40 @@ export type PageSection =
 type InteractionEvent = {
   element_name?: string;
 };
-export type ClickEvent = InteractionEvent & ContentEvent & PlanInfoEvent & {
-  search_term: string;
+export type ClickEvent = InteractionEvent & Partial<ContentEvent> & Partial<PlanInfoEvent> & {
+  search_term?: string;
   click_name: string;
-  click_link: string;
-  content_position: string;
+  click_link?: string;
+  content_position?: string;
+  filter_category: string;
 };
 
 export type PageViewEvent = {
   page_name: string;
 };
 
+export type RemoveEvent = InteractionEvent & Partial<ContentEvent>;
 
-export type RemoveEvent = InteractionEvent & ContentEvent;
+export type EditEvent = InteractionEvent & Partial<ContentEvent>;
 
-export type EditEvent = InteractionEvent & ContentEvent;
-
-export type ErrorEvent = InteractionEvent & ContentEvent & PlanInfoEvent & {
+export type ErrorEvent = InteractionEvent & Partial<ContentEvent> & Partial<PlanInfoEvent> & {
   event_action: string;
 };
 
-export type ReactEvent = InteractionEvent & ContentEvent & {
+export type ReactEvent = InteractionEvent & Partial<ContentEvent> & {
   reaction_type: string;
 };
 
-export type SearchEvent = InteractionEvent & ContentEvent & {
+export type SearchEvent = InteractionEvent & Partial<ContentEvent> & {
   search_term: string;
   click_name: string;
 };
 
-export type SwipeEvent = InteractionEvent & ContentEvent & {
+export type SwipeEvent = InteractionEvent & Partial<ContentEvent> & {
   swipe_direction: string;
 };
 
-export type ViewEvent = InteractionEvent & ContentEvent & {
+export type ViewEvent = InteractionEvent & Partial<ContentEvent> & {
   search_term: string;
   content_position: string;
 };
