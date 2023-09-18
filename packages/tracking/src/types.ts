@@ -53,10 +53,11 @@ type InteractionEvent = {
   element_name?: string;
 };
 export type ClickEvent = InteractionEvent & Partial<ContentEvent> & Partial<PlanInfoEvent> & {
-  search_term: string;
+  search_term?: string;
   click_name: string;
-  click_link: string;
-  content_position: string;
+  click_link?: string;
+  content_position?: string;
+  filter_category: string;
 };
 
 export type PageViewEvent = {
