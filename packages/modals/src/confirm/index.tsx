@@ -4,8 +4,8 @@ import { Markdown } from '@goodhood/components';
 import { Modal, ModalProps, ModalRef } from '../modal';
 
 export interface ConfirmProps extends ModalProps {
-  inverted: boolean;
-  locked: boolean;
+  inverted?: boolean;
+  locked?: boolean;
   content?: string;
   title?: string;
   button?: ReactNode;
