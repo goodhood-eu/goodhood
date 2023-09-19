@@ -25,7 +25,7 @@ const Marker = ({
     nodeRef.current = document.createElement('div');
     nodeRef.current.className = clsx(className, { [styles.isInteractive]: onClick });
 
-    const marker = new MapboxMarker(nodeRef.current).setLngLat(position).addTo(map);
+    const marker = new MapboxMarker({ element: nodeRef.current }).setLngLat(position).addTo(map);
     markerRef.current = marker;
 
     if (onClick) {
