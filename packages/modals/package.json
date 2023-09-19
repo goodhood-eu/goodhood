@@ -6,7 +6,7 @@
   "homepage": "https://github.com/goodhood-eu/goodhood/packages/modals#readme",
   "repository": "github:goodhood-eu/goodhood",
   "bugs": "https://github.com/goodhood-eu/goodhood/issues",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "types": "lib/types/packages/modals/src",
@@ -27,7 +27,7 @@
     "lint:typescript": "../../scripts/check-typescript"
   },
   "dependencies": {
-    "@goodhood/icons": "^5.0.1",
+    "@goodhood/icons": "^5.1.0",
     "clsx": "^1.2.1",
     "nebenan-helpers": "^7.2.1"
   },
