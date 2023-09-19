@@ -1,3 +1,6 @@
+## v8.1.0 Changes
+- Update to maplibre-gl v3
+
 ## v8.0.0 Changes
 - Changed peer deps
   - `nebenan-ui-kit` -> v6
