@@ -1,9 +1,12 @@
 export type BaseEvent = {
   environment: string;
+  traffic_type: string;
+  debug_mode?: boolean;
   user_id?: string;
   hoodname?: string;
-  traffic_type: string;
   section?: PageSection;
+  page_name?: string;
+  page_track?: boolean;
 };
 
 export type ContentEvent = {
@@ -27,7 +30,7 @@ export type PlanInfoEvent = {
 
 export type PageSection =
     | 'core'
-    | 'post_details_page'
+    | 'post_detail_page'
     | 'marketplace'
     | 'inbox'
     | 'local_business'
@@ -49,39 +52,40 @@ export type PageSection =
 type InteractionEvent = {
   element_name?: string;
 };
-export type ClickEvent = InteractionEvent & ContentEvent & PlanInfoEvent & {
-  search_term: string;
+export type ClickEvent = InteractionEvent & Partial<ContentEvent> & Partial<PlanInfoEvent> & {
+  search_term?: string;
   click_name: string;
-  click_link: string;
-  content_position: string;
+  click_link?: string;
+  content_position?: string;
+  filter_category: string;
 };
 
 export type PageViewEvent = {
   page_name: string;
 };
 
-export type RemoveEvent = InteractionEvent & ContentEvent;
+export type RemoveEvent = InteractionEvent & Partial<ContentEvent>;
 
-export type EditEvent = InteractionEvent & ContentEvent;
+export type EditEvent = InteractionEvent & Partial<ContentEvent>;
 
-export type SuccessFailEvent = InteractionEvent & ContentEvent & PlanInfoEvent & {
+export type ErrorEvent = InteractionEvent & Partial<ContentEvent> & Partial<PlanInfoEvent> & {
   event_action: string;
 };
 
-export type ReactEvent = InteractionEvent & ContentEvent & {
+export type ReactEvent = InteractionEvent & Partial<ContentEvent> & {
   reaction_type: string;
 };
 
-export type SearchEvent = InteractionEvent & ContentEvent & {
+export type SearchEvent = InteractionEvent & Partial<ContentEvent> & {
   search_term: string;
   click_name: string;
 };
 
-export type SwipeEvent = InteractionEvent & ContentEvent & {
+export type SwipeEvent = InteractionEvent & Partial<ContentEvent> & {
   swipe_direction: string;
 };
 
-export type ViewEvent = InteractionEvent & ContentEvent & {
+export type ViewEvent = InteractionEvent & Partial<ContentEvent> & {
   search_term: string;
   content_position: string;
 };
@@ -89,27 +93,6 @@ export type ViewEvent = InteractionEvent & ContentEvent & {
 export type PageMap = {
   selector: RegExp;
   section: PageSection;
-  track?: PageViewEvent;
-};
-
-// TODO: Remove this during cleanup
-export type UnknownEvent = {
-  dataCenter: string;
-  click_link: string;
-};
-
-export type TrackingEvent =
-  | ClickEvent
-  | PageViewEvent
-  | RemoveEvent
-  | EditEvent
-  | SuccessFailEvent
-  | ReactEvent
-  | SearchEvent
-  | SwipeEvent
-  | ViewEvent
-  | UnknownEvent;
-
-export type Prettify<T> = {
-  [K in keyof T]: T[K];
+  page_name: string;
+  page_track?: boolean;
 };
