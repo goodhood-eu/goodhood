@@ -1,1 +1,5 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path id="_24x24-a" data-name="24x24-a" d="M21,23.5l-9-5-9,5V2.5a2,2,0,0,1,2-2H19a2,2,0,0,1,2,2Zm-2-15H5V20.101l7-3.8889,7,3.8889Zm0-6H5v4H19Z" fill="#393939"/></svg>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="bookmark">
+<path id="Vector" d="M4.04199 9V20C4.04199 20.824 4.98276 21.2944 5.64199 20.8L10.842 16.9C11.5531 16.3667 12.5309 16.3667 13.242 16.9L18.442 20.8C19.1012 21.2944 20.042 20.824 20.042 20V9M4.04199 9V5C4.04199 3.89543 4.93742 3 6.04199 3H18.042C19.1466 3 20.042 3.89543 20.042 5V9M4.04199 9H20.042" stroke="#799189" stroke-width="1.5"/>
+</g>
+</svg>
