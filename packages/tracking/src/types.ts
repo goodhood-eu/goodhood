@@ -57,7 +57,7 @@ export type ClickEvent = InteractionEvent & Partial<ContentEvent> & Partial<Plan
   click_name: string;
   click_link?: string;
   content_position?: string;
-  filter_category: string;
+  filter_category?: string;
 };
 
 export type PageViewEvent = {
