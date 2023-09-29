@@ -29,8 +29,8 @@ import addressBook from "@goodhood/icons/lib/large/address_book.svg"
 
 ### How to update:
 1. Found some icon in a screen design? Search it in the design system and note down name and group. (Can't find it? *Then do not add it!*)
-1. Add an icon to the `src/*/` folder.
-1. Check preview.
-1. Create PR
-1. Wait for reviews
-1. Merge & publish
+2. Add an icon to the `src/*/` folder.
+3. Check preview.
+4. Create PR
+5. Wait for reviews
+6. Merge & publish

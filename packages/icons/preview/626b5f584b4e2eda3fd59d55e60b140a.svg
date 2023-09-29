@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" data-name="Layer 1" viewBox="0 0 28 28">
+    <path fill="none" d="M0 0h28v28H0z"/>
+    <path fill="currentColor" fill-rule="evenodd" d="m25 2 1.841 6.138A3 3 0 0 1 24 12v-.001V15h1a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1v1a1 1 0 0 1-2 0v-1H6v1a1 1 0 0 1-2 0v-1H3a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h1v-3.001l-.144-.004a3 3 0 0 1-2.697-3.857L3 2Zm-1 15H4v5h20Zm-2-5H6v3h16ZM7.874 3.999 4.488 4 3.074 8.713A1 1 0 0 0 4.032 10h3.092ZM23.512 4l-3.388-.001.75 6.001h3.094a1 1 0 0 0 .958-1.287Zm-5.388-.001H15V10h3.875Zm-5.125 0H9.874L9.124 10H13Z" data-name="28x28-a"/>
+</svg>
