@@ -108,6 +108,8 @@ class Slider extends InputComponent {
   }
 
   setPosition(position, done) {
+    if (this.props.disabled) return;
+
     const percent = ensureValueBounds(position / this.state.trackWidth, 0, 1);
     const value = convertPercentToValue(percent, this.props.min, this.props.max, this.props.step);
 
@@ -124,7 +126,7 @@ class Slider extends InputComponent {
 
   render() {
     const { value, percent, trackWidth } = this.state;
-    const { getLabel, label } = this.props;
+    const { getLabel, label, disabled } = this.props;
     const cleanProps = omit(this.props,
       'label',
       'error',
@@ -147,11 +149,11 @@ class Slider extends InputComponent {
     return (
       <article {...cleanProps} className={className} ref={this.setEl('container')}>
         <strong className="ui-label">{label}</strong>
-        <div className={styles.track} ref={this.setEl('track')} onClick={this.handleClick}>
+        <div className={clsx(styles.track, { [styles.disabled]: disabled })} ref={this.setEl('track')} onClick={this.handleClick}>
           <span className={styles.line} />
           <span
             ref={this.setEl('handle')}
-            className={styles.handle}
+            className={clsx(styles.handle, { [styles.disabled]: disabled })}
             style={style}
             onTouchStart={this.handleSwipeStart}
             onMouseDown={this.handleSwipeStart}
@@ -172,6 +174,7 @@ Slider.propTypes = {
   max: PropTypes.number.isRequired,
   getLabel: PropTypes.func,
   label: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 Slider.defaultProps = {
