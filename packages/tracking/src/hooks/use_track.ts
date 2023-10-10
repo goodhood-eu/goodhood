@@ -50,6 +50,9 @@ export const useTrack = (): TrackFunction => {
     () => pageMapping.find((m) => m.selector.test(location.pathname)),
     [location.pathname, pageMapping]);
 
+  if (baseEvent && !baseEvent?.debug_mode) {
+    baseEvent.debug_mode = undefined;
+  }
   return useCallback((event, payload) => {
     window.dataLayer = window.dataLayer || [];
     const trackingData = {
