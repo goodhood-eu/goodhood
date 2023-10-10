@@ -114,20 +114,18 @@ const ImageZoomView = ({
   useEffect(() => {
     setIsImageLoaded(false);
 
-    // Delay image loading to prevent flickering in safari
+    // Delaying image loading to prevent flickering in safari
     const timer = setTimeout(() => {
       setImageSrc(src);
     }, 100);
 
-    return () => {
-      clearTimeout(timer);
-    };
+    return () => clearTimeout(timer);
   }, [src]);
 
   useEffect(() => {
     if (!imageSrc) return;
 
-    /* Check if image is loaded. We can't rely on
+    /* Checking if image is loaded. We can't rely on
     onLoad handler entirely because it may not be called in Safari */
     const interval = setInterval(() => {
       if (imageRef.current?.complete) {
