@@ -3,6 +3,7 @@
 .container {
   width: 100%;
   overflow: hidden;
+  position: relative;
   background-color: $color-gray-07;
   user-select: none;
 }
@@ -11,4 +12,12 @@
   cursor: move;
   transform-origin: 0 0;
   pointer-events: none;
+  opacity: 0;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

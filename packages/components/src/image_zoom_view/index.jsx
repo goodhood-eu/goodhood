@@ -1,4 +1,4 @@
-import { useCallback, useContext, useRef } from 'react';
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { useEventListener } from 'nebenan-react-hocs/lib/use_event_listener';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -7,6 +7,7 @@ import { getOffset } from './utils';
 import { useDoubleTapZoom, useDrag, usePinchZoom, useUpdatedPreviewSize } from './hooks';
 import Context from '../image_zoom_provider/context';
 import { DEFAULT_ASPECT_RATIO } from './constants';
+import { LoadingSpinner } from '@/src/loading_spinner';
 
 const ImageZoomView = ({
   src,
@@ -23,6 +24,7 @@ const ImageZoomView = ({
     onOffsetUpdate,
     onPreviewSizeUpdate,
     onImageUpdate,
+    setIsImageLoaded,
     scale,
   } = useContext(Context);
 
@@ -31,13 +33,18 @@ const ImageZoomView = ({
     aspectRatio,
   );
 
+  const imageRef = useRef(null);
+  const [imageSrc, setImageSrc] = useState(null);
+
   const drag = useDrag(onOffsetUpdate);
   const pinchZoom = usePinchZoom(onAnchorZoom);
   const doubleTapZoom = useDoubleTapZoom(onAnchorZoom);
 
-  const zoomStyles = {
-    transform: isLoaded && `translate3d(${offset.left}px, ${offset.top}px, 0) scale(${scale})`,
-  };
+  const zoomStyles = isLoaded ? {
+    transform: `translate3d(${offset.left}px, ${offset.top}px, 0) scale(${scale})`,
+    opacity: '1',
+    transition: 'opacity 0.3s ease-in-out',
+  } : undefined;
 
   const rootStyles = {
     height: previewSize && previewSize.height,
@@ -104,6 +111,33 @@ const ImageZoomView = ({
     onImageUpdate(e.target);
   };
 
+  useEffect(() => {
+    setIsImageLoaded(false);
+
+    // Delay image loading to prevent flickering in safari
+    const timer = setTimeout(() => {
+      setImageSrc(src);
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [src]);
+
+  useEffect(() => {
+    if (!imageSrc) return;
+
+    /* Check if image is loaded. We can't rely on
+    onLoad handler entirely because it may not be called in Safari */
+    const interval = setInterval(() => {
+      if (imageRef.current?.complete) {
+        clearInterval(interval);
+        handleImageLoad({ target: imageRef.current });
+      }
+    }, 300);
+    return () => clearInterval(interval);
+  }, [imageSrc]);
+
   const handleImageLoadError = () => {
     onImageUpdate(null);
   };
@@ -121,8 +155,10 @@ const ImageZoomView = ({
       onTouchCancel={handleTouchCancel}
       onTouchEnd={handleTouchEnd}
     >
+      { !isLoaded && <div className={styles.loader}><LoadingSpinner /></div> }
       <img
-        src={src}
+        ref={imageRef}
+        src={imageSrc}
         onLoad={handleImageLoad}
         onError={handleImageLoadError}
         className={styles.zoomed}

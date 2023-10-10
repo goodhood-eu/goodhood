@@ -12,11 +12,14 @@ const ImageZoomProvider = ({ children }) => {
     { safeSetOffset, anchorZoom },
   ] = useImageView({ previewSize, imageSize });
 
-  const isLoaded = Boolean(imageSize);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const handleImageUpdate = (imageNode) => {
     setImageSize(getScaledImageSize(imageNode, 1));
+    setIsLoaded(true);
   };
+
+  const setIsImageLoaded = () => setIsLoaded(false);
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const value = {
@@ -31,6 +34,7 @@ const ImageZoomProvider = ({ children }) => {
     onOffsetUpdate: safeSetOffset,
     onAnchorZoom: anchorZoom,
     onImageUpdate: handleImageUpdate,
+    setIsImageLoaded,
   };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
