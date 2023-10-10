@@ -17,6 +17,7 @@ const ImageZoomSlider = ({ className, ...rest }) => {
     scale,
     previewSize,
     onAnchorZoom,
+    isLoaded,
   } = useContext(Context);
   const ref = useRef(null);
 
@@ -42,6 +43,7 @@ const ImageZoomSlider = ({ className, ...rest }) => {
         step={0.01}
         getLabel={GET_EMPTY_LABEL}
         onUpdate={handleZoomSlider}
+        disabled={!isLoaded}
       />
       <Plus1OutlineIcon className={styles.label} />
     </article>

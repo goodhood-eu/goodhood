@@ -1,0 +1,43 @@
+@use "sass:math";
+
+.c-loading-spinner {
+  $size: 20px;
+  $min-scale: .2;
+  $max-scale: 1;
+  $duration: 1s;
+
+  width: ($size * 3);
+  display: inline-block;
+
+  &::before,
+  &::after {
+    content: "";
+  }
+
+  &::before,
+  &::after,
+  i {
+    @include block-round($size);
+    background: $color-gray-03;
+    animation: $duration $easing infinite pulse-loader-size;
+  }
+
+  i {
+    animation-delay: math.div($duration, 2);
+    transform: scale($min-scale);
+  }
+
+  @keyframes pulse-loader-size {
+    0% {
+      transform: scale($min-scale);
+    }
+
+    50% {
+      transform: scale($max-scale);
+    }
+
+    100% {
+      transform: scale($min-scale);
+    }
+  }
+}
