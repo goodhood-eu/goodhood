@@ -51,6 +51,7 @@ export type PageSection =
 
 type InteractionEvent = {
   element_name?: string;
+  section?: PageSection;
 };
 export type ClickEvent = InteractionEvent & Partial<ContentEvent> & Partial<PlanInfoEvent> & {
   search_term?: string;
