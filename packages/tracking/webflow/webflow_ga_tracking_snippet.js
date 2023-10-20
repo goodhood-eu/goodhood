@@ -14,6 +14,9 @@ const gatherData = (element) => {
   for (const attrib of element.attributes) {
     if (attrib.name.startsWith(GA_PREFIX)) {
       const attributeName = attrib.name.replace(GA_PREFIX, '').replace(/-/g, '_');
+
+      if (!attributeName) continue;
+
       result[attributeName] = attrib.value;
     }
   }
