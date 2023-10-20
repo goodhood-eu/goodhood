@@ -1,17 +1,12 @@
 {
   "name": "@goodhood/inputs-minimal",
   "description": "Nebenan inputs package",
-  "author": "goodhood.eu <rafik@nebenan.de>",
-  "license": "SEE LICENSE IN LICENSE FILE",
-  "homepage": "https://goodhood.eu/",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/goodhood-eu/goodhood.git"
-  },
-  "bugs": {
-    "url": "https://github.com/goodhood-eu/goodhood/issues"
-  },
-  "version": "1.7.0",
+  "author": "Good Hood GmbH <tech@nebenan.de>",
+  "license": "MIT",
+  "homepage": "https://github.com/goodhood-eu/goodhood/packages/inputs-minimal#readme",
+  "repository": "github:goodhood-eu/goodhood",
+  "bugs": "https://github.com/goodhood-eu/goodhood/issues",
+  "version": "1.7.1",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -29,7 +24,7 @@
     "lint:typescript": "../../scripts/check-typescript"
   },
   "dependencies": {
-    "@goodhood/icons": "^5.0.0",
+    "@goodhood/icons": "^5.1.3",
     "clsx": "^1.2.1",
     "lodash": "^4.17.21"
   },
