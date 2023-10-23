@@ -2,8 +2,6 @@
 
 const GA_PREFIX = 'data-ga-';
 
-window.dataLayer = window.dataLayer || [];
-
 const gatherData = (element) => {
   const result = {};
 
@@ -32,7 +30,9 @@ const gatherData = (element) => {
 
 
 const sendEvent = (event, payload) => {
-  window.dataLayer.push({ event, ...payload });
+  if (typeof gtag === 'function') {
+    gtag('event', event, payload);
+  }
 };
 
 const handleDataAttributeClicks = (event) => {
