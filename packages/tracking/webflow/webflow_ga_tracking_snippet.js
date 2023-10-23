@@ -17,12 +17,19 @@ const gatherData = (element) => {
 
       if (!attributeName) continue;
 
-      result[attributeName] = attrib.value;
+      let parsedValue;
+      try {
+        parsedValue = JSON.parse(attrib.value);
+      } catch (e) {
+        parsedValue = attrib.value;
+      }
+      result[attributeName] = parsedValue;
     }
   }
 
   return result;
 };
+
 
 const sendEvent = (event, payload) => {
   window.dataLayer.push({ event, ...payload });
