@@ -1,4 +1,4 @@
-// This is used in the Webflow projects and is not a part of the tracking module.
+/* global gtag */
 
 const GA_PREFIX = 'data-ga-';
 
