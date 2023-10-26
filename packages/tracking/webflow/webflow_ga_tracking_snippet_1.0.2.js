@@ -1,6 +1,8 @@
 /* global gtag */
 
 const GA_PREFIX = 'data-ga-';
+const GA_STAGING_ENVIRONMENT = 'webflow-staging';
+
 
 const gatherData = (element) => {
   const result = {};
@@ -28,10 +30,19 @@ const gatherData = (element) => {
   return result;
 };
 
-
 const sendEvent = (event, payload) => {
+  const environmentMetaTag = document.querySelector('meta[name="ga-environment"]');
+  const environment = environmentMetaTag ? environmentMetaTag.content : GA_STAGING_ENVIRONMENT;
+
+  const debugModeMetaTag = document.querySelector('meta[name="ga-debug-mode"]');
+  const isDebugMode = debugModeMetaTag ? debugModeMetaTag.content === 'true' : false;
+
+  const basePayload = {
+    environment,
+    debug_mode: isDebugMode,
+  };
   if (typeof gtag === 'function') {
-    gtag('event', event, payload);
+    gtag('event', event, { ...basePayload, ...payload });
   }
 };
 
