@@ -3,7 +3,6 @@
 const GA_PREFIX = 'data-ga-';
 const GA_STAGING_ENVIRONMENT = 'webflow-staging';
 
-
 const gatherData = (element) => {
   const result = {};
 
@@ -46,19 +45,26 @@ const sendEvent = (event, payload) => {
   }
 };
 
-const handleDataAttributeClicks = (event) => {
-  const payload = gatherData(event.target);
-
+const handleGaClick = (event) => {
+  const payload = gatherData(event.currentTarget);
   if (Object.keys(payload).length) {
     sendEvent('click', payload);
   }
 };
 
+const attachGaEventListeners = () => {
+  const elements = document.querySelectorAll(`[${GA_PREFIX}click-name]`);
+
+  elements.forEach((element) => {
+    element.addEventListener('click', handleGaClick);
+  });
+};
+
 window.addEventListener('load', () => {
+  attachGaEventListeners();
+
   const onLoadPayload = gatherData(document.querySelector('body'));
   if (Object.keys(onLoadPayload).length) {
     sendEvent('page_view', onLoadPayload);
   }
-
-  document.addEventListener('click', handleDataAttributeClicks);
 });
