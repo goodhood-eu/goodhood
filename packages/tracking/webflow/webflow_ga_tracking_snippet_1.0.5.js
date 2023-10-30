@@ -1,4 +1,4 @@
-/* global gtag */
+/* global dataLayer */
 
 const GA_PREFIX = 'data-ga-';
 const GA_STAGING_ENVIRONMENT = 'webflow-staging';
@@ -39,10 +39,9 @@ const sendEvent = (event, payload) => {
   const basePayload = {
     environment,
     debug_mode: isDebugMode,
+    traffic_type: 'ga4',
   };
-  if (typeof gtag === 'function') {
-    gtag('event', event, { ...basePayload, ...payload });
-  }
+  dataLayer.push({ event, ...basePayload, ...payload });
 };
 
 const handleGaClick = (event) => {
