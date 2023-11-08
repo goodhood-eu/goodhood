@@ -29,25 +29,25 @@ export type PlanInfoEvent = {
 };
 
 export type PageSection =
-    | 'core'
-    | 'post_detail_page'
-    | 'marketplace'
-    | 'inbox'
-    | 'local_business'
-    | 'groups'
-    | 'events'
-    | 'hood_discovery'
-    | 'search'
-    | 'notification'
-    | 'profile'
-    | 'supporter'
-    | 'login_logout'
-    | 'registration_verification'
-    | 'cold_home'
-    | 'landing_pages'
-    | 'magazine'
-    | 'help'
-    | 'error';
+  | 'core'
+  | 'post_detail_page'
+  | 'marketplace'
+  | 'inbox'
+  | 'local_business'
+  | 'groups'
+  | 'events'
+  | 'hood_discovery'
+  | 'search'
+  | 'notification'
+  | 'profile'
+  | 'supporter'
+  | 'login_logout'
+  | 'registration_verification'
+  | 'cold_home'
+  | 'landing_pages'
+  | 'magazine'
+  | 'help'
+  | 'error';
 
 type InteractionEvent = {
   element_name?: string;
@@ -89,6 +89,42 @@ export type SwipeEvent = InteractionEvent & Partial<ContentEvent> & {
 export type ViewEvent = InteractionEvent & Partial<ContentEvent> & {
   search_term: string;
   content_position: string;
+};
+
+type EcommerceListItem = {
+  item_name: string;
+  currency: string;
+  price?: number;
+};
+
+type EcommerceCartItem = EcommerceListItem & {
+  discount?: number;
+  price: number;
+};
+
+export type ViewItemListEvent = {
+  ecommerce: { item_list_name: string, items: Array<EcommerceListItem> },
+};
+
+export type AddToCartEvent = ViewItemListEvent & {
+  ecommerce: {
+    currency: string;
+    value: number;
+    items: Array<EcommerceCartItem>,
+  }
+};
+
+export type BeginCheckoutEvent = AddToCartEvent & {
+  ecommerce: {
+    coupon?: string;
+  }
+};
+
+export type PurchaseEvent = BeginCheckoutEvent & {
+  ecommerce: {
+    payment_type?: string;
+    transaction_id: string,
+  }
 };
 
 export type PageMap = {
