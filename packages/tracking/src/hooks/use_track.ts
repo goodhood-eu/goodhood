@@ -12,11 +12,7 @@ import {
   ViewEvent,
   ViewItemListEvent,
   AddToCartEvent,
-  BeginCheckoutEvent,
-  BeginChargebeeEvent,
-  AddPaymentInfoEvent,
-  SubmitPaymentInfoEvent,
-  PurchaseEvent,
+  PurchaseEvent, BeginCheckoutEvent,
 } from '../types';
 import { useLocation } from 'react-router';
 // eslint-disable-next-line import/no-cycle
@@ -44,9 +40,6 @@ type TrackEventMap = {
   'view_item_list': ViewItemListEvent;
   'add_to_cart': AddToCartEvent;
   'begin_checkout': BeginCheckoutEvent;
-  'begin_chargebee': BeginChargebeeEvent;
-  'add_payment_info': AddPaymentInfoEvent;
-  'submit_pay': SubmitPaymentInfoEvent;
   'purchase': PurchaseEvent;
 };
 
@@ -76,7 +69,6 @@ export const useTrack = (): TrackFunction => {
       ...payload,
     };
     log('tracking to dataLayer', event, trackingData);
-    console.log('tracking to dataLayer', event, trackingData);
     window.dataLayer.push({
       event,
       ...trackingData,

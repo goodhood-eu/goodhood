@@ -91,43 +91,38 @@ export type ViewEvent = InteractionEvent & Partial<ContentEvent> & {
   content_position: string;
 };
 
-type EcommerceItem = {
+type EcommerceListItem = {
   item_name: string;
   currency: string;
-  coupon?: string;
-  discount?: number;
   price?: number;
 };
 
-type EcommerceBaseEvent = {
-  ecommerce: {
-    items: EcommerceItem[];
-  }
+type EcommerceCartItem = EcommerceListItem & {
+  discount?: number;
+  price: number;
 };
 
-export type ViewItemListEvent = EcommerceBaseEvent & { ecommerce: { item_list_name: string } };
+export type ViewItemListEvent = {
+  ecommerce: { item_list_name: string, items: Array<EcommerceListItem> },
+};
 
-export type AddToCartEvent = EcommerceBaseEvent & {
+export type AddToCartEvent = ViewItemListEvent & {
   ecommerce: {
     currency: string;
     value: number;
+    items: Array<EcommerceCartItem>,
   }
 };
 
-export type BeginCheckoutEvent = AddToCartEvent;
-
-export type BeginChargebeeEvent = BeginCheckoutEvent;
-
-export type AddPaymentInfoEvent = BeginCheckoutEvent & {
+export type BeginCheckoutEvent = AddToCartEvent & {
   ecommerce: {
-    payment_type: string;
+    coupon?: string;
   }
 };
 
-export type SubmitPaymentInfoEvent = AddPaymentInfoEvent;
-
-export type PurchaseEvent = SubmitPaymentInfoEvent & {
+export type PurchaseEvent = BeginCheckoutEvent & {
   ecommerce: {
+    payment_type?: string;
     transaction_id: string,
   }
 };
