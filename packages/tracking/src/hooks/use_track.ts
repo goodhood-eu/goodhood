@@ -10,6 +10,9 @@ import {
   SearchEvent,
   SwipeEvent,
   ViewEvent,
+  ViewItemListEvent,
+  AddToCartEvent,
+  PurchaseEvent, BeginCheckoutEvent,
 } from '../types';
 import { useLocation } from 'react-router';
 // eslint-disable-next-line import/no-cycle
@@ -23,7 +26,6 @@ declare const window: Window & {
   dataLayer: Record<string, unknown>[];
 };
 
-
 type TrackEventMap = {
   'click': ClickEvent;
   'page_view': PageViewEvent;
@@ -34,6 +36,11 @@ type TrackEventMap = {
   'search': SearchEvent;
   'swipe': SwipeEvent;
   'view': ViewEvent;
+  // Ecommerce events
+  'view_item_list': ViewItemListEvent;
+  'add_to_cart': AddToCartEvent;
+  'begin_checkout': BeginCheckoutEvent;
+  'purchase': PurchaseEvent;
 };
 
 export type TrackFunction =
