@@ -30,7 +30,7 @@ export type PlanInfoEvent = {
 
 export type PageSection =
   | 'core'
-  | 'post_detail_page'
+  | 'post_details_page'
   | 'marketplace'
   | 'inbox'
   | 'local_business'
