@@ -8955,10 +8955,10 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-maplibre-gl@^3.5.2:
-  version "3.5.2"
-  resolved "https://registry.yarnpkg.com/maplibre-gl/-/maplibre-gl-3.5.2.tgz#84a352f1845c6ccf6fe5d86aaa0d0e8b0f18923c"
-  integrity sha512-deqYA/RiEyXMGroZMDbOWNQTLnFsxREC+mDkQnuyCUNdBWm1KHafsXJYZP7rlLa5RLQNq05IAUAizY9aHTpIUw==
+maplibre-gl@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/maplibre-gl/-/maplibre-gl-3.6.0.tgz#b5cda19afcd5cc399c2ba76657df1509c9b34e9d"
+  integrity sha512-l+jBu+bMy96FOV4em7FgjMH77ewlOtLPXLAem/Q44y4+0vTGsJvPksJSoLoedmikcSff2QN20VZFo3+Zg0UJPQ==
   dependencies:
     "@mapbox/geojson-rewind" "^0.5.2"
     "@mapbox/jsonlint-lines-primitives" "^2.0.2"
@@ -9484,6 +9484,13 @@ nebenan-react-hocs@^9.2.0:
   version "9.2.0"
   resolved "https://registry.yarnpkg.com/nebenan-react-hocs/-/nebenan-react-hocs-9.2.0.tgz#b4d4cd0aa0cf5d9c5131ecf42d01c8ee5318b1c1"
   integrity sha512-qjvvWo5t/2kcEpDj1zM9eb9w4Gv9jT0zJmmdd8foV6D9+eLCoqQd13TfGx/nsLW1dIvMiSs5cJksoRdxPw7g/g==
+  dependencies:
+    lodash "^4.17.21"
+
+nebenan-react-hocs@^9.2.1:
+  version "9.2.1"
+  resolved "https://registry.yarnpkg.com/nebenan-react-hocs/-/nebenan-react-hocs-9.2.1.tgz#0b1c6ac76e4f801db7704f7fd256a4e301183bbe"
+  integrity sha512-gta/aL01moZy00POtLS8YZ/UjObW2Hr2AHv0HdD9DQwuZTUskZVTmAi6gceVgKSoRoHtjWEsrNOV30bYTvKCAg==
   dependencies:
     lodash "^4.17.21"
 
