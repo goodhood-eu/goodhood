@@ -53,7 +53,9 @@ type InteractionEvent = {
   element_name?: string;
   section?: PageSection;
 };
-export type ClickEvent = InteractionEvent & Partial<ContentEvent> & Partial<PlanInfoEvent> & {
+export type ClickEvent = InteractionEvent &
+Partial<ContentEvent> &
+Partial<PlanInfoEvent> & {
   search_term?: string;
   click_name: string;
   click_link?: string;
@@ -69,24 +71,30 @@ export type RemoveEvent = InteractionEvent & Partial<ContentEvent>;
 
 export type EditEvent = InteractionEvent & Partial<ContentEvent>;
 
-export type ErrorEvent = InteractionEvent & Partial<ContentEvent> & Partial<PlanInfoEvent> & {
+export type ErrorEvent = InteractionEvent &
+Partial<ContentEvent> &
+Partial<PlanInfoEvent> & {
   event_action: string;
 };
 
-export type ReactEvent = InteractionEvent & Partial<ContentEvent> & {
+export type ReactEvent = InteractionEvent &
+Partial<ContentEvent> & {
   reaction_type: string;
 };
 
-export type SearchEvent = InteractionEvent & Partial<ContentEvent> & {
+export type SearchEvent = InteractionEvent &
+Partial<ContentEvent> & {
   search_term: string;
   click_name: string;
 };
 
-export type SwipeEvent = InteractionEvent & Partial<ContentEvent> & {
+export type SwipeEvent = InteractionEvent &
+Partial<ContentEvent> & {
   swipe_direction: string;
 };
 
-export type ViewEvent = InteractionEvent & Partial<ContentEvent> & {
+export type ViewEvent = InteractionEvent &
+Partial<ContentEvent> & {
   search_term: string;
   content_position: string;
 };
@@ -101,27 +109,51 @@ type EcommerceCartItem = EcommerceListItem & {
 };
 
 export type ViewItemListEvent = {
-  ecommerce: { item_list_name: string, items: Array<EcommerceListItem>, currency: string; },
+  ecommerce: {
+    item_list_name: string;
+    items: Array<EcommerceListItem>;
+    currency: string;
+  };
 };
 
 export type AddToCartEvent = ViewItemListEvent & {
   ecommerce: {
     value: number;
-    items: Array<EcommerceCartItem>,
-  }
+    items: Array<EcommerceCartItem>;
+  };
 };
 
 export type BeginCheckoutEvent = AddToCartEvent;
 
 export type PurchaseEvent = BeginCheckoutEvent & {
   ecommerce: {
-    transaction_id: string,
-  }
+    transaction_id: string;
+  };
 };
-
+export type VerificationCompletedEvent = {
+  method: 'sms' | 'geo' | 'postcard' | 'code';
+};
 export type PageMap = {
   selector: RegExp;
   section: PageSection;
   page_name: string;
   page_track?: boolean;
+};
+export type TrackEventMap = {
+  click: ClickEvent;
+  page_view: PageViewEvent;
+  remove: RemoveEvent;
+  edit: EditEvent;
+  error: ErrorEvent;
+  react: ReactEvent;
+  search: SearchEvent;
+  swipe: SwipeEvent;
+  view: ViewEvent;
+  // Ecommerce events
+  view_item_list: ViewItemListEvent;
+  add_to_cart: AddToCartEvent;
+  begin_checkout: BeginCheckoutEvent;
+  purchase: PurchaseEvent;
+  // verification events
+  verification_completed: VerificationCompletedEvent;
 };
