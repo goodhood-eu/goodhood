@@ -28,7 +28,6 @@
   },
   "devDependencies": {
     "@types/escape-html": "^1.0.4",
-    "@types/marked": "^4.0.8",
     "@types/react-router": "^5.1.20",
     "nebenan-eventproxy": "^1.0.1",
     "nebenan-form": "^12.0.0-beta.1",
@@ -43,7 +42,7 @@
     "clsx": "^2.0.0",
     "escape-html": "^1.0.3",
     "lodash": "^4.17.21",
-    "marked": "^4.0.0",
+    "marked": "^10.0.0",
     "nebenan-helpers": "^7.2.2",
     "nebenan-react-hocs": "^9.2.1"
   },
