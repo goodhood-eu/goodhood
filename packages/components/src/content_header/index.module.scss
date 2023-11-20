@@ -6,12 +6,13 @@
 }
 
 .controls {
-  @include legacy-clearfix;
   margin: 10px 0;
+  display: flex;
 }
 
 .action {
-  float: right;
+  margin-left: auto;
+  order: 1;
 }
 
 .root.hasAction .content {
