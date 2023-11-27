@@ -8,7 +8,7 @@ const defaultPayload = {
 const uniqueItems = new Set();
 const items = elements.reduce((filteredItems, element) => {
   const item_name = element.dataset.gaEcommerce;
-  const price = element.dataset.gaEcommercePrice;
+  const price = parseFloat(element.dataset.gaEcommercePrice);
   const identifier = `${item_name}-${price}`;
 
   if (item_name && price && !uniqueItems.has(identifier)) {
@@ -31,11 +31,12 @@ window.addEventListener('load', () => {
 elements.forEach((element) => {
   element.addEventListener('click', () => {
     const item_name = element.dataset.gaEcommerce;
-    const price = element.dataset.gaEcommercePrice;
+    const price = parseFloat(element.dataset.gaEcommercePrice);
     if (item_name && price) {
       const payload = {
         ecommerce: {
           ...defaultPayload,
+          value: price,
           items: [
             {
               item_name,
