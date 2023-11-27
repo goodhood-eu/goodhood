@@ -1,3 +1,5 @@
+// If we change this file, we need to update the version number in the path https://wiki.nebenan.de/display/PROD/Google+Analytics+and+Webflow
+
 /* global dataLayer */
 
 const GA_PREFIX = 'data-ga-';
