@@ -1,5 +1,3 @@
-// This snippet is used on this page https://unternehmensprofil.nebenan.de/ as an isolated snippet. It's not a part of any bundle
-
 const elements = Array.from(document.querySelectorAll('a[data-ga-ecommerce]'));
 
 const defaultPayload = {
@@ -32,19 +30,21 @@ window.addEventListener('load', () => {
 
 elements.forEach((element) => {
   element.addEventListener('click', () => {
-    const payload = {
-      ecommerce: {
-        ...defaultPayload,
-        items: [
-          {
-            item_name: element.dataset.gaEcommerce,
-            price: element.dataset.gaEcommercePrice,
-          },
-        ],
-      },
-    };
+    const item_name = element.dataset.gaEcommerce;
+    const price = element.dataset.gaEcommercePrice;
+    if (item_name && price) {
+      const payload = {
+        ecommerce: {
+          ...defaultPayload,
+          items: [
+            {
+              item_name,
+              price,
+            },
+          ],
+        },
+      };
 
-    if (Object.keys(payload).length) {
       window.nebenanWebflowGA.sendEvent('add_to_cart', payload);
     }
   });
