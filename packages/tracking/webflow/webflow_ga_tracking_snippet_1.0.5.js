@@ -67,3 +67,7 @@ window.addEventListener('load', () => {
     sendEvent('page_view', onLoadPayload);
   }
 });
+
+window.nebenanWebflowGA = {
+  sendEvent,
+};
