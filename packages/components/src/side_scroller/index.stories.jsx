@@ -14,6 +14,7 @@ export const Default = () => (
 
 export const WithLink = () => (
   <SideScroller onScroll={action('onScroll')}>
+    {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
     <a href="https://google.com">
       <img
         src="https://www.west-crete.com/images/panoramas/house-view.jpg"
