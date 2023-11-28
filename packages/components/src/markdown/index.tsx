@@ -1,12 +1,12 @@
 import clsx from 'clsx';
-import { marked } from 'marked';
+import { marked, MarkedOptions } from 'marked';
 import styles from './index.module.scss';
 
 import { sanitizeText } from './utils';
 import { ClickHandler, useClickHandler } from './hooks';
 import { ComponentPropsWithoutRef, PropsWithChildren } from 'react';
 
-const options = { gfm: false } as const;
+const options:MarkedOptions = { gfm: false } as const;
 
 type RemainingHTMLAttributes = Omit<ComponentPropsWithoutRef<'span'>,
 'className' | 'onClick'
