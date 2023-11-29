@@ -34,4 +34,15 @@ export const WithChildren = () => (
 );
 
 
+export const WithActionAndChildren = () => (
+  <ContentHeader
+    title={text('title', 'Optional title')}
+    description={text('description', 'Optional **markdown description**')}
+    action={headerAction}
+  >
+    <p>I love chicken wings</p>
+    <p>and weird bugs.</p>
+  </ContentHeader>
+);
+
 export const Empty = () => <ContentHeader />;
