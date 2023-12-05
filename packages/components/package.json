@@ -6,7 +6,7 @@
   "homepage": "https://github.com/goodhood-eu/goodhood/packages/components#readme",
   "repository": "github:goodhood-eu/goodhood",
   "bugs": "https://github.com/goodhood-eu/goodhood/issues",
-  "version": "8.0.2",
+  "version": "9.0.1",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
   "types": "lib/types/packages/components/src",
@@ -27,12 +27,11 @@
     "lint:typescript": "../../scripts/check-typescript"
   },
   "devDependencies": {
-    "@types/escape-html": "^1.0.3",
-    "@types/marked": "^4.0.8",
+    "@types/escape-html": "^1.0.4",
     "@types/react-router": "^5.1.20",
-    "nebenan-eventproxy": "^1.0.0",
-    "nebenan-form": "^11.0.0",
-    "nebenan-keymanager": "^1.0.3",
+    "nebenan-eventproxy": "^1.0.1",
+    "nebenan-form": "^12.0.0",
+    "nebenan-keymanager": "^1.0.4",
     "react-load-script": "^0.0.6",
     "react-redux": "^7.2.2",
     "redux": "^4.2.1"
@@ -40,19 +39,19 @@
   "dependencies": {
     "@goodhood/icons": "^5.1.3",
     "@popperjs/core": "^2.11.8",
-    "clsx": "^1.2.1",
+    "clsx": "^2.0.0",
     "escape-html": "^1.0.3",
     "lodash": "^4.17.21",
-    "marked": "^4.0.0",
-    "nebenan-helpers": "^7.2.1",
-    "nebenan-react-hocs": "^9.2.0"
+    "marked": "^10.0.0",
+    "nebenan-helpers": "^7.2.2",
+    "nebenan-react-hocs": "^9.2.1"
   },
   "peerDependencies": {
     "@babel/runtime": "^7.12.5",
     "nebenan-eventproxy": "^1.0.0",
-    "nebenan-form": "^11.0.0",
+    "nebenan-form": "^12.0.0",
     "nebenan-keymanager": "^1.0.1",
-    "nebenan-ui-kit": "^6.4.0",
+    "nebenan-ui-kit": "^7.0.0",
     "react": ">= 16.14.0",
     "react-load-script": "^0.0.6",
     "react-router": "^5.2.0",
