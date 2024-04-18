@@ -40,7 +40,7 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "browserslist-config-nebenan": "^1.0.2",
     "chai": "^4.3.10",
-    "clsx": "^2.0.0",
+    "clsx": "^2.1.0",
     "core-js": "3",
     "css-loader": "^5.2.7",
     "date-fns": "^2.30.0",
