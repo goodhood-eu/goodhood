@@ -9,7 +9,7 @@ import styles from './index.module.scss';
 const InfoMarker = ({
   children,
   className,
-  small,
+  small = false,
   ...rest
 }) => (
   <Marker {...rest} className={clsx(className, { [styles.isSmall]: small })}>
@@ -19,10 +19,6 @@ const InfoMarker = ({
     {children}
   </Marker>
 );
-
-InfoMarker.defaultProps = {
-  small: false,
-};
 
 InfoMarker.propTypes = {
   children: PropTypes.node,

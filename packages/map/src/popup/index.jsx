@@ -11,9 +11,9 @@ const Popup = ({
   className,
   children,
   defaultOpen,
-  offsetX,
-  offsetY,
-  closeButton,
+  offsetX = 0,
+  offsetY = 0,
+  closeButton = true,
   maxWidth,
   onOpen,
   onClose,
@@ -64,12 +64,6 @@ const Popup = ({
   }
 
   return null;
-};
-
-Popup.defaultProps = {
-  offsetX: 0,
-  offsetY: 0,
-  closeButton: true,
 };
 
 Popup.propTypes = {
