@@ -12,7 +12,7 @@ const Map = ({
   className,
   children,
 
-  webGLError='We couldn\'t show you the map because current browser doesn\'t support WebGL.',
+  webGLError= 'We couldn\'t show you the map because current browser doesn\'t support WebGL.',
   credentials,
 
   animate = false,
