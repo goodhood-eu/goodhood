@@ -42,7 +42,7 @@ const IMAGE_MAP = {
 
 const PinMarker = ({
   children,
-  type,
+  type = PIN_MARKER_GRAY,
   ...rest
 }) => (
   <Marker {...rest}>
@@ -50,10 +50,6 @@ const PinMarker = ({
     {children}
   </Marker>
 );
-
-PinMarker.defaultProps = {
-  type: PIN_MARKER_GRAY,
-};
 
 PinMarker.propTypes = {
   children: PropTypes.node,

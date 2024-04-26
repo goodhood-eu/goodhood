@@ -8,7 +8,7 @@ import { CIRCLE_ACTIVE, CIRCLE_DEFAULT } from './constants';
 
 
 const Circle = ({
-  type,
+  type = CIRCLE_DEFAULT,
   center,
   radius,
 }) => {
@@ -20,10 +20,6 @@ const Circle = ({
   return (
     <Layer geoJsonSource={source} type="circle" paint={paint} />
   );
-};
-
-Circle.defaultProps = {
-  type: CIRCLE_DEFAULT,
 };
 
 Circle.propTypes = {

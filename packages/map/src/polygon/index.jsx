@@ -8,7 +8,7 @@ import Layer from '../layer';
 
 const Polygon = (props) => {
   const {
-    type,
+    type = POLYGON_DEFAULT,
     area,
     onClick,
   } = props;
@@ -22,10 +22,6 @@ const Polygon = (props) => {
       <Layer geoJsonSource={source} type="line" paint={getLinePaint(type)} />
     </>
   );
-};
-
-Polygon.defaultProps = {
-  type: POLYGON_DEFAULT,
 };
 
 Polygon.propTypes = {

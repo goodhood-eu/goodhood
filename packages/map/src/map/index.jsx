@@ -8,21 +8,20 @@ import { Provider } from './context';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import styles from './index.module.scss';
 
-
 const Map = ({
   className,
   children,
 
-  webGLError,
+  webGLError = 'We couldn\'t show you the map because current browser doesn\'t support WebGL.',
   credentials,
 
-  animate,
-  locked,
-  lockedMobile,
-  noAttribution,
+  animate = false,
+  locked = false,
+  lockedMobile = false,
+  noAttribution = false,
 
   bounds,
-  fitPadding,
+  fitPadding = 20,
   maxZoom,
   minZoom,
 
@@ -76,15 +75,6 @@ const Map = ({
       {content}
     </div>
   );
-};
-
-Map.defaultProps = {
-  animate: false,
-  locked: false,
-  lockedMobile: true,
-  noAttribution: false,
-  fitPadding: 20,
-  webGLError: 'We couldn\'t show you the map because current browser doesn\'t support WebGL.',
 };
 
 Map.propTypes = {
