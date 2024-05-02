@@ -59,8 +59,8 @@ const App = () => (
     {/* Animate transition of map view */}
     animate={true}
 
-    {/* Hide attribution */}
-    noAttribution={true}
+    {/* Change attribution style, possible values: 'default', 'compact', 'hidden' */}
+    attribution={'default'}
 
     {/* Text to display when WebGL is not supported by browser */}
     webGLError="WebGL is not supported"

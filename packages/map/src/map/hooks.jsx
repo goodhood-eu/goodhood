@@ -46,7 +46,7 @@ export const useWebGLSupport = () => {
 export const useMapInstance = (nodeRef, options) => {
   const {
     bounds,
-    noAttribution,
+    attribution,
     locked,
     lockedMobile,
     webGLSupported,
@@ -89,7 +89,7 @@ export const useMapInstance = (nodeRef, options) => {
       setMap(null);
       map.remove();
     };
-  }, [noAttribution, locked, lockedMobile, hasBounds, webGLSupported, onBoundsChange]);
+  }, [attribution, locked, lockedMobile, hasBounds, webGLSupported, onBoundsChange]);
 
   return mapInstance;
 };

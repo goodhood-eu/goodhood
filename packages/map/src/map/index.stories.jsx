@@ -14,7 +14,7 @@ export const Default = () => {
   const locked = boolean('Locked', false);
   const lockedMobile = boolean('Locked on mobile', false);
   const animate = boolean('Animate', false);
-  const noAttribution = boolean('Hide attribution', false);
+  const attribution = boolean('Hide attribution', false);
   const boundsIndex = select('Bounds index', [0, 1], 0);
   const bounds = data.polygons[boundsIndex];
   const minZoom = number('Min zoom', undefined);
@@ -22,7 +22,7 @@ export const Default = () => {
 
   return (
     <Map
-      {...{ bounds, locked, lockedMobile, animate, minZoom, maxZoom, noAttribution }}
+      {...{ bounds, locked, lockedMobile, animate, minZoom, maxZoom, attribution }}
       credentials={config.map_credentials}
       onLoad={action('Map loaded')}
       onBoundsChange={action('Bounds change')}

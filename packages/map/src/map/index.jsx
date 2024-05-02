@@ -18,7 +18,7 @@ const Map = ({
   animate = false,
   locked = false,
   lockedMobile = false,
-  noAttribution = false,
+  attribution = 'default',
 
   bounds,
   fitPadding = 20,
@@ -37,7 +37,7 @@ const Map = ({
   const map = useMapInstance(nodeRef, {
     webGLSupported,
     credentials,
-    noAttribution,
+    attribution,
     locked,
     lockedMobile,
     bounds: boundsToFit,
@@ -87,7 +87,7 @@ Map.propTypes = {
   animate: PropTypes.bool.isRequired,
   locked: PropTypes.bool.isRequired,
   lockedMobile: PropTypes.bool.isRequired,
-  noAttribution: PropTypes.bool.isRequired,
+  attribution: PropTypes.string.isRequired,
 
   bounds: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
   fitPadding: PropTypes.number.isRequired,
