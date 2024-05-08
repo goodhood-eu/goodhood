@@ -9,6 +9,7 @@
   "version": "10.1.0",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
+  "types": "types/index.d.ts",
   "sideEffects": false,
   "scripts": {
     "reinstall": "rm -rf node_modules && yarn install",
