@@ -1,10 +1,5 @@
 @import "nebenan-ui-kit";
 
-:global(.maplibregl-ctrl-attrib.maplibregl-compact) {
-  // Fix mapbox attributes style in collapsed state
-  min-height: 24px;
-}
-
 .root {
   @include block-responsive(75%);
 

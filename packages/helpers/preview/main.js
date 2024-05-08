@@ -48533,7 +48533,7 @@ function invariant(condition, message) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@goodhood/helpers","description":"shared helpers for Good Hood applications","author":"Good Hood GmbH <tech@nebenan.de>","license":"MIT","homepage":"https://github.com/goodhood-eu/goodhood/packages/tracking#readme","repository":"github:goodhood-eu/goodhood","bugs":"https://github.com/goodhood-eu/goodhood/issues","version":"1.0.0","module":"lib/index.esm.js","main":"lib/index.js","types":"lib/types","sideEffects":false,"files":["/lib"],"scripts":{"reinstall":"rm -rf node_modules && yarn install","prepublishOnly":"(cd ../../ && npm run check) && npm run build","build":"rollup --config rollup.config.js","build:preview":"../../scripts/build-preview","start":"../../scripts/start-preview","test":"../../scripts/run-tests","lint:typescript":"../../scripts/check-typescript"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"@goodhood/helpers","description":"shared helpers for Good Hood applications","author":"Good Hood GmbH <tech@nebenan.de>","license":"MIT","homepage":"https://github.com/goodhood-eu/goodhood/packages/tracking#readme","repository":"github:goodhood-eu/goodhood","bugs":"https://github.com/goodhood-eu/goodhood/issues","version":"1.0.0","module":"lib/index.esm.js","main":"lib/index.js","types":"lib/types","sideEffects":false,"files":["/lib"],"scripts":{"reinstall":"rm -rf node_modules && yarn install","prepublishOnly":"(cd ../../ && npm run check) && npm run build","build":"rollup --config rollup.config.js","build:preview":"../../scripts/build-preview","start":"../../scripts/start-preview","test":"../../scripts/run-tests","lint:typescript":"../../scripts/check-typescript"}}');
 
 /***/ })
 
