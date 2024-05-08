@@ -40,6 +40,7 @@
     "lib",
     "src",
     "styles.css",
+    "types",
     "LICENSE"
   ]
 }
