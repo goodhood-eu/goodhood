@@ -75,8 +75,9 @@ describe('map/utils', () => {
     });
 
     it('should show/hide attribution', () => {
-      assert.isTrue(getMapOptions({ noAttribution: false }).attributionControl, 'noAttribution false');
-      assert.isFalse(getMapOptions({ noAttribution: true }).attributionControl, 'noAttribution true');
+      assert.isFalse(getMapOptions({ attribution: 'hidden' }).attributionControl, 'noAttribution false');
+      const { compact } = getMapOptions({ attribution: { compact: true } }).attributionControl;
+      assert.isFalse(compact, 'compact true');
     });
 
     it('should set container', () => {

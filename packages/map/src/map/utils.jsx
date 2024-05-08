@@ -33,7 +33,7 @@ export const isSinglePoint = (boundingBox) => {
 
 export const getMapOptions = ({
   credentials,
-  noAttribution,
+  attribution,
   locked,
   lockedMobile,
   bounds,
@@ -44,11 +44,23 @@ export const getMapOptions = ({
   node,
 }) => {
   const interactive = isMobile ? !lockedMobile : !locked;
+  let attributionCtrl;
+  switch (attribution) {
+    case 'hidden':
+      attributionCtrl = false;
+      break;
+    case 'compact':
+      attributionCtrl = { compact: true };
+      break;
+    default:
+      attributionCtrl = { compact: false };
+      break;
+  }
 
   const options = {
     container: node,
     style: getStyle(credentials),
-    attributionControl: !noAttribution,
+    attributionControl: attributionCtrl,
     interactive,
 
     bounds: getBoundingBox(bounds),
