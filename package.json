@@ -83,6 +83,7 @@
     "updeep": "^1.2.4",
     "val-loader": "^2.1.2",
     "webpack": "^5.91.0",
+    "webpack-cli": "^4.10.0",
     "webpack-dev-middleware": "^6.1.2",
     "webpack-hot-middleware": "^2.26.1",
     "webpack-merge": "^5.10.0"
