@@ -8,7 +8,7 @@ import { ReactComponent as CompanyLogo } from './images/logo.svg';
 import { ReactComponent as CompanyChristmasLogo } from './images/logo-christmas.svg';
 
 const Logo = (props) => {
-  const { compact, christmas, to, localeName, children, ...cleanProps } = props;
+  const { compact = false, christmas = false, to, localeName, children, ...cleanProps } = props;
   const className = clsx(styles.root, props.className);
   const LogoImage = christmas ? CompanyChristmasLogo : CompanyLogo;
 
@@ -26,11 +26,6 @@ const Logo = (props) => {
 
   if (to) return <a {...cleanProps} className={className} href={to}>{content}</a>;
   return <span {...cleanProps} className={className}>{content}</span>;
-};
-
-Logo.defaultProps = {
-  compact: false,
-  christmas: false,
 };
 
 Logo.propTypes = {

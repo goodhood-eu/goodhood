@@ -7,7 +7,7 @@ import styles from './index.module.scss';
 
 const BaseTooltip = (props) => {
   const {
-    position,
+    position = 'top',
     bubble,
     children,
     tooltipClassName,
@@ -55,10 +55,6 @@ const BaseTooltip = (props) => {
       {tooltipNode}
     </span>
   );
-};
-
-BaseTooltip.defaultProps = {
-  position: 'top',
 };
 
 BaseTooltip.propTypes = {
