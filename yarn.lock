@@ -2548,10 +2548,10 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.54.0.tgz#4fab9a2ff7860082c304f750e94acd644cf984cf"
   integrity sha512-ut5V+D+fOoWPgGGNj83GGjnntO39xDy6DWxO0wb7Jp3DcMX0TfIqdzHF85VTQkerdyGmuuMD9AKAo5KiNlf/AQ==
 
-"@frsource/autoresize-textarea@^2.0.69":
-  version "2.0.69"
-  resolved "https://registry.yarnpkg.com/@frsource/autoresize-textarea/-/autoresize-textarea-2.0.69.tgz#c1370c36d20a446196e7123793b72d588ef26f5f"
-  integrity sha512-8PYnViH8sv0V7KyC7wHorrPa38cBILN+4/4gZ81Ti5W95ysd9VGVFhwOi3GIybJauL1sV063CDUnKvLUXbzkXA==
+"@frsource/autoresize-textarea@^2.0.90":
+  version "2.0.90"
+  resolved "https://registry.yarnpkg.com/@frsource/autoresize-textarea/-/autoresize-textarea-2.0.90.tgz#e56e031c0fe436e0125cfeef3ae22cf88c713558"
+  integrity sha512-5N++t3MoKzFIW0Yfw8n4LI+BtG+wnkOWsIT6slNlb6zqABQMt3eXSD/F+LjU8E132aG51TxO7aIe2m3jtYFwyA==
 
 "@gar/promisify@^1.0.1":
   version "1.1.3"
@@ -10233,12 +10233,12 @@ nebenan-eventproxy@^1.0.1:
   dependencies:
     lodash "^4.17.21"
 
-nebenan-form@^13.0.1:
-  version "13.0.1"
-  resolved "https://registry.yarnpkg.com/nebenan-form/-/nebenan-form-13.0.1.tgz#553b59210e9bfe0fe7a3f2f7ee7c7e2f91a74062"
-  integrity sha512-fo8SmKlocFVTB8CIlbKFc+wgpUn+LetVff3GjfWcaFyccF26u3NIZKhMII+I0l6+nnqikMD3332SyE7ybsrzbg==
+nebenan-form@^13.1.0:
+  version "13.1.0"
+  resolved "https://registry.yarnpkg.com/nebenan-form/-/nebenan-form-13.1.0.tgz#ea68451f4f9de7eb1aeac8a3fc89678c48a54ce2"
+  integrity sha512-DwGG6HmSw2VUR/w7KCOk3tK18oqBupsm2zqytUw5o5yMsHUTbQ7aoThfOfGiY9Mlo1j4mlbLB/nwce+xEdgZeg==
   dependencies:
-    "@frsource/autoresize-textarea" "^2.0.69"
+    "@frsource/autoresize-textarea" "^2.0.90"
     clsx "^2.1.1"
     lodash "^4.17.21"
     nebenan-helpers "^8.0.0"
