@@ -9,7 +9,12 @@ import {
 import styles from './index.module.scss';
 
 
-const FeatureAlertLabel = ({ position, label, children, className, ...cleanProps }) => {
+const FeatureAlertLabel = ({
+  position = TOOLTIP_POSITION_RIGHT,
+  label,
+  children,
+  className,
+  ...cleanProps }) => {
   const labelClassName = clsx(styles.label, styles[`is-position-${position}`], className);
   return (
     <aside {...cleanProps} className={labelClassName}>
@@ -17,10 +22,6 @@ const FeatureAlertLabel = ({ position, label, children, className, ...cleanProps
       <span className={`${styles.badge} ui-badge ui-badge-rect`}>{label}</span>
     </aside>
   );
-};
-
-FeatureAlertLabel.defaultProps = {
-  position: TOOLTIP_POSITION_RIGHT,
 };
 
 FeatureAlertLabel.propTypes = {

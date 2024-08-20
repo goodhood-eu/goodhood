@@ -5,9 +5,9 @@ import styles from './index.module.scss';
 import { PROGRESS_LINE_WEIGHT_NORMAL, PROGRESS_LINE_WEIGHT_THIN } from './constants';
 
 const ProgressLine = ({
-  steps,
-  current,
-  weight,
+  steps = 1,
+  current = 0,
+  weight = PROGRESS_LINE_WEIGHT_NORMAL,
   className: passedClassName,
   ...cleanProps
 }) => {
@@ -26,12 +26,6 @@ const ProgressLine = ({
   return (
     <ul {...cleanProps} className={className}>{chunks}</ul>
   );
-};
-
-ProgressLine.defaultProps = {
-  steps: 1,
-  current: 0,
-  weight: PROGRESS_LINE_WEIGHT_NORMAL,
 };
 
 ProgressLine.propTypes = {
