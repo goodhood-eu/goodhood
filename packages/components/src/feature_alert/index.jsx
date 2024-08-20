@@ -24,12 +24,12 @@ import styles from './index.module.scss';
 
 const FeatureAlertTooltip = (props) => {
   const {
-    position,
+    position = TOOLTIP_POSITION_LEFT,
     trigger,
     content,
     children,
-    closeIcon,
-    defaultOpen,
+    closeIcon = false,
+    defaultOpen = false,
     onOpen,
     onClose,
     className,
@@ -82,12 +82,6 @@ const FeatureAlertTooltip = (props) => {
       </BaseTooltip>
     </article>
   );
-};
-
-FeatureAlertTooltip.defaultProps = {
-  position: TOOLTIP_POSITION_LEFT,
-  closeIcon: false,
-  defaultOpen: false,
 };
 
 FeatureAlertTooltip.propTypes = {

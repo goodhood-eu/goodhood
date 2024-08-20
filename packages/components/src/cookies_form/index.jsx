@@ -13,9 +13,9 @@ const CookiesDetails = ({ text }) => (
 
 const CookiesForm = ({
   className,
-  compactView,
-  defaultModel,
-  translations,
+  compactView = false,
+  defaultModel = {},
+  translations = {},
   onSubmit,
   ...rest
 }) => {
@@ -69,12 +69,6 @@ const CookiesForm = ({
       {!compactView && <CookiesDetails text={translations.description_tracking_cookies} />}
     </Form>
   );
-};
-
-CookiesForm.defaultProps = {
-  compactView: false,
-  defaultModel: {},
-  translations: {},
 };
 
 CookiesForm.propTypes = {

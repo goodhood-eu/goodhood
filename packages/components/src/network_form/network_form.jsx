@@ -7,7 +7,7 @@ import { useForm } from './hooks';
  * @deprecated use app specific Formik based implementation
  */
 const NetworkForm = ({
-  Component,
+  Component = Form,
   getErrorLabel,
   onRequest,
   onRequestFailure,
@@ -33,10 +33,6 @@ const NetworkForm = ({
       onValidSubmit={handleSubmit}
     />
   );
-};
-
-NetworkForm.defaultProps = {
-  Component: Form,
 };
 
 NetworkForm.propTypes = {
